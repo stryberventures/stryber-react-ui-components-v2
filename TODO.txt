@@ -1,0 +1,6 @@
+- check package.json, remove useless deps, remove lock file and install dependencies
+- add readme
+- create storybook with github pages
+- create a test setup
+- add eslint
+- add ts compiler task
