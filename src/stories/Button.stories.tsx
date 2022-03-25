@@ -7,7 +7,7 @@ export default {
   title: 'Components/Button',
   component: Button,
   argTypes: {
-    colorPrimary: { control: 'color', defaultValue: '#007AFF' },
+    colorPrimary: { control: 'color', defaultValue: '#003CB8' },
     colorSecondary: { control: 'color', defaultValue: '#fff' },
   },
 } as ComponentMeta<typeof Button>;

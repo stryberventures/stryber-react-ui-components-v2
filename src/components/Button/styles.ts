@@ -7,18 +7,18 @@ interface IStyledProps {
 
 export default createUseStyles({
   button: {
-    fontFamily: 'Open Sans, sans-serif',
-    fontWeight: 400,
+    fontFamily: 'Inter, sans-serif',
+    fontWeight: 700,
     userSelect: 'none',
     cursor: 'pointer',
     outline: 'none',
+    border: 'none',
   },
   primary: ({colorPrimary, colorSecondary}: IStyledProps) => ({
     backgroundColor: colorPrimary,
     color: colorSecondary,
     position: 'relative',
     overflow: 'hidden',
-    border: [1, 'solid', colorPrimary],
     '&:hover:not($disabled)::before': {
       content: '""',
       position: 'absolute',
@@ -29,55 +29,39 @@ export default createUseStyles({
       left: 0,
       top: 0,
     },
-    '&$disabled': {
-      backgroundColor: '#ccc',
-      border: [1, 'solid', '#ccc'],
-      color: 'rgba(255, 255, 255, 0.5)',
-      '& svg path': {
-        fill: 'rgba(255, 255, 255, 0.5)',
-      }
-    },
   }),
   secondary: ({colorPrimary, colorSecondary}: IStyledProps) => ({
     backgroundColor: colorSecondary,
     color: colorPrimary,
-    border: [1, 'solid', colorPrimary],
-    '&:hover': {
-      backgroundColor: colorPrimary,
-      color: colorSecondary,
-    },
-    '&$disabled': {
-      backgroundColor: '#f9f9f9',
-      color: 'rgba(204, 204, 204, 0.5)',
-      borderColor: '#ccc',
-      '& svg path': {
-        fill: 'rgba(204, 204, 204, 0.5)',
-      }
-    },
+    border: [2, 'solid', colorPrimary],
   }),
   disabled: {
     cursor: 'auto',
+    opacity: 0.3,
   },
   mini: {
     fontSize: 10,
+    lineHeight: '15px',
     height: 24,
-    padding: [0, 12],
-    textTransform: 'uppercase',
+    padding: [0, 8],
   },
   small: {
-    fontSize: 14,
-    padding: [0, 24],
-    height: 44,
+    fontSize: 16,
+    lineHeight: '24px',
+    padding: [0, 16],
+    height: 40,
   },
   medium: {
     fontSize: 16,
-    padding: [0, 32],
+    lineHeight: '24px',
+    padding: [0, 24],
     height: 56,
   },
   large: {
     fontSize: 16,
-    padding: [0, 44],
-    height: 70,
+    lineHeight: '24px',
+    padding: [0, 32],
+    height: 72,
   },
   round: {
     borderRadius: 4,
@@ -88,16 +72,27 @@ export default createUseStyles({
   withIcon: {
     display: 'flex',
     alignItems: 'center',
-    gap: 4,
+    '&$mini': {
+      gap: 8,
+    },
+    '&$small, &$medium': {
+      gap: 10,
+    },
+    '&$large': {
+      gap: 14,
+    }
+  },
+  iconAlignRight: {
+    flexDirection: 'row-reverse',
   },
   icon: {
     '$mini &': {
-      width: 10,
-      height: 10,
-    },
-    '$small &': {
       width: 14,
       height: 14,
-    }
-  }
+    },
+    '$small &, $medium &, $large &': {
+      width: 20,
+      height: 20,
+    },
+  },
 });

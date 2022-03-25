@@ -1,6 +1,6 @@
 import React from 'react';
 import useStyles from './styles';
-import classNames from "classnames";
+import classNames from 'classnames';
 
 export interface IButton extends Omit<React.HTMLProps<HTMLButtonElement>, 'type' | 'size'>{
   label: string,
@@ -12,10 +12,12 @@ export interface IButton extends Omit<React.HTMLProps<HTMLButtonElement>, 'type'
   disabled?: boolean,
   className?: string,
   icon?: React.FC<{color?: string, className?: string}>,
+  iconAlign: 'left' | 'right',
 }
 
 export const Button = (props: IButton) => {
-  const { label, size, shape, colorPrimary, colorSecondary, type, disabled, className, icon: IconComponent } = props;
+  const { label, size, shape, colorPrimary, colorSecondary, type,
+    disabled, className, icon: IconComponent, iconAlign } = props;
   const classes = useStyles({colorPrimary, colorSecondary});
 
   return (
@@ -31,6 +33,7 @@ export const Button = (props: IButton) => {
         [classes.secondary]: type === 'secondary',
         [classes.disabled]: disabled === true,
         [classes.withIcon]: !!IconComponent,
+        [classes.iconAlignRight]: iconAlign === 'right',
       }, className)}
     >
       {IconComponent && <IconComponent className={classes.icon} color={type === 'primary' ? colorSecondary : colorPrimary} />}
@@ -43,6 +46,7 @@ Button.defaultProps = {
   size: 'medium',
   shape: 'round',
   type: 'primary',
-  colorPrimary: '#007AFF',
+  colorPrimary: '#003CB8',
   colorSecondary: '#fff',
+  iconAlign: 'left',
 }
