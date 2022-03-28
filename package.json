@@ -5,7 +5,9 @@
   "scripts": {
     "start": "start-storybook -p 6006",
     "build": "rollup -c && node postBuild.js",
-    "build-storybook": "build-storybook -o docs-build"
+    "build-storybook": "build-storybook -o docs-build",
+    "lint": "eslint . --ext .ts,.tsx",
+    "tsc-compile": "tsc --noemit"
   },
   "dependencies": {
     "classnames": "^2.3.1",
@@ -24,6 +26,11 @@
     "@storybook/testing-library": "^0.0.9",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.16.0",
+    "@typescript-eslint/parser": "^5.16.0",
+    "eslint": "^8.11.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.29.4",
     "fs-extra": "^10.0.1",
     "rollup": "^2.70.0",
     "rollup-plugin-copy": "^3.4.0",

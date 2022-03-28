@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Button } from '../components/Button';
-import Placeholder from "./icons/placeholder";
+import Placeholder from './icons/placeholder';
 
 export default {
   title: 'Components/Button',
