@@ -2,9 +2,10 @@
 
 ## Description ##
 
-Components library based on React and Typescript
+The components library based on React and Typescript, represented with Storybook and 
+tested with React Testing Library
 
-## How to run the project with Storybook ##
+## To run the project ##
 
 1) Install dependencies
 
@@ -18,7 +19,7 @@ npm install
 npm run start
 ```
 
-## How to deploy the component to npm ##
+## To deploy the component to npm ##
 
 1) Build the project
 
@@ -36,6 +37,13 @@ cd build/Button
 
 ```shell script
 npm publish --access public
+```
+
+## To run tests ##
+
+The test setup is based on React Testing Library with Jest runner. To run tests:
+```shell script
+npm run test 
 ```
 
 ## Components website ##
