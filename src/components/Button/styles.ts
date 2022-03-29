@@ -36,8 +36,8 @@ export default createUseStyles({
     border: [2, 'solid', colorPrimary],
   }),
   disabled: {
-    cursor: 'auto',
     opacity: 0.3,
+    pointerEvents: 'none',
   },
   mini: {
     fontSize: 10,
