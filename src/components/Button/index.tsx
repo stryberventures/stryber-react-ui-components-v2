@@ -17,7 +17,7 @@ export interface IButton extends Omit<React.HTMLProps<HTMLButtonElement>, 'type'
 
 export const Button = (props: IButton) => {
   const { label, size, shape, colorPrimary, colorSecondary, type,
-    disabled, className, icon: IconComponent, iconAlign } = props;
+    disabled, className, icon: IconComponent, iconAlign, ...rest } = props;
   const classes = useStyles({colorPrimary, colorSecondary});
 
   return (
@@ -35,6 +35,7 @@ export const Button = (props: IButton) => {
         [classes.withIcon]: !!IconComponent,
         [classes.iconAlignRight]: iconAlign === 'right',
       }, className)}
+      {...rest}
     >
       {IconComponent && <IconComponent className={classes.icon} color={type === 'primary' ? colorSecondary : colorPrimary} />}
       {label}

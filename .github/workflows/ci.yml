@@ -1,4 +1,4 @@
-name: Eslint & Typescript compiler
+name: Eslint & Typescript compiler & Tests
 
 on: [pull_request]
 
@@ -17,3 +17,5 @@ jobs:
         run: npm run lint
       - name: Run TS compiler
         run: npm run tsc-compile
+      - name: Run tests
+        run: npm run test
