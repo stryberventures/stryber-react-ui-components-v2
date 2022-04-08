@@ -13,13 +13,14 @@ export interface IButton extends Omit<React.HTMLProps<HTMLButtonElement>, 'type'
   className?: string,
   icon?: React.FC<{color?: string, className?: string}>,
   iconAlign: 'left' | 'right',
+  someUnusedProps?: string,
 }
 
 export const Button = (props: IButton) => {
   const { label, size, shape, colorPrimary, colorSecondary, type,
-    disabled, className, icon: IconComponent, iconAlign, ...rest } = props;
+    disabled, className, icon: IconComponent, iconAlign, someUnusedProps, ...rest } = props;
   const classes = useStyles({colorPrimary, colorSecondary});
-
+  console.log('someUnusedProps', someUnusedProps);
   return (
     <button
       className={classNames(classes.button, {
