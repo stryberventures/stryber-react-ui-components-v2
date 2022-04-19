@@ -1,0 +1,8 @@
+{
+  "name": "@stryberventures/stryber-react-ui-components-v2.another-button",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "react": ">=17.0.0",
+    "@stryberventures/stryber-react-ui-components-v2.button": ">=0.0.1"
+  }
+}
