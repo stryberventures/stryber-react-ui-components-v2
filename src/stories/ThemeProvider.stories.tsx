@@ -30,7 +30,7 @@ const Template: ComponentStory<typeof ThemeProvider> = (args) => (
     <h1> </h1>
     <Button type="secondary" label={'Secondary'}/>
     <h1> </h1>
-    <Button type="ghost" label={'Ghost'}/>
+    <Button type="tertiary" label={'Tertiary'}/>
   </ThemeProvider>
 );
 
