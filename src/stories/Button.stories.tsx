@@ -21,10 +21,10 @@ Secondary.args = {
   type: 'secondary',
 };
 
-export const Ghost = Template.bind({});
-Ghost.args = {
-  label: 'Ghost',
-  type: 'ghost',
+export const Tertiary = Template.bind({});
+Tertiary.args = {
+  label: 'Tertiary',
+  type: 'tertiary',
 };
 
 export const Mini = Template.bind({});

@@ -34,7 +34,7 @@ export default createUseStyles((theme: ITheme) => ({
       backgroundColor: theme?.secondary?.dark || defaultTheme.secondary.dark,
     }
   },
-  ghost: {
+  tertiary: {
     backgroundColor: theme?.primary?.contrast || defaultTheme.primary.contrast,
     color: theme?.primary?.main || defaultTheme.primary.main,
     border: [2, 'solid', theme?.primary?.main || defaultTheme.primary.main],
@@ -77,6 +77,7 @@ export default createUseStyles((theme: ITheme) => ({
     padding: [0, 32],
     height: 72,
   },
+  flat: {},
   round: {
     borderRadius: 4,
   },
