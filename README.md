@@ -19,31 +19,53 @@ npm install
 npm run start
 ```
 
-## To deploy the component to npm ##
-
-1) Build the project
-
-```shell script
-npm run build
-```
-
-2) Navigate to the component's folder you want to publish, for example build / Button
-
-```shell script
-cd build/Button
-```
-
-3) Publish the component
-
-```shell script
-npm publish --access public
-```
-
 ## To run tests ##
 
 The test setup is based on React Testing Library with Jest runner. To run tests:
 ```shell script
 npm run test 
+```
+
+## To deploy the component to npm ##
+
+1) Update the version in the package.json file in 
+the component's directory you want to publish or create package.json
+file if it does not exist.
+
+
+2) Build the project
+
+```shell script
+npm run build
+```
+
+3) Navigate to the component's folder you want to publish, for example the Button
+
+```shell script
+cd build/Button
+```
+
+4) Publish the component
+
+```shell script
+npm publish --access public
+```
+
+## To test the component before deployment ##
+You can pack the component and install it locally to ensure that everything works as
+expected. To do so, navigate to the component in the build directory
+and run 'npm pack'
+
+```shell script
+cd build/Button
+npm pack
+```
+
+It will create an .tgz archive, which you can copy to your project's root directory and 
+then install like:
+
+```shell script
+npm i ./stryberventures-stryber-react-ui-components-v2.button-0.0.1.tgz
 ```
 
 ## Components website ##

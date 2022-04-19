@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom'
 import * as React from 'react'
-import {render, screen, fireEvent} from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 import { Button } from './index'
 import Placeholder from '../../stories/icons/placeholder';
 

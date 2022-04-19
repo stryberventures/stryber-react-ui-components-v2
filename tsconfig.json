@@ -7,7 +7,7 @@
       "esnext"
     ],
     "declaration": true,
-    "declarationDir": "dist/dts",
+    "declarationDir": "dist",
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -19,11 +19,15 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
+    "noEmit": false,
     "jsx": "react",
     "outDir": "build/"
   },
   "include": [
     "src"
+  ],
+  "exclude": [
+    "src/components/**/*.test.tsx",
+    "src/stories/*.stories.tsx",
   ]
 }

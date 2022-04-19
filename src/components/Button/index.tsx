@@ -6,20 +6,18 @@ export interface IButton extends Omit<React.HTMLProps<HTMLButtonElement>, 'type'
   label: string,
   size?: 'mini' | 'small' | 'medium' | 'large',
   shape?: 'flat' | 'round' | 'circle',
-  type?: 'primary' | 'secondary',
-  colorPrimary?: string,
-  colorSecondary?: string,
+  type?: 'primary' | 'secondary' | 'ghost',
   disabled?: boolean,
   className?: string,
-  icon?: React.FC<{color?: string, className?: string}>,
-  iconAlign: 'left' | 'right',
+  icon?: React.FC<{className?: string}>,
+  iconAlign?: 'left' | 'right',
 }
 
 export const Button = (props: IButton) => {
-  const { label, size, shape, colorPrimary, colorSecondary, type,
-    disabled, className, icon: IconComponent, iconAlign, ...rest } = props;
-  const classes = useStyles({colorPrimary, colorSecondary});
-
+  const { label, size, shape, type, disabled,
+    className, icon: IconComponent, iconAlign, ...rest } = props;
+  const classes = useStyles();
+  
   return (
     <button
       className={classNames(classes.button, {
@@ -31,23 +29,26 @@ export const Button = (props: IButton) => {
         [classes.circle]: shape === 'circle',
         [classes.primary]: type === 'primary',
         [classes.secondary]: type === 'secondary',
-        [classes.disabled]: disabled === true,
+        [classes.ghost]: type === 'ghost',
+        [classes.disabled]: disabled,
         [classes.withIcon]: !!IconComponent,
         [classes.iconAlignRight]: iconAlign === 'right',
       }, className)}
       {...rest}
     >
-      {IconComponent && <IconComponent className={classes.icon} color={type === 'primary' ? colorSecondary : colorPrimary} />}
+      {IconComponent && <IconComponent className={classes.icon}/>}
       {label}
     </button>
   );
+}
+
+export default {
+  Button,
 }
 
 Button.defaultProps = {
   size: 'medium',
   shape: 'round',
   type: 'primary',
-  colorPrimary: '#003CB8',
-  colorSecondary: '#fff',
   iconAlign: 'left',
 }

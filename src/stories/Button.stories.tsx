@@ -6,10 +6,6 @@ import Placeholder from './icons/placeholder';
 export default {
   title: 'Components/Button',
   component: Button,
-  argTypes: {
-    colorPrimary: { control: 'color', defaultValue: '#003CB8' },
-    colorSecondary: { control: 'color', defaultValue: '#fff' },
-  },
 } as ComponentMeta<typeof Button>;
 
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
@@ -23,6 +19,12 @@ export const Secondary = Template.bind({});
 Secondary.args = {
   label: 'Secondary',
   type: 'secondary',
+};
+
+export const Ghost = Template.bind({});
+Ghost.args = {
+  label: 'Ghost',
+  type: 'ghost',
 };
 
 export const Mini = Template.bind({});

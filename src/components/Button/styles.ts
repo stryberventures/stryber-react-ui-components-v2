@@ -1,40 +1,55 @@
 import { createUseStyles } from 'react-jss';
+import { ITheme } from '../ThemeProvider/types';
+import { defaultTheme } from '../../constants/defaultTheme';
 
-interface IStyledProps {
-  colorPrimary: string,
-  colorSecondary: string,
-}
-
-export default createUseStyles({
+export default createUseStyles((theme: ITheme) => ({
   button: {
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: theme.font || defaultTheme.font,
     fontWeight: 700,
     userSelect: 'none',
     cursor: 'pointer',
     outline: 'none',
     border: 'none',
-  },
-  primary: ({colorPrimary, colorSecondary}: IStyledProps) => ({
-    backgroundColor: colorPrimary,
-    color: colorSecondary,
-    position: 'relative',
-    overflow: 'hidden',
-    '&:hover:not($disabled)::before': {
-      content: '""',
-      position: 'absolute',
-      width: '100%',
-      height: '100%',
-      backgroundColor: '#000',
-      opacity: 0.05,
-      left: 0,
-      top: 0,
+    '&:active:not($disabled)': {
+      outline: `4px solid ${theme.highlight || defaultTheme.highlight}`,
     },
-  }),
-  secondary: ({colorPrimary, colorSecondary}: IStyledProps) => ({
-    backgroundColor: colorSecondary,
-    color: colorPrimary,
-    border: [2, 'solid', colorPrimary],
-  }),
+  },
+  primary: {
+    backgroundColor: theme?.primary?.main || defaultTheme.primary.main,
+    color: theme?.primary?.contrast || defaultTheme.primary.contrast,
+    '& $icon path': {
+      fill: theme?.primary?.contrast || defaultTheme.primary.contrast,
+    },
+    '&:hover': {
+      backgroundColor: theme?.primary?.dark || defaultTheme.primary.dark,
+    }
+  },
+  secondary: {
+    backgroundColor: theme?.secondary?.main || defaultTheme.secondary.main,
+    color: theme?.secondary?.contrast || defaultTheme.secondary.contrast,
+    '& $icon path': {
+      fill: theme?.secondary?.contrast || defaultTheme.secondary.contrast,
+    },
+    '&:hover': {
+      backgroundColor: theme?.secondary?.dark || defaultTheme.secondary.dark,
+    }
+  },
+  ghost: {
+    backgroundColor: theme?.primary?.contrast || defaultTheme.primary.contrast,
+    color: theme?.primary?.main || defaultTheme.primary.main,
+    border: [2, 'solid', theme?.primary?.main || defaultTheme.primary.main],
+    '& $icon path': {
+      fill: theme?.primary?.main || defaultTheme.primary.main,
+    },
+    '&:hover': {
+      backgroundColor: theme?.primary?.light || defaultTheme.primary.light,
+      borderColor: theme?.primary?.light || defaultTheme.primary.light,
+    },
+    '&:active': {
+      backgroundColor: theme?.primary?.contrast || defaultTheme.primary.contrast,
+      borderColor: theme?.primary?.main || defaultTheme.primary.main,
+    }
+  },
   disabled: {
     opacity: 0.3,
     pointerEvents: 'none',
@@ -43,7 +58,6 @@ export default createUseStyles({
     fontSize: 10,
     lineHeight: '15px',
     height: 24,
-    padding: [0, 8],
   },
   small: {
     fontSize: 16,
@@ -82,9 +96,6 @@ export default createUseStyles({
       gap: 14,
     }
   },
-  iconAlignRight: {
-    flexDirection: 'row-reverse',
-  },
   icon: {
     '$mini &': {
       width: 14,
@@ -95,4 +106,7 @@ export default createUseStyles({
       height: 20,
     },
   },
-});
+  iconAlignRight: {
+    flexDirection: 'row-reverse',
+  },
+}));
