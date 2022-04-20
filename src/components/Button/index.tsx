@@ -6,7 +6,8 @@ export interface IButton extends Omit<React.HTMLProps<HTMLButtonElement>, 'type'
   label: string,
   size?: 'mini' | 'small' | 'medium' | 'large',
   shape?: 'flat' | 'round' | 'circle',
-  type?: 'primary' | 'secondary' | 'tertiary',
+  type?: 'contained' | 'outlined',
+  color?: 'primary' | 'secondary',
   disabled?: boolean,
   className?: string,
   icon?: React.FC<{className?: string}>,
@@ -17,7 +18,7 @@ export const Button = (props: IButton) => {
   const {
     size = 'medium',
     shape = 'round',
-    type = 'primary',
+    type = 'contained',
     iconAlign = 'left',
     label,
     disabled,
@@ -25,7 +26,7 @@ export const Button = (props: IButton) => {
     icon: IconComponent,
     ...rest
   } = props;
-  const classes = useStyles();
+  const classes = useStyles(props);
   
   return (
     <button
@@ -44,4 +45,12 @@ export const Button = (props: IButton) => {
 
 export default {
   Button,
+}
+
+Button.defaultProps = {
+  color: 'primary',
+  size: 'medium',
+  shape: 'round',
+  type: 'contained',
+  iconAlign: 'left',
 }

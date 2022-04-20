@@ -2,7 +2,7 @@ import React from 'react';
 import { ThemeProvider as JssThemeProvider } from 'react-jss';
 import { ITheme} from './types';
 import { GlobalStyles } from './GlobalStyles';
-import { defaultTheme } from '../../constants/defaultTheme';
+import { defaultTheme } from '../../styles/defaultTheme';
 
 export interface IThemeProvider {
   theme: ITheme,
@@ -19,4 +19,8 @@ export const ThemeProvider = (props: IThemeProvider) => {
       </GlobalStyles>
     </JssThemeProvider>
   );
+}
+
+ThemeProvider.defaultProps = {
+  theme: defaultTheme,
 }

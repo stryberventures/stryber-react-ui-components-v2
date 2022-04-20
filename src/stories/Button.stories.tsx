@@ -10,21 +10,15 @@ export default {
 
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
-  label: 'Primary',
+export const Contained = Template.bind({});
+Contained.args = {
+  label: 'Contained',
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
-  label: 'Secondary',
-  type: 'secondary',
-};
-
-export const Tertiary = Template.bind({});
-Tertiary.args = {
-  label: 'Tertiary',
-  type: 'tertiary',
+export const Outlined = Template.bind({});
+Outlined.args = {
+  label: 'Outlined',
+  type: 'outlined',
 };
 
 export const Mini = Template.bind({});

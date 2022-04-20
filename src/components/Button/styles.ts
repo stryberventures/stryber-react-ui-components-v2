@@ -1,55 +1,45 @@
-import { createUseStyles } from 'react-jss';
 import { ITheme } from '../ThemeProvider/types';
-import { defaultTheme } from '../../constants/defaultTheme';
+import { IButton } from './index';
+import { createStyles } from '../../styles';
 
-export default createUseStyles((theme: ITheme) => ({
+export default createStyles((theme: ITheme) => ({
   button: {
-    fontFamily: theme.font || defaultTheme.font,
+    fontFamily: theme.font,
     fontWeight: 700,
     userSelect: 'none',
     cursor: 'pointer',
     outline: 'none',
     border: 'none',
     '&:active:not($disabled)': {
-      outline: `4px solid ${theme.highlight || defaultTheme.highlight}`,
+      outline: `4px solid ${theme.primary.light}`,
     },
   },
-  primary: {
-    backgroundColor: theme?.primary?.main || defaultTheme.primary.main,
-    color: theme?.primary?.contrast || defaultTheme.primary.contrast,
+  contained: (props: IButton) => ({
+    backgroundColor: theme[props.color!].main,
+    color: theme[props.color!].contrast,
     '& $icon path': {
-      fill: theme?.primary?.contrast || defaultTheme.primary.contrast,
+      fill: theme[props.color!].contrast,
     },
     '&:hover': {
-      backgroundColor: theme?.primary?.dark || defaultTheme.primary.dark,
+      backgroundColor: theme[props.color!].dark,
     }
-  },
-  secondary: {
-    backgroundColor: theme?.secondary?.main || defaultTheme.secondary.main,
-    color: theme?.secondary?.contrast || defaultTheme.secondary.contrast,
+  }),
+  outlined: (props: IButton) => ({
+    backgroundColor: theme[props.color!].contrast,
+    color: theme[props.color!].main,
+    border: [2, 'solid', theme[props.color!].main],
     '& $icon path': {
-      fill: theme?.secondary?.contrast || defaultTheme.secondary.contrast,
+      fill: theme[props.color!].main,
     },
     '&:hover': {
-      backgroundColor: theme?.secondary?.dark || defaultTheme.secondary.dark,
-    }
-  },
-  tertiary: {
-    backgroundColor: theme?.primary?.contrast || defaultTheme.primary.contrast,
-    color: theme?.primary?.main || defaultTheme.primary.main,
-    border: [2, 'solid', theme?.primary?.main || defaultTheme.primary.main],
-    '& $icon path': {
-      fill: theme?.primary?.main || defaultTheme.primary.main,
-    },
-    '&:hover': {
-      backgroundColor: theme?.primary?.light || defaultTheme.primary.light,
-      borderColor: theme?.primary?.light || defaultTheme.primary.light,
+      backgroundColor: theme[props.color!].light,
+      borderColor: theme[props.color!].light,
     },
     '&:active': {
-      backgroundColor: theme?.primary?.contrast || defaultTheme.primary.contrast,
-      borderColor: theme?.primary?.main || defaultTheme.primary.main,
+      backgroundColor: theme[props.color!].contrast,
+      borderColor: theme[props.color!].main,
     }
-  },
+  }),
   disabled: {
     opacity: 0.3,
     pointerEvents: 'none',

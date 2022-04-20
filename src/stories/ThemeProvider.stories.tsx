@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ThemeProvider } from '../components/ThemeProvider';
 import { Button } from '../components/Button';
-import { defaultTheme } from '../constants/defaultTheme';
+import { defaultTheme } from '../styles/defaultTheme';
 
 export default {
   title: 'Components/ThemeProvider',
@@ -26,11 +26,13 @@ export default {
 
 const Template: ComponentStory<typeof ThemeProvider> = (args) => (
   <ThemeProvider {...args}>
-    <Button type="primary" label={'Primary'}/>
+    <Button type="contained" label={'Contained primary'}/>
     <h1> </h1>
-    <Button type="secondary" label={'Secondary'}/>
+    <Button type="contained" color="secondary" label={'Contained secondary'}/>
     <h1> </h1>
-    <Button type="tertiary" label={'Tertiary'}/>
+    <Button type="outlined" label={'Outlined primary'}/>
+    <h1> </h1>
+    <Button type="outlined" color="secondary" label={'Outlined secondary'}/>
   </ThemeProvider>
 );
 

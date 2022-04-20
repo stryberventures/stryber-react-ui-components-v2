@@ -13,7 +13,5 @@ export const defaultTheme: ITheme = {
     dark: '#3D2181',
     contrast: '#fff',
   },
-  // TODO where to put this color?
-  highlight: '#C2C9F1',
   font: 'Inter, sans-serif',
 }
