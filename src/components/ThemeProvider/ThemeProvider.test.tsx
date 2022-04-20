@@ -3,7 +3,7 @@ import * as React from 'react'
 import { render, screen } from '@testing-library/react'
 import { ThemeProvider } from './index'
 import { Button } from '../Button';
-import { defaultTheme } from '../../constants/defaultTheme';
+import { defaultTheme } from '../../styles/defaultTheme';
 
 it('should render the child', () => {
   const label = 'Button';

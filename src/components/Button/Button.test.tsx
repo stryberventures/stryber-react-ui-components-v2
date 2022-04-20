@@ -19,15 +19,15 @@ it('should be visible', () => {
 it('should contain default classes', () => {
   render(<Button label="Button"/>)
   const button = screen.getByRole('button');
-  expect(button.className).toMatch(/(primary)/i);
+  expect(button.className).toMatch(/(contained)/i);
   expect(button.className).toMatch(/(medium)/i);
   expect(button.className).toMatch(/(round)/i);
 });
 
 it('should contain type, size and shape classes', () => {
-  render(<Button label="Button" type="secondary" size="small" shape="round" />)
+  render(<Button label="Button" type="outlined" size="small" shape="round" />)
   const button = screen.getByRole('button');
-  expect(button.className).toMatch(/(secondary)/i);
+  expect(button.className).toMatch(/(outlined)/i);
   expect(button.className).toMatch(/(small)/i);
   expect(button.className).toMatch(/(round)/i);
 });
