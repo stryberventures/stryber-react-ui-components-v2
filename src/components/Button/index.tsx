@@ -24,6 +24,7 @@ export const Button = (props: IButton) => {
     disabled,
     className,
     icon: IconComponent,
+    onClick,
     ...rest
   } = props;
   const classes = useStyles(props);
@@ -35,6 +36,7 @@ export const Button = (props: IButton) => {
         [classes.withIcon]: !!IconComponent,
         [classes.iconAlignRight]: iconAlign === 'right',
       }, className)}
+      onClick={(e) => !disabled && onClick && onClick(e)}
       {...rest}
     >
       {IconComponent && <IconComponent className={classes.icon}/>}
