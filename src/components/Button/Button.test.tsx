@@ -42,7 +42,7 @@ it('should call onClick handler', () => {
 
 it('should not call onClick handler when disabled', () => {
   const onClick = jest.fn();
-  render(<Button label="Button" disabled={true} />)
+  render(<Button label="Button" onClick={onClick} disabled={true} />)
   const button = screen.getByRole('button');
   fireEvent.click(button);
   expect(onClick).not.toHaveBeenCalled();
