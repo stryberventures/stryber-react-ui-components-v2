@@ -1,5 +1,8 @@
 {
-  "Button": "button",
-  "ThemeProvider": "theme-provider",
-  "AnotherButton": "another-button"
+  "name": "@stryberventures/gaia-react",
+  "components": {
+    "Button": "button",
+    "ThemeProvider": "theme-provider",
+    "AnotherButton": "another-button"
+  }
 }

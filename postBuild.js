@@ -5,11 +5,11 @@
 
 const fs = require('fs-extra');
 const replace = require('replace-in-file');
-const componentsMap = require('./export.config.json');
+const { components, name } = require('./export.config.json');
 
 const buildDir = 'build';
 const webpackBuildDir = 'dist';
-const componentsList = Object.keys(componentsMap);
+const componentsList = Object.keys(components);
 
 async function postBuild() {
   try {
@@ -31,9 +31,8 @@ async function moveComponentsFiles() {
 }
 
 async function replacePaths() {
-  const from = Object.keys(componentsMap).map(key => new RegExp(`../${key}`, 'g'));
-  const to = Object.values(componentsMap).map(value => `@gaia.${value}`);
-
+  const from = componentsList.map(key => new RegExp('(\\.{2}\\/)+' + key, 'g'));
+  const to = componentsList.map(key => `${name}.${components[key]}`);
   await replace({
     from,
     to,

@@ -1,5 +1,5 @@
 {
-  "name": "@stryberventures/something.button",
+  "name": "@stryberventures/gaia-react.button",
   "version": "0.0.1",
   "peerDependencies": {
     "classnames": ">=2.0.0",

@@ -1,13 +1,9 @@
 const path = require('path');
-const componentsMap = require('./export.config.json');
-
-const componentsList = Object.keys(componentsMap);
-const entry = {};
-componentsList.forEach(dir => { entry[dir] = `./src/components/${dir}/index.tsx` });
-const externals = componentsList.map(dir => `../${dir}`);
+const { entry, externals } = require('./preBuild');
 
 module.exports = {
   entry,
+  externals,
   mode: 'production',
   module: {
     rules: [
@@ -18,7 +14,6 @@ module.exports = {
       },
     ],
   },
-  externals: ['react', 'classnames', 'react-jss', ...externals],
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
