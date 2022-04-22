@@ -33,12 +33,7 @@ export default createStyles((theme: ITheme) => ({
     },
     '&:hover': {
       backgroundColor: theme[props.color!].light,
-      borderColor: theme[props.color!].light,
     },
-    '&:active': {
-      backgroundColor: theme[props.color!].contrast,
-      borderColor: theme[props.color!].main,
-    }
   }),
   disabled: {
     opacity: 0.3,
