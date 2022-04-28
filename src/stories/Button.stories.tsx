@@ -18,7 +18,7 @@ Contained.args = {
 export const Outlined = Template.bind({});
 Outlined.args = {
   label: 'Outlined',
-  type: 'outlined',
+  variant: 'outlined',
 };
 
 export const Mini = Template.bind({});
@@ -69,9 +69,15 @@ Disabled.args = {
   disabled: true,
 };
 
-export const WithIcon = Template.bind({});
-WithIcon.args = {
-  label: 'With Icon',
-  icon: Placeholder,
+export const LeftIcon = Template.bind({});
+LeftIcon.args = {
+  label: 'Left Icon',
+  iconLeft: Placeholder,
+};
+
+export const RightIcon = Template.bind({});
+RightIcon.args = {
+  label: 'Right Icon',
+  iconRight: Placeholder,
 };
 

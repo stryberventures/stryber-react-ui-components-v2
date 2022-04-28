@@ -2,28 +2,28 @@ import React from 'react';
 import useStyles from './styles';
 import classNames from 'classnames';
 
-export interface IButton extends Omit<React.HTMLProps<HTMLButtonElement>, 'type' | 'size'>{
+export interface IButton extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'size'>{
   label: string,
   size?: 'mini' | 'small' | 'medium' | 'large',
   shape?: 'flat' | 'round' | 'circle',
-  type?: 'contained' | 'outlined',
+  variant?: 'contained' | 'outlined',
   color?: 'primary' | 'secondary',
   disabled?: boolean,
   className?: string,
-  icon?: React.FC<{className?: string}>,
-  iconAlign?: 'left' | 'right',
+  iconLeft?: React.FC<{className?: string}>,
+  iconRight?: React.FC<{className?: string}>,
 }
 
 export const Button = (props: IButton) => {
   const {
     size = 'medium',
     shape = 'round',
-    type = 'contained',
-    iconAlign = 'left',
+    variant = 'contained',
     label,
     disabled,
     className,
-    icon: IconComponent,
+    iconLeft: IconLeftComponent,
+    iconRight: IconRightComponent,
     onClick,
     ...rest
   } = props;
@@ -31,16 +31,15 @@ export const Button = (props: IButton) => {
   
   return (
     <button
-      className={classNames(classes.button, classes[type], classes[shape], classes[size], {
+      className={classNames(classes.button, classes[variant], classes[shape], classes[size], {
         [classes.disabled]: disabled,
-        [classes.withIcon]: !!IconComponent,
-        [classes.iconAlignRight]: iconAlign === 'right',
       }, className)}
       onClick={(e) => !disabled && onClick && onClick(e)}
       {...rest}
     >
-      {IconComponent && <IconComponent className={classes.icon}/>}
+      {IconLeftComponent && <IconLeftComponent className={classes.icon}/>}
       {label}
+      {IconRightComponent && <IconRightComponent className={classes.icon}/>}
     </button>
   );
 }
@@ -53,6 +52,5 @@ Button.defaultProps = {
   color: 'primary',
   size: 'medium',
   shape: 'round',
-  type: 'contained',
-  iconAlign: 'left',
+  variant: 'contained',
 }

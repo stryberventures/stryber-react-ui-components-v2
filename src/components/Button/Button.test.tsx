@@ -24,8 +24,8 @@ it('should contain default classes', () => {
   expect(button.className).toMatch(/(round)/i);
 });
 
-it('should contain type, size and shape classes', () => {
-  render(<Button label="Button" type="outlined" size="small" shape="round" />)
+it('should contain variant, size and shape classes', () => {
+  render(<Button label="Button" variant="outlined" size="small" shape="round" />)
   const button = screen.getByRole('button');
   expect(button.className).toMatch(/(outlined)/i);
   expect(button.className).toMatch(/(small)/i);
@@ -49,7 +49,7 @@ it('should not call onClick handler when disabled', () => {
 });
 
 it('should contain the icon', () => {
-  render(<Button label="Button" icon={Placeholder} />);
+  render(<Button label="Button" iconRight={Placeholder} />);
   const icon = screen.getByTestId('test-svg');
   expect(icon).toBeVisible();
 });

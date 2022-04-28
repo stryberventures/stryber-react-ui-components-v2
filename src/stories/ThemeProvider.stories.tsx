@@ -26,13 +26,13 @@ export default {
 
 const Template: ComponentStory<typeof ThemeProvider> = (args) => (
   <ThemeProvider {...args}>
-    <Button type="contained" label={'Contained primary'}/>
+    <Button variant="contained" label={'Contained primary'}/>
     <h1> </h1>
-    <Button type="contained" color="secondary" label={'Contained secondary'}/>
+    <Button variant="contained" color="secondary" label={'Contained secondary'}/>
     <h1> </h1>
-    <Button type="outlined" label={'Outlined primary'}/>
+    <Button variant="outlined" label={'Outlined primary'}/>
     <h1> </h1>
-    <Button type="outlined" color="secondary" label={'Outlined secondary'}/>
+    <Button variant="outlined" color="secondary" label={'Outlined secondary'}/>
   </ThemeProvider>
 );
 

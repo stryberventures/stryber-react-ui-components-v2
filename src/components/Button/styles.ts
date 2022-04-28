@@ -10,6 +10,8 @@ export default createStyles((theme: ITheme) => ({
     cursor: 'pointer',
     outline: 'none',
     border: 'none',
+    display: 'flex',
+    alignItems: 'center',
     '&:active:not($disabled)': {
       outline: `4px solid ${theme.primary.light}`,
     },
@@ -40,6 +42,7 @@ export default createStyles((theme: ITheme) => ({
     pointerEvents: 'none',
   },
   mini: {
+    gap: 8,
     fontSize: 10,
     lineHeight: '15px',
     height: 24,
@@ -49,18 +52,21 @@ export default createStyles((theme: ITheme) => ({
     lineHeight: '24px',
     padding: [0, 16],
     height: 40,
+    gap: 10,
   },
   medium: {
     fontSize: 16,
     lineHeight: '24px',
     padding: [0, 24],
     height: 56,
+    gap: 10,
   },
   large: {
     fontSize: 16,
     lineHeight: '24px',
     padding: [0, 32],
     height: 72,
+    gap: 14,
   },
   flat: {},
   round: {
@@ -68,19 +74,6 @@ export default createStyles((theme: ITheme) => ({
   },
   circle: {
     borderRadius: 50,
-  },
-  withIcon: {
-    display: 'flex',
-    alignItems: 'center',
-    '&$mini': {
-      gap: 8,
-    },
-    '&$small, &$medium': {
-      gap: 10,
-    },
-    '&$large': {
-      gap: 14,
-    }
   },
   icon: {
     '$mini &': {
@@ -91,8 +84,5 @@ export default createStyles((theme: ITheme) => ({
       width: 20,
       height: 20,
     },
-  },
-  iconAlignRight: {
-    flexDirection: 'row-reverse',
   },
 }));
