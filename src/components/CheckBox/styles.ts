@@ -11,10 +11,10 @@ export default createStyles((theme: ITheme) => ({
     position: 'absolute',
     opacity: 0,
     cursor: 'pointer',
-    backgroundColor: theme.primary.contrast,
+    backgroundColor: theme[props.color!].contrast,
     width: 14,
     height: 14,
-    border: [1, 'solid', theme.primary.main],
+    border: [1, 'solid', theme[props.color!].main],
     borderRadius: 4,
   }),
   disabled: {
@@ -32,10 +32,10 @@ export default createStyles((theme: ITheme) => ({
     height: '100%',
     width: '100%',
   },
-  placeholder: {
+  placeholder: (props: ICheckBoxProps) => ({
     padding: '8px 4px',
-    color: theme.primary.light,
-  },
+    color: theme[props.color!].light,
+  }),
   errorMessage: {
     color: '#ea3546',
     fontSize: 10,
