@@ -1,6 +1,6 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { CheckBox } from '../components/CheckBox';
+import {ComponentStory, ComponentMeta} from '@storybook/react';
+import {CheckBox} from '../components/CheckBox';
 
 export default {
   title: 'Components/CheckBox',
@@ -44,6 +44,5 @@ export const Disabled = Template.bind({});
 Disabled.args = {
   label: 'Disabled',
   disabled: true,
-  shadow: false,
 };
 

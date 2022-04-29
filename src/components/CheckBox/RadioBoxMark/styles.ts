@@ -22,6 +22,9 @@ export default createStyles((theme: ITheme) => ({
       backgroundColor: theme.primary.contrast,
       boxShadow: 'none',
     },
+    '&:active:not($disabled)': {
+      outline: `4px solid ${theme.primary.light}`,
+    },
   }),
   disabled: {
     '& svg circle': {
@@ -55,12 +58,6 @@ export default createStyles((theme: ITheme) => ({
     '& svg': {
       width: 8,
       height: 8,
-    },
-  },
-  shadow: {
-    boxShadow: `0px 0px 0px 4px ${theme.primary.light}`,
-    '&$checkbox': {
-      border: '1px solid #6C84DE',
     },
   },
 }));

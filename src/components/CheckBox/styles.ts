@@ -3,6 +3,10 @@ import { ICheckBoxProps } from './index';
 import { createStyles } from '../../styles';
 
 export default createStyles((theme: ITheme) => ({
+  wrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
   input: (props: ICheckBoxProps) => ( {
     position: 'absolute',
     opacity: 0,
@@ -31,5 +35,12 @@ export default createStyles((theme: ITheme) => ({
   placeholder: {
     padding: '8px 4px',
     color: theme.primary.light,
+  },
+  errorMessage: {
+    color: '#ea3546',
+    fontSize: 10,
+  },
+  error: {
+    color: '#ea3546',
   },
 }));
