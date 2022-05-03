@@ -15,7 +15,7 @@ export default createStyles((theme: ITheme) => ({
       display: 'none',
     },
     '&:hover:not($disabled)': {
-      backgroundColor: '#C2C9F1',
+      backgroundColor: theme[props.color!].mainLight,
       border: [1, 'solid', theme[props.color!].dark],
     },
     '& ~ $disabled, &:hover ~ $disabled': {

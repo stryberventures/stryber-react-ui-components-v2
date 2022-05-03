@@ -16,9 +16,9 @@ export interface IFormContext {
 
 /** Creating form context with default values */
 export const defaultFormContextValues: IFormContext = {
-  updateFormValue: (name: string, data: any, init?: boolean) => {},
-  updateFormTouched: (name: string, data: any) => {},
-  unsetFormValue: (name: any) => {},
+  updateFormValue: () => undefined,
+  updateFormTouched: () => undefined,
+  unsetFormValue: () => undefined,
   loading: false,
   formValues: undefined,
   formErrors: undefined,
@@ -85,7 +85,7 @@ const Form = (props: IFormProps) => {
     if (onValidateAsync) {
       onValidateAsync(values)
         /** No errors from external lib */
-        .then((errors: any) => setFormErrors(() => {}))
+        .then((errors: any) => setFormErrors(() => errors))
         /** Errors were caught */
         .catch((errors: any) => setFormErrors(() => errors));
     }
@@ -129,7 +129,7 @@ const Form = (props: IFormProps) => {
     e.preventDefault();
     if (Object.keys(formErrors).length > 0) {
       /** Set everything to "touched" to highlight errors on submit */
-      setFormTouched((oldFormTouched: any) => Object.keys(formValues).reduce((acc: any, key: string) => ({ ...acc, [key]: true }), {}));
+      setFormTouched(() => Object.keys(formValues).reduce((acc: any, key: string) => ({ ...acc, [key]: true }), {}));
       /** External callback */
       onError && onError(formErrors, formValues);
     } else {

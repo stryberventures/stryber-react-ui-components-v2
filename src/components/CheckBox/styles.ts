@@ -36,11 +36,11 @@ export default createStyles((theme: ITheme) => ({
     padding: '8px 4px',
     color: theme[props.color!].light,
   }),
-  errorMessage: {
-    color: '#ea3546',
+  errorMessage: (props: ICheckBoxProps) => ({
+    color: theme[props.color!].errorRed,
     fontSize: 10,
-  },
-  error: {
-    color: '#ea3546',
-  },
+  }),
+  error: (props: ICheckBoxProps) => ({
+    color: theme[props.color!].errorRed,
+  }),
 }));
