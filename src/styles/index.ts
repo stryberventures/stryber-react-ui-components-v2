@@ -13,7 +13,7 @@ export function createStyles<TStyles extends string = string, TProps = unknown>(
   options?: Options
 ): (data?: TProps) => Classes<TStyles> {
   return createUseStyles((providedTheme) => {
-    const theme = { ...defaultTheme, ...providedTheme};
+    const theme = { ...defaultTheme, ...providedTheme };
     
     return styles(theme);
   }, options);

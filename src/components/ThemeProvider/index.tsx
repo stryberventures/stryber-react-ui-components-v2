@@ -1,6 +1,6 @@
 import React from 'react';
 import { ThemeProvider as JssThemeProvider } from 'react-jss';
-import { ITheme} from './types';
+import { ITheme } from './types';
 import { GlobalStyles } from './GlobalStyles';
 import { defaultTheme } from '../../styles/defaultTheme';
 

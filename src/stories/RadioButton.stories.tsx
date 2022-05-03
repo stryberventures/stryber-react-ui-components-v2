@@ -1,13 +1,13 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { CheckBox } from '../components/CheckBox';
+import { RadioButton } from '../components/RadioButton';
 
 export default {
-  title: 'Components/CheckBox',
-  component: CheckBox,
-} as ComponentMeta<typeof CheckBox>;
+  title: 'Components/RadioButton',
+  component: RadioButton,
+} as ComponentMeta<typeof RadioButton>;
 
-const Template: ComponentStory<typeof CheckBox> = (args) => <CheckBox {...args} />;
+const Template: ComponentStory<typeof RadioButton> = (args) => <RadioButton {...args} />;
 
 export const Checked = Template.bind({});
 Checked.args = {
@@ -23,12 +23,6 @@ Small.args = {
 export const Medium = Template.bind({});
 Medium.args = {
   size: 'medium',
-};
-
-export const Circle = Template.bind({});
-Circle.args = {
-  size: 'medium',
-  shape: 'circle',
 };
 
 export const Disabled = Template.bind({});
