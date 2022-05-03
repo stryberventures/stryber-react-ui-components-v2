@@ -8,5 +8,6 @@ interface IPalette {
 export interface ITheme {
   primary: IPalette,
   secondary: IPalette,
+  error: IPalette,
   font: string,
 }

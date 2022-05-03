@@ -13,5 +13,11 @@ export const defaultTheme: ITheme = {
     dark: '#3D2181',
     contrast: '#fff',
   },
+  error: {
+    main: '#ea3546',
+    light: '#FBDCDA',
+    dark: '#D92C20',
+    contrast: '#000',
+  },
   font: 'Inter, sans-serif',
 }
