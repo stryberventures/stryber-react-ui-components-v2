@@ -18,8 +18,13 @@
   },
   "rules": {
     "@typescript-eslint/indent": ["warn", 2],
+    "object-curly-spacing": ["warn", "always"],
+    "object-curly-newline": ["warn", {"multiline": true, "consistent": true}],
     "quotes": [2, "single", "avoid-escape"],
     "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/no-non-null-assertion": "off"
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-unused-vars": ["warn", { "ignoreRestSiblings": true }]
   }
 }

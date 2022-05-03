@@ -4,8 +4,8 @@ import { createStyles } from '../../../styles';
 
 export default createStyles((theme: ITheme) => ({
   radiomark: (props: IRadioBoxMarkProps) => ({
-    backgroundColor: theme.primary.contrast,
-    border: [1, 'solid', theme.primary.main],
+    backgroundColor: theme[props.color!].contrast,
+    border: [1, 'solid', theme[props.color!].main],
     borderRadius: '50%',
     display: 'flex',
     justifyContent: 'center',
@@ -19,42 +19,42 @@ export default createStyles((theme: ITheme) => ({
       border: [1, 'solid', theme[props.color!].dark],
     },
     '& ~ $disabled, &:hover ~ $disabled': {
-      backgroundColor: theme.primary.contrast,
+      backgroundColor: theme[props.color!].contrast,
       boxShadow: 'none',
     },
     '&:active:not($disabled)': {
-      outline: `4px solid ${theme.primary.light}`,
+      outline: `4px solid ${theme[props.color!].light}`,
     },
   }),
-  disabled: {
+  disabled: (props: IRadioBoxMarkProps) => ({
     '& svg circle': {
-      fill: theme.primary.main,
+      fill: theme[props.color!].main,
     },
     opacity: 0.45,
     cursorEvents: 'none',
-  },
+  }),
   checked: (props: IRadioBoxMarkProps) => ({
     '& svg': {
       display: 'block',
     },
     '&:not($disabled)': {
-      backgroundColor: theme.primary.main,
+      backgroundColor: theme[props.color!].main,
     },
     '&:not($disabled):hover': {
       backgroundColor: theme[props.color!].dark,
     },
   }),
   small: {
-      height: 14,
-      width: 14,
+    height: 14,
+    width: 14,
     '& svg': {
       width: 6,
       height: 6,
     },
   },
   medium: {
-      height: 18,
-      width: 18,
+    height: 18,
+    width: 18,
     '& svg': {
       width: 8,
       height: 8,

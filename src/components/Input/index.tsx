@@ -14,7 +14,7 @@ export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
   value?: string,
   name?: string,
   controlled?: boolean,
-  onChange?: (e: React.BaseSyntheticEvent) => void;
+  onChange?: (e: React.BaseSyntheticEvent) => void,
 }
 
 export const Input = (props: IInput) => {
@@ -28,6 +28,7 @@ export const Input = (props: IInput) => {
     disabled,
     name,
     controlled,
+    className,
   } = props;
   const classes = useStyles(props);
   const [internalValue, setInternalValue] = React.useState(value);
@@ -42,20 +43,22 @@ export const Input = (props: IInput) => {
   };
 
   return (
-    <div className={classNames(classes.container, {
-      [classes.containerDisabled]: disabled,
-      [classes.containerError]: !!errorMessage,
-    })}>
-      <div className={classNames(classes.label, {[classes.textDisabled]: disabled})}>
-        {label}
+    <div className={className}>
+      <div className={classNames(classes.container, {
+        [classes.containerDisabled]: disabled,
+        [classes.containerError]: !!errorMessage,
+      })}>
+        <div className={classNames(classes.label, { [classes.textDisabled]: disabled })}>
+          {label}
+        </div>
+        <input
+          name={name}
+          value={controlled ? value : internalValue}
+          className={classNames(classes.input, { [classes.textDisabled]: disabled })}
+          placeholder={placeholder}
+          onChange={onChangeWrapper}
+        />
       </div>
-      <input
-        name={name}
-        value={controlled ? value : internalValue}
-        className={classNames(classes.input, {[classes.textDisabled]: disabled})}
-        placeholder={placeholder}
-        onChange={onChangeWrapper}
-      />
       {errorMessage && <ErrorMessage text={errorMessage} className={classes.message}/>}
       {hint && <HintMessage text={hint} disabled={disabled} className={classes.message}/>}
     </div>

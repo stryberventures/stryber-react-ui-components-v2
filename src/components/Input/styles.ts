@@ -42,6 +42,7 @@ export default createStyles((theme) => ({
     }
   },
   input: {
+    fontFamily: theme.font,
     border: 'none',
     outline: 'none',
     textOverflow: 'ellipsis',
@@ -67,8 +68,6 @@ export default createStyles((theme) => ({
     }
   },
   message: {
-    position: 'absolute',
-    top: 52,
-    left: 0,
-  }
+    marginTop: 8,
+  },
 }));

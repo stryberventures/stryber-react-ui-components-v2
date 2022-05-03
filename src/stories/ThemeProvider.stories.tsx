@@ -3,6 +3,9 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ThemeProvider } from '../components/ThemeProvider';
 import { Button } from '../components/Button';
 import { defaultTheme } from '../styles/defaultTheme';
+import { Input } from '../components/Input';
+import { CheckBox } from '../components/CheckBox';
+import { RadioButton } from '../components/RadioButton';
 
 export default {
   title: 'Components/ThemeProvider',
@@ -11,17 +14,6 @@ export default {
     componentSubtitle: `Component which enables support of custom themes. To use a custom theme wrap your root
      component with ThemeProvider and pass the theme as a property.`
   },
-  // argTypes: {
-  //   something: { control: 'color', defaultValue: '#003CB8' },
-  //   theme: {
-  //     primary: {
-  //       main: { control: 'color', defaultValue: '#003CB8' },
-  //       dark: { control: 'color', defaultValue: '#003CB8' },
-  //       light: { control: 'color', defaultValue: '#003CB8' },
-  //       contrast: { control: 'color', defaultValue: '#003CB8' },
-  //     },
-  //   },
-  // },
 } as ComponentMeta<typeof ThemeProvider>;
 
 const Template: ComponentStory<typeof ThemeProvider> = (args) => (
@@ -33,6 +25,38 @@ const Template: ComponentStory<typeof ThemeProvider> = (args) => (
     <Button variant="outlined" label={'Outlined primary'}/>
     <h1> </h1>
     <Button variant="outlined" color="secondary" label={'Outlined secondary'}/>
+    <h1> </h1>
+    <Input label="Color primary" placeholder="some@mail.com"/>
+    <h1> </h1>
+    <Input label="Color secondary" placeholder="some@mail.com" color="secondary"/>
+    <h1> </h1>
+    <Input label="Error state" placeholder="some@mail.com" errorMessage="This is an error"/>
+    <h1> </h1>
+    <Input label="Hint" placeholder="some@mail.com" hint="This is a hint"/>
+    <h1> </h1>
+    <CheckBox />
+    <h1> </h1>
+    <CheckBox checked={true}/>
+    <h1> </h1>
+    <CheckBox checked={true} disabled/>
+    <h1> </h1>
+    <CheckBox color="secondary"/>
+    <h1> </h1>
+    <CheckBox checked={true} color="secondary"/>
+    <h1> </h1>
+    <CheckBox checked={true} disabled color="secondary"/>
+    <h1> </h1>
+    <RadioButton />
+    <h1> </h1>
+    <RadioButton checked={true}/>
+    <h1> </h1>
+    <RadioButton checked={true} disabled/>
+    <h1> </h1>
+    <RadioButton color="secondary"/>
+    <h1> </h1>
+    <RadioButton checked={true} color="secondary"/>
+    <h1> </h1>
+    <RadioButton checked={true} disabled color="secondary"/>
   </ThemeProvider>
 );
 

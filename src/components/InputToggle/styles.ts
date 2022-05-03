@@ -1,13 +1,12 @@
-import { ITheme } from '../ThemeProvider/types';
-import { ICheckBoxProps } from './index';
+import { IInputToggle } from './types';
 import { createStyles } from '../../styles';
 
-export default createStyles((theme: ITheme) => ({
+export default createStyles((theme) => ({
   wrapper: {
     display: 'flex',
     flexDirection: 'column',
   },
-  input: (props: ICheckBoxProps) => ( {
+  input: (props: IInputToggle) => ( {
     position: 'absolute',
     opacity: 0,
     cursor: 'pointer',
@@ -19,28 +18,27 @@ export default createStyles((theme: ITheme) => ({
   }),
   disabled: {
     opacity: 0.45,
-    cursorEvents: 'none',
+    pointerEvents: 'none',
   },
   label: {
     transition: '0.3s',
     position: 'relative',
     cursor: 'pointer',
     userSelect: 'none',
-    color: '#000',
     display: 'flex',
     alignItems: 'center',
     height: '100%',
     width: '100%',
   },
-  placeholder: (props: ICheckBoxProps) => ({
+  placeholder: (props: IInputToggle) => ({
     padding: '8px 4px',
     color: theme[props.color!].light,
   }),
-  errorMessage: (props: ICheckBoxProps) => ({
+  errorMessage: () => ({
     color: theme.error.main,
     fontSize: 10,
   }),
-  error: (props: ICheckBoxProps) => ({
+  error: () => ({
     color: theme.error.main,
   }),
 }));

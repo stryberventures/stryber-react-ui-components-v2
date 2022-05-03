@@ -23,14 +23,14 @@ it('should render the value', () => {
 it('should handle onChange with value', () => {
   const { getByRole } = render(<Input label="Input"/>);
   const input = getByRole('textbox') as HTMLInputElement;
-  fireEvent.change(input, { target: { value: 'some value'}});
+  fireEvent.change(input, { target: { value: 'some value' } });
   expect(input.value).toBe('some value')
 });
 
 it('should not handle onChange when disabled', () => {
   const { getByRole } = render(<Input label="Input" disabled/>);
   const input = getByRole('textbox') as HTMLInputElement;
-  fireEvent.change(input, { target: { value: 'some value'}});
+  fireEvent.change(input, { target: { value: 'some value' } });
   expect(input.value).toBe('')
 });
 

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as yup from 'yup';
+import { useContext } from 'react';
 
 /** Interfaces */
 /** Context used by input fields within the form */
@@ -112,7 +113,7 @@ const Form = (props: IFormProps) => {
   /** Updating field touched status (needed for a correct error display */
   const updateFormTouched = (name: string, touched = true) => {
     setFormTouched((formTouched: any) => {
-      const newFormTouched = {...formTouched};
+      const newFormTouched = { ...formTouched };
       newFormTouched[name] = touched;
       setFormTouched(newFormTouched);
     });
@@ -176,8 +177,30 @@ const Form = (props: IFormProps) => {
   );
 };
 
-/** Exports */
-export default Form;
-export {
-  Form,
+export const useFormContext = (fieldName = 'unnamed') => {
+  const {
+    updateFormValue,
+    updateFormTouched,
+    unsetFormValue,
+    formValues,
+    formErrors,
+    formTouched,
+  } = useContext(FormContext);
+  
+  return {
+    fieldError:
+      fieldName &&
+      formTouched &&
+      formTouched[fieldName] &&
+      formErrors[fieldName],
+    fieldValue: fieldName && formValues && formValues[fieldName],
+    updateFormValue: formValues ? updateFormValue : () => {},
+    updateFormTouched: formTouched ? updateFormTouched : () => {},
+    unsetFormValue: formValues ? unsetFormValue : () => {},
+  };
 };
+
+export default {
+  Form,
+  useFormContext,
+}

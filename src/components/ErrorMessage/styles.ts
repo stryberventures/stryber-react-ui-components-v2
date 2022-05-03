@@ -5,5 +5,6 @@ export default createStyles((theme) => ({
     color: theme.error.dark,
     height: 17,
     fontSize: 14,
+    fontFamily: theme.font,
   },
 }));
