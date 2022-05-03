@@ -11,7 +11,7 @@ export interface ICheckBoxProps extends Omit<React.HTMLProps<HTMLInputElement>, 
   type?: 'checkbox' | 'radio';
   size?: 'small' | 'medium';
   shape?: 'square' | 'circle';
-  color?: 'primary' | 'secondary',
+  color?: 'primary' | 'secondary' | 'error',
   checked?: boolean;
   disabled?: boolean;
   value?: any;

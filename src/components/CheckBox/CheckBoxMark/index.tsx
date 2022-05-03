@@ -7,7 +7,7 @@ export interface ICheckBoxMarkProps {
     checked: boolean;
     size?: 'small' | 'medium';
     shape?: 'square' | 'circle';
-    color?: 'primary' | 'secondary',
+    color?: 'primary' | 'secondary' | 'error',
     disabled?: boolean;
 }
 

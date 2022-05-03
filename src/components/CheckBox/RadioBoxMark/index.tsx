@@ -6,7 +6,7 @@ import RadioBoxIcon from './radioBoxIcon';
 export interface IRadioBoxMarkProps {
   checked: boolean;
   size?: 'small' | 'medium';
-  color?: 'primary' | 'secondary',
+  color?: 'primary' | 'secondary' | 'error',
   disabled?: boolean;
 }
 
