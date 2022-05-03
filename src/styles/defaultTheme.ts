@@ -1,6 +1,16 @@
 import { ITheme } from '../components/ThemeProvider/types';
 
 export const defaultTheme: ITheme = {
+  default: {
+    main: '#D0D5DD',
+    light: '#FCFCFD',
+  },
+  text: {
+    primary: '#101828',
+    secondary: '#344054',
+    disabled: '#D2D2D2',
+    hint: '#667085',
+  },
   primary: {
     main: '#003CB8',
     light: '#E7EAF9',
@@ -14,7 +24,7 @@ export const defaultTheme: ITheme = {
     contrast: '#fff',
   },
   error: {
-    main: '#ea3546',
+    main: '#EC726B',
     light: '#FBDCDA',
     dark: '#D92C20',
     contrast: '#000',

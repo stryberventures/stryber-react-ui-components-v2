@@ -3,6 +3,7 @@
   "components": {
     "Button": "button",
     "ThemeProvider": "theme-provider",
-    "AnotherButton": "another-button"
+    "AnotherButton": "another-button",
+    "Input": "input"
   }
 }

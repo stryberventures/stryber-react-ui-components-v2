@@ -1,8 +1,7 @@
-import { ITheme } from '../ThemeProvider/types';
 import { IButton } from './index';
 import { createStyles } from '../../styles';
 
-export default createStyles((theme: ITheme) => ({
+export default createStyles((theme) => ({
   button: {
     fontFamily: theme.font,
     fontWeight: 700,
@@ -50,21 +49,21 @@ export default createStyles((theme: ITheme) => ({
   small: {
     fontSize: 16,
     lineHeight: '24px',
-    padding: [0, 16],
+    padding: '0 16px',
     height: 40,
     gap: 10,
   },
   medium: {
     fontSize: 16,
     lineHeight: '24px',
-    padding: [0, 24],
+    padding: '0 24px',
     height: 56,
     gap: 10,
   },
   large: {
     fontSize: 16,
     lineHeight: '24px',
-    padding: [0, 32],
+    padding: '0 32px',
     height: 72,
     gap: 14,
   },

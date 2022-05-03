@@ -17,17 +17,9 @@
     }
   },
   "rules": {
+    "@typescript-eslint/indent": ["warn", 2],
     "quotes": [2, "single", "avoid-escape"],
     "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/no-non-null-assertion": "off",
-    "@typescript-eslint/ban-types": [
-      "error",
-      {
-        "extendDefaults": true,
-        "types": {
-          "{}": false
-        }
-      }
-    ]
+    "@typescript-eslint/no-non-null-assertion": "off"
   }
 }

@@ -8,11 +8,11 @@ type Options = {
   index?: number;
 }
 
-export function createStyles(
-  styles: (theme: ITheme) => Styles | {},
+export function createStyles<TStyles extends string = string, TProps = unknown>(
+  styles: (theme: ITheme) => Styles<TStyles, TProps>,
   options?: Options
-): (data: any) => Classes {
-  return createUseStyles((providedTheme: ITheme) => {
+): (data?: TProps) => Classes<TStyles> {
+  return createUseStyles((providedTheme) => {
     const theme = { ...defaultTheme, ...providedTheme};
     
     return styles(theme);
