@@ -4,6 +4,7 @@
     "Button": "button",
     "ThemeProvider": "theme-provider",
     "AnotherButton": "another-button",
-    "Input": "input"
+    "Input": "input",
+    "TextLink": "text-link"
   }
 }

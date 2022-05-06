@@ -48,7 +48,13 @@ it('should not call onClick handler when disabled', () => {
   expect(onClick).not.toHaveBeenCalled();
 });
 
-it('should contain the icon', () => {
+it('should contain left icon', () => {
+  render(<Button label="Button" iconLeft={Placeholder} />);
+  const icon = screen.getByTestId('test-svg');
+  expect(icon).toBeVisible();
+});
+
+it('should contain right icon', () => {
   render(<Button label="Button" iconRight={Placeholder} />);
   const icon = screen.getByTestId('test-svg');
   expect(icon).toBeVisible();
