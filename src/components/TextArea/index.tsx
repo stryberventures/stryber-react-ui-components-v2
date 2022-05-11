@@ -3,8 +3,8 @@ import useStyles from './styles';
 import { ErrorMessage } from '../ErrorMessage';
 import classNames from 'classnames';
 
-export interface ITextArea extends React.InputHTMLAttributes<HTMLInputElement>{
-  label: string,
+export interface ITextArea extends React.TextareaHTMLAttributes<HTMLTextAreaElement>{
+  label?: string,
   disabled?: boolean,
   color?: 'primary' | 'secondary',
   errorMessage?: string,
@@ -29,14 +29,14 @@ export const TextArea = (props: ITextArea) => {
   } = props;
   const classes = useStyles(props);
   const [internalValue, setInternalValue] = React.useState(value);
-  const [lengthCount, setLengthCount] = React.useState(0);
+  const [length, setLength] = React.useState(internalValue.length);
 
   const onChangeWrapper = (e: React.BaseSyntheticEvent) => {
     if (disabled) {
       return null;
     }
     const { value } = e.target;
-    setLengthCount(value.length);
+    setLength(value.length);
     setInternalValue(value);
     onChange && onChange(e);
   };
@@ -61,7 +61,7 @@ export const TextArea = (props: ITextArea) => {
       {errorMessage && <ErrorMessage text={errorMessage} className={classes.message}/>}
       {maxLength && <div className={classNames(classes.maxLength, className, {
         [classes.textDisabled]: disabled,
-      })}>{lengthCount}/{maxLength}</div>}
+      })}>{length}/{maxLength}</div>}
     </div>
   );
 };
