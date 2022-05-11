@@ -15,6 +15,13 @@ Default.args = {
   placeholder: 'olivia@example.com',
 };
 
+export const WithValue = Template.bind({});
+WithValue.args = {
+  label: 'With hint',
+  placeholder: 'placeholder@example.com',
+  value: 'olivia@example.com',
+};
+
 export const Disabled = Template.bind({});
 Disabled.args = {
   label: 'Disabled',
@@ -36,9 +43,29 @@ Hint.args = {
   hint: 'Hint message',
 };
 
-export const WithValue = Template.bind({});
-WithValue.args = {
+export const ReadOnly = Template.bind({});
+ReadOnly.args = {
+  label: 'Read only',
+  placeholder: 'olivia@example.com',
+  value: 'olivia@example.com',
+  readOnly: true,
+};
+
+
+export const WithEndAdornment = Template.bind({});
+WithEndAdornment.args = {
   label: 'With hint',
   placeholder: 'placeholder@example.com',
   value: 'olivia@example.com',
+  endAdornment: <div style={
+    {
+      width: 32,
+      height: 32,
+      backgroundColor: '#D0D5DD',
+      borderRadius: 16,
+      lineHeight: '32px',
+      textAlign: 'center',
+      color: 'white',
+    }
+  }>O</div>
 };

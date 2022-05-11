@@ -8,6 +8,7 @@ import { CheckBox } from '../components/CheckBox';
 import { RadioButton } from '../components/RadioButton';
 import { TextLink } from '../components/TextLink';
 import LeftArrow from './icons/leftArrow';
+import { Dropdown } from '../components/Dropdown';
 
 export default {
   title: 'Components/ThemeProvider',
@@ -36,6 +37,10 @@ const Template: ComponentStory<typeof ThemeProvider> = (args) => (
     <Input label="Error state" placeholder="some@mail.com" errorMessage="This is an error"/>
     <h1> </h1>
     <Input label="Hint" placeholder="some@mail.com" hint="This is a hint"/>
+    <h2 style={{ fontFamily: 'Inter', color: '#003CB8' }}>Dropdown</h2>
+    <Dropdown label="Dropdown" placeholder="It use Input">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+    </Dropdown>
     <h2 style={{ fontFamily: 'Inter', color: '#003CB8' }}>Checkbox</h2>
     <CheckBox />
     <h1> </h1>

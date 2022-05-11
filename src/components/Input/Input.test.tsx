@@ -2,6 +2,7 @@ import '@testing-library/jest-dom'
 import * as React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { Input } from './index'
+import LeftArrow from '../../stories/icons/leftArrow';
 
 it('should be rendered with label', () => {
   const label = 'Test input'
@@ -44,4 +45,10 @@ it('should display the hint', () => {
   const hintMessage = 'Hint message';
   render(<Input label="Input" errorMessage={hintMessage} />);
   expect(screen.queryByText(hintMessage)).toBeInTheDocument();
+});
+
+it('should render the adornment', () => {
+  render(<Input label="Input" endAdornment={<LeftArrow />} />);
+  const icon = screen.getByTestId('test-svg');
+  expect(icon).toBeVisible();
 });
