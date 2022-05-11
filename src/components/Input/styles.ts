@@ -2,28 +2,31 @@ import { createStyles } from '../../styles';
 import { IInput } from './index';
 
 export default createStyles((theme) => ({
-  container: (props: IInput) => ({
-    boxSizing: 'border-box',
+  root: {
     width: 320,
+  },
+  inputContainer: (props: IInput) => ({
+    boxSizing: 'border-box',
     height: 44,
     borderRadius: 4,
     position: 'relative',
     fontFamily: theme.font,
-    '&:focus-within:not($containerError)': {
+    display: 'flex',
+    '&:focus-within:not($inputContainerError)': {
       border: `1px solid ${theme[props.color!].main}`,
       outline: `4px solid ${theme[props.color!].light}`,
     },
-    '&:not($containerError)': {
+    '&:not($inputContainerError)': {
       border: `1px solid ${theme.default.main}`,
       padding: '5px 8px',
     }
   }),
-  containerDisabled: {
+  inputContainerDisabled: {
     pointerEvents: 'none',
     userSelect: 'none',
     backgroundColor: theme.default.light,
   },
-  containerError: {
+  inputContainerError: {
     border: `1px solid ${theme.error.main}`,
     padding: '5px 8px 5px 16px',
     '&:focus-within': {
@@ -54,6 +57,10 @@ export default createStyles((theme) => ({
     '&::placeholder': {
       color: theme.text.hint,
     }
+  },
+  inputArea: {
+    display: 'flex',
+    flexGrow: 1,
   },
   label: {
     color: theme.text.secondary,

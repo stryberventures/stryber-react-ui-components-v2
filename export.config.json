@@ -5,6 +5,7 @@
     "ThemeProvider": "theme-provider",
     "AnotherButton": "another-button",
     "Input": "input",
-    "TextLink": "text-link"
+    "TextLink": "text-link",
+    "Dropdown": "dropdown"
   }
 }

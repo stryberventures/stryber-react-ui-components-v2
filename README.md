@@ -26,26 +26,46 @@ The test setup is based on React Testing Library with Jest runner. To run tests:
 npm run test 
 ```
 
+## To prepare component for deployment ##
+
+1) Update the version in the package.json file in the component's directory you want
+to publish or create package.json file if it does not exist.
+
+
+2) Check dependencies of the component. 
+If component use an external library, in most cases it should be added as peer dependency to the package.json file.
+Otherwise, external library sources will be added to the component's source bundle. 
+In case the component use another component from the library, it works in the same way.
+
+For example, if you use the Button inside your component
+```shell script
+import { Button } from '../Button';
+```
+and add ``"@stryberventures/gaia-react.button": ">=0.0.1"`` the ``Button`` source will not be 
+included to component's build
+
+And vise versa, if the ``@stryberventures/gaia-react.button`` is not in the peer dependency list,
+the source of the ``Button`` will be bundled with the component
+
+Components names are based on ``export.config.json``
+
+3) Add the component to ``export.config.json``
+
 ## To deploy the component to npm ##
 
-1) Update the version in the package.json file in 
-the component's directory you want to publish or create package.json
-file if it does not exist.
-
-
-2) Build the project
+1) Build the project
 
 ```shell script
 npm run build
 ```
 
-3) Navigate to the component's folder you want to publish, for example the Button
+2) Navigate to the component's folder you want to publish, for example the Button
 
 ```shell script
 cd build/Button
 ```
 
-4) Publish the component
+3) Publish the component
 
 ```shell script
 npm publish --access public

@@ -3,7 +3,7 @@ import { createStyles } from '../../styles';
 export default createStyles((theme) => ({
   message: {
     color: theme.error.dark,
-    height: 17,
+    lineHeight: '17px',
     fontSize: 14,
     fontFamily: theme.font,
   },

@@ -9,9 +9,9 @@ export interface ITheme {
   primary: IPalette,
   secondary: IPalette,
   error: IPalette,
-  default: {
-    main: string,
-    light: string,
+  default: Omit<IPalette, 'contrast'>,
+  background: {
+    default: string,
   },
   text: {
     primary: string,

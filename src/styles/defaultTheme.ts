@@ -1,7 +1,11 @@
 import { ITheme } from '../components/ThemeProvider/types';
 
 export const defaultTheme: ITheme = {
+  background: {
+    default: '#fff',
+  },
   default: {
+    dark: '#606770',
     main: '#D0D5DD',
     light: '#FCFCFD',
   },

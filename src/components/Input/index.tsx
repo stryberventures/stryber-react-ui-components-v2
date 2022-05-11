@@ -15,6 +15,7 @@ export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
   name?: string,
   controlled?: boolean,
   onChange?: (e: React.BaseSyntheticEvent) => void,
+  endAdornment?: React.ReactNode,
 }
 
 export const Input = (props: IInput) => {
@@ -29,6 +30,9 @@ export const Input = (props: IInput) => {
     name,
     controlled,
     className,
+    endAdornment,
+    onClick,
+    ...rest
   } = props;
   const classes = useStyles(props);
   const [internalValue, setInternalValue] = React.useState(value);
@@ -43,21 +47,28 @@ export const Input = (props: IInput) => {
   };
 
   return (
-    <div className={className}>
-      <div className={classNames(classes.container, {
-        [classes.containerDisabled]: disabled,
-        [classes.containerError]: !!errorMessage,
-      })}>
-        <div className={classNames(classes.label, { [classes.textDisabled]: disabled })}>
-          {label}
+    <div className={classNames(classes.root, className)}>
+      <div
+        onClick={onClick}
+        className={classNames(classes.inputContainer, {
+          [classes.inputContainerDisabled]: disabled,
+          [classes.inputContainerError]: !!errorMessage,
+        })}
+      >
+        <div className={classes.inputArea}>
+          <div className={classNames(classes.label, { [classes.textDisabled]: disabled })}>
+            {label}
+          </div>
+          <input
+            name={name}
+            value={controlled ? value : internalValue}
+            className={classNames(classes.input, { [classes.textDisabled]: disabled })}
+            placeholder={placeholder}
+            onChange={onChangeWrapper}
+            {...rest}
+          />
         </div>
-        <input
-          name={name}
-          value={controlled ? value : internalValue}
-          className={classNames(classes.input, { [classes.textDisabled]: disabled })}
-          placeholder={placeholder}
-          onChange={onChangeWrapper}
-        />
+        {endAdornment}
       </div>
       {errorMessage && <ErrorMessage text={errorMessage} className={classes.message}/>}
       {hint && <HintMessage text={hint} disabled={disabled} className={classes.message}/>}
