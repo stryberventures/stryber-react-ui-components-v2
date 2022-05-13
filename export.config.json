@@ -6,6 +6,7 @@
     "AnotherButton": "another-button",
     "Input": "input",
     "TextLink": "text-link",
-    "Dropdown": "dropdown"
+    "Dropdown": "dropdown",
+    "Form": "form"
   }
 }

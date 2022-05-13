@@ -12,13 +12,13 @@ export default createStyles((theme) => ({
     position: 'relative',
     fontFamily: theme.font,
     display: 'flex',
+    padding: '5px 8px',
     '&:focus-within:not($inputContainerError)': {
       border: `1px solid ${theme[props.color!].main}`,
       outline: `4px solid ${theme[props.color!].light}`,
     },
     '&:not($inputContainerError)': {
       border: `1px solid ${theme.default.main}`,
-      padding: '5px 8px',
     }
   }),
   inputContainerDisabled: {
@@ -28,21 +28,9 @@ export default createStyles((theme) => ({
   },
   inputContainerError: {
     border: `1px solid ${theme.error.main}`,
-    padding: '5px 8px 5px 16px',
     '&:focus-within': {
       outline: `4px solid ${theme.error.light}`,
     },
-    '&:before': {
-      content: '""',
-      position: 'absolute',
-      height: 44,
-      width: 8,
-      left: -1,
-      top: -1,
-      backgroundColor: theme.error.main,
-      borderTopLeftRadius: 4,
-      borderBottomLeftRadius: 4,
-    }
   },
   input: {
     fontFamily: theme.font,

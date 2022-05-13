@@ -1,3 +1,4 @@
 build/*
 preBuild.js
 postBuild.js
+webpack.config.js

@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom'
-import * as React from 'react'
+import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react'
 import { Input } from './index'
 import LeftArrow from '../../stories/icons/leftArrow';

@@ -8,10 +8,11 @@ export interface ICheckBox extends ICheckBoxMark, IInputToggleBaseControlled {}
 
 export const CheckBox = (props: ICheckBox) => {
   const { checked, errorMessage, onChangeWrapper, onFocusWrapper } = useCheckBoxState(props);
-  const { size, shape, disabled, color } = props;
+  const { size, shape, disabled, color, ...rest } = props;
   
   return (
     <InputToggle
+      {...rest}
       type="checkbox"
       checked={checked}
       errorMessage={errorMessage}
