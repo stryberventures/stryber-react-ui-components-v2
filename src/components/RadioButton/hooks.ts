@@ -25,7 +25,7 @@ export const useRadioButtonState = (props: IInputToggleBase) => {
   };
   
   React.useEffect(() => {
-    updateFormValue(name, value, true);
+    checked && updateFormValue(name, value, true);
     return () => {
       updateFormValue(name, undefined, true);
     };

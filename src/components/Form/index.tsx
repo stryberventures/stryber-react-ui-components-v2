@@ -1,6 +1,5 @@
-import * as React from 'react';
 import * as yup from 'yup';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 
 /** Interfaces */
 /** Context used by input fields within the form */
@@ -44,7 +43,7 @@ export interface IFormProps {
 }
 
 /** Form component */
-const Form = (props: IFormProps) => {
+export const Form = (props: IFormProps) => {
   const {
     children,
     onSubmit,
