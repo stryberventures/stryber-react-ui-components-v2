@@ -19,10 +19,10 @@ export default createStyles((theme) => ({
       fill: theme[props.color!].main,
     },
     '&:visited svg path': {
-      fill: theme[props.color!].dark,
+      fill: '#8C0A8F',
     },
     '&:visited': {
-      color: theme[props.color!].dark,
+      color: '#8C0A8F',
     },
     '&:hover': {
       backgroundColor: theme[props.color!].light,
