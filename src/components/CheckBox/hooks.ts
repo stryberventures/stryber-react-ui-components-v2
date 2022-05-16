@@ -35,7 +35,7 @@ export const useCheckBoxState = (props: IInputToggleBaseControlled) => {
   return {
     checked: controlled ? checked : internalValue,
     errorMessage: fieldError || errorMessage,
-    onChangeWrapper,
-    onFocusWrapper,
+    onChange: onChangeWrapper,
+    onFocus: onFocusWrapper,
   }
 }

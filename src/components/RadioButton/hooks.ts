@@ -34,7 +34,7 @@ export const useRadioButtonState = (props: IInputToggleBase) => {
   return {
     checked: checkedValue || checked,
     errorMessage: fieldError || errorMessage,
-    onChangeWrapper,
-    onFocusWrapper,
+    onChange: onChangeWrapper,
+    onFocus: onFocusWrapper,
   }
 }
