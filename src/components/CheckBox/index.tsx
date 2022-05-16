@@ -7,17 +7,19 @@ import { useCheckBoxState } from './hooks';
 export interface ICheckBox extends ICheckBoxMark, IInputToggleBaseControlled {}
 
 export const CheckBox = (props: ICheckBox) => {
-  const { checked, errorMessage, onChangeWrapper, onFocusWrapper } = useCheckBoxState(props);
-  const { size, shape, disabled, color, ...rest } = props;
-  
+  const { checked, errorMessage, onChange, onFocus } = useCheckBoxState(props);
+  const { size, shape, disabled, label, color, ...rest } = props;
+
   return (
     <InputToggle
       {...rest}
       type="checkbox"
       checked={checked}
       errorMessage={errorMessage}
-      onChange={onChangeWrapper}
-      onFocus={onFocusWrapper}
+      onChange={onChange}
+      onFocus={onFocus}
+      label={label}
+      disabled={disabled}
     >
       <CheckBoxMark
         checked={checked}

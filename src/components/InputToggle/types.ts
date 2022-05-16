@@ -8,8 +8,8 @@ export interface IInputToggleBase extends Omit<React.HTMLProps<HTMLInputElement>
   checked?: boolean,
   disabled?: boolean,
   value?: string,
+  label?: string,
   errorMessage?: string,
-  placeholder?: string,
   onChange?: (e: React.BaseSyntheticEvent) => void,
   onFocus?: (e: React.BaseSyntheticEvent) => void,
 }

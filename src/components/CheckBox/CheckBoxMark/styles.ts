@@ -8,7 +8,6 @@ export default createStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    position: 'absolute',
     '& svg': {
       display: 'none',
     },
@@ -45,6 +44,7 @@ export default createStyles((theme) => ({
   small: {
     height: 14,
     width: 14,
+    minWidth: 14,
     '& svg': {
       width: 12,
       height: 12,
@@ -53,6 +53,7 @@ export default createStyles((theme) => ({
   medium: {
     height: 18,
     width: 18,
+    minWidth: 18,
     '& svg': {
       width: 14,
       height: 14,
