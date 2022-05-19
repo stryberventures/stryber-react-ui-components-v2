@@ -61,6 +61,7 @@ export default createStyles((theme) => ({
   },
   textDisabled: {
     color: theme.text.disabled,
+    backgroundColor: theme.default.light,
   },
   message: {
     marginTop: 8,
