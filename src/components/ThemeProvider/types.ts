@@ -5,11 +5,18 @@ interface IPalette {
   contrast: string,
 }
 
+interface IDefaultPalette {
+  main: string,
+  dark: string,
+  light: string,
+  hover: string,
+}
+
 export interface ITheme {
   primary: IPalette,
   secondary: IPalette,
   error: IPalette,
-  default: Omit<IPalette, 'contrast'>,
+  default: IDefaultPalette,
   background: {
     default: string,
   },

@@ -8,6 +8,7 @@ export const defaultTheme: ITheme = {
     dark: '#606770',
     main: '#D0D5DD',
     light: '#FCFCFD',
+    hover: '#F2F4F7',
   },
   text: {
     primary: '#101828',

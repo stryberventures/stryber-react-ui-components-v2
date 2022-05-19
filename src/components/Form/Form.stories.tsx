@@ -1,9 +1,10 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Form } from '../Form';
+import { Form } from './index';
 import { Input } from '../Input';
 import * as yup from 'yup';
 import { Button } from '../Button';
+import { Multiselect } from '../Multiselect';
 
 export default {
   title: 'Components/Form',
@@ -28,6 +29,13 @@ Submit.args = {
       <h1> </h1>
       <Input label={'Password'} name="password" placeholder="Password is required"/>
       <h1> </h1>
+      <Multiselect
+        name="multiselect"
+        options={['One', 'Two', 'Three']}
+        label="Multiselect"
+        placeholder="Select at least one value"
+      />
+      <h1> </h1>
       <div style={{ display: 'flex', gap: 20 }}>
         <Button label="Submit" type="submit"/>
         <Button label="Reset" type="reset" variant="outlined"/>
@@ -37,5 +45,11 @@ Submit.args = {
   validationSchema: yup.object({
     email: yup.string().email().required(),
     password: yup.string().required(),
+    multiselect: yup.array().required().min(1),
   }),
+  // initialValues: {
+  //   email: 'fwafafwa',
+  //   password: 'psss',
+  //   multiselect: ['Two', 'Three'],
+  // }
 };

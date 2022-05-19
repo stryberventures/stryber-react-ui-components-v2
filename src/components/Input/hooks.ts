@@ -29,20 +29,20 @@ export const useInput = (props: IInput) => {
     }
     const { value } = e.target;
     setInternalValue(value);
-    updateFormValue(name, value);
+    !controlled && updateFormValue(name, value);
     onChange && onChange(e);
   };
   
   const onBlurWrapper = (e: React.BaseSyntheticEvent) => {
     const { name } = e.target;
-    updateFormTouched(name, true);
+    !controlled && updateFormTouched(name, true);
     onBlur && onBlur(e);
   };
   
   useEffect(() => {
-    updateFormValue(name, internalValue, true);
+    !controlled && updateFormValue(name, internalValue, true);
     return () => {
-      unsetFormValue(name);
+      !controlled && unsetFormValue(name);
     };
   }, []);
 

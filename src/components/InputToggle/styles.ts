@@ -4,6 +4,7 @@ export default createStyles(() => ({
   wrapper: {
     display: 'flex',
     flexDirection: 'column',
+    cursor: 'pointer',
   },
   disabled: {
     pointerEvents: 'none',

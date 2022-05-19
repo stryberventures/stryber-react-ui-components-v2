@@ -5,6 +5,7 @@ export default createStyles((theme) => ({
     width: 320,
     position: 'relative',
     display: 'inline-flex',
+    userSelect: 'none',
   },
   overlay: {
     position: 'fixed',
@@ -20,10 +21,9 @@ export default createStyles((theme) => ({
     zIndex: 99,
     border: `1px solid ${theme.default.main}`,
     borderRadius: 4,
-    top: '100%',
+    top: 44,
     marginTop: 8,
     width: '100%',
-    padding: 8,
     boxSizing: 'border-box',
   },
   toggleIcon: {
@@ -45,7 +45,6 @@ export default createStyles((theme) => ({
   },
   input: {
     width: '100%',
-    zIndex: 99,
     '&:not($inputDisabled)': {
       cursor: 'pointer',
       '& input': {
