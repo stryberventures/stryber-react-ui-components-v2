@@ -7,7 +7,7 @@ import { HintMessage } from '../HintMessage';
 export const InputToggle = (props: IInputToggle) => {
   const {
     name = '', className, type, size, checked, disabled, value, children,
-    onChange, onFocus, errorMessage, placeholder, label, ...rest
+    onChange, onFocus, errorMessage, placeholder, label, controlled, ...rest
   } = props;
   const classes = useStyles(props);
 

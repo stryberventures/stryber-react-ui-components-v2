@@ -4,23 +4,28 @@ import { Input } from '../Input';
 import classNames from 'classnames';
 import ArrowDownIcon from '../Icons/ArrowDownIcon';
 
-export interface IDropdown extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode,
+export interface IDropdownBase extends React.HTMLAttributes<HTMLDivElement>{
   label: string,
   placeholder?: string,
-  value?: string,
   className?: string,
   disabled?: boolean,
-  color?: 'primary' | 'secondary',
   error?: string,
   hint?: string,
   onToggle?: (open: boolean) => void,
+  color?: 'primary' | 'secondary',
+  name?: string,
+}
+
+export interface IDropdown extends IDropdownBase {
+  children: React.ReactNode,
+  value?: string,
+  contentClassName?: string,
 }
 
 export const Dropdown = (props: IDropdown) => {
   const {
-    children, label, placeholder, value, className, color,
-    hint, error, disabled, onClick, onToggle, ...rest
+    children, label, placeholder, value, className, color, name,
+    hint, error, disabled, onClick, onToggle, contentClassName, ...rest
   } = props;
   const classes = useStyles();
   const [open, setOpen] = useState(false);
@@ -46,13 +51,14 @@ export const Dropdown = (props: IDropdown) => {
       {open && <div className={classes.overlay} onClick={onOverlayClick}/>}
       <Input
         readOnly
+        name={name}
         label={label}
         placeholder={placeholder}
         color={color}
         value={value}
         onClick={onInputClick}
         disabled={disabled}
-        controlled={!!value}
+        controlled={true}
         hint={hint}
         errorMessage={error}
         className={classNames(classes.input, { [classes.inputDisabled]: disabled })}
@@ -66,7 +72,7 @@ export const Dropdown = (props: IDropdown) => {
         )}
       />
       {open && (
-        <div className={classes.content}>
+        <div className={classNames(classes.content, contentClassName)}>
           {children}
         </div>
       )}

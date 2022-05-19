@@ -24,7 +24,7 @@ const getComponentsExternals = () => {
       const peers = Object.keys(packageObject.peerDependencies) || [];
       peers.forEach(peer => externalsSet.add(peer));
     } catch (e) {
-       console.error(`package.json file in missed in ./src/components/${component}/package.json`);
+       console.error(`package.json file is missed in ./src/components/${component}/package.json`);
     }
   });
 
