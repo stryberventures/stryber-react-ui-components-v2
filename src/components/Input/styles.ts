@@ -21,11 +21,6 @@ export default createStyles((theme) => ({
       border: `1px solid ${theme.default.main}`,
     }
   }),
-  inputContainerDisabled: {
-    pointerEvents: 'none',
-    userSelect: 'none',
-    backgroundColor: theme.default.light,
-  },
   inputContainerError: {
     border: `1px solid ${theme.error.main}`,
     '&:focus-within': {
@@ -49,6 +44,11 @@ export default createStyles((theme) => ({
   inputArea: {
     display: 'flex',
     flexGrow: 1,
+  },
+  disabled: {
+    pointerEvents: 'none',
+    userSelect: 'none',
+    backgroundColor: theme.default.light,
   },
   label: {
     color: theme.text.secondary,

@@ -43,7 +43,7 @@ export const Input = (props: IInput) => {
       <div
         onClick={onClick}
         className={classNames(classes.inputContainer, {
-          [classes.inputContainerDisabled]: disabled,
+          [classes.disabled]: disabled,
           [classes.inputContainerError]: !!errorMessage,
         })}
       >
@@ -55,7 +55,10 @@ export const Input = (props: IInput) => {
             {...inputProps}
             name={name}
             value={value}
-            className={classNames(classes.input, { [classes.textDisabled]: disabled })}
+            className={classNames(classes.input, {
+              [classes.disabled]: disabled,
+              [classes.textDisabled]: disabled
+            })}
             placeholder={placeholder}
             onChange={onChange}
             onBlur={onBlur}
