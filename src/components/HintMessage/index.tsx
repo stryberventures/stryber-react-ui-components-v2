@@ -2,7 +2,7 @@ import React from 'react';
 import useStyles from './styles';
 import classNames from 'classnames';
 
-interface IHintMessage {
+interface IHintMessage extends React.HTMLAttributes<HTMLDivElement> {
   text: string,
   className?: string,
   disabled?: boolean,

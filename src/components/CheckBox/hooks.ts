@@ -15,27 +15,27 @@ export const useCheckBoxState = (props: IInputToggleBaseControlled) => {
     }
     const { name, checked } = e.target;
     setInternalValue(checked);
-    updateFormValue(name, checked);
+    !controlled && updateFormValue(name, checked);
     onChange && onChange(e);
   };
-  
+
   const onFocusWrapper = (e: React.BaseSyntheticEvent) => {
     const { name } = e.target;
-    updateFormTouched(name, true);
+    !controlled && updateFormTouched(name, true);
     onFocus && onFocus(e);
   };
   
   React.useEffect(() => {
-    updateFormValue(name, !!checked, true);
+    !controlled && updateFormValue(name, !!checked, true);
     return () => {
-      updateFormValue(name, undefined, true);
+      !controlled && updateFormValue(name, undefined, true);
     };
   }, []);
   
   return {
     checked: controlled ? checked : internalValue,
     errorMessage: fieldError || errorMessage,
-    onChangeWrapper,
-    onFocusWrapper,
+    onChange: onChangeWrapper,
+    onFocus: onFocusWrapper,
   }
 }

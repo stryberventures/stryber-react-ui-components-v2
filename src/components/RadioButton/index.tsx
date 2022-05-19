@@ -7,16 +7,19 @@ import { IInputToggleBase } from '../InputToggle/types';
 export interface IRadioButton extends IRadioBoxMarkProps, IInputToggleBase {}
 
 export const RadioButton = (props: IRadioButton) => {
-  const { checked, errorMessage, onChangeWrapper, onFocusWrapper } = useRadioButtonState(props);
-  const { size, disabled, color } = props;
+  const { checked, errorMessage, onChange, onFocus } = useRadioButtonState(props);
+  const { size, disabled, color, label, ...rest } = props;
 
   return (
     <InputToggle
+      {...rest}
       type="radio"
       checked={checked}
       errorMessage={errorMessage}
-      onChange={onChangeWrapper}
-      onFocus={onFocusWrapper}
+      onChange={onChange}
+      onFocus={onFocus}
+      label={label}
+      disabled={disabled}
     >
       <RadioBoxMark
         checked={checked}

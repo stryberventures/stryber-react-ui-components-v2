@@ -2,25 +2,24 @@ import * as React from 'react';
 import classNames from 'classnames';
 import useStyles from './styles';
 import { IInputToggle } from './types';
+import { HintMessage } from '../HintMessage';
 
 export const InputToggle = (props: IInputToggle) => {
   const {
     name = '', className, type, size, checked, disabled, value, children,
-    onChange, onFocus, errorMessage, placeholder, ...rest
+    onChange, onFocus, errorMessage, placeholder, label, controlled, ...rest
   } = props;
   const classes = useStyles(props);
 
   return (
     <div className={classNames(classes.wrapper, {
-      [classes.error]: errorMessage,
+      [classes.disabled]: disabled,
     }, className)}>
       <label className={classes.label}>
         <input
           {...rest}
           type={type}
-          className={classNames(classes.input,
-            { [classes.disabled]: disabled },
-          )}
+          className={classes.input}
           name={name}
           value={value}
           checked={checked}
@@ -28,21 +27,8 @@ export const InputToggle = (props: IInputToggle) => {
           onFocus={onFocus}
         />
         {children}
-        {placeholder &&
-          <div
-            className={classNames(classes.placeholder, {
-              [classes.error]: errorMessage,
-            })}
-          >
-            {placeholder}
-          </div>
-        }
+        {label && <HintMessage text={label} className={classes.labelText} disabled={disabled} />}
       </label>
-      {errorMessage &&
-        <div className={classes.errorMessage}>
-          {errorMessage}
-        </div>
-      }
     </div>
   );
 };

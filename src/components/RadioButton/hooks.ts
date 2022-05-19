@@ -25,7 +25,7 @@ export const useRadioButtonState = (props: IInputToggleBase) => {
   };
   
   React.useEffect(() => {
-    updateFormValue(name, value, true);
+    checked && updateFormValue(name, value, true);
     return () => {
       updateFormValue(name, undefined, true);
     };
@@ -34,7 +34,7 @@ export const useRadioButtonState = (props: IInputToggleBase) => {
   return {
     checked: checkedValue || checked,
     errorMessage: fieldError || errorMessage,
-    onChangeWrapper,
-    onFocusWrapper,
+    onChange: onChangeWrapper,
+    onFocus: onFocusWrapper,
   }
 }
