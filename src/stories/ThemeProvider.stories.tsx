@@ -11,6 +11,7 @@ import LeftArrow from './icons/leftArrow';
 import { Dropdown } from '../components/Dropdown';
 import { Tooltip } from '../components/Tooltip'
 import { Multiselect } from '../components/Multiselect';
+import { Toggle } from '../components/Toggle';
 
 export default {
   title: 'Components/ThemeProvider',
@@ -43,6 +44,18 @@ const Template: ComponentStory<typeof ThemeProvider> = (args) => (
     <CheckBox checked={true} color="secondary" label="Checked"/>
     <h1> </h1>
     <CheckBox checked={true} disabled color="secondary" label="Disabled"/>
+    <h2 style={{ fontFamily: 'Inter', color: '#003CB8' }}>Toggle</h2>
+    <Toggle checked={true} label="Primary on"/>
+    <h1> </h1>
+    <Toggle label="Primary off" />
+    <h1> </h1>
+    <Toggle checked={true} disabled label="Disabled on"/>
+    <h1> </h1>
+    <Toggle checked={true} color="secondary" label="Secondary on"/>
+    <h1> </h1>
+    <Toggle color="secondary" label="Secondary off"/>
+    <h1> </h1>
+    <Toggle checked={true} disabled color="secondary" label="Disabled on"/>
     <h2 style={{ fontFamily: 'Inter', color: '#003CB8' }}>Radio button</h2>
     <RadioButton label="Primary" />
     <h1> </h1>

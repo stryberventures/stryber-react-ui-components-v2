@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputToggle } from '../InputToggle';
+import { InputToggleLayout } from '../InputToggle';
 import { RadioBoxMark, IRadioBoxMarkProps } from './RadioBoxMark';
 import { useRadioButtonState } from './hooks';
 import { IInputToggleBase } from '../InputToggle/types';
@@ -11,7 +11,7 @@ export const RadioButton = (props: IRadioButton) => {
   const { size, disabled, color, label, ...rest } = props;
 
   return (
-    <InputToggle
+    <InputToggleLayout
       {...rest}
       type="radio"
       checked={checked}
@@ -27,6 +27,6 @@ export const RadioButton = (props: IRadioButton) => {
         disabled={disabled}
         color={color}
       />
-    </InputToggle>
+    </InputToggleLayout>
   );
 }

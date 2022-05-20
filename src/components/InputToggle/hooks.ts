@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useFormContext } from '../Form';
-import { IInputToggleBaseControlled } from '../InputToggle/types';
+import { IInputToggleBaseControlled } from './types';
 
-export const useCheckBoxState = (props: IInputToggleBaseControlled) => {
+export const useCheckedState = (props: IInputToggleBaseControlled) => {
   const {
     name = '', checked, disabled, errorMessage, onChange, onFocus, controlled,
   } = props;
@@ -31,7 +31,7 @@ export const useCheckBoxState = (props: IInputToggleBaseControlled) => {
       !controlled && updateFormValue(name, undefined, true);
     };
   }, []);
-  
+
   return {
     checked: controlled ? checked : internalValue,
     errorMessage: fieldError || errorMessage,
