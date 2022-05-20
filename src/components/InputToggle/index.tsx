@@ -4,7 +4,7 @@ import useStyles from './styles';
 import { IInputToggle } from './types';
 import { HintMessage } from '../HintMessage';
 
-export const InputToggle = (props: IInputToggle) => {
+export const InputToggleLayout = (props: IInputToggle) => {
   const {
     name = '', className, type, size, checked, disabled, value, children,
     onChange, onFocus, errorMessage, placeholder, label, controlled, ...rest
@@ -33,7 +33,7 @@ export const InputToggle = (props: IInputToggle) => {
   );
 };
 
-InputToggle.defaultProps = {
+InputToggleLayout.defaultProps = {
   type: 'checkbox',
   size: 'small',
   color: 'primary',
