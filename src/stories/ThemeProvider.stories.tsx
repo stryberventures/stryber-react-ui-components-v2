@@ -9,6 +9,7 @@ import { RadioButton } from '../components/RadioButton';
 import { TextLink } from '../components/TextLink';
 import LeftArrow from './icons/leftArrow';
 import { Dropdown } from '../components/Dropdown';
+import { Tooltip } from '../components/Tooltip'
 import { Multiselect } from '../components/Multiselect';
 
 export default {
@@ -62,6 +63,31 @@ const Template: ComponentStory<typeof ThemeProvider> = (args) => (
     <TextLink text="Disabled" disabled />
     <h1> </h1>
     <TextLink text="With icon" iconLeft={<LeftArrow />} />
+    <h1> </h1>
+    <Tooltip title='This is a Tooltip title' position='top' version='light'>Tooltip top position light version</Tooltip>
+    <h1> </h1>
+    <Tooltip title='This is a Tooltip title' position='topStart' version='dark'>Tooltip top-start position</Tooltip>
+    <h1> </h1>
+    <Tooltip title='This is a Tooltip title' position='topEnd' version='dark'>Tooltip top-end position</Tooltip>
+    <h1> </h1>
+    <Tooltip title='This is a Tooltip title' position='bottom' version='dark'>Tooltip bottom position</Tooltip>
+    <h1> </h1>
+    <Tooltip title='This is a Tooltip title' position='bottomStart' version='dark'>Tooltip bottom-start position</Tooltip>
+    <h1> </h1>
+    <Tooltip title='This is a Tooltip title' position='bottomEnd' version='dark'>Tooltip bottom-end position</Tooltip>
+    <h1> </h1>
+    <Tooltip title='This is a Tooltip title' position='right' version='light'>Tooltip right position light version</Tooltip>
+    <h1> </h1>
+    <Tooltip title='This is a Tooltip title' position='rightStart' version='dark'>Tooltip right-start position</Tooltip>
+    <h1> </h1>
+    <Tooltip title='This is a Tooltip title' position='rightEnd' version='dark'>Tooltip right-end position</Tooltip>
+    <h1> </h1>
+    <Tooltip title='This is a Tooltip title' position='left' version='dark'>Tooltip left position</Tooltip>
+    <h1> </h1>
+    <Tooltip title='This is a Tooltip title' position='leftStart' version='dark'>Tooltip left-start position</Tooltip>
+    <h1> </h1>
+    <Tooltip title='This is a Tooltip title' position='leftEnd' version='dark'>Tooltip left-end position</Tooltip>
+    <h1> </h1>
     <h2 style={{ fontFamily: 'Inter', color: '#003CB8' }}>Input </h2>
     <Input label="Color primary" placeholder="some@mail.com"/>
     <h1> </h1>
