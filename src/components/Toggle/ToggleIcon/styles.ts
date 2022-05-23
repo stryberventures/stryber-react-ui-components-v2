@@ -12,7 +12,7 @@ export default createStyles((theme) => ({
       cursor: 'pointer',
     },
     '&:hover $circleHighlight': {
-      opacity: 0.5,
+      opacity: 0.3,
     },
     '& $circleHighlight': {
       backgroundColor: theme[props.color!].contrast,
