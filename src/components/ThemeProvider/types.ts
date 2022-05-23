@@ -9,7 +9,7 @@ interface IDefaultPalette {
   main: string,
   dark: string,
   light: string,
-  hover: string,
+  extraLight: string,
 }
 
 export interface ITheme {
