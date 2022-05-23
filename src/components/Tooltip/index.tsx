@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import useStyles from './styles';
 import classNames from 'classnames';
 
-export interface ITooltip {
+export interface ITooltip extends React.HTMLAttributes<HTMLDivElement> {
   version?: 'light' | 'dark',
   position?: 'top' | 'topStart' | 'topEnd' |
   'bottom' | 'bottomStart' | 'bottomEnd' |
@@ -10,7 +10,7 @@ export interface ITooltip {
   'right' | 'rightStart' | 'rightEnd',
   title: string,
   text?: string,
-  children: any,
+  children: React.ReactNode,
 }
 
 export const Tooltip = (props: ITooltip) => {

@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom'
 import * as React from 'react'
-import { fireEvent, render } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import { RadioButton } from './index'
 
 it('should be rendered', () => {
@@ -25,4 +25,10 @@ it('should change checked state', () => {
   const checkBox = getByRole('radio',{ hidden: true }) as HTMLInputElement;
   fireEvent.change(checkBox, { target: { checked: true } });
   expect(checkBox.checked).toBe(true);
+});
+
+it('should display the label', () => {
+  const label = 'Test label';
+  render(<RadioButton label={label} />);
+  expect(screen.queryByText(label)).toBeInTheDocument();
 });
