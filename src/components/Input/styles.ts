@@ -48,7 +48,7 @@ export default createStyles((theme) => ({
   disabled: {
     pointerEvents: 'none',
     userSelect: 'none',
-    backgroundColor: theme.default.light,
+    backgroundColor: theme.background.default,
   },
   label: {
     color: theme.text.secondary,

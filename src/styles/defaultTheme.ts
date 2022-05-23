@@ -5,10 +5,10 @@ export const defaultTheme: ITheme = {
     default: '#fff',
   },
   default: {
-    dark: '#606770',
-    main: '#D0D5DD',
-    light: '#FCFCFD',
-    hover: '#F2F4F7',
+    dark: '#667085',
+    main: '#C7CCD3',
+    light: '#E4E7EC',
+    extraLight: '#F9FAFB',
   },
   text: {
     primary: '#101828',

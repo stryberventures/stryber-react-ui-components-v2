@@ -21,7 +21,7 @@ export default createStyles((theme) => ({
   containerDisabled: {
     pointerEvents: 'none',
     userSelect: 'none',
-    backgroundColor: theme.default.light,
+    backgroundColor: theme.background.default,
   },
   containerError: {
     border: `1px solid ${theme.error.main}`,
@@ -61,7 +61,7 @@ export default createStyles((theme) => ({
   },
   textDisabled: {
     color: theme.text.disabled,
-    backgroundColor: theme.default.light,
+    backgroundColor: theme.background.default,
   },
   message: {
     marginTop: 8,
