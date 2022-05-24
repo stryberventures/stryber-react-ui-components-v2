@@ -86,6 +86,8 @@ const Template: ComponentStory<typeof ThemeProvider> = (args) => (
     <h1> </h1>
     <Input label="Color secondary" placeholder="some@mail.com" color="secondary"/>
     <h1> </h1>
+    <Input label="Disabled" placeholder="some@mail.com" disabled={true}/>
+    <h1> </h1>
     <Input label="Error state" placeholder="some@mail.com" errorMessage="This is an error"/>
     <h1> </h1>
     <Input label="Hint" placeholder="some@mail.com" hint="This is a hint"/>

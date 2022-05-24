@@ -2,11 +2,11 @@ import * as React from 'react';
 import classNames from 'classnames';
 import useStyles from './styles';
 import { IInputToggle } from './types';
-import { HintMessage } from '../HintMessage';
+import { ErrorMessage } from '../ErrorMessage';
 
 export const InputToggleLayout = (props: IInputToggle) => {
   const {
-    name = '', className, type, size, checked, disabled, value, children,
+    name = '', size = 'medium', className, type, checked, disabled, value, children, title,
     onChange, onFocus, errorMessage, placeholder, label, controlled, ...rest
   } = props;
   const classes = useStyles(props);
@@ -15,7 +15,7 @@ export const InputToggleLayout = (props: IInputToggle) => {
     <div className={classNames(classes.wrapper, {
       [classes.disabled]: disabled,
     }, className)}>
-      <label className={classes.label}>
+      <label className={classes.container}>
         <input
           {...rest}
           type={type}
@@ -27,15 +27,31 @@ export const InputToggleLayout = (props: IInputToggle) => {
           onFocus={onFocus}
         />
         {children}
-        {label && <HintMessage text={label} className={classes.labelText} disabled={disabled} />}
+        <div className={classNames(classes.text, classes[size])}>
+          {title &&
+            <div className={classNames(classes.title, {
+              [classes.textDisabled]: disabled,
+            })}>
+              {title}
+            </div>
+          }
+          {label &&
+            <div className={classNames(classes.label, {
+              [classes.textDisabled]: disabled,
+            })}>
+              {label}
+            </div>
+          }
+        </div>
       </label>
+      {errorMessage && <ErrorMessage text={errorMessage} className={classes.error}/>}
     </div>
   );
 };
 
 InputToggleLayout.defaultProps = {
   type: 'checkbox',
-  size: 'small',
+  size: 'medium',
   color: 'primary',
   checked: false,
   disabled: false,

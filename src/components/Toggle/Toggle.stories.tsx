@@ -26,6 +26,13 @@ export const DisabledOn = Template.bind({});
 DisabledOn.args = {
   checked: true,
   disabled: true,
-  label: 'Disabled',
+  label: 'Disabled on',
+};
+
+export const DisabledOff = Template.bind({});
+DisabledOff.args = {
+  checked: false,
+  disabled: true,
+  label: 'Disabled off',
 };
 

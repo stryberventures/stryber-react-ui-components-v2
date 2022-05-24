@@ -18,6 +18,7 @@ export const RadioButton = (props: IRadioButton) => {
       errorMessage={errorMessage}
       onChange={onChange}
       onFocus={onFocus}
+      size={size}
       label={label}
       disabled={disabled}
     >

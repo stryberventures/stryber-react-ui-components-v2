@@ -32,3 +32,15 @@ it('should display the label', () => {
   render(<CheckBox label={label} />);
   expect(screen.queryByText(label)).toBeInTheDocument();
 });
+
+it('should display the title', () => {
+  const title = 'Test title';
+  render(<CheckBox title={title} />);
+  expect(screen.queryByText(title)).toBeInTheDocument();
+});
+
+it('should display the error', () => {
+  const errorMessage = 'Test error';
+  render(<CheckBox errorMessage={errorMessage} />);
+  expect(screen.queryByText(errorMessage)).toBeInTheDocument();
+});

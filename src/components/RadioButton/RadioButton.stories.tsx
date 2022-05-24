@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { RadioButton } from '../components/RadioButton';
+import { RadioButton } from './index';
 
 export default {
   title: 'Components/RadioButton',
@@ -34,4 +34,21 @@ Disabled.args = {
   disabled: true,
   checked: true,
   label: 'Disabled',
+};
+
+export const Title = Template.bind({});
+Title.args = {
+  title: 'Remember me',
+};
+
+export const Error = Template.bind({});
+Error.args = {
+  label: 'Remember me',
+  errorMessage: 'This is a error message'
+};
+
+export const TitleAndLabel = Template.bind({});
+TitleAndLabel.args = {
+  title: 'Remember me',
+  label: 'Save my login details for next time',
 };

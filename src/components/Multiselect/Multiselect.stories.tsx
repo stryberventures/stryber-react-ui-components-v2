@@ -10,10 +10,18 @@ export default {
 const Template: ComponentStory<typeof Multiselect> = (args) =>
   <Multiselect {...args} />;
 
-export const Default = Template.bind({});
-Default.args = {
+export const Primary = Template.bind({});
+Primary.args = {
   label: 'Multiselect',
   placeholder: 'Select an option',
+  options: ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'],
+};
+
+export const Secondary = Template.bind({});
+Secondary.args = {
+  label: 'Multiselect',
+  placeholder: 'Select an option',
+  color: 'secondary',
   options: ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'],
 };
 

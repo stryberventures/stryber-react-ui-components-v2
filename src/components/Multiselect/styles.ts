@@ -7,8 +7,17 @@ export default createUseStyles({
     overflow: 'auto',
   },
   checkbox: {
+    '& [class*="text"]': {
+      width: 'calc(100% - 28px)',
+    },
+    '& [class*="label"]': {
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+    },
     '& label': {
+      alignItems: 'center',
       height: 40,
     }
-  }
+  },
 });
