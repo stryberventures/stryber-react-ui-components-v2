@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { CheckBox } from '../components/CheckBox';
+import { CheckBox } from './index';
 
 export default {
   title: 'Components/CheckBox',
@@ -41,4 +41,21 @@ Disabled.args = {
   disabled: true,
   label: 'Disabled',
   checked: true,
+};
+
+export const Title = Template.bind({});
+Title.args = {
+  title: 'Remember me',
+};
+
+export const Error = Template.bind({});
+Error.args = {
+  label: 'Remember me',
+  errorMessage: 'This is a error message',
+};
+
+export const TitleAndLabel = Template.bind({});
+TitleAndLabel.args = {
+  title: 'Remember me',
+  label: 'Save my login details for next time',
 };

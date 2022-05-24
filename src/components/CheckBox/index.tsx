@@ -13,6 +13,7 @@ export const CheckBox = (props: ICheckBox) => {
   return (
     <InputToggleLayout
       {...rest}
+      size={size}
       type="checkbox"
       checked={checked}
       errorMessage={errorMessage}

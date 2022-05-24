@@ -32,3 +32,15 @@ it('should display the label', () => {
   render(<RadioButton label={label} />);
   expect(screen.queryByText(label)).toBeInTheDocument();
 });
+
+it('should display the title', () => {
+  const title = 'Test title';
+  render(<RadioButton title={title} />);
+  expect(screen.queryByText(title)).toBeInTheDocument();
+});
+
+it('should display the error', () => {
+  const errorMessage = 'Test error';
+  render(<RadioButton errorMessage={errorMessage} />);
+  expect(screen.queryByText(errorMessage)).toBeInTheDocument();
+});

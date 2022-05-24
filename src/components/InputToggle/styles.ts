@@ -1,6 +1,6 @@
 import { createStyles } from '../../styles';
 
-export default createStyles(() => ({
+export default createStyles((theme) => ({
   wrapper: {
     display: 'flex',
     flexDirection: 'column',
@@ -12,18 +12,38 @@ export default createStyles(() => ({
   input: () => ( {
     display: 'none',
   }),
-  label: {
+  container: {
     cursor: 'pointer',
     userSelect: 'none',
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     height: '100%',
     width: '100%',
   },
-  labelText: {
+  text: {
     marginLeft: 8,
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
+    fontFamily: theme.font,
+    display: 'flex',
+    flexDirection: 'column',
+    fontSize: 14,
+  },
+  medium: {
+    lineHeight: '20px',
+  },
+  small: {
+    lineHeight: '16px',
+  },
+  title: {
+    fontWeight: 500,
+    color: theme.text.secondary,
+  },
+  label: {
+    color: theme.text.hint,
+  },
+  textDisabled: {
+    color: theme.text.disabled,
+  },
+  error: {
+    marginTop: 8,
   },
 }));

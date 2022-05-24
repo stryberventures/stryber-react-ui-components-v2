@@ -12,7 +12,7 @@ export interface IMultiselect extends Omit<IDropdownBase, 'onChange'> {
 }
 
 export const Multiselect = (props: IMultiselect) => {
-  const { options, label, placeholder, onChange, onToggle, ...rest } = props;
+  const { options, label, color, placeholder, onChange, onToggle, ...rest } = props;
   const { value, selectedOptions, error, onCheckboxChange, onDropdownToggle } = useMultiselect(props);
   const classes = useStyles();
 
@@ -23,6 +23,7 @@ export const Multiselect = (props: IMultiselect) => {
       placeholder={placeholder}
       onToggle={onDropdownToggle}
       value={value}
+      color={color}
       contentClassName={classes.content}
       error={error}
     >
@@ -33,6 +34,7 @@ export const Multiselect = (props: IMultiselect) => {
             label={option}
             name={option}
             controlled={true}
+            color={color}
             checked={selectedOptions.indexOf(option) >= 0}
             onChange={onCheckboxChange}
           />
