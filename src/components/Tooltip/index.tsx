@@ -23,7 +23,7 @@ export const Tooltip = (props: ITooltip) => {
   } = props;
   const classes = useStyles(props);
   const [isHovered, setIsHovered] = useState(false);
-  const [isFocused, setIsFocused] = useState(true);
+  const [isFocused, setIsFocused] = useState(false);
   const showTooltip = isHovered || isFocused ;
   return (
     <div className={classes.tooltipWrap}>

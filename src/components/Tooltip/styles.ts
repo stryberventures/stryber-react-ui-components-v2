@@ -24,7 +24,7 @@ export default createStyles((theme) => ({
     borderRadius: 8,
     boxSizing: 'border-box',
     pointerEvents: 'none',
-    boxShadow: '0px 0px 16px 8px rgba(16, 24, 40, 0.08)',
+    boxShadow: '0px 0px 16px -4px rgba(16, 24, 40, 0.08), 0px 0px 6px -2px rgba(16, 24, 40, 0.03)',
     '&:after': {
       content: '""',
       position: 'absolute',
