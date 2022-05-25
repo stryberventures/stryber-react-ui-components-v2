@@ -27,6 +27,7 @@ export const CheckBoxMark = (props: ICheckBoxMark) => {
         { [classes.checked]: checked },
       )}>
       <CheckBoxIcon/>
+      <div className={classes.clickArea}/>
     </span>
   );
 };

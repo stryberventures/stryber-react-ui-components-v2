@@ -32,6 +32,11 @@ export default createStyles((theme: ITheme) => ({
     opacity: 0.45,
     cursorEvents: 'none',
   }),
+  clickArea: {
+    position: 'absolute',
+    width: 26,
+    height: 26,
+  },
   checked: (props: IRadioBoxMarkProps) => ({
     '& svg': {
       display: 'block',
