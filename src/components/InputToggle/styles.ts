@@ -26,6 +26,7 @@ export default createStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     fontSize: 14,
+    position: 'relative',
   },
   medium: {
     lineHeight: '20px',

@@ -25,6 +25,7 @@ export const RadioBoxMark = (props: IRadioBoxMarkProps) => {
         { [classes.checked]: checked },
       )}>
       <RadioBoxIcon/>
+      <div className={classes.clickArea}/>
     </span>
   );
 };

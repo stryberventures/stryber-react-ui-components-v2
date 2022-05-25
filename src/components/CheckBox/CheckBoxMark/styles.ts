@@ -23,6 +23,11 @@ export default createStyles((theme) => ({
       outline: `4px solid ${theme[props.color!].light}`,
     },
   }),
+  clickArea: {
+    position: 'absolute',
+    width: 26,
+    height: 26,
+  },
   disabled: (props: ICheckBoxMark) => ({
     '& svg path': {
       fill: theme[props.color!].main,

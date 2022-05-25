@@ -5,6 +5,13 @@ import { CheckBox } from './index';
 export default {
   title: 'Components/CheckBox',
   component: CheckBox,
+  argTypes: {
+    onFocus: {
+      table: {
+        disable: true,
+      },
+    },
+  },
 } as ComponentMeta<typeof CheckBox>;
 
 const Template: ComponentStory<typeof CheckBox> = (args) => <CheckBox {...args} />;
