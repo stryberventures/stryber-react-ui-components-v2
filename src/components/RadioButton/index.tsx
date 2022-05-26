@@ -1,8 +1,8 @@
 import React from 'react';
-import { InputToggleLayout } from '../InputToggle';
+import { InputToggleLayout } from '../InputToggleLayout';
 import { RadioBoxMark, IRadioBoxMarkProps } from './RadioBoxMark';
 import { useRadioButtonState } from './hooks';
-import { IInputToggleBase } from '../InputToggle/types';
+import { IInputToggleBase } from '../InputToggleLayout/types';
 
 export interface IRadioButton extends IRadioBoxMarkProps, IInputToggleBase {}
 

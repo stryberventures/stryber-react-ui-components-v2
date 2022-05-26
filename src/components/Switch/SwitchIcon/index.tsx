@@ -2,13 +2,13 @@ import React from 'react';
 import useStyles from './styles';
 import classNames from 'classnames';
 
-export interface IToggleIcon {
+export interface ISwitchIcon {
   checked?: boolean,
   color?: 'primary' | 'secondary',
   disabled?: boolean,
 }
 
-export const ToggleIcon = (props: IToggleIcon) => {
+export const SwitchIcon = (props: ISwitchIcon) => {
   const { checked, disabled } = props;
   const classes = useStyles(props);
 
@@ -25,6 +25,6 @@ export const ToggleIcon = (props: IToggleIcon) => {
   );
 }
 
-ToggleIcon.defaultProps = {
+SwitchIcon.defaultProps = {
   color: 'primary',
 }

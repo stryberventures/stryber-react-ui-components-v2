@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useFormContext } from '../Form';
-import { IInputToggleBase } from '../InputToggle/types';
+import { IInputToggleBase } from '../InputToggleLayout/types';
 
 export const useRadioButtonState = (props: IInputToggleBase) => {
   const {
