@@ -12,6 +12,7 @@ import { Dropdown } from '../components/Dropdown';
 import { Tooltip } from '../components/Tooltip'
 import { Multiselect } from '../components/Multiselect';
 import { Switch } from '../components/Switch';
+import { TextArea } from '../components/TextArea';
 
 export default {
   title: 'Components/ThemeProvider',
@@ -91,6 +92,17 @@ const Template: ComponentStory<typeof ThemeProvider> = (args) => (
     <Input label="Error state" placeholder="some@mail.com" errorMessage="This is an error"/>
     <h1> </h1>
     <Input label="Hint" placeholder="some@mail.com" hint="This is a hint"/>
+    <h2 style={{ fontFamily: 'Inter', color: '#003CB8' }}>TextArea </h2>
+    <TextArea label="Color primary" />
+    <h1> </h1>
+    <TextArea label="Color secondary" color="secondary" />
+    <h1> </h1>
+    <TextArea label="Disabled" disabled={true} />
+    <h1> </h1>
+    <TextArea label="Disabled" errorMessage="This is an error" />
+    <h1> </h1>
+    <TextArea label="Max length" maxLength={200} />
+    <h1> </h1>
     <h2 style={{ fontFamily: 'Inter', color: '#003CB8' }}>Dropdown</h2>
     <Dropdown label="Dropdown" placeholder="It use Input">
       <div style={{ padding: 8 }}>

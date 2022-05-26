@@ -13,6 +13,7 @@ export default createStyles((theme) => ({
     fontFamily: theme.font,
     display: 'flex',
     padding: '5px 8px',
+    backgroundColor: theme.background.default,
     '&:focus-within:not($inputContainerError)': {
       border: `1px solid ${theme[props.color!].main}`,
       outline: `4px solid ${theme[props.color!].light}`,
@@ -37,6 +38,7 @@ export default createStyles((theme) => ({
     width: '100%',
     color: theme.text.primary,
     fontSize: 14,
+    backgroundColor: theme.background.default,
     '&::placeholder': {
       color: theme.text.hint,
     }

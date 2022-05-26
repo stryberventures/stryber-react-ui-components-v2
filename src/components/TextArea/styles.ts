@@ -9,6 +9,7 @@ export default createStyles((theme) => ({
     borderRadius: 4,
     position: 'relative',
     fontFamily: theme.font,
+    backgroundColor: theme.background.default,
     '&:focus-within:not($containerError)': {
       border: `1px solid ${theme[props.color!].main}`,
       outline: `4px solid ${theme[props.color!].light}`,
@@ -52,6 +53,7 @@ export default createStyles((theme) => ({
     color: theme.text.primary,
     fontSize: 14,
     resize: 'none',
+    backgroundColor: theme.background.default,
   },
   label: {
     color: theme.text.secondary,

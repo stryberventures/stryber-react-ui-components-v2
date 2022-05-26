@@ -1,8 +1,0 @@
-{
-  "name": "@stryberventures/gaia-react.another-button",
-  "version": "0.0.1",
-  "peerDependencies": {
-    "react": ">=17.0.0",
-    "@stryberventures/gaia-react.button": ">=0.0.1"
-  }
-}
