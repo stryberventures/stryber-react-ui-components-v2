@@ -35,8 +35,8 @@ export const Tooltip = (props: ITooltip) => {
         onBlur={() => setIsFocused(false)}
       >{children}</div>
       {showTooltip && (
-        <div className={classNames(classes.tooltipContainer, classes[position])}>
-          <div className={classNames(classes.tooltipBox, classes[version])}>
+        <div role="tooltip" className={classNames(classes.tooltipContainer, classes[position], classes[version])}>
+          <div className={classes.tooltipBox}>
             <div className={classes.title}>{title}</div>
             {text && <div className={classes.text}>{text}</div>}
           </div>
