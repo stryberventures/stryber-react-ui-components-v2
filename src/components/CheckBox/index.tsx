@@ -1,8 +1,8 @@
 import React from 'react';
-import { InputToggleLayout } from '../InputToggle';
+import { InputToggleLayout } from '../InputToggleLayout';
 import { CheckBoxMark, ICheckBoxMark } from './CheckBoxMark';
-import { IInputToggleBaseControlled } from '../InputToggle/types';
-import { useCheckedState } from '../InputToggle/hooks';
+import { IInputToggleBaseControlled } from '../InputToggleLayout/types';
+import { useCheckedState } from '../InputToggleLayout/hooks';
 
 export interface ICheckBox extends ICheckBoxMark, IInputToggleBaseControlled {}
 

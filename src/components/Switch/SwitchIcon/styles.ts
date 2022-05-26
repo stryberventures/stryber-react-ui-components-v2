@@ -1,8 +1,8 @@
 import { createStyles } from '../../../styles';
-import { IToggleIcon } from './index';
+import { ISwitchIcon } from './index';
 
 export default createStyles((theme) => ({
-  toggleIcon: (props: IToggleIcon) => ({
+  toggleIcon: (props: ISwitchIcon) => ({
     width: 44,
     height: 24,
     position: 'relative',
@@ -21,7 +21,7 @@ export default createStyles((theme) => ({
   disabled: {
     opacity: 0.45,
   },
-  checked: (props: IToggleIcon) => ({
+  checked: (props: ISwitchIcon) => ({
     backgroundColor: theme[props.color!].main,
     '&:hover': {
       backgroundColor: theme[props.color!].dark,
@@ -39,7 +39,7 @@ export default createStyles((theme) => ({
     left: '2px',
     position: 'absolute',
   },
-  circle: (props: IToggleIcon) => ({
+  circle: (props: ISwitchIcon) => ({
     position: 'relative',
     height: 20,
     width: 20,
