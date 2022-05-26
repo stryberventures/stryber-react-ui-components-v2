@@ -24,7 +24,7 @@ export default createStyles((theme) => ({
     borderRadius: 8,
     boxSizing: 'border-box',
     pointerEvents: 'none',
-    boxShadow: '0px 0px 16px -4px rgba(16, 24, 40, 0.08), 0px 0px 6px -2px rgba(16, 24, 40, 0.03)',
+    boxShadow: '0px 12px 16px -4px rgba(16, 24, 40, 0.08), 0px 4px 6px -2px rgba(16, 24, 40, 0.03)',
     '&:after': {
       content: '""',
       position: 'absolute',
@@ -44,21 +44,17 @@ export default createStyles((theme) => ({
     marginTop: 5,
   },
   light: {
-    '& $tooltipBox': {
-      backgroundColor: theme.background.default,
-      color: theme.text.hint,
-    }
+    backgroundColor: theme.background.default,
+    color: theme.text.hint,
   },
   dark: {
-    '& $tooltipBox': {
-      backgroundColor: theme.text.primary,
+    backgroundColor: theme.text.primary,
+    color: theme.primary.contrast,
+    '& $title': {
       color: theme.primary.contrast,
-      '& $title': {
-        color: theme.primary.contrast,
-      },
-      '&:after': {
-        backgroundColor: theme.text.primary
-      }
+    },
+    '&:after': {
+      backgroundColor: theme.text.primary
     }
   },
   top: {
