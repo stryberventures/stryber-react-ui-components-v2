@@ -16,7 +16,7 @@ export default createStyles((theme) => ({
     },
     '&:not($containerError)': {
       border: `1px solid ${theme.default.main}`,
-      padding: '5px 8px',
+      padding: '8px 15px',
     }
   }),
   containerDisabled: {
@@ -26,30 +26,20 @@ export default createStyles((theme) => ({
   },
   containerError: {
     border: `1px solid ${theme.error.main}`,
-    padding: '5px 8px 5px 16px',
+    padding: '5px 8px',
     '&:focus-within': {
       outline: `4px solid ${theme.error.light}`,
     },
-    '&:before': {
-      content: '""',
-      position: 'absolute',
-      height: 143,
-      width: 8,
-      left: -1,
-      top: -1,
-      backgroundColor: theme.error.main,
-      borderTopLeftRadius: 4,
-      borderBottomLeftRadius: 4,
-    }
   },
   textarea: {
     fontFamily: theme.font,
     border: 'none',
     outline: 'none',
     textOverflow: 'ellipsis',
-    height: 110,
-    padding: '25px 0 0 0',
+    height: 104,
     width: '100%',
+    padding: 0,
+    marginTop: 8,
     color: theme.text.primary,
     fontSize: 14,
     resize: 'none',
@@ -57,7 +47,6 @@ export default createStyles((theme) => ({
   },
   label: {
     color: theme.text.secondary,
-    position: 'absolute',
     height: 17,
     fontSize: 14,
   },
