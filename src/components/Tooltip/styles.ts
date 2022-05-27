@@ -46,7 +46,7 @@ export default createStyles((theme) => ({
   light: {
     '& $tooltipBox': {
       backgroundColor: theme.background.default,
-      color: theme.text.hint,
+      color: theme.text.primary,
     }
   },
   dark: {
