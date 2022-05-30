@@ -40,3 +40,18 @@ it('should contain version and position classes', () => {
   expect(tooltipContainer.className).toMatch('light');
   expect(tooltipContainer.className).toMatch('top');
 });
+
+it('should show close button if in visible mod', () => {
+  const visible = true;
+  render(<Tooltip title="title" visible={visible}>Tooltip target</Tooltip>);
+  const closeBtn = screen.getByTestId('testCloseBtn');
+  expect(closeBtn).toBeInTheDocument();
+});
+
+it('should hide tooltip on close button click', () => {
+  render(<Tooltip title="title" visible={true}>Tooltip target</Tooltip>);
+  const closeBtn = screen.getByTestId('testCloseBtn');
+  const tooltip = screen.getByRole('tooltip');
+  fireEvent.click(closeBtn);
+  expect(tooltip).not.toBeInTheDocument();
+});
