@@ -17,13 +17,13 @@ export default createStyles((theme) => ({
   tooltipBox: {
     fontFamily: theme.font,
     fontSize: 14,
-    fontWeight: 500,
+    fontWeight: 400,
     maxWidth: 320,
     width: 'max-content',
     padding: '8px 10px',
     borderRadius: 8,
     boxSizing: 'border-box',
-    pointerEvents: 'none',
+    position: 'relative',
     boxShadow: '0px 0px 16px -4px rgba(16, 24, 40, 0.08), 0px 0px 6px -2px rgba(16, 24, 40, 0.03)',
     '&:after': {
       content: '""',
@@ -37,8 +37,31 @@ export default createStyles((theme) => ({
       left: 'calc(50% - 5px)',
     }
   },
+  visible: {
+    '& $title': {
+      paddingRight: 24,
+    }
+  },
+  closeBtn: {
+    position: 'absolute',
+    top: 8,
+    right: 8,
+    height: 20,
+    width: 20,
+    borderRadius: 4,
+    backgroundColor: theme.default.light,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    cursor: 'pointer',
+    '&:hover': {
+      backgroundColor: theme.default.main,
+    }
+  },
   title: {
     color: theme.text.secondary,
+    fontWeight: 500,
+    lineHeight: '20px',
   },
   text: {
     marginTop: 5,
@@ -46,7 +69,7 @@ export default createStyles((theme) => ({
   light: {
     '& $tooltipBox': {
       backgroundColor: theme.background.default,
-      color: theme.text.primary,
+      color: theme.text.hint,
     }
   },
   dark: {

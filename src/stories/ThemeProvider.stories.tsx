@@ -78,7 +78,7 @@ const Template: ComponentStory<typeof ThemeProvider> = (args) => (
     <h1> </h1>
     <TextLink text="With icon" iconLeft={<LeftArrow />} />
     <h2 style={{ fontFamily: 'Inter', color: '#003CB8' }}>Tooltip</h2>
-    <Tooltip title='This is a Tooltip title' position='right' version='light'>Tooltip light version</Tooltip>
+    <Tooltip title='This is a Tooltip title' position='right' version='light' visible={true}>Tooltip light version</Tooltip>
     <h1> </h1>
     <Tooltip title='This is a Tooltip title' position='right' version='dark'>Tooltip dark version</Tooltip>
     <h1> </h1>
