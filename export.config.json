@@ -3,10 +3,10 @@
   "components": {
     "Button": "button",
     "ThemeProvider": "theme-provider",
-    "AnotherButton": "another-button",
     "Input": "input",
     "TextLink": "text-link",
     "Dropdown": "dropdown",
-    "Form": "form"
+    "Form": "form",
+    "Chip": "chip"
   }
 }
