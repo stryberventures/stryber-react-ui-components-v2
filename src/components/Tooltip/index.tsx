@@ -50,7 +50,9 @@ export const Tooltip = (props: ITooltip) => {
               <div
                 data-testid="testCloseBtn"
                 className={classes.closeBtn}
-                onClick={() => setIsVisible(false)}><CloseIcon/></div>
+                onClick={() => setIsVisible(false)}>
+                <CloseIcon/>
+              </div>
             )}
             <div className={classes.title}>{title}</div>
             {text && <div className={classes.text}>{text}</div>}
