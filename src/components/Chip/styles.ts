@@ -9,10 +9,9 @@ export default createStyles((theme) => ({
     whiteSpace: 'nowrap',
     gap: 8,
     fontSize: 14,
+    lineHeight: '21px',
     fontWeight: 500,
-    height: 32,
     borderRadius: 8,
-    padding: '0 16px',
     boxSizing: 'border-box',
     '&:not($disabled)': {
       cursor: 'pointer',
@@ -21,6 +20,13 @@ export default createStyles((theme) => ({
   contained: (props: IChip) => ({
     backgroundColor: theme[props.color!].main,
     color: theme[props.color!].contrast,
+    padding: '6px 16px',
+    '&$iconLeft': {
+      paddingLeft: 8,
+    },
+    '&$iconRight': {
+      paddingRight: 8,
+    },
     '&:hover:not($disabled)': {
       backgroundColor: theme[props.color!].dark,
     },
@@ -29,9 +35,16 @@ export default createStyles((theme) => ({
     }
   }),
   outlined: (props: IChip) => ({
+    padding: '5px 15px',
     color: theme[props.color!].main,
     border: `1px solid ${theme[props.color!].main}`,
     backgroundColor: theme[props.color!].contrast,
+    '&$iconLeft': {
+      paddingLeft: 7,
+    },
+    '&$iconRight': {
+      paddingRight: 7,
+    },
     '&:hover:not($disabled)': {
       backgroundColor: theme.default.extraLight,
     },
@@ -51,10 +64,6 @@ export default createStyles((theme) => ({
       border: `1px solid ${theme.default.main}`,
     },
   },
-  iconLeft: {
-    paddingLeft: 8,
-  },
-  iconRight: {
-    paddingRight: 8,
-  },
+  iconLeft: {},
+  iconRight: {},
 }));
