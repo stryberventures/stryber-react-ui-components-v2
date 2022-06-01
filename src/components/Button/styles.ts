@@ -35,6 +35,18 @@ export default createStyles((theme) => ({
     '&:hover': {
       backgroundColor: theme[props.color!].light,
     },
+    '&$mini': {
+      padding: '2.5px 8px',
+    },
+    '&$small': {
+      padding: '6px 16px',
+    },
+    '&$medium': {
+      padding: '14px 24px',
+    },
+    '&$large': {
+      padding: '22px 32px',
+    },
   }),
   disabled: {
     opacity: 0.3,
@@ -44,27 +56,24 @@ export default createStyles((theme) => ({
     gap: 8,
     fontSize: 10,
     lineHeight: '15px',
-    height: 24,
+    padding: '4.5px 8px',
   },
   small: {
     fontSize: 16,
     lineHeight: '24px',
-    padding: '0 16px',
-    height: 40,
+    padding: '8px 16px',
     gap: 10,
   },
   medium: {
     fontSize: 16,
     lineHeight: '24px',
-    padding: '0 24px',
-    height: 56,
+    padding: '16px 24px',
     gap: 10,
   },
   large: {
     fontSize: 16,
     lineHeight: '24px',
-    padding: '0 32px',
-    height: 72,
+    padding: '24px 32px',
     gap: 14,
   },
   flat: {},
