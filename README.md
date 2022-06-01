@@ -85,7 +85,7 @@ It will create an .tgz archive, which you can copy to your project's root direct
 then install like:
 
 ```shell script
-npm i ./stryberventures-stryber-react-ui-components-v2.button-0.0.1.tgz
+npm i stryberventures-gaia-react.button-0.0.1.tgz
 ```
 
 ## Components website ##

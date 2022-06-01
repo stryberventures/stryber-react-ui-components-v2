@@ -1,0 +1,9 @@
+{
+  "name": "@stryberventures/gaia-react.text-area",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "classnames": ">=2.0.0",
+    "react": ">=17.0.0",
+    "react-jss": ">=10.0.0"
+  }
+}

@@ -32,12 +32,12 @@ async function moveComponentsFiles() {
 }
 
 async function replacePaths() {
-  const from = componentsList.map(key => new RegExp('(\\.{2}\\/)+' + key, 'g'));
+  const from = componentsList.map(key => new RegExp(`(\\.{2}\\/)+${key}(?![\\w\\d])`, 'g'));
   const to = componentsList.map(key => `${name}.${components[key]}`);
   await replace({
     from,
     to,
-    files: 'build/**/index.js',
+    files: ['build/**/index.js', 'build/**/*.d.ts'],
   })
 }
 
