@@ -5,8 +5,16 @@
     "ThemeProvider": "theme-provider",
     "Input": "input",
     "TextLink": "text-link",
+    "TextArea": "text-area",
     "Dropdown": "dropdown",
+    "Chip": "chip",
     "Form": "form",
-    "Chip": "chip"
+    "Switch": "switch",
+    "Tooltip": "tooltip",
+    "RadioButton": "radio-button",
+    "CheckBox": "checkbox",
+    "InputPassword": "input-password",
+    "Multiselect": "multiselect",
+    "InputToggleLayout": "input-toggle-layout"
   }
 }
