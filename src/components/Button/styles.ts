@@ -35,6 +35,18 @@ export default createStyles((theme) => ({
     '&:hover': {
       backgroundColor: theme[props.color!].light,
     },
+    '&$mini': {
+      padding: '2.5px 8px',
+    },
+    '&$small': {
+      padding: '6px 16px',
+    },
+    '&$medium': {
+      padding: '14px 24px',
+    },
+    '&$large': {
+      padding: '22px 32px',
+    },
   }),
   disabled: {
     opacity: 0.3,
