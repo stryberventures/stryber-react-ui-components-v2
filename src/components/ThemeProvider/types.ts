@@ -16,6 +16,7 @@ export interface ITheme {
   primary: IPalette,
   secondary: IPalette,
   error: IPalette,
+  success: IPalette,
   default: IDefaultPalette,
   background: {
     default: string,

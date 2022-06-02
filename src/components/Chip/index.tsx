@@ -7,7 +7,7 @@ export interface IChip extends React.ButtonHTMLAttributes<HTMLButtonElement>{
   iconLeft?: React.ReactNode,
   iconRight?: React.ReactNode,
   variant?: 'contained' | 'outlined',
-  color?: 'primary' | 'secondary',
+  color?: 'primary' | 'secondary' | 'success' | 'default',
   disabled?: boolean,
 }
 
@@ -19,14 +19,19 @@ export const Chip = (props: IChip) => {
     variant = 'contained',
     disabled,
     className,
+    color,
   } = props;
-  const classes = useStyles(props);
+  const classes = useStyles({
+    ...props,
+    color: props.color === 'default' ? 'primary' : props.color
+  });
 
   return (
     <div className={classNames(classes.chip, classes[variant], className, {
       [classes.disabled]: disabled,
       [classes.iconLeft]: !!iconLeft,
       [classes.iconRight]: !!iconRight,
+      [classes.default]: color === 'default',
     })}>
       {iconLeft}
       {text}
