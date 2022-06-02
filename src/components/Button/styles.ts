@@ -2,7 +2,7 @@ import { IButton } from './index';
 import { createStyles } from '../../styles';
 
 export default createStyles((theme) => ({
-  button: {
+  button: (props: IButton) => ({
     fontFamily: theme.font,
     fontWeight: 700,
     userSelect: 'none',
@@ -12,9 +12,9 @@ export default createStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     '&:active:not($disabled)': {
-      outline: `4px solid ${theme.primary.light}`,
+      outline: `4px solid ${theme[props.color!].light}`,
     },
-  },
+  }),
   contained: (props: IButton) => ({
     backgroundColor: theme[props.color!].main,
     color: theme[props.color!].contrast,
