@@ -39,6 +39,32 @@ ColorSecondary.args = {
   color: 'secondary',
 };
 
+export const ColorDefault = Template.bind({});
+ColorDefault.args = {
+  text: 'Color default',
+  color: 'default',
+};
+
+export const ColorSuccess = Template.bind({});
+ColorSuccess.args = {
+  text: 'Color success',
+  color: 'success',
+};
+
+export const DisabledContained = Template.bind({});
+DisabledContained.args = {
+  text: 'Disabled',
+  variant: 'contained',
+  disabled: true,
+};
+
+export const DisabledOutlined = Template.bind({});
+DisabledOutlined.args = {
+  text: 'Disabled',
+  variant: 'outlined',
+  disabled: true,
+};
+
 export const IconLeft = Template.bind({});
 IconLeft.args = {
   text: 'Icon left',
