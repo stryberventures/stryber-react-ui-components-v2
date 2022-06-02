@@ -29,6 +29,32 @@ it('should display the error', () => {
 
 it('should display the hint', () => {
   const hintMessage = 'Hint message';
-  render(<InputPassword label="Input" errorMessage={hintMessage} />);
+  render(<InputPassword label="Input" hint={hintMessage} />);
   expect(screen.queryByText(hintMessage)).toBeInTheDocument();
+});
+
+it('should display validation Chips', () => {
+  render(
+    <InputPassword
+      label="Input"
+      validationScheme={[{
+        id: 'numbers',
+        label: 'Number',
+        rule: /(?=.*\d).{1,}/gm,
+      },
+      {
+        id: 'uppercase',
+        label: 'Uppercase',
+        rule: /(?=[A-Z]).{1,}$/gm,
+      },
+      {
+        id: 'lowercase',
+        label: 'Lowercase',
+        rule: /(?=[a-z]).{1,}$/gm,
+      }]}
+    />
+  );
+  expect(screen.queryByText('Number')).toBeInTheDocument();
+  expect(screen.queryByText('Uppercase')).toBeInTheDocument();
+  expect(screen.queryByText('Lowercase')).toBeInTheDocument();
 });
