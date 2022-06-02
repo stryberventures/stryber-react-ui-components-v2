@@ -23,7 +23,7 @@ export const Chip = (props: IChip) => {
   } = props;
   const classes = useStyles({
     ...props,
-    color: props.color === 'default' ? 'primary' : props.color
+    color: color === 'default' ? 'primary' : color
   });
 
   return (

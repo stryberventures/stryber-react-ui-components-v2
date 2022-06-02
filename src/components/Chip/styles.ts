@@ -76,10 +76,10 @@ export default createStyles((theme) => ({
   disabled: {
     '&:not($default)': {
       '&$contained': {
-        color: theme.default.dark,
+        color: theme.default.main,
         backgroundColor: theme.default.light,
         '& svg path': {
-          fill: theme.default.dark,
+          fill: theme.default.main,
         },
       },
       '&$outlined': {
