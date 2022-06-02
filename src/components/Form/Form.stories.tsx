@@ -2,6 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Form } from './index';
 import { Input } from '../Input';
+import { InputPassword } from '../InputPassword';
 import * as yup from 'yup';
 import { Button } from '../Button';
 import { Multiselect } from '../Multiselect';
@@ -27,7 +28,7 @@ Submit.args = {
       <h2 style={{ fontFamily: 'Inter', color: '#003CB8' }}>Form with validation</h2>
       <Input label={'Email'} name="email" placeholder="some@mail.com"/>
       <h1> </h1>
-      <Input label={'Password'} name="password" placeholder="Password is required"/>
+      <InputPassword label={'Password'} name="password" placeholder="Password is required"/>
       <h1> </h1>
       <Multiselect
         name="multiselect"
