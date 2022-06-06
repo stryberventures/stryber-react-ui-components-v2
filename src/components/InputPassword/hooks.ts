@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import { IInputPassword } from './index';
 
 export interface IValidationItemProps {
-  id: string,
   label: string,
   rule: RegExp,
 }
@@ -10,17 +10,16 @@ interface IValidationItemLocal extends IValidationItemProps {
   matched?: boolean,
 }
 
-interface IProps {
-  validationScheme?: IValidationItemProps[],
+interface IProps extends Pick<IInputPassword, 'onValidationChange' | 'validationSchema'> {
   value?: string,
 }
 
 export const usePasswordValidation = (props: IProps) => {
-  const { validationScheme, value } = props;
+  const { validationSchema, value, onValidationChange } = props;
 
   const validate = (password: string): IValidationItemLocal[] => {
-    if (validationScheme) {
-      return validationScheme.map((item) => ({
+    if (validationSchema) {
+      return validationSchema.map((item) => ({
         ...item,
         matched: !!password.match(item.rule),
       }));
@@ -28,14 +27,16 @@ export const usePasswordValidation = (props: IProps) => {
     return [];
   };
 
-  const [scheme, setScheme] = useState<IValidationItemLocal[]>(validate(value || ''));
+  const [schema, setSchema] = useState<IValidationItemLocal[]>(validate(value || ''));
 
   const onInputChange = (e: React.BaseSyntheticEvent) => {
-    !!validationScheme && setScheme(validate(e.target.value))
+    const validatedSchema = validate(e.target.value);
+    !!validationSchema && setSchema(validatedSchema);
+    onValidationChange && onValidationChange(validatedSchema.every(({ matched }) => matched));
   }
 
   return {
-    scheme,
+    schema,
     onInputChange
   }
 }

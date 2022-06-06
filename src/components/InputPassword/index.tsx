@@ -8,12 +8,13 @@ import CheckBoxIcon from '../Icons/CheckBoxIcon';
 import classNames from 'classnames';
 
 export interface IInputPassword extends Omit<IInput, 'endAdornment'> {
-  validationScheme?: IValidationItemProps[];
+  validationSchema?: IValidationItemProps[];
+  onValidationChange?: (valid: boolean) => void;
 }
 
 export const InputPassword = (props: IInputPassword) => {
-  const { disabled, validationScheme, value, className, ...rest } = props;
-  const { onInputChange, scheme } = usePasswordValidation({ validationScheme, value });
+  const { disabled, validationSchema, onValidationChange, value, className, ...rest } = props;
+  const { onInputChange, schema } = usePasswordValidation({ validationSchema, value, onValidationChange });
   const [visible, setVisible] = useState(false);
   const classes = useStyles();
 
@@ -39,11 +40,11 @@ export const InputPassword = (props: IInputPassword) => {
           />
         }
       />
-      {!!validationScheme && (
+      {!!validationSchema && (
         <div className={classes.chips}>
-          {scheme.map(({ id, label , matched }) =>
+          {schema.map(({ label , matched }) =>
             <Chip
-              key={id}
+              key={label}
               text={label}
               color={matched ? 'success' : 'default'}
               iconLeft={matched && <CheckBoxIcon className={classes.chipMatched}/>}
