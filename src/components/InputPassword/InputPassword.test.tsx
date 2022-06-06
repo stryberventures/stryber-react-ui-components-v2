@@ -37,18 +37,15 @@ it('should display validation Chips', () => {
   render(
     <InputPassword
       label="Input"
-      validationScheme={[{
-        id: 'numbers',
+      validationSchema={[{
         label: 'Number',
         rule: /(?=.*\d).{1,}/gm,
       },
       {
-        id: 'uppercase',
         label: 'Uppercase',
         rule: /(?=[A-Z]).{1,}$/gm,
       },
       {
-        id: 'lowercase',
         label: 'Lowercase',
         rule: /(?=[a-z]).{1,}$/gm,
       }]}

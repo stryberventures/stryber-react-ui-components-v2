@@ -6,7 +6,7 @@ export default {
   title: 'Components/InputPassword',
   component: InputPassword,
   argTypes: {
-    validationScheme: {
+    validationSchema: {
       table: {
         disable: true,
       },
@@ -54,18 +54,16 @@ Validation.args = {
   label: 'Input password',
   placeholder: 'Enter password',
   value: 'something',
-  validationScheme: [{
-    id: 'numbers',
+  onValidationChange: (valid) => { console.log('valid', valid); },
+  validationSchema: [{
     label: 'Number',
     rule: /(?=.*\d).{1,}/gm,
   },
   {
-    id: 'uppercase',
     label: 'Uppercase',
     rule: /(?=[A-Z]).{1,}$/gm,
   },
   {
-    id: 'lowercase',
     label: 'Lowercase',
     rule: /(?=[a-z]).{1,}$/gm,
   }]
