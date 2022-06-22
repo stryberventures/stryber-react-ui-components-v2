@@ -17,23 +17,20 @@ export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
   controlled?: boolean,
   onChange?: (e: React.BaseSyntheticEvent) => void,
   onBlur?: (e: React.BaseSyntheticEvent) => void,
+  prefix?: string,
   endAdornment?: React.ReactNode,
   mask?: string,
 }
 
 export const Input = (props: IInput) => {
   const classes = useStyles(props);
+  const { label, className, hint, prefix, endAdornment, placeholder } = props;
   const {
     name,
     value,
-    label,
-    placeholder,
     disabled,
-    className,
     onClick,
-    endAdornment,
     errorMessage,
-    hint,
     inputProps,
     onChange,
     onBlur
@@ -52,6 +49,7 @@ export const Input = (props: IInput) => {
           <div className={classNames(classes.label, { [classes.textDisabled]: disabled })}>
             {label}
           </div>
+          {prefix && <div className={classes.prefix}>{prefix}</div>}
           <input
             {...inputProps}
             name={name}

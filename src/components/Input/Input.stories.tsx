@@ -73,6 +73,14 @@ EndAdornment.args = {
 export const Mask = Template.bind({});
 Mask.args = {
   label: 'Digit mask',
-  mask: '+X(XXX) XX-XX-XXX',
-  placeholder: '+X(XXX) XX-XX-XXX',
+  mask: '+X (XXX) XX-XX-XXX',
+  placeholder: '+0 (000) 00-00-000',
+};
+
+export const Prefix = Template.bind({});
+Prefix.args = {
+  label: 'Prefix',
+  prefix: 'G-',
+  mask: 'XXX-XXX',
+  placeholder: 'XXX-XXX',
 };
