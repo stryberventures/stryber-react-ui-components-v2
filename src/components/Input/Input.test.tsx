@@ -59,3 +59,9 @@ it('should use the mask', () => {
   fireEvent.change(input, { target: { value: '12345' } });
   expect(input.value).toBe('+12-34 5')
 });
+
+it('should display the prefix', () => {
+  const prefix = '+380';
+  render(<Input label="Input" prefix={prefix}/>);
+  expect(screen.queryByText(prefix)).toBeInTheDocument();
+});

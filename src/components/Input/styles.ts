@@ -47,6 +47,13 @@ export default createStyles((theme) => ({
     display: 'flex',
     flexGrow: 1,
   },
+  prefix: {
+    paddingTop: 17,
+    fontSize: 14,
+    color: theme.text.primary,
+    backgroundColor: theme.background.default,
+    whiteSpace: 'nowrap',
+  },
   disabled: {
     pointerEvents: 'none',
     userSelect: 'none',
