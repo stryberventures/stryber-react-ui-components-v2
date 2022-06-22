@@ -1,6 +1,7 @@
 import { IInput } from './index';
 import { useFormContext } from '../Form';
 import React, { useEffect } from 'react';
+import { applyDigitMask } from './utils';
 
 export const useInput = (props: IInput) => {
   const {
@@ -17,19 +18,28 @@ export const useInput = (props: IInput) => {
     errorMessage: error,
     onChange,
     onBlur,
+    mask,
     ...inputProps
   } = props;
   const { updateFormTouched, updateFormValue, unsetFormValue, fieldValue, fieldError } = useFormContext(name);
   const errorMessage = fieldError || error;
-  const [internalValue, setInternalValue] = React.useState(fieldValue || value);
-  
+  const [internalValue, setInternalValue] = React.useState<string>(fieldValue || value);
+
   const onChangeWrapper = (e: React.BaseSyntheticEvent) => {
     if (disabled) {
       return null;
     }
-    const { value } = e.target;
-    setInternalValue(value);
-    !controlled && updateFormValue(name, value);
+    const { value: targetValue } = e.target;
+    let nextValue = targetValue;
+
+    setInternalValue(prevValue => {
+      if (mask) {
+        nextValue = prevValue.length >= targetValue.length ? targetValue : applyDigitMask(targetValue, mask);
+      }
+      return nextValue;
+    });
+
+    !controlled && updateFormValue(name, nextValue);
     onChange && onChange(e);
   };
   
