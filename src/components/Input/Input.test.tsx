@@ -52,3 +52,10 @@ it('should render the adornment', () => {
   const icon = screen.getByTestId('test-svg');
   expect(icon).toBeVisible();
 });
+
+it('should use the mask', () => {
+  const { getByRole } = render(<Input label="Input" mask="+XX-XX X"/>);
+  const input = getByRole('textbox') as HTMLInputElement;
+  fireEvent.change(input, { target: { value: '12345' } });
+  expect(input.value).toBe('+12-34 5')
+});

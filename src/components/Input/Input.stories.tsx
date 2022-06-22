@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Input } from '../components/Input';
+import { Input } from './index';
 
 export default {
   title: 'Components/Input',
@@ -17,7 +17,7 @@ Default.args = {
 
 export const WithValue = Template.bind({});
 WithValue.args = {
-  label: 'With hint',
+  label: 'With value',
   placeholder: 'placeholder@example.com',
   value: 'olivia@example.com',
 };
@@ -52,9 +52,9 @@ ReadOnly.args = {
 };
 
 
-export const WithEndAdornment = Template.bind({});
-WithEndAdornment.args = {
-  label: 'With hint',
+export const EndAdornment = Template.bind({});
+EndAdornment.args = {
+  label: 'End adornment',
   placeholder: 'placeholder@example.com',
   value: 'olivia@example.com',
   endAdornment: <div style={
@@ -68,4 +68,11 @@ WithEndAdornment.args = {
       color: 'white',
     }
   }>O</div>
+};
+
+export const Mask = Template.bind({});
+Mask.args = {
+  label: 'Digit mask',
+  mask: '+X(XXX) XX-XX-XXX',
+  placeholder: '+X(XXX) XX-XX-XXX',
 };

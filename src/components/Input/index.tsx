@@ -18,6 +18,7 @@ export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
   onChange?: (e: React.BaseSyntheticEvent) => void,
   onBlur?: (e: React.BaseSyntheticEvent) => void,
   endAdornment?: React.ReactNode,
+  mask?: string,
 }
 
 export const Input = (props: IInput) => {
