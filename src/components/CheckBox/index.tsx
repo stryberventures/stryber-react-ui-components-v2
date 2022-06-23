@@ -8,7 +8,7 @@ export interface ICheckBox extends ICheckBoxMark, IInputToggleBaseControlled {}
 
 export const CheckBox = (props: ICheckBox) => {
   const { checked, errorMessage, onChange, onFocus } = useCheckedState(props);
-  const { size, shape, disabled, label, color, ...rest } = props;
+  const { size, shape, disabled, label, color, children, ...rest } = props;
 
   return (
     <InputToggleLayout
@@ -21,14 +21,17 @@ export const CheckBox = (props: ICheckBox) => {
       onFocus={onFocus}
       label={label}
       disabled={disabled}
+      control={
+        <CheckBoxMark
+          checked={checked}
+          size={size}
+          shape={shape}
+          disabled={disabled}
+          color={color}
+        />
+      }
     >
-      <CheckBoxMark
-        checked={checked}
-        size={size}
-        shape={shape}
-        disabled={disabled}
-        color={color}
-      />
+      {children}
     </InputToggleLayout>
   );
 }

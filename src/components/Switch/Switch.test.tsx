@@ -2,6 +2,7 @@ import '@testing-library/jest-dom'
 import * as React from 'react'
 import { fireEvent, render, screen } from '@testing-library/react'
 import { Switch } from './index'
+import LeftArrow from '../../stories/icons/leftArrow';
 
 it('should be rendered', () => {
   const { getByRole } = render(<Switch />);
@@ -31,4 +32,10 @@ it('should display the label', () => {
   const label = 'Test label';
   render(<Switch label={label} />);
   expect(screen.queryByText(label)).toBeInTheDocument();
+});
+
+it('should display the custom content', () => {
+  render(<Switch>Message <LeftArrow /></Switch>);
+  expect(screen.getByTestId('test-svg')).toBeVisible();
+  expect(screen.queryByText('Message')).toBeVisible();
 });

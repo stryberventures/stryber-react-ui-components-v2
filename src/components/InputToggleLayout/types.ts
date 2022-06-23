@@ -13,6 +13,7 @@ export interface IInputToggleBase extends Omit<React.HTMLProps<HTMLInputElement>
   errorMessage?: string,
   onChange?: (e: React.BaseSyntheticEvent) => void,
   onFocus?: (e: React.BaseSyntheticEvent) => void,
+  children?: React.ReactNode,
 }
 
 export interface IInputToggleBaseControlled extends IInputToggleBase {
@@ -21,5 +22,5 @@ export interface IInputToggleBaseControlled extends IInputToggleBase {
 
 export interface IInputToggle extends IInputToggleBaseControlled {
   type?: 'radio' | 'checkbox',
-  children: React.ReactNode,
+  control: React.ReactNode,
 }

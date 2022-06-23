@@ -9,7 +9,7 @@ export interface ISwitch extends ISwitchIcon, Omit<IInputToggleBaseControlled, '
 
 export const Switch = (props: ISwitch) => {
   const { checked, errorMessage, onChange, onFocus } = useCheckedState(props);
-  const { disabled, label, color, ...rest } = props;
+  const { disabled, label, color, children, ...rest } = props;
   const classes = useStyles();
 
   return (
@@ -23,8 +23,11 @@ export const Switch = (props: ISwitch) => {
       label={label}
       disabled={disabled}
       className={classes.layout}
+      control={
+        <SwitchIcon checked={checked} color={color} disabled={disabled}/>
+      }
     >
-      <SwitchIcon checked={checked} color={color} disabled={disabled}/>
+      {children}
     </InputToggleLayout>
   );
 }

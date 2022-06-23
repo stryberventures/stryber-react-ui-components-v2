@@ -8,7 +8,7 @@ export interface IRadioButton extends IRadioBoxMarkProps, IInputToggleBase {}
 
 export const RadioButton = (props: IRadioButton) => {
   const { checked, errorMessage, onChange, onFocus } = useRadioButtonState(props);
-  const { size, disabled, color, label, ...rest } = props;
+  const { size, disabled, color, label, children, ...rest } = props;
 
   return (
     <InputToggleLayout
@@ -21,13 +21,16 @@ export const RadioButton = (props: IRadioButton) => {
       size={size}
       label={label}
       disabled={disabled}
+      control={
+        <RadioBoxMark
+          checked={checked}
+          size={size}
+          disabled={disabled}
+          color={color}
+        />
+      }
     >
-      <RadioBoxMark
-        checked={checked}
-        size={size}
-        disabled={disabled}
-        color={color}
-      />
+      {children}
     </InputToggleLayout>
   );
 }

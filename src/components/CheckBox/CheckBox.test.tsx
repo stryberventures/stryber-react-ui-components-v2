@@ -2,6 +2,7 @@ import '@testing-library/jest-dom'
 import * as React from 'react'
 import { fireEvent, render, screen } from '@testing-library/react'
 import { CheckBox } from './index'
+import LeftArrow from '../../stories/icons/leftArrow';
 
 it('should be rendered', () => {
   const { getByRole } = render(<CheckBox />);
@@ -43,4 +44,10 @@ it('should display the error', () => {
   const errorMessage = 'Test error';
   render(<CheckBox errorMessage={errorMessage} />);
   expect(screen.queryByText(errorMessage)).toBeInTheDocument();
+});
+
+it('should display the custom content', () => {
+  render(<CheckBox>Message <LeftArrow /></CheckBox>);
+  expect(screen.getByTestId('test-svg')).toBeVisible();
+  expect(screen.queryByText('Message')).toBeVisible();
 });

@@ -7,7 +7,7 @@ import { ErrorMessage } from '../ErrorMessage';
 export const InputToggleLayout = (props: IInputToggle) => {
   const {
     name = '', size = 'medium', className, type, checked, disabled, value, children, title,
-    onChange, onFocus, errorMessage, placeholder, label, controlled, ...rest
+    control, onChange, onFocus, errorMessage, placeholder, label, controlled, ...rest
   } = props;
   const classes = useStyles(props);
 
@@ -26,7 +26,7 @@ export const InputToggleLayout = (props: IInputToggle) => {
           onChange={onChange}
           onFocus={onFocus}
         />
-        {children}
+        {control}
         <div className={classNames(classes.text, classes[size])}>
           {title &&
             <div className={classNames(classes.title, {
@@ -42,6 +42,7 @@ export const InputToggleLayout = (props: IInputToggle) => {
               {label}
             </div>
           }
+          {children}
         </div>
       </label>
       {errorMessage && <ErrorMessage text={errorMessage} className={classes.error}/>}

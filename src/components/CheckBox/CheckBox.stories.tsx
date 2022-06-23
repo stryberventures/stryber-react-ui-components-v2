@@ -66,3 +66,10 @@ TitleAndLabel.args = {
   title: 'Remember me',
   label: 'Save my login details for next time',
 };
+
+export const CustomContent = Template.bind({});
+CustomContent.args = {
+  children: (
+    <div>Check <a href="https://google.com">terms</a> and <a href="https://google.com">conditions</a></div>
+  ),
+};
