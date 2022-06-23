@@ -18,8 +18,10 @@ export const useInput = (props: IInput) => {
   } = props;
   const { updateFormTouched, updateFormValue, unsetFormValue, fieldValue, fieldError } = useFormContext(name);
   const errorMessage = fieldError || error;
-  const [internalValue, setInternalValue] = React.useState<string>(fieldValue || value);
-
+  const initValue = fieldValue || value;
+  const [internalValue, setInternalValue] = React.useState<string>(
+    mask && initValue ? applyDigitMask(initValue, mask) : initValue,
+  );
   const onChangeWrapper = (e: React.BaseSyntheticEvent) => {
     if (disabled) {
       return null;
