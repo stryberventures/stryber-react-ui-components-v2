@@ -30,9 +30,14 @@ export const useInput = (props: IInput) => {
     let nextValue = targetValue;
 
     setInternalValue(prevValue => {
+      if (inputProps.type === 'number') {
+        // Fixes input[type=number] on Safari, where any symbol is allowed
+        return targetValue.replace(/^\D/g, '');
+      }
       if (mask) {
         nextValue = prevValue.length >= targetValue.length ? targetValue : applyDigitMask(targetValue, mask);
       }
+
       return nextValue;
     });
 

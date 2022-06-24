@@ -29,6 +29,14 @@ export default createStyles((theme) => ({
     },
   },
   input: {
+    '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+      '-webkit-appearance': 'none',
+      appearance: 'none',
+      margin: 0,
+    },
+    '&[type=number]': {
+      '-moz-appearance': 'textfield',
+    },
     fontFamily: theme.font,
     border: 'none',
     outline: 'none',
