@@ -3,7 +3,7 @@ import useStyles from './styles';
 import classNames from 'classnames';
 
 export interface IChip extends React.ButtonHTMLAttributes<HTMLButtonElement>{
-  text: string,
+  text?: string,
   iconLeft?: React.ReactNode,
   iconRight?: React.ReactNode,
   variant?: 'contained' | 'outlined',
@@ -29,8 +29,9 @@ export const Chip = (props: IChip) => {
   return (
     <div className={classNames(classes.chip, classes[variant], className, {
       [classes.disabled]: disabled,
-      [classes.iconLeft]: !!iconLeft,
-      [classes.iconRight]: !!iconRight,
+      [classes.iconLeft]: !!iconLeft && text,
+      [classes.iconRight]: !!iconRight && text,
+      [classes.iconOnly]: !text,
       [classes.default]: color === 'default',
     })}>
       {iconLeft}
