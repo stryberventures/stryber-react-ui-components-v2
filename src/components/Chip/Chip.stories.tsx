@@ -83,3 +83,9 @@ IconLeftAndRight.args = {
   iconLeft: <CarIcon/>,
   iconRight: <CarIcon/>
 };
+
+export const IconOnly = Template.bind({});
+IconOnly.args = {
+  iconRight: <CarIcon/>
+};
+

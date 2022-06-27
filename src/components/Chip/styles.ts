@@ -31,6 +31,9 @@ export default createStyles((theme) => ({
       '&$iconRight': {
         paddingRight: 8,
       },
+      '&$iconOnly': {
+        padding: '7px 8px',
+      },
       '&:hover:not($disabled)': {
         backgroundColor: theme[props.color!].dark,
       },
@@ -50,6 +53,9 @@ export default createStyles((theme) => ({
       },
       '&$iconRight': {
         paddingRight: 7,
+      },
+      '&$iconOnly': {
+        padding: '6px 7px',
       },
       '&:hover:not($disabled)': {
         backgroundColor: theme.default.extraLight,
@@ -72,6 +78,9 @@ export default createStyles((theme) => ({
     '&$iconRight': {
       paddingRight: 8,
     },
+    '&$iconOnly': {
+      padding: '7px 8px',
+    },
   },
   disabled: {
     '&:not($default)': {
@@ -93,4 +102,5 @@ export default createStyles((theme) => ({
   },
   iconLeft: {},
   iconRight: {},
+  iconOnly: {},
 }));
