@@ -24,12 +24,11 @@ export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
 
 export const Input = (props: IInput) => {
   const classes = useStyles(props);
-  const { label, className, hint, prefix, endAdornment, placeholder } = props;
+  const { label, className, hint, prefix, endAdornment, placeholder, onClick } = props;
   const {
     name,
     value,
     disabled,
-    onClick,
     errorMessage,
     inputProps,
     onChange,

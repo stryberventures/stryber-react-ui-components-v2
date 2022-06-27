@@ -9,7 +9,7 @@ export const useInput = (props: IInput) => {
     name = '',
     value = '',
     controlled,
-    onClick,
+    endAdornment,
     errorMessage: error,
     onChange,
     onBlur,
@@ -61,7 +61,6 @@ export const useInput = (props: IInput) => {
   return {
     name,
     errorMessage,
-    onClick,
     disabled,
     inputProps,
     value: controlled ? value : internalValue,
