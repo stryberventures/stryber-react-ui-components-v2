@@ -1,4 +1,4 @@
-import { ForwardedRef, useEffect, useImperativeHandle, useState } from 'react';
+import { ForwardedRef, useImperativeHandle, useState } from 'react';
 import { IDropdown, IDropdownRef } from './index';
 
 export const useDropdown = (props: IDropdown, ref: ForwardedRef<IDropdownRef>) => {
@@ -7,28 +7,28 @@ export const useDropdown = (props: IDropdown, ref: ForwardedRef<IDropdownRef>) =
   
   useImperativeHandle(ref, () => ({
     open: () => {
-      setOpen(true);
+      handleOpen(true);
     },
     close: () => {
-      setOpen(false);
+      handleOpen(false);
     }
   }));
+
+  const handleOpen = (open: boolean) => {
+    setOpen(open);
+    onToggle && onToggle(open);
+  }
 
   const onInputClick = () => {
     if (disabled) {
       return;
     }
-    setOpen(!open);
+    handleOpen(!open)
   };
   
   const onOverlayClick = () => {
-    setOpen(false);
+    handleOpen(false);
   }
-  
-  
-  useEffect(() => {
-    onToggle && onToggle(open);
-  }, [open]);
   
   return {
     open,
