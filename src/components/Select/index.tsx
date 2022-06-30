@@ -14,7 +14,7 @@ export interface ISelect extends Omit<IDropdownBase, 'onChange'> {
 
 export const Select = (props: ISelect) => {
   const { options, label, color, placeholder, onChange, onToggle, ...rest } = props;
-  const { value, error, onDropdownToggle, onOptionClick } = useSelect(props);
+  const { value, error, onDropdownToggle, onOptionClick, dropdownRef } = useSelect(props);
   const classes = useStyles();
 
   return (
@@ -27,6 +27,7 @@ export const Select = (props: ISelect) => {
       color={color}
       contentClassName={classes.content}
       error={error}
+      ref={dropdownRef}
     >
       {options.map((option) => (
         <MenuItem

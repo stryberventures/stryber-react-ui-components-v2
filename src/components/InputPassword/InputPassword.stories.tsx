@@ -1,42 +1,13 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { InputPassword } from './index';
+import { buildExcludeArgTypes } from '../../stories/utils';
 
 export default {
   title: 'Components/InputPassword',
   component: InputPassword,
-  argTypes: {
-    validationSchema: {
-      table: {
-        disable: true,
-      },
-    },
-    value: {
-      table: {
-        disable: true,
-      },
-    },
-    name: {
-      table: {
-        disable: true,
-      },
-    },
-    controlled: {
-      table: {
-        disable: true,
-      },
-    },
-    onChange: {
-      table: {
-        disable: true,
-      },
-    },
-    onBlur: {
-      table: {
-        disable: true,
-      },
-    },
-  },
+  argTypes: buildExcludeArgTypes(['value', 'name', 'controlled', 'onChange',
+    'onBlur', 'onValidationChange']),
 } as ComponentMeta<typeof InputPassword>;
 
 const Template: ComponentStory<typeof InputPassword> = (args) =>

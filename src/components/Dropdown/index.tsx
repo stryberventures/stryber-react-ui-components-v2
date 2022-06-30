@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { ForwardedRef, forwardRef } from 'react';
 import useStyles from './styles';
 import { Input } from '../Input';
 import classNames from 'classnames';
 import ArrowDownIcon from '../Icons/ArrowDownIcon';
+import { useDropdown } from './hooks';
 
 export interface IDropdownBase extends React.HTMLAttributes<HTMLDivElement>{
   label: string,
@@ -22,26 +23,18 @@ export interface IDropdown extends IDropdownBase {
   contentClassName?: string,
 }
 
-export const Dropdown = (props: IDropdown) => {
+export interface IDropdownRef {
+  open: () => void,
+  close: () => void,
+}
+
+export const Dropdown = forwardRef((props: IDropdown, ref: ForwardedRef<IDropdownRef>) => {
   const {
     children, label, placeholder, value, className, color, name,
     hint, error, disabled, onClick, onToggle, contentClassName, ...rest
   } = props;
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
-
-  const onInputClick = () => {
-    if (disabled) {
-      return;
-    }
-    setOpen(!open);
-    onToggle && onToggle(!open);
-  };
-
-  const onOverlayClick = () => {
-    setOpen(false);
-    onToggle && onToggle(false);
-  }
+  const { open, onInputClick, onOverlayClick } = useDropdown(props, ref);
 
   return (
     <div
@@ -72,10 +65,14 @@ export const Dropdown = (props: IDropdown) => {
         )}
       />
       {open && (
-        <div className={classNames(classes.content, contentClassName)}>
+        <div
+          className={classNames(classes.content, contentClassName)}
+        >
           {children}
         </div>
       )}
     </div>
   );
-}
+});
+
+Dropdown.displayName = 'Dropdown';
