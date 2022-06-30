@@ -27,6 +27,12 @@ async function moveComponentsFiles() {
   componentsList.forEach(dir => {
     fs.copySync(`${webpackBuildDir}/components/${dir}`, `${buildDir}/${dir}`);
     fs.copySync(`src/components/${dir}/package.json`, `${buildDir}/${dir}/package.json`);
+    fs.copySync(`component_README.md`, `${buildDir}/${dir}/README.md`);
+    replace.sync({
+      files: [`${buildDir}/${dir}/README.md`],
+      from: '{name}',
+      to: dir,
+    })
     fs.copySync(`${webpackBuildDir}/${dir}.js`, `${buildDir}/${dir}/index.js`);
   });
 }
