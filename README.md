@@ -1,9 +1,11 @@
-# Stryber React UI Components v2 #
+# GAIA Components #
 
 ## Description ##
 
 The components library based on React and Typescript, represented with Storybook and 
 tested with React Testing Library
+
+Explore [GAIA components](https://stryberventures.github.io/stryber-react-ui-components-v2) for Web
 
 ## To run the project ##
 
@@ -26,7 +28,7 @@ The test setup is based on React Testing Library with Jest runner. To run tests:
 npm run test 
 ```
 
-## To prepare component for deployment ##
+## To prepare a component for deployment ##
 
 1) Update the version in the package.json file in the component's directory you want
 to publish or create package.json file if it does not exist.
@@ -90,6 +92,6 @@ npm i stryberventures-gaia-react.button-0.0.1.tgz
 
 ## Components website ##
 
-Components website is built with Github Pages and it builds and deploys automatically
+[Components website](https://stryberventures.github.io/stryber-react-ui-components-v2)
+is built with Github Pages and it builds and deploys automatically
 with Github actions (.github/workflows/storybook.yml)
-https://stryberventures.github.io/stryber-react-ui-components-v2
