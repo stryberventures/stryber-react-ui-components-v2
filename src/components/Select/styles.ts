@@ -20,6 +20,6 @@ export default createStyles((theme) => ({
     },
   },
   selected: {
-    backgroundColor: theme.default.extraLight,
+    backgroundColor: theme.default.light,
   }
 }));
