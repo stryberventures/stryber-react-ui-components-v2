@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { useInput } from './hooks';
 
 export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
-  label: string,
+  label?: string,
   placeholder?: string,
   disabled?: boolean,
   color?: 'primary' | 'secondary',
@@ -42,6 +42,7 @@ export const Input = (props: IInput) => {
         className={classNames(classes.inputContainer, {
           [classes.disabled]: disabled,
           [classes.inputContainerError]: !!errorMessage,
+          [classes.withLabel]: label,
         })}
       >
         <div className={classes.inputArea}>
