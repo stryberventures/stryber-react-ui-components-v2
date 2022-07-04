@@ -2,7 +2,7 @@ import React from 'react';
 import useStyles from './styles';
 import classNames from 'classnames';
 
-export interface IChip extends React.ButtonHTMLAttributes<HTMLButtonElement>{
+export interface IChip extends React.HTMLAttributes<HTMLDivElement>{
   text?: string,
   iconLeft?: React.ReactNode,
   iconRight?: React.ReactNode,
@@ -20,6 +20,7 @@ export const Chip = (props: IChip) => {
     disabled,
     className,
     color,
+    ...rest
   } = props;
   const classes = useStyles({
     ...props,
@@ -33,7 +34,7 @@ export const Chip = (props: IChip) => {
       [classes.iconRight]: !!iconRight && text,
       [classes.iconOnly]: !text,
       [classes.default]: color === 'default',
-    })}>
+    })} {...rest}>
       {iconLeft}
       {text}
       {iconRight}
