@@ -67,34 +67,22 @@ export const Slider = (props: ISlider) => {
       }
     }, [minVal, getPercent]);
   }
-
-  const stepMarks = () => {
-    const dots = [];
+  const dots = [];
+  if (step > 1 && showStepMarks) {
     for(let i = min; i < max / step + 1; i++) {
-      dots.push(React.createElement('div', { className: classes.dot, key: `${i}` }))
+      dots.push(<div className={classes.dot} key={i}/>);
     }
-    return React.createElement('div', {
-      className: 'dotsContainer',
-      style: {
-        position: 'absolute',
-        width: '100%',
-        height: '7px',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        zIndex: 3
-      }
-    },dots);
   }
 
-  const iMinChange = (e: React.BaseSyntheticEvent) => {
+
+  const onMinChange = (e: React.BaseSyntheticEvent) => {
     const value = e.target.value;
     setMinSize(value);
     if(isNaN(value) || value > maxVal || value < min) {
       setError(true);
     } else setError(false);
   };
-  const iMaxChange = (e: React.BaseSyntheticEvent) => {
+  const onMaxChange = (e: React.BaseSyntheticEvent) => {
     const value = e.target.value;
     setMaxSize(value);
     if(isNaN(value) || value < minVal || value > max) {
@@ -102,37 +90,33 @@ export const Slider = (props: ISlider) => {
     }  else setError(false);
   };
 
-  const iMinSubmit = (e: React.BaseSyntheticEvent) => {
+  const onMinSubmit = (e: React.BaseSyntheticEvent) => {
     const value = e.currentTarget.value;
+    let res = null;
     if(isNaN(value) || value < min || value == '') {
-      setMinVal(min);
-      setMinLeft(labelPosition(min));
-      setError(false);
+      res = max
     } else if (value > maxVal) {
-      setMinVal(maxVal);
-      setMinLeft(labelPosition(maxVal));
-      setError(false);
+      res = minVal
     } else {
-      setMinVal(value);
-      setMinLeft(labelPosition(value));
-      setError(false);
+      res = value
     }
+    setMinVal(res);
+    setMinLeft(labelPosition(res));
+    setError(false);
   };
-  const iMaxSubmit = (e: React.BaseSyntheticEvent) => {
+  const onMaxSubmit = (e: React.BaseSyntheticEvent) => {
     const value = e.currentTarget.value;
+    let res = null;
     if(isNaN(value) || value > max || value == '') {
-      setMaxVal(max);
-      setMaxLeft(labelPosition(max));
-      setError(false);
+      res = max
     } else if (value < minVal) {
-      setMaxVal(minVal);
-      setMaxLeft(labelPosition(minVal));
-      setError(false);
+      res = minVal
     } else {
-      setMaxVal(value);
-      setMaxLeft(labelPosition(value));
-      setError(false);
+      res = value
     }
+    setMaxVal(res);
+    setMaxLeft(labelPosition(res));
+    setError(false);
   };
 
   const thumbMin = (e: React.BaseSyntheticEvent) => {
@@ -150,7 +134,7 @@ export const Slider = (props: ISlider) => {
   }
 
   const keyPress = (e: React.BaseSyntheticEvent) => {
-    e.currentTarget.name === 'maxSliderInput' ? iMaxSubmit(e) : iMinSubmit(e)
+    e.currentTarget.name === 'maxSliderInput' ? onMaxSubmit(e) : onMinSubmit(e)
   }
 
   return (
@@ -188,7 +172,7 @@ export const Slider = (props: ISlider) => {
       <div className={classes.slider}>
         <div className={classes.sliderTrack} />
         <div ref={range} className={classes.sliderRange} />
-        {step > 1 && showStepMarks && stepMarks()}
+        {step > 1 && showStepMarks && (<div className={classes.dotsContainer}>{dots}</div>)}
         {showSideLabels && (
           <>
             <div className={classes.sliderLeftValue}>{min}</div>
@@ -214,8 +198,8 @@ export const Slider = (props: ISlider) => {
                 name='minSliderInput'
                 size={minSize.toString().length || 1}
                 value={minVal.toString() || '0'}
-                onChange={iMinChange}
-                onBlur={iMinSubmit}
+                onChange={onMinChange}
+                onBlur={onMinSubmit}
                 onClick={() => setShowMin(true)}
                 onKeyDown={(e) => {e.key === 'Enter' && keyPress(e)}}
               />
@@ -228,8 +212,8 @@ export const Slider = (props: ISlider) => {
                   name='maxSliderInput'
                   size={maxSize.toString().length || 1}
                   value={maxVal.toString() || '0'}
-                  onChange={iMaxChange}
-                  onBlur={iMaxSubmit}
+                  onChange={onMaxChange}
+                  onBlur={onMaxSubmit}
                   onClick={() => setShowMax(true)}
                   onKeyDown={(e) => {e.key === 'Enter' && keyPress(e)}}
                 />

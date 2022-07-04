@@ -194,6 +194,15 @@ export default createStyles( (theme) => ({
       borderStyle: 'solid',
     }
   },
+  dotsContainer: {
+    position: 'absolute',
+    width: '100%',
+    height: '7px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    zIndex: 3
+  },
   dot: {
     width: 4,
     height: 4,
