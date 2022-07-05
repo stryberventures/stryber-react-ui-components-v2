@@ -1,4 +1,4 @@
-import { createStyles } from '../../styles';
+import { createStyles } from '../Theme';
 import { ITextArea } from './index';
 
 export default createStyles((theme) => ({

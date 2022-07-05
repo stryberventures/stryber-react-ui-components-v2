@@ -1,4 +1,4 @@
-import { createStyles } from '../../styles';
+import { createStyles } from '../Theme';
 
 interface IChipStyle {
   color?: 'primary' | 'secondary' | 'success',

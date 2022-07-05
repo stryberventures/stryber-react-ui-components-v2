@@ -1,5 +1,5 @@
 import { ICheckBoxMark } from './index';
-import { createStyles } from '../../../styles';
+import { createStyles } from '../../Theme';
 
 export default createStyles((theme) => ({
   checkmark: (props: ICheckBoxMark) => ({

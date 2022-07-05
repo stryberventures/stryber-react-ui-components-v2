@@ -1,6 +1,6 @@
-import { ITheme } from '../../ThemeProvider/types';
+import { ITheme } from '../../Theme/types';
 import { IRadioBoxMarkProps } from './index';
-import { createStyles } from '../../../styles';
+import { createStyles } from '../../Theme';
 
 export default createStyles((theme: ITheme) => ({
   radiomark: (props: IRadioBoxMarkProps) => ({
