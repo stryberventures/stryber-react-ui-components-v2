@@ -2,15 +2,18 @@ import React, { useState } from 'react';
 import useStyles from './styles';
 import { IInput, Input } from '../Input'
 import classNames from 'classnames';
-import Plus from '../../stories/icons/plus';
-import Minus from '../../stories/icons/minus';
-import VerticalLine from '../../stories/icons/verticalLine';
+import Plus from '../Icons/plus';
+import Minus from '../Icons/minus';
+import VerticalLine from '../Icons/verticalLine';
+import { useFormContext } from '../Form';
 
-export interface INumberInput extends IInput {
+export interface INumberInput extends Omit<IInput, 'value' | 'onChange'> {
   quantityCounter?: boolean,
   min?: number,
   max?: number,
   step?: number,
+  value?: number,
+  onChange?: (e: number) => void,
 }
 
 export const NumberInput = (props: INumberInput) => {
@@ -22,22 +25,31 @@ export const NumberInput = (props: INumberInput) => {
     step = 1,
     name = 'numberInput',
     value = '',
+    errorMessage,
+    onChange,
     ...rest
   } = props;
-
-  const [initialValue, setInitialValue] = useState(value)
-  const handleCheck = (value: number) => {
+  const { updateFormValue, fieldValue, fieldError } = useFormContext(name);
+  const error = fieldError || errorMessage;
+  const initValue = fieldValue || value;
+  const [initialValue, setInitialValue] = useState(initValue);
+  const handleChange = (value: number) => {
+    setInitialValue(value);
+    updateFormValue(name, value);
+    onChange && onChange(value);
+  }
+  const checkValue = (value: number) => {
     if (value > max) {
-      setInitialValue(max.toString());
+      handleChange(max)
     } else if (isNaN(+value) || value < min) {
-      setInitialValue(min.toString());
+      handleChange(min)
     } else {
-      setInitialValue(value.toString());
+      handleChange(value)
     }
   }
   const counterBtnPress = (pressed: 'plus' | 'minus') => {
     const newVal = pressed === 'plus' ? +initialValue + step : +initialValue - step;
-    handleCheck(newVal);
+    checkValue(newVal);
   };
   const handleDecrease = () => counterBtnPress('minus');
   const handleIncrease = () => counterBtnPress('plus');
@@ -49,8 +61,9 @@ export const NumberInput = (props: INumberInput) => {
         controlled={true}
         className={classes.input}
         value={isNaN(+initialValue) ? undefined : initialValue}
-        onChange={ (e) => setInitialValue(e.target.value)}
-        onBlur={(e) => handleCheck(+e.target.value)}
+        onChange={(e) => handleChange(e.target.value)}
+        onBlur={(e) => checkValue(+e.target.value)}
+        errorMessage={error}
         endAdornment={(
           quantityCounter && (
             <div className={classes.btnsContainer}>
@@ -65,10 +78,6 @@ export const NumberInput = (props: INumberInput) => {
     </div>
   );
 };
-
-NumberInput.defaultProps = {
-  placeholder: '0',
-}
 
 export default {
   NumberInput,

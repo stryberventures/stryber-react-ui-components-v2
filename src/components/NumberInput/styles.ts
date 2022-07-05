@@ -16,7 +16,6 @@ export default createStyles((theme) => ({
     zIndex: 2,
   },
   input: {
-    width: '100%',
     '& input': {
       '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
         '-webkit-appearance': 'none',
@@ -28,11 +27,8 @@ export default createStyles((theme) => ({
     },
   },
   quantityCounter: {
-    '& $input': {
-      width: '100%',
-      '& input': {
-        paddingRight: 92,
-      },
+    '& input': {
+      paddingRight: 92,
     },
   },
   btnsContainer: {
