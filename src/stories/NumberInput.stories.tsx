@@ -13,7 +13,8 @@ export const Default = Template.bind({});
 Default.args = {
   label: 'Min',
   placeholder: '0',
-  prefix: '$'
+  prefix: '$',
+  prefixSpace: 5,
 };
 Default.decorators = [
   (Story) => (
@@ -30,6 +31,21 @@ QuantituCounter.args = {
   quantityCounter: true
 };
 QuantituCounter.decorators = [
+  (Story) => (
+    <div style={{ maxWidth: '320px' }}>
+      <Story />
+    </div>
+  ),
+];
+
+export const CustomStep = Template.bind({});
+CustomStep.args = {
+  label: 'Guest count',
+  placeholder: '0',
+  quantityCounter: true,
+  step: 2
+};
+CustomStep.decorators = [
   (Story) => (
     <div style={{ maxWidth: '320px' }}>
       <Story />

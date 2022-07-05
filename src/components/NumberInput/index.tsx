@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import useStyles from './styles';
 import { IInput, Input } from '../Input'
 import classNames from 'classnames';
@@ -16,42 +16,52 @@ export interface INumberInput extends IInput {
 export const NumberInput = (props: INumberInput) => {
   const classes = useStyles(props);
   const {
-    quantityCounter,
+    quantityCounter = false,
     min = 0,
     max = 100,
     step = 1,
     name = 'numberInput',
     value = '',
+    ...rest
   } = props;
 
   const [initialValue, setInitialValue] = useState(value)
-  const handleDecrease = () => {
-    const newVal = +initialValue - step
-    setInitialValue(newVal.toString())
+  const handleCheck = (value: number) => {
+    if (value > max) {
+      setInitialValue(max.toString());
+    } else if (isNaN(+value) || value < min) {
+      setInitialValue(min.toString());
+    } else {
+      setInitialValue(value.toString());
+    }
   }
-  const handleIncrease = () => {
-    const newVal = +initialValue + step
-    setInitialValue(newVal.toString())
-  }
+  const counterBtnPress = (pressed: 'plus' | 'minus') => {
+    const newVal = pressed === 'plus' ? +initialValue + step : +initialValue - step;
+    handleCheck(newVal);
+  };
+  const handleDecrease = () => counterBtnPress('minus');
+  const handleIncrease = () => counterBtnPress('plus');
   return (
     <div className={classNames(classes.numberInputContainer, { [classes.quantityCounter]: quantityCounter })}>
       <Input
-        {...props}
-        key={initialValue}
+        {...rest}
         name={name}
-        type='number'
+        controlled={true}
         className={classes.input}
-        placeholder='0'
-        value={initialValue}
-        onChange={(e) => quantityCounter && setInitialValue(e.target.value)}
+        value={isNaN(+initialValue) ? undefined : initialValue}
+        onChange={ (e) => setInitialValue(e.target.value)}
+        onBlur={(e) => handleCheck(+e.target.value)}
+        endAdornment={(
+          quantityCounter && (
+            <div className={classes.btnsContainer}>
+              <div className={classes.counterBtn} onClick={ handleDecrease }><Minus/></div>
+              <div><VerticalLine/></div>
+              <div className={classes.counterBtn} onClick={ handleIncrease }><Plus/></div>
+            </div>
+          )
+        )}
       />
-      {quantityCounter && (
-        <div className={classes.counterBtns}>
-          <div className={classes.decrease} onClick={handleDecrease}><Minus/></div>
-          <div><VerticalLine/></div>
-          <div className={classes.increase} onClick={handleIncrease}><Plus/></div>
-        </div>
-      )}
+
     </div>
   );
 };

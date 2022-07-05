@@ -1,10 +1,9 @@
 import { createStyles } from '../../styles';
-import { INumberInput } from './index';
 
 export default createStyles((theme) => ({
-  numberInputContainer: (props: INumberInput) => ({
+  numberInputContainer: {
     position: 'relative',
-  }),
+  },
   inputIcon: {
     fontFamily: theme.font,
     fontSize: 14,
@@ -19,7 +18,6 @@ export default createStyles((theme) => ({
   input: {
     width: '100%',
     '& input': {
-      paddingLeft: 5,
       '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
         '-webkit-appearance': 'none',
         margin: 0,
@@ -33,19 +31,11 @@ export default createStyles((theme) => ({
     '& $input': {
       width: '100%',
       '& input': {
-        paddingLeft: 0,
         paddingRight: 92,
-        /*'&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
-          '-webkit-appearance': 'auto',
-          margin: 'initial',
-        },
-        '&[type=number]': {
-          '-moz-appearance': 'auto',
-        }*/
       },
     },
   },
-  counterBtns: {
+  btnsContainer: {
     position: 'absolute',
     right: 8,
     top: 0,
@@ -60,23 +50,20 @@ export default createStyles((theme) => ({
       justifyContent: 'center',
     }
   },
-  increase: {
+  counterBtn: {
     cursor: 'pointer',
     borderRadius: '50%',
-    backgroundColor: theme.default.extraLight,
+    userSelect: 'none',
+    '-moz-user-select': 'none',
+    '-webkit-user-select': 'none',
+    '-ms-user-select': 'none',
     '&:hover': {
+      backgroundColor: theme.default.extraLight,
+    },
+    '&:active': {
       boxShadow: '0px 0px 0px 4px',
       color: theme.primary.light,
     }
   },
-  decrease: {
-    cursor: 'pointer',
-    borderRadius: '50%',
-    backgroundColor: theme.default.extraLight,
-    '&:hover': {
-      boxShadow: '0px 0px 0px 4px',
-      color: theme.primary.light,
-    }
-  }
 
 }));
