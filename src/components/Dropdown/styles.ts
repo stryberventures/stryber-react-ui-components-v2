@@ -1,4 +1,4 @@
-import { createStyles } from '../../styles';
+import { createStyles } from '../Theme';
 
 export default createStyles((theme) => ({
   dropdown: {

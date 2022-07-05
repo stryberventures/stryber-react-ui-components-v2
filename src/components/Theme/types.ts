@@ -1,3 +1,15 @@
+import React from 'react';
+
+export interface IThemeProvider {
+  theme: Partial<ITheme>,
+  children: React.ReactNode,
+}
+
+export type createStylesOptions = {
+  name?: string;
+  index?: number;
+}
+
 interface IPalette {
   main: string,
   dark: string,

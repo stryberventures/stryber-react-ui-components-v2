@@ -1,4 +1,4 @@
-import { ITheme } from '../components/ThemeProvider/types';
+import { ITheme } from './types';
 
 export const defaultTheme: ITheme = {
   background: {

@@ -2,7 +2,7 @@
   "name": "@stryberventures/gaia-react",
   "components": {
     "Button": "button",
-    "ThemeProvider": "theme-provider",
+    "Theme": "theme",
     "Input": "input",
     "TextLink": "text-link",
     "TextArea": "text-area",

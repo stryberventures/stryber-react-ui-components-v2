@@ -1,18 +1,18 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ThemeProvider } from '../components/ThemeProvider';
-import { Button } from '../components/Button';
-import { defaultTheme } from '../styles/defaultTheme';
-import { Input } from '../components/Input';
-import { CheckBox } from '../components/CheckBox';
-import { RadioButton } from '../components/RadioButton';
-import { TextLink } from '../components/TextLink';
-import LeftArrow from './icons/leftArrow';
-import { Dropdown } from '../components/Dropdown';
-import { Tooltip } from '../components/Tooltip'
-import { Multiselect } from '../components/Multiselect';
-import { Switch } from '../components/Switch';
-import { TextArea } from '../components/TextArea';
+import { ThemeProvider } from './index';
+import { Button } from '../Button';
+import { defaultTheme } from './defaultTheme';
+import { Input } from '../Input';
+import { CheckBox } from '../CheckBox';
+import { RadioButton } from '../RadioButton';
+import { TextLink } from '../TextLink';
+import LeftArrow from '../../stories/icons/leftArrow';
+import { Dropdown } from '../Dropdown';
+import { Tooltip } from '../Tooltip'
+import { Multiselect } from '../Multiselect';
+import { Switch } from '../Switch';
+import { TextArea } from '../TextArea';
 
 export default {
   title: 'Components/ThemeProvider',
@@ -114,7 +114,7 @@ const Template: ComponentStory<typeof ThemeProvider> = (args) => (
   </ThemeProvider>
 );
 
-export const Theme = Template.bind({});
-Theme.args = {
+export const DefaultTheme = Template.bind({});
+DefaultTheme.args = {
   theme: defaultTheme
 };

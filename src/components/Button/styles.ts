@@ -1,5 +1,5 @@
 import { IButton } from './index';
-import { createStyles } from '../../styles';
+import { createStyles } from '../Theme';
 
 export default createStyles((theme) => ({
   button: (props: IButton) => ({

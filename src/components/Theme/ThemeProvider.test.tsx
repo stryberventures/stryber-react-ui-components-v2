@@ -3,7 +3,7 @@ import * as React from 'react'
 import { render, screen } from '@testing-library/react'
 import { ThemeProvider } from './index'
 import { Button } from '../Button';
-import { defaultTheme } from '../../styles/defaultTheme';
+import { defaultTheme } from './defaultTheme';
 
 it('should render the child', () => {
   const label = 'Button';
@@ -17,14 +17,10 @@ it('should render the child', () => {
 
 it('should apply theme colors', () => {
   const label = 'Button';
-  const theme = { ...defaultTheme };
   const red = 'rgb(255, 0, 0)';
   const black = 'rgb(0, 0, 0)';
-  theme.primary.main = red;
-  theme.primary.contrast = black;
-  
   render(
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={{ primary: { main: red, contrast: black, light: red, dark: red } }}>
       <Button label={label}/>
     </ThemeProvider>
   );
