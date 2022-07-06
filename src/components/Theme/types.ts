@@ -1,7 +1,25 @@
 import React from 'react';
 
+type RecursivePartial<T> = {
+  [P in keyof T]?: RecursivePartial<T[P]>;
+};
+
+declare global {
+  namespace DesignSystem {
+    interface IProjectTheme {}
+  }
+}
+
+export type ThemeType = ITheme & DesignSystem.IProjectTheme;
+export type CustomTheme = RecursivePartial<ThemeType> & RecursivePartial<DesignSystem.IProjectTheme> & Record<string, any>;
+
+export interface IThemeContext {
+  theme: ThemeType;
+  updateTheme: (updatedTheme: CustomTheme) => void;
+}
+
 export interface IThemeProvider {
-  theme: Partial<ITheme>,
+  theme: CustomTheme;
   children: React.ReactNode,
 }
 
