@@ -10,7 +10,7 @@ export const useMultiselect = (props: IMultiselect) => {
   const onCheckboxChange = (e: React.BaseSyntheticEvent) => {
     const { name: checkboxName, checked } = e.target;
     let updatedOptions = [...selectedOptions];
-    
+
     if (checked) {
       updatedOptions.push(checkboxName);
     } else {

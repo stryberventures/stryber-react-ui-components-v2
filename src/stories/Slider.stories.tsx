@@ -11,7 +11,7 @@ const Template: ComponentStory<typeof Slider> = (args) => <Slider {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  controlled: true,
+  sliderVersion: 'basic'
 };
 Default.decorators = [
   (Story) => (
@@ -23,7 +23,6 @@ Default.decorators = [
 
 export const Range = Template.bind({});
 Range.args = {
-  controlled: true,
   sliderVersion: 'range'
 };
 Range.decorators = [
@@ -36,7 +35,6 @@ Range.decorators = [
 
 export const CustomStep = Template.bind({});
 CustomStep.args = {
-  controlled: true,
   step: 2,
   showStepMarks: true,
 };
@@ -50,7 +48,6 @@ CustomStep.decorators = [
 
 export const RangeInputs = Template.bind({});
 RangeInputs.args = {
-  controlled: true,
   sliderVersion: 'range',
   step: 2,
   thumbLabels: 'inputs'

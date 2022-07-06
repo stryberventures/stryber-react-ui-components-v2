@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState, useRef } from 'react';
 import classnames from 'classnames';
 import useStyles from './styles';
 import { Input, IInput } from '../Input';
+import { useFormContext } from '../Form';
 
 export interface ISlider extends IInput {
   min?: number,
@@ -13,26 +14,30 @@ export interface ISlider extends IInput {
   thumbLabels?: 'inputs' | 'labels' | 'none',
   onChange?: (e: React.BaseSyntheticEvent) => void,
 }
+export interface IStyles {
+  minLeft: string,
+  maxLeft: string,
+}
 export const Slider = (props: ISlider) => {
   const {
     min = 0,
     max = 100,
     step = 1,
     sliderVersion,
-    controlled,
     showSideLabels,
     showStepMarks,
     thumbLabels,
+    name = 'slider',
   } = props;
-  const [minVal, setMinVal] = useState(min);
-  const [maxVal, setMaxVal] = useState(max);
+  const { fieldValue, unsetFormValue, updateFormValue } = useFormContext(name);
+  const [minVal, setMinVal] = useState(Array.isArray(fieldValue) ? fieldValue[1] : fieldValue || min);
+  const [maxVal, setMaxVal] = useState(Array.isArray(fieldValue) ? fieldValue[1] : fieldValue || max);
   const [minSize, setMinSize] = useState(minVal);
   const [maxSize, setMaxSize] = useState(maxVal);
   const [showMin, setShowMin] = useState(false);
   const [showMax, setShowMax] = useState(false);
   const [error, setError] = useState(false);
   const range = useRef<HTMLDivElement>(null);
-  const classes = useStyles(props);
   // Convert to percentage
   const getPercent = useCallback(
     (value) => {
@@ -40,8 +45,10 @@ export const Slider = (props: ISlider) => {
     }, [min, max]);
 
   const labelPosition = (value: number) => `calc(${getPercent(value)}% + (${15 - getPercent(value) * 0.3}px))`;
-  const [minLeft, setMinLeft] = useState(labelPosition(min));
-  const [maxLeft, setMaxLeft] = useState(labelPosition(max));
+  const [minLeft, setMinLeft] = useState(min.toString());
+  const [maxLeft, setMaxLeft] = useState(max.toString());
+  const classes = useStyles( { minLeft, maxLeft });
+
 
   if (sliderVersion === 'range') {
     // Set width of the range to decrease from the left side
@@ -73,7 +80,12 @@ export const Slider = (props: ISlider) => {
       dots.push(<div className={classes.dot} key={i}/>);
     }
   }
-
+  useEffect( () => {
+    updateFormValue(name, range ? [minVal, maxVal] : minVal, true);
+    return () => {
+      unsetFormValue(name);
+    };
+  },[])
 
   const onMinChange = (e: React.BaseSyntheticEvent) => {
     const value = e.target.value;
@@ -96,13 +108,14 @@ export const Slider = (props: ISlider) => {
     if(isNaN(value) || value < min || value == '') {
       res = max
     } else if (value > maxVal) {
-      res = minVal
+      res = min
     } else {
       res = value
     }
     setMinVal(res);
     setMinLeft(labelPosition(res));
     setError(false);
+    updateFormValue(name, res);
   };
   const onMaxSubmit = (e: React.BaseSyntheticEvent) => {
     const value = e.currentTarget.value;
@@ -110,27 +123,29 @@ export const Slider = (props: ISlider) => {
     if(isNaN(value) || value > max || value == '') {
       res = max
     } else if (value < minVal) {
-      res = minVal
+      res = max
     } else {
       res = value
     }
     setMaxVal(res);
     setMaxLeft(labelPosition(res));
     setError(false);
+    updateFormValue(name, res);
   };
 
   const thumbMin = (e: React.BaseSyntheticEvent) => {
-    const value = Math.min(+e.target.value, +maxVal /*- 1*/);
+    const value = Math.min(+e.target.value, +maxVal - step);
     setMinVal(value);
     setMinSize(value);
-    setMinLeft(`calc(${getPercent(value)}% + (${15 - getPercent(value) * 0.3}px))`);
+    setMinLeft(labelPosition(value));
     setShowMin(true);
   }
   const thumbMax = (e: React.BaseSyntheticEvent) => {
-    const value = Math.max(+e.target.value, +minVal /*+ 1*/);
+    const value = Math.max(+e.target.value, +minVal + step);
     setMaxVal(value);
     setMaxSize(value);
-    setMaxLeft(`calc(${getPercent(value)}% + (${15 - getPercent(value) * 0.3}px))`);
+    setMaxLeft(labelPosition(value));
+    setShowMax(true);
   }
 
   const keyPress = (e: React.BaseSyntheticEvent) => {
@@ -147,11 +162,15 @@ export const Slider = (props: ISlider) => {
         max={max}
         value={minVal.toString()}
         step={step}
-        controlled={controlled}
+        controlled={true}
         className={classes.thumb}
         onClick={() => setShowMin(true)}
         onChange={thumbMin}
-        onMouseEnter={() => {setShowMin(true); setShowMax(false)}}
+        onMouseEnter={() => {
+          setShowMin(true);
+          setShowMax(false);
+          setMinLeft(labelPosition(+minLeft))
+        }}
       />
       {sliderVersion === 'range' && (
         <Input
@@ -162,11 +181,15 @@ export const Slider = (props: ISlider) => {
           max={max}
           value={maxVal.toString()}
           step={step}
-          controlled={controlled}
+          controlled={true}
           className={classes.thumb}
           onClick={() => setShowMax(true)}
           onChange={thumbMax}
-          onMouseEnter={() => {setShowMax(true); setShowMin(false);}}
+          onMouseEnter={() => {
+            setShowMax(true);
+            setShowMin(false);
+            setMaxLeft(labelPosition(+maxLeft))
+          }}
         />
       )}
       <div className={classes.slider}>
@@ -181,23 +204,22 @@ export const Slider = (props: ISlider) => {
         )}
         {thumbLabels === 'labels' && (
           <>
-            <div className={classnames(classes.thumbMinLabel, { [classes.show]: showMin })} style={{ left: minLeft }}>{minVal}</div>
+            <div className={classnames(classes.thumbMinLabel, { [classes.show]: showMin })}>{minVal}</div>
             {sliderVersion === 'range' && (
-              <div className={classnames(classes.thumbMaxLabel, { [classes.show]: showMax })} style={{ left: maxLeft }}>{maxVal}</div>
+              <div className={classnames(classes.thumbMaxLabel, { [classes.show]: showMax })}>{maxVal}</div>
             )}
           </>
         )}
         {thumbLabels === 'inputs' && (
           <>
             <div
-              className={classnames(classes.inputMinValue, { [classes.show]: showMin, [classes.error]: error })}
-              style={{ left: minLeft }}>
+              className={classnames(classes.inputMinValue, { [classes.show]: showMin, [classes.error]: error })}>
               <Input
                 key={minVal}
                 label=''
                 name='minSliderInput'
                 size={minSize.toString().length || 1}
-                value={minVal.toString() || '0'}
+                value={minVal.toString()}
                 onChange={onMinChange}
                 onBlur={onMinSubmit}
                 onClick={() => setShowMin(true)}
@@ -205,7 +227,7 @@ export const Slider = (props: ISlider) => {
               />
             </div>
             {sliderVersion === 'range' && (
-              <div className={classnames(classes.inputMaxValue, { [classes.show]: showMax })} style={{ left: maxLeft }}>
+              <div className={classnames(classes.inputMaxValue, { [classes.show]: showMax, [classes.error]: error })}>
                 <Input
                   key={maxVal}
                   label=''
@@ -228,10 +250,7 @@ export const Slider = (props: ISlider) => {
 
 export default Slider;
 Slider.defaultProps = {
-  min: 0,
-  max: 10,
   step: 1,
-  sliderVersion: 'basic',
   showSideLabels: true,
   showStepMarks: false,
   thumbLabels: 'labels',

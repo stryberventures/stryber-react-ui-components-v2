@@ -1,4 +1,5 @@
 import { createStyles } from '../../styles';
+import { IStyles } from './index';
 
 export default createStyles( (theme) => ({
   container: {
@@ -9,7 +10,6 @@ export default createStyles( (theme) => ({
     marginTop: 100,
     position: 'relative',
     '& $thumb': {
-      position: 'absolute',
       width: '100%',
       '&>div:not($inputContainerError)': {
         border: 'none',
@@ -62,6 +62,7 @@ export default createStyles( (theme) => ({
     },
   },
   thumb: {
+    position: 'absolute',
   },
   slider: {
     position: 'relative',
@@ -103,11 +104,11 @@ export default createStyles( (theme) => ({
     backgroundColor: theme.default.dark,
     borderRadius: 4,
   },
-  inputMinValue: {
+  inputMinValue: (props:IStyles) => ({
     position: 'absolute',
     zIndex: 5,
     bottom: 23,
-    left: 0,
+    left: props.minLeft,
     fontSize: 14,
     color: theme.text.hint,
     width: 'fit-content',
@@ -129,12 +130,16 @@ export default createStyles( (theme) => ({
       height: '-webkit-fill-available',
       border: 'none',
     },
-  },
-  inputMaxValue: {
+    '&$show': {
+      display: 'block',
+    }
+  }),
+  inputMaxValue:(props:IStyles) => ( {
     position: 'absolute',
     zIndex: 5,
     bottom: 23,
     right: 0,
+    left: props.maxLeft,
     fontSize: 14,
     color: theme.text.hint,
     width: 'fit-content',
@@ -156,31 +161,41 @@ export default createStyles( (theme) => ({
       height: '-webkit-fill-available',
       border: 'none',
     },
-  },
-  thumbMinLabel: {
+    '&$show': {
+      display: 'block',
+    }
+  }),
+  thumbMinLabel: (props:IStyles) => ({
     position: 'absolute',
     color: theme.primary.contrast,
     fontSize: 12,
     bottom: 23,
+    left: props.minLeft,
     padding: '2px 4px',
     backgroundColor: theme.default.dark,
     borderRadius: 4,
     display: 'none',
     transform: 'translate(-50%, 0)',
-  },
-  thumbMaxLabel: {
+    '&$show': {
+      display: 'block',
+    }
+  }),
+  thumbMaxLabel: (props:IStyles) => ({
     position: 'absolute',
     color: theme.primary.contrast,
     fontSize: 12,
     bottom: 23,
+    left: props.maxLeft,
     padding: '2px 4px',
     backgroundColor: theme.default.dark,
     borderRadius: 4,
     display: 'none',
     transform: 'translate(-50%, 0)',
-  },
+    '&$show': {
+      display: 'block',
+    }
+  }),
   show: {
-    display: 'block',
     '&$error>div>div:not(inputContainerError)': {
       borderColor: theme.error.main,
     },
