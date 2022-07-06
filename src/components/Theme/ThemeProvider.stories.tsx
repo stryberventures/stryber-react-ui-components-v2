@@ -13,18 +13,19 @@ import { Tooltip } from '../Tooltip'
 import { Multiselect } from '../Multiselect';
 import { Switch } from '../Switch';
 import { TextArea } from '../TextArea';
+import { ThemeChooser } from '../../stories/preview/ThemeChooser';
 
 export default {
-  title: 'Components/ThemeProvider',
-  component: ThemeProvider,
+  title: 'components/Theme',
+  component: ThemeChooser,
   parameters: {
     componentSubtitle: `Component which enables support of custom themes. To use a custom theme wrap your root
      component with ThemeProvider and pass the theme as a property.`
   },
-} as ComponentMeta<typeof ThemeProvider>;
+} as ComponentMeta<typeof ThemeChooser>;
 
-const Template: ComponentStory<typeof ThemeProvider> = (args) => (
-  <ThemeProvider {...args}>
+const Template: ComponentStory<typeof ThemeChooser> = (args) => (
+  <ThemeChooser {...args}>
     <h2 style={{ fontFamily: 'Inter', color: '#003CB8' }}>Button </h2>
     <Button variant="contained" label={'Contained primary'}/>
     <h1> </h1>
@@ -111,7 +112,7 @@ const Template: ComponentStory<typeof ThemeProvider> = (args) => (
     </Dropdown>
     <h2 style={{ fontFamily: 'Inter', color: '#003CB8' }}>Multiselect</h2>
     <Multiselect label="Multiselect" placeholder="Placeholder" options={['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine']}/>
-  </ThemeProvider>
+  </ThemeChooser>
 );
 
 export const DefaultTheme = Template.bind({});
