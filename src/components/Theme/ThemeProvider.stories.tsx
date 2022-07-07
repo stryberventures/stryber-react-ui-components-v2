@@ -1,6 +1,5 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ThemeProvider } from './index';
 import { Button } from '../Button';
 import { defaultTheme } from './defaultTheme';
 import { Input } from '../Input';
