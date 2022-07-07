@@ -7,7 +7,6 @@ export default createStyles((theme) => ({
   },
   inputContainer: (props: IInput) => ({
     boxSizing: 'border-box',
-    height: 44,
     borderRadius: 4,
     position: 'relative',
     fontFamily: theme.font,
@@ -20,6 +19,9 @@ export default createStyles((theme) => ({
     },
     '&:not($inputContainerError)': {
       border: `1px solid ${theme.default.main}`,
+    },
+    '&$withLabel': {
+      height: 44,
     }
   }),
   inputContainerError: {
@@ -42,13 +44,17 @@ export default createStyles((theme) => ({
     outline: 'none',
     textOverflow: 'ellipsis',
     height: 17,
-    padding: '17px 0 0 0',
     width: '100%',
     color: theme.text.primary,
     fontSize: 14,
     backgroundColor: theme.background.default,
     '&::placeholder': {
       color: theme.text.hint,
+    }
+  },
+  withLabel: {
+    '& input': {
+      padding: '17px 0 0 0',
     }
   },
   inputArea: {
