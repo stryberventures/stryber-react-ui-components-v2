@@ -66,10 +66,10 @@ export const NumberInput = (props: INumberInput) => {
         errorMessage={error}
         endAdornment={(
           quantityCounter && (
-            <div className={classes.btnsContainer}>
-              <div className={classes.counterBtn} onClick={ handleDecrease }><Minus/></div>
+            <div data-testid="testContainer" className={classes.btnsContainer}>
+              <div data-testid="testMinus" className={classes.counterBtn} onClick={ handleDecrease }><Minus/></div>
               <div><VerticalLine/></div>
-              <div className={classes.counterBtn} onClick={ handleIncrease }><Plus/></div>
+              <div data-testid="testPlus" className={classes.counterBtn} onClick={ handleIncrease }><Plus/></div>
             </div>
           )
         )}
