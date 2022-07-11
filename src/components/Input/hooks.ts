@@ -9,7 +9,6 @@ export const useInput = (props: IInput) => {
     name = '',
     value = '',
     controlled,
-    endAdornment,
     errorMessage: error,
     onChange,
     onBlur,
@@ -44,13 +43,13 @@ export const useInput = (props: IInput) => {
     !controlled && updateFormValue(name, nextValue);
     onChange && onChange(e);
   };
-  
+
   const onBlurWrapper = (e: React.BaseSyntheticEvent) => {
     const { name } = e.target;
     !controlled && updateFormTouched(name, true);
     onBlur && onBlur(e);
   };
-  
+
   useEffect(() => {
     !controlled && updateFormValue(name, internalValue, true);
     return () => {

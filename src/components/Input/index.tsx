@@ -18,13 +18,15 @@ export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
   onChange?: (e: React.BaseSyntheticEvent) => void,
   onBlur?: (e: React.BaseSyntheticEvent) => void,
   prefix?: string,
+  prefixClassName?: string,
   endAdornment?: React.ReactNode,
   mask?: string,
+  fullWidth?: boolean,
 }
 
 export const Input = (props: IInput) => {
   const classes = useStyles(props);
-  const { label, className, hint, prefix, endAdornment, placeholder, onClick } = props;
+  const { label, className, hint, prefix, prefixClassName, endAdornment, placeholder, onClick, fullWidth, ...rest } = props;
   const {
     name,
     value,
@@ -33,10 +35,10 @@ export const Input = (props: IInput) => {
     inputProps,
     onChange,
     onBlur
-  } = useInput(props);
+  } = useInput(rest);
 
   return (
-    <div className={classNames(classes.root, className)}>
+    <div className={classNames(classes.root,{ [classes.fullWidth]: fullWidth }, className)}>
       <div
         onClick={onClick}
         className={classNames(classes.inputContainer, {
@@ -49,7 +51,7 @@ export const Input = (props: IInput) => {
           <div className={classNames(classes.label, { [classes.textDisabled]: disabled })}>
             {label}
           </div>
-          {prefix && <div className={classes.prefix}>{prefix}</div>}
+          {prefix && <div className={classNames(classes.prefix, prefixClassName)}>{prefix}</div>}
           <input
             {...inputProps}
             name={name}

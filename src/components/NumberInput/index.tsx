@@ -59,7 +59,7 @@ export const NumberInput = (props: INumberInput) => {
         {...rest}
         name={name}
         controlled={true}
-        className={classes.input}
+        className={classes.numberInput}
         value={isNaN(+initialValue) ? undefined : initialValue}
         onChange={(e) => handleChange(e.target.value)}
         onBlur={(e) => checkValue(+e.target.value)}
