@@ -174,6 +174,7 @@ export const Slider = (props: ISlider) => {
       />
       {sliderVersion === 'range' && (
         <Input
+          data-testid="testSecondInputID"
           type="range"
           name='max'
           label=''
@@ -195,16 +196,16 @@ export const Slider = (props: ISlider) => {
       <div className={classes.slider}>
         <div className={classes.sliderTrack} />
         <div ref={range} className={classes.sliderRange} />
-        {step > 1 && showStepMarks && (<div className={classes.dotsContainer}>{dots}</div>)}
+        {step > 1 && showStepMarks && (<div data-testid="testStepMarksID" className={classes.dotsContainer}>{dots}</div>)}
         {showSideLabels && (
           <>
-            <div className={classes.sliderLeftValue}>{min}</div>
+            <div data-testid="testLabelID" className={classes.sliderLeftValue}>{min}</div>
             <div className={classes.sliderRightValue}>{max}</div>
           </>
         )}
         {thumbLabels === 'labels' && (
           <>
-            <div className={classnames(classes.thumbMinLabel, { [classes.show]: showMin })}>{minVal}</div>
+            <div data-testid="testThumbLabelID" className={classnames(classes.thumbMinLabel, { [classes.show]: showMin })}>{minVal}</div>
             {sliderVersion === 'range' && (
               <div className={classnames(classes.thumbMaxLabel, { [classes.show]: showMax })}>{maxVal}</div>
             )}
@@ -212,7 +213,7 @@ export const Slider = (props: ISlider) => {
         )}
         {thumbLabels === 'inputs' && (
           <>
-            <div
+            <div data-testid="testThumbInputID"
               className={classnames(classes.inputMinValue, { [classes.show]: showMin, [classes.error]: error })}>
               <Input
                 key={minVal}
