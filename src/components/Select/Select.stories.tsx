@@ -2,10 +2,14 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Select } from './index';
 import { buildExcludeArgTypes } from '../../storybook/utils';
+import pkg from './package.json';
 
 export default {
   title: 'Components/Select',
   component: Select,
+  parameters: {
+    pkg,
+  },
   argTypes: buildExcludeArgTypes(['name', 'onChange', 'onToggle', 'className', 'value']),
 } as ComponentMeta<typeof Select>;
 

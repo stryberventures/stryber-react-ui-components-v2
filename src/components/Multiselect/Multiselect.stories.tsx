@@ -1,10 +1,14 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Multiselect } from './index';
+import pkg from './package.json';
 
 export default {
   title: 'Components/Multiselect',
   component: Multiselect,
+  parameters: {
+    pkg,
+  },
 } as ComponentMeta<typeof Multiselect>;
 
 const Template: ComponentStory<typeof Multiselect> = (args) =>

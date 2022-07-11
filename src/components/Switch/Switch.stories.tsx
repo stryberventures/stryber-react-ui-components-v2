@@ -1,10 +1,14 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Switch } from './index';
+import pkg from './package.json';
 
 export default {
   title: 'Components/Switch',
   component: Switch,
+  parameters: {
+    pkg,
+  },
 } as ComponentMeta<typeof Switch>;
 
 const Template: ComponentStory<typeof Switch> = (args) => <Switch {...args} />;

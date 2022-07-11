@@ -2,10 +2,14 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { InputPassword } from './index';
 import { buildExcludeArgTypes } from '../../storybook/utils';
+import pkg from './package.json';
 
 export default {
   title: 'Components/InputPassword',
   component: InputPassword,
+  parameters: {
+    pkg,
+  },
   argTypes: buildExcludeArgTypes(['value', 'name', 'controlled', 'onChange',
     'onBlur', 'onValidationChange']),
 } as ComponentMeta<typeof InputPassword>;

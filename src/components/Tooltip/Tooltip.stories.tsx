@@ -1,10 +1,14 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Tooltip } from './index';
+import pkg from './package.json';
 
 export default {
   title: 'Components/Tooltip',
   component: Tooltip,
+  parameters: {
+    pkg,
+  },
 } as ComponentMeta<typeof Tooltip>;
 
 const Template: ComponentStory<typeof Tooltip> = (args) => <Tooltip {...args} />;
