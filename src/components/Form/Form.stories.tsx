@@ -7,10 +7,14 @@ import * as yup from 'yup';
 import { Button } from '../Button';
 import { Multiselect } from '../Multiselect';
 import { Select } from '../Select';
+import pkg from './package.json';
 
 export default {
   title: 'Components/Form',
   component: Form,
+  parameters: {
+    pkg,
+  },
 } as ComponentMeta<typeof Form>;
 
 const Template: ComponentStory<typeof Form> = (args) => {

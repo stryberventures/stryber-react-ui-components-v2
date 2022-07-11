@@ -6,18 +6,20 @@ import { Input } from '../Input';
 import { CheckBox } from '../CheckBox';
 import { RadioButton } from '../RadioButton';
 import { TextLink } from '../TextLink';
-import LeftArrow from '../../stories/icons/leftArrow';
+import LeftArrow from '../../storybook/icons/leftArrow';
 import { Dropdown } from '../Dropdown';
 import { Tooltip } from '../Tooltip'
 import { Multiselect } from '../Multiselect';
 import { Switch } from '../Switch';
 import { TextArea } from '../TextArea';
-import { ThemeChooser } from '../../stories/preview/ThemeChooser';
+import { ThemeChooser } from '../../storybook/preview/ThemeChooser';
+import pkg from './package.json';
 
 export default {
   title: 'components/Theme',
   component: ThemeChooser,
   parameters: {
+    pkg,
     componentSubtitle: `Component which enables support of custom themes. To use a custom theme wrap your root
      component with ThemeProvider and pass the theme as a property.`
   },

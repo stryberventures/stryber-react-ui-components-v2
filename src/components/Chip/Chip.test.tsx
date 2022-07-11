@@ -2,7 +2,7 @@ import '@testing-library/jest-dom'
 import * as React from 'react'
 import { render, screen } from '@testing-library/react'
 import { Chip } from './index'
-import LeftArrow from '../../stories/icons/leftArrow';
+import LeftArrow from '../../storybook/icons/leftArrow';
 
 it('should be rendered', () => {
   const label = 'Chip label';

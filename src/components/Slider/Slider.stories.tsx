@@ -1,10 +1,14 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Slider } from '../components/Slider';
+import { Slider } from './index';
+import pkg from './package.json';
 
 export default {
   title: 'Components/Slider',
   component: Slider,
+  parameters: {
+    pkg,
+  },
 } as ComponentMeta<typeof Slider>;
 
 const Template: ComponentStory<typeof Slider> = (args) => <Slider {...args} />;

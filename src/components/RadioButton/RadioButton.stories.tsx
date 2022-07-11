@@ -1,10 +1,14 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { RadioButton } from './index';
+import pkg from './package.json';
 
 export default {
   title: 'Components/RadioButton',
   component: RadioButton,
+  parameters: {
+    pkg,
+  },
 } as ComponentMeta<typeof RadioButton>;
 
 const Template: ComponentStory<typeof RadioButton> = (args) => <RadioButton {...args} />;

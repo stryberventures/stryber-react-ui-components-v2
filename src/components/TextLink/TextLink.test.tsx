@@ -2,7 +2,7 @@ import '@testing-library/jest-dom'
 import * as React from 'react'
 import { render, screen } from '@testing-library/react'
 import { TextLink } from './index'
-import LeftArrow from '../../stories/icons/leftArrow';
+import LeftArrow from '../../storybook/icons/leftArrow';
 
 const link = 'https:www.google.com';
 

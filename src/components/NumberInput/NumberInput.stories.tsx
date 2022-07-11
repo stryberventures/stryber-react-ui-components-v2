@@ -1,10 +1,14 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { NumberInput } from '../components/NumberInput';
+import { NumberInput } from './index';
+import pkg from './package.json';
 
 export default {
   title: 'Components/NumberInput',
   component: NumberInput,
+  parameters: {
+    pkg,
+  },
 } as ComponentMeta<typeof NumberInput>;
 
 const Template: ComponentStory<typeof NumberInput> = (args) => <NumberInput {...args} />;

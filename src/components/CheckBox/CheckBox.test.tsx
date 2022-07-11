@@ -2,7 +2,7 @@ import '@testing-library/jest-dom'
 import * as React from 'react'
 import { fireEvent, render, screen } from '@testing-library/react'
 import { CheckBox } from './index'
-import LeftArrow from '../../stories/icons/leftArrow';
+import LeftArrow from '../../storybook/icons/leftArrow';
 
 it('should be rendered', () => {
   const { getByRole } = render(<CheckBox />);

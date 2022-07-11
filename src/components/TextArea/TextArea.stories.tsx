@@ -1,10 +1,14 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { TextArea } from '../components/TextArea';
+import { TextArea } from './index';
+import pkg from './package.json';
 
 export default {
   title: 'Components/TextArea',
   component: TextArea,
+  parameters: {
+    pkg,
+  },
 } as ComponentMeta<typeof TextArea>;
 
 const Template: ComponentStory<typeof TextArea> = (args) => <TextArea {...args} />;

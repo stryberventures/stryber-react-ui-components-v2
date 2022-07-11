@@ -1,10 +1,14 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Dropdown } from './index';
+import pkg from './package.json';
 
 export default {
   title: 'Components/Dropdown',
   component: Dropdown,
+  parameters: {
+    pkg,
+  },
 } as ComponentMeta<typeof Dropdown>;
 
 const Template: ComponentStory<typeof Dropdown> = (args) => <Dropdown {...args} />;
