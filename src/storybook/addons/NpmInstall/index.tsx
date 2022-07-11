@@ -9,9 +9,10 @@ type PackageType = {
   peerDependencies?: {[key: string]: string};
 };
 
-const NpmInstall = () => {
+const NpmInstall = ({ active }: {active: boolean}) => {
   const pkg: PackageType | null = useParameter('pkg', null);
-  if (!pkg) {
+
+  if (!pkg || !active) {
     return null;
   }
   const classes = useStyles();

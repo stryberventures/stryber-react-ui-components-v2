@@ -8,6 +8,6 @@ addons.register('npm', () => {
         title: 'Npm install',
         route: ({ storyId, refId }) => (refId ? `/npm/${refId}_${storyId}` : `/npm/${storyId}`),
         match: ({ viewMode }) => viewMode === 'npm',
-        render: () => <NpmInstall />,
+        render: ({active}) => <NpmInstall active={active} />,
     });
 });
