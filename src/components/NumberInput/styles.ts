@@ -15,7 +15,7 @@ export default createStyles((theme) => ({
     bottom: 5,
     zIndex: 2,
   },
-  input: {
+  numberInput: {
     '& input': {
       '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
         '-webkit-appearance': 'none',
@@ -61,5 +61,7 @@ export default createStyles((theme) => ({
       color: theme.primary.light,
     }
   },
-
+  prefixStyle: {
+    paddingRight: 5,
+  },
 }));

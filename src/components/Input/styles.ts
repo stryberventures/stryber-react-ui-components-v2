@@ -5,6 +5,9 @@ export default createStyles((theme) => ({
   root: {
     width: 320,
   },
+  fullWidth: {
+    width: '100%',
+  },
   inputContainer: (props: IInput) => ({
     boxSizing: 'border-box',
     borderRadius: 4,

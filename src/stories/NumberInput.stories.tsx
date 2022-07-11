@@ -14,6 +14,7 @@ Default.args = {
   label: 'Min',
   placeholder: '0',
   prefix: '$',
+  fullWidth: true,
 };
 Default.decorators = [
   (Story) => (
