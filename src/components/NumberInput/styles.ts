@@ -61,7 +61,4 @@ export default createStyles((theme) => ({
       color: theme.primary.light,
     }
   },
-  prefixStyle: {
-    paddingRight: 5,
-  },
 }));

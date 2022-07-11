@@ -27,7 +27,6 @@ export const NumberInput = (props: INumberInput) => {
     value = '',
     errorMessage,
     onChange,
-    prefixClassName,
     ...rest
   } = props;
   const { updateFormValue, fieldValue, fieldError } = useFormContext(name);
@@ -60,7 +59,6 @@ export const NumberInput = (props: INumberInput) => {
         {...rest}
         name={name}
         controlled={true}
-        prefixClassName={classes.prefixStyle}
         className={classes.numberInput}
         value={isNaN(+initialValue) ? undefined : initialValue}
         onChange={(e) => handleChange(e.target.value)}
