@@ -2,10 +2,14 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Chip } from './index';
 import CarIcon from '../../stories/icons/Car';
+import pkg from './package.json';
 
 export default {
   title: 'Components/Chip',
   component: Chip,
+  parameters: {
+    pkg,
+  },
   argTypes: {
     iconLeft: {
       table: {
