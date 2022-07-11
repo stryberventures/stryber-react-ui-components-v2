@@ -11,11 +11,11 @@ type PackageType = {
 
 const NpmInstall = ({ active }: {active: boolean}) => {
   const pkg: PackageType | null = useParameter('pkg', null);
+  const classes = useStyles();
 
   if (!pkg || !active) {
     return null;
   }
-  const classes = useStyles();
   const { name, version, peerDependencies } = pkg;
   const filteredPeerDependencies = peerDependencies
     ? Object.keys(peerDependencies).filter(
@@ -29,7 +29,7 @@ const NpmInstall = ({ active }: {active: boolean}) => {
       <CodeBox>
         npm install {name}@{version}
       </CodeBox>
-      {filteredPeerDependencies.length && (
+      {!!filteredPeerDependencies.length && (
         <>
           <h3 className={classes.title}>
             ⚠️ Make sure that all needed peer dependencies are also installed ⚠️:

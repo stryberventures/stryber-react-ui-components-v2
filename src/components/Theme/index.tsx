@@ -4,7 +4,7 @@ import { createStylesOptions, IThemeContext, IThemeProvider, ThemeType } from '.
 import { GlobalStyles } from './GlobalStyles';
 import { defaultTheme } from './defaultTheme';
 import { Classes } from 'jss';
-import merge from 'lodash/merge';
+import merge from './utils';
 
 const ThemeContext = React.createContext<IThemeContext>({
   theme: defaultTheme,
@@ -13,9 +13,9 @@ const ThemeContext = React.createContext<IThemeContext>({
 
 const ThemeProvider = React.memo(
   ({ theme: initial, children }: IThemeProvider) => {
-    const [theme, setTheme] = useState<ThemeType>(merge({}, defaultTheme, initial));
+    const [theme, setTheme] = useState<ThemeType>(merge(defaultTheme, initial));
     const updateTheme = useCallback(<T,>(updatedTheme: T) => {
-      setTheme(currentTheme => merge({}, currentTheme, updatedTheme));
+      setTheme(currentTheme => merge(currentTheme, updatedTheme));
     }, []);
 
     const memoizedValue = useMemo((): IThemeContext => {
