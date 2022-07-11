@@ -13,11 +13,13 @@ import { Multiselect } from '../Multiselect';
 import { Switch } from '../Switch';
 import { TextArea } from '../TextArea';
 import { ThemeChooser } from '../../storybook/preview/ThemeChooser';
+import pkg from './package.json';
 
 export default {
   title: 'components/Theme',
   component: ThemeChooser,
   parameters: {
+    pkg,
     componentSubtitle: `Component which enables support of custom themes. To use a custom theme wrap your root
      component with ThemeProvider and pass the theme as a property.`
   },

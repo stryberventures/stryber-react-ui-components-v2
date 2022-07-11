@@ -2,10 +2,14 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Button } from './index';
 import Placeholder from '../../storybook/icons/placeholder';
+import pkg from './package.json';
 
 export default {
   title: 'Components/Button',
   component: Button,
+  parameters: {
+    pkg,
+  },
 } as ComponentMeta<typeof Button>;
 
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;

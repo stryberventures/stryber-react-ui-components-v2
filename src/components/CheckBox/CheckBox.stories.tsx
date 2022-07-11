@@ -1,10 +1,14 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { CheckBox } from './index';
+import pkg from './package.json';
 
 export default {
   title: 'Components/CheckBox',
   component: CheckBox,
+  parameters: {
+    pkg,
+  },
   argTypes: {
     onFocus: {
       table: {
