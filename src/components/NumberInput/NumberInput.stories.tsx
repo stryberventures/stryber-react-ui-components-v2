@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { NumberInput } from '../components/NumberInput';
+import { NumberInput } from './index';
 
 export default {
   title: 'Components/NumberInput',

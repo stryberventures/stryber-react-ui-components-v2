@@ -2,7 +2,7 @@ import '@testing-library/jest-dom'
 import * as React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { Button } from './index'
-import Placeholder from '../../stories/icons/placeholder';
+import Placeholder from '../../storybook/icons/placeholder';
 
 it('should be rendered', () => {
   const label = 'Test button'
