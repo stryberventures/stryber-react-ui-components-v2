@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { InputPassword } from './index';
-import { buildExcludeArgTypes } from '../../stories/utils';
+import { buildExcludeArgTypes } from '../../storybook/utils';
 
 export default {
   title: 'Components/InputPassword',

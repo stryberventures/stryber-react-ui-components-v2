@@ -1,8 +1,8 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { TextLink } from '../components/TextLink';
-import LeftArrow from './icons/leftArrow';
-import RightArrow from './icons/rightArrow';
+import { TextLink } from './index';
+import LeftArrow from '../../storybook/icons/leftArrow';
+import RightArrow from '../../storybook/icons/rightArrow';
 
 export default {
   title: 'Components/TextLink',
