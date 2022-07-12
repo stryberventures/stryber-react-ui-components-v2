@@ -19,6 +19,8 @@ export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
   onBlur?: (e: React.BaseSyntheticEvent) => void,
   prefix?: string,
   prefixClassName?: string,
+  errorClassName?: string,
+  hintClassName?: string,
   endAdornment?: React.ReactNode,
   mask?: string,
   fullWidth?: boolean,
@@ -26,7 +28,10 @@ export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
 
 export const Input = (props: IInput) => {
   const classes = useStyles(props);
-  const { label, className, hint, prefix, prefixClassName, endAdornment, placeholder, onClick, fullWidth, ...rest } = props;
+  const {
+    label, className, hint, prefix, prefixClassName, errorClassName, hintClassName,
+    endAdornment, placeholder, onClick, fullWidth, ...rest
+  } = props;
   const {
     name,
     value,
@@ -67,8 +72,8 @@ export const Input = (props: IInput) => {
         </div>
         {endAdornment}
       </div>
-      {errorMessage && <ErrorMessage text={errorMessage} className={classes.message}/>}
-      {hint && <HintMessage text={hint} disabled={disabled} className={classes.message}/>}
+      {errorMessage && <ErrorMessage text={errorMessage} className={classNames(classes.message, errorClassName)}/>}
+      {hint && <HintMessage text={hint} disabled={disabled} className={classNames(classes.message, hintClassName)}/>}
     </div>
   );
 };
