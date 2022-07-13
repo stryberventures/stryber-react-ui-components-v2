@@ -68,7 +68,7 @@ export const NumberInput = (props: INumberInput) => {
           quantityCounter && (
             <div data-testid="testContainer" className={classes.btnsContainer}>
               <div data-testid="testMinus" className={classes.counterBtn} onClick={ handleDecrease }><Minus/></div>
-              <div><VerticalLine/></div>
+              <div className={classes.separatorLine}><VerticalLine/></div>
               <div data-testid="testPlus" className={classes.counterBtn} onClick={ handleIncrease }><Plus/></div>
             </div>
           )

@@ -38,13 +38,17 @@ export default createStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     height: '100%',
-    '&>div': {
+    '& $counterBtn': {
       width: 28,
       height: 28,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
     }
+  },
+  separatorLine: {
+    padding: '0 5.5px',
+    display: 'flex',
   },
   counterBtn: {
     cursor: 'pointer',
