@@ -89,8 +89,8 @@ InitialValues.args = {
 
 export const ErrorOnSubmit = Template.bind({});
 ErrorOnSubmit.args = {
-  onSubmit: (formData: any, { setError }) => {
-    setError({ email: 'This email is already taken' });
+  onSubmit: (formData: any, { setErrors }) => {
+    setErrors({ email: 'This email is already taken' });
   },
   children: <FormContent title="Form error after submit" showSelects={false}
     text="setError Form action is used instead of validation"/>,

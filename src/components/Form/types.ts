@@ -9,8 +9,7 @@ export interface IFormContext {
   formTouched: any;
   initialValues?: any;
   loading: boolean;
-  handleReset: () => void;
-  handleSubmit: () => void;
+  formActions: IFormActions,
 }
 
 export interface IFormProps {
@@ -27,10 +26,10 @@ export interface IFormProps {
 }
 
 export interface IFormActions {
-  setError: (errors: any) => void;
-  resetForm: () => void;
-  submitForm: () => void;
-  isFormValid: boolean;
+  submit: () => void,
+  reset: () => void,
+  isValid: boolean,
+  setErrors: (errors: Record<string, string>) => void,
 }
 
 export interface IFormRef extends IFormActions {}

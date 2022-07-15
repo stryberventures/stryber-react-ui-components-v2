@@ -9,15 +9,15 @@ const ExternalFormControl = () => {
   const formRef = useRef<IFormRef>(null);
 
   const handleSubmit = () => {
-    formRef.current?.submitForm();
+    formRef.current?.submit();
   };
 
   const handleSetError = () => {
-    formRef.current?.setError({ email: 'This email is already taken' });
+    formRef.current?.setErrors({ email: 'This email is already taken' });
   };
 
   const handleResetForm = () => {
-    formRef.current?.resetForm();
+    formRef.current?.reset();
   };
 
   return (

@@ -10,8 +10,12 @@ const defaultFormContextValues: IFormContext = {
   formErrors: undefined,
   formTouched: undefined,
   initialValues: undefined,
-  handleReset: () => {},
-  handleSubmit: () => {},
+  formActions: {
+    submit: () => {},
+    reset: () => {},
+    isValid: true,
+    setErrors: () => {},
+  },
 };
 
 export const FormContext: React.Context<IFormContext> =
@@ -97,10 +101,10 @@ export const Form = forwardRef((props: IFormProps, ref: ForwardedRef<IFormRef>) 
   };
 
   const formActions = {
-    isFormValid: JSON.stringify(formErrors) === '{}',
-    setError: setFormErrorsActionWrapper,
-    resetForm: onResetFormWrapper,
-    submitForm: onSubmitFormWrapper,
+    isValid: JSON.stringify(formErrors) === '{}',
+    setErrors: setFormErrorsActionWrapper,
+    reset: onResetFormWrapper,
+    submit: onSubmitFormWrapper,
   };
 
   /** Updating form values whenever a change is made within an input field */
@@ -111,10 +115,10 @@ export const Form = forwardRef((props: IFormProps, ref: ForwardedRef<IFormRef>) 
       newFormValues[name] = value;
       /** Validating new values */
       const validationResult = validate(newFormValues);
-      const isFormValid = JSON.stringify(validationResult) === '{}';
+      const isValid = JSON.stringify(validationResult) === '{}';
       /** Sending on change callback (if it was provided) */
       !init && onChange && onChange({ ...newFormValues },
-        { ...formActions, isFormValid }
+        { ...formActions, isValid }
       );
 
       return newFormValues;
@@ -160,8 +164,7 @@ export const Form = forwardRef((props: IFormProps, ref: ForwardedRef<IFormRef>) 
           formValues,
           formErrors,
           formTouched,
-          handleSubmit: onSubmitFormWrapper,
-          handleReset: onResetFormWrapper,
+          formActions,
           loading
         }}
       >
@@ -181,8 +184,7 @@ export const useFormContext = (fieldName = 'unnamed') => {
     formValues,
     formErrors,
     formTouched,
-    handleSubmit,
-    handleReset,
+    formActions,
   } = useContext(FormContext);
   return {
     fieldError:
@@ -194,8 +196,7 @@ export const useFormContext = (fieldName = 'unnamed') => {
     updateFormValue: formValues ? updateFormValue : () => {},
     updateFormTouched: formTouched ? updateFormTouched : () => {},
     unsetFormValue: formValues ? unsetFormValue : () => {},
-    handleSubmit,
-    handleReset,
+    formActions
   };
 };
 
