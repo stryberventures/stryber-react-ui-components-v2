@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 import React, { ForwardedRef, forwardRef, useContext, useImperativeHandle } from 'react';
-import { IFormActions, IFormContext, IFormProps } from './types';
+import { IFormContext, IFormProps, IFormRef } from './types';
 
 const defaultFormContextValues: IFormContext = {
   updateFormValue: () => undefined,
@@ -18,7 +18,7 @@ const defaultFormContextValues: IFormContext = {
 export const FormContext: React.Context<IFormContext> =
   React.createContext(defaultFormContextValues);
 
-export const Form = forwardRef((props: IFormProps, ref: ForwardedRef<IFormActions>) => {
+export const Form = forwardRef((props: IFormProps, ref: ForwardedRef<IFormRef>) => {
   const {
     children,
     onSubmit,
