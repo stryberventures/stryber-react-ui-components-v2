@@ -33,3 +33,4 @@ export interface IFormActions {
   isFormValid: boolean;
 }
 
+export interface IFormRef extends IFormActions {}
