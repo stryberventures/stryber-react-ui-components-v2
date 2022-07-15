@@ -1,4 +1,3 @@
-import * as yup from 'yup';
 import React, { ForwardedRef, forwardRef, useContext, useImperativeHandle } from 'react';
 import { IFormContext, IFormProps, IFormRef } from './types';
 
@@ -41,16 +40,16 @@ export const Form = forwardRef((props: IFormProps, ref: ForwardedRef<IFormRef>) 
   /** Yup validate function wrapper */
   const validate = (values: any) => {
     /** Validation schema using Yup library */
+    let validationRes = {};
     if (validationSchema) {
-      validationSchema
-        .validate(values, { abortEarly: false })
-        /** No errors from Yup */
-        .then(() => setFormErrors({}))
-        /** Errors were caught */
-        .catch((errors: yup.ValidationError) => {
-          const parsedErrors = errors.inner.reduce((a: any, v: any) => ({ ...a, [v.path]: v.message }), {});
-          setFormErrors(() => parsedErrors);
-        });
+      try {
+        validationSchema.validateSync(values, { abortEarly: false });
+      } catch (errors: any) {
+        validationRes = errors.inner.reduce((a: any, v: any) => ({ ...a, [v.path]: v.message }), {});
+      }
+      setFormErrors(validationRes);
+
+      return validationRes;
     }
     /** External validation methods */
     if (onValidate) {
@@ -110,16 +109,16 @@ export const Form = forwardRef((props: IFormProps, ref: ForwardedRef<IFormRef>) 
     setFormValues((formValues: any) => {
       const newFormValues = { ...formValues };
       newFormValues[name] = value;
-
       /** Validating new values */
-      validate(newFormValues);
-
+      const validationResult = validate(newFormValues);
+      const isFormValid = JSON.stringify(validationResult) === '{}';
       /** Sending on change callback (if it was provided) */
-      !init && onChange && onChange({ ...newFormValues }, formActions);
+      !init && onChange && onChange({ ...newFormValues },
+        { ...formActions, isFormValid }
+      );
 
       return newFormValues;
     });
-
   };
 
   /** Updating field touched status (needed for a correct error display */
