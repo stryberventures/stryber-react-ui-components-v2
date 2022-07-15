@@ -12,8 +12,8 @@ const FormDisabledSubmitButton = () => {
       onSubmit={(formData: any) => {
         console.log('onSubmit: ', formData);
       }}
-      onChange={(formData: any, { isFormValid }) => {
-        setDisabled(!isFormValid);
+      onChange={(formData: any, { isValid }) => {
+        setDisabled(!isValid);
       }}
       validationSchema={yup.object({
         email: yup.string().email().required(),
