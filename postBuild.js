@@ -1,14 +1,12 @@
-// This script clones components directories from webpack build (dist/) to build/ directory,
+// This script clones components from webpack build directory (webpackBuildDir) to build directory (buildDir),
 // clones package.json from src/components/ to build/
 // moves modules (compiled sources) from the webpack build to each folder as index.js
 // replaces paths to subcomponents according to export.config.json
-
+const { buildDir, webpackBuildDir } = require('./buildConstants');
 const fs = require('fs-extra');
 const replace = require('replace-in-file');
 const { components, name } = require('./export.config.json');
 
-const buildDir = 'build';
-const webpackBuildDir = 'dist';
 const componentsList = Object.keys(components);
 
 async function postBuild() {
@@ -43,7 +41,7 @@ async function replacePaths() {
   await replace({
     from,
     to,
-    files: ['build/**/index.js', 'build/**/*.d.ts'],
+    files: [`${buildDir}/**/index.js`, `${buildDir}/**/*.d.ts`],
   })
 }
 
