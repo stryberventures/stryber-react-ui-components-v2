@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom'
 import * as React from 'react'
 import { fireEvent, render, screen } from '@testing-library/react'
-import { NumberInput } from './index'
+import NumberInput from './index'
 
 it('should render label', () => {
   const label = 'label'

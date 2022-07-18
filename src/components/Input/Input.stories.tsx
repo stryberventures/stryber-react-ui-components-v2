@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Input } from './index';
+import Input from './index';
 import pkg from './package.json';
 
 export default {

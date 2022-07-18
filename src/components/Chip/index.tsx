@@ -11,7 +11,7 @@ export interface IChip extends React.HTMLAttributes<HTMLDivElement>{
   disabled?: boolean,
 }
 
-export const Chip = (props: IChip) => {
+const Chip: React.FC<IChip> = (props) => {
   const {
     text,
     iconLeft,
@@ -41,6 +41,8 @@ export const Chip = (props: IChip) => {
     </div>
   );
 }
+
+export default Chip;
 
 Chip.defaultProps = {
   color: 'primary',

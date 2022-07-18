@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Switch } from './index';
+import Switch from './index';
 import pkg from './package.json';
 
 export default {

@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom'
 import * as React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
-import { Multiselect } from './index'
+import Multiselect from './index'
 
 const options = ['One', 'Two', 'Three'];
 

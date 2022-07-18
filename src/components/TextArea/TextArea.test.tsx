@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom'
 import * as React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
-import { TextArea } from './index'
+import TextArea from './index'
 
 it('should be rendered with label', () => {
   const label = 'Test text area'

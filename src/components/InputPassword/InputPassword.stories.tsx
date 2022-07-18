@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { InputPassword } from './index';
+import InputPassword from './index';
 import { buildExcludeArgTypes } from '../../storybook/utils';
 import pkg from './package.json';
 

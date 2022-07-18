@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import useStyles from './styles';
-import { IInput, Input } from '../Input'
+import Input, { IInput } from '../Input'
 import classNames from 'classnames';
 import Plus from '../Icons/plus';
 import Minus from '../Icons/minus';
@@ -16,7 +16,7 @@ export interface INumberInput extends Omit<IInput, 'value' | 'onChange'> {
   onChange?: (e: number) => void,
 }
 
-export const NumberInput = (props: INumberInput) => {
+const NumberInput = (props: INumberInput) => {
   const classes = useStyles(props);
   const {
     quantityCounter = false,
@@ -79,6 +79,4 @@ export const NumberInput = (props: INumberInput) => {
   );
 };
 
-export default {
-  NumberInput,
-}
+export default NumberInput;

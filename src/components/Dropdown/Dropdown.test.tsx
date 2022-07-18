@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom'
 import * as React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
-import { Dropdown } from './index'
+import Dropdown from './index';
 
 it('should be rendered with label', () => {
   const label = 'Label'

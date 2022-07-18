@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState, useRef } from 'react';
 import classnames from 'classnames';
 import useStyles from './styles';
-import { Input, IInput } from '../Input';
+import Input, { IInput } from '../Input';
 import { useFormContext } from '../Form';
 
 export interface ISlider extends IInput {
@@ -18,7 +18,7 @@ export interface IStyles {
   minLeft: string,
   maxLeft: string,
 }
-export const Slider = (props: ISlider) => {
+const Slider:React.FC<ISlider> = (props) => {
   const {
     min = 0,
     max = 100,
@@ -250,6 +250,7 @@ export const Slider = (props: ISlider) => {
 };
 
 export default Slider;
+
 Slider.defaultProps = {
   step: 1,
   showSideLabels: true,

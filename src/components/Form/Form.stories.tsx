@@ -1,12 +1,12 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Form } from './index';
-import { Input } from '../Input';
-import { InputPassword } from '../InputPassword';
+import Form from './index';
+import Input from '../Input';
+import InputPassword from '../InputPassword';
 import * as yup from 'yup';
-import { Button } from '../Button';
-import { Multiselect } from '../Multiselect';
-import { Select } from '../Select';
+import Button from '../Button';
+import Multiselect from '../Multiselect';
+import Select from '../Select';
 import { defaultTheme } from '../Theme';
 import pkg from './package.json';
 import FormDisabledSubmitButton from '../../storybook/preview/FormDisabledSubmitButton';
