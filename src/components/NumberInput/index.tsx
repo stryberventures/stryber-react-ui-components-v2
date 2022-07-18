@@ -16,7 +16,7 @@ export interface INumberInput extends Omit<IInput, 'value' | 'onChange'> {
   onChange?: (e: number) => void,
 }
 
-const NumberInput = (props: INumberInput) => {
+const NumberInput: React.FC<INumberInput> = (props) => {
   const classes = useStyles(props);
   const {
     quantityCounter = false,

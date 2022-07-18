@@ -6,7 +6,7 @@ import { IInputToggleBase } from '../InputToggleLayout/types';
 
 export interface IRadioButton extends IRadioBoxMarkProps, IInputToggleBase {}
 
-const RadioButton = (props: IRadioButton) => {
+const RadioButton: React.FC<IRadioButton> = (props) => {
   const { checked, errorMessage, onChange, onFocus } = useRadioButtonState(props);
   const { size, disabled, color, label, children, ...rest } = props;
 

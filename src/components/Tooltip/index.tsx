@@ -15,7 +15,7 @@ export interface ITooltip extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode,
 }
 
-const Tooltip = (props: ITooltip) => {
+const Tooltip: React.FC<ITooltip> = (props) => {
   const {
     version = 'light',
     position = 'top',

@@ -18,7 +18,7 @@ export interface IStyles {
   minLeft: string,
   maxLeft: string,
 }
-const Slider:React.FC<ISlider> = (props) => {
+const Slider: React.FC<ISlider> = (props) => {
   const {
     min = 0,
     max = 100,
