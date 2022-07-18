@@ -14,7 +14,7 @@ export interface IButton extends Omit<React.ButtonHTMLAttributes<HTMLButtonEleme
   iconRight?: React.FC<{className?: string}>,
 }
 
-export const Button = (props: IButton) => {
+const Button: React.FC<IButton> = (props) => {
   const {
     size = 'medium',
     shape = 'round',
@@ -44,9 +44,7 @@ export const Button = (props: IButton) => {
   );
 }
 
-export default {
-  Button,
-}
+export default Button;
 
 Button.defaultProps = {
   color: 'primary',

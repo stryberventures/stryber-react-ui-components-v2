@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
-import { Input } from '../../../components/Input';
-import { Form } from '../../../components/Form';
+import Input from '../../../components/Input';
+import Form from '../../../components/Form';
 import * as yup from 'yup';
 import { IFormRef } from '../../../components/Form/types';
 import { defaultTheme } from '../../../components/Theme';

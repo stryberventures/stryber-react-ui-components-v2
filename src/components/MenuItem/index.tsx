@@ -6,7 +6,7 @@ interface IMenuItem extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode,
 }
 
-export const MenuItem = (props: IMenuItem) => {
+const MenuItem = (props: IMenuItem) => {
   const { children, className, ...rest } = props;
   const classes = useStyles();
 
@@ -16,3 +16,5 @@ export const MenuItem = (props: IMenuItem) => {
     </div>
   );
 }
+
+export default MenuItem;

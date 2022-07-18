@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom'
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react'
-import { InputPassword } from './index'
+import InputPassword from './index'
 
 it('should be rendered with label', () => {
   const label = 'Test input password'

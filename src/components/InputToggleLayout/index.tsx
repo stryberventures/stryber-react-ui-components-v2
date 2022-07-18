@@ -4,7 +4,7 @@ import useStyles from './styles';
 import { IInputToggle } from './types';
 import { ErrorMessage } from '../ErrorMessage';
 
-export const InputToggleLayout = (props: IInputToggle) => {
+const InputToggleLayout: React.FC<IInputToggle> = (props) => {
   const {
     name = '', size = 'medium', className, type, checked, disabled, value, children, title,
     control, onChange, onFocus, errorMessage, placeholder, label, controlled, ...rest
@@ -57,3 +57,5 @@ InputToggleLayout.defaultProps = {
   checked: false,
   disabled: false,
 }
+
+export default InputToggleLayout;

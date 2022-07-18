@@ -21,7 +21,7 @@ const defaultFormContextValues: IFormContext = {
 export const FormContext: React.Context<IFormContext> =
   React.createContext(defaultFormContextValues);
 
-export const Form = forwardRef((props: IFormProps, ref: ForwardedRef<IFormRef>) => {
+const Form = forwardRef((props: IFormProps, ref: ForwardedRef<IFormRef>) => {
   const {
     children,
     onSubmit,
@@ -200,7 +200,4 @@ export const useFormContext = (fieldName = 'unnamed') => {
   };
 };
 
-export default {
-  Form,
-  useFormContext,
-}
+export default Form;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { TextLink } from './index';
+import TextLink from './index';
 import LeftArrow from '../../storybook/icons/leftArrow';
 import RightArrow from '../../storybook/icons/rightArrow';
 import pkg from './package.json';

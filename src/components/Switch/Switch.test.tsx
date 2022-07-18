@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom'
 import * as React from 'react'
 import { fireEvent, render, screen } from '@testing-library/react'
-import { Switch } from './index'
+import Switch from './index'
 import LeftArrow from '../../storybook/icons/leftArrow';
 
 it('should be rendered', () => {

@@ -1,12 +1,12 @@
 import React from 'react';
-import { InputToggleLayout } from '../InputToggleLayout';
+import InputToggleLayout from '../InputToggleLayout';
 import { RadioBoxMark, IRadioBoxMarkProps } from './RadioBoxMark';
 import { useRadioButtonState } from './hooks';
 import { IInputToggleBase } from '../InputToggleLayout/types';
 
 export interface IRadioButton extends IRadioBoxMarkProps, IInputToggleBase {}
 
-export const RadioButton = (props: IRadioButton) => {
+const RadioButton = (props: IRadioButton) => {
   const { checked, errorMessage, onChange, onFocus } = useRadioButtonState(props);
   const { size, disabled, color, label, children, ...rest } = props;
 
@@ -34,3 +34,5 @@ export const RadioButton = (props: IRadioButton) => {
     </InputToggleLayout>
   );
 }
+
+export default RadioButton;

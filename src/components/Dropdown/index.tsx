@@ -1,6 +1,6 @@
 import React, { ForwardedRef, forwardRef } from 'react';
 import useStyles from './styles';
-import { Input } from '../Input';
+import Input from '../Input';
 import classNames from 'classnames';
 import ArrowDownIcon from '../Icons/ArrowDownIcon';
 import { useDropdown } from './hooks';
@@ -28,7 +28,7 @@ export interface IDropdownRef {
   close: () => void,
 }
 
-export const Dropdown = forwardRef((props: IDropdown, ref: ForwardedRef<IDropdownRef>) => {
+const Dropdown = forwardRef((props: IDropdown, ref: ForwardedRef<IDropdownRef>) => {
   const {
     children, label, placeholder, value, className, color, name,
     hint, error, disabled, onClick, onToggle, contentClassName, ...rest
@@ -76,3 +76,5 @@ export const Dropdown = forwardRef((props: IDropdown, ref: ForwardedRef<IDropdow
 });
 
 Dropdown.displayName = 'Dropdown';
+
+export default Dropdown;

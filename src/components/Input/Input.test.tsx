@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom'
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react'
-import { Input } from './index'
+import Input from './index'
 import LeftArrow from '../../storybook/icons/leftArrow';
 
 it('should be rendered with label', () => {

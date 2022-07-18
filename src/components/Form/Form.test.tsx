@@ -1,9 +1,9 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { fireEvent, render, screen, act } from '@testing-library/react';
-import { Form } from './index';
+import Form from './index';
 import { Input } from '../Input';
-import { Button } from '../Button';
+import Button from '../Button';
 import { IFormProps } from './types';
 import { unmountComponentAtNode, render as ReactDomRender } from 'react-dom';
 import * as yup from 'yup';

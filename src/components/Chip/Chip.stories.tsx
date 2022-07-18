@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Chip } from './index';
+import Chip from './index';
 import CarIcon from '../../storybook/icons/Car';
 import pkg from './package.json';
 

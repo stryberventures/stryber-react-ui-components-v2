@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Input } from '../../../components/Input';
-import { Button } from '../../../components/Button';
-import { Form } from '../../../components/Form';
+import Input from '../../../components/Input';
+import Button from '../../../components/Button';
+import Form from '../../../components/Form';
 import * as yup from 'yup';
 import { defaultTheme } from '../../../components/Theme';
 
