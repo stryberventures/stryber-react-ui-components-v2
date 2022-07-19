@@ -26,7 +26,7 @@ export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
   fullWidth?: boolean,
 }
 
-const Input = (props: IInput) => {
+const Input: React.FC<IInput> = (props) => {
   const classes = useStyles(props);
   const {
     label, className, hint, prefix, prefixClassName, errorClassName, hintClassName,
