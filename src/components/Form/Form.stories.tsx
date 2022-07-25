@@ -7,6 +7,7 @@ import * as yup from 'yup';
 import Button from '../Button';
 import Multiselect from '../Multiselect';
 import Select from '../Select';
+import Combobox from '../Combobox';
 import { defaultTheme } from '../Theme';
 import pkg from './package.json';
 import FormDisabledSubmitButton from '../../storybook/preview/FormDisabledSubmitButton';
@@ -50,6 +51,13 @@ const FormContent = ({ title, text, showSelects = true }: {title: string, showSe
           placeholder="Select at least one value"
         />
         <h1> </h1>
+        <Combobox
+          name="combobox"
+          options={[{ label: 'One', value: 1 }, { label: 'Two', value: 2 }, { label: 'Three', value: 3 }]}
+          label="Combobox"
+          placeholder="Select a value"
+        />
+        <h1> </h1>
       </>
     )}
     <div style={{ display: 'flex', gap: 20 }}>
@@ -69,6 +77,7 @@ Validation.args = {
     email: yup.string().email().required(),
     password: yup.string().required(),
     select: yup.string().required(),
+    combobox: yup.string().required(),
     multiselect: yup.array().required().min(1),
   }),
 };
@@ -84,6 +93,7 @@ InitialValues.args = {
     password: 'TGBwfe23',
     select: 'Two',
     multiselect: ['Two', 'Three'],
+    combobox: 1,
   }
 };
 
