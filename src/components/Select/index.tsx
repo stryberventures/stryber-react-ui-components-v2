@@ -3,7 +3,6 @@ import useStyles from './styles';
 import Dropdown, { IDropdownBase } from '../Dropdown';
 import MenuItem from '../MenuItem';
 import { useSelect } from './hooks';
-import classNames from 'classnames';
 
 export interface ISelect extends Omit<IDropdownBase, 'onChange'> {
   options: string[],
@@ -32,9 +31,7 @@ const Select: React.FC<ISelect> = (props) => {
       {options.map((option) => (
         <MenuItem
           key={option}
-          className={classNames(classes.item, {
-            [classes.selected]: value === option,
-          })}
+          selected={value === option}
           onClick={() => onOptionClick(option)}
         >
           {option}

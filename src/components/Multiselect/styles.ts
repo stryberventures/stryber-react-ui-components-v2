@@ -17,7 +17,7 @@ export default createUseStyles({
     },
     '& label': {
       alignItems: 'center',
-      height: 40,
+      height: 33,
     }
   },
 });

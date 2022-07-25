@@ -1,6 +1,6 @@
 {
   "name": "@stryberventures/gaia-react.dropdown",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "peerDependencies": {
     "classnames": ">=2.0.0",
     "react": ">=17.0.0",
