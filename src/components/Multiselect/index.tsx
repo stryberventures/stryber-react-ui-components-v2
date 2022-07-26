@@ -35,6 +35,7 @@ const Multiselect: React.FC<IMultiselect> = (props) => {
             name={option}
             controlled={true}
             color={color}
+            size="small"
             checked={selectedOptions.indexOf(option) >= 0}
             onChange={onCheckboxChange}
           />
