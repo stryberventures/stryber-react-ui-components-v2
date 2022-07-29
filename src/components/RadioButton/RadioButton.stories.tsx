@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { RadioButton } from './index';
+import RadioButton from './index';
 import pkg from './package.json';
 
 export default {

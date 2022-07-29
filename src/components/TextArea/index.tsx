@@ -15,7 +15,7 @@ export interface ITextArea extends React.TextareaHTMLAttributes<HTMLTextAreaElem
   maxLength?: number,
 }
 
-export const TextArea = (props: ITextArea) => {
+const TextArea: React.FC<ITextArea> = (props) => {
   const {
     value = '',
     label,
@@ -70,6 +70,4 @@ TextArea.defaultProps = {
   color: 'primary',
 }
 
-export default {
-  TextArea,
-}
+export default TextArea;

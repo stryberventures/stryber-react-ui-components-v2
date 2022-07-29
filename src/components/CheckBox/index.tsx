@@ -1,12 +1,12 @@
 import React from 'react';
-import { InputToggleLayout } from '../InputToggleLayout';
+import InputToggleLayout from '../InputToggleLayout';
 import { CheckBoxMark, ICheckBoxMark } from './CheckBoxMark';
 import { IInputToggleBaseControlled } from '../InputToggleLayout/types';
 import { useCheckedState } from '../InputToggleLayout/hooks';
 
 export interface ICheckBox extends ICheckBoxMark, IInputToggleBaseControlled {}
 
-export const CheckBox = (props: ICheckBox) => {
+const CheckBox:React.FC<ICheckBox> = (props) => {
   const { checked, errorMessage, onChange, onFocus } = useCheckedState(props);
   const { size, shape, disabled, label, color, children, ...rest } = props;
 
@@ -35,3 +35,5 @@ export const CheckBox = (props: ICheckBox) => {
     </InputToggleLayout>
   );
 }
+
+export default CheckBox;

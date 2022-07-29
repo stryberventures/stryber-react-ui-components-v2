@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom'
 import * as React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
-import { Select } from './index'
+import Select from './index'
 
 const options = ['One', 'Two', 'Three'];
 
@@ -46,4 +46,13 @@ it('should hide the content after second click', () => {
   fireEvent.click(select);
   fireEvent.click(select);
   expect(screen.queryByText(options[0])).not.toBeInTheDocument();
+});
+
+it('should display selected option', () => {
+  render(<Select label="Label" options={options}/>);
+  const select = screen.getByRole('textbox') as HTMLInputElement;
+  fireEvent.click(select);
+  const item = screen.getByText(options[0]);
+  fireEvent.click(item);
+  expect(select.value).toBe(options[0]);
 });

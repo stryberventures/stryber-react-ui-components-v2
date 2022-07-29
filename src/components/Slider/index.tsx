@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import classnames from 'classnames';
 import useStyles from './styles';
-import { Input, IInput } from '../Input';
+import Input, { IInput } from '../Input';
 import { useFormContext } from '../Form';
 
 export interface ISlider extends IInput {
@@ -290,6 +290,7 @@ export const Slider = (props: ISlider) => {
 };
 
 export default Slider;
+
 Slider.defaultProps = {
   color: 'primary',
 }

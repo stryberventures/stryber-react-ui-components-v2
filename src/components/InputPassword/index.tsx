@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { IInput, Input } from '../Input'
+import Input, { IInput } from '../Input'
 import { EyeIcon } from './EyeIcon';
-import { Chip } from '../Chip';
+import Chip from '../Chip';
 import useStyles from './styles';
 import { IValidationItemProps, usePasswordValidation } from './hooks';
 import CheckBoxIcon from '../Icons/CheckBoxIcon';
@@ -12,7 +12,7 @@ export interface IInputPassword extends Omit<IInput, 'endAdornment'> {
   onValidationChange?: (valid: boolean) => void;
 }
 
-export const InputPassword = (props: IInputPassword) => {
+const InputPassword: React.FC<IInputPassword> = (props) => {
   const { disabled, validationSchema, onValidationChange, value, className, ...rest } = props;
   const { onInputChange, schema } = usePasswordValidation({ validationSchema, value, onValidationChange });
   const [visible, setVisible] = useState(false);
@@ -53,6 +53,7 @@ export const InputPassword = (props: IInputPassword) => {
         </div>
       )}
     </div>
-
   );
 }
+
+export default InputPassword;

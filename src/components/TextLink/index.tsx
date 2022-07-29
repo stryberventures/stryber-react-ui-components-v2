@@ -11,7 +11,7 @@ export interface ITextLink extends React.DetailedHTMLProps<React.AnchorHTMLAttri
   className?: string,
 }
 
-export const TextLink = (props: ITextLink) => {
+const TextLink: React.FC<ITextLink> = (props) => {
   const { text, disabled, iconLeft, iconRight, className, ...rest } = props;
   const classes = useStyles(props);
 
@@ -29,3 +29,5 @@ export const TextLink = (props: ITextLink) => {
 TextLink.defaultProps = {
   color: 'primary',
 }
+
+export default TextLink;

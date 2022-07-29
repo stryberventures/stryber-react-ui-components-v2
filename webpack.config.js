@@ -1,5 +1,6 @@
 const path = require('path');
 const { entry, externals } = require('./preBuild');
+const { webpackBuildDir } = require('./buildConstants');
 
 module.exports = {
   entry,
@@ -20,7 +21,7 @@ module.exports = {
   output: {
     filename: '[name].js',
     libraryTarget: 'umd',
-    path: path.resolve(__dirname, 'dist/'),
+    path: path.resolve(__dirname, `${webpackBuildDir}/`),
     clean: true,
   },
 };

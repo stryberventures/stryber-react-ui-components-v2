@@ -1,6 +1,6 @@
 import React, { ForwardedRef, forwardRef } from 'react';
 import useStyles from './styles';
-import { Input } from '../Input';
+import Input from '../Input';
 import classNames from 'classnames';
 import ArrowDownIcon from '../Icons/ArrowDownIcon';
 import { useDropdown } from './hooks';
@@ -21,6 +21,8 @@ export interface IDropdown extends IDropdownBase {
   children: React.ReactNode,
   value?: string,
   contentClassName?: string,
+  inputReadOnly?: boolean,
+  onInputChange?: (e: React.BaseSyntheticEvent) => void,
 }
 
 export interface IDropdownRef {
@@ -28,10 +30,10 @@ export interface IDropdownRef {
   close: () => void,
 }
 
-export const Dropdown = forwardRef((props: IDropdown, ref: ForwardedRef<IDropdownRef>) => {
+const Dropdown = forwardRef((props: IDropdown, ref: ForwardedRef<IDropdownRef>) => {
   const {
-    children, label, placeholder, value, className, color, name,
-    hint, error, disabled, onClick, onToggle, contentClassName, ...rest
+    inputReadOnly = true, children, label, placeholder, value, className, color, name,
+    hint, error, disabled, onClick, onToggle, contentClassName, onInputChange, ...rest
   } = props;
   const classes = useStyles();
   const { open, onInputClick, onOverlayClick } = useDropdown(props, ref);
@@ -43,7 +45,7 @@ export const Dropdown = forwardRef((props: IDropdown, ref: ForwardedRef<IDropdow
     >
       {open && <div className={classes.overlay} onClick={onOverlayClick}/>}
       <Input
-        readOnly
+        readOnly={inputReadOnly}
         name={name}
         label={label}
         placeholder={placeholder}
@@ -54,6 +56,7 @@ export const Dropdown = forwardRef((props: IDropdown, ref: ForwardedRef<IDropdow
         controlled={true}
         hint={hint}
         errorMessage={error}
+        onChange={onInputChange}
         className={classNames(classes.input, { [classes.inputDisabled]: disabled })}
         endAdornment={(
           <div className={classNames(classes.toggleIcon, {
@@ -76,3 +79,5 @@ export const Dropdown = forwardRef((props: IDropdown, ref: ForwardedRef<IDropdow
 });
 
 Dropdown.displayName = 'Dropdown';
+
+export default Dropdown;

@@ -1,6 +1,6 @@
 import React from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
-import { Tooltip } from '../../../../components/Tooltip';
+import Tooltip from '../../../../components/Tooltip';
 import CopyIcon from '../CopyIcon';
 import useStyles from './styles';
 

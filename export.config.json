@@ -18,6 +18,7 @@
     "Select": "select",
     "Slider": "slider",
     "Multiselect": "multiselect",
+    "Combobox": "combobox",
     "InputToggleLayout": "input-toggle-layout"
   }
 }

@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom'
 import React from 'react';
 import { render, screen } from '@testing-library/react'
-import { Slider } from './index'
+import Slider from './index'
 
 it('should render min ,max, sliderVersion, step', () => {
   const min = 30

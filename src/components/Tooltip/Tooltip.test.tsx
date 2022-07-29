@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom'
 import * as React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
-import { Tooltip } from './index'
+import Tooltip from './index'
 
 it('should be rendered with title', () => {
   const children = 'Tooltip target';

@@ -1,8 +1,8 @@
 import React from 'react';
 import useStyles from './styles';
-import { Dropdown, IDropdownBase } from '../Dropdown';
-import { MenuItem } from '../MenuItem';
-import { CheckBox } from '../CheckBox';
+import Dropdown, { IDropdownBase } from '../Dropdown';
+import MenuItem from '../MenuItem';
+import CheckBox from '../CheckBox';
 import { useMultiselect } from './hooks';
 
 export interface IMultiselect extends Omit<IDropdownBase, 'onChange'> {
@@ -11,7 +11,7 @@ export interface IMultiselect extends Omit<IDropdownBase, 'onChange'> {
   onChange?: (values: string[]) => void;
 }
 
-export const Multiselect = (props: IMultiselect) => {
+const Multiselect: React.FC<IMultiselect> = (props) => {
   const { options, label, color, placeholder, onChange, onToggle, ...rest } = props;
   const { value, selectedOptions, error, onCheckboxChange, onDropdownToggle } = useMultiselect(props);
   const classes = useStyles();
@@ -35,6 +35,7 @@ export const Multiselect = (props: IMultiselect) => {
             name={option}
             controlled={true}
             color={color}
+            size="small"
             checked={selectedOptions.indexOf(option) >= 0}
             onChange={onCheckboxChange}
           />
@@ -43,3 +44,5 @@ export const Multiselect = (props: IMultiselect) => {
     </Dropdown>
   );
 }
+
+export default Multiselect;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Select } from './index';
+import Select from './index';
 import { buildExcludeArgTypes } from '../../storybook/utils';
 import pkg from './package.json';
 

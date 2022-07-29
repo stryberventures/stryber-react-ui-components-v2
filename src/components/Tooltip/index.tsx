@@ -15,7 +15,7 @@ export interface ITooltip extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode,
 }
 
-export const Tooltip = (props: ITooltip) => {
+const Tooltip: React.FC<ITooltip> = (props) => {
   const {
     version = 'light',
     position = 'top',
@@ -63,9 +63,7 @@ export const Tooltip = (props: ITooltip) => {
   );
 }
 
-export default {
-  Tooltip,
-}
+export default Tooltip;
 
 Tooltip.defaultProps = {
   version: 'light',

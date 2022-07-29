@@ -9,5 +9,8 @@ module.exports = {
     "@storybook/addon-interactions",
     "./addons/register.js"
   ],
-  "framework": "@storybook/react"
-}
+  "framework": "@storybook/react",
+  core: {
+    builder: "webpack5"
+  }
+};
