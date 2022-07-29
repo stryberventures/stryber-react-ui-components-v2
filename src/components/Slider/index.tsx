@@ -61,7 +61,7 @@ export const Slider = (props: ISlider) => {
   useEffect(() => {
     let data = [minVal, maxVal];
     if (minVal > maxVal) {
-      data = [maxVal, minVal]
+      data = [maxVal, minVal];
     }
     updateFormValue(name, range ? data : minVal, true);
     return () => {
