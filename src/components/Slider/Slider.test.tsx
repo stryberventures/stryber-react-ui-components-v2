@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom'
-import * as React from 'react'
+import React from 'react';
 import { render, screen } from '@testing-library/react'
 import { Slider } from './index'
 
@@ -19,22 +19,21 @@ it('should show sideLabels', () => {
 });
 
 it('should show thumbLabels', () => {
-  const thumbLabels = 'labels';
+  const thumbLabels = 'tooltip';
   render(<Slider thumbLabels={thumbLabels}/>);
   const label = screen.getByTestId('testThumbLabelID');
   expect(label).toBeInTheDocument();
 });
 
 it('should show thumbInputs', () => {
-  const thumbLabels = 'inputs';
+  const thumbLabels = 'input';
   render(<Slider thumbLabels={thumbLabels}/>);
   const label = screen.getByTestId('testThumbInputID');
   expect(label).toBeInTheDocument();
 });
 
 it('should show secondThumb', () => {
-  const sliderVersion = 'range';
-  render(<Slider sliderVersion={sliderVersion}/>);
+  render(<Slider rangeSlider={true}/>);
   const range = screen.getByTestId('testSecondInputID');
   expect(range).toBeInTheDocument();
 });
