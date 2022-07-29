@@ -65,4 +65,7 @@ export default createStyles((theme) => ({
       color: theme.primary.light,
     }
   },
+  prefix: {
+    marginRight: 4
+  }
 }));
