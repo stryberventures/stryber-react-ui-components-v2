@@ -147,34 +147,44 @@ export const Slider = (props: ISlider) => {
   const keyPress = (e: React.BaseSyntheticEvent) => {
     e.currentTarget.name === 'maxInput' ? onMaxSubmit(e) : onMinSubmit(e);
   }
-  const handleDrag = (e: any) => {
-    e.currentTarget.onpointermove = e.currentTarget.id === 'minThumb' ? moveMin : moveMax;
+
+  const handleDrag = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.currentTarget.id === 'minThumb') {
+      e.currentTarget.onpointermove = () => {
+        moveMin(e);
+      }
+    } else {
+      e.currentTarget.onpointermove = () => {
+        moveMax(e);
+      }
+    }
     e.currentTarget.setPointerCapture(e.pointerId);
   }
-  const moveMin = (value: any) => {
+  const moveMin = (value: React.MouseEvent<HTMLDivElement>) => {
     const [res, position] = checking(value);
     setPositionMin(position);
     setMinVal(res);
     setMinSize(res.toString().length * 13);
     setShowMin(true);
   }
-  const moveMax = (value: any) => {
+  const moveMax = (value: React.MouseEvent<HTMLDivElement>) => {
     const [res, position] = checking(value);
     setPositionMax(position);
     setMaxVal(res);
     setMaxSize(res.toString().length * 13);
     setShowMax(true);
   }
-  const checking = (e: any) => {
-    const parent = e.currentTarget.parentElement.getBoundingClientRect();
+  const checking = (e: React.MouseEvent<HTMLDivElement>) => {
+    const parent = e.currentTarget.parentElement!.getBoundingClientRect();
     const parentWidth = parent.width;
+    const id = (e.target as HTMLDivElement).id;
     let position = +e.clientX - parent.left - 15;
-
+  
     if (minDistance > 0) {
       const minDistancePX = (parentWidth - 30) / (max - min) * minDistance;
-      if (e.target.id === 'minThumb' && position > positionMax - minDistancePX) {
+      if (id === 'minThumb' && position > positionMax - minDistancePX) {
         position = positionMax - minDistancePX;
-      } else if (e.target.id === 'maxThumb' && position < positionMin + minDistancePX) {
+      } else if (id === 'maxThumb' && position < positionMin + minDistancePX) {
         position = positionMin + minDistancePX;
       }
     }
@@ -200,12 +210,12 @@ export const Slider = (props: ISlider) => {
     }
     return [res, position];
   }
-  const handleStopDrag = (e: any) => {
+  const handleStopDrag = (e: React.PointerEvent<HTMLDivElement>) => {
     e.currentTarget.onpointermove = null;
     e.currentTarget.releasePointerCapture(e.pointerId);
   }
-  const trackClick = (e: any) => {
-    const clickX = +e.clientX - e.currentTarget.parentElement.getBoundingClientRect().left;
+  const trackClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const clickX = +e.clientX - e.currentTarget.parentElement!.getBoundingClientRect().left;
     if (rangeSlider) {
       Math.abs(clickX - positionMin) < Math.abs(clickX - positionMax) ? moveMin(e) : moveMax(e);
     } else moveMin(e);
