@@ -242,7 +242,7 @@ export const Slider = (props: ISlider) => {
           )}
           {thumbLabels === 'input' && (
             <div data-testid="testThumbInputID"
-                 className={classnames(classes.thumbInput, { [classes.show]: showMin, [classes.error]: error })}>
+              className={classnames(classes.thumbInput, { [classes.show]: showMin, [classes.error]: error })}>
               <Input
                 key={minVal}
                 label=''
