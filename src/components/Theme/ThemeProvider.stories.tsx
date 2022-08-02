@@ -1,17 +1,17 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Button } from '../Button';
+import Button from '../Button';
 import { defaultTheme } from './defaultTheme';
-import { Input } from '../Input';
-import { CheckBox } from '../CheckBox';
-import { RadioButton } from '../RadioButton';
-import { TextLink } from '../TextLink';
+import Input from '../Input';
+import CheckBox from '../CheckBox';
+import RadioButton from '../RadioButton';
+import TextLink from '../TextLink';
 import LeftArrow from '../../storybook/icons/leftArrow';
-import { Dropdown } from '../Dropdown';
-import { Tooltip } from '../Tooltip'
-import { Multiselect } from '../Multiselect';
-import { Switch } from '../Switch';
-import { TextArea } from '../TextArea';
+import Dropdown from '../Dropdown';
+import Tooltip from '../Tooltip'
+import Multiselect from '../Multiselect';
+import Switch from '../Switch';
+import TextArea from '../TextArea';
 import { ThemeChooser } from '../../storybook/preview/ThemeChooser';
 import pkg from './package.json';
 
