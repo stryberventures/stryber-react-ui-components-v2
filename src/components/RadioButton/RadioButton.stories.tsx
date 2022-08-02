@@ -2,6 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import RadioButton from './index';
 import pkg from './package.json';
+import Form from '../Form';
 
 export default {
   title: 'Components/RadioButton',
@@ -11,53 +12,66 @@ export default {
   },
 } as ComponentMeta<typeof RadioButton>;
 
-const Template: ComponentStory<typeof RadioButton> = (args) => <RadioButton {...args} />;
+const RadioGroup: ComponentStory<typeof RadioButton> = (args) => (
+  <Form initialValues={{ radio: '1' }}>
+    <RadioButton {...args} value="1" name="radio" label="Option 1" />
+    <div style={{ marginTop: 10 }}/>
+    <RadioButton {...args} value="2" name="radio" label="Option 2" />
+  </Form>
+);
 
-export const Checked = Template.bind({});
-Checked.args = {
+const Radio: ComponentStory<typeof RadioButton> = (args) => <RadioButton {...args} />;
+
+export const Primary = RadioGroup.bind({});
+Primary.args = {
   size: 'medium',
-  checked: true,
-  label: 'Checked'
+  label: 'Primary'
 };
 
-export const Small = Template.bind({});
+export const Secondary = RadioGroup.bind({});
+Secondary.args = {
+  size: 'medium',
+  label: 'Secondary',
+  color: 'secondary',
+};
+
+export const Small = RadioGroup.bind({});
 Small.args = {
   size: 'small',
   label: 'Small'
 };
 
-export const Medium = Template.bind({});
+export const Medium = RadioGroup.bind({});
 Medium.args = {
   size: 'medium',
   label: 'Medium',
 };
 
-export const Disabled = Template.bind({});
+export const Disabled = RadioGroup.bind({});
 Disabled.args = {
   size: 'medium',
   disabled: true,
-  checked: true,
   label: 'Disabled',
 };
 
-export const Title = Template.bind({});
+export const Title = Radio.bind({});
 Title.args = {
   title: 'Remember me',
 };
 
-export const Error = Template.bind({});
+export const Error = Radio.bind({});
 Error.args = {
   label: 'Remember me',
   errorMessage: 'This is a error message'
 };
 
-export const TitleAndLabel = Template.bind({});
+export const TitleAndLabel = Radio.bind({});
 TitleAndLabel.args = {
   title: 'Remember me',
   label: 'Save my login details for next time',
 };
 
-export const CustomContent = Template.bind({});
+export const CustomContent = Radio.bind({});
 CustomContent.args = {
   children: (
     <div>Check <a href="https://google.com">terms</a> and <a href="https://google.com">conditions</a></div>
