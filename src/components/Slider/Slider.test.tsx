@@ -1,12 +1,12 @@
 import '@testing-library/jest-dom'
-import * as React from 'react'
+import React from 'react';
 import { render, screen } from '@testing-library/react'
 import Slider from './index'
 
 it('should render min ,max, sliderVersion, step', () => {
   const min = 30
   const max = 50
-  render(<Slider thumbLabels='none' min={min} max={max}/>)
+  render(<Slider min={min} max={max}/>)
   expect(screen.queryByText(min)).toBeInTheDocument();
   expect(screen.queryByText(max)).toBeInTheDocument();
 });
@@ -19,22 +19,21 @@ it('should show sideLabels', () => {
 });
 
 it('should show thumbLabels', () => {
-  const thumbLabels = 'labels';
+  const thumbLabels = 'tooltip';
   render(<Slider thumbLabels={thumbLabels}/>);
   const label = screen.getByTestId('testThumbLabelID');
   expect(label).toBeInTheDocument();
 });
 
 it('should show thumbInputs', () => {
-  const thumbLabels = 'inputs';
+  const thumbLabels = 'input';
   render(<Slider thumbLabels={thumbLabels}/>);
   const label = screen.getByTestId('testThumbInputID');
   expect(label).toBeInTheDocument();
 });
 
 it('should show secondThumb', () => {
-  const sliderVersion = 'range';
-  render(<Slider sliderVersion={sliderVersion}/>);
+  render(<Slider rangeSlider={true}/>);
   const range = screen.getByTestId('testSecondInputID');
   expect(range).toBeInTheDocument();
 });

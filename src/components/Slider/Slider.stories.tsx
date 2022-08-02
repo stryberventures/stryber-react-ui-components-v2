@@ -15,7 +15,8 @@ const Template: ComponentStory<typeof Slider> = (args) => <Slider {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  sliderVersion: 'basic'
+  min: 0,
+  max: 10,
 };
 Default.decorators = [
   (Story) => (
@@ -25,9 +26,23 @@ Default.decorators = [
   ),
 ];
 
+export const DefaultInputs = Template.bind({});
+DefaultInputs.args = {
+  min: 0,
+  max: 10,
+  thumbLabels: 'input'
+};
+DefaultInputs.decorators = [
+  (Story) => (
+    <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+      <Story />
+    </div>
+  ),
+];
+
 export const Range = Template.bind({});
 Range.args = {
-  sliderVersion: 'range'
+  rangeSlider: true,
 };
 Range.decorators = [
   (Story) => (
@@ -52,11 +67,39 @@ CustomStep.decorators = [
 
 export const RangeInputs = Template.bind({});
 RangeInputs.args = {
-  sliderVersion: 'range',
+  rangeSlider: true,
   step: 2,
-  thumbLabels: 'inputs'
+  thumbLabels: 'input'
 };
 RangeInputs.decorators = [
+  (Story) => (
+    <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+      <Story />
+    </div>
+  ),
+];
+export const RangeMinDistance = Template.bind({});
+RangeMinDistance.args = {
+  minValue: 6,
+  maxValue: 10,
+  rangeSlider: true,
+  minDistance: 2,
+};
+RangeMinDistance.decorators = [
+  (Story) => (
+    <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+      <Story />
+    </div>
+  ),
+];
+
+export const StepDotsIndicator = Template.bind({});
+StepDotsIndicator.args = {
+  min: 0,
+  max: 10,
+  showStepMarks: true
+};
+StepDotsIndicator.decorators = [
   (Story) => (
     <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
       <Story />
