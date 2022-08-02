@@ -6,7 +6,7 @@ import Slider from './index'
 it('should render min ,max, sliderVersion, step', () => {
   const min = 30
   const max = 50
-  render(<Slider thumbLabels='none' min={min} max={max}/>)
+  render(<Slider min={min} max={max}/>)
   expect(screen.queryByText(min)).toBeInTheDocument();
   expect(screen.queryByText(max)).toBeInTheDocument();
 });
