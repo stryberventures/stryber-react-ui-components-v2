@@ -13,9 +13,15 @@ export default {
 
 const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
 
-export const Default = Template.bind({});
-Default.args = {
-  label: 'Email',
+export const Primary = Template.bind({});
+Primary.args = {
+  label: 'Color primary',
+  placeholder: 'olivia@example.com',
+};
+
+export const Secondary = Template.bind({});
+Secondary.args = {
+  label: 'Color secondary',
   placeholder: 'olivia@example.com',
 };
 
@@ -55,6 +61,12 @@ ReadOnly.args = {
   readOnly: true,
 };
 
+export const FullWidth = Template.bind({});
+FullWidth.args = {
+  label: 'Fits parent width',
+  placeholder: 'olivia@example.com',
+  fullWidth: true,
+};
 
 export const EndAdornment = Template.bind({});
 EndAdornment.args = {
