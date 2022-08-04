@@ -13,15 +13,16 @@ export default {
 
 const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const ColorPrimary = Template.bind({});
+ColorPrimary.args = {
   label: 'Color primary',
   placeholder: 'olivia@example.com',
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
+export const ColorSecondary = Template.bind({});
+ColorSecondary.args = {
   label: 'Color secondary',
+  color: 'secondary',
   placeholder: 'olivia@example.com',
 };
 

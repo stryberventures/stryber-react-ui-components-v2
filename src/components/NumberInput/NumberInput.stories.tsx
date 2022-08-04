@@ -2,6 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import NumberInput from './index';
 import pkg from './package.json';
+import './style.css';
 
 export default {
   title: 'Components/NumberInput',
@@ -13,14 +14,36 @@ export default {
 
 const Template: ComponentStory<typeof NumberInput> = (args) => <NumberInput {...args} />;
 
-export const Default = Template.bind({});
-Default.args = {
+export const ColorPrimary = Template.bind({});
+ColorPrimary.args = {
+  label: 'Color primary',
+  placeholder: '0',
+};
+
+export const ColorSecondary = Template.bind({});
+ColorSecondary.args = {
+  label: 'Color secondary',
+  color: 'secondary',
+  placeholder: '0',
+};
+
+export const FullWidth = Template.bind({});
+FullWidth.args = {
+  label: 'Full parent width',
+  placeholder: '0',
+  fullWidth: true,
+};
+
+export const PrefixWithClass = Template.bind({});
+PrefixWithClass.args = {
   label: 'Min',
   placeholder: '0',
   prefix: '$',
+  prefixClassName: 'prefix',
   fullWidth: true,
 };
-Default.decorators = [
+
+PrefixWithClass.decorators = [
   (Story) => (
     <div style={{ maxWidth: '102px' }}>
       <Story />
