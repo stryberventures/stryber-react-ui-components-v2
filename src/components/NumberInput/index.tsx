@@ -61,8 +61,7 @@ const NumberInput: React.FC<INumberInput> = (props) => {
         controlled={true}
         className={classes.numberInput}
         value={isNaN(+initialValue) ? undefined : initialValue}
-        onChange={(e) => handleChange(e.target.value)}
-        onBlur={(e) => checkValue(+e.target.value)}
+        onChange={(e) => checkValue(e.target.value)}
         errorMessage={error}
         endAdornment={(
           quantityCounter && (
