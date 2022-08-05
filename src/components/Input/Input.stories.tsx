@@ -2,6 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Input from './index';
 import pkg from './package.json';
+import { buildExcludeArgTypes } from '../../storybook/utils';
 
 export default {
   title: 'Components/Input',
@@ -9,6 +10,8 @@ export default {
   parameters: {
     pkg,
   },
+  argTypes: buildExcludeArgTypes(['name', 'controlled', 'onChange', 'endAdornment',
+    'onBlur', 'prefixClassName', 'contentClassName', 'hintClassName', 'errorClassName']),
 } as ComponentMeta<typeof Input>;
 
 const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;

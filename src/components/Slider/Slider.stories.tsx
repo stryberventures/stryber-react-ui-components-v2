@@ -2,6 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Slider from './index';
 import pkg from './package.json';
+import { buildExcludeArgTypes } from '../../storybook/utils';
 
 export default {
   title: 'Components/Slider',
@@ -9,6 +10,9 @@ export default {
   parameters: {
     pkg,
   },
+  argTypes: buildExcludeArgTypes(['onChange', 'label', 'placeholder', 'disabled', 'hint', 'errorMessage',
+    'value', 'name', 'controlled', 'onBlur', 'prefix', 'prefixClassName', 'errorClassName', 'hintClassName'
+    , 'endAdornment', 'mask', 'fullWidth']),
 } as ComponentMeta<typeof Slider>;
 
 const Template: ComponentStory<typeof Slider> = (args) => <Slider {...args} />;

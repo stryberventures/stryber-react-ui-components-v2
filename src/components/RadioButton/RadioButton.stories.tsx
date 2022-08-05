@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import RadioButton from './index';
 import pkg from './package.json';
 import Form from '../Form';
+import { buildExcludeArgTypes } from '../../storybook/utils';
 
 export default {
   title: 'Components/RadioButton',
@@ -10,6 +11,7 @@ export default {
   parameters: {
     pkg,
   },
+  argTypes: buildExcludeArgTypes(['name', 'className', 'value', 'onChange', 'onFocus']),
 } as ComponentMeta<typeof RadioButton>;
 
 const RadioGroup: ComponentStory<typeof RadioButton> = (args) => (

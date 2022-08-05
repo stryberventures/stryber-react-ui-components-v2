@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import NumberInput from './index';
 import pkg from './package.json';
 import './style.css';
+import { buildExcludeArgTypes } from '../../storybook/utils';
 
 export default {
   title: 'Components/NumberInput',
@@ -10,6 +11,8 @@ export default {
   parameters: {
     pkg,
   },
+  argTypes: buildExcludeArgTypes(['name', 'onChange', 'onBlur', 'controlled', 'prefixClassName',
+    'errorClassName', 'hintClassName', 'endAdornment', 'mask']),
 } as ComponentMeta<typeof NumberInput>;
 
 const Template: ComponentStory<typeof NumberInput> = (args) => <NumberInput {...args} />;

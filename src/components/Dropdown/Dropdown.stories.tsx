@@ -2,6 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Dropdown from './index';
 import pkg from './package.json';
+import { buildExcludeArgTypes } from '../../storybook/utils';
 
 export default {
   title: 'Components/Dropdown',
@@ -9,6 +10,8 @@ export default {
   parameters: {
     pkg,
   },
+  argTypes: buildExcludeArgTypes(['name', 'onToggle', 'className',
+    'inputReadOnly', 'onInputChange', 'contentClassName']),
 } as ComponentMeta<typeof Dropdown>;
 
 const Template: ComponentStory<typeof Dropdown> = (args) => <Dropdown {...args} />;

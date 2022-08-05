@@ -2,6 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import CheckBox from './index';
 import pkg from './package.json';
+import { buildExcludeArgTypes } from '../../storybook/utils';
 
 export default {
   title: 'Components/CheckBox',
@@ -9,13 +10,7 @@ export default {
   parameters: {
     pkg,
   },
-  argTypes: {
-    onFocus: {
-      table: {
-        disable: true,
-      },
-    },
-  },
+  argTypes: buildExcludeArgTypes(['onFocus', 'controlled', 'className', 'onChange']),
 } as ComponentMeta<typeof CheckBox>;
 
 const Template: ComponentStory<typeof CheckBox> = (args) => <CheckBox {...args} />;

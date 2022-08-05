@@ -2,6 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Multiselect from './index';
 import pkg from './package.json';
+import { buildExcludeArgTypes } from '../../storybook/utils';
 
 export default {
   title: 'Components/Multiselect',
@@ -9,6 +10,7 @@ export default {
   parameters: {
     pkg,
   },
+  argTypes: buildExcludeArgTypes(['name', 'onChange', 'className', 'onToggle']),
 } as ComponentMeta<typeof Multiselect>;
 
 const Template: ComponentStory<typeof Multiselect> = (args) =>
