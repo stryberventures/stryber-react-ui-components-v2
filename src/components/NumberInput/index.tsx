@@ -60,7 +60,6 @@ const NumberInput: React.FC<INumberInput> = (props) => {
         name={name}
         controlled={true}
         className={classes.numberInput}
-        prefixClassName={classes.prefix}
         value={isNaN(+initialValue) ? undefined : initialValue}
         onChange={(e) => checkValue(e.target.value)}
         errorMessage={error}
