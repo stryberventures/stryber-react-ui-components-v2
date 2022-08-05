@@ -11,7 +11,7 @@ it('should render label', () => {
   expect(screen.queryByPlaceholderText(placeholder)).toBeInTheDocument();
 });
 
-it('should render prefix', () => {
+it('should show prefix', () => {
   const prefix = 'prefix'
   render(<NumberInput prefix={prefix}/>)
   expect(screen.queryByText(prefix)).toBeInTheDocument();
