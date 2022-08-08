@@ -4,6 +4,7 @@ import TextLink from './index';
 import LeftArrow from '../../storybook/icons/leftArrow';
 import RightArrow from '../../storybook/icons/rightArrow';
 import pkg from './package.json';
+import { buildExcludeArgTypes } from '../../storybook/utils';
 
 export default {
   title: 'Components/TextLink',
@@ -11,6 +12,7 @@ export default {
   parameters: {
     pkg,
   },
+  argTypes: buildExcludeArgTypes(['iconLeft', 'iconRight', 'className']),
 } as ComponentMeta<typeof TextLink>;
 
 const Template: ComponentStory<typeof TextLink> = (args) => <TextLink {...args} />;

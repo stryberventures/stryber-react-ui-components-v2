@@ -2,6 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Switch from './index';
 import pkg from './package.json';
+import { buildExcludeArgTypes } from '../../storybook/utils';
 
 export default {
   title: 'Components/Switch',
@@ -9,6 +10,7 @@ export default {
   parameters: {
     pkg,
   },
+  argTypes: buildExcludeArgTypes(['name', 'value', 'className', 'onFocus', 'onChange', 'controlled']),
 } as ComponentMeta<typeof Switch>;
 
 const Template: ComponentStory<typeof Switch> = (args) => <Switch {...args} />;

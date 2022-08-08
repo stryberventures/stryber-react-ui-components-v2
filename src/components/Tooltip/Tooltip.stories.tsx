@@ -2,6 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Tooltip from './index';
 import pkg from './package.json';
+import { buildExcludeArgTypes } from '../../storybook/utils';
 
 export default {
   title: 'Components/Tooltip',
@@ -9,6 +10,7 @@ export default {
   parameters: {
     pkg,
   },
+  argTypes: buildExcludeArgTypes(['visible']),
 } as ComponentMeta<typeof Tooltip>;
 
 const Template: ComponentStory<typeof Tooltip> = (args) => <Tooltip {...args} />;

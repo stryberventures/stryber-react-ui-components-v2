@@ -11,6 +11,12 @@ it('should render label', () => {
   expect(screen.queryByPlaceholderText(placeholder)).toBeInTheDocument();
 });
 
+it('should show prefix', () => {
+  const prefix = 'prefix'
+  render(<NumberInput prefix={prefix}/>)
+  expect(screen.queryByText(prefix)).toBeInTheDocument();
+});
+
 it('should show hint', () => {
   const hint = 'Hint message';
   render(<NumberInput hint={hint}/>)

@@ -27,6 +27,7 @@ const NumberInput: React.FC<INumberInput> = (props) => {
     value = '',
     errorMessage,
     onChange,
+    prefix,
     ...rest
   } = props;
   const { updateFormValue, fieldValue, fieldError } = useFormContext(name);
@@ -63,6 +64,7 @@ const NumberInput: React.FC<INumberInput> = (props) => {
         value={isNaN(+initialValue) ? undefined : initialValue}
         onChange={(e) => checkValue(e.target.value)}
         errorMessage={error}
+        prefix={prefix}
         endAdornment={(
           quantityCounter && (
             <div data-testid="testContainer" className={classes.btnsContainer}>

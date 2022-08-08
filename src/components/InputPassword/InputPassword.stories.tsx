@@ -10,8 +10,8 @@ export default {
   parameters: {
     pkg,
   },
-  argTypes: buildExcludeArgTypes(['value', 'name', 'controlled', 'onChange',
-    'onBlur', 'onValidationChange']),
+  argTypes: buildExcludeArgTypes(['value', 'name', 'controlled', 'onChange', 'mask',
+    'onBlur', 'onValidationChange', 'validationSchema', 'prefixClassName', 'errorClassName', 'hintClassName']),
 } as ComponentMeta<typeof InputPassword>;
 
 const Template: ComponentStory<typeof InputPassword> = (args) =>
