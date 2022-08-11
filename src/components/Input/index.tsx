@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import useStyles from './styles';
 import { ErrorMessage } from '../ErrorMessage';
 import { HintMessage } from '../HintMessage';
@@ -41,9 +41,12 @@ const Input: React.FC<IInput> = (props) => {
     onChange,
     onBlur
   } = useInput(rest);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   return (
-    <div className={classNames(classes.root,{ [classes.fullWidth]: fullWidth }, className)}>
+    <div className={classNames(classes.root, {
+      [classes.fullWidth]: fullWidth
+    }, className)}>
       <div
         onClick={onClick}
         className={classNames(classes.inputContainer, {
@@ -53,13 +56,19 @@ const Input: React.FC<IInput> = (props) => {
         })}
       >
         <div className={classes.inputArea}>
-          <div className={classNames(classes.label, { [classes.textDisabled]: disabled })}>
-            {label}
-          </div>
+          {label && (
+            <div
+              onClick={() => {inputRef.current?.focus()}}
+              className={classNames(classes.label, { [classes.textDisabled]: disabled })}
+            >
+              {label}
+            </div>
+          )}
           {prefix && <div className={classNames(classes.prefix, prefixClassName)}>{prefix}</div>}
           <input
             {...inputProps}
             name={name}
+            ref={inputRef}
             value={value}
             className={classNames(classes.input, {
               [classes.disabled]: disabled,

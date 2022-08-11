@@ -22,10 +22,11 @@ const Combobox: React.FC<ICombobox> = (props) => {
     label,
     noOptionsFoundText = 'No options found',
     onChange,
+    options,
     ...rest
   } = props;
   const {
-    inputValue, dropdownRef, onInputChange, onOptionClick, onDropdownToggle, options,
+    inputValue, dropdownRef, onInputChange, onOptionClick, onDropdownToggle, filteredOptions,
   } = useCombobox(props);
   const classes = useStyles();
 
@@ -42,12 +43,12 @@ const Combobox: React.FC<ICombobox> = (props) => {
       placeholder={placeholder}
       onToggle={onDropdownToggle}
     >
-      {!options.length && (
+      {!filteredOptions.length && (
         <MenuItem readOnly>
           {noOptionsFoundText}
         </MenuItem>
       )}
-      {options.map((option) => (
+      {filteredOptions.map((option) => (
         <MenuItem
           key={option.value}
           onClick={() => onOptionClick(option)}

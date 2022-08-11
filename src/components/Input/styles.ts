@@ -47,6 +47,7 @@ export default createStyles((theme) => ({
     outline: 'none',
     textOverflow: 'ellipsis',
     height: 17,
+    padding: 0,
     width: '100%',
     color: theme.text.primary,
     fontSize: 14,
@@ -55,14 +56,10 @@ export default createStyles((theme) => ({
       color: theme.text.hint,
     }
   },
-  withLabel: {
-    '& input': {
-      padding: '17px 0 0 0',
-    }
-  },
   inputArea: {
     display: 'flex',
-    flexGrow: 1,
+    flexDirection: 'column',
+    width: '100%',
   },
   prefix: {
     paddingTop: 17,
@@ -78,7 +75,9 @@ export default createStyles((theme) => ({
   },
   label: {
     color: theme.text.secondary,
-    position: 'absolute',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
     height: 17,
     fontSize: 14,
   },
@@ -91,4 +90,5 @@ export default createStyles((theme) => ({
   message: {
     marginTop: 8,
   },
+  withLabel: {},
 }));

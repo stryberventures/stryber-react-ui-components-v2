@@ -58,8 +58,8 @@ export const useCombobox = (props: ICombobox) => {
   return {
     inputValue,
     dropdownRef,
+    filteredOptions,
     error: fieldError || error,
-    options: filteredOptions,
     onInputChange,
     onOptionClick,
     onDropdownToggle,
