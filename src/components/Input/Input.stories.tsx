@@ -65,6 +65,11 @@ ReadOnly.args = {
   readOnly: true,
 };
 
+export const NoLabel = Template.bind({});
+NoLabel.args = {
+  placeholder: 'olivia@example.com',
+};
+
 export const FullWidth = Template.bind({});
 FullWidth.args = {
   label: 'Fits parent width',
