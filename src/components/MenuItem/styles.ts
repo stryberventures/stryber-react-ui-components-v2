@@ -8,7 +8,7 @@ export default createStyles((theme) => ({
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
-    color: theme.default.dark,
+    color: theme.text.primary,
     fontSize: 14,
     '&:not($readOnly):hover': {
       cursor: 'pointer',

@@ -9,6 +9,10 @@ export default createUseStyles({
   checkbox: {
     '& [class*="text"]': {
       width: 'calc(100% - 28px)',
+      display: 'block',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
+      overflow: 'hidden',
     },
     '& [class*="label"]': {
       textOverflow: 'ellipsis',
