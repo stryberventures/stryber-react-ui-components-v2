@@ -31,14 +31,15 @@ const Multiselect: React.FC<IMultiselect> = (props) => {
         <MenuItem key={option}>
           <CheckBox
             className={classes.checkbox}
-            label={option}
             name={option}
             controlled={true}
             color={color}
             size="small"
             checked={selectedOptions.indexOf(option) >= 0}
             onChange={onCheckboxChange}
-          />
+          >
+            {option}
+          </CheckBox>
         </MenuItem>
       ))}
     </Dropdown>

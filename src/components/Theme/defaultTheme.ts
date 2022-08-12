@@ -11,7 +11,7 @@ export const defaultTheme: ITheme = {
     extraLight: '#EFF1F3',
   },
   text: {
-    primary: '#101828',
+    primary: '#000',
     secondary: '#344054',
     disabled: '#D2D2D2',
     hint: '#667085',
