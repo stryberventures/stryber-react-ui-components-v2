@@ -15,8 +15,8 @@ export interface ISlider extends React.HTMLAttributes<HTMLDivElement> {
   showSideLabels?: boolean,
   showStepMarks?: boolean,
   thumbLabels?: 'input' | 'tooltip',
-  color: 'primary' | 'secondary',
-  name: string,
+  color?: 'primary' | 'secondary',
+  name?: string,
   onChange?: (e: React.BaseSyntheticEvent) => void,
 }
 
