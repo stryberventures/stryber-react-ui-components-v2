@@ -10,9 +10,7 @@ export default {
   parameters: {
     pkg,
   },
-  argTypes: buildExcludeArgTypes(['onChange', 'label', 'placeholder', 'disabled', 'hint', 'errorMessage',
-    'value', 'name', 'controlled', 'onBlur', 'prefix', 'prefixClassName', 'errorClassName', 'hintClassName'
-    , 'endAdornment', 'mask', 'fullWidth']),
+  argTypes: buildExcludeArgTypes(['onChange', 'name']),
 } as ComponentMeta<typeof Slider>;
 
 const Template: ComponentStory<typeof Slider> = (args) => <Slider {...args} />;
@@ -21,6 +19,7 @@ export const Default = Template.bind({});
 Default.args = {
   min: 0,
   max: 10,
+  thumbLabels: 'tooltip'
 };
 Default.decorators = [
   (Story) => (
@@ -47,6 +46,7 @@ DefaultInputs.decorators = [
 export const Range = Template.bind({});
 Range.args = {
   rangeSlider: true,
+  thumbLabels: 'tooltip'
 };
 Range.decorators = [
   (Story) => (
@@ -60,6 +60,7 @@ export const CustomStep = Template.bind({});
 CustomStep.args = {
   step: 2,
   showStepMarks: true,
+  thumbLabels: 'tooltip'
 };
 CustomStep.decorators = [
   (Story) => (
@@ -88,6 +89,7 @@ RangeMinDistance.args = {
   maxValue: 10,
   rangeSlider: true,
   minDistance: 2,
+  thumbLabels: 'tooltip'
 };
 RangeMinDistance.decorators = [
   (Story) => (
@@ -101,7 +103,8 @@ export const StepDotsIndicator = Template.bind({});
 StepDotsIndicator.args = {
   min: 0,
   max: 10,
-  showStepMarks: true
+  showStepMarks: true,
+  thumbLabels: 'tooltip'
 };
 StepDotsIndicator.decorators = [
   (Story) => (
