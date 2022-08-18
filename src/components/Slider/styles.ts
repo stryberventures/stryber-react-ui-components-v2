@@ -26,6 +26,12 @@ export default createStyles( (theme) => ({
     zIndex: 5,
     display: 'flex',
     justifyContent: 'center',
+    touchAction: 'none',
+    '-webkit-touch-callout': 'none',
+    '-moz-user-select': 'none',
+    '-webkit-user-select': 'none',
+    '-ms-user-select': 'none',
+    'user-select': 'none',
     '&:hover': {
       boxShadow: `0 0 5px 3px ${theme[props.color!].light}`,
       zIndex: 6
@@ -42,9 +48,11 @@ export default createStyles( (theme) => ({
     backgroundColor: theme.default.dark,
     borderRadius: 4,
     display: 'none',
+    '-webkit-touch-callout': 'none',
     '-moz-user-select': 'none',
     '-webkit-user-select': 'none',
     '-ms-user-select': 'none',
+    'user-select': 'none',
     '&$show': {
       display: 'block',
     }
@@ -59,9 +67,11 @@ export default createStyles( (theme) => ({
     color: theme.text.hint,
     width: 'fit-content',
     display: 'none',
+    '-webkit-touch-callout': 'none',
     '-moz-user-select': 'none',
     '-webkit-user-select': 'none',
     '-ms-user-select': 'none',
+    'user-select': 'none',
     '&>div': {
       width: 'fit-content',
     },
@@ -74,12 +84,10 @@ export default createStyles( (theme) => ({
       minWidth: 13,
       textAlign: 'center',
       padding: '8px 5.5px',
-      lineHeight: 16,
+      lineHeight: '16px',
       height: '-webkit-fill-available',
+      borderRadius: 4,
       border: 'none',
-      '-moz-user-select': 'none',
-      '-webkit-user-select': 'none',
-      '-ms-user-select': 'none',
     },
     '&$show': {
       display: 'block',
@@ -97,6 +105,11 @@ export default createStyles( (theme) => ({
     backgroundColor: theme.default.main,
     width: '100%',
     zIndex: 1,
+    '-webkit-touch-callout': 'none',
+    '-moz-user-select': 'none',
+    '-webkit-user-select': 'none',
+    '-ms-user-select': 'none',
+    'user-select': 'none',
   },
   sliderRange: (props: ISlider) => ({
     position: 'absolute',
@@ -105,6 +118,11 @@ export default createStyles( (theme) => ({
     backgroundColor: theme[props.color!].main,
     opacity: 0.6,
     zIndex: 2,
+    '-webkit-touch-callout': 'none',
+    '-moz-user-select': 'none',
+    '-webkit-user-select': 'none',
+    '-ms-user-select': 'none',
+    'user-select': 'none',
   }),
   sideLabel: {
     color: theme.primary.contrast,
@@ -113,6 +131,11 @@ export default createStyles( (theme) => ({
     margin: '0 8px',
     backgroundColor: theme.default.dark,
     borderRadius: 4,
+    '-webkit-touch-callout': 'none',
+    '-moz-user-select': 'none',
+    '-webkit-user-select': 'none',
+    '-ms-user-select': 'none',
+    'user-select': 'none',
   },
   show: {
     '&$error>div>div:not(inputContainerError)': {
