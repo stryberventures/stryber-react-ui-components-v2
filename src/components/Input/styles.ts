@@ -62,7 +62,6 @@ export default createStyles((theme) => ({
     width: '100%',
   },
   prefix: {
-    paddingTop: 17,
     fontSize: 14,
     color: theme.text.primary,
     backgroundColor: theme.background.default,
@@ -91,4 +90,8 @@ export default createStyles((theme) => ({
     marginTop: 8,
   },
   withLabel: {},
+  inputWrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+  }
 }));

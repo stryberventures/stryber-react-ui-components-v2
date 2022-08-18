@@ -64,20 +64,22 @@ const Input: React.FC<IInput> = (props) => {
               {label}
             </div>
           )}
-          {prefix && <div className={classNames(classes.prefix, prefixClassName)}>{prefix}</div>}
-          <input
-            {...inputProps}
-            name={name}
-            ref={inputRef}
-            value={value}
-            className={classNames(classes.input, {
-              [classes.disabled]: disabled,
-              [classes.textDisabled]: disabled
-            })}
-            placeholder={placeholder}
-            onChange={onChange}
-            onBlur={onBlur}
-          />
+          <div className={classes.inputWrapper}>
+            {prefix && <div className={classNames(classes.prefix, prefixClassName)}>{prefix}</div>}
+            <input
+              {...inputProps}
+              name={name}
+              ref={inputRef}
+              value={value}
+              className={classNames(classes.input, {
+                [classes.disabled]: disabled,
+                [classes.textDisabled]: disabled
+              })}
+              placeholder={placeholder}
+              onChange={onChange}
+              onBlur={onBlur}
+            />
+          </div>
         </div>
         {endAdornment}
       </div>
