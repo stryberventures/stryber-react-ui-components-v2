@@ -10,7 +10,7 @@ export default {
   parameters: {
     pkg,
   },
-  argTypes: buildExcludeArgTypes(['value', 'name', 'controlled', 'onChange']),
+  argTypes: buildExcludeArgTypes(['value', 'name', 'controlled', 'onChange', 'maxLengthClassName']),
 } as ComponentMeta<typeof TextArea>;
 
 const Template: ComponentStory<typeof TextArea> = (args) => <TextArea {...args} />;
@@ -18,6 +18,12 @@ const Template: ComponentStory<typeof TextArea> = (args) => <TextArea {...args} 
 export const Default = Template.bind({});
 Default.args = {
   label: 'Your message',
+};
+
+export const Secondary = Template.bind({});
+Secondary.args = {
+  label: 'Your message',
+  color: 'secondary',
 };
 
 export const Disabled = Template.bind({});
@@ -32,9 +38,16 @@ Error.args = {
   errorMessage: 'This is an error message',
 };
 
+export const Hint = Template.bind({});
+Hint.args = {
+  label: 'With hint message',
+  hint: 'Hint message',
+};
+
 export const MaxLength = Template.bind({});
 MaxLength.args = {
   label: 'Your message',
+  showLength: true,
   maxLength: 200,
 };
 
