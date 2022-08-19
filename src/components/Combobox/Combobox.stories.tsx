@@ -64,3 +64,11 @@ NoOptionsFoundText.args = {
   placeholder: 'Placeholder',
   noOptionsFoundText: 'Your custom message',
 };
+
+export const FullWidth = Template.bind({});
+FullWidth.args = {
+  options,
+  label: 'Combobox',
+  placeholder: 'Placeholder',
+  fullWidth: true,
+};

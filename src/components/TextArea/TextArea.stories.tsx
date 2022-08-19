@@ -56,3 +56,10 @@ WithValue.args = {
   label: 'With value',
   value: '"And now I will show you what is really a very interesting study, Mr. Windibank," Holmes continued. "I think of writing another little monograph some of these days on the typewriter and its relation to crime.',
 };
+
+export const FullWidth = Template.bind({});
+FullWidth.args = {
+  label: 'Full Width',
+  value: '"And now I will show you what is really a very interesting study, Mr. Windibank," Holmes continued. "I think of writing another little monograph some of these days on the typewriter and its relation to crime.',
+  fullWidth: true,
+};

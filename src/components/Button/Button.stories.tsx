@@ -87,3 +87,9 @@ RightIcon.args = {
   iconRight: Placeholder,
 };
 
+export const FullWidth = Template.bind({});
+FullWidth.args = {
+  label: 'Full Width',
+  fullWidth: true,
+};
+

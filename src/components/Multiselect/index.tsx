@@ -12,7 +12,7 @@ export interface IMultiselect extends Omit<IDropdownBase, 'onChange'> {
 }
 
 const Multiselect: React.FC<IMultiselect> = (props) => {
-  const { options, label, color, placeholder, onChange, onToggle, ...rest } = props;
+  const { options, label, color, placeholder, fullWidth, onChange, onToggle, ...rest } = props;
   const { value, selectedOptions, error, onCheckboxChange, onDropdownToggle } = useMultiselect(props);
   const classes = useStyles();
 
@@ -26,6 +26,7 @@ const Multiselect: React.FC<IMultiselect> = (props) => {
       color={color}
       contentClassName={classes.content}
       error={error}
+      fullWidth={fullWidth}
     >
       {options.map((option) => (
         <MenuItem key={option}>

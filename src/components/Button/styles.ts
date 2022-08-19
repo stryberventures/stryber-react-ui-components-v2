@@ -93,4 +93,8 @@ export default createStyles((theme) => ({
       height: 20,
     },
   },
+  fullWidth: {
+    width: '100%',
+    justifyContent: 'center',
+  }
 }));

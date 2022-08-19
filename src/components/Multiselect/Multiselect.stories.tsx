@@ -54,3 +54,11 @@ Hint.args = {
   hint: 'Hint message',
   options: ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'],
 };
+
+export const FullWidth = Template.bind({});
+FullWidth.args = {
+  label: 'Multiselect',
+  placeholder: 'Full Width',
+  options: ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'],
+  fullWidth: true,
+};

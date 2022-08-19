@@ -53,3 +53,11 @@ Hint.args = {
   placeholder: 'with a hint',
   hint: 'Hint message',
 };
+
+export const FullWidth = Template.bind({});
+FullWidth.args = {
+  children,
+  label: 'Dropdown',
+  placeholder: 'Full Width',
+  fullWidth: true,
+};

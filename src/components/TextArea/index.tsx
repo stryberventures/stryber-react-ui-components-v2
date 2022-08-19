@@ -18,6 +18,7 @@ export interface ITextArea extends React.TextareaHTMLAttributes<HTMLTextAreaElem
   showLength?: boolean,
   hint?: string;
   maxLengthClassName?: string,
+  fullWidth?: boolean,
 }
 
 const TextArea: React.FC<ITextArea> = (props) => {
@@ -35,6 +36,7 @@ const TextArea: React.FC<ITextArea> = (props) => {
     showLength,
     hint,
     maxLengthClassName,
+    fullWidth,
   } = props;
   const classes = useStyles(props);
   const [internalValue, setInternalValue] = React.useState(value);
@@ -55,6 +57,7 @@ const TextArea: React.FC<ITextArea> = (props) => {
       <div className={classNames(classes.container, {
         [classes.containerDisabled]: disabled,
         [classes.containerError]: !!errorMessage,
+        [classes.fullWidth]: fullWidth,
       })}>
         <div className={classNames(classes.label, { [classes.textDisabled]: disabled })}>
           {label}
