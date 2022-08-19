@@ -60,11 +60,4 @@ export default createStyles((theme) => ({
     fontSize: 14,
     fontFamily: theme.font,
   },
-  maxLength: {
-    marginTop: 8,
-    color: theme.text.hint,
-    height: 17,
-    fontSize: 14,
-    fontFamily: theme.font,
-  }
 }));

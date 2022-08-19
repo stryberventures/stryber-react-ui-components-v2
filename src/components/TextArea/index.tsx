@@ -2,9 +2,11 @@ import React from 'react';
 import useStyles from './styles';
 import { ErrorMessage } from '../ErrorMessage';
 import classNames from 'classnames';
+import { HintMessage } from '../HintMessage';
 
 export interface ITextArea extends React.TextareaHTMLAttributes<HTMLTextAreaElement>{
   label?: string,
+  placeholder?: string,
   disabled?: boolean,
   color?: 'primary' | 'secondary',
   errorMessage?: string,
@@ -13,12 +15,16 @@ export interface ITextArea extends React.TextareaHTMLAttributes<HTMLTextAreaElem
   controlled?: boolean,
   onChange?: (e: React.BaseSyntheticEvent) => void,
   maxLength?: number,
+  showLength?: boolean,
+  hint?: string;
+  maxLengthClassName?: string,
 }
 
 const TextArea: React.FC<ITextArea> = (props) => {
   const {
     value = '',
     label,
+    placeholder,
     onChange,
     errorMessage,
     disabled,
@@ -26,6 +32,9 @@ const TextArea: React.FC<ITextArea> = (props) => {
     controlled,
     className,
     maxLength,
+    showLength,
+    hint,
+    maxLengthClassName,
   } = props;
   const classes = useStyles(props);
   const [internalValue, setInternalValue] = React.useState(value);
@@ -56,12 +65,18 @@ const TextArea: React.FC<ITextArea> = (props) => {
           className={classNames(classes.textarea, { [classes.textDisabled]: disabled })}
           onChange={onChangeWrapper}
           maxLength={maxLength}
+          placeholder={placeholder}
         />
       </div>
+      {hint && <HintMessage text={hint} disabled={disabled} className={classes.message} />}
       {errorMessage && <ErrorMessage text={errorMessage} className={classes.message}/>}
-      {maxLength && <div className={classNames(classes.maxLength, className, {
-        [classes.textDisabled]: disabled,
-      })}>{length}/{maxLength}</div>}
+      {showLength && (
+        <HintMessage
+          text={maxLength ? `${length}/${maxLength}` : `${length}`}
+          disabled={disabled}
+          className={classNames(classes.message, maxLengthClassName)}
+        />
+      )}
     </div>
   );
 };

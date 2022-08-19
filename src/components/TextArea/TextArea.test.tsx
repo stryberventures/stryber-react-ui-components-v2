@@ -9,6 +9,12 @@ it('should be rendered with label', () => {
   expect(screen.queryByText(label)).toBeInTheDocument();
 });
 
+it('should be rendered with hint', () => {
+  const hint = 'hint'
+  render(<TextArea hint={hint}/>)
+  expect(screen.queryByText(hint)).toBeInTheDocument();
+});
+
 it('should render the value', () => {
   const { getByRole } = render(<TextArea label="TextArea" value="Value"/>);
   const textArea = getByRole('textbox') as HTMLTextAreaElement;
