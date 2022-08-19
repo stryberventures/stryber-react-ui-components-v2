@@ -17,6 +17,9 @@ export default createStyles((theme) => ({
     '&:not($containerError)': {
       border: `1px solid ${theme.default.main}`,
       padding: '8px 15px',
+    },
+    '&$fullWidth': {
+      width: '100%',
     }
   }),
   containerDisabled: {
@@ -60,4 +63,5 @@ export default createStyles((theme) => ({
     fontSize: 14,
     fontFamily: theme.font,
   },
+  fullWidth: {}
 }));

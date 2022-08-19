@@ -10,6 +10,7 @@ export interface IButton extends Omit<React.ButtonHTMLAttributes<HTMLButtonEleme
   color?: 'primary' | 'secondary',
   disabled?: boolean,
   className?: string,
+  fullWidth?: boolean,
   iconLeft?: React.FC<{className?: string}>,
   iconRight?: React.FC<{className?: string}>,
 }
@@ -22,17 +23,19 @@ const Button: React.FC<IButton> = (props) => {
     label,
     disabled,
     className,
+    fullWidth,
     iconLeft: IconLeftComponent,
     iconRight: IconRightComponent,
     onClick,
     ...rest
   } = props;
   const classes = useStyles(props);
-  
+
   return (
     <button
       className={classNames(classes.button, classes[variant], classes[shape], classes[size], {
         [classes.disabled]: disabled,
+        [classes.fullWidth]: fullWidth,
       }, className)}
       onClick={(e) => !disabled && onClick && onClick(e)}
       {...rest}

@@ -12,7 +12,7 @@ export interface ISelect extends Omit<IDropdownBase, 'onChange'> {
 }
 
 const Select: React.FC<ISelect> = (props) => {
-  const { options, label, color, placeholder, onChange, onToggle, ...rest } = props;
+  const { options, label, color, placeholder, fullWidth, onChange, onToggle, ...rest } = props;
   const { value, error, onDropdownToggle, onOptionClick, dropdownRef } = useSelect(props);
   const classes = useStyles();
 
@@ -27,6 +27,7 @@ const Select: React.FC<ISelect> = (props) => {
       contentClassName={classes.content}
       error={error}
       ref={dropdownRef}
+      fullWidth={fullWidth}
     >
       {options.map((option) => (
         <MenuItem

@@ -64,3 +64,10 @@ Hint.args = {
   placeholder: 'Enter password',
   hint: 'This is a hint',
 };
+
+export const FullWidth = Template.bind({});
+FullWidth.args = {
+  label: 'Input password',
+  placeholder: 'Enter password',
+  fullWidth: true,
+};

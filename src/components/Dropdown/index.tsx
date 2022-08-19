@@ -15,6 +15,7 @@ export interface IDropdownBase extends React.HTMLAttributes<HTMLDivElement>{
   onToggle?: (open: boolean) => void,
   color?: 'primary' | 'secondary',
   name?: string,
+  fullWidth?: boolean,
 }
 
 export interface IDropdown extends IDropdownBase {
@@ -32,7 +33,7 @@ export interface IDropdownRef {
 
 const Dropdown = forwardRef((props: IDropdown, ref: ForwardedRef<IDropdownRef>) => {
   const {
-    inputReadOnly = true, children, label, placeholder, value, className, color, name,
+    inputReadOnly = true, children, label, placeholder, value, className, color, name, fullWidth,
     hint, error, disabled, onClick, onToggle, contentClassName, onInputChange, ...rest
   } = props;
   const classes = useStyles();
@@ -41,7 +42,7 @@ const Dropdown = forwardRef((props: IDropdown, ref: ForwardedRef<IDropdownRef>) 
   return (
     <div
       {...rest}
-      className={classNames(classes.dropdown, className)}
+      className={classNames(classes.dropdown, className, { [classes.fullWidth]: fullWidth })}
     >
       {open && <div className={classes.overlay} onClick={onOverlayClick}/>}
       <Input

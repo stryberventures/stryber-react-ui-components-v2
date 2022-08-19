@@ -52,5 +52,8 @@ export default createStyles((theme) => ({
       },
     }
   },
-  inputDisabled: {}
+  inputDisabled: {},
+  fullWidth: {
+    width: '100%'
+  },
 }), { index: 1 });

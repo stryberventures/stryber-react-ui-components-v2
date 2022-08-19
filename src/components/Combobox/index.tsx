@@ -23,6 +23,7 @@ const Combobox: React.FC<ICombobox> = (props) => {
     noOptionsFoundText = 'No options found',
     onChange,
     options,
+    fullWidth,
     ...rest
   } = props;
   const {
@@ -42,6 +43,7 @@ const Combobox: React.FC<ICombobox> = (props) => {
       contentClassName={classes.content}
       placeholder={placeholder}
       onToggle={onDropdownToggle}
+      fullWidth={fullWidth}
     >
       {!filteredOptions.length && (
         <MenuItem readOnly>

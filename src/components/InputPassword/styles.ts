@@ -15,5 +15,8 @@ export default createUseStyles({
   },
   chipMatched: {
     width: 18,
+  },
+  fullWidth: {
+    width: '100%',
   }
 });
