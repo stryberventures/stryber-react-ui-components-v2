@@ -10,6 +10,7 @@ export default createStyles((theme) => ({
     outline: 'none',
     border: 'none',
     display: 'flex',
+    justifyContent: 'center',
     alignItems: 'center',
     '&:active:not($disabled)': {
       outline: `4px solid ${theme[props.color!].light}`,
@@ -95,6 +96,5 @@ export default createStyles((theme) => ({
   },
   fullWidth: {
     width: '100%',
-    justifyContent: 'center',
   }
 }));
