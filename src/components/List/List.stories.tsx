@@ -3,6 +3,15 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import List from './index';
 import pkg from './package.json';
 import Switch from '../../components/Switch'
+import { IListItem } from './ListItem';
+import { buildExcludeArgTypes } from '../../storybook/utils';
+
+const title = 'One-line Item';
+const subtitle = 'Secondary Text';
+const leftContent = <div style={{ width: '40px', height: '40px', backgroundColor: 'grey', borderRadius: '50%' }} />;
+const rightContent = <Switch/>;
+
+const listItems: IListItem[] = new Array(4).fill({ title });
 
 export default {
   title: 'Components/List',
@@ -10,25 +19,28 @@ export default {
   parameters: {
     pkg,
   },
+  argTypes: buildExcludeArgTypes(['listClassName']),
 } as ComponentMeta<typeof List>;
 
 const Template: ComponentStory<typeof List> = (args) => <List {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  title: 'One-line Item',
-};
-
-export const WithLeftRightContent = Template.bind({});
-WithLeftRightContent.args = {
-  title: 'One-line Item',
-  subtitle: 'Secondary Text',
-  leftContent: <div style={{ width: '40px', height: '40px', backgroundColor: 'grey', borderRadius: '50%' }} />,
-  rightContent: <Switch/>
+  listItems
 };
 
 export const WithSubtitle = Template.bind({});
 WithSubtitle.args = {
-  title: 'One-line Item',
-  subtitle: 'Secondary Text'
+  listItems: listItems.map(item => ({ ...item, subtitle })),
 };
+
+export const WithLeftRightContent = Template.bind({});
+WithLeftRightContent.args = {
+  listItems: listItems.map(item => ({
+    ...item,
+    subtitle,
+    leftContent,
+    rightContent,
+  })),
+};
+

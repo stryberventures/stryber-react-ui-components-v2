@@ -1,37 +1,27 @@
 import React from 'react';
-import useStyles from './styles';
+import ListItem, { IListItem } from './ListItem';
 
-export interface IListItem {
-  title?: string,
-  subtitle?: string,
-  leftContent?: React.ReactNode,
-  rightContent?: React.ReactNode,
-  onClick?: (e: React.BaseSyntheticEvent) => void,
+export interface IList {
+  listItems: IListItem[],
+  listClassName: string
 }
 
-const List = (props: IListItem) => {
-  const {
-    title,
-    subtitle,
-    rightContent,
-    leftContent,
-    onClick,
-    ...rest
-  } = props;
-  const classes = useStyles(props);
-
+const List: React.FC<IList> = (props) => {
+  const { listItems, listClassName, ...rest } = props;
   return (
-    <div data-testid="listItemTestID" className={classes.listItem} onClick={onClick} {...rest}>
-      <div className={classes.listItemContainer}>
-        {leftContent && <div className={classes.leftContent}>{leftContent}</div>}
-        <div>
-          <div className={classes.title}>{title}</div>
-          <div className={classes.subtitle}>{subtitle}</div>
-        </div>
-      </div>
-      {rightContent && <div className={classes.rightContent}>{rightContent}</div>}
+    <div className={listClassName} {...rest}>
+      {listItems.map((listItem, index) => (
+        <ListItem
+          key={index}
+          title={listItem.title}
+          subtitle={listItem.subtitle}
+          leftContent={listItem.leftContent}
+          rightContent={listItem.rightContent}
+          onClick={listItem.onClick}
+        />
+      ))}
     </div>
-  );
+  )
 }
 
 export default List;
