@@ -2,11 +2,12 @@ import React from 'react';
 import useStyles from './styles';
 
 export interface IListItem {
-  title?: string,
+  title: string,
   subtitle?: string,
   leftContent?: React.ReactNode,
   rightContent?: React.ReactNode,
   onClick?: (e: React.BaseSyntheticEvent) => void,
+  testID?: string;
 }
 
 const ListItem: React.FC<IListItem> = (props) => {
@@ -20,7 +21,7 @@ const ListItem: React.FC<IListItem> = (props) => {
     ...rest
   } = props
   return (
-    <div data-testid="listItemTestID" className={classes.listItem} onClick={onClick} {...rest}>
+    <div data-testid="test-list-item" className={classes.listItem} onClick={onClick} {...rest}>
       <div className={classes.listItemContainer}>
         {leftContent && <div className={classes.leftContent}>{leftContent}</div>}
         <div>

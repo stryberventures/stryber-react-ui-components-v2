@@ -3,7 +3,7 @@ import ListItem, { IListItem } from './ListItem';
 
 export interface IList {
   listItems: IListItem[],
-  listClassName: string
+  listClassName?: string
 }
 
 const List: React.FC<IList> = (props) => {
