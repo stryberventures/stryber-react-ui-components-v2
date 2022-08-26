@@ -17,7 +17,9 @@ export interface ISlider extends React.HTMLAttributes<HTMLDivElement> {
   thumbLabels?: 'input' | 'tooltip',
   color?: 'primary' | 'secondary',
   name?: string,
-  onChange?: (e: React.BaseSyntheticEvent) => void,
+  value?: number,
+  controlled?: boolean,
+  onChange?: (value: number) => void,
 }
 
 export const Slider = (props: ISlider) => {
@@ -34,11 +36,18 @@ export const Slider = (props: ISlider) => {
     thumbLabels,
     color,
     name = 'slider',
+    value,
+    controlled = false,
+    onChange,
     ...rest
   } = props;
   const classes = useStyles(props);
   const { fieldValue, unsetFormValue, updateFormValue } = useFormContext(name);
-  const [minVal, setMinVal] = useState(Array.isArray(fieldValue) ? fieldValue[0] : fieldValue || minValue);
+  const setDefaultMinValue = () => {
+    if (!rangeSlider && controlled) return value;
+    return Array.isArray(fieldValue) ? fieldValue[0] : fieldValue || minValue;
+  };
+  const [minVal, setMinVal] = useState(setDefaultMinValue());
   const [maxVal, setMaxVal] = useState(fieldValue ? fieldValue[1] : maxValue);
   const [minSize, setMinSize] = useState(minVal.toString().length * 10);
   const [maxSize, setMaxSize] = useState(maxVal.toString().length * 10);
@@ -97,6 +106,16 @@ export const Slider = (props: ISlider) => {
       }
     }
   }, [positionMin, positionMax, rangeSlider]);
+  useEffect(
+    () => {
+      if (controlled && !rangeSlider) {
+        setPositionMin(thumbPosition(Number(value)));
+        setMinVal(value);
+        updateFormValue(name, value);
+      }
+    },
+    [value]
+  );
   const dots = [];
   if (showStepMarks) {
     for(let i = 0; i < ((max - min) / step + 1); i++) {
@@ -112,6 +131,7 @@ export const Slider = (props: ISlider) => {
       (rangeSlider && minDistance > 0 && value > maxVal - minDistance)) {
       setError(true);
     } else setError(false);
+    onChange?.(value);
   };
   const onMaxChange = (e: React.BaseSyntheticEvent) => {
     const value = e.target.value;
@@ -172,10 +192,13 @@ export const Slider = (props: ISlider) => {
   }
   const moveMin = (value: React.MouseEvent<HTMLDivElement> | MouseEvent) => {
     const [res, position] = checking(value);
+    updateFormValue(name, res);
     setPositionMin(position);
     setMinVal(res);
     setMinSize(res.toString().length * 10);
     setShowMin(true);
+    updateFormValue(name, rangeSlider ? [res, maxVal] : res);
+    if (!rangeSlider) onChange?.(res);
   }
   const moveMax = (value: React.MouseEvent<HTMLDivElement> | MouseEvent) => {
     const [res, position] = checking(value);
@@ -183,6 +206,7 @@ export const Slider = (props: ISlider) => {
     setMaxVal(res);
     setMaxSize(res.toString().length * 10);
     setShowMax(true);
+    updateFormValue(name, rangeSlider ? [minVal, res] : res);
   }
   const checking = (e: React.MouseEvent<HTMLDivElement> | MouseEvent) => {
     const parent = (e.target as HTMLDivElement).parentElement!;

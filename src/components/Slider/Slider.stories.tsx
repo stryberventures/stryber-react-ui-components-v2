@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import Form from '../Form';
+import Input from '../Input';
 import Slider from './index';
+import Button from '../Button';
 import pkg from './package.json';
 import { buildExcludeArgTypes } from '../../storybook/utils';
 
@@ -14,6 +17,48 @@ export default {
 } as ComponentMeta<typeof Slider>;
 
 const Template: ComponentStory<typeof Slider> = (args) => <Slider {...args} />;
+const TemplateOutsideInput: ComponentStory<typeof Slider> = (args) => {
+  const [value, setValue] = useState(0);
+  const [errorMessage, setErrorMessage] = useState('');
+  const onChange = (e: React.SyntheticEvent) => {
+    setValue(Number(e.target.value))
+  };
+  useEffect(
+    () => {
+      if (value <= args.max) {
+        setErrorMessage('');
+      } else {
+        setErrorMessage('max value exceeded');
+      }
+    },
+    [value]
+  );
+  return (
+    <Form onSubmit={(values) => console.log('values', values)}>
+      <Input
+        name="test"
+        controlled
+        type="text"
+        value={value}
+        errorMessage={errorMessage}
+        onChange={onChange}
+      />
+      <Slider
+        name="test"
+        {...args}
+        value={value}
+        controlled
+        onChange={(val) => {
+          setValue(Number(val))
+        }}
+      />
+      <Button
+        type="submit"
+        label={'Submit'}
+      />
+    </Form>
+  );
+}
 
 export const Default = Template.bind({});
 Default.args = {
@@ -34,6 +79,14 @@ DefaultInputs.args = {
   min: 0,
   max: 10,
   thumbLabels: 'input'
+};
+
+export const OutsideInput = TemplateOutsideInput.bind({});
+OutsideInput.args = {
+  min: 0,
+  max: 100,
+  thumbLabels: 'tooltip',
+  onChange: () => undefined,
 };
 DefaultInputs.decorators = [
   (Story) => (
