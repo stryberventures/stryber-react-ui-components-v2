@@ -17,15 +17,16 @@ export default {
 } as ComponentMeta<typeof Slider>;
 
 const Template: ComponentStory<typeof Slider> = (args) => <Slider {...args} />;
+
 const TemplateOutsideInput: ComponentStory<typeof Slider> = (args) => {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState([0]);
   const [errorMessage, setErrorMessage] = useState('');
   const onChange = (e: React.SyntheticEvent) => {
-    setValue(Number(e.target.value))
+    setValue([Number(e.target.value)])
   };
   useEffect(
     () => {
-      if (value <= args.max) {
+      if (value[0] <= args.max) {
         setErrorMessage('');
       } else {
         setErrorMessage('max value exceeded');
@@ -46,11 +47,9 @@ const TemplateOutsideInput: ComponentStory<typeof Slider> = (args) => {
       <Slider
         name="test"
         {...args}
-        value={value}
+        values={value}
         controlled
-        onChange={(val) => {
-          setValue(Number(val))
-        }}
+        onChange={(val) => { setValue([Number(val)]); }}
       />
       <Button
         type="submit"
@@ -61,10 +60,10 @@ const TemplateOutsideInput: ComponentStory<typeof Slider> = (args) => {
 }
 
 const TemplateRangeOutsideInput: ComponentStory<typeof Slider> = (args) => {
-  const [values, setValue] = useState<number | number[]>([args.min, args.max]);
+  const [values, setValue] = useState<number[]>([args.min, args.max]);
   const [errorMessage, setErrorMessage] = useState('');
-  const onMinChange = (e) => setValue([e.target.value, values[1]]);
-  const onMaxChange = (e) => setValue([values[0], e.target.value]);
+  const onMinChange = (e) => setValue([Number(e.target.value), values[1]]);
+  const onMaxChange = (e) => setValue([values[0], Number(e.target.value)]);
   useEffect(
     () => {
       if (values[0] <= args.max || values[1] <= args.max) {
@@ -76,7 +75,7 @@ const TemplateRangeOutsideInput: ComponentStory<typeof Slider> = (args) => {
     [values]
   );
   return (
-    <Form onSubmit={(values) => console.log('values', values)}>
+    <Form>
       <Input
         name="test"
         label="min"
@@ -98,9 +97,9 @@ const TemplateRangeOutsideInput: ComponentStory<typeof Slider> = (args) => {
       <Slider
         name="test"
         {...args}
-        value={values}
+        values={values}
         controlled
-        onChange={(val) => setValue(val)}
+        onChange={setValue}
       />
       <Button
         type="submit"
