@@ -35,7 +35,7 @@ const TemplateOutsideInput: ComponentStory<typeof Slider> = (args) => {
     [value]
   );
   return (
-    <Form onSubmit={(values) => console.log('values', values)}>
+    <Form>
       <Input
         name="test"
         controlled
@@ -61,19 +61,8 @@ const TemplateOutsideInput: ComponentStory<typeof Slider> = (args) => {
 
 const TemplateRangeOutsideInput: ComponentStory<typeof Slider> = (args) => {
   const [values, setValue] = useState<number[]>([args.min, args.max]);
-  const [errorMessage, setErrorMessage] = useState('');
   const onMinChange = (e) => setValue([Number(e.target.value), values[1]]);
   const onMaxChange = (e) => setValue([values[0], Number(e.target.value)]);
-  useEffect(
-    () => {
-      if (values[0] <= args.max || values[1] <= args.max) {
-        setErrorMessage('');
-      } else {
-        setErrorMessage('max value exceeded');
-      }
-    },
-    [values]
-  );
   return (
     <Form>
       <Input
@@ -82,7 +71,7 @@ const TemplateRangeOutsideInput: ComponentStory<typeof Slider> = (args) => {
         controlled
         type="text"
         value={values[0]}
-        errorMessage={errorMessage}
+        errorMessage={values[0] > args.max && 'max value exceeded'}
         onChange={onMinChange}
       />
       <Input
@@ -91,7 +80,7 @@ const TemplateRangeOutsideInput: ComponentStory<typeof Slider> = (args) => {
         controlled
         type="text"
         value={values[1]}
-        errorMessage={errorMessage}
+        errorMessage={values[1] > args.max && 'max value exceeded'}
         onChange={onMaxChange}
       />
       <Slider
