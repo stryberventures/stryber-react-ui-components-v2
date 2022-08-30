@@ -22,7 +22,7 @@ const TemplateOutsideInput: ComponentStory<typeof Slider> = (args) => {
   const [value, setValue] = useState([0]);
   const [errorMessage, setErrorMessage] = useState('');
   const onChange = (e: React.SyntheticEvent) => {
-    setValue([Number(e.target.value)])
+    setValue([Number(e.target.value)]);
   };
   useEffect(
     () => {
@@ -61,7 +61,10 @@ const TemplateOutsideInput: ComponentStory<typeof Slider> = (args) => {
 
 const TemplateRangeOutsideInput: ComponentStory<typeof Slider> = (args) => {
   const [values, setValue] = useState<number[]>([args.min, args.max]);
-  const onMinChange = (e) => setValue([Number(e.target.value), values[1]]);
+  const onMinChange = (e) => {
+    const value = e.target.value;
+    value <= values[1] && setValue([Number(value), values[1]]);
+  };
   const onMaxChange = (e) => setValue([values[0], Number(e.target.value)]);
   return (
     <Form>
@@ -71,7 +74,6 @@ const TemplateRangeOutsideInput: ComponentStory<typeof Slider> = (args) => {
         controlled
         type="text"
         value={values[0]}
-        errorMessage={values[0] > args.max && 'max value exceeded'}
         onChange={onMinChange}
       />
       <Input

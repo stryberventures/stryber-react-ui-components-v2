@@ -19,7 +19,7 @@ export interface ISlider extends React.HTMLAttributes<HTMLDivElement> {
   name?: string,
   values?: number[],
   controlled?: boolean,
-  onChange?: (value: number[]) => void,
+  onChange?: (value: any) => void,
 }
 
 export const Slider = (props: ISlider) => {
@@ -104,12 +104,17 @@ export const Slider = (props: ISlider) => {
   }, [positionMin, positionMax, rangeSlider]);
   useEffect(
     () => {
-      setPositionMin(thumbPosition(values[0]));
-      setMinVal(values[0]);
-      updateFormValue(name, values);
+      let data = [values[0], values[1]];
+      if (values[0] > values[1]) {
+        data = [values[1], values[0]];
+        onChange?.(data);
+      }
+      setPositionMin(thumbPosition(data[0]));
+      setMinVal(data[0]);
+      updateFormValue(name, data);
       if (rangeSlider) {
-        setPositionMax(thumbPosition(values[1]));
-        setMaxVal(values[1]);
+        setPositionMax(thumbPosition(data[1]));
+        setMaxVal(data[1]);
       }
     },
     [values]
@@ -191,12 +196,11 @@ export const Slider = (props: ISlider) => {
   }
   const moveMin = (value: React.MouseEvent<HTMLDivElement> | MouseEvent) => {
     const [res, position] = checking(value);
-    updateFormValue(name, res);
     setPositionMin(position);
     setMinVal(res);
     setMinSize(res.toString().length * 10);
     setShowMin(true);
-    updateFormValue(name, rangeSlider ? [res, maxVal] : res);
+    updateFormValue(name, rangeSlider ? [res, maxVal] : [res]);
     onChange?.(rangeSlider ? [res, values[1]] : [res]);
   }
   const moveMax = (value: React.MouseEvent<HTMLDivElement> | MouseEvent) => {
@@ -205,7 +209,7 @@ export const Slider = (props: ISlider) => {
     setMaxVal(res);
     setMaxSize(res.toString().length * 10);
     setShowMax(true);
-    updateFormValue(name, rangeSlider ? [minVal, res] : res);
+    updateFormValue(name, rangeSlider ? [minVal, res] : [res]);
     onChange?.(rangeSlider ? [values[0], res] : [res]);
   }
   const checking = (e: React.MouseEvent<HTMLDivElement> | MouseEvent) => {
