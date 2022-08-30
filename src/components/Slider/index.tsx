@@ -43,15 +43,8 @@ export const Slider = (props: ISlider) => {
   } = props;
   const classes = useStyles(props);
   const { fieldValue, unsetFormValue, updateFormValue } = useFormContext(name);
-  const setDefaultMinValue = () => {
-    if (controlled) return values[0];
-    return Array.isArray(fieldValue) ? fieldValue[0] : fieldValue || minValue;
-  };
-  const setDefaultMaxValue = () => {
-    return fieldValue ? fieldValue[1] : maxValue;
-  };
-  const [minVal, setMinVal] = useState(setDefaultMinValue());
-  const [maxVal, setMaxVal] = useState(setDefaultMaxValue());
+  const [minVal, setMinVal] = useState(Array.isArray(fieldValue) ? fieldValue[0] : fieldValue || minValue);
+  const [maxVal, setMaxVal] = useState(fieldValue ? fieldValue[1] : maxValue);
   const [minSize, setMinSize] = useState(minVal.toString().length * 10);
   const [maxSize, setMaxSize] = useState(maxVal.toString().length * 10);
   const [showMin, setShowMin] = useState(false);
