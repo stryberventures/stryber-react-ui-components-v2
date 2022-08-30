@@ -30,27 +30,67 @@ const NumberInput: React.FC<INumberInput> = (props) => {
     prefix,
     ...rest
   } = props;
+
   const { updateFormValue, fieldValue, fieldError } = useFormContext(name);
-  const error = fieldError || errorMessage;
-  const initValue = fieldValue || value;
+  const [errorText, setErrorText] = useState<string>()
+  const error = fieldError || errorMessage || errorText;
+  const initValue = +fieldValue || value;
   const [initialValue, setInitialValue] = useState(initValue);
-  const handleChange = (value: number) => {
+
+  const dataCheck = (value: string) => {
+    if (max <= min) {
+      setErrorText('Min should be less than Max');
+    } else if (min < 0 && max >= 0 && step > Math.abs(min) + max) {
+      setErrorText('Invalid step');
+    } else if (step > max - min || step <= 0) {
+      setErrorText('Invalid step');
+    } else if (+value > max) {
+      setErrorText(`Max value is ${max}`);
+    } else if (value !== '' && +value < min) {
+      setErrorText(`Min value is ${min}`);
+    } else setErrorText(undefined)
+  }
+
+  React.useEffect( () => {
+    dataCheck(String(initialValue))
+  }, [min, max, step]);
+
+  const valueUpdate = (value: number) => {
+    dataCheck(String(value));
     setInitialValue(value);
     updateFormValue(name, value);
     onChange && onChange(value);
   }
-  const checkValue = (value: number) => {
-    if (value > max) {
-      handleChange(max)
-    } else if (isNaN(+value) || value < min) {
-      handleChange(min)
+  const handleChange = (e: React.BaseSyntheticEvent) => {
+    const value = e.target.value;
+    if (+value > max) {
+      value.length > `${max}`.length + 1 ? e.preventDefault() : valueUpdate(value);
+    } else if (+value < min) {
+      value.length > `${max}`.length + 1 ? e.preventDefault() : valueUpdate(value);
+    } else if (isNaN(+value) && value !== '-') {
+      e.preventDefault();
     } else {
-      handleChange(value)
+      valueUpdate(value);
     }
+
   }
-  const counterBtnPress = (pressed: 'plus' | 'minus') => {
-    const newVal = pressed === 'plus' ? +initialValue + step : +initialValue - step;
-    checkValue(newVal);
+  const counterBtnPress = (pressed: string) => {
+    if (initialValue === '' || initialValue === undefined) {
+      return valueUpdate(min);
+    }
+    if (pressed === 'plus' && initialValue < max) {
+      if (+initialValue + step > max) {
+        valueUpdate(max);
+      } else {
+        valueUpdate(+initialValue + step);
+      }
+    } else if (pressed === 'minus' && initialValue > min) {
+      if (+initialValue - step < min) {
+        valueUpdate(min);
+      } else {
+        valueUpdate(+initialValue - step);
+      }
+    }
   };
   const handleDecrease = () => counterBtnPress('minus');
   const handleIncrease = () => counterBtnPress('plus');
@@ -61,10 +101,11 @@ const NumberInput: React.FC<INumberInput> = (props) => {
         name={name}
         controlled={true}
         className={classes.numberInput}
-        value={isNaN(+initialValue) ? undefined : initialValue}
-        onChange={(e) => checkValue(e.target.value)}
+        value={`${initialValue}` || undefined}
+        onChange={handleChange}
         errorMessage={error}
         prefix={prefix}
+        autoComplete='off'
         endAdornment={(
           quantityCounter && (
             <div data-testid="testContainer" className={classes.btnsContainer}>
@@ -75,7 +116,6 @@ const NumberInput: React.FC<INumberInput> = (props) => {
           )
         )}
       />
-
     </div>
   );
 };

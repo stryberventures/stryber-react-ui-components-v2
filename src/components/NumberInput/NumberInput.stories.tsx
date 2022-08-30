@@ -20,27 +20,27 @@ const Template: ComponentStory<typeof NumberInput> = (args) => <NumberInput {...
 export const ColorPrimary = Template.bind({});
 ColorPrimary.args = {
   label: 'Color primary',
-  placeholder: '0',
+  placeholder: 'Number',
 };
 
 export const ColorSecondary = Template.bind({});
 ColorSecondary.args = {
   label: 'Color secondary',
   color: 'secondary',
-  placeholder: '0',
+  placeholder: 'Number',
 };
 
 export const FullWidth = Template.bind({});
 FullWidth.args = {
   label: 'Full parent width',
-  placeholder: '0',
+  placeholder: 'Number',
   fullWidth: true,
 };
 
 export const PrefixWithClass = Template.bind({});
 PrefixWithClass.args = {
   label: 'Min',
-  placeholder: '0',
+  placeholder: 'Number',
   prefix: '$',
   prefixClassName: 'prefix',
   fullWidth: true,
@@ -57,14 +57,14 @@ PrefixWithClass.decorators = [
 export const QuantityCounter = Template.bind({});
 QuantityCounter.args = {
   label: 'Quantity counter',
-  placeholder: '0',
-  quantityCounter: true
+  placeholder: 'Number',
+  quantityCounter: true,
 };
 
 export const CustomStep = Template.bind({});
 CustomStep.args = {
   label: 'Custom step',
-  placeholder: '0',
+  placeholder: 'Number',
   quantityCounter: true,
   step: 2
 };

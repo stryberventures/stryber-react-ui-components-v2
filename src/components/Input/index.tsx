@@ -24,13 +24,14 @@ export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
   endAdornment?: React.ReactNode,
   mask?: string,
   fullWidth?: boolean,
+  autoComplete?: string
 }
 
 const Input: React.FC<IInput> = (props) => {
   const classes = useStyles(props);
   const {
     label, className, hint, prefix, prefixClassName, errorClassName, hintClassName,
-    endAdornment, placeholder, onClick, fullWidth, ...rest
+    endAdornment, placeholder, onClick, fullWidth, autoComplete, ...rest
   } = props;
   const {
     name,
@@ -68,6 +69,7 @@ const Input: React.FC<IInput> = (props) => {
             {prefix && <div className={classNames(classes.prefix, prefixClassName)}>{prefix}</div>}
             <input
               {...inputProps}
+              autoComplete={autoComplete}
               name={name}
               ref={inputRef}
               value={value}
