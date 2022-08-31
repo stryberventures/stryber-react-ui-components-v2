@@ -1,4 +1,4 @@
-# GAIA Components #
+# GAIA React Components #
 
 ## Description ##
 
@@ -6,6 +6,13 @@ The components library based on React and Typescript, represented with Storybook
 tested with React Testing Library
 
 Explore [GAIA components](https://stryberventures.github.io/stryber-react-ui-components-v2) for Web
+
+## Docs
+
+* [Getting Started](https://github.com/stryberventures/stryber-react-ui-components-v2/wiki/1.-Getting-started)
+* [Setup Theme](https://github.com/stryberventures/stryber-react-ui-components-v2/wiki/2.-Theme)
+* [How to use Form](https://github.com/stryberventures/stryber-react-ui-components-v2/wiki/3.-Form)
+* [Build and Deploy](https://github.com/stryberventures/stryber-react-ui-components-v2/wiki/4.-Build-and-deploy)
 
 ## To run the project ##
 
@@ -28,70 +35,8 @@ The test setup is based on React Testing Library with Jest runner. To run tests:
 npm run test 
 ```
 
-## To prepare a component for deployment ##
-
-1) Update the version in the package.json file in the component's directory you want
-to publish or create package.json file if it does not exist.
-
-
-2) Check dependencies of the component. 
-If component use an external library, in most cases it should be added as peer dependency to the package.json file.
-Otherwise, external library sources will be added to the component's source bundle. 
-In case the component use another component from the library, it works in the same way.
-
-For example, if you use the Button inside your component
-```shell script
-import { Button } from '../Button';
-```
-and add ``"@stryberventures/gaia-react.button": ">=0.0.1"`` the ``Button`` source will not be 
-included to component's build
-
-And vise versa, if the ``@stryberventures/gaia-react.button`` is not in the peer dependency list,
-the source of the ``Button`` will be bundled with the component
-
-Components names are based on ``export.config.json``
-
-3) Add the component to ``export.config.json``
-
-## To deploy the component to npm ##
-
-1) Build the project
-
-```shell script
-npm run build
-```
-
-2) Navigate to the component's folder you want to publish, for example the Button
-
-```shell script
-cd build/Button
-```
-
-3) Publish the component
-
-```shell script
-npm publish --access public
-```
-
-## To test the component before deployment ##
-You can pack the component and install it locally to ensure that everything works as
-expected. To do so, navigate to the component in the build directory
-and run 'npm pack'
-
-```shell script
-cd build/Button
-npm pack
-```
-
-It will create an .tgz archive, which you can copy to your project's root directory and 
-then install like:
-
-```shell script
-npm i stryberventures-gaia-react.button-0.0.1.tgz
-```
-
 ## Components website ##
 
 [Components website](https://stryberventures.github.io/stryber-react-ui-components-v2)
-is built with Github Pages and it builds and deploys automatically
-with Github actions (.github/workflows/storybook.yml)
+is hosted on Github Pages and it builds and deploys the sources automatically
+based on Github actions (.github/workflows/storybook.yml)
