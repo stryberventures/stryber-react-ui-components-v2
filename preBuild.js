@@ -14,7 +14,7 @@ const getComponentsEntries = () => {
 
 const getComponentsExternals = () => {
   const componentsList = Object.keys(components);
-  let libComponents = componentsList.map(dir => `../${dir}`);
+  const libComponents = componentsList.map(dir => new RegExp(`.+\\b${dir}\\b$`, 'i'));
   const externalsSet = new Set(libComponents);
 
   componentsList.forEach((component) => {
