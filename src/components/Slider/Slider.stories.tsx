@@ -19,14 +19,14 @@ export default {
 const Template: ComponentStory<typeof Slider> = (args) => <Slider {...args} />;
 
 const TemplateOutsideInput: ComponentStory<typeof Slider> = (args) => {
-  const [value, setValue] = useState([0]);
+  const [value, setValue] = useState<number>(0);
   const [errorMessage, setErrorMessage] = useState('');
   const onChange = (e: React.SyntheticEvent) => {
-    setValue([Number(e.target.value)]);
+    setValue(Number(e.target.value));
   };
   useEffect(
     () => {
-      if (value[0] <= args.max) {
+      if (value <= args.max) {
         setErrorMessage('');
       } else {
         setErrorMessage('max value exceeded');
@@ -47,9 +47,9 @@ const TemplateOutsideInput: ComponentStory<typeof Slider> = (args) => {
       <Slider
         name="test"
         {...args}
-        values={value}
+        value={value}
         controlled
-        onChange={(val) => { setValue([Number(val)]); }}
+        onChange={(val) => { setValue(Number(val)); }}
       />
       <Button
         type="submit"
@@ -60,14 +60,14 @@ const TemplateOutsideInput: ComponentStory<typeof Slider> = (args) => {
 }
 
 const TemplateRangeOutsideInput: ComponentStory<typeof Slider> = (args) => {
-  const [values, setValue] = useState<number[]>([args.min, args.max]);
+  const [values, setValue] = useState<number | number[]>([args.min, args.max]);
   const onMinChange = (e) => {
     const value = e.target.value;
     value <= values[1] && setValue([Number(value), values[1]]);
   };
   const onMaxChange = (e) => setValue([values[0], Number(e.target.value)]);
   return (
-    <Form>
+    <Form onSubmit={(values) => console.log('values', values)}>
       <Input
         name="test"
         label="min"
@@ -88,7 +88,7 @@ const TemplateRangeOutsideInput: ComponentStory<typeof Slider> = (args) => {
       <Slider
         name="test"
         {...args}
-        values={values}
+        value={values}
         controlled
         onChange={setValue}
       />
@@ -126,7 +126,6 @@ OutsideInput.args = {
   min: 0,
   max: 100,
   thumbLabels: 'tooltip',
-  onChange: () => undefined,
 };
 
 export const RangeOutsideInput = TemplateRangeOutsideInput.bind({});
@@ -135,7 +134,6 @@ RangeOutsideInput.args = {
   max: 1000,
   thumbLabels: 'tooltip',
   rangeSlider: true,
-  onChange: () => undefined,
 };
 
 DefaultInputs.decorators = [
