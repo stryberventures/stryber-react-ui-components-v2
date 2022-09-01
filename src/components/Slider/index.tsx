@@ -137,6 +137,7 @@ export const Slider = (props: ISlider) => {
     }
     setMinVal(res);
     setPositionMin(thumbPosition(res));
+    setMinSize(res.toString().length * 10)
     setError(false);
     updateFormValue(name, res);
   };
