@@ -163,6 +163,7 @@ export const Slider = (props: ISlider) => {
     }
     setMinVal(res);
     setPositionMin(thumbPosition(res));
+    setMinSize(res.toString().length * 10)
     setError(false);
     updateFormValue(name, Array.isArray(value) ? [res, value[1]] : targetValue);
   };
@@ -180,6 +181,7 @@ export const Slider = (props: ISlider) => {
     }
     setMaxVal(res);
     setPositionMax(thumbPosition(res));
+    setMaxSize(res.toString().length * 10)
     setError(false);
     updateFormValue(name, Array.isArray(value) ? [value[0], res] : targetValue);
   };

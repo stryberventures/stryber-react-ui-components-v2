@@ -59,7 +59,7 @@ export default createStyles( (theme) => ({
   },
   thumbInput: {
     position: 'relative',
-    bottom: 38,
+    bottom: 42,
     zIndex: 5,
     margin: '0 auto',
     fontSize: 14,
@@ -76,7 +76,7 @@ export default createStyles( (theme) => ({
       width: 'fit-content',
     },
     '&>div>div': {
-      height: 32,
+      height: 34,
       padding: 0,
       width: 'fit-content',
     },
