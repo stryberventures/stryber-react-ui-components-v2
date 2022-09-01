@@ -155,6 +155,7 @@ export const Slider = (props: ISlider) => {
     }
     setMaxVal(res);
     setPositionMax(thumbPosition(res));
+    setMaxSize(res.toString().length * 10)
     setError(false);
     updateFormValue(name, res);
   };
