@@ -32,65 +32,31 @@ const NumberInput: React.FC<INumberInput> = (props) => {
   } = props;
 
   const { updateFormValue, fieldValue, fieldError } = useFormContext(name);
-  const [errorText, setErrorText] = useState<string>()
-  const error = fieldError || errorMessage || errorText;
+  const error = fieldError || errorMessage;
   const initValue = +fieldValue || value;
   const [initialValue, setInitialValue] = useState(initValue);
 
-  const dataCheck = (value: string) => {
-    if (max <= min) {
-      setErrorText('Min should be less than Max');
-    } else if (min < 0 && max >= 0 && step > Math.abs(min) + max) {
-      setErrorText('Invalid step');
-    } else if (step > max - min || step <= 0) {
-      setErrorText('Invalid step');
-    } else if (+value > max) {
-      setErrorText(`Max value is ${max}`);
-    } else if (value !== '' && +value < min) {
-      setErrorText(`Min value is ${min}`);
-    } else setErrorText(undefined)
-  }
-
-  React.useEffect( () => {
-    dataCheck(String(initialValue))
-  }, [min, max, step]);
-
   const valueUpdate = (value: number) => {
-    dataCheck(String(value));
     setInitialValue(value);
     updateFormValue(name, value);
     onChange && onChange(value);
   }
   const handleChange = (e: React.BaseSyntheticEvent) => {
     const value = e.target.value;
-    if (+value > max) {
-      value.length > `${max}`.length + 1 ? e.preventDefault() : valueUpdate(value);
-    } else if (+value < min) {
-      value.length > `${max}`.length + 1 ? e.preventDefault() : valueUpdate(value);
-    } else if (isNaN(+value) && value !== '-') {
+    if (isNaN(+value) && value !== '-') {
       e.preventDefault();
-    } else {
-      valueUpdate(value);
-    }
-
+    } else valueUpdate(value);
   }
   const counterBtnPress = (pressed: string) => {
     if (initialValue === '' || initialValue === undefined) {
       return valueUpdate(min);
     }
-    if (pressed === 'plus' && initialValue < max) {
-      if (+initialValue + step > max) {
-        valueUpdate(max);
-      } else {
-        valueUpdate(+initialValue + step);
-      }
-    } else if (pressed === 'minus' && initialValue > min) {
-      if (+initialValue - step < min) {
-        valueUpdate(min);
-      } else {
-        valueUpdate(+initialValue - step);
-      }
-    }
+    const newVal = pressed === 'plus' ? +initialValue + step : +initialValue - step;
+    if (newVal > max) {
+      valueUpdate(max);
+    } else if (newVal < min) {
+      valueUpdate(min)
+    } else valueUpdate(newVal)
   };
   const handleDecrease = () => counterBtnPress('minus');
   const handleIncrease = () => counterBtnPress('plus');
