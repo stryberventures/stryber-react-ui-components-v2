@@ -28,16 +28,16 @@ export const Slider = (props: ISlider) => {
     max = 100,
     minValue = min,
     maxValue = max,
-    minDistance = 0,
     step = 1,
     rangeSlider = false,
+    value = rangeSlider ? [min, max] : 0,
+    controlled = false,
+    minDistance = (rangeSlider && controlled) ? 1 : 0,
     showSideLabels = true,
     showStepMarks = false,
     thumbLabels,
     color,
     name = 'slider',
-    value = rangeSlider ? [min, max] : 0,
-    controlled = false,
     onChange,
     ...rest
   } = props;
@@ -114,6 +114,9 @@ export const Slider = (props: ISlider) => {
           setPositionMax(thumbPosition(data[1]));
           setMaxVal(data[1]);
         }
+        if (!rangeSlider && data > maxVal) {
+          data = maxVal;
+        }
         setMinVal(Array.isArray(data) ? data[0] : data);
         setPositionMin(thumbPosition(Array.isArray(data) ? data[0] : data));
         updateFormValue(name, data);
@@ -136,7 +139,6 @@ export const Slider = (props: ISlider) => {
       (rangeSlider && minDistance > 0 && targetValue > maxVal - minDistance)) {
       setError(true);
     } else setError(false);
-    onChange?.(Array.isArray(value) ? [targetValue, value[1]] : targetValue);
   };
   const onMaxChange = (e: React.BaseSyntheticEvent) => {
     const targetValue = Number(e.target.value);
@@ -146,42 +148,40 @@ export const Slider = (props: ISlider) => {
       (minDistance > 0 && targetValue < minVal + minDistance)) {
       setError(true);
     } else setError(false);
-    onChange?.(Array.isArray(value) ? [value[0], targetValue] : targetValue);
   };
-
   const onMinSubmit = (e: React.BaseSyntheticEvent) => {
-    const targetValue = e.currentTarget.value;
+    const targetValue = Number(e.currentTarget.value);
     let res = null;
-    if(isNaN(targetValue) || targetValue < min || targetValue == '') {
+    if(isNaN(targetValue) || targetValue < min || targetValue == 0) {
       res = min;
     } else if (rangeSlider && minDistance > 0 && targetValue > maxVal - minDistance) {
       res = maxVal - minDistance;
-    } else if (targetValue > max) {
+    } else if (!rangeSlider && targetValue > max) {
       res = max;
     } else {
-      res = +targetValue;
+      res = targetValue;
     }
     setMinVal(res);
     setPositionMin(thumbPosition(res));
     setError(false);
     updateFormValue(name, Array.isArray(value) ? [res, value[1]] : targetValue);
+    controlled && onChange?.(Array.isArray(value) ? [res, value[1]] : targetValue);
   };
   const onMaxSubmit = (e: React.BaseSyntheticEvent) => {
-    const targetValue = e.currentTarget.value;
+    const targetValue = Number(e.currentTarget.value);
     let res = null;
-    if(isNaN(targetValue) || targetValue > max || targetValue == '') {
+    if(isNaN(targetValue) || targetValue > max || targetValue == 0) {
       res = max;
-    } else if (minDistance > 0 && targetValue < minVal + minDistance) {
-      res = maxVal + minDistance;
-    } else if (targetValue < min) {
-      res = min;
+    } else if (rangeSlider && minDistance > 0 && targetValue < minVal + minDistance) {
+      res = minVal + minDistance;
     } else {
-      res = +targetValue;
+      res = targetValue;
     }
     setMaxVal(res);
     setPositionMax(thumbPosition(res));
     setError(false);
     updateFormValue(name, Array.isArray(value) ? [value[0], res] : targetValue);
+    controlled && onChange?.(Array.isArray(value) ? [value[0], res] : targetValue);
   };
 
   const keyPress = (e: React.BaseSyntheticEvent) => {
