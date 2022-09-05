@@ -30,27 +30,33 @@ const NumberInput: React.FC<INumberInput> = (props) => {
     prefix,
     ...rest
   } = props;
+
   const { updateFormValue, fieldValue, fieldError } = useFormContext(name);
   const error = fieldError || errorMessage;
-  const initValue = fieldValue || value;
+  const initValue = +fieldValue || value;
   const [initialValue, setInitialValue] = useState(initValue);
-  const handleChange = (value: number) => {
+
+  const valueUpdate = (value: number) => {
     setInitialValue(value);
     updateFormValue(name, value);
     onChange && onChange(value);
   }
-  const checkValue = (value: number) => {
-    if (value > max) {
-      handleChange(max)
-    } else if (isNaN(+value) || value < min) {
-      handleChange(min)
-    } else {
-      handleChange(value)
-    }
+  const handleChange = (e: React.BaseSyntheticEvent) => {
+    const value = e.target.value;
+    if (isNaN(+value) && value !== '-') {
+      e.preventDefault();
+    } else valueUpdate(value);
   }
-  const counterBtnPress = (pressed: 'plus' | 'minus') => {
+  const counterBtnPress = (pressed: string) => {
+    if (initialValue === '' || initialValue === undefined) {
+      return valueUpdate(min);
+    }
     const newVal = pressed === 'plus' ? +initialValue + step : +initialValue - step;
-    checkValue(newVal);
+    if (newVal > max) {
+      valueUpdate(max);
+    } else if (newVal < min) {
+      valueUpdate(min)
+    } else valueUpdate(newVal)
   };
   const handleDecrease = () => counterBtnPress('minus');
   const handleIncrease = () => counterBtnPress('plus');
@@ -61,10 +67,11 @@ const NumberInput: React.FC<INumberInput> = (props) => {
         name={name}
         controlled={true}
         className={classes.numberInput}
-        value={isNaN(+initialValue) ? undefined : initialValue}
-        onChange={(e) => checkValue(e.target.value)}
+        value={`${initialValue}` || undefined}
+        onChange={handleChange}
         errorMessage={error}
         prefix={prefix}
+        autoComplete='off'
         endAdornment={(
           quantityCounter && (
             <div data-testid="testContainer" className={classes.btnsContainer}>
@@ -75,7 +82,6 @@ const NumberInput: React.FC<INumberInput> = (props) => {
           )
         )}
       />
-
     </div>
   );
 };
