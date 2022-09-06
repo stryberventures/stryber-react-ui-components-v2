@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { BaseSyntheticEvent, useEffect, useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Form from '../Form';
 import Input from '../Input';
@@ -18,15 +18,23 @@ export default {
 
 const Template: ComponentStory<typeof Slider> = (args) => <Slider {...args} />;
 
+const TemplateDefault: ComponentStory<typeof Slider> = (args) => (
+  <Form>
+    <Slider {...args} />
+    <Button type="submit" label="Submit" />
+  </Form>
+);
+
 const TemplateOutsideInput: ComponentStory<typeof Slider> = (args) => {
   const [value, setValue] = useState<number>(0);
   const [errorMessage, setErrorMessage] = useState('');
-  const onChange = (e: React.SyntheticEvent) => {
+  const onChange = (e: BaseSyntheticEvent) => {
     setValue(Number(e.target.value));
   };
+  const max = args?.max || 100;
   useEffect(
     () => {
-      if (value <= args.max) {
+      if (value <= max) {
         setErrorMessage('');
       } else {
         setErrorMessage('max value exceeded');
@@ -40,7 +48,7 @@ const TemplateOutsideInput: ComponentStory<typeof Slider> = (args) => {
         name="test"
         controlled
         type="text"
-        value={value}
+        value={value.toString()}
         errorMessage={errorMessage}
         onChange={onChange}
       />
@@ -52,6 +60,7 @@ const TemplateOutsideInput: ComponentStory<typeof Slider> = (args) => {
         onChange={(val) => { setValue(Number(val)); }}
       />
       <Button
+        disabled={value > max}
         type="submit"
         label={'Submit'}
       />
@@ -60,37 +69,58 @@ const TemplateOutsideInput: ComponentStory<typeof Slider> = (args) => {
 }
 
 const TemplateRangeOutsideInput: ComponentStory<typeof Slider> = (args) => {
-  const [values, setValue] = useState<number | number[]>([args.min, args.max]);
-  const onMinChange = (e) => {
-    const value = e.target.value;
-    value <= values[1] && setValue([Number(value), values[1]]);
+  const minValue = args?.minValue || 0;
+  const maxValue = args?.maxValue || 100;
+  const max = args?.max || 100;
+  const [minVal, setMinVal] = useState<number>(minValue);
+  const [maxVal, setMaxVal] = useState<number>(maxValue);
+  const [value, setValue] = useState<number | number[]>([minValue, maxValue]);
+  const applyChanges = () => {
+    setValue([minVal, maxVal]);
   };
-  const onMaxChange = (e) => setValue([values[0], Number(e.target.value)]);
   return (
-    <Form onSubmit={(values) => console.log('values', values)}>
-      <Input
-        name="test"
-        label="min"
-        controlled
-        type="text"
-        value={values[0]}
-        onChange={onMinChange}
-      />
-      <Input
-        name="test"
-        label="max"
-        controlled
-        type="text"
-        value={values[1]}
-        errorMessage={values[1] > args.max && 'max value exceeded'}
-        onChange={onMaxChange}
-      />
+    <Form>
+      <div style={{ display: 'flex', marginBottom: 20, }}>
+        <Input
+          name="test"
+          label="min"
+          controlled
+          type="text"
+          value={minVal.toString()}
+          errorMessage={minVal > max ? 'min value cannot be higher than max' : undefined}
+          onChange={(e) => setMinVal(Number(e.target.value))}
+        />
+        <Input
+          name="test"
+          label="max"
+          controlled
+          type="text"
+          value={maxVal.toString()}
+          errorMessage={(maxVal > max ? 'max value exceeded' : undefined) || (maxVal < minVal ? 'max value cannot be lower than min' : undefined)}
+          onChange={(e: BaseSyntheticEvent) => setMaxVal(Number(e.target.value))}
+        />
+        <Button
+          type="button"
+          size="small"
+          disabled={(minVal > maxVal) || (maxVal > max)}
+          onClick={applyChanges}
+          label="Apply"
+        />
+      </div>
       <Slider
         name="test"
         {...args}
-        value={values}
+        value={value}
         controlled
-        onChange={setValue}
+        onChange={(_value: number | number[]) => {
+          if (Array.isArray(_value)) {
+            setMinVal(_value[0]);
+            setMaxVal(_value[1]);
+          } else {
+            setMinVal(_value);
+          }
+          setValue(_value);
+        }}
       />
       <Button
         type="submit"
@@ -100,7 +130,7 @@ const TemplateRangeOutsideInput: ComponentStory<typeof Slider> = (args) => {
   );
 }
 
-export const Default = Template.bind({});
+export const Default = TemplateDefault.bind({});
 Default.args = {
   min: 0,
   max: 10,
