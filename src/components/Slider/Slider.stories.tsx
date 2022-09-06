@@ -43,7 +43,7 @@ const TemplateOutsideInput: ComponentStory<typeof Slider> = (args) => {
     [value]
   );
   return (
-    <Form onSubmit={(values) => console.log('values', values)}>
+    <Form>
       <Input
         name="test"
         controlled
