@@ -156,13 +156,14 @@ export const Slider = (props: ISlider) => {
       res = min;
     } else if (rangeSlider && minDistance > 0 && targetValue > maxVal - minDistance) {
       res = maxVal - minDistance;
-    } else if (!rangeSlider && targetValue > max) {
+    } else if (targetValue > max) {
       res = max;
     } else {
       res = targetValue;
     }
     setMinVal(res);
     setPositionMin(thumbPosition(res));
+    setMinSize(res.toStringx().length * 10);
     setError(false);
     updateFormValue(name, Array.isArray(value) ? [res, value[1]] : targetValue);
     controlled && onChange?.(Array.isArray(value) ? [res, value[1]] : targetValue);
@@ -179,6 +180,7 @@ export const Slider = (props: ISlider) => {
     }
     setMaxVal(res);
     setPositionMax(thumbPosition(res));
+    setMaxSize(res.toString().length * 10);
     setError(false);
     updateFormValue(name, Array.isArray(value) ? [value[0], res] : targetValue);
     controlled && onChange?.(Array.isArray(value) ? [value[0], res] : targetValue);
