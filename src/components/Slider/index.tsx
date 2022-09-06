@@ -81,7 +81,7 @@ export const Slider = (props: ISlider) => {
     if (minVal > maxVal) {
       data = [maxVal, minVal];
     }
-    updateFormValue(name, data, true);
+    updateFormValue(name, rangeSlider ? data : minVal, true);
     return () => {
       unsetFormValue(name);
     };
