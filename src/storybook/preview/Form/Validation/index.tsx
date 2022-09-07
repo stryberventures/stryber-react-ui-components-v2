@@ -27,14 +27,14 @@ const FormValidation = () => {
       <h1> </h1>
       <Select
         name="select"
-        options={['One', 'Two', 'Three']}
+        options={[{ name: 'One' }, { name: 'Two' }, { name: 'Three' }]}
         label="Select"
         placeholder="Select a value"
       />
       <h1> </h1>
       <Multiselect
         name="multiselect"
-        options={['One', 'Two', 'Three']}
+        options={[{ name: 'One' }, { name: 'Two' }, { name: 'Three' }]}
         label="Multiselect"
         placeholder="Select at least one value"
       />
