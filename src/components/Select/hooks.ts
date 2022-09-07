@@ -1,4 +1,4 @@
-import { ISelect } from './index';
+import { IOption, ISelect } from './index';
 import React, { useState } from 'react';
 import { useFormContext } from '../Form';
 import { IDropdownRef } from '../Dropdown';
@@ -13,10 +13,10 @@ export const useSelect = (props: ISelect) => {
     !open && updateFormTouched(name, true);
   };
 
-  const onOptionClick = (value: string) => {
+  const onOptionClick = (value: IOption) => {
     updateFormValue(name, value);
-    setSelectedValue(value);
-    onChange && onChange(value);
+    setSelectedValue(value.name);
+    onChange && onChange(value.name);
     dropdownRef?.current?.close();
   }
 

@@ -5,10 +5,13 @@ import MenuItem from '../MenuItem';
 import CheckBox from '../CheckBox';
 import { useMultiselect } from './hooks';
 
+export interface IOption {
+  name: string
+}
 export interface IMultiselect extends Omit<IDropdownBase, 'onChange'> {
-  options: string[],
+  options: IOption[],
   name?: string,
-  onChange?: (values: string[]) => void;
+  onChange?: (values: IOption[]) => void;
 }
 
 const Multiselect: React.FC<IMultiselect> = (props) => {
@@ -29,17 +32,17 @@ const Multiselect: React.FC<IMultiselect> = (props) => {
       fullWidth={fullWidth}
     >
       {options.map((option) => (
-        <MenuItem key={option}>
+        <MenuItem key={option.name}>
           <CheckBox
             className={classes.checkbox}
-            name={option}
+            name={option.name}
             controlled={true}
             color={color}
             size="small"
-            checked={selectedOptions.indexOf(option) >= 0}
+            checked={selectedOptions.map(option => option.name).indexOf(option.name) >= 0}
             onChange={onCheckboxChange}
           >
-            {option}
+            {option.name}
           </CheckBox>
         </MenuItem>
       ))}

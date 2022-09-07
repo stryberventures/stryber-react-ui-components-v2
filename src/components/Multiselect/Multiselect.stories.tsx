@@ -13,6 +13,16 @@ export default {
   argTypes: buildExcludeArgTypes(['name', 'onChange', 'className', 'onToggle']),
 } as ComponentMeta<typeof Multiselect>;
 
+const options = [
+  { name: 'One' },
+  { name: 'Two' },
+  { name: 'Three' },
+  { name: 'Four' },
+  { name: 'Five' },
+  { name: 'Six' },
+  { name: 'Seven' },
+];
+
 const Template: ComponentStory<typeof Multiselect> = (args) =>
   <Multiselect {...args} />;
 
@@ -20,7 +30,7 @@ export const Primary = Template.bind({});
 Primary.args = {
   label: 'Multiselect',
   placeholder: 'Select an option',
-  options: ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'],
+  options
 };
 
 export const Secondary = Template.bind({});
@@ -28,7 +38,7 @@ Secondary.args = {
   label: 'Multiselect',
   placeholder: 'Select an option',
   color: 'secondary',
-  options: ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'],
+  options
 };
 
 export const Disabled = Template.bind({});
@@ -36,7 +46,7 @@ Disabled.args = {
   label: 'Multiselect',
   placeholder: 'Disabled',
   disabled: true,
-  options: ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'],
+  options
 };
 
 export const Error = Template.bind({});
@@ -44,7 +54,7 @@ Error.args = {
   label: 'Multiselect',
   placeholder: 'with an error',
   error: 'Error message',
-  options: ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'],
+  options
 };
 
 export const Hint = Template.bind({});
@@ -52,13 +62,13 @@ Hint.args = {
   label: 'Multiselect',
   placeholder: 'Disabled',
   hint: 'Hint message',
-  options: ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'],
+  options
 };
 
 export const FullWidth = Template.bind({});
 FullWidth.args = {
   label: 'Multiselect',
   placeholder: 'Full Width',
-  options: ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'],
+  options,
   fullWidth: true,
 };

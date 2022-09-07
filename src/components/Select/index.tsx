@@ -4,11 +4,15 @@ import Dropdown, { IDropdownBase } from '../Dropdown';
 import MenuItem from '../MenuItem';
 import { useSelect } from './hooks';
 
+export interface IOption {
+  name: string
+}
+
 export interface ISelect extends Omit<IDropdownBase, 'onChange'> {
-  options: string[],
+  options: IOption[],
   name?: string,
   value?: string,
-  onChange?: (value: string) => void,
+  onChange?: (value: IOption['name']) => void,
 }
 
 const Select: React.FC<ISelect> = (props) => {
@@ -31,11 +35,11 @@ const Select: React.FC<ISelect> = (props) => {
     >
       {options.map((option) => (
         <MenuItem
-          key={option}
-          selected={value === option}
+          key={option.name}
+          selected={value.toString() === option.name}
           onClick={() => onOptionClick(option)}
         >
-          {option}
+          {option.name}
         </MenuItem>
       ))}
     </Dropdown>
