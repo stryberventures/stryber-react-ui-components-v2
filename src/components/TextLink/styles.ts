@@ -1,8 +1,10 @@
 import { createStyles } from '../Theme';
+import sharedStyles from '../Theme/sharedStyles';
 import { ITextLink } from './index';
 
 export default createStyles((theme) => ({
   textLink: (props: ITextLink) =>  ({
+    ...sharedStyles.noHighlight,
     padding: [8, 16],
     color: theme[props.color!].main,
     fontSize: 16,

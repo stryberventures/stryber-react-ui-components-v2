@@ -18,7 +18,8 @@ export default createStyles((theme) => ({
     backgroundColor: theme.background.default,
     '&:focus-within:not($inputContainerError)': {
       border: `1px solid ${theme[props.color!].main}`,
-      outline: `4px solid ${theme[props.color!].light}`,
+      outline: 'none',
+      boxShadow: `0 0 0 4px ${theme[props.color!].light}`,
     },
     '&:not($inputContainerError)': {
       border: `1px solid ${theme.default.main}`,
@@ -30,7 +31,8 @@ export default createStyles((theme) => ({
   inputContainerError: {
     border: `1px solid ${theme.error.main}`,
     '&:focus-within': {
-      outline: `4px solid ${theme.error.light}`,
+      outline: 'none',
+      boxShadow: `0 0 0 4px ${theme.error.light}`,
     },
   },
   input: {
@@ -51,6 +53,9 @@ export default createStyles((theme) => ({
     width: '100%',
     color: theme.text.primary,
     fontSize: 14,
+    [`@media only screen and (max-width: ${768}px)`]: {
+      fontSize: 16,
+    },
     backgroundColor: theme.background.default,
     '&::placeholder': {
       color: theme.text.hint,

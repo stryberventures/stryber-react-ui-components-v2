@@ -1,19 +1,23 @@
 import { IButton } from './index';
 import { createStyles } from '../Theme';
+import sharedStyles from '../Theme/sharedStyles';
 
 export default createStyles((theme) => ({
   button: (props: IButton) => ({
     fontFamily: theme.font,
     fontWeight: 700,
     userSelect: 'none',
-    cursor: 'pointer',
     outline: 'none',
     border: 'none',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    ...sharedStyles.noHighlight,
+    '&:hover': {
+      cursor: 'pointer',
+    },
     '&:active:not($disabled)': {
-      outline: `4px solid ${theme[props.color!].light}`,
+      boxShadow: `0 0 0 4px ${theme[props.color!].light}`,
     },
   }),
   contained: (props: IButton) => ({

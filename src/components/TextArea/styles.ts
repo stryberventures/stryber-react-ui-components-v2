@@ -1,3 +1,4 @@
+import sharedStyles from '../Theme/sharedStyles';
 import { createStyles } from '../Theme';
 import { ITextArea } from './index';
 
@@ -12,7 +13,7 @@ export default createStyles((theme) => ({
     backgroundColor: theme.background.default,
     '&:focus-within:not($containerError)': {
       border: `1px solid ${theme[props.color!].main}`,
-      outline: `4px solid ${theme[props.color!].light}`,
+      boxShadow: `0 0 0 4px ${theme[props.color!].light}`,
     },
     '&:not($containerError)': {
       border: `1px solid ${theme.default.main}`,
@@ -31,10 +32,11 @@ export default createStyles((theme) => ({
     border: `1px solid ${theme.error.main}`,
     padding: '5px 8px',
     '&:focus-within': {
-      outline: `4px solid ${theme.error.light}`,
+      boxShadow: `0 0 0 4px ${theme.error.light}`,
     },
   },
   textarea: {
+    ...sharedStyles.noHighlight,
     fontFamily: theme.font,
     border: 'none',
     outline: 'none',
