@@ -5,15 +5,15 @@ import MenuItem from '../MenuItem';
 import { useSelect } from './hooks';
 
 export interface IOption {
-  value: string,
+  value: string | number,
   label: string
 }
 
 export interface ISelect extends Omit<IDropdownBase, 'onChange'> {
   options: IOption[],
   name?: string,
-  value?: string,
-  onChange?: (value: IOption['value']) => void,
+  value?: string | number,
+  onChange?: (options: IOption[]) => void,
 }
 
 const Select: React.FC<ISelect> = (props) => {

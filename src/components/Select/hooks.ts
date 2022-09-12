@@ -18,10 +18,10 @@ export const useSelect = (props: ISelect) => {
     !open && updateFormTouched(name, true);
   };
 
-  const onOptionClick = (value: IOption) => {
-    updateFormValue(name, value);
-    setSelectedValue(value.label);
-    onChange && onChange(value.label);
+  const onOptionClick = (option: IOption) => {
+    updateFormValue(name, option);
+    setSelectedValue(option.label);
+    onChange && onChange([option]);
     dropdownRef?.current?.close();
   }
 
