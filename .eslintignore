@@ -4,3 +4,5 @@ postBuild.js
 webpack.config.js
 deploy.js
 buildConstants.js
+babel.config.js
+jest.config.js

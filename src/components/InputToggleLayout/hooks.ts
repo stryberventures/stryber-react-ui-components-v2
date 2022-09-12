@@ -26,7 +26,7 @@ export const useCheckedState = (props: IInputToggleBaseControlled) => {
   };
   
   React.useEffect(() => {
-    !controlled && updateFormValue(name, !!checked, true);
+    !controlled && updateFormValue(name, internalValue, true);
     return () => {
       !controlled && updateFormValue(name, undefined, true);
     };
