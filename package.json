@@ -7,7 +7,7 @@
     "build": "webpack --config webpack.config.js && node postBuild.js",
     "build-storybook": "build-storybook -o docs-build",
     "lint": "eslint . --ext .ts,.tsx",
-    "tsc-compile": "tsc --noemit",
+    "tsc-compile": "tsc --noemit --project tsconfig.checkAll.json",
     "test": "jest"
   },
   "dependencies": {
