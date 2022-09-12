@@ -1,24 +1,30 @@
-import { IMultiselect, IOption } from './index';
+import { IMultiselect } from './index';
 import React, { useState } from 'react';
 import { useFormContext } from '../Form';
 
 export const useMultiselect = (props: IMultiselect) => {
-  const { name = '', error, onChange } = props;
+  const { name = '', error, onChange, options, value } = props;
   const { fieldError, fieldValue, updateFormTouched, updateFormValue } = useFormContext(name);
-  const [selectedOptions, setSelectedOptions] = useState<IOption[]>(fieldValue || []);
+
+  const getOptionLabelByValue = (value: string[]) => {
+    const newOptions = options.filter(option => value?.find(val => val === option.value))
+    return newOptions.map(option => option.label);
+  };
+
+  const [selectedOptions, setSelectedOptions] = useState<string[]>(getOptionLabelByValue(fieldValue || value || []));
 
   const onCheckboxChange = (e: React.BaseSyntheticEvent) => {
     const { name: checkboxName, checked } = e.target;
+    const option = options.filter(optionItem => optionItem.label === checkboxName);
     let updatedOptions = [...selectedOptions];
     if (checked) {
-      updatedOptions.push({ name: checkboxName });
+      updatedOptions.push(checkboxName);
     } else {
-      updatedOptions = updatedOptions.filter((option) => {
-        return option.name !== checkboxName })
+      updatedOptions = updatedOptions.filter((option) => option !== checkboxName)
     }
     updateFormValue(name, updatedOptions);
     setSelectedOptions(updatedOptions);
-    onChange && onChange(updatedOptions);
+    onChange && onChange(option);
   }
 
   const onDropdownToggle = (open: boolean) => {
@@ -33,7 +39,7 @@ export const useMultiselect = (props: IMultiselect) => {
   }, []);
   return {
     selectedOptions,
-    value: selectedOptions.map((option) => option.name).join(', '),
+    value: selectedOptions.join(', '),
     error: fieldError || error,
     onCheckboxChange,
     onDropdownToggle,

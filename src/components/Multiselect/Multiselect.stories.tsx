@@ -14,13 +14,13 @@ export default {
 } as ComponentMeta<typeof Multiselect>;
 
 const options = [
-  { name: 'One' },
-  { name: 'Two' },
-  { name: 'Three' },
-  { name: 'Four' },
-  { name: 'Five' },
-  { name: 'Six' },
-  { name: 'Seven' },
+  { value: '1', label: 'One' },
+  { value: '2', label: 'Two' },
+  { value: '3', label: 'Three' },
+  { value: '4', label: 'Four' },
+  { value: '5', label: 'Five' },
+  { value: '6', label: 'Six' },
+  { value: '7', label: 'Seven' },
 ];
 
 const Template: ComponentStory<typeof Multiselect> = (args) =>
@@ -30,7 +30,7 @@ export const Primary = Template.bind({});
 Primary.args = {
   label: 'Multiselect',
   placeholder: 'Select an option',
-  options
+  options,
 };
 
 export const Secondary = Template.bind({});

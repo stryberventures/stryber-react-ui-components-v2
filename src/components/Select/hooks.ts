@@ -4,10 +4,15 @@ import { useFormContext } from '../Form';
 import { IDropdownRef } from '../Dropdown';
 
 export const useSelect = (props: ISelect) => {
-  const { name = '', error, onChange, value = '' } = props;
+  const { name = '', error, onChange, value, options } = props;
   const { fieldError, fieldValue, updateFormTouched, updateFormValue } = useFormContext(name);
-  const [selectedValue, setSelectedValue] = useState<string>(fieldValue || value);
   const dropdownRef = React.useRef<IDropdownRef>(null);
+
+  const getOptionLabelByValue = (value: string) => {
+    const option = options.find(optionItem => optionItem.value === value);
+    return option ? option.label : '';
+  };
+  const [selectedValue, setSelectedValue] = useState<string>(getOptionLabelByValue(fieldValue || value));
 
   const onDropdownToggle = (open: boolean) => {
     !open && updateFormTouched(name, true);
@@ -15,8 +20,8 @@ export const useSelect = (props: ISelect) => {
 
   const onOptionClick = (value: IOption) => {
     updateFormValue(name, value);
-    setSelectedValue(value.name);
-    onChange && onChange(value.name);
+    setSelectedValue(value.label);
+    onChange && onChange(value.label);
     dropdownRef?.current?.close();
   }
 
