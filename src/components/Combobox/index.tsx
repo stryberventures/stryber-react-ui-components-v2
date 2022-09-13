@@ -12,7 +12,7 @@ export interface IOption {
 export interface ICombobox extends Omit<IDropdown, 'onChange' | 'children' | 'value'> {
   options: IOption[],
   value?: string | number,
-  onChange?: (value: IOption[]) => void,
+  onChange?: (options: IOption[]) => void,
   noOptionsFoundText?: string,
 }
 
