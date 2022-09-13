@@ -13,7 +13,7 @@ export interface ISelect extends Omit<IDropdownBase, 'onChange'> {
   options: IOption[],
   name?: string,
   value?: string | number,
-  onChange?: (options: IOption) => void,
+  onChange?: (option: IOption) => void,
 }
 
 const Select: React.FC<ISelect> = (props) => {
