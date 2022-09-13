@@ -29,14 +29,14 @@ const FormInitialValues = () => {
       <h1> </h1>
       <Select
         name="select"
-        options={['One', 'Two', 'Three']}
+        options={[{ label: 'One', value: '1' }, { label: 'Two', value: '2' }, { label: 'Three', value: '3' }]}
         label="Select"
         placeholder="Select a value"
       />
       <h1> </h1>
       <Multiselect
         name="multiselect"
-        options={['One', 'Two', 'Three']}
+        options={[{ label: 'One', value: '1' }, { label: 'Two', value: '2' }, { label: 'Three', value: '3' }]}
         label="Multiselect"
         placeholder="Select at least one value"
       />

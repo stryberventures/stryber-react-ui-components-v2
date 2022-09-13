@@ -3,7 +3,7 @@ import * as React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
 import Multiselect from './index'
 
-const options = ['One', 'Two', 'Three'];
+const options = [{ label: 'One', value: '1' }, { label: 'Two', value: '2' }, { label: 'Three', value: '3' }];
 
 it('should be rendered with label', () => {
   const label = 'Label'
@@ -13,7 +13,7 @@ it('should be rendered with label', () => {
 
 it('should not display the content', () => {
   render(<Multiselect label="Label" options={options}/>)
-  expect(screen.queryByText(options[0])).not.toBeInTheDocument();
+  expect(screen.queryByText(options[0].label)).not.toBeInTheDocument();
 });
 
 it('should display the placeholder', () => {
@@ -37,7 +37,7 @@ it('should display the content after click', () => {
   const { getByRole } = render(<Multiselect label="Label" options={options}/>);
   const multiselect = getByRole('textbox');
   fireEvent.click(multiselect);
-  expect(screen.queryByText(options[0])).toBeInTheDocument();
+  expect(screen.queryByText(options[0].label)).toBeInTheDocument();
 });
 
 it('should hide the content after second click', () => {
@@ -45,5 +45,5 @@ it('should hide the content after second click', () => {
   const multiselect = getByRole('textbox');
   fireEvent.click(multiselect);
   fireEvent.click(multiselect);
-  expect(screen.queryByText(options[0])).not.toBeInTheDocument();
+  expect(screen.queryByText(options[0].label)).not.toBeInTheDocument();
 });
