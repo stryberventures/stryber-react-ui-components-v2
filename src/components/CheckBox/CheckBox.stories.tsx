@@ -72,3 +72,17 @@ CustomContent.args = {
     <div>Check <a href="https://google.com">terms</a> and <a href="https://google.com">conditions</a></div>
   ),
 };
+
+export const Reverse = Template.bind({});
+Reverse.args = {
+  size: 'medium',
+  label: 'Reverse',
+  reverse: true,
+};
+
+export const FullWidth = Template.bind({});
+FullWidth.args = {
+  size: 'medium',
+  label: 'Full Width',
+  fullWidth: true,
+};
