@@ -36,7 +36,7 @@ const Dropdown = forwardRef((props: IDropdown, ref: ForwardedRef<IDropdownRef>) 
     inputReadOnly = true, children, label, placeholder, value, className, color, name, fullWidth,
     hint, error, disabled, onClick, onToggle, contentClassName, onInputChange, ...rest
   } = props;
-  const classes = useStyles();
+  const classes = useStyles(props);
   const { open, onInputClick, onOverlayClick } = useDropdown(props, ref);
 
   return (
@@ -58,7 +58,7 @@ const Dropdown = forwardRef((props: IDropdown, ref: ForwardedRef<IDropdownRef>) 
         hint={hint}
         errorMessage={error}
         onChange={onInputChange}
-        className={classNames(classes.input, { [classes.inputDisabled]: disabled })}
+        className={classNames(classes.input, { [classes.inputDisabled]: disabled, [classes.focus]: open })}
         endAdornment={(
           <div className={classNames(classes.toggleIcon, {
             [classes.toggleIconDisabled]: disabled,
@@ -80,5 +80,7 @@ const Dropdown = forwardRef((props: IDropdown, ref: ForwardedRef<IDropdownRef>) 
 });
 
 Dropdown.displayName = 'Dropdown';
-
+Dropdown.defaultProps = {
+  color: 'primary',
+}
 export default Dropdown;
