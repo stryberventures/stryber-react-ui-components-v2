@@ -4,7 +4,9 @@ export default createStyles((theme) => ({
   wrapper: {
     display: 'flex',
     flexDirection: 'column',
-    cursor: 'pointer',
+    '&:hover': {
+      cursor: 'pointer',
+    },
   },
   disabled: {
     pointerEvents: 'none',
@@ -13,12 +15,12 @@ export default createStyles((theme) => ({
     display: 'none',
   }),
   container: {
-    cursor: 'pointer',
     userSelect: 'none',
     display: 'flex',
     alignItems: 'flex-start',
     height: '100%',
     width: '100%',
+    '-webkit-tap-highlight-color': 'transparent',
   },
   text: {
     marginLeft: 8,

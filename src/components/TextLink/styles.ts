@@ -15,6 +15,7 @@ export default createStyles((theme) => ({
     display: 'inline-flex',
     alignItems: 'center',
     gap: 8,
+    '-webkit-tap-highlight-color': 'transparent',
     '& svg path': {
       fill: theme[props.color!].main,
     },
@@ -28,7 +29,7 @@ export default createStyles((theme) => ({
       backgroundColor: theme[props.color!].light,
     },
     '&:active': {
-      outline: `2px solid ${theme[props.color!].light}`,
+      boxShadow: `0 0 0 4px ${theme[props.color!].light}`,
       outlineOffset: -2,
       backgroundColor: 'transparent',
     },

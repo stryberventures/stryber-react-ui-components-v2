@@ -6,14 +6,17 @@ export default createStyles((theme) => ({
     fontFamily: theme.font,
     fontWeight: 700,
     userSelect: 'none',
-    cursor: 'pointer',
     outline: 'none',
     border: 'none',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    '-webkit-tap-highlight-color': 'transparent',
+    '&:hover': {
+      cursor: 'pointer',
+    },
     '&:active:not($disabled)': {
-      outline: `4px solid ${theme[props.color!].light}`,
+      boxShadow: `0 0 0 4px ${theme[props.color!].light}`,
     },
   }),
   contained: (props: IButton) => ({
