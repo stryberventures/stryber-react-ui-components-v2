@@ -7,6 +7,7 @@ import Select from '../../../../components/Select';
 import Multiselect from '../../../../components/Multiselect';
 import Combobox from '../../../../components/Combobox';
 import Button from '../../../../components/Button';
+import CheckBox from '../../../../components/CheckBox';
 
 const FormInitialValues = () => {
   return (
@@ -17,7 +18,9 @@ const FormInitialValues = () => {
         select: 'Two',
         multiselect: ['Two', 'Three'],
         combobox: 1,
+        checkbox: true,
       }}
+      onSubmit={(formValues) => {console.log('on submit', formValues)}}
     >
       <h2 style={{ fontFamily: 'Inter', color: defaultTheme.primary.main }}>Form with initial values</h2>
       <Input label={'Email'} name="email" placeholder="some@mail.com"/>
@@ -26,14 +29,14 @@ const FormInitialValues = () => {
       <h1> </h1>
       <Select
         name="select"
-        options={['One', 'Two', 'Three']}
+        options={[{ label: 'One', value: '1' }, { label: 'Two', value: '2' }, { label: 'Three', value: '3' }]}
         label="Select"
         placeholder="Select a value"
       />
       <h1> </h1>
       <Multiselect
         name="multiselect"
-        options={['One', 'Two', 'Three']}
+        options={[{ label: 'One', value: '1' }, { label: 'Two', value: '2' }, { label: 'Three', value: '3' }]}
         label="Multiselect"
         placeholder="Select at least one value"
       />
@@ -44,6 +47,8 @@ const FormInitialValues = () => {
         label="Combobox"
         placeholder="Select a value"
       />
+      <h1> </h1>
+      <CheckBox name="checkbox" label="Remember me" />
       <h1> </h1>
       <div style={{ display: 'flex', gap: 20 }}>
         <Button label="Submit" type="submit"/>
@@ -63,8 +68,10 @@ export const FormInitialValuesCode = `
     select: 'Two',
     multiselect: ['Two', 'Three'],
     combobox: 1,
+    checkbox: true
   }}
-  >
+  onSubmit={(formValues) => {console.log('on submit', formValues)}}
+>
   <h2 style={{ fontFamily: 'Inter', color: defaultTheme.primary.main }}>Form with initial values</h2>
   <Input label={'Email'} name="email" placeholder="some@mail.com"/>
   <h1> </h1>
@@ -90,6 +97,8 @@ export const FormInitialValuesCode = `
     label="Combobox"
     placeholder="Select a value"
   />
+  <h1> </h1>
+  <CheckBox name="checkbox" label="Remember me" />
   <h1> </h1>
   <div style={{ display: 'flex', gap: 20 }}>
     <Button label="Submit" type="submit"/>

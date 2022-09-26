@@ -29,6 +29,17 @@ export default createStyles((theme) => ({
     fontSize: 14,
     position: 'relative',
   },
+  reverse: {
+    flexDirection: 'row-reverse',
+    justifyContent: 'flex-end',
+    '& $text': {
+      marginRight: 8,
+      marginLeft: 0,
+    }
+  },
+  fullWidth: {
+    justifyContent: 'space-between',
+  },
   medium: {
     lineHeight: '20px',
   },

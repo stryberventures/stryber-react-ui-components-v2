@@ -112,7 +112,16 @@ const Template: ComponentStory<typeof ThemeChooser> = (args) => (
       </div>
     </Dropdown>
     <h2 style={{ fontFamily: 'Inter', color: '#003CB8' }}>Multiselect</h2>
-    <Multiselect label="Multiselect" placeholder="Placeholder" options={['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine']}/>
+    <Multiselect label="Multiselect" placeholder="Placeholder"
+      options={[
+        { value: '1', label: 'One' },
+        { value: '2', label: 'Two' },
+        { value: '3', label: 'Three' },
+        { value: '4', label: 'Four' },
+        { value: '5', label: 'Five' },
+        { value: '6', label: 'Six' },
+        { value: '7', label: 'Seven' },
+      ]}/>
   </ThemeChooser>
 );
 

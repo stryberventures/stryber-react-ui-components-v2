@@ -14,6 +14,8 @@ export interface IInputToggleBase extends Omit<React.HTMLProps<HTMLInputElement>
   onChange?: (e: React.BaseSyntheticEvent) => void,
   onFocus?: (e: React.BaseSyntheticEvent) => void,
   children?: React.ReactNode,
+  reverse?: boolean,
+  fullWidth?: boolean,
 }
 
 export interface IInputToggleBaseControlled extends IInputToggleBase {

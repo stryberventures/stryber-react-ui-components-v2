@@ -9,9 +9,10 @@ export interface IOption {
   label: string,
 }
 
-export interface ICombobox extends Omit<IDropdown, 'onChange' | 'children'> {
+export interface ICombobox extends Omit<IDropdown, 'onChange' | 'children' | 'value'> {
   options: IOption[],
-  onChange?: (value: IOption['value']) => void,
+  value?: string | number,
+  onChange?: (options: IOption[]) => void,
   noOptionsFoundText?: string,
 }
 

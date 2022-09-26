@@ -49,3 +49,15 @@ CustomContent.args = {
   ),
 };
 
+export const Reverse = Template.bind({});
+Reverse.args = {
+  label: 'Reverse',
+  reverse: true,
+};
+
+export const FullWidth = Template.bind({});
+FullWidth.args = {
+  label: 'Full Width',
+  fullWidth: true,
+};
+

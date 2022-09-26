@@ -41,6 +41,9 @@ const Form = forwardRef((props: IFormProps, ref: ForwardedRef<IFormRef>) => {
   const [formErrors, setFormErrors] = React.useState({});
   const [formTouched, setFormTouched] = React.useState({});
   const [formSessionId, setFormSessionId] = React.useState(1);
+
+  const forceRerenderForm = () => setFormSessionId((id) => id + 1);
+
   /** Yup validate function wrapper */
   const validate = (values: any) => {
     /** Validation schema using Yup library */
@@ -82,7 +85,7 @@ const Form = forwardRef((props: IFormProps, ref: ForwardedRef<IFormRef>) => {
     setFormErrors(errors);
     onError && onError(errors, formValues);
   };
-  
+
   const onSubmitFormWrapper = (e?: React.SyntheticEvent) => {
     e?.preventDefault();
     if (Object.keys(formErrors).length > 0) {
@@ -96,7 +99,7 @@ const Form = forwardRef((props: IFormProps, ref: ForwardedRef<IFormRef>) => {
   const onResetFormWrapper = (e?: React.SyntheticEvent) => {
     e?.preventDefault();
     setFormValues(() => initialValues || {});
-    setFormSessionId((id) => id + 1);
+    forceRerenderForm();
     onReset && onReset(formValues);
   };
 
@@ -141,7 +144,12 @@ const Form = forwardRef((props: IFormProps, ref: ForwardedRef<IFormRef>) => {
   };
 
   useImperativeHandle(ref, () => formActions);
-  
+
+  React.useEffect(() => {
+    setFormValues(initialValues || {});
+    forceRerenderForm();
+  }, [initialValues]);
+
   /** Mount / unmount logic */
   React.useEffect(() => {
     /** Running first validation on mount */

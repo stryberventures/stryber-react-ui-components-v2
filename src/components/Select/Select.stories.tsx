@@ -13,6 +13,16 @@ export default {
   argTypes: buildExcludeArgTypes(['name', 'onChange', 'onToggle', 'className', 'value']),
 } as ComponentMeta<typeof Select>;
 
+const options = [
+  { value: 1, label: 'One' },
+  { value: '2', label: 'Two' },
+  { value: '3', label: 'Three' },
+  { value: '4', label: 'Four' },
+  { value: '5', label: 'Five' },
+  { value: '6', label: 'Six' },
+  { value: '7', label: 'Seven' },
+];
+
 const Template: ComponentStory<typeof Select> = (args) =>
   <Select {...args} />;
 
@@ -20,7 +30,7 @@ export const Primary = Template.bind({});
 Primary.args = {
   label: 'Select',
   placeholder: 'Select an option',
-  options: ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'],
+  options,
 };
 
 export const Secondary = Template.bind({});
@@ -28,7 +38,7 @@ Secondary.args = {
   label: 'Select',
   placeholder: 'Select an option',
   color: 'secondary',
-  options: ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'],
+  options
 };
 
 export const Disabled = Template.bind({});
@@ -36,7 +46,7 @@ Disabled.args = {
   label: 'Select',
   placeholder: 'Disabled',
   disabled: true,
-  options: ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'],
+  options
 };
 
 export const Error = Template.bind({});
@@ -44,7 +54,7 @@ Error.args = {
   label: 'Select',
   placeholder: 'with an error',
   error: 'Error message',
-  options: ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'],
+  options
 };
 
 export const Hint = Template.bind({});
@@ -52,13 +62,13 @@ Hint.args = {
   label: 'Select',
   placeholder: 'Disabled',
   hint: 'Hint message',
-  options: ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'],
+  options
 };
 
 export const FullWidth = Template.bind({});
 FullWidth.args = {
   label: 'Select',
   placeholder: 'Full Width',
-  options: ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'],
+  options,
   fullWidth: true,
 };

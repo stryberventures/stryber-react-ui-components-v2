@@ -12,7 +12,7 @@ export const useCombobox = (props: ICombobox) => {
     const option = options.find(optionItem => optionItem.value === value);
     return option ? option.label : '';
   };
-  
+
   const getOptionValueByLabel = (label: string) => {
     const option = options.find(optionItem => optionItem.label === label);
     return option ? option.value : '';
@@ -21,7 +21,7 @@ export const useCombobox = (props: ICombobox) => {
   const [inputValue, setInputValue] = React.useState(
     getOptionLabelByValue(fieldValue || value),
   );
-  
+
   const onDropdownToggle = (open: boolean) => {
     !open && updateFormTouched(name, true);
     onToggle && onToggle(open);
@@ -30,8 +30,9 @@ export const useCombobox = (props: ICombobox) => {
   const changeInputValue = (value: string) => {
     setInputValue(value);
     const optionValue = getOptionValueByLabel(value);
+    const option = options.filter(optionItem => optionItem.label === value);
     updateFormValue(name, optionValue);
-    onChange && onChange(optionValue);
+    onChange && onChange(option);
   }
 
   const onOptionClick = (option: IOption) => {
@@ -42,11 +43,11 @@ export const useCombobox = (props: ICombobox) => {
   const onInputChange = (e: React.BaseSyntheticEvent) => {
     changeInputValue(e.target.value);
   }
-  
+
   const filteredOptions = options.filter((option) =>
     option.label.toLowerCase().includes(inputValue.toLowerCase()
     ));
-  
+
 
   React.useEffect(() => {
     updateFormValue(name, getOptionValueByLabel(inputValue), true);
@@ -54,7 +55,7 @@ export const useCombobox = (props: ICombobox) => {
       updateFormValue(name, '', true);
     };
   }, []);
-  
+
   return {
     inputValue,
     dropdownRef,
