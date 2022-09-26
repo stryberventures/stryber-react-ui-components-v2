@@ -1,4 +1,3 @@
-import sharedStyles from '../Theme/sharedStyles';
 import { createStyles } from '../Theme';
 import { ITextArea } from './index';
 
@@ -36,7 +35,6 @@ export default createStyles((theme) => ({
     },
   },
   textarea: {
-    ...sharedStyles.noHighlight,
     fontFamily: theme.font,
     border: 'none',
     outline: 'none',

@@ -1,5 +1,6 @@
 import React from 'react';
 import useStyles from './styles';
+import useSharedStyles from '../Theme/styles';
 import classNames from 'classnames';
 
 export interface IButton extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'size'>{
@@ -30,10 +31,11 @@ const Button: React.FC<IButton> = (props) => {
     ...rest
   } = props;
   const classes = useStyles(props);
+  const sharedClasses = useSharedStyles(props);
 
   return (
     <button
-      className={classNames(classes.button, classes[variant], classes[shape], classes[size], {
+      className={classNames(sharedClasses.noHighlightOnTouch, classes.button, classes[variant], classes[shape], classes[size], {
         [classes.disabled]: disabled,
         [classes.fullWidth]: fullWidth,
       }, className)}

@@ -1,5 +1,6 @@
 import React from 'react';
 import useStyles from './styles';
+import useSharedStyles from '../Theme/styles';
 import { ErrorMessage } from '../ErrorMessage';
 import classNames from 'classnames';
 import { HintMessage } from '../HintMessage';
@@ -39,6 +40,7 @@ const TextArea: React.FC<ITextArea> = (props) => {
     fullWidth,
   } = props;
   const classes = useStyles(props);
+  const sharedClasses = useSharedStyles(props);
   const [internalValue, setInternalValue] = React.useState(value);
   const [length, setLength] = React.useState(internalValue.length);
 
@@ -65,7 +67,7 @@ const TextArea: React.FC<ITextArea> = (props) => {
         <textarea
           name={name}
           value={controlled ? value : internalValue}
-          className={classNames(classes.textarea, { [classes.textDisabled]: disabled })}
+          className={classNames(classes.textarea, sharedClasses.noHighlightOnTouch, { [classes.textDisabled]: disabled })}
           onChange={onChangeWrapper}
           maxLength={maxLength}
           placeholder={placeholder}

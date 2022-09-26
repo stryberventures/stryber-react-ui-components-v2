@@ -1,5 +1,4 @@
 import { createStyles } from '../Theme';
-import sharedStyles from '../Theme/sharedStyles';
 
 export default createStyles((theme) => ({
   wrapper: {
@@ -21,7 +20,6 @@ export default createStyles((theme) => ({
     alignItems: 'flex-start',
     height: '100%',
     width: '100%',
-    ...sharedStyles.noHighlight,
   },
   text: {
     marginLeft: 8,

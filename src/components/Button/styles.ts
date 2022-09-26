@@ -1,6 +1,5 @@
 import { IButton } from './index';
 import { createStyles } from '../Theme';
-import sharedStyles from '../Theme/sharedStyles';
 
 export default createStyles((theme) => ({
   button: (props: IButton) => ({
@@ -12,7 +11,6 @@ export default createStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    ...sharedStyles.noHighlight,
     '&:hover': {
       cursor: 'pointer',
     },

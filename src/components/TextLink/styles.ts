@@ -1,10 +1,8 @@
 import { createStyles } from '../Theme';
-import sharedStyles from '../Theme/sharedStyles';
 import { ITextLink } from './index';
 
 export default createStyles((theme) => ({
   textLink: (props: ITextLink) =>  ({
-    ...sharedStyles.noHighlight,
     padding: [8, 16],
     color: theme[props.color!].main,
     fontSize: 16,
@@ -30,7 +28,7 @@ export default createStyles((theme) => ({
       backgroundColor: theme[props.color!].light,
     },
     '&:active': {
-      outline: `2px solid ${theme[props.color!].light}`,
+      boxShadow: `0 0 0 4px ${theme[props.color!].light}`,
       outlineOffset: -2,
       backgroundColor: 'transparent',
     },
