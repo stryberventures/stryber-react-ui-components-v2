@@ -1,7 +1,6 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import useStyles from './styles';
-import useSharedStyles from '../Theme/styles';
 import { IInputToggle } from './types';
 import { ErrorMessage } from '../ErrorMessage';
 
@@ -11,13 +10,12 @@ const InputToggleLayout: React.FC<IInputToggle> = (props) => {
     onChange, onFocus, errorMessage, placeholder, label, controlled, reverse, fullWidth, ...rest
   } = props;
   const classes = useStyles(props);
-  const sharedClasses = useSharedStyles(props);
 
   return (
     <div className={classNames(classes.wrapper, {
       [classes.disabled]: disabled,
     }, className)}>
-      <label className={classNames(classes.container, sharedClasses.noHighlightOnTouch, {
+      <label className={classNames(classes.container, {
         [classes.reverse]: reverse,
         [classes.fullWidth]: fullWidth
       })}>

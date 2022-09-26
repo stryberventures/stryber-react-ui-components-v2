@@ -11,6 +11,7 @@ export default createStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    '-webkit-tap-highlight-color': 'transparent',
     '&:hover': {
       cursor: 'pointer',
     },

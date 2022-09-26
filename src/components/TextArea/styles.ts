@@ -47,6 +47,7 @@ export default createStyles((theme) => ({
     fontSize: 14,
     resize: 'none',
     backgroundColor: theme.background.default,
+    '-webkit-tap-highlight-color': 'transparent',
   },
   label: {
     color: theme.text.secondary,

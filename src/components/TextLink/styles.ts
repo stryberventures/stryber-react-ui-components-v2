@@ -15,6 +15,7 @@ export default createStyles((theme) => ({
     display: 'inline-flex',
     alignItems: 'center',
     gap: 8,
+    '-webkit-tap-highlight-color': 'transparent',
     '& svg path': {
       fill: theme[props.color!].main,
     },

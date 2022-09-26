@@ -20,6 +20,7 @@ export default createStyles((theme) => ({
     alignItems: 'flex-start',
     height: '100%',
     width: '100%',
+    '-webkit-tap-highlight-color': 'transparent',
   },
   text: {
     marginLeft: 8,
