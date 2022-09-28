@@ -7,7 +7,7 @@ import Text from './'
 it('should be rendered', () => {
   const variant = 'h1';
   render(<Text variant={variant}>Text element</Text>);
-  const textElement = screen.getByTestId(`test-text-${variant}`);
+  const textElement = screen.getByTestId('test-text-element');
   expect(textElement).toBeVisible();
 });
 

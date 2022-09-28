@@ -1,88 +1,98 @@
 import { createStyles } from '../Theme';
+import { TextVariant } from './';
 
 export default createStyles((theme) => ({
   text: {
+    display: 'inline-block',
     fontFamily: theme.font,
   },
-  h1: {
+  [TextVariant.h1]: {
+    padding: 0,
+    margin: 0,
     color: theme.text.primary,
     fontSize: 64,
     fontWeight: '700',
     lineHeight: 1.3,
   },
-  h2: {
+  [TextVariant.h2]: {
+    padding: 0,
+    margin: 0,
     color: theme.text.primary,
     fontSize: 56,
     fontWeight: '700',
     lineHeight: 1.3,
   },
-  h3: {
+  [TextVariant.h3]: {
+    padding: 0,
+    margin: 0,
     color: theme.text.primary,
     fontSize: 48,
     fontWeight: '700',
     lineHeight: 1.25,
   },
-  h4: {
+  [TextVariant.h4]: {
+    padding: 0,
+    margin: 0,
     color: theme.text.primary,
     fontSize: 32,
     fontWeight: '700',
     lineHeight: 1.5,
   },
-  subline: {
+  [TextVariant.subline]: {
     color: theme.text.hint,
     fontSize: 24,
     fontWeight: '600',
     lineHeight: 1.5,
   },
-  body: {
+  [TextVariant.body]: {
     color: theme.text.hint,
     fontSize: 16,
     fontWeight: '400',
     lineHeight: 1.5,
   },
-  quote: {
+  [TextVariant.quote]: {
     fontSize: 40,
     fontWeight: '700',
     lineHeight: 1.5,
     fontStyle: 'italic',
   },
-  description: {
+  [TextVariant.description]: {
     color: theme.text.hint,
     fontSize: 12,
     fontWeight: '700',
     lineHeight: 1.5,
   },
-  caption: {
+  [TextVariant.caption]: {
     color: theme.text.hint,
     fontSize: 12,
     fontWeight: '400',
     lineHeight: 1.5,
   },
-  smallText: {
+  [TextVariant.smallText]: {
     color: theme.text.primary,
     fontSize: 10,
     fontWeight: '400',
     lineHeight: 1.5,
   },
-  footnote: {
+  [TextVariant.footnote]: {
     color: theme.text.primary,
     fontSize: 10,
     fontWeight: '400',
     lineHeight: 1.5,
   },
-  buttonLabel: {
+  [TextVariant.buttonLabel]: {
     color: theme.text.primary,
     fontSize: 16,
     fontWeight: '700',
     lineHeight: 1.5,
   },
-  label: {
+  [TextVariant.label]: {
     color: theme.text.hint,
     fontSize: 14,
     fontWeight: '400',
     lineHeight: 1.2,
   },
-  labelHighlight: {
+  [TextVariant.labelHighlight]: {
     color: theme.text.primary,
     fontSize: 14,
     fontWeight: '500',
