@@ -27,7 +27,7 @@ export interface IText extends React.HTMLAttributes<HTMLElement> {
   children: string,
   align?: 'left' | 'center' | 'right';
   variant?: TTextVariant;
-  component?: '' | TTag,
+  component?: TTag,
 }
 
 type TTag = keyof Pick<JSX.IntrinsicElements, 'h1' | 'h2' | 'h3' | 'h4' | 'span' | 'label' | 'p' | 'q' | 'b' | 'i' | 'small' | 'strong' | 'em' | 'del' | 'ins' | 'sub' | 'sup'>;
