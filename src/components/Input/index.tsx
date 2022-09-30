@@ -24,13 +24,14 @@ export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
   endAdornment?: React.ReactNode,
   mask?: string,
   fullWidth?: boolean,
+  highlighted?: boolean,
 }
 
 const Input: React.FC<IInput> = (props) => {
   const classes = useStyles(props);
   const {
     label, className, hint, prefix, prefixClassName, errorClassName, hintClassName,
-    endAdornment, placeholder, onClick, fullWidth, ...rest
+    endAdornment, placeholder, onClick, fullWidth, highlighted, ...rest
   } = props;
   const {
     name,
@@ -53,6 +54,7 @@ const Input: React.FC<IInput> = (props) => {
           [classes.disabled]: disabled,
           [classes.inputContainerError]: !!errorMessage,
           [classes.withLabel]: label,
+          [classes.highlighted]: highlighted,
         })}
       >
         <div className={classes.inputArea}>

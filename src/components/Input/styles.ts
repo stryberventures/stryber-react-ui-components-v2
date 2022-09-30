@@ -16,7 +16,7 @@ export default createStyles((theme) => ({
     display: 'flex',
     padding: '5px 8px',
     backgroundColor: theme.background.default,
-    '&:focus-within:not($inputContainerError)': {
+    '&:focus-within:not($inputContainerError), &:not($inputContainerError)$highlighted': {
       border: `1px solid ${theme[props.color!].main}`,
       boxShadow: `0 0 0 4px ${theme[props.color!].light}`,
     },
@@ -27,8 +27,12 @@ export default createStyles((theme) => ({
       height: 44,
     }
   }),
+  highlighted: {},
   inputContainerError: {
     border: `1px solid ${theme.error.main}`,
+    '&$highlighted': {
+      boxShadow: `0 0 0 4px ${theme.error.light}`,
+    },
     '&:focus-within': {
       boxShadow: `0 0 0 4px ${theme.error.light}`,
     },

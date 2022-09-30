@@ -1,5 +1,4 @@
 import { createStyles } from '../Theme';
-import { IDropdown } from './index';
 
 export default createStyles((theme) => ({
   dropdown: {
@@ -44,7 +43,7 @@ export default createStyles((theme) => ({
       fill: theme.text.disabled,
     },
   },
-  input: (props: IDropdown) => ({
+  input: {
     width: '100%',
     '&:not($inputDisabled)': {
       cursor: 'pointer',
@@ -52,13 +51,7 @@ export default createStyles((theme) => ({
         cursor: 'pointer',
       },
     },
-    '&$focus>div:not($inputContainerError)': {
-      border: `1px solid ${theme[props.color!].main}`,
-      outline: `4px solid ${theme[props.color!].light}`,
-      borderRadius: 4,
-    }
-  }),
-  focus: {},
+  },
   inputDisabled: {},
   fullWidth: {
     width: '100%'
