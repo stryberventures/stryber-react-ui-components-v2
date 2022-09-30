@@ -27,7 +27,7 @@ const FormValidation = () => {
       <h1> </h1>
       <Select
         name="select"
-        options={[{ label: 'One', value: '1' }, { label: 'Two', value: '2' }, { label: 'Three', value: '3' }]}
+        options={[{ label: 'One', value: 1 }, { label: 'Two', value: '2' }, { label: 'Three', value: '3' }]}
         label="Select"
         placeholder="Select a value"
       />
