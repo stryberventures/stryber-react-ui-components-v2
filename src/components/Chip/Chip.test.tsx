@@ -6,16 +6,16 @@ import LeftArrow from '../../storybook/icons/leftArrow';
 
 it('should be rendered', () => {
   const label = 'Chip label';
-  render(<Chip text={label}/>);
+  render(<Chip>{label}</Chip>);
   expect(screen.getByText(label)).toBeInTheDocument();
 });
 
 it('should contain left icon', () => {
-  render(<Chip text="Chip" iconLeft={<LeftArrow />} />);
+  render(<Chip iconLeft={<LeftArrow />}>Chip</Chip>);
   expect(screen.getByTestId('test-svg')).toBeVisible();
 });
 
 it('should contain right icon', () => {
-  render(<Chip text="Chip" iconRight={<LeftArrow />} />);
+  render(<Chip iconRight={<LeftArrow />}>Chip</Chip>);
   expect(screen.getByTestId('test-svg')).toBeVisible();
 });

@@ -1,6 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Tooltip from './index';
+import Text from '../Text';
 import pkg from './package.json';
 import { buildExcludeArgTypes } from '../../storybook/utils';
 
@@ -223,3 +224,21 @@ RightEnd.decorators = [
   ),
 ];
 
+export const CustomContent = Template.bind({});
+CustomContent.args = {
+  children: 'Tooltip right-end position',
+  title: <Text component="span" variant={'labelHighlight'}>Right start Position</Text>,
+  text: (
+    <>
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+      <p>It has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+    </>
+  )
+}
+CustomContent.decorators = [
+  (Story) => (
+    <div style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <Story />
+    </div>
+  ),
+];

@@ -18,78 +18,78 @@ const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
 export const Contained = Template.bind({});
 Contained.args = {
-  label: 'Contained',
+  children: 'Contained',
 };
 
 export const Outlined = Template.bind({});
 Outlined.args = {
-  label: 'Outlined',
+  children: 'Outlined',
   variant: 'outlined',
 };
 
 export const Mini = Template.bind({});
 Mini.args = {
   size: 'mini',
-  label: 'Mini',
+  children: 'Mini',
   shape: 'round',
 };
 
 export const Small = Template.bind({});
 Small.args = {
   size: 'small',
-  label: 'Small',
+  children: 'Small',
   shape: 'flat',
 };
 
 export const Medium = Template.bind({});
 Medium.args = {
   size: 'medium',
-  label: 'Medium',
+  children: 'Medium',
   shape: 'flat',
 };
 
 export const Large = Template.bind({});
 Large.args = {
   size: 'large',
-  label: 'Large',
+  children: 'Large',
   shape: 'flat',
 };
 
 export const Round = Template.bind({});
 Round.args = {
-  label: 'Round',
+  children: 'Round',
   size: 'medium',
   shape: 'round',
 };
 
 export const Circle = Template.bind({});
 Circle.args = {
-  label: 'Circle',
+  children: 'Circle',
   size: 'medium',
   shape: 'circle',
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  label: 'Disabled',
+  children: 'Disabled',
   disabled: true,
 };
 
 export const LeftIcon = Template.bind({});
 LeftIcon.args = {
-  label: 'Left Icon',
+  children: 'Left Icon',
   iconLeft: Placeholder,
 };
 
 export const RightIcon = Template.bind({});
 RightIcon.args = {
-  label: 'Right Icon',
+  children: 'Right Icon',
   iconRight: Placeholder,
 };
 
 export const FullWidth = Template.bind({});
 FullWidth.args = {
-  label: 'Full Width',
+  children: 'Full Width',
   fullWidth: true,
 };
 

@@ -31,9 +31,7 @@ const RadioButton: React.FC<IRadioButton> = (props) => {
           color={color}
         />
       }
-    >
-      {children}
-    </InputToggleLayout>
+    />
   );
 }
 
