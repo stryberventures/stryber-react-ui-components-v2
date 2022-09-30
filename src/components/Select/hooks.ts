@@ -8,7 +8,7 @@ export const useSelect = (props: ISelect) => {
   const { fieldError, fieldValue, updateFormTouched, updateFormValue } = useFormContext(name);
   const dropdownRef = React.useRef<IDropdownRef>(null);
 
-  const getOptionLabelByValue = (value: string) => {
+  const getOptionLabelByValue = (value: string | number) => {
     const option = options.find(optionItem => optionItem.value === value);
     return option ? option.label : '';
   };
@@ -19,7 +19,7 @@ export const useSelect = (props: ISelect) => {
   };
 
   const onOptionClick = (option: IOption) => {
-    updateFormValue(name, option);
+    updateFormValue(name, option.value);
     setSelectedValue(option.label);
     onChange && onChange(option);
     dropdownRef?.current?.close();
