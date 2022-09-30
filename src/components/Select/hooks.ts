@@ -19,7 +19,7 @@ export const useSelect = (props: ISelect) => {
   };
 
   const onOptionClick = (option: IOption) => {
-    updateFormValue(name, option);
+    updateFormValue(name, option.label);
     setSelectedValue(option.label);
     onChange && onChange(option);
     dropdownRef?.current?.close();
