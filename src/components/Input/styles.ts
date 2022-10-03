@@ -14,8 +14,10 @@ export default createStyles((theme) => ({
     position: 'relative',
     fontFamily: theme.font,
     display: 'flex',
+    alignItems: 'center',
     padding: '5px 8px',
     backgroundColor: theme.background.default,
+    height: 44,
     '&:focus-within:not($inputContainerError), &:not($inputContainerError)$highlighted': {
       border: `1px solid ${theme[props.color!].main}`,
       boxShadow: `0 0 0 4px ${theme[props.color!].light}`,
@@ -24,7 +26,7 @@ export default createStyles((theme) => ({
       border: `1px solid ${theme.default.main}`,
     },
     '&$withLabel': {
-      height: 44,
+      alignItems: 'initial',
     }
   }),
   highlighted: {},
