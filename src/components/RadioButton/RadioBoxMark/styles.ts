@@ -31,6 +31,7 @@ export default createStyles((theme: ITheme) => ({
     },
     opacity: 0.45,
     cursorEvents: 'none',
+    backgroundColor: theme.background.disabled,
   }),
   clickArea: {
     position: 'absolute',

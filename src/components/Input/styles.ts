@@ -27,6 +27,9 @@ export default createStyles((theme) => ({
     },
     '&$withLabel': {
       alignItems: 'initial',
+    },
+    '&$disabled': {
+      backgroundColor: theme.background.disabled,
     }
   }),
   highlighted: {},
@@ -76,7 +79,7 @@ export default createStyles((theme) => ({
   disabled: {
     pointerEvents: 'none',
     userSelect: 'none',
-    backgroundColor: theme.background.default,
+    backgroundColor: theme.background.disabled,
   },
   label: {
     color: theme.text.secondary,

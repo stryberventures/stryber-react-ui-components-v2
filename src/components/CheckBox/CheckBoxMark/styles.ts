@@ -34,6 +34,7 @@ export default createStyles((theme) => ({
     },
     opacity: 0.45,
     pointerEvents: 'none',
+    backgroundColor: theme.background.disabled,
   }),
   checked: (props: ICheckBoxMark) => ({
     '& svg': {

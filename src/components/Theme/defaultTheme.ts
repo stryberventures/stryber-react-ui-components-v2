@@ -3,6 +3,7 @@ import { ITheme } from './types';
 export const defaultTheme: ITheme = {
   background: {
     default: '#fff',
+    disabled: '#FCFCFD',
   },
   default: {
     dark: '#667085',
