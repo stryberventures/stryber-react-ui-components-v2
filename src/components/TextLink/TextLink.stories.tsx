@@ -19,14 +19,14 @@ const Template: ComponentStory<typeof TextLink> = (args) => <TextLink {...args} 
 
 export const Primary = Template.bind({});
 Primary.args = {
-  text: 'Text link',
+  children: 'Text link',
   href: 'https://www.google.com',
   target: '_blank',
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  text: 'Text link',
+  children: 'Text link',
   href: 'https://www.google.com',
   target: '_blank',
   color: 'secondary',
@@ -34,7 +34,7 @@ Secondary.args = {
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  text: 'Text link',
+  children: 'Text link',
   href: 'https://www.google.com',
   target: '_blank',
   disabled: true,
@@ -42,7 +42,7 @@ Disabled.args = {
 
 export const IconLeft = Template.bind({});
 IconLeft.args = {
-  text: 'Text link',
+  children: 'Text link',
   href: 'https://www.google.com',
   target: '_blank',
   iconLeft: <LeftArrow />
@@ -50,6 +50,6 @@ IconLeft.args = {
 
 export const IconRight = Template.bind({});
 IconRight.args = {
-  text: 'Text link',
+  children: 'Text link',
   iconRight: <RightArrow />
 };

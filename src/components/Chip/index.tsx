@@ -3,7 +3,7 @@ import useStyles from './styles';
 import classNames from 'classnames';
 
 export interface IChip extends React.HTMLAttributes<HTMLDivElement>{
-  text?: string,
+  children?: string,
   iconLeft?: React.ReactNode,
   iconRight?: React.ReactNode,
   variant?: 'contained' | 'outlined',
@@ -13,7 +13,7 @@ export interface IChip extends React.HTMLAttributes<HTMLDivElement>{
 
 const Chip: React.FC<IChip> = (props) => {
   const {
-    text,
+    children,
     iconLeft,
     iconRight,
     variant = 'contained',
@@ -30,13 +30,13 @@ const Chip: React.FC<IChip> = (props) => {
   return (
     <div className={classNames(classes.chip, classes[variant], className, {
       [classes.disabled]: disabled,
-      [classes.iconLeft]: !!iconLeft && text,
-      [classes.iconRight]: !!iconRight && text,
-      [classes.iconOnly]: !text,
+      [classes.iconLeft]: !!iconLeft && children,
+      [classes.iconRight]: !!iconRight && children,
+      [classes.iconOnly]: !children,
       [classes.default]: color === 'default',
     })} {...rest}>
       {iconLeft}
-      {text}
+      {children}
       {iconRight}
     </div>
   );

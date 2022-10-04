@@ -9,7 +9,7 @@ it('should render the child', () => {
   const label = 'Button';
   render(
     <ThemeProvider theme={defaultTheme}>
-      <Button label={label}/>
+      <Button>{label}</Button>
     </ThemeProvider>
   );
   expect(screen.queryByText(label)).toBeInTheDocument();
@@ -21,7 +21,7 @@ it('should apply theme colors', () => {
   const black = 'rgb(0, 0, 0)';
   render(
     <ThemeProvider theme={{ primary: { main: red, contrast: black, light: red, dark: red } }}>
-      <Button label={label}/>
+      <Button>{label}</Button>
     </ThemeProvider>
   );
   const button = screen.getByRole('button');

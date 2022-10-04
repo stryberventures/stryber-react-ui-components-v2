@@ -51,8 +51,8 @@ const FormInitialValues = () => {
       <CheckBox name="checkbox" label="Remember me" />
       <h1> </h1>
       <div style={{ display: 'flex', gap: 20 }}>
-        <Button label="Submit" type="submit"/>
-        <Button label="Reset" type="reset" variant="outlined"/>
+        <Button type="submit">Submit</Button>
+        <Button type="reset" variant="outlined">Reset</Button>
       </div>
     </Form>
   )
@@ -101,8 +101,8 @@ export const FormInitialValuesCode = `
   <CheckBox name="checkbox" label="Remember me" />
   <h1> </h1>
   <div style={{ display: 'flex', gap: 20 }}>
-    <Button label="Submit" type="submit"/>
-    <Button label="Reset" type="reset" variant="outlined"/>
+    <Button type="submit">Submit</Button>
+    <Button type="reset" variant="outlined">Reset</Button>
   </div>
 </Form>
 `

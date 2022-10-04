@@ -17,7 +17,7 @@ const FormSetErrorOnSubmit = () => {
       <h1> </h1>
       <InputPassword label={'Password'} name="password" placeholder="Password is required"/>
       <h1> </h1>
-      <Button label="Submit" type="submit"/>
+      <Button type="submit">Submit</Button>
     </Form>
   )
 };
@@ -36,6 +36,6 @@ export const FormSetErrorOnSubmitCode = `
   <h1> </h1>
   <InputPassword label={'Password'} name="password" placeholder="Password is required"/>
   <h1> </h1>
-  <Button label="Submit" type="submit"/>
+  <Button type="submit">Submit</Button>
 </Form>
 `

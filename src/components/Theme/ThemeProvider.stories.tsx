@@ -28,13 +28,13 @@ export default {
 const Template: ComponentStory<typeof ThemeChooser> = (args) => (
   <ThemeChooser {...args}>
     <h2 style={{ fontFamily: 'Inter', color: '#003CB8' }}>Button </h2>
-    <Button variant="contained" label={'Contained primary'}/>
+    <Button variant="contained">Contained primary</Button>
     <h1> </h1>
-    <Button variant="contained" color="secondary" label={'Contained secondary'}/>
+    <Button variant="contained" color="secondary">Contained secondary</Button>
     <h1> </h1>
-    <Button variant="outlined" label={'Outlined primary'}/>
+    <Button variant="outlined">Outlined primary</Button>
     <h1> </h1>
-    <Button variant="outlined" color="secondary" label={'Outlined secondary'}/>
+    <Button variant="outlined" color="secondary">Outlined secondary</Button>
     <h2 style={{ fontFamily: 'Inter', color: '#003CB8' }}>Checkbox</h2>
     <CheckBox label="Primary"/>
     <h1> </h1>
@@ -72,13 +72,13 @@ const Template: ComponentStory<typeof ThemeChooser> = (args) => (
     <h1> </h1>
     <RadioButton checked={true} disabled color="secondary" label="Disabled" />
     <h2 style={{ fontFamily: 'Inter', color: '#003CB8' }}>TextLink</h2>
-    <TextLink text="Primary"/>
+    <TextLink>Primary</TextLink>
     <h1> </h1>
-    <TextLink text="Secondary" color="secondary"/>
+    <TextLink color="secondary">Secondary</TextLink>
     <h1> </h1>
-    <TextLink text="Disabled" disabled />
+    <TextLink disabled>Disabled</TextLink>
     <h1> </h1>
-    <TextLink text="With icon" iconLeft={<LeftArrow />} />
+    <TextLink iconLeft={<LeftArrow />}>With icon</TextLink>
     <h2 style={{ fontFamily: 'Inter', color: '#003CB8' }}>Tooltip</h2>
     <Tooltip title='This is a Tooltip title' position='right' version='light' visible={true}>Tooltip light version</Tooltip>
     <h1> </h1>

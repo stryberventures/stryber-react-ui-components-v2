@@ -21,7 +21,7 @@ const Template: ComponentStory<typeof Slider> = (args) => <Slider {...args} />;
 const TemplateDefault: ComponentStory<typeof Slider> = (args) => (
   <Form>
     <Slider {...args} />
-    <Button type="submit" label="Submit" />
+    <Button type="submit">Submit</Button>
   </Form>
 );
 
@@ -62,8 +62,9 @@ const TemplateOutsideInput: ComponentStory<typeof Slider> = (args) => {
       <Button
         disabled={value > max}
         type="submit"
-        label={'Submit'}
-      />
+      >
+        Submit
+      </Button>
     </Form>
   );
 }
@@ -104,8 +105,9 @@ const TemplateRangeOutsideInput: ComponentStory<typeof Slider> = (args) => {
           size="small"
           disabled={(minVal > maxVal) || (maxVal > max)}
           onClick={applyChanges}
-          label="Apply"
-        />
+        >
+          Apply
+        </Button>
       </div>
       <Slider
         name="test"
@@ -124,8 +126,9 @@ const TemplateRangeOutsideInput: ComponentStory<typeof Slider> = (args) => {
       />
       <Button
         type="submit"
-        label={'Submit'}
-      />
+      >
+        Submit
+      </Button>
     </Form>
   );
 }

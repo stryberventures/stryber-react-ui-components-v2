@@ -47,7 +47,7 @@ it('should display the error', () => {
 });
 
 it('should display the custom content', () => {
-  render(<RadioButton>Message <LeftArrow /></RadioButton>);
+  render(<RadioButton label={<>Message <LeftArrow /></>} />);
   expect(screen.getByTestId('test-svg')).toBeVisible();
   expect(screen.queryByText('Message')).toBeVisible();
 });
