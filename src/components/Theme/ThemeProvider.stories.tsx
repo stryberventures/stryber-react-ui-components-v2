@@ -1,5 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ThemeProvider } from '.';
 import Button from '../Button';
 import { defaultTheme } from './defaultTheme';
 import Input from '../Input';
@@ -12,21 +13,20 @@ import Tooltip from '../Tooltip'
 import Multiselect from '../Multiselect';
 import Switch from '../Switch';
 import TextArea from '../TextArea';
-import { ThemeChooser } from '../../storybook/preview/ThemeChooser';
 import pkg from './package.json';
 
 export default {
   title: 'components/Theme',
-  component: ThemeChooser,
+  component: ThemeProvider,
   parameters: {
     pkg,
     componentSubtitle: `Component which enables support of custom themes. To use a custom theme wrap your root
      component with ThemeProvider and pass the theme as a property.`
   },
-} as ComponentMeta<typeof ThemeChooser>;
+} as ComponentMeta<typeof ThemeProvider>;
 
-const Template: ComponentStory<typeof ThemeChooser> = (args) => (
-  <ThemeChooser {...args}>
+const Template: ComponentStory<typeof ThemeProvider> = (args) => (
+  <ThemeProvider {...args}>
     <h2 style={{ fontFamily: 'Inter', color: '#003CB8' }}>Button </h2>
     <Button variant="contained">Contained primary</Button>
     <h1> </h1>
@@ -122,7 +122,7 @@ const Template: ComponentStory<typeof ThemeChooser> = (args) => (
         { value: '6', label: 'Six' },
         { value: '7', label: 'Seven' },
       ]}/>
-  </ThemeChooser>
+  </ThemeProvider>
 );
 
 export const DefaultTheme = Template.bind({});
