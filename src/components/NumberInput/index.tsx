@@ -28,6 +28,7 @@ const NumberInput: React.FC<INumberInput> = (props) => {
     errorMessage,
     onChange,
     prefix,
+    className,
     ...rest
   } = props;
 
@@ -61,7 +62,7 @@ const NumberInput: React.FC<INumberInput> = (props) => {
   const handleDecrease = () => counterBtnPress('minus');
   const handleIncrease = () => counterBtnPress('plus');
   return (
-    <div className={classNames(classes.numberInputContainer, { [classes.quantityCounter]: quantityCounter })}>
+    <div className={classNames(classes.numberInputContainer, { [classes.quantityCounter]: quantityCounter }, className)}>
       <Input
         {...rest}
         name={name}

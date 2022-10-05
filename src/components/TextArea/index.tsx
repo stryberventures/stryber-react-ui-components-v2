@@ -1,19 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useStyles from './styles';
 import { ErrorMessage } from '../ErrorMessage';
 import classNames from 'classnames';
 import { HintMessage } from '../HintMessage';
+import { useFormContext } from '../Form';
 
 export interface ITextArea extends React.TextareaHTMLAttributes<HTMLTextAreaElement>{
   label?: string,
-  placeholder?: string,
   disabled?: boolean,
   color?: 'primary' | 'secondary',
   errorMessage?: string,
-  value?: string,
   name?: string,
   controlled?: boolean,
   onChange?: (e: React.BaseSyntheticEvent) => void,
+  onBlur?: (e: React.BaseSyntheticEvent) => void,
   maxLength?: number,
   showLength?: boolean,
   hint?: string;
@@ -24,12 +24,12 @@ export interface ITextArea extends React.TextareaHTMLAttributes<HTMLTextAreaElem
 const TextArea: React.FC<ITextArea> = (props) => {
   const {
     value = '',
+    name = '',
     label,
-    placeholder,
     onChange,
-    errorMessage,
+    onBlur,
+    errorMessage: error,
     disabled,
-    name,
     controlled,
     className,
     maxLength,
@@ -37,10 +37,20 @@ const TextArea: React.FC<ITextArea> = (props) => {
     hint,
     maxLengthClassName,
     fullWidth,
+    ...rest
   } = props;
+  const { updateFormTouched, updateFormValue, unsetFormValue, fieldValue, fieldError } = useFormContext(name);
+  const errorMessage = fieldError || error;
   const classes = useStyles(props);
-  const [internalValue, setInternalValue] = React.useState(value);
-  const [length, setLength] = React.useState(internalValue.length);
+  const [internalValue, setInternalValue] = React.useState(fieldValue || value);
+  const [length, setLength] = React.useState(internalValue.toString().length);
+
+  useEffect(() => {
+    !controlled && updateFormValue(name, internalValue, true);
+    return () => {
+      !controlled && unsetFormValue(name);
+    };
+  }, []);
 
   const onChangeWrapper = (e: React.BaseSyntheticEvent) => {
     if (disabled) {
@@ -49,8 +59,15 @@ const TextArea: React.FC<ITextArea> = (props) => {
     const { value } = e.target;
     setLength(value.length);
     setInternalValue(value);
+    updateFormValue(name, value);
     onChange && onChange(e);
   };
+
+  const onBlurWrapper = (e: React.BaseSyntheticEvent) => {
+    const { name } = e.target;
+    !controlled && updateFormTouched(name, true);
+    onBlur && onBlur(e);
+  }
 
   return (
     <div className={className}>
@@ -67,8 +84,9 @@ const TextArea: React.FC<ITextArea> = (props) => {
           value={controlled ? value : internalValue}
           className={classNames(classes.textarea, { [classes.textDisabled]: disabled })}
           onChange={onChangeWrapper}
+          onBlur={onBlurWrapper}
           maxLength={maxLength}
-          placeholder={placeholder}
+          {...rest}
         />
       </div>
       {hint && <HintMessage text={hint} disabled={disabled} className={classes.message} />}
