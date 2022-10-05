@@ -5,6 +5,7 @@ import { defaultTheme } from './defaultTheme';
 import Input from '../Input';
 import CheckBox from '../CheckBox';
 import RadioButton from '../RadioButton';
+import Text from '../Text';
 import TextLink from '../TextLink';
 import LeftArrow from '../../storybook/icons/leftArrow';
 import Dropdown from '../Dropdown';
@@ -71,6 +72,35 @@ const Template: ComponentStory<typeof ThemeChooser> = (args) => (
     <RadioButton checked={true} color="secondary" label="Checked" />
     <h1> </h1>
     <RadioButton checked={true} disabled color="secondary" label="Disabled" />
+    <h2 style={{ fontFamily: 'Inter', color: '#003CB8' }}>Text Elements</h2>
+    <Text variant="h1">H1</Text>
+    <h1> </h1>
+    <Text variant="h2">H2</Text>
+    <h1> </h1>
+    <Text variant="h3">H3</Text>
+    <h1> </h1>
+    <Text variant="h4">H4</Text>
+    <h1> </h1>
+    <Text variant="quote">Quote</Text>
+    <h1> </h1>
+    <Text variant="label">Label</Text>
+    <h1> </h1>
+    <Text variant="body">Body</Text>
+    <h1> </h1>
+    <Text variant="description">Description</Text>
+    <h1> </h1>
+    <Text variant="subline">Subline</Text>
+    <h1> </h1>
+    <Text variant="caption">Caption</Text>
+    <h1> </h1>
+    <Text variant="smallText">Small text</Text>
+    <h1> </h1>
+    <Text variant="footnote">Footnote</Text>
+    <h1> </h1>
+    <Text variant="buttonLabel">Button label</Text>
+    <h1> </h1>
+    <Text variant="labelHighlight">Label Highlight</Text>
+    <h1> </h1>
     <h2 style={{ fontFamily: 'Inter', color: '#003CB8' }}>TextLink</h2>
     <TextLink>Primary</TextLink>
     <h1> </h1>
