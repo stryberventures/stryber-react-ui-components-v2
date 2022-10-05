@@ -22,7 +22,9 @@ const Tooltip: React.FC<ITooltip> = (props) => {
     title,
     text,
     visible,
-    children
+    children,
+    className,
+    ...rest
   } = props;
   const classes = useStyles(props);
   const [isHovered, setIsHovered] = useState(false);
@@ -31,7 +33,7 @@ const Tooltip: React.FC<ITooltip> = (props) => {
   const showTooltip = isHovered || isFocused || isVisible;
 
   return (
-    <div className={classes.tooltipWrap}>
+    <div className={classNames(classes.tooltipWrap, className)}>
       <div
         className={classes.tooltipTarget}
         onMouseEnter={() => setIsHovered(true)}
@@ -44,7 +46,8 @@ const Tooltip: React.FC<ITooltip> = (props) => {
           role="tooltip"
           className={classNames(classes.tooltipContainer, classes[position], classes[version], {
             [classes.visible]: visible
-          })}>
+          })}
+          {...rest}>
           <div className={classes.tooltipBox}>
             {visible && (
               <div

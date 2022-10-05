@@ -38,6 +38,7 @@ export const Slider = (props: ISlider) => {
     thumbLabels,
     color,
     name = 'slider',
+    className,
     onChange,
     ...rest
   } = props;
@@ -263,7 +264,7 @@ export const Slider = (props: ISlider) => {
     } else moveMin(e);
   }
   return (
-    <div className={classes.container}>
+    <div className={classnames(classes.container, className)}>
       {showSideLabels && (<div data-testid="testLabelID" className={classes.sideLabel}>{min}</div>)}
       <div className={classes.slider}>
         <div
