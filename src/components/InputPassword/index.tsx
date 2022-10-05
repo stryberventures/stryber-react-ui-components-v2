@@ -46,10 +46,11 @@ const InputPassword: React.FC<IInputPassword> = (props) => {
           {schema.map(({ label , matched }) =>
             <Chip
               key={label}
-              text={label}
               color={matched ? 'success' : 'default'}
               iconLeft={matched && <CheckBoxIcon className={classes.chipMatched}/>}
-            />
+            >
+              {label}
+            </Chip>
           )}
         </div>
       )}

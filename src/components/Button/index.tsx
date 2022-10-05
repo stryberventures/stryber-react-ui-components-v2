@@ -3,7 +3,7 @@ import useStyles from './styles';
 import classNames from 'classnames';
 
 export interface IButton extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'size'>{
-  label: string,
+  children: string,
   size?: 'mini' | 'small' | 'medium' | 'large',
   shape?: 'flat' | 'round' | 'circle',
   variant?: 'contained' | 'outlined',
@@ -20,7 +20,7 @@ const Button: React.FC<IButton> = (props) => {
     size = 'medium',
     shape = 'round',
     variant = 'contained',
-    label,
+    children,
     disabled,
     className,
     fullWidth,
@@ -41,7 +41,7 @@ const Button: React.FC<IButton> = (props) => {
       {...rest}
     >
       {IconLeftComponent && <IconLeftComponent className={classes.icon}/>}
-      {label}
+      {children}
       {IconRightComponent && <IconRightComponent className={classes.icon}/>}
     </button>
   );

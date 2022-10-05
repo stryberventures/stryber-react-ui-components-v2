@@ -68,7 +68,7 @@ TitleAndLabel.args = {
 
 export const CustomContent = Template.bind({});
 CustomContent.args = {
-  children: (
+  label: (
     <div>Check <a href="https://google.com">terms</a> and <a href="https://google.com">conditions</a></div>
   ),
 };

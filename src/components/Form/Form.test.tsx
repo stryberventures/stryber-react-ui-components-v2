@@ -21,8 +21,8 @@ const FormTemplate = (props: IProps) => {
     >
       <Input label={'Email'} name="email"/>
       <Input label={'Password'} name="password"/>
-      {type === 'submit' && <Button type="submit" label="Submit"/>}
-      {type === 'reset' && <Button type="reset" label="Reset"/>}
+      {type === 'submit' && <Button type="submit">Submit</Button>}
+      {type === 'reset' && <Button type="reset">Reset</Button>}
     </Form>
   )
 };

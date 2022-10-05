@@ -43,9 +43,8 @@ const Multiselect: React.FC<IMultiselect> = (props) => {
             size="small"
             checked={selectedOptions.map(option => option).indexOf(option.label) >= 0}
             onChange={onCheckboxChange}
-          >
-            {option.label}
-          </CheckBox>
+            label={option.label}
+          />
         </MenuItem>
       ))}
     </Dropdown>

@@ -50,6 +50,7 @@ export interface ITheme {
   default: IDefaultPalette,
   background: {
     default: string,
+    disabled: string,
   },
   text: {
     primary: string,

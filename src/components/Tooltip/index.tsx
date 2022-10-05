@@ -3,14 +3,14 @@ import useStyles from './styles';
 import classNames from 'classnames';
 import CloseIcon from '../Icons/CloseIcon';
 
-export interface ITooltip extends React.HTMLAttributes<HTMLDivElement> {
+export interface ITooltip extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   version?: 'light' | 'dark',
   position?: 'top' | 'topStart' | 'topEnd' |
   'bottom' | 'bottomStart' | 'bottomEnd' |
   'left' | 'leftStart' | 'leftEnd' |
   'right' | 'rightStart' | 'rightEnd',
-  title: string,
-  text?: string,
+  title?: string | React.ReactElement,
+  text?: string | React.ReactElement,
   visible?: boolean,
   children: React.ReactNode,
 }
@@ -40,7 +40,9 @@ const Tooltip: React.FC<ITooltip> = (props) => {
         onMouseLeave={() => setIsHovered(false)}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
-      >{children}</div>
+      >
+        {children}
+      </div>
       {showTooltip && (
         <div
           role="tooltip"
@@ -57,8 +59,13 @@ const Tooltip: React.FC<ITooltip> = (props) => {
                 <CloseIcon/>
               </div>
             )}
-            <div className={classes.title}>{title}</div>
-            {text && <div className={classes.text}>{text}</div>}
+            {title && typeof title == 'string'
+              ? <div className={classes.title}>{title}</div>
+              : title}
+            {text && typeof text == 'string'
+              ? <div className={classes.text}>{text}</div>
+              : text
+            }
           </div>
         </div>
       )}

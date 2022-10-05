@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export interface IInputToggleBase extends Omit<React.HTMLProps<HTMLInputElement>, 'type' | 'size' | 'shape'> {
+export interface IInputToggleBase extends Omit<React.HTMLProps<HTMLInputElement>, 'type' | 'size' | 'shape' | 'label' | 'children'> {
   className?: string,
   name?: string,
   size?: 'small' | 'medium',
@@ -8,12 +8,11 @@ export interface IInputToggleBase extends Omit<React.HTMLProps<HTMLInputElement>
   checked?: boolean,
   disabled?: boolean,
   value?: string,
-  label?: string,
+  label?: string | React.ReactElement,
   title?: string,
   errorMessage?: string,
   onChange?: (e: React.BaseSyntheticEvent) => void,
   onFocus?: (e: React.BaseSyntheticEvent) => void,
-  children?: React.ReactNode,
   reverse?: boolean,
   fullWidth?: boolean,
 }

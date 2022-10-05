@@ -28,68 +28,68 @@ const Template: ComponentStory<typeof Chip> = (args) => <Chip {...args} />;
 
 export const Contained = Template.bind({});
 Contained.args = {
-  text: 'Contained',
+  children: 'Contained',
 };
 
 export const Outlined = Template.bind({});
 Outlined.args = {
-  text: 'Outlined',
+  children: 'Outlined',
   variant: 'outlined',
 };
 
 export const ColorSecondary = Template.bind({});
 ColorSecondary.args = {
-  text: 'Color secondary',
+  children: 'Secondary',
   color: 'secondary',
 };
 
 export const ColorDefault = Template.bind({});
 ColorDefault.args = {
-  text: 'Color default',
+  children: 'Default',
   color: 'default',
 };
 
 export const ColorSuccess = Template.bind({});
 ColorSuccess.args = {
-  text: 'Color success',
+  children: 'Color success',
   color: 'success',
 };
 
 export const DisabledContained = Template.bind({});
 DisabledContained.args = {
-  text: 'Disabled',
+  children: 'Disabled',
   variant: 'contained',
   disabled: true,
 };
 
 export const DisabledOutlined = Template.bind({});
 DisabledOutlined.args = {
-  text: 'Disabled',
+  children: 'Disabled',
   variant: 'outlined',
   disabled: true,
 };
 
 export const IconLeft = Template.bind({});
 IconLeft.args = {
-  text: 'Icon left',
+  children: 'Icon left',
   iconLeft: <CarIcon/>
 };
 
 export const IconRight = Template.bind({});
 IconRight.args = {
-  text: 'Icon right',
+  children: 'Icon right',
   iconRight: <CarIcon/>
 };
 
 export const IconLeftAndRight = Template.bind({});
 IconLeftAndRight.args = {
-  text: 'Icons',
+  children: 'Icons',
   iconLeft: <CarIcon/>,
   iconRight: <CarIcon/>
 };
 
 export const IconOnly = Template.bind({});
 IconOnly.args = {
-  iconRight: <CarIcon/>
+  iconRight: <CarIcon/>,
 };
 

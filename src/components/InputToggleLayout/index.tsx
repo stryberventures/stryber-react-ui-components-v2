@@ -38,14 +38,16 @@ const InputToggleLayout: React.FC<IInputToggle> = (props) => {
               {title}
             </div>
           }
-          {label &&
-            <div className={classNames(classes.label, {
-              [classes.textDisabled]: disabled,
-            })}>
-              {label}
-            </div>
+          {label && typeof label == 'string'
+            ? (
+              <div className={classNames(classes.label, {
+                [classes.textDisabled]: disabled,
+              })}>
+                {label}
+              </div>
+            )
+            : label
           }
-          {children}
         </div>
       </label>
       {errorMessage && <ErrorMessage text={errorMessage} className={classes.error}/>}

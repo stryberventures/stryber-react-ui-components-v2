@@ -17,13 +17,26 @@ it('should not display the content', () => {
   expect(screen.queryByText(text)).not.toBeInTheDocument();
 });
 
-it('should display the content after hover', () => {
+it('should display the text content after hover', () => {
   const title = 'Tooltip title';
   const text = 'Tooltip text';
   render(<Tooltip title={title} text={text}>Tooltip target</Tooltip>);
   fireEvent.mouseOver(screen.getByText(/Tooltip target/i));
   expect(screen.queryByText(title)).toBeInTheDocument();
   expect(screen.queryByText(text)).toBeInTheDocument();
+});
+
+it('should display the content after hover', () => {
+  const title = 'Tooltip title';
+  const titleTestId = 'test-title-component';
+  const titleComponent = <span data-testid={titleTestId}>{title}</span>
+  const text = 'Tooltip text';
+  const textTestId = 'test-text-component';
+  const textComponent = <span data-testid={textTestId}>{text}</span>
+  render(<Tooltip title={titleComponent} text={textComponent}>Tooltip target</Tooltip>);
+  fireEvent.mouseOver(screen.getByText(/Tooltip target/i));
+  expect(screen.queryByTestId(titleTestId)).toBeInTheDocument();
+  expect(screen.queryByTestId(textTestId)).toBeInTheDocument();
 });
 
 it('should not display the content after not hover', () => {

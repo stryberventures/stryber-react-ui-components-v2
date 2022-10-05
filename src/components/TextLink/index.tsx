@@ -3,7 +3,7 @@ import useStyles from './styles';
 import classNames from 'classnames';
 
 export interface ITextLink extends React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement> {
-  text: string,
+  children: string,
   color?: 'primary' | 'secondary',
   disabled?: boolean,
   iconLeft?: React.ReactNode,
@@ -12,7 +12,7 @@ export interface ITextLink extends React.DetailedHTMLProps<React.AnchorHTMLAttri
 }
 
 const TextLink: React.FC<ITextLink> = (props) => {
-  const { text, disabled, iconLeft, iconRight, className, ...rest } = props;
+  const { children, disabled, iconLeft, iconRight, className, ...rest } = props;
   const classes = useStyles(props);
 
   return (
@@ -20,7 +20,7 @@ const TextLink: React.FC<ITextLink> = (props) => {
       [classes.disabled]: disabled
     })} {...rest}>
       {iconLeft}
-      {text}
+      {children}
       {iconRight}
     </a>
   );
