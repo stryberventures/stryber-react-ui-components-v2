@@ -23,6 +23,7 @@ export interface IFormProps {
   initialValues?: any;
   validationSchema?: any;
   loading?: any;
+  className?: string;
 }
 
 export interface IFormActions {

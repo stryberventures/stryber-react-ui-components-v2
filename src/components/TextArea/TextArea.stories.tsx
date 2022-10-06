@@ -10,7 +10,7 @@ export default {
   parameters: {
     pkg,
   },
-  argTypes: buildExcludeArgTypes(['value', 'name', 'controlled', 'onChange', 'maxLengthClassName']),
+  argTypes: buildExcludeArgTypes(['name', 'controlled', 'onChange', 'onBlur', 'maxLengthClassName']),
 } as ComponentMeta<typeof TextArea>;
 
 const Template: ComponentStory<typeof TextArea> = (args) => <TextArea {...args} />;
@@ -18,6 +18,7 @@ const Template: ComponentStory<typeof TextArea> = (args) => <TextArea {...args} 
 export const Default = Template.bind({});
 Default.args = {
   label: 'Your message',
+  placeholder: 'Your message',
 };
 
 export const Secondary = Template.bind({});
