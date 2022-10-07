@@ -1,7 +1,7 @@
 import { createStyles } from '../Theme/index';
 
 export default createStyles((theme) => ({
-  message: {
+  errorMessage: {
     color: theme.error.dark,
     lineHeight: '17px',
     fontSize: 14,

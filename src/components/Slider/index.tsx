@@ -264,7 +264,7 @@ export const Slider = (props: ISlider) => {
     } else moveMin(e);
   }
   return (
-    <div className={classnames(classes.container, className)}>
+    <div className={classnames(classes.sliderRoot, className)}>
       {showSideLabels && (<div data-testid="testLabelID" className={classes.sideLabel}>{min}</div>)}
       <div className={classes.slider}>
         <div

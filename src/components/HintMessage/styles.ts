@@ -1,7 +1,7 @@
 import { createStyles } from '../Theme/index';
 
 export default createStyles((theme) => ({
-  message: {
+  hintMessage: {
     color: theme.text.hint,
     lineHeight: '17px',
     fontSize: 14,

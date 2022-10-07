@@ -1,7 +1,7 @@
 import { createStyles } from '../Theme';
 
 export default createStyles((theme) => ({
-  tooltipWrap: {
+  tooltip: {
     position: 'relative',
     width: 'max-content',
     display: 'flex',

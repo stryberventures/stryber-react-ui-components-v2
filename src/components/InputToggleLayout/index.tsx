@@ -12,7 +12,7 @@ const InputToggleLayout: React.FC<IInputToggle> = (props) => {
   const classes = useStyles(props);
 
   return (
-    <div className={classNames(classes.wrapper, {
+    <div className={classNames(classes.inputToggleLayout, {
       [classes.disabled]: disabled,
     }, className)}>
       <label className={classNames(classes.container, {

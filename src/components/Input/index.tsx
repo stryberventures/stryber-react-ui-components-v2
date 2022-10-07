@@ -45,7 +45,7 @@ const Input: React.FC<IInput> = (props) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   return (
-    <div className={classNames(classes.root, {
+    <div className={classNames(classes.inputRoot, {
       [classes.fullWidth]: fullWidth
     }, className)}>
       <div

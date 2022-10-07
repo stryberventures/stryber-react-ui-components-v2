@@ -22,7 +22,7 @@ export const CheckBoxMark = (props: ICheckBoxMark) => {
 
   return (
     <span
-      className={classNames(classes.checkmark, classes[shape], classes[size],
+      className={classNames(classes.checkboxMark, classes[shape], classes[size],
         { [classes.disabled]: disabled },
         { [classes.checked]: checked },
       )}>

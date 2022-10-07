@@ -2,7 +2,7 @@ import { ICheckBoxMark } from './index';
 import { createStyles } from '../../Theme';
 
 export default createStyles((theme) => ({
-  checkmark: (props: ICheckBoxMark) => ({
+  checkboxMark: (props: ICheckBoxMark) => ({
     backgroundColor: theme[props.color!].contrast,
     border: [1, 'solid', theme[props.color!].main],
     display: 'flex',

@@ -1,7 +1,7 @@
 import { createUseStyles } from 'react-jss';
 
 export default createUseStyles({
-  container: {
+  inputPassword: {
     width: 320,
   },
   inputLayout: {

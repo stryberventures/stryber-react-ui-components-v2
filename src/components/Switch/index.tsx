@@ -23,7 +23,7 @@ const Switch: React.FC<ISwitch> = (props) => {
       onFocus={onFocus}
       label={label}
       disabled={disabled}
-      className={classNames(classes.layout, className)}
+      className={classNames(classes.switch, className)}
       control={
         <SwitchIcon checked={checked} color={color} disabled={disabled}/>
       }

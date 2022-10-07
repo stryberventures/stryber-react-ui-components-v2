@@ -1,7 +1,7 @@
 import { createStyles } from '../Theme';
 
 export default createStyles((theme) => ({
-  wrapper: {
+  inputToggleLayout: {
     display: 'flex',
     flexDirection: 'column',
     '&:hover': {
