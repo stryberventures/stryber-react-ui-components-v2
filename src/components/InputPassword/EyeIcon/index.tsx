@@ -16,7 +16,7 @@ export const EyeIcon = (props: IEyeIcon) => {
   return (
     <div
       {...rest}
-      className={classNames(classes.container, {
+      className={classNames(classes.eyeIcon, {
         [classes.disabled]: disabled,
       }, className)}
     >

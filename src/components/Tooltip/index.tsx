@@ -33,7 +33,7 @@ const Tooltip: React.FC<ITooltip> = (props) => {
   const showTooltip = isHovered || isFocused || isVisible;
 
   return (
-    <div className={classNames(classes.tooltipWrap, className)}>
+    <div className={classNames(classes.tooltip, className)}>
       <div
         className={classes.tooltipTarget}
         onMouseEnter={() => setIsHovered(true)}

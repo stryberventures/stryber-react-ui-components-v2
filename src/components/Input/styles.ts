@@ -2,7 +2,7 @@ import { createStyles } from '../Theme';
 import { IInput } from './index';
 
 export default createStyles((theme) => ({
-  root: {
+  inputRoot: {
     width: 320,
   },
   fullWidth: {

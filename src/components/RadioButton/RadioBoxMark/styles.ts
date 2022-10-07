@@ -3,7 +3,7 @@ import { IRadioBoxMarkProps } from './index';
 import { createStyles } from '../../Theme';
 
 export default createStyles((theme: ITheme) => ({
-  radiomark: (props: IRadioBoxMarkProps) => ({
+  radioBoxMark: (props: IRadioBoxMarkProps) => ({
     backgroundColor: theme[props.color!].contrast,
     border: [1, 'solid', theme[props.color!].main],
     borderRadius: '50%',

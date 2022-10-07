@@ -33,6 +33,7 @@ const Form = forwardRef((props: IFormProps, ref: ForwardedRef<IFormRef>) => {
     validationSchema,
     initialValues,
     loading,
+    className,
     ...rest
   } = props;
 
@@ -159,6 +160,7 @@ const Form = forwardRef((props: IFormProps, ref: ForwardedRef<IFormRef>) => {
   return (
     <form
       { ...rest }
+      className={className}
       onSubmit={onSubmitFormWrapper}
       onReset={onResetFormWrapper}
       key={formSessionId}

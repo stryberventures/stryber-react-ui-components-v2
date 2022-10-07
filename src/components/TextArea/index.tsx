@@ -71,7 +71,7 @@ const TextArea: React.FC<ITextArea> = (props) => {
 
   return (
     <div className={className}>
-      <div className={classNames(classes.container, {
+      <div className={classNames(classes.textArea, {
         [classes.containerDisabled]: disabled,
         [classes.containerError]: !!errorMessage,
         [classes.fullWidth]: fullWidth,

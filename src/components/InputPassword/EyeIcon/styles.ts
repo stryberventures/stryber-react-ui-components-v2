@@ -1,7 +1,7 @@
 import { createStyles } from '../../Theme';
 
 export default createStyles((theme) => ({
-  container: {
+  eyeIcon: {
     userSelect: 'none',
     cursor: 'pointer',
     display: 'flex',

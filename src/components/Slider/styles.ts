@@ -2,7 +2,7 @@ import { createStyles } from '../Theme';
 import { ISlider } from './index';
 
 export default createStyles( (theme) => ({
-  container: {
+  sliderRoot: {
     fontFamily: theme.font,
     fontWeight: 600,
     fontSize: 12,

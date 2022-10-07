@@ -20,7 +20,7 @@ export const RadioBoxMark = (props: IRadioBoxMarkProps) => {
 
   return (
     <span
-      className={classNames(classes.radiomark, classes[size],
+      className={classNames(classes.radioBoxMark, classes[size],
         { [classes.disabled]: disabled },
         { [classes.checked]: checked },
       )}>

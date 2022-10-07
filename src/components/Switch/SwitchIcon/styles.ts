@@ -2,7 +2,7 @@ import { createStyles } from '../../Theme';
 import { ISwitchIcon } from './index';
 
 export default createStyles((theme) => ({
-  toggleIcon: (props: ISwitchIcon) => ({
+  switchIcon: (props: ISwitchIcon) => ({
     width: 44,
     height: 24,
     position: 'relative',
