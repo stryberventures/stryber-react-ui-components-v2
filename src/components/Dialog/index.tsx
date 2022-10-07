@@ -40,6 +40,7 @@ const Dialog = (props: IDialog) => {
       <div
         className={classNames(classes.overlay, overlayClassName)}
         onClick={() => (cancelOnOutsidePress && onCancel) && onCancel?.()}
+        data-testid="test-dialog-overlay"
       >
         <div
           className={classes.dialog}

@@ -38,7 +38,6 @@ it('should be closed', () => {
   render(
     <Dialog
       open={false}
-      cancelOnOutsidePress
       text={text}
     />
   );
@@ -52,7 +51,6 @@ it('should call onConfirm handler', () => {
   render(
     <Dialog
       open
-      cancelOnOutsidePress
       text={text}
       onConfirm={confirm}
       confirmButtonText={confirmButtonText}
@@ -69,7 +67,6 @@ it('should call onCancel handler', () => {
   render(
     <Dialog
       open
-      cancelOnOutsidePress
       text={text}
       onCancel={cancel}
       cancelButtonText={cancelButtonText}
@@ -77,6 +74,21 @@ it('should call onCancel handler', () => {
   );
   fireEvent.click(screen.getByText(cancelButtonText));
   expect(cancel).toHaveBeenCalled();
+});
+
+it('should not call onCancel handler on backdrop click', () => {
+  const text = 'Dialog text';
+  const cancel = jest.fn();
+  render(
+    <Dialog
+      open
+      cancelOnOutsidePress={false}
+      text={text}
+      onCancel={cancel}
+    />
+  );
+  fireEvent.click(screen.getByTestId('test-dialog-overlay'));
+  expect(cancel).not.toHaveBeenCalled();
 });
 
 it('cancel button should contain left icon', () => {
