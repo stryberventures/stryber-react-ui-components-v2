@@ -1,9 +1,9 @@
-import React from 'react';
+import React  from 'react';
 import classnames from 'classnames';
 import useStyles from './styles';
 
 
-interface IDialogButton {
+interface IDialogButton extends React.HTMLAttributes<HTMLSpanElement> {
   children: string | React.ReactNode;
   iconLeft?: React.ReactElement;
   iconRight?: React.ReactElement;

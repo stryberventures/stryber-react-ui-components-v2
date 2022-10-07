@@ -4,6 +4,7 @@ import Text from '../Text';
 import DialogButton from './DialogButton';
 import useStyles from './styles';
 
+
 export interface IDialog extends React.HTMLAttributes<HTMLDivElement>{
   open: boolean;
   title?: string;
@@ -28,7 +29,7 @@ const Dialog = (props: IDialog) => {
     cancelButtonIconRight,
     confirmButtonText = 'Confirm',
     overlayClassName,
-    cancelOnOutsidePress,
+    cancelOnOutsidePress = true,
     onConfirm,
     onCancel,
     ...rest
@@ -74,7 +75,9 @@ const Dialog = (props: IDialog) => {
             >
               {cancelButtonText}
             </DialogButton>
-            <DialogButton onClick={onConfirm}>
+            <DialogButton
+              onClick={onConfirm}
+            >
               {confirmButtonText}
             </DialogButton>
           </div>
