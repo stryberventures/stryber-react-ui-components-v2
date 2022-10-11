@@ -15,9 +15,8 @@ export default createStyles((theme) => ({
     fontFamily: theme.font,
     display: 'flex',
     alignItems: 'center',
-    padding: '5px 8px',
+    padding: '4px 8px',
     backgroundColor: theme.background.default,
-    height: 44,
     '&:focus-within:not($inputContainerError), &:not($inputContainerError)$highlighted': {
       border: `1px solid ${theme[props.color!].main}`,
       boxShadow: `0 0 0 4px ${theme[props.color!].light}`,
