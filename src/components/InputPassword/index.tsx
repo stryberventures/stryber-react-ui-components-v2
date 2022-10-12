@@ -23,7 +23,7 @@ const InputPassword: React.FC<IInputPassword> = (props) => {
   }
 
   return (
-    <div className={classNames(classes.container, className, { [classes.fullWidth]: fullWidth })}>
+    <div className={classNames(classes.inputPassword, className, { [classes.fullWidth]: fullWidth })}>
       <Input
         {...rest}
         disabled={disabled}

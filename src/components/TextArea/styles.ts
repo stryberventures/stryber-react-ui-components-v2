@@ -2,7 +2,7 @@ import { createStyles } from '../Theme';
 import { ITextArea } from './index';
 
 export default createStyles((theme) => ({
-  container: (props: ITextArea) => ({
+  textArea: (props: ITextArea) => ({
     boxSizing: 'border-box',
     width: 320,
     height: 143,

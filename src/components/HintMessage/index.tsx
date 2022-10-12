@@ -15,7 +15,7 @@ export const HintMessage = (props: IHintMessage) => {
   return (
     <div
       {...rest}
-      className={classNames(classes.message, className, {
+      className={classNames(classes.hintMessage, className, {
         [classes.disabled]: disabled,
       })}
     >

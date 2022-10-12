@@ -12,6 +12,6 @@ export const ErrorMessage = (props: IErrorMessage) => {
   const classes = useStyles();
 
   return (
-    <div className={classNames(classes.message, className)}>{text}</div>
+    <div className={classNames(classes.errorMessage, className)}>{text}</div>
   );
 }

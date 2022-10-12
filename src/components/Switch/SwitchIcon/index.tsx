@@ -13,12 +13,15 @@ export const SwitchIcon = (props: ISwitchIcon) => {
   const classes = useStyles(props);
 
   return (
-    <div className={classNames(classes.toggleIcon, {
+    <div className={classNames(classes.switchIcon, {
       [classes.checked]: checked,
       [classes.disabled]: disabled,
     })}>
-      <div className={classNames(classes.circleContainer)}>
-        <div className={classes.circleHighlight}/>
+      <div className={classNames(
+        classes.circleContainer,
+        { [classes.circleContainerChecked]: checked, }
+      )}>
+        <div className={classes.circleHighlight} />
         <div className={classes.circle}/>
       </div>
     </div>
