@@ -26,18 +26,25 @@ export default createStyles((theme) => ({
     '&:hover': {
       backgroundColor: theme[props.color!].dark,
     },
-    '& $circleContainer': {
-      transform: 'translate(20px)',
-    },
-    '& $circleHighlight': {
-      backgroundColor: theme[props.color!].main,
-    }
   }),
+  '@keyframes slideLeft': {
+    from: { transform: 'translateX(100%)' },
+    to: { transform: 'translateX(0%)' },
+  },
+  '@keyframes slideRight': {
+    from: { transform: 'translateX(0%)' },
+    to: { transform: 'translateX(100%)' },
+  },
   circleContainer: {
-    transition: 'transform 0.15s',
     top: '2px',
     left: '2px',
     position: 'absolute',
+    animationName: '$slideLeft',
+    transition: 'transform 0.15s',
+  },
+  circleContainerChecked: {
+    animationName: '$slideRight',
+    transform: 'translateX(20px)',
   },
   circle: (props: ISwitchIcon) => ({
     position: 'relative',
