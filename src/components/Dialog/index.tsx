@@ -27,17 +27,16 @@ const Dialog = (props: IDialog) => {
     onClose,
     ...rest
   } = props;
-  if (!open) return null;
   const classes = useStyles();
   const [dialogOpen, setDialogOpen] = useState<boolean>(false);
   useEffect(() => { setDialogOpen(open) }, [open]);
-  console.log('Dialog rendered!!!');
   const handleClose = () => {
     setDialogOpen(false);
     onClose?.();
   };
   !disableEscPress && useKeyPress(KEYS.esc, handleClose);
-  return (
+  if(!dialogOpen) return null;
+  return dialogOpen ? (
     <div
       className={classNames(classes.overlay, overlayClassName)}
       onClick={() => !disableOutsideClick && handleClose()}
@@ -52,7 +51,7 @@ const Dialog = (props: IDialog) => {
         {children}
       </div>
     </div>
-  );
+  ) : null;
 }
 
 Dialog.Title = DialogTitle;
