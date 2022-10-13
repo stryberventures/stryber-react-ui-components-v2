@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import useStyles from './styles';
 
 
-interface IDialogButton extends React.HTMLAttributes<HTMLSpanElement> {
+export interface IDialogButton extends React.HTMLAttributes<HTMLSpanElement> {
   children: string | React.ReactNode;
   iconLeft?: React.ReactElement;
   iconRight?: React.ReactElement;

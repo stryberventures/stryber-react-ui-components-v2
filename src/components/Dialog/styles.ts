@@ -12,6 +12,7 @@ export default createStyles((theme) => ({
     top: 0,
     left: 0,
     backgroundColor: 'rgba(0, 0, 0, .1)',
+    zIndex: 100,
   },
   dialog: {
     display: 'flex',
@@ -22,20 +23,5 @@ export default createStyles((theme) => ({
     borderRadius: 4,
     boxShadow: '0px 2px 11px rgba(0, 0, 0, .37)',
     fontFamily: theme.font,
-  },
-  title: {
-    marginBottom: 22,
-    color: theme.text.primary,
-  },
-  text: {
-    padding: 0,
-    margin: 0,
-  },
-  buttonsContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    gap: 16,
-    marginTop: 44,
   },
 }));
