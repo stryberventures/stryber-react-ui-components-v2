@@ -7,6 +7,6 @@ export default createStyles(() => ({
     alignItems: 'center',
     justifyContent: 'flex-end',
     gap: 16,
-    marginTop: 34,
+    marginTop: 38,
   },
 }));
