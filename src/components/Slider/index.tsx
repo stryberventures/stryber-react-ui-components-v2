@@ -356,7 +356,7 @@ export const Slider = (props: ISlider) => {
       </div>
       {showSideLabels && (leftLabel ?
         <div className={classes.sideIconLabel}>{rightLabel}</div> :
-        <div data-testid="testLabelID" className={classes.sideLabel}>{max}</div>
+        <div className={classes.sideLabel}>{max}</div>
       )}
     </div>
   );
