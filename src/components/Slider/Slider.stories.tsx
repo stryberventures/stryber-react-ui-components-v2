@@ -6,6 +6,8 @@ import Slider from './index';
 import Button from '../Button';
 import pkg from './package.json';
 import { buildExcludeArgTypes } from '../../storybook/utils';
+import Minus from '../Icons/minus';
+import Plus from '../Icons/plus';
 
 export default {
   title: 'Components/Slider',
@@ -13,14 +15,16 @@ export default {
   parameters: {
     pkg,
   },
-  argTypes: buildExcludeArgTypes(['onChange', 'name']),
+  argTypes: buildExcludeArgTypes(['onChange', 'name', 'leftLabel', 'rightLabel']),
 } as ComponentMeta<typeof Slider>;
 
 const Template: ComponentStory<typeof Slider> = (args) => <Slider {...args} />;
 
 const TemplateDefault: ComponentStory<typeof Slider> = (args) => (
   <Form>
-    <Slider {...args} />
+    <div style={{ marginTop: 100, marginBottom: 20 }}>
+      <Slider {...args} />
+    </div>
     <Button type="submit">Submit</Button>
   </Form>
 );
@@ -52,13 +56,15 @@ const TemplateOutsideInput: ComponentStory<typeof Slider> = (args) => {
         errorMessage={errorMessage}
         onChange={onChange}
       />
-      <Slider
-        name="test"
-        {...args}
-        value={value}
-        controlled
-        onChange={(val) => { setValue(Number(val)); }}
-      />
+      <div style={{ marginTop: 100, marginBottom: 20 }}>
+        <Slider
+          name="test"
+          {...args}
+          value={value}
+          controlled
+          onChange={(val) => { setValue(Number(val)); }}
+        />
+      </div>
       <Button
         disabled={value > max}
         type="submit"
@@ -81,7 +87,7 @@ const TemplateRangeOutsideInput: ComponentStory<typeof Slider> = (args) => {
   };
   return (
     <Form>
-      <div style={{ display: 'flex', marginBottom: 20, }}>
+      <div style={{ display: 'flex', marginBottom: 20 }}>
         <Input
           name="test"
           label="min"
@@ -109,21 +115,23 @@ const TemplateRangeOutsideInput: ComponentStory<typeof Slider> = (args) => {
           Apply
         </Button>
       </div>
-      <Slider
-        name="test"
-        {...args}
-        value={value}
-        controlled
-        onChange={(_value: number | number[]) => {
-          if (Array.isArray(_value)) {
-            setMinVal(_value[0]);
-            setMaxVal(_value[1]);
-          } else {
-            setMinVal(_value);
-          }
-          setValue(_value);
-        }}
-      />
+      <div style={{ marginTop: 100, marginBottom: 20 }}>
+        <Slider
+          name="test"
+          {...args}
+          value={value}
+          controlled
+          onChange={(_value: number | number[]) => {
+            if (Array.isArray(_value)) {
+              setMinVal(_value[0]);
+              setMaxVal(_value[1]);
+            } else {
+              setMinVal(_value);
+            }
+            setValue(_value);
+          }}
+        />
+      </div>
       <Button
         type="submit"
       >
@@ -141,7 +149,7 @@ Default.args = {
 };
 Default.decorators = [
   (Story) => (
-    <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+    <div style={{ margin: '0 auto' }}>
       <Story />
     </div>
   ),
@@ -153,6 +161,14 @@ DefaultInputs.args = {
   max: 10,
   thumbLabels: 'input'
 };
+
+DefaultInputs.decorators = [
+  (Story) => (
+    <div style={{ margin: '100px auto 0 auto' }}>
+      <Story />
+    </div>
+  ),
+];
 
 export const OutsideInput = TemplateOutsideInput.bind({});
 OutsideInput.args = {
@@ -169,14 +185,6 @@ RangeOutsideInput.args = {
   rangeSlider: true,
 };
 
-DefaultInputs.decorators = [
-  (Story) => (
-    <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
-      <Story />
-    </div>
-  ),
-];
-
 export const Range = Template.bind({});
 Range.args = {
   rangeSlider: true,
@@ -184,7 +192,7 @@ Range.args = {
 };
 Range.decorators = [
   (Story) => (
-    <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+    <div style={{ margin: '100px auto 0 auto' }}>
       <Story />
     </div>
   ),
@@ -198,7 +206,7 @@ CustomStep.args = {
 };
 CustomStep.decorators = [
   (Story) => (
-    <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+    <div style={{ margin: '100px auto 0 auto' }}>
       <Story />
     </div>
   ),
@@ -212,7 +220,7 @@ RangeInputs.args = {
 };
 RangeInputs.decorators = [
   (Story) => (
-    <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+    <div style={{ margin: '100px auto 0 auto' }}>
       <Story />
     </div>
   ),
@@ -227,7 +235,7 @@ RangeMinDistance.args = {
 };
 RangeMinDistance.decorators = [
   (Story) => (
-    <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+    <div style={{ margin: '100px auto 0 auto' }}>
       <Story />
     </div>
   ),
@@ -242,7 +250,38 @@ StepDotsIndicator.args = {
 };
 StepDotsIndicator.decorators = [
   (Story) => (
-    <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+    <div style={{ margin: '100px auto 0 auto' }}>
+      <Story />
+    </div>
+  ),
+];
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  min: 0,
+  max: 10,
+  minValue: 2,
+  disabled: true,
+};
+Disabled.decorators = [
+  (Story) => (
+    <div style={{ margin: '100px auto 0 auto' }}>
+      <Story />
+    </div>
+  ),
+];
+
+export const WithIcons = Template.bind({});
+WithIcons.args = {
+  min: 0,
+  max: 10,
+  thumbLabels: 'tooltip',
+  leftLabel: <div style={{ height: 16, display: 'flex', alignItems: 'center' }}><Minus /></div>,
+  rightLabel: <div style={{ height: 15 }}><Plus /></div>
+};
+WithIcons.decorators = [
+  (Story) => (
+    <div style={{ margin: '100px auto 0 auto' }}>
       <Story />
     </div>
   ),

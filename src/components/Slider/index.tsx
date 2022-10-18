@@ -13,12 +13,15 @@ export interface ISlider extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onC
   step?: number,
   rangeSlider?: boolean,
   showSideLabels?: boolean,
+  leftLabel?: React.ReactNode,
+  rightLabel?: React.ReactNode,
   showStepMarks?: boolean,
   thumbLabels?: 'input' | 'tooltip',
   color?: 'primary' | 'secondary',
   name?: string,
   value?: number | number[],
   controlled?: boolean,
+  disabled?: boolean,
   onChange?: (value: number | number[]) => void,
 }
 
@@ -34,10 +37,13 @@ export const Slider = (props: ISlider) => {
     controlled = false,
     minDistance = (rangeSlider && controlled) ? 1 : 0,
     showSideLabels = true,
+    rightLabel,
+    leftLabel,
     showStepMarks = false,
     thumbLabels,
     color,
     name = 'slider',
+    disabled = false,
     className,
     onChange,
     ...rest
@@ -123,7 +129,7 @@ export const Slider = (props: ISlider) => {
         updateFormValue(name, data);
       }
     },
-    [value]
+    [disabled ? null : value]
   );
   const dots = [];
   if (showStepMarks) {
@@ -192,11 +198,13 @@ export const Slider = (props: ISlider) => {
   }
 
   const handleDrag = (e: React.PointerEvent<HTMLDivElement>) => {
-    e.currentTarget.setPointerCapture(e.pointerId);
-    if (e.currentTarget.id === 'minThumb') {
-      e.currentTarget.onpointermove = (e) => moveMin(e);
-    } else {
-      e.currentTarget.onpointermove = (e)=> moveMax(e);
+    if (!disabled) {
+      e.currentTarget.setPointerCapture(e.pointerId);
+      if (e.currentTarget.id === 'minThumb') {
+        e.currentTarget.onpointermove = (e) => moveMin(e);
+      } else {
+        e.currentTarget.onpointermove = (e)=> moveMax(e);
+      }
     }
   }
   const moveMin = (_value: React.MouseEvent<HTMLDivElement> | MouseEvent) => {
@@ -258,14 +266,19 @@ export const Slider = (props: ISlider) => {
     e.currentTarget.releasePointerCapture(e.pointerId);
   }
   const trackClick = (e: React.PointerEvent<HTMLDivElement>) => {
-    const clickX = +e.clientX - (e.target as HTMLDivElement).parentElement!.getBoundingClientRect().left;
-    if (rangeSlider) {
-      Math.abs(clickX - positionMin) < Math.abs(clickX - positionMax) ? moveMin(e) : moveMax(e);
-    } else moveMin(e);
+    if (!disabled) {
+      const clickX = +e.clientX - (e.target as HTMLDivElement).parentElement!.getBoundingClientRect().left;
+      if (rangeSlider) {
+        Math.abs(clickX - positionMin) < Math.abs(clickX - positionMax) ? moveMin(e) : moveMax(e);
+      } else moveMin(e);
+    }
   }
   return (
-    <div className={classnames(classes.sliderRoot, className)}>
-      {showSideLabels && (<div data-testid="testLabelID" className={classes.sideLabel}>{min}</div>)}
+    <div className={classnames(classes.sliderRoot, { [classes.disabled]: disabled }, className)}>
+      {showSideLabels && (leftLabel ?
+        <div className={classes.sideIconLabel}>{leftLabel}</div> :
+        <div data-testid="testLabelID" className={classes.sideLabel}>{min}</div>
+      )}
       <div className={classes.slider}>
         <div
           id="minThumb"
@@ -273,8 +286,10 @@ export const Slider = (props: ISlider) => {
           onPointerDown={handleDrag}
           onPointerUp={handleStopDrag}
           onMouseEnter={() => {
-            setShowMin(true);
-            setShowMax(false);
+            if (!disabled) {
+              setShowMin(true);
+              setShowMax(false);
+            }
           }}
           style={{ left: positionMin }}
           {...rest}
@@ -288,6 +303,7 @@ export const Slider = (props: ISlider) => {
               <Input
                 label=''
                 name='minInput'
+                autoComplete='off'
                 controlled={true}
                 value={minVal.toString()}
                 onChange={onMinChange}
@@ -306,8 +322,10 @@ export const Slider = (props: ISlider) => {
             onPointerDown={handleDrag}
             onPointerUp={handleStopDrag}
             onMouseEnter={() => {
-              setShowMax(true);
-              setShowMin(false);
+              if (!disabled) {
+                setShowMax(true);
+                setShowMin(false);
+              }
             }}
             style={{ left: positionMax }}
             {...rest}
@@ -320,6 +338,7 @@ export const Slider = (props: ISlider) => {
                 <Input
                   label=''
                   name='maxInput'
+                  autoComplete='off'
                   controlled={true}
                   value={maxVal.toString()}
                   onChange={onMaxChange}
@@ -335,7 +354,10 @@ export const Slider = (props: ISlider) => {
         <div ref={range} className={classes.sliderRange} onPointerDown={trackClick} />
         {showStepMarks && (<div data-testid="testStepMarksID" className={classes.dotsContainer}>{dots}</div>)}
       </div>
-      {showSideLabels && (<div className={classes.sideLabel}>{max}</div>)}
+      {showSideLabels && (leftLabel ?
+        <div className={classes.sideIconLabel}>{rightLabel}</div> :
+        <div className={classes.sideLabel}>{max}</div>
+      )}
     </div>
   );
 };
