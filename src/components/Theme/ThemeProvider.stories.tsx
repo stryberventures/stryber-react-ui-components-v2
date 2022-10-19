@@ -42,13 +42,13 @@ const Template: ComponentStory<typeof ThemeProvider> = (args) => {
           onClose={() => setDialogOpen(false)}
         >
           <Dialog.Title>Dialog Title</Dialog.Title>
-          <Dialog.Text>
-            <Text variant='body'>Dialog text text text text text text text text text text text text text text text text</Text>
-          </Dialog.Text>
+          <Dialog.Content>
+            <Text variant='body'>Dialog content</Text>
+          </Dialog.Content>
           <Dialog.Actions>
-            <Dialog.Button onClick={() => setDialogOpen(false)}>
+            <Button onClick={() => setDialogOpen(false)} size="small">
               Cancel
-            </Dialog.Button>
+            </Button>
           </Dialog.Actions>
         </Dialog>
         <h1> </h1>
