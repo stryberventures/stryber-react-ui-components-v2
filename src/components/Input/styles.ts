@@ -16,6 +16,7 @@ export default createStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     padding: '4px 8px',
+    height: 44,
     backgroundColor: theme.background.default,
     '&:focus-within:not($inputContainerError), &:not($inputContainerError)$highlighted': {
       border: `1px solid ${theme[props.color!].main}`,
