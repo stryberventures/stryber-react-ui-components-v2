@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { useKeyPress, KEYS } from '../../hooks/useKeyPress';
 import DialogTitle from './DialogTitle';
-import DialogText from './DialogText';
+import DialogContent from './DialogContent';
 import DialogActions from './DialogActions';
-import DialogButton from './DialogButton';
 import useStyles from './styles';
 
 
@@ -55,8 +54,7 @@ const Dialog = (props: IDialog) => {
 }
 
 Dialog.Title = DialogTitle;
-Dialog.Text = DialogText;
+Dialog.Content = DialogContent;
 Dialog.Actions = DialogActions;
-Dialog.Button = DialogButton;
 
 export default Dialog;

@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { createStyles } from '../Theme/index';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import pkg from './package.json';
 import Button from '../Button';
 import Dialog from './';
 import Text from '../Text';
-import CarIcon from '../../storybook/icons/Car';
+import CloseIcon from '../Icons/CloseIcon';
+import { ITheme } from '../Theme/types';
+
 
 export default {
   title: 'Components/Dialog',
@@ -16,6 +19,7 @@ export default {
 } as ComponentMeta<typeof Dialog>;
 
 const Template: ComponentStory<typeof Dialog> = (args) => {
+  const classes = useStyles();
   const [open, setOpen] = useState(false);
   const openModal = () => setOpen(true);
   const closeModal = () => {
@@ -33,27 +37,60 @@ const Template: ComponentStory<typeof Dialog> = (args) => {
         open={open}
         onClose={closeModal}
       >
-        <Dialog.Title>Dialog Title</Dialog.Title>
-        <Dialog.Text>
-          <Text variant="body">
-            Dialog text dialog text dialog text dialog text dialog text dialog text dialog text
-            dialog text dialog text dialog text dialog text dialog text dialog text dialog
-            text dialog text dialog text dialog text
+        <Dialog.Title className={classes.dialogTitle}>
+          <Text
+            variant="subline"
+            className={classes.dialogText}
+          >
+            Dialog Title
           </Text>
-        </Dialog.Text>
+          <CloseIcon
+            className={classes.closeIcon}
+            onClick={closeModal}
+          />
+        </Dialog.Title>
+        <Dialog.Content>
+          <Text variant="body">
+            Dialog content
+          </Text>
+        </Dialog.Content>
         <Dialog.Actions>
-          <Dialog.Button
-            iconLeft={<CarIcon />}
+          <Button
             onClick={confirm}
+            variant="outlined"
+            size="small"
           >
             Cancel
-          </Dialog.Button>
-          <Dialog.Button onClick={closeModal}>Confirm</Dialog.Button>
+          </Button>
+          <Button
+            onClick={closeModal}
+            variant="contained"
+            size="small"
+          >
+            Confirm
+          </Button>
         </Dialog.Actions>
       </Dialog>
     </div>
   );
 }
+
+const useStyles = createStyles((theme: ITheme) => ({
+  dialogTitle: {
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  dialogText: {
+    color: theme.text.primary,
+  },
+  closeIcon: {
+    width: 16,
+    height: 16,
+    cursor: 'pointer',
+  },
+}))
 
 export const DialogueWindow = Template.bind({});
 DialogueWindow.args = {
