@@ -6,23 +6,33 @@ export default createStyles( (theme) => ({
     fontFamily: theme.font,
     fontWeight: 600,
     fontSize: 12,
-    height: 70,
+    height: 30,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 100,
     position: 'relative',
+    '&:not($disabled)': {
+      '$thumb:hover': {
+        zIndex: 6,
+      },
+      '& $thumbLabel$show': {
+        display: 'flex',
+      },
+      '& $thumbInput$show': {
+        display: 'block',
+      }
+    }
   },
-  thumb: (props: ISlider) =>  ({
-    backgroundColor: theme[props.color!].main,
+  thumb: {
+    backgroundColor: theme.background.default,
     border: 'none',
     borderRadius: '50%',
-    boxShadow: '0 0 1px 1px #ced4da',
+    boxShadow: '0 0 4px 0 #00000040',
     cursor: 'pointer',
     height: 30,
     width: 30,
     position: 'absolute',
-    top: -12,
+    top: -13,
     zIndex: 5,
     display: 'flex',
     justifyContent: 'center',
@@ -32,11 +42,19 @@ export default createStyles( (theme) => ({
     '-webkit-user-select': 'none',
     '-ms-user-select': 'none',
     'user-select': 'none',
-    '&:hover': {
-      boxShadow: `0 0 5px 3px ${theme[props.color!].light}`,
-      zIndex: 6
+  },
+  disabled: {
+    '& $thumb': {
+      backgroundColor: theme.default.light,
+    },
+    '& $sideLabel, $sliderRange, $dotsContainer': {
+      backgroundColor: theme.default.main,
+      color: '#E3E8EE',
+    },
+    '& $sliderTrack, $sliderRange, $thumb': {
+      cursor: 'auto',
     }
-  }),
+  },
   thumbLabel: {
     position: 'relative',
     bottom: 34,
@@ -48,14 +66,12 @@ export default createStyles( (theme) => ({
     backgroundColor: theme.default.dark,
     borderRadius: 4,
     display: 'none',
+    alignItems: 'center',
     '-webkit-touch-callout': 'none',
     '-moz-user-select': 'none',
     '-webkit-user-select': 'none',
     '-ms-user-select': 'none',
     'user-select': 'none',
-    '&$show': {
-      display: 'block',
-    }
   },
   thumbInput: {
     position: 'relative',
@@ -89,22 +105,20 @@ export default createStyles( (theme) => ({
       borderRadius: 4,
       border: 'none',
     },
-    '&$show': {
-      display: 'block',
-    }
   },
   slider: {
     position: 'relative',
     width: '100%',
-    height: 6,
+    height: 4,
   },
   sliderTrack: {
     position: 'absolute',
     borderRadius: 3,
-    height: 6,
+    height: 4,
     backgroundColor: theme.default.main,
     width: '100%',
     zIndex: 1,
+    cursor: 'pointer',
     '-webkit-touch-callout': 'none',
     '-moz-user-select': 'none',
     '-webkit-user-select': 'none',
@@ -114,10 +128,11 @@ export default createStyles( (theme) => ({
   sliderRange: (props: ISlider) => ({
     position: 'absolute',
     borderRadius: 3,
-    height: 6,
+    height: 4,
     backgroundColor: theme[props.color!].main,
     opacity: 0.6,
     zIndex: 2,
+    cursor: 'pointer',
     '-webkit-touch-callout': 'none',
     '-moz-user-select': 'none',
     '-webkit-user-select': 'none',
@@ -127,6 +142,7 @@ export default createStyles( (theme) => ({
   sideLabel: {
     color: theme.primary.contrast,
     fontSize: 12,
+    lineHeight: '16px',
     padding: '2px 4px',
     margin: '0 8px',
     backgroundColor: theme.default.dark,
@@ -136,6 +152,9 @@ export default createStyles( (theme) => ({
     '-webkit-user-select': 'none',
     '-ms-user-select': 'none',
     'user-select': 'none',
+  },
+  sideIconLabel: {
+    margin: '0 8px',
   },
   show: {
     '&$error>div>div:not(inputContainerError)': {
@@ -155,7 +174,7 @@ export default createStyles( (theme) => ({
   dotsContainer: {
     position: 'absolute',
     width: '100%',
-    height: '7px',
+    height: '4px',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
