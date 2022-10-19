@@ -23,6 +23,7 @@ export enum TextVariant {
 type TTextVariant = keyof typeof TextVariant;
 
 export interface IText extends React.HTMLAttributes<HTMLElement> {
+  className?: string,
   children: string,
   align?: 'left' | 'center' | 'right';
   variant?: TTextVariant;
@@ -60,12 +61,12 @@ const Text: React.FC<IText> = (props) => {
   return (
     <Tag
       data-testid={'test-text-element'}
-      className={classNames([
+      className={classNames(
         classes.text,
         classes[variant],
         classes[align],
-        className
-      ])}
+        className,
+      )}
       {...rest}
     >
       {children}
