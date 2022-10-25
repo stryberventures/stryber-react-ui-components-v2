@@ -2,7 +2,7 @@ import React, { ForwardedRef, forwardRef } from 'react';
 import useStyles from './styles';
 import Input from '../Input';
 import classNames from 'classnames';
-import ArrowDownIcon from '../Icons/ArrowDownIcon';
+import { ArrowDownIcon } from '../Icons';
 import { useDropdown } from './hooks';
 
 export interface IDropdownBase extends React.HTMLAttributes<HTMLDivElement>{

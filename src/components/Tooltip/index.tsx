@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import useStyles from './styles';
 import classNames from 'classnames';
-import CloseIcon from '../Icons/CloseIcon';
+import { CloseIcon } from '../Icons';
 
 export interface ITooltip extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   version?: 'light' | 'dark',
