@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import useStyles from './styles';
-import RadioBoxIcon from '../../Icons/IconsList/RadioIcon';
+import { RadioBoxIcon } from '../../Icons';
 
 export interface IRadioBoxMarkProps {
   checked?: boolean;

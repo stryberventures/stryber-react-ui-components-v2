@@ -6,8 +6,7 @@ import Slider from './index';
 import Button from '../Button';
 import pkg from './package.json';
 import { buildExcludeArgTypes } from '../../storybook/utils';
-import Minus from '../Icons/IconsList/Minus';
-import Plus from '../Icons/IconsList/Plus';
+import { Minus, Plus } from '../Icons';
 
 export default {
   title: 'Components/Slider',

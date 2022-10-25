@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import useStyles from './styles';
 import Input, { IInput } from '../Input'
 import classNames from 'classnames';
-import Plus from '../Icons/IconsList/Plus';
-import Minus from '../Icons/IconsList/Minus';
-import VerticalLine from '../Icons/IconsList/VerticalLine';
+import { Plus, Minus, VerticalLine} from '../Icons';
 import { useFormContext } from '../Form';
 
 export interface INumberInput extends Omit<IInput, 'value' | 'onChange'> {
