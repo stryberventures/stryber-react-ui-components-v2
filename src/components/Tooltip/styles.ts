@@ -1,4 +1,6 @@
 import { createStyles } from '../Theme';
+import toRem from '../Theme/toRem';
+
 
 export default createStyles((theme) => ({
   tooltip: {
@@ -16,39 +18,39 @@ export default createStyles((theme) => ({
   },
   tooltipBox: {
     fontFamily: theme.font,
-    fontSize: 14,
+    fontSize: toRem(14),
     fontWeight: 400,
-    maxWidth: 320,
+    maxWidth: toRem(320),
     width: 'max-content',
-    padding: '8px 10px',
-    borderRadius: 8,
+    padding: `${toRem(8)} ${toRem(10)}`,
+    borderRadius: toRem(8),
     boxSizing: 'border-box',
     position: 'relative',
     boxShadow: '0px 0px 16px -4px rgba(16, 24, 40, 0.2), 0px 0px 6px -2px rgba(16, 24, 40, 0.03)',
     '&:after': {
       content: '""',
       position: 'absolute',
-      width: 12,
-      height: 12,
-      borderRadius: 2,
+      width: toRem(12),
+      height: toRem(12),
+      borderRadius: toRem(2),
       transform: 'rotate(45deg)',
       backgroundColor: theme.background.default,
-      bottom: -6,
+      bottom: toRem(-6),
       left: 'calc(50% - 5px)',
     }
   },
   visible: {
     '& $title': {
-      paddingRight: 24,
+      paddingRight: toRem(24),
     }
   },
   closeBtn: {
     position: 'absolute',
-    top: 8,
-    right: 8,
-    height: 20,
-    width: 20,
-    borderRadius: 4,
+    top: toRem(8),
+    right: toRem(8),
+    height: toRem(20),
+    width: toRem(20),
+    borderRadius: toRem(4),
     backgroundColor: theme.default.light,
     display: 'flex',
     justifyContent: 'center',
@@ -64,7 +66,7 @@ export default createStyles((theme) => ({
     lineHeight: '20px',
   },
   text: {
-    marginTop: 5,
+    marginTop: toRem(5),
   },
   light: {
     '& $tooltipBox': {
@@ -90,29 +92,29 @@ export default createStyles((theme) => ({
     '& $tooltipBox': {
       margin: '0 auto',
     },
-    bottom: 'calc(100% + 12px)',
+    bottom: `calc(100% + ${toRem(12)})`,
     '& $tooltipBox:after': {
-      bottom: -5,
-      left: 'calc(50% - 6px)',
+      bottom: toRem(-5),
+      left: `calc(50% - ${toRem(6)})`,
     }
   },
   topStart: {
-    bottom: 'calc(100% + 12px)',
+    bottom: `calc(100% + ${toRem(12)})`,
     margin: 'initial',
-    right: 'calc(100% - 32px)',
+    right: `calc(100% - ${toRem(32)})`,
     '& $tooltipBox:after': {
-      bottom: -5,
-      right: 15,
+      bottom: toRem(-5),
+      right: toRem(15),
       left: 'initial',
     }
   },
   topEnd: {
-    bottom: 'calc(100% + 12px)',
+    bottom: `calc(100% + ${toRem(12)})`,
     margin: 'initial',
-    left: 'calc(100% - 32px)',
+    left: `calc(100% - ${toRem(32)})`,
     '& $tooltipBox:after': {
-      bottom: -5,
-      left: 15,
+      bottom: toRem(-5),
+      left: toRem(15),
     }
   },
   bottom: {
@@ -121,97 +123,97 @@ export default createStyles((theme) => ({
     '& $tooltipBox': {
       margin: '0 auto',
     },
-    top: 'calc(100% + 12px)',
+    top: `calc(100% + ${toRem(12)})`,
     '& $tooltipBox:after': {
-      top: -5,
-      left: 'calc(50% - 6px)',
+      top: toRem(-5),
+      left: `calc(50% - ${toRem(6)})`,
     }
   },
   bottomStart: {
-    top: 'calc(100% + 12px)',
+    top: `calc(100% + ${toRem(12)})`,
     margin: 'initial',
-    right: 'calc(100% - 32px)',
+    right: `calc(100% - ${toRem(32)})`,
     '& $tooltipBox:after': {
-      top: -5,
-      right: 15,
+      top: toRem(-5),
+      right: toRem(15),
       left: 'initial',
     }
   },
   bottomEnd: {
-    top: 'calc(100% + 12px)',
+    top: `calc(100% + ${toRem(12)})`,
     margin: 'initial',
-    left: 'calc(100% - 32px)',
+    left: `calc(100% - ${toRem(32)})`,
     '& $tooltipBox:after': {
-      top: -5,
-      left: 15,
+      top: toRem(-5),
+      left: toRem(15),
     }
   },
   right: {
     height: '100%',
-    left: 'calc(100% + 12px)',
+    left: `calc(100% + ${toRem(12)})`,
     top: 0,
     display: 'flex',
     alignItems: 'center',
     '& $tooltipBox:after': {
-      top: 'calc(50% - 6px)',
-      left: -5,
+      top: `calc(50% - ${toRem(6)})`,
+      left: toRem(-5),
     }
   },
   rightStart: {
     height: '100%',
-    left: 'calc(100% + 12px)',
-    bottom: 'calc(100% - 32px)',
+    left: `calc(100% + ${toRem(12)})`,
+    bottom: `calc(100% - ${toRem(32)})`,
     display: 'flex',
     alignItems: 'flex-end',
     '& $tooltipBox:after': {
-      bottom: 15,
-      left: -5,
+      bottom: toRem(15),
+      left: toRem(-5),
     }
   },
   rightEnd: {
     height: '100%',
-    left: 'calc(100% + 12px)',
-    top: 'calc(100% - 32px)',
+    left: `calc(100% + ${toRem(12)})`,
+    top: `calc(100% - ${toRem(32)})`,
     display: 'flex',
     alignItems: 'flex-start',
     '& $tooltipBox:after': {
-      top: 15,
-      left: -5,
+      top: toRem(15),
+      left: toRem(-5),
     }
   },
   left: {
     height: '100%',
-    right: 'calc(100% + 12px)',
+    right: `calc(100% + ${toRem(12)})`,
     top: 0,
     display: 'flex',
     alignItems: 'center',
     '& $tooltipBox:after': {
-      top: 'calc(50% - 6px)',
-      right: -5,
+      top: `calc(50% - ${toRem(6)})`,
+      right: toRem(-5),
       left: 'initial',
     }
   },
   leftStart: {
     height: '100%',
-    right: 'calc(100% + 12px)',
-    bottom: 'calc(100% - 32px)',
+    right: `calc(100% + ${toRem(12)})`,
+    bottom: `calc(100% - ${toRem(32)})`,
     display: 'flex',
     alignItems: 'flex-end',
     '& $tooltipBox:after': {
-      bottom: 15,
+      bottom: toRem(15),
       left: 'initial',
-      right: -5,
+      right: toRem(-5),
     }
   },
   leftEnd: {
     height: '100%',
-    right: 'calc(100% + 12px)',
-    top: 'calc(100% - 32px)',
+    right: `calc(100% + ${toRem(12)})`,
+    top: `calc(100% - ${toRem(32)})`,
     display: 'flex',
     alignItems: 'flex-start',
     '& $tooltipBox:after': {
-      top: 15,
-      right: -5,
+      top: toRem(15),
+      right: toRem(-5),
       left: 'initial',
     }
   },

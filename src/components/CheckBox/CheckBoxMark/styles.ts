@@ -1,10 +1,12 @@
 import { ICheckBoxMark } from './index';
 import { createStyles } from '../../Theme';
+import toRem from '../../Theme/toRem';
+
 
 export default createStyles((theme) => ({
   checkboxMark: (props: ICheckBoxMark) => ({
     backgroundColor: theme[props.color!].contrast,
-    border: [1, 'solid', theme[props.color!].main],
+    border: [toRem(1), 'solid', theme[props.color!].main],
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -13,20 +15,20 @@ export default createStyles((theme) => ({
     },
     '&:hover:not($disabled)': {
       backgroundColor: theme[props.color!].light,
-      border: [1, 'solid', theme[props.color!].dark],
+      border: [toRem(1), 'solid', theme[props.color!].dark],
     },
     '& ~ $disabled, &:hover ~ $disabled': {
       backgroundColor: theme[props.color!].contrast,
       boxShadow: 'none',
     },
     '&:active:not($disabled)': {
-      outline: `4px solid ${theme[props.color!].light}`,
+      outline: `${toRem(4)} solid ${theme[props.color!].light}`,
     },
   }),
   clickArea: {
     position: 'absolute',
-    width: 26,
-    height: 26,
+    width: toRem(26),
+    height: toRem(26),
   },
   disabled: (props: ICheckBoxMark) => ({
     '& svg path': {
@@ -48,25 +50,25 @@ export default createStyles((theme) => ({
     },
   }),
   small: {
-    height: 14,
-    width: 14,
-    minWidth: 14,
+    height: toRem(14),
+    width: toRem(14),
+    minWidth: toRem(14),
     '& svg': {
-      width: 12,
-      height: 12,
+      width: toRem(12),
+      height: toRem(12),
     },
   },
   medium: {
-    height: 18,
-    width: 18,
-    minWidth: 18,
+    height: toRem(18),
+    width: toRem(18),
+    minWidth: toRem(18),
     '& svg': {
-      width: 14,
-      height: 14,
+      width: toRem(14),
+      height: toRem(14),
     },
   },
   square: {
-    borderRadius: 4,
+    borderRadius: toRem(4),
   },
   circle: {
     borderRadius: '50%',

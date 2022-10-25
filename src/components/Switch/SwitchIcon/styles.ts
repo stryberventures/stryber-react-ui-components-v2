@@ -1,12 +1,14 @@
 import { createStyles } from '../../Theme';
 import { ISwitchIcon } from './index';
+import toRem from '../../Theme/toRem';
+
 
 export default createStyles((theme) => ({
   switchIcon: (props: ISwitchIcon) => ({
-    width: 44,
-    height: 24,
+    width: toRem(44),
+    height: toRem(24),
     position: 'relative',
-    borderRadius: 12,
+    borderRadius: toRem(12),
     backgroundColor: theme.default.dark,
     '&:not($disabled)': {
       cursor: 'pointer',
@@ -36,30 +38,30 @@ export default createStyles((theme) => ({
     to: { transform: 'translateX(100%)' },
   },
   circleContainer: {
-    top: '2px',
-    left: '2px',
+    top: toRem(2),
+    left: toRem(2),
     position: 'absolute',
     animationName: '$slideLeft',
     transition: 'transform 0.15s',
   },
   circleContainerChecked: {
     animationName: '$slideRight',
-    transform: 'translateX(20px)',
+    transform: `translateX(${toRem(20)})`,
   },
   circle: (props: ISwitchIcon) => ({
     position: 'relative',
-    height: 20,
-    width: 20,
+    height: toRem(20),
+    width: toRem(20),
     backgroundColor: theme[props.color!].contrast,
     borderRadius: '50%',
   }),
   circleHighlight: {
     content: '""',
     position: 'absolute',
-    height: 30,
-    width: 30,
-    marginTop: -5,
-    marginLeft: -5,
+    height: toRem(30),
+    width: toRem(30),
+    marginTop: toRem(-5),
+    marginLeft: toRem(-5),
     opacity: 0,
     borderRadius: '50%',
     transition: 'opacity 0.15s',

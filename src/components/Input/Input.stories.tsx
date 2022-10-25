@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Input from './index';
 import pkg from './package.json';
 import { buildExcludeArgTypes } from '../../storybook/utils';
+import toRem from '../Theme/toRem';
 
 export default {
   title: 'Components/Input',
@@ -84,11 +85,14 @@ EndAdornment.args = {
   value: 'olivia@example.com',
   endAdornment: <div style={
     {
-      width: 32,
-      height: 32,
+      display: 'flex',
+      alignContent: 'center',
+      justifyContent: 'center',
+      width: toRem(32),
+      height: toRem(32),
       backgroundColor: '#D0D5DD',
-      borderRadius: 16,
-      lineHeight: '32px',
+      borderRadius: toRem(16),
+      lineHeight: toRem(32),
       textAlign: 'center',
       color: 'white',
     }

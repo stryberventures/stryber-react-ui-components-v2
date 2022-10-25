@@ -1,15 +1,17 @@
 import { createStyles } from '../Theme';
+import toRem from '../Theme/toRem'
+
 
 export default createStyles((theme) => ({
   menuItem: {
-    padding: [0, 8],
-    lineHeight: '33px',
+    padding: [0, toRem(8)],
+    lineHeight: toRem(33),
     fontFamily: theme.font,
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     color: theme.text.primary,
-    fontSize: 14,
+    fontSize: toRem(14),
     '&:not($readOnly):hover': {
       cursor: 'pointer',
       backgroundColor: theme.default.extraLight,

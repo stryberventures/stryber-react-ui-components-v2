@@ -1,11 +1,13 @@
 import { ITheme } from '../../Theme/types';
 import { IRadioBoxMarkProps } from './index';
 import { createStyles } from '../../Theme';
+import toRem from '../../Theme/toRem'
+
 
 export default createStyles((theme: ITheme) => ({
   radioBoxMark: (props: IRadioBoxMarkProps) => ({
     backgroundColor: theme[props.color!].contrast,
-    border: [1, 'solid', theme[props.color!].main],
+    border: [toRem(1), 'solid', theme[props.color!].main],
     borderRadius: '50%',
     display: 'flex',
     justifyContent: 'center',
@@ -15,14 +17,14 @@ export default createStyles((theme: ITheme) => ({
     },
     '&:hover:not($disabled)': {
       backgroundColor: theme[props.color!].light,
-      border: [1, 'solid', theme[props.color!].dark],
+      border: [toRem(1), 'solid', theme[props.color!].dark],
     },
     '& ~ $disabled, &:hover ~ $disabled': {
       backgroundColor: theme[props.color!].contrast,
       boxShadow: 'none',
     },
     '&:active:not($disabled)': {
-      outline: `4px solid ${theme[props.color!].light}`,
+      outline: `${toRem(4)} solid ${theme[props.color!].light}`,
     },
   }),
   disabled: (props: IRadioBoxMarkProps) => ({
@@ -35,8 +37,8 @@ export default createStyles((theme: ITheme) => ({
   }),
   clickArea: {
     position: 'absolute',
-    width: 26,
-    height: 26,
+    width: toRem(26),
+    height: toRem(26),
   },
   checked: (props: IRadioBoxMarkProps) => ({
     '& svg': {
@@ -50,21 +52,21 @@ export default createStyles((theme: ITheme) => ({
     },
   }),
   small: {
-    height: 14,
-    width: 14,
-    minWidth: 14,
+    height: toRem(14),
+    width: toRem(14),
+    minWidth: toRem(14),
     '& svg': {
-      width: 6,
-      height: 6,
+      width: toRem(6),
+      height: toRem(6),
     },
   },
   medium: {
-    height: 18,
-    width: 18,
-    minWidth: 18,
+    height: toRem(18),
+    width: toRem(18),
+    minWidth: toRem(18),
     '& svg': {
-      width: 8,
-      height: 8,
+      width: toRem(8),
+      height: toRem(8),
     },
   },
 }));

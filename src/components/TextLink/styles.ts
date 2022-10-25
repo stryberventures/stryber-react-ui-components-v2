@@ -1,20 +1,22 @@
 import { createStyles } from '../Theme';
 import { ITextLink } from './index';
+import toRem from '../Theme/toRem';
+
 
 export default createStyles((theme) => ({
   textLink: (props: ITextLink) =>  ({
-    padding: [8, 16],
+    padding: [toRem(8), toRem(16)],
     color: theme[props.color!].main,
-    fontSize: 16,
+    fontSize: toRem(16),
     lineHeight: '24px',
-    borderRadius: 8,
+    borderRadius: toRem(8),
     cursor: 'pointer',
     fontFamily: theme.font,
     fontWeight: 700,
     textDecoration: 'none',
     display: 'inline-flex',
     alignItems: 'center',
-    gap: 8,
+    gap: toRem(8),
     '-webkit-tap-highlight-color': 'transparent',
     '& svg path': {
       fill: theme[props.color!].main,
@@ -29,8 +31,8 @@ export default createStyles((theme) => ({
       backgroundColor: theme[props.color!].light,
     },
     '&:active': {
-      boxShadow: `0 0 0 4px ${theme[props.color!].light}`,
-      outlineOffset: -2,
+      boxShadow: `0 0 0 ${toRem(4)} ${theme[props.color!].light}`,
+      outlineOffset: toRem(-2),
       backgroundColor: 'transparent',
     },
   }),

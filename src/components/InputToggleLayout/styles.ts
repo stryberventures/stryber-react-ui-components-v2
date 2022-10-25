@@ -1,4 +1,6 @@
 import { createStyles } from '../Theme';
+import toRem from '../Theme/toRem'
+
 
 export default createStyles((theme) => ({
   inputToggleLayout: {
@@ -23,18 +25,18 @@ export default createStyles((theme) => ({
     '-webkit-tap-highlight-color': 'transparent',
   },
   text: {
-    marginLeft: 8,
+    marginLeft: toRem(8),
     fontFamily: theme.font,
     display: 'flex',
     flexDirection: 'column',
-    fontSize: 14,
+    fontSize: toRem(14),
     position: 'relative',
   },
   reverse: {
     flexDirection: 'row-reverse',
     justifyContent: 'flex-end',
     '& $text': {
-      marginRight: 8,
+      marginRight: toRem(8),
       marginLeft: 0,
     }
   },
@@ -42,10 +44,10 @@ export default createStyles((theme) => ({
     justifyContent: 'space-between',
   },
   medium: {
-    lineHeight: '20px',
+    lineHeight: toRem(20),
   },
   small: {
-    lineHeight: '16px',
+    lineHeight: toRem(16),
   },
   title: {
     fontWeight: 500,
@@ -58,6 +60,6 @@ export default createStyles((theme) => ({
     color: theme.text.disabled,
   },
   error: {
-    marginTop: 8,
+    marginTop: toRem(8),
   },
 }));

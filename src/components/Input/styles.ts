@@ -1,29 +1,30 @@
 import { createStyles } from '../Theme';
+import toRem from '../Theme/toRem';
 import { IInput } from './index';
 
 export default createStyles((theme) => ({
   inputRoot: {
-    width: 320,
+    width: toRem(320),
   },
   fullWidth: {
     width: '100%',
   },
   inputContainer: (props: IInput) => ({
     boxSizing: 'border-box',
-    borderRadius: 4,
+    borderRadius: toRem(4),
     position: 'relative',
     fontFamily: theme.font,
     display: 'flex',
     alignItems: 'center',
-    padding: '4px 8px',
-    height: 44,
+    padding: [toRem(4), toRem(8)],
+    height: toRem(44),
     backgroundColor: theme.background.default,
     '&:focus-within:not($inputContainerError), &:not($inputContainerError)$highlighted': {
       border: `1px solid ${theme[props.color!].main}`,
-      boxShadow: `0 0 0 4px ${theme[props.color!].light}`,
+      boxShadow: `0 0 0 ${toRem(4)} ${theme[props.color!].light}`,
     },
     '&:not($inputContainerError)': {
-      border: `1px solid ${theme.default.main}`,
+      border: `${toRem(1)} solid ${theme.default.main}`,
     },
     '&$withLabel': {
       alignItems: 'initial',
@@ -36,10 +37,10 @@ export default createStyles((theme) => ({
   inputContainerError: {
     border: `1px solid ${theme.error.main}`,
     '&$highlighted': {
-      boxShadow: `0 0 0 4px ${theme.error.light}`,
+      boxShadow: `0 0 0 ${toRem(4)} ${theme.error.light}`,
     },
     '&:focus-within': {
-      boxShadow: `0 0 0 4px ${theme.error.light}`,
+      boxShadow: `0 0 0 ${toRem(4)} ${theme.error.light}`,
     },
   },
   input: {
@@ -55,11 +56,11 @@ export default createStyles((theme) => ({
     border: 'none',
     outline: 'none',
     textOverflow: 'ellipsis',
-    height: 17,
+    height: toRem(17),
     padding: 0,
     width: '100%',
     color: theme.text.primary,
-    fontSize: 14,
+    fontSize: toRem(14),
     backgroundColor: theme.background.default,
     '&::placeholder': {
       color: theme.text.hint,
@@ -71,7 +72,7 @@ export default createStyles((theme) => ({
     width: '100%',
   },
   prefix: {
-    fontSize: 14,
+    fontSize: toRem(14),
     color: theme.text.primary,
     backgroundColor: theme.background.default,
     whiteSpace: 'nowrap',
@@ -86,8 +87,8 @@ export default createStyles((theme) => ({
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
-    height: 17,
-    fontSize: 14,
+    height: toRem(17),
+    fontSize: toRem(14),
   },
   textDisabled: {
     color: theme.text.disabled,
@@ -96,7 +97,7 @@ export default createStyles((theme) => ({
     }
   },
   message: {
-    marginTop: 8,
+    marginTop: toRem(8),
   },
   withLabel: {},
   inputWrapper: {

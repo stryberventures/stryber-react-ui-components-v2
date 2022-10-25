@@ -1,12 +1,14 @@
 import { createStyles } from '../Theme';
 import { ISlider } from './index';
+import toRem from '../Theme/toRem';
+
 
 export default createStyles( (theme) => ({
   sliderRoot: {
     fontFamily: theme.font,
     fontWeight: 600,
-    fontSize: 12,
-    height: 30,
+    fontSize: toRem(12),
+    height: toRem(30),
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -27,12 +29,12 @@ export default createStyles( (theme) => ({
     backgroundColor: theme.background.default,
     border: 'none',
     borderRadius: '50%',
-    boxShadow: '0 0 4px 0 #00000040',
+    boxShadow: `0 0 ${toRem(4)} 0 #00000040`,
     cursor: 'pointer',
-    height: 30,
-    width: 30,
+    height: toRem(30),
+    width: toRem(30),
     position: 'absolute',
-    top: -13,
+    top: toRem(-13),
     zIndex: 5,
     display: 'flex',
     justifyContent: 'center',
@@ -57,14 +59,14 @@ export default createStyles( (theme) => ({
   },
   thumbLabel: {
     position: 'relative',
-    bottom: 34,
+    bottom: toRem(34),
     width: 'fit-content',
     color: theme.primary.contrast,
-    fontSize: 12,
-    height: 16,
-    padding: '2px 4px',
+    fontSize: toRem(12),
+    height: toRem(16),
+    padding: `${toRem(2)} ${toRem(4)}`,
     backgroundColor: theme.default.dark,
-    borderRadius: 4,
+    borderRadius: toRem(4),
     display: 'none',
     alignItems: 'center',
     '-webkit-touch-callout': 'none',
@@ -75,10 +77,10 @@ export default createStyles( (theme) => ({
   },
   thumbInput: {
     position: 'relative',
-    bottom: 42,
+    bottom: toRem(42),
     zIndex: 5,
     margin: '0 auto',
-    fontSize: 14,
+    fontSize: toRem(14),
     fontWeight: 600,
     color: theme.text.hint,
     width: 'fit-content',
@@ -92,29 +94,29 @@ export default createStyles( (theme) => ({
       width: 'fit-content',
     },
     '&>div>div': {
-      height: 34,
+      height: toRem(34),
       padding: 0,
       width: 'fit-content',
     },
     '& $input': {
-      minWidth: 13,
+      minWidth: toRem(13),
       textAlign: 'center',
-      padding: '8px 5.5px',
-      lineHeight: '16px',
+      padding: `${toRem(8)} ${toRem(5.5)}`,
+      lineHeight: toRem(16),
       height: '-webkit-fill-available',
-      borderRadius: 4,
+      borderRadius: toRem(4),
       border: 'none',
     },
   },
   slider: {
     position: 'relative',
     width: '100%',
-    height: 4,
+    height: toRem(4),
   },
   sliderTrack: {
     position: 'absolute',
-    borderRadius: 3,
-    height: 4,
+    borderRadius: toRem(3),
+    height: toRem(4),
     backgroundColor: theme.default.main,
     width: '100%',
     zIndex: 1,
@@ -127,8 +129,8 @@ export default createStyles( (theme) => ({
   },
   sliderRange: (props: ISlider) => ({
     position: 'absolute',
-    borderRadius: 3,
-    height: 4,
+    borderRadius: toRem(3),
+    height: toRem(4),
     backgroundColor: theme[props.color!].main,
     opacity: 0.6,
     zIndex: 2,
@@ -141,12 +143,12 @@ export default createStyles( (theme) => ({
   }),
   sideLabel: {
     color: theme.primary.contrast,
-    fontSize: 12,
-    lineHeight: '16px',
-    padding: '2px 4px',
-    margin: '0 8px',
+    fontSize: toRem(12),
+    lineHeight: toRem(16),
+    padding: `${toRem(2)} ${toRem(4)}`,
+    margin: `0 ${toRem(8)}`,
     backgroundColor: theme.default.dark,
-    borderRadius: 4,
+    borderRadius: toRem(4),
     '-webkit-touch-callout': 'none',
     '-moz-user-select': 'none',
     '-webkit-user-select': 'none',
@@ -154,7 +156,7 @@ export default createStyles( (theme) => ({
     'user-select': 'none',
   },
   sideIconLabel: {
-    margin: '0 8px',
+    margin: `0 ${toRem(8)}`,
   },
   show: {
     '&$error>div>div:not(inputContainerError)': {
@@ -166,7 +168,7 @@ export default createStyles( (theme) => ({
   },
   error: {
     '&>div>div:not(inputContainerError)': {
-      borderWidth: '1px',
+      borderWidth: toRem(1),
       borderStyle: 'solid',
       borderColor: theme.error.main,
     }
@@ -174,16 +176,16 @@ export default createStyles( (theme) => ({
   dotsContainer: {
     position: 'absolute',
     width: '100%',
-    height: '4px',
+    height: toRem(4),
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
     zIndex: 3,
   },
   dot: {
-    width: 4,
-    height: 4,
-    borderRadius: 2,
+    width: toRem(4),
+    height: toRem(4),
+    borderRadius: toRem(2),
     backgroundColor: theme.default.light,
   },
 }))

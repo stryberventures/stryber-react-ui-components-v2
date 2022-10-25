@@ -1,4 +1,5 @@
 import { createStyles } from '../Theme';
+import toRem from '../Theme/toRem';
 
 interface IChipStyle {
   color?: 'primary' | 'secondary' | 'success',
@@ -10,11 +11,11 @@ export default createStyles((theme) => ({
     fontFamily: theme.font,
     alignItems: 'center',
     whiteSpace: 'nowrap',
-    gap: 8,
-    fontSize: 14,
-    lineHeight: '21px',
+    gap: toRem(8),
+    fontSize: toRem(14),
+    lineHeight: toRem(21),
     fontWeight: 500,
-    borderRadius: 8,
+    borderRadius: toRem(8),
     boxSizing: 'border-box',
     '&:not($disabled)': {
       cursor: 'pointer',
@@ -22,17 +23,17 @@ export default createStyles((theme) => ({
   },
   contained: (props: IChipStyle) => ({
     '&:not($default)': {
-      padding: '6px 16px',
+      padding: [toRem(6), toRem(16)],
       backgroundColor: theme[props.color!].main,
       color: theme[props.color!].contrast,
       '&$iconLeft': {
-        paddingLeft: 8,
+        paddingLeft: toRem(8),
       },
       '&$iconRight': {
-        paddingRight: 8,
+        paddingRight: toRem(8),
       },
       '&$iconOnly': {
-        padding: '7px 8px',
+        padding: [toRem(7), toRem(8)],
       },
       '&:hover:not($disabled)': {
         backgroundColor: theme[props.color!].dark,
@@ -44,18 +45,18 @@ export default createStyles((theme) => ({
   }),
   outlined: (props: IChipStyle) => ({
     '&:not($default)': {
-      padding: '5px 15px',
+      padding: [toRem(5), toRem(15)],
       color: theme[props.color!].main,
-      border: `1px solid ${theme[props.color!].main}`,
+      border: `${toRem(1)} solid ${theme[props.color!].main}`,
       backgroundColor: theme[props.color!].contrast,
       '&$iconLeft': {
-        paddingLeft: 7,
+        paddingLeft: toRem(7),
       },
       '&$iconRight': {
-        paddingRight: 7,
+        paddingRight: toRem(7),
       },
       '&$iconOnly': {
-        padding: '6px 7px',
+        padding: [toRem(6), toRem(7)],
       },
       '&:hover:not($disabled)': {
         backgroundColor: theme.default.extraLight,
@@ -68,18 +69,18 @@ export default createStyles((theme) => ({
   default: {
     backgroundColor: theme.default.light,
     color: theme.default.dark,
-    padding: '6px 16px',
+    padding: `${toRem(6)} ${toRem(16)}`,
     '& svg path': {
       fill: theme.default.dark,
     },
     '&$iconLeft': {
-      paddingLeft: 8,
+      paddingLeft: toRem(8),
     },
     '&$iconRight': {
-      paddingRight: 8,
+      paddingRight: toRem(8),
     },
     '&$iconOnly': {
-      padding: '7px 8px',
+      padding: `${toRem(7)} ${toRem(8)}`,
     },
   },
   disabled: {
@@ -93,7 +94,7 @@ export default createStyles((theme) => ({
       },
       '&$outlined': {
         color: theme.default.main,
-        border: `1px solid ${theme.default.main}`,
+        border: `${toRem(1)} solid ${theme.default.main}`,
         '& svg path': {
           fill: theme.default.main,
         },
