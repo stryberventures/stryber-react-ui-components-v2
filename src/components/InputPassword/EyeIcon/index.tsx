@@ -1,7 +1,7 @@
 import React from 'react';
 import useStyles from './styles';
-import { Eye } from '../../Icons/Eye';
-import { EyeSlash } from '../../Icons/EyeSlash';
+import Eye from '../../Icons/IconsList/Eye';
+import EyeSlash from '../../Icons/IconsList/EyeSlash';
 import classNames from 'classnames';
 
 interface IEyeIcon extends React.HTMLAttributes<HTMLDivElement> {

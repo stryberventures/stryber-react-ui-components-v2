@@ -4,7 +4,7 @@ import { EyeIcon } from './EyeIcon';
 import Chip from '../Chip';
 import useStyles from './styles';
 import { IValidationItemProps, usePasswordValidation } from './hooks';
-import CheckBoxIcon from '../Icons/CheckBoxIcon';
+import CheckBoxIcon from '../Icons/IconsList/CheckBoxIcon';
 import classNames from 'classnames';
 
 export interface IInputPassword extends Omit<IInput, 'endAdornment'> {

@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import useStyles from './styles';
-import CheckBoxIcon from '../../Icons/CheckBoxIcon';
+import CheckBoxIcon from '../../Icons/IconsList/CheckBoxIcon';
 
 export interface ICheckBoxMark {
   checked?: boolean;

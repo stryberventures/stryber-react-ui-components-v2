@@ -5,7 +5,7 @@ import pkg from './package.json';
 import Button from '../Button';
 import Dialog from './';
 import Text from '../Text';
-import CloseIcon from '../Icons/CloseIcon';
+import CloseIcon from '../Icons/IconsList/CloseIcon';
 import { ITheme } from '../Theme/types';
 
 
