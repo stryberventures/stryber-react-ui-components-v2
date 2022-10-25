@@ -3,6 +3,7 @@ import useStyles from './styles';
 import { useCombobox } from './hooks';
 import Dropdown, { IDropdown } from '../Dropdown';
 import MenuItem from '../MenuItem';
+import ClearIcon from './ClearIcon';
 
 export interface IOption {
   value: string | number,
@@ -11,8 +12,8 @@ export interface IOption {
 
 export interface ICombobox extends Omit<IDropdown, 'onChange' | 'children' | 'value'> {
   options: IOption[],
-  value?: string | number,
-  onChange?: (options: IOption[]) => void,
+  value?: IOption['value'],
+  onChange?: (option: IOption['value'] | null) => void,
   noOptionsFoundText?: string,
 }
 
@@ -28,7 +29,8 @@ const Combobox: React.FC<ICombobox> = (props) => {
     ...rest
   } = props;
   const {
-    inputValue, dropdownRef, onInputChange, onOptionClick, onDropdownToggle, filteredOptions,
+    inputValue, dropdownRef, onInputChange, onSelectOption, onDropdownToggle, filteredOptions, activeIndex, handleKeyDown, setActiveIndex, activeRef,
+    clearSelectedOption, isOpen, handleOutsideClick,
   } = useCombobox(props);
   const classes = useStyles();
 
@@ -45,16 +47,23 @@ const Combobox: React.FC<ICombobox> = (props) => {
       placeholder={placeholder}
       onToggle={onDropdownToggle}
       fullWidth={fullWidth}
+      onKeyDown={handleKeyDown}
+      endAdornment={inputValue && isOpen && <ClearIcon onClick={() => clearSelectedOption()} className={classes.clearIcon} />}
+      onOutsideClick={handleOutsideClick}
     >
       {!filteredOptions.length && (
         <MenuItem readOnly>
           {noOptionsFoundText}
         </MenuItem>
       )}
-      {filteredOptions.map((option) => (
+      {filteredOptions.map((option, index) => (
         <MenuItem
+          id={String(index)}
           key={option.value}
-          onClick={() => onOptionClick(option)}
+          onClick={() => onSelectOption(option)}
+          selected={index === activeIndex.index}
+          onMouseEnter={() => setActiveIndex({ type: 'mouse', index })}
+          ref={index === activeIndex.index ? activeRef : undefined}
         >
           {option.label}
         </MenuItem>

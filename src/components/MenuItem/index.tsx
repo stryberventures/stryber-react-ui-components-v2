@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import useStyles from './styles';
 import classNames from 'classnames';
 
@@ -8,12 +8,13 @@ interface IMenuItem extends React.HTMLAttributes<HTMLDivElement> {
   readOnly?: boolean,
 }
 
-const MenuItem = (props: IMenuItem) => {
+const MenuItem = forwardRef<HTMLDivElement,IMenuItem>( (props, ref) => {
   const { children, className, selected, readOnly = false, ...rest } = props;
   const classes = useStyles();
 
   return (
     <div
+      ref={ref}
       className={classNames(classes.menuItem, className, {
         [classes.selected]: selected,
         [classes.readOnly]: readOnly,
@@ -23,6 +24,8 @@ const MenuItem = (props: IMenuItem) => {
       {children}
     </div>
   );
-}
+})
+
+MenuItem.displayName = 'MenuItem';
 
 export default MenuItem;
