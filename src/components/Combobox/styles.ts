@@ -7,4 +7,8 @@ export default createStyles(() => ({
     maxHeight: toRem(190),
     overflow: 'auto',
   },
+  clearIcon: {
+    marginRight: toRem(10),
+    zIndex: 99,
+  }
 }));
