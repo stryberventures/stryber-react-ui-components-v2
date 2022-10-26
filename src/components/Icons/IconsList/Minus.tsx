@@ -1,5 +1,5 @@
 import React from 'react';
-import toRem from '../../Theme/toRem';
+import toRem from '../../../utils/toRem';
 
 export interface IMinus extends React.SVGProps<SVGSVGElement> {
   fill?: string,

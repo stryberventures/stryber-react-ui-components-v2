@@ -1,5 +1,5 @@
 import { createStyles } from '../Theme';
-import toRem from '../Theme/toRem';
+import toRem from '../../utils/toRem';
 
 interface IChipStyle {
   color?: 'primary' | 'secondary' | 'success',

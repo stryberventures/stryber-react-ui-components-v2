@@ -1,6 +1,6 @@
 import { createStyles } from '../Theme';
 import { TextVariant } from './';
-import toRem from '../Theme/toRem';
+import toRem from '../../utils/toRem';
 
 
 export default createStyles((theme) => ({

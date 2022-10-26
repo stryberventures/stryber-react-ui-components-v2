@@ -5,7 +5,7 @@ import pkg from './package.json';
 import Switch from '../../components/Switch'
 import { IListItem } from './ListItem';
 import { buildExcludeArgTypes } from '../../storybook/utils';
-import toRem from '../Theme/toRem';
+import toRem from '../../utils/toRem';
 
 const title = 'One-line Item';
 const subtitle = 'Secondary Text';

@@ -1,5 +1,5 @@
 import { createUseStyles } from 'react-jss';
-import toRem from '../Theme/toRem'
+import toRem from '../../utils/toRem'
 
 
 export default createUseStyles({

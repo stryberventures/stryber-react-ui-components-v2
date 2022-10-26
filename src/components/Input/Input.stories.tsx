@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Input from './index';
 import pkg from './package.json';
 import { buildExcludeArgTypes } from '../../storybook/utils';
-import toRem from '../Theme/toRem';
+import toRem from '../../utils/toRem';
 
 export default {
   title: 'Components/Input',
