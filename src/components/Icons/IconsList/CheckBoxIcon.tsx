@@ -1,4 +1,5 @@
 import React from 'react';
+import toRem from '../../Theme/toRem';
 
 export interface ICheckBoxIcon extends React.SVGProps<SVGSVGElement> {
   fill?: string,
@@ -17,7 +18,7 @@ const CheckBoxIcon = (props: ICheckBoxIcon) => {
 
 CheckBoxIcon.defaultProps = {
   fill: 'white',
-  width: '14px',
-  height: '14px'
+  width: toRem(14),
+  height: toRem(14),
 }
 export default CheckBoxIcon;

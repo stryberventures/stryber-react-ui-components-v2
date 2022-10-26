@@ -1,4 +1,5 @@
 import React from 'react';
+import toRem from '../../Theme/toRem';
 
 export interface IPlus extends React.SVGProps<SVGSVGElement> {
   fill?: string,
@@ -16,8 +17,8 @@ const Plus = (props: IPlus) => {
 
 Plus.defaultProps = {
   fill: '#667085',
-  width: '10px',
-  height: '10px'
+  width: toRem(10),
+  height: toRem(10),
 }
 
 export default Plus;

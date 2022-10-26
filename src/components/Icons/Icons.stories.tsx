@@ -33,7 +33,7 @@ export const AllIcons = () => {
           }}
         >
           <span style={{ marginRight: '5px' }}>{name}:</span>
-          <Icon fill="#000000" width='15px' height='15px' />
+          <Icon fill="#000000" />
         </div>
       ))}
     </>

@@ -1,4 +1,5 @@
 import React from 'react';
+import toRem from '../../Theme/toRem';
 
 export interface ICloseIcon extends React.SVGProps<SVGSVGElement> {
   fill?: string,
@@ -15,7 +16,7 @@ const CloseIcon = (props: ICloseIcon) => {
 
 CloseIcon.defaultProps = {
   fill: '#667085',
-  width: '8px',
-  height: '8px'
+  width: toRem(8),
+  height: toRem(8),
 }
 export default CloseIcon;

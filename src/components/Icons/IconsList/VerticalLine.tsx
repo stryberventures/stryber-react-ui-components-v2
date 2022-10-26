@@ -1,10 +1,11 @@
 import React from 'react';
+import toRem from '../../Theme/toRem';
 
 export interface IVertivalLine extends React.SVGProps<SVGSVGElement> {
   fill?: string,
 }
 
-const VertivalLine = (props: IVertivalLine) => {
+const VerticalLine = (props: IVertivalLine) => {
   const { fill, ...rest } = props;
   return (
     <svg viewBox="0 0 1 22" fill="none" xmlns="http://www.w3.org/2000/svg" {...rest}>
@@ -13,10 +14,10 @@ const VertivalLine = (props: IVertivalLine) => {
   );
 }
 
-VertivalLine.defaultProps = {
+VerticalLine.defaultProps = {
   fill: '#C7CCD3',
-  width: '1px',
-  height: '22px',
+  width: toRem(1),
+  height: toRem(22),
 }
 
-export default VertivalLine;
+export default VerticalLine;

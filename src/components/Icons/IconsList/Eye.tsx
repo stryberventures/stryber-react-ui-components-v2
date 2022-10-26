@@ -1,4 +1,5 @@
 import React from 'react';
+import toRem from '../../Theme/toRem';
 
 export interface IEye extends React.SVGProps<SVGSVGElement> {
   fill?: string,
@@ -16,8 +17,8 @@ const Eye = (props: IEye) => {
 
 Eye.defaultProps = {
   fill: 'none',
-  width: '20px',
-  height: '14px'
+  width: toRem(20),
+  height: toRem(14),
 }
 
 export default Eye;

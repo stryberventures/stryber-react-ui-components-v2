@@ -1,4 +1,5 @@
 import React from 'react';
+import toRem from '../../Theme/toRem';
 
 export interface IArrowDownIcon extends React.SVGProps<SVGSVGElement> {
   fill?: string,
@@ -14,8 +15,8 @@ const ArrowDownIcon = (props: IArrowDownIcon) => {
 
 ArrowDownIcon.defaultProps = {
   fill: 'none',
-  width: '14px',
-  height: '8px'
+  width: toRem(14),
+  height: toRem(8),
 };
 
 export default ArrowDownIcon;
