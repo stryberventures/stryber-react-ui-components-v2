@@ -49,7 +49,7 @@ export default createStyles((theme) => ({
     }
   },
   separatorLine: {
-    padding: [0, toRem(5.5)],
+    padding: `0 ${toRem(5.5)}`,
     display: 'flex',
   },
   counterBtn: {
