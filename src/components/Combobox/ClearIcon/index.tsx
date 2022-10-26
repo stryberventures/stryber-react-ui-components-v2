@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import CloseIcon from '../../Icons/CloseIcon';
+import { CloseIcon } from '../../Icons';
 import useStyles from './styles';
 
 interface IClearButton extends React.HTMLAttributes<HTMLDivElement> {}
