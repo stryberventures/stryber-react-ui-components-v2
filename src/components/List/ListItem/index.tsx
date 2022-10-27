@@ -24,12 +24,12 @@ const ListItem: React.FC<IListItem> = (props) => {
   } = props
   return (
     <li
-      data-testid="test-list-item"
       className={classes.listItem}
       {...rest}
     >
       <div
         className={classes.listItemContainer}
+        data-testid="test-list-item"
         onClick={onClick}
       >
         {leftContent && <div className={classes.leftContent}>{leftContent}</div>}
