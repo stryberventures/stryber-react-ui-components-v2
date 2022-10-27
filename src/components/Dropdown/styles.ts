@@ -1,8 +1,9 @@
 import { createStyles } from '../Theme';
+import toRem from '../../utils/toRem';
 
 export default createStyles((theme) => ({
   dropdown: {
-    width: 320,
+    width: toRem(320),
     position: 'relative',
     display: 'inline-flex',
     userSelect: 'none',
@@ -19,17 +20,17 @@ export default createStyles((theme) => ({
     backgroundColor: theme.background.default,
     position: 'absolute',
     zIndex: 99,
-    border: `1px solid ${theme.default.main}`,
-    borderRadius: 4,
-    top: 44,
-    marginTop: 8,
+    border: `${toRem(1)} solid ${theme.default.main}`,
+    borderRadius: toRem(4),
+    top: toRem(44),
+    marginTop: toRem(8),
     width: '100%',
     boxSizing: 'border-box',
   },
   toggleIcon: {
     display: 'flex',
     alignItems: 'center',
-    marginRight: 5,
+    marginRight: toRem(5),
     transition: 'transform 0.3s',
     '& svg path': {
       fill: theme.default.dark,

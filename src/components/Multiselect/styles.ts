@@ -1,14 +1,16 @@
 import { createUseStyles } from 'react-jss';
+import toRem from '../../utils/toRem'
+
 
 export default createUseStyles({
   content: {
-    padding: [8, 0],
-    maxHeight: 190,
+    padding: [toRem(8), 0],
+    maxHeight: toRem(190),
     overflow: 'auto',
   },
   checkbox: {
     '& [class*="text"]': {
-      width: 'calc(100% - 28px)',
+      width: `calc(100% - ${toRem(28)})`,
       display: 'block',
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
@@ -21,7 +23,7 @@ export default createUseStyles({
     },
     '& label': {
       alignItems: 'center',
-      height: 33,
+      height: toRem(33),
     }
   },
 });

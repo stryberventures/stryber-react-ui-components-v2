@@ -1,4 +1,5 @@
 import React from 'react';
+import toRem from '../../../utils/toRem';
 
 export interface IMinus extends React.SVGProps<SVGSVGElement> {
   fill?: string,
@@ -15,8 +16,8 @@ const Minus = (props: IMinus) => {
 
 Minus.defaultProps = {
   fill: '#667085',
-  width: '10px',
-  height: '2px'
+  width: toRem(10),
+  height: toRem(2),
 }
 
 export default Minus;

@@ -1,5 +1,7 @@
 import { createStyles } from '../Theme';
 import { TextVariant } from './';
+import toRem from '../../utils/toRem';
+
 
 export default createStyles((theme) => ({
   text: {
@@ -10,7 +12,7 @@ export default createStyles((theme) => ({
     padding: 0,
     margin: 0,
     color: theme.text.primary,
-    fontSize: 64,
+    fontSize: toRem(64),
     fontWeight: '700',
     lineHeight: 1.3,
   },
@@ -18,7 +20,7 @@ export default createStyles((theme) => ({
     padding: 0,
     margin: 0,
     color: theme.text.primary,
-    fontSize: 56,
+    fontSize: toRem(56),
     fontWeight: '700',
     lineHeight: 1.3,
   },
@@ -26,7 +28,7 @@ export default createStyles((theme) => ({
     padding: 0,
     margin: 0,
     color: theme.text.primary,
-    fontSize: 48,
+    fontSize: toRem(48),
     fontWeight: '700',
     lineHeight: 1.25,
   },
@@ -34,67 +36,67 @@ export default createStyles((theme) => ({
     padding: 0,
     margin: 0,
     color: theme.text.primary,
-    fontSize: 32,
+    fontSize: toRem(32),
     fontWeight: '700',
     lineHeight: 1.5,
   },
   [TextVariant.subline]: {
     color: theme.text.hint,
-    fontSize: 24,
+    fontSize: toRem(24),
     fontWeight: '600',
     lineHeight: 1.5,
   },
   [TextVariant.body]: {
     color: theme.text.hint,
-    fontSize: 16,
+    fontSize: toRem(16),
     fontWeight: '400',
     lineHeight: 1.5,
   },
   [TextVariant.quote]: {
-    fontSize: 40,
+    fontSize: toRem(40),
     fontWeight: '700',
     lineHeight: 1.5,
     fontStyle: 'italic',
   },
   [TextVariant.description]: {
     color: theme.text.hint,
-    fontSize: 12,
+    fontSize: toRem(12),
     fontWeight: '700',
     lineHeight: 1.5,
   },
   [TextVariant.caption]: {
     color: theme.text.hint,
-    fontSize: 12,
+    fontSize: toRem(12),
     fontWeight: '400',
     lineHeight: 1.5,
   },
   [TextVariant.smallText]: {
     color: theme.text.primary,
-    fontSize: 10,
+    fontSize: toRem(10),
     fontWeight: '400',
     lineHeight: 1.5,
   },
   [TextVariant.footnote]: {
     color: theme.text.primary,
-    fontSize: 10,
+    fontSize: toRem(10),
     fontWeight: '400',
     lineHeight: 1.5,
   },
   [TextVariant.buttonLabel]: {
     color: theme.text.primary,
-    fontSize: 16,
+    fontSize: toRem(16),
     fontWeight: '700',
     lineHeight: 1.5,
   },
   [TextVariant.label]: {
     color: theme.text.hint,
-    fontSize: 14,
+    fontSize: toRem(14),
     fontWeight: '400',
     lineHeight: 1.2,
   },
   [TextVariant.labelHighlight]: {
     color: theme.text.primary,
-    fontSize: 14,
+    fontSize: toRem(14),
     fontWeight: '500',
     lineHeight: 1.5,
   },

@@ -1,5 +1,6 @@
 import { IButton } from './index';
 import { createStyles } from '../Theme';
+import toRem from '../../utils/toRem';
 
 export default createStyles((theme) => ({
   button: (props: IButton) => ({
@@ -16,7 +17,7 @@ export default createStyles((theme) => ({
       cursor: 'pointer',
     },
     '&:active:not($disabled)': {
-      boxShadow: `0 0 0 4px ${theme[props.color!].light}`,
+      boxShadow: `0 0 0 ${toRem(4)} ${theme[props.color!].light}`,
     },
   }),
   contained: (props: IButton) => ({
@@ -32,7 +33,7 @@ export default createStyles((theme) => ({
   outlined: (props: IButton) => ({
     backgroundColor: theme[props.color!].contrast,
     color: theme[props.color!].main,
-    border: [2, 'solid', theme[props.color!].main],
+    border: [toRem(2), 'solid', theme[props.color!].main],
     '& $icon path': {
       fill: theme[props.color!].main,
     },
@@ -40,16 +41,16 @@ export default createStyles((theme) => ({
       backgroundColor: theme[props.color!].light,
     },
     '&$mini': {
-      padding: '2.5px 8px',
+      padding: [toRem(2.5), toRem(8)],
     },
     '&$small': {
-      padding: '6px 16px',
+      padding: [toRem(6), toRem(16)],
     },
     '&$medium': {
-      padding: '14px 24px',
+      padding: [toRem(14), toRem(24)],
     },
     '&$large': {
-      padding: '22px 32px',
+      padding: [toRem(22), toRem(32)],
     },
   }),
   disabled: {
@@ -57,44 +58,44 @@ export default createStyles((theme) => ({
     pointerEvents: 'none',
   },
   mini: {
-    gap: 8,
-    fontSize: 10,
-    lineHeight: '15px',
-    padding: '4.5px 8px',
+    gap: toRem(8),
+    fontSize: toRem(10),
+    lineHeight: toRem(15),
+    padding: `${toRem(4.5)} ${toRem(8)}`,
   },
   small: {
-    fontSize: 16,
-    lineHeight: '24px',
-    padding: '8px 16px',
-    gap: 10,
+    fontSize: toRem(16),
+    lineHeight: toRem(24),
+    padding: `${toRem(8)} ${toRem(16)}`,
+    gap: toRem(10),
   },
   medium: {
-    fontSize: 16,
-    lineHeight: '24px',
-    padding: '16px 24px',
-    gap: 10,
+    fontSize: toRem(16),
+    lineHeight: toRem(24),
+    padding: `${toRem(16)} ${toRem(24)}`,
+    gap: toRem(10),
   },
   large: {
-    fontSize: 16,
-    lineHeight: '24px',
-    padding: '24px 32px',
-    gap: 14,
+    fontSize: toRem(16),
+    lineHeight: toRem(24),
+    padding: `${toRem(24)} ${toRem(32)}`,
+    gap: toRem(14),
   },
   flat: {},
   round: {
-    borderRadius: 4,
+    borderRadius: toRem(4),
   },
   circle: {
-    borderRadius: 50,
+    borderRadius: toRem(50),
   },
   icon: {
     '$mini &': {
-      width: 14,
-      height: 14,
+      width: toRem(14),
+      height: toRem(14),
     },
     '$small &, $medium &, $large &': {
-      width: 20,
-      height: 20,
+      width: toRem(20),
+      height: toRem(20),
     },
   },
   fullWidth: {

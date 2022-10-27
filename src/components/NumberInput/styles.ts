@@ -1,4 +1,6 @@
 import { createStyles } from '../Theme';
+import toRem from '../../utils/toRem'
+
 
 export default createStyles((theme) => ({
   numberInputContainer: {
@@ -6,13 +8,13 @@ export default createStyles((theme) => ({
   },
   inputIcon: {
     fontFamily: theme.font,
-    fontSize: 14,
+    fontSize: toRem(14),
     color: theme.text.hint,
-    height: 17,
-    paddingRight: 5,
+    height: toRem(17),
+    paddingRight: toRem(5),
     position: 'absolute',
-    left: 8,
-    bottom: 5,
+    left: toRem(8),
+    bottom: toRem(5),
     zIndex: 2,
   },
   numberInput: {
@@ -28,26 +30,26 @@ export default createStyles((theme) => ({
   },
   quantityCounter: {
     '& input': {
-      paddingRight: 92,
+      paddingRight: toRem(92),
     },
   },
   btnsContainer: {
     position: 'absolute',
-    right: 8,
+    right: toRem(8),
     top: 0,
     display: 'flex',
     alignItems: 'center',
     height: '100%',
     '& $counterBtn': {
-      width: 28,
-      height: 28,
+      width: toRem(28),
+      height: toRem(28),
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
     }
   },
   separatorLine: {
-    padding: '0 5.5px',
+    padding: `0 ${toRem(5.5)}`,
     display: 'flex',
   },
   counterBtn: {
@@ -61,7 +63,7 @@ export default createStyles((theme) => ({
       backgroundColor: theme.default.extraLight,
     },
     '&:active': {
-      boxShadow: '0px 0px 0px 4px',
+      boxShadow: `0px 0px 0px ${toRem(4)}`,
       color: theme.primary.light,
     }
   },

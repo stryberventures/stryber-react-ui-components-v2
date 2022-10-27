@@ -1,4 +1,5 @@
 import React from 'react';
+import toRem from '../../../utils/toRem';
 
 export interface IEyeSlash extends React.SVGProps<SVGSVGElement> {
   fill?: string,
@@ -15,8 +16,8 @@ const EyeSlash = (props: IEyeSlash) => {
 
 EyeSlash.defaultProps = {
   fill: 'none',
-  width: '20px',
-  height: '18px'
+  width: toRem(20),
+  height: toRem(18),
 }
 
 export default EyeSlash;

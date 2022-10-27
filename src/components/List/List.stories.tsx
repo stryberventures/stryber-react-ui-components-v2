@@ -5,10 +5,11 @@ import pkg from './package.json';
 import Switch from '../../components/Switch'
 import { IListItem } from './ListItem';
 import { buildExcludeArgTypes } from '../../storybook/utils';
+import toRem from '../../utils/toRem';
 
 const title = 'One-line Item';
 const subtitle = 'Secondary Text';
-const leftContent = <div style={{ width: '40px', height: '40px', backgroundColor: 'grey', borderRadius: '50%' }} />;
+const leftContent = <div style={{ width: toRem(40), height: toRem(40), backgroundColor: 'grey', borderRadius: '50%' }} />;
 const rightContent = <Switch/>;
 
 const listItems: IListItem[] = new Array(4).fill({ title });

@@ -1,20 +1,22 @@
 import { createUseStyles } from 'react-jss';
+import toRem from '../../utils/toRem'
+
 
 export default createUseStyles({
   inputPassword: {
-    width: 320,
+    width: toRem(320),
   },
   inputLayout: {
     width: '100%',
   },
   chips: {
-    marginTop: 16,
+    marginTop: toRem(16),
     display: 'flex',
     flexWrap: 'wrap',
-    gap: 8,
+    gap: toRem(8),
   },
   chipMatched: {
-    width: 18,
+    width: toRem(18),
   },
   fullWidth: {
     width: '100%',
