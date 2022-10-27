@@ -62,8 +62,6 @@ export default createStyles((theme) => ({
   },
   title: {
     color: theme.text.secondary,
-    fontWeight: 500,
-    lineHeight: '20px',
   },
   text: {
     marginTop: toRem(5),

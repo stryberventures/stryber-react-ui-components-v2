@@ -4,8 +4,6 @@ import toRem from '../../utils/toRem';
 
 export default createStyles((theme) => ({
   button: (props: IButton) => ({
-    fontFamily: theme.font,
-    fontWeight: 700,
     userSelect: 'none',
     outline: 'none',
     border: 'none',
@@ -59,25 +57,19 @@ export default createStyles((theme) => ({
   },
   mini: {
     gap: toRem(8),
+    padding: `${toRem(4.5)} ${toRem(8)}`,
     fontSize: toRem(10),
     lineHeight: toRem(15),
-    padding: `${toRem(4.5)} ${toRem(8)}`,
   },
   small: {
-    fontSize: toRem(16),
-    lineHeight: toRem(24),
     padding: `${toRem(8)} ${toRem(16)}`,
     gap: toRem(10),
   },
   medium: {
-    fontSize: toRem(16),
-    lineHeight: toRem(24),
     padding: `${toRem(16)} ${toRem(24)}`,
     gap: toRem(10),
   },
   large: {
-    fontSize: toRem(16),
-    lineHeight: toRem(24),
     padding: `${toRem(24)} ${toRem(32)}`,
     gap: toRem(14),
   },

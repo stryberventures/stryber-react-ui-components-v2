@@ -1,6 +1,7 @@
 import React from 'react';
 import useStyles from './styles';
 import classNames from 'classnames';
+import Text from '../Text';
 
 interface IHintMessage extends React.HTMLAttributes<HTMLDivElement> {
   text: string,
@@ -13,13 +14,14 @@ export const HintMessage = (props: IHintMessage) => {
   const classes = useStyles();
 
   return (
-    <div
+    <Text
+      variant="label"
       {...rest}
       className={classNames(classes.hintMessage, className, {
         [classes.disabled]: disabled,
       })}
     >
       {text}
-    </div>
+    </Text>
   );
 }

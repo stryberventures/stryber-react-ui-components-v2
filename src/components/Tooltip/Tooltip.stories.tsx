@@ -227,7 +227,7 @@ RightEnd.decorators = [
 export const CustomContent = Template.bind({});
 CustomContent.args = {
   children: 'Tooltip right-end position',
-  title: <Text component="span" variant={'labelHighlight'}>Right start Position</Text>,
+  title: <Text variant={'labelHighlight'}>Right start Position</Text>,
   text: (
     <>
       <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>

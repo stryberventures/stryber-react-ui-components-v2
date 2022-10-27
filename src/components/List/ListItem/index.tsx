@@ -1,5 +1,7 @@
 import React from 'react';
+import classNames from 'classnames';
 import useStyles from './styles';
+import Text from '../../Text';
 
 export interface IListItem {
   title: string,
@@ -21,16 +23,35 @@ const ListItem: React.FC<IListItem> = (props) => {
     ...rest
   } = props
   return (
-    <div data-testid="test-list-item" className={classes.listItem} onClick={onClick} {...rest}>
-      <div className={classes.listItemContainer}>
+    <li
+      data-testid="test-list-item"
+      className={classes.listItem}
+      {...rest}
+    >
+      <div
+        className={classes.listItemContainer}
+        onClick={onClick}
+      >
         {leftContent && <div className={classes.leftContent}>{leftContent}</div>}
         <div>
-          <div className={classes.title}>{title}</div>
-          <div className={classes.subtitle}>{subtitle}</div>
+          <Text
+            variant="labelHighlight"
+            className={classNames(classes.title, classes.listItemText)}
+          >
+            {title}
+          </Text>
+          {subtitle && (
+            <Text
+              variant="label"
+              className={classNames(classes.subtitle, classes.listItemText)}
+            >
+              {subtitle}
+            </Text>
+          )}
         </div>
       </div>
       {rightContent && <div className={classes.rightContent}>{rightContent}</div>}
-    </div>
+    </li>
   );
 }
 

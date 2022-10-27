@@ -4,9 +4,6 @@ import toRem from '../../../utils/toRem'
 
 export default createStyles((theme) => ({
   listItem: {
-    fontFamily: theme.font,
-    fontSize: toRem(14),
-    fontWeight: 500,
     padding: [toRem(20), toRem(8)],
     display: 'flex',
     justifyContent: 'space-between',
@@ -18,11 +15,12 @@ export default createStyles((theme) => ({
   },
   title: {
     color: theme.text.secondary,
-    fontWeight: '500',
   },
   subtitle: {
     color: theme.text.hint,
-    fontWeight: '400',
+  },
+  listItemText: {
+    display: 'block',
   },
   leftContent: {
     marginRight: toRem(16),

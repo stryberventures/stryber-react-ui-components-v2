@@ -37,7 +37,6 @@ export default createStyles((theme) => ({
     },
   },
   textarea: {
-    fontFamily: theme.font,
     border: 'none',
     outline: 'none',
     textOverflow: 'ellipsis',
@@ -46,7 +45,6 @@ export default createStyles((theme) => ({
     padding: 0,
     marginTop: toRem(8),
     color: theme.text.primary,
-    fontSize: toRem(14),
     resize: 'none',
     backgroundColor: theme.background.default,
     '-webkit-tap-highlight-color': 'transparent',
@@ -54,7 +52,6 @@ export default createStyles((theme) => ({
   label: {
     color: theme.text.secondary,
     height: toRem(17),
-    fontSize: toRem(14),
   },
   textDisabled: {
     color: theme.text.disabled,

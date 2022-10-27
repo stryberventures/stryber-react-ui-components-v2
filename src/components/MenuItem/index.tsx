@@ -1,9 +1,10 @@
-import React, { forwardRef } from 'react';
-import useStyles from './styles';
+import React, { forwardRef, ReactNode } from 'react';
 import classNames from 'classnames';
+import Text from '../Text';
+import useStyles from './styles';
 
 interface IMenuItem extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode,
+  children: string | ReactNode,
   selected?: boolean,
   readOnly?: boolean,
 }
@@ -15,13 +16,27 @@ const MenuItem = forwardRef<HTMLDivElement,IMenuItem>( (props, ref) => {
   return (
     <div
       ref={ref}
-      className={classNames(classes.menuItem, className, {
-        [classes.selected]: selected,
-        [classes.readOnly]: readOnly,
-      })}
+      className={classNames(
+        classes.menuItemWrapper,
+        {
+          [classes.selected]: selected,
+          [classes.readOnly]: readOnly,
+        }
+      )}
       {...rest}
     >
-      {children}
+      {typeof children == 'string' ? (
+        <Text
+          variant="label"
+          className={classNames(classes.menuItem, classes.menuItemText, className)}
+        >
+          {children}
+        </Text>
+      ) : (
+        <div className={classNames(classes.menuItem, className)}>
+          {children}
+        </div>
+      )}
     </div>
   );
 })

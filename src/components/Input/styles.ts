@@ -52,7 +52,6 @@ export default createStyles((theme) => ({
     '&[type=number]': {
       '-moz-appearance': 'textfield',
     },
-    fontFamily: theme.font,
     border: 'none',
     outline: 'none',
     textOverflow: 'ellipsis',
@@ -60,7 +59,6 @@ export default createStyles((theme) => ({
     padding: 0,
     width: '100%',
     color: theme.text.primary,
-    fontSize: toRem(14),
     backgroundColor: theme.background.default,
     '&::placeholder': {
       color: theme.text.hint,
@@ -88,7 +86,6 @@ export default createStyles((theme) => ({
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     height: toRem(17),
-    fontSize: toRem(14),
   },
   textDisabled: {
     color: theme.text.disabled,

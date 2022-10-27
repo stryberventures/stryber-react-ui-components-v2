@@ -1,8 +1,10 @@
 import React, { useRef } from 'react';
+import classNames from 'classnames';
 import useStyles from './styles';
+import useTextClasses from '../Text/styles';
 import { ErrorMessage } from '../ErrorMessage';
 import { HintMessage } from '../HintMessage';
-import classNames from 'classnames';
+import Text from '../Text';
 import { useInput } from './hooks';
 
 export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
@@ -29,6 +31,7 @@ export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
 
 const Input: React.FC<IInput> = (props) => {
   const classes = useStyles(props);
+  const textClasses = useTextClasses(props);
   const {
     label, className, hint, prefix, prefixClassName, errorClassName, hintClassName,
     endAdornment, placeholder, onClick, fullWidth, highlighted, ...rest
@@ -59,12 +62,16 @@ const Input: React.FC<IInput> = (props) => {
       >
         <div className={classes.inputArea}>
           {label && (
-            <div
+            <Text
+              variant="label"
               onClick={() => {inputRef.current?.focus()}}
-              className={classNames(classes.label, { [classes.textDisabled]: disabled })}
+              className={classNames(
+                classes.label,
+                { [classes.textDisabled]: disabled }
+              )}
             >
               {label}
-            </div>
+            </Text>
           )}
           <div className={classes.inputWrapper}>
             {prefix && <div className={classNames(classes.prefix, prefixClassName)}>{prefix}</div>}
@@ -73,10 +80,12 @@ const Input: React.FC<IInput> = (props) => {
               name={name}
               ref={inputRef}
               value={value}
-              className={classNames(classes.input, {
-                [classes.disabled]: disabled,
-                [classes.textDisabled]: disabled
-              })}
+              className={classNames(
+                classes.input,
+                textClasses.label, {
+                  [classes.disabled]: disabled,
+                  [classes.textDisabled]: disabled,
+                })}
               placeholder={placeholder}
               onChange={onChange}
               onBlur={onBlur}
