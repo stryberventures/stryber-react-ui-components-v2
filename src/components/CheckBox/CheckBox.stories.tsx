@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import CheckBox from './index';
 import pkg from './package.json';
 import { buildExcludeArgTypes } from '../../storybook/utils';
+import toRem from '../../utils/toRem';
 
 export default {
   title: 'Components/CheckBox',
@@ -69,7 +70,7 @@ TitleAndLabel.args = {
 export const CustomContent = Template.bind({});
 CustomContent.args = {
   label: (
-    <div>Check <a href="https://google.com">terms</a> and <a href="https://google.com">conditions</a></div>
+    <div style={{ lineHeight: toRem(20) }}>Check <a href="https://google.com">terms</a> and <a href="https://google.com">conditions</a></div>
   ),
 };
 

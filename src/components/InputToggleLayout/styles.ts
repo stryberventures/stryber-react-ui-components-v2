@@ -50,7 +50,6 @@ export default createStyles((theme) => ({
     lineHeight: toRem(16),
   },
   title: {
-    fontWeight: 500,
     color: theme.text.secondary,
   },
   label: {

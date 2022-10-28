@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import useStyles from './styles';
 import { IInputToggle } from './types';
 import { ErrorMessage } from '../ErrorMessage';
+import Text from '../Text';
 
 const InputToggleLayout: React.FC<IInputToggle> = (props) => {
   const {
@@ -10,7 +11,7 @@ const InputToggleLayout: React.FC<IInputToggle> = (props) => {
     onChange, onFocus, errorMessage, placeholder, label, controlled, reverse, fullWidth, ...rest
   } = props;
   const classes = useStyles(props);
-
+  
   return (
     <div className={classNames(classes.inputToggleLayout, {
       [classes.disabled]: disabled,
@@ -30,21 +31,35 @@ const InputToggleLayout: React.FC<IInputToggle> = (props) => {
           onFocus={onFocus}
         />
         {control}
-        <div className={classNames(classes.text, classes[size])}>
+        <div className={classes.text}>
           {title &&
-            <div className={classNames(classes.title, {
-              [classes.textDisabled]: disabled,
-            })}>
+            <Text
+              variant="labelHighlight"
+              className={classNames(
+                classes.title,
+                classes[size],
+                {
+                  [classes.textDisabled]: disabled,
+                }
+              )}
+            >
               {title}
-            </div>
+            </Text>
           }
           {label && typeof label == 'string'
             ? (
-              <div className={classNames(classes.label, {
-                [classes.textDisabled]: disabled,
-              })}>
+              <Text
+                variant="label"
+                className={classNames(
+                  classes.label,
+                  classes[size],
+                  {
+                    [classes.textDisabled]: disabled,
+                  }
+                )}
+              >
                 {label}
-              </div>
+              </Text>
             )
             : label
           }

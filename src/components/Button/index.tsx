@@ -1,6 +1,7 @@
 import React from 'react';
-import useStyles from './styles';
 import classNames from 'classnames';
+import useTextStyles from '../Text/styles';
+import useStyles from './styles';
 
 export interface IButton extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'size'>{
   children: string,
@@ -30,13 +31,22 @@ const Button: React.FC<IButton> = (props) => {
     ...rest
   } = props;
   const classes = useStyles(props);
+  const textClasses = useTextStyles();
 
   return (
     <button
-      className={classNames(classes.button, classes[variant], classes[shape], classes[size], {
-        [classes.disabled]: disabled,
-        [classes.fullWidth]: fullWidth,
-      }, className)}
+      className={classNames(
+        classes.button,
+        textClasses.buttonLabel,
+        classes[variant],
+        classes[size],
+        classes[shape],
+        {
+          [classes.disabled]: disabled,
+          [classes.fullWidth]: fullWidth,
+        },
+        className
+      )}
       onClick={(e) => !disabled && onClick && onClick(e)}
       {...rest}
     >

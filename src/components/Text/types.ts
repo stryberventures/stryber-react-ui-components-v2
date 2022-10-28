@@ -1,0 +1,16 @@
+export enum TextVariant {
+  h1 = 'h1',
+  h2 = 'h2',
+  h3 = 'h3',
+  h4 = 'h4',
+  quote = 'quote',
+  label = 'label',
+  body = 'body',
+  description = 'description',
+  subline = 'subline',
+  caption = 'caption',
+  smallText = 'smallText',
+  footnote = 'footnote',
+  buttonLabel = 'buttonLabel',
+  labelHighlight = 'labelHighlight',
+}

@@ -1,6 +1,7 @@
 import React from 'react';
-import useStyles from './styles';
 import classNames from 'classnames';
+import Text from '../Text';
+import useStyles from './styles';
 
 export interface IChip extends React.HTMLAttributes<HTMLDivElement>{
   children?: string,
@@ -36,7 +37,14 @@ const Chip: React.FC<IChip> = (props) => {
       [classes.default]: color === 'default',
     })} {...rest}>
       {iconLeft}
-      {children}
+      {children && (
+        <Text
+          variant="labelHighlight"
+          className={classes.chipText}
+        >
+          {children}
+        </Text>
+      )}
       {iconRight}
     </div>
   );

@@ -8,13 +8,8 @@ interface IChipStyle {
 export default createStyles((theme) => ({
   chip: {
     display: 'inline-flex',
-    fontFamily: theme.font,
     alignItems: 'center',
-    whiteSpace: 'nowrap',
     gap: toRem(8),
-    fontSize: toRem(14),
-    lineHeight: toRem(21),
-    fontWeight: 500,
     borderRadius: toRem(8),
     boxSizing: 'border-box',
     '&:not($disabled)': {
@@ -100,6 +95,9 @@ export default createStyles((theme) => ({
         },
       },
     }
+  },
+  chipText: {
+    whiteSpace: 'nowrap',
   },
   iconLeft: {},
   iconRight: {},

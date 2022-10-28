@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import useStyles from './styles';
 import classNames from 'classnames';
 import { CloseIcon } from '../Icons';
+import Text from '../Text';
+import useStyles from './styles';
 
 export interface ITooltip extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   version?: 'light' | 'dark',
@@ -60,10 +61,24 @@ const Tooltip: React.FC<ITooltip> = (props) => {
               </div>
             )}
             {title && typeof title == 'string'
-              ? <div className={classes.title}>{title}</div>
+              ? (
+                <Text
+                  variant="labelHighlight"
+                  className={classes.title}
+                >
+                  {title}
+                </Text>
+              )
               : title}
             {text && typeof text == 'string'
-              ? <div className={classes.text}>{text}</div>
+              ? (
+                <Text
+                  variant="label"
+                  className={classes.text}
+                >
+                  {text}
+                </Text>
+              )
               : text
             }
           </div>

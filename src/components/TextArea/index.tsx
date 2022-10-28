@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
-import useStyles from './styles';
-import { ErrorMessage } from '../ErrorMessage';
 import classNames from 'classnames';
+import { ErrorMessage } from '../ErrorMessage';
 import { HintMessage } from '../HintMessage';
 import { useFormContext } from '../Form';
+import Text from '../Text';
+import useStyles from './styles';
+import useTextStyles from '../Text/styles';
 
 export interface ITextArea extends React.TextareaHTMLAttributes<HTMLTextAreaElement>{
   label?: string,
@@ -42,6 +44,7 @@ const TextArea: React.FC<ITextArea> = (props) => {
   const { updateFormTouched, updateFormValue, unsetFormValue, fieldValue, fieldError } = useFormContext(name);
   const errorMessage = fieldError || error;
   const classes = useStyles(props);
+  const textClasses = useTextStyles();
   const [internalValue, setInternalValue] = React.useState(fieldValue || value);
   const [length, setLength] = React.useState(internalValue.toString().length);
 
@@ -76,13 +79,21 @@ const TextArea: React.FC<ITextArea> = (props) => {
         [classes.containerError]: !!errorMessage,
         [classes.fullWidth]: fullWidth,
       })}>
-        <div className={classNames(classes.label, { [classes.textDisabled]: disabled })}>
-          {label}
-        </div>
+        {label && (
+          <Text
+            variant="label"
+            className={classNames(classes.label, { [classes.textDisabled]: disabled })}>
+            {label}
+          </Text>
+        )}
         <textarea
           name={name}
           value={controlled ? value : internalValue}
-          className={classNames(classes.textarea, { [classes.textDisabled]: disabled })}
+          className={classNames(
+            classes.textarea,
+            textClasses.label,
+            { [classes.textDisabled]: disabled }
+          )}
           onChange={onChangeWrapper}
           onBlur={onBlurWrapper}
           maxLength={maxLength}

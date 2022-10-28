@@ -1,24 +1,8 @@
-import React from 'react';
+import React  from 'react';
 import classNames from 'classnames';
+import { TextVariant } from './types';
 import useStyles from './styles';
 
-
-export enum TextVariant {
-  h1 = 'h1',
-  h2 = 'h2',
-  h3 = 'h3',
-  h4 = 'h4',
-  quote = 'quote',
-  label = 'label',
-  body = 'body',
-  description = 'description',
-  subline = 'subline',
-  caption = 'caption',
-  smallText = 'smallText',
-  footnote = 'footnote',
-  buttonLabel = 'buttonLabel',
-  labelHighlight = 'labelHighlight',
-}
 
 type TTextVariant = keyof typeof TextVariant;
 
@@ -28,9 +12,10 @@ export interface IText extends React.HTMLAttributes<HTMLElement> {
   align?: 'left' | 'center' | 'right';
   variant?: TTextVariant;
   component?: TTag,
+  color?: string;
 }
 
-type TTag = keyof Pick<JSX.IntrinsicElements, 'h1' | 'h2' | 'h3' | 'h4' | 'span' | 'label' | 'p' | 'q' | 'b' | 'i' | 'small' | 'strong' | 'em' | 'del' | 'ins' | 'sub' | 'sup'>;
+type TTag = keyof Pick<JSX.IntrinsicElements, 'h1' | 'h2' | 'h3' | 'h4' | 'span' | 'label' | 'p' | 'q' | 'b' | 'i' | 'small' | 'strong' | 'em' | 'del' | 'ins' | 'sub' | 'sup' | 'li'>;
 
 function defineTag(variant: TTextVariant): TTag {
   switch (variant) {
@@ -40,7 +25,6 @@ function defineTag(variant: TTextVariant): TTag {
     case TextVariant.h2:
     case TextVariant.h3:
     case TextVariant.h4:
-    case TextVariant.label:
       return variant;
     default:
       return 'span';

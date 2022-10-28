@@ -1,5 +1,7 @@
 import React from 'react';
+import classNames from 'classnames';
 import ListItem, { IListItem } from './ListItem';
+import useStyles from './styles';
 
 export interface IList {
   listItems: IListItem[],
@@ -8,8 +10,9 @@ export interface IList {
 
 const List: React.FC<IList> = (props) => {
   const { listItems, listClassName, ...rest } = props;
+  const classes = useStyles();
   return (
-    <div className={listClassName} {...rest}>
+    <ul className={classNames(classes.list, listClassName)} {...rest}>
       {listItems.map((listItem, index) => (
         <ListItem
           key={index}
@@ -20,7 +23,7 @@ const List: React.FC<IList> = (props) => {
           onClick={listItem.onClick}
         />
       ))}
-    </div>
+    </ul>
   )
 }
 

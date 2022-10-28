@@ -4,6 +4,7 @@ import RadioButton from './index';
 import pkg from './package.json';
 import Form from '../Form';
 import { buildExcludeArgTypes } from '../../storybook/utils';
+import toRem from '../../utils/toRem';
 
 export default {
   title: 'Components/RadioButton',
@@ -76,7 +77,7 @@ TitleAndLabel.args = {
 export const CustomContent = Radio.bind({});
 CustomContent.args = {
   label: (
-    <div>Check <a href="https://google.com">terms</a> and <a href="https://google.com">conditions</a></div>
+    <div style={{ lineHeight: toRem(22) }}>Check <a href="https://google.com">terms</a> and <a href="https://google.com">conditions</a></div>
   ),
 };
 
