@@ -26,6 +26,9 @@ export interface IThemeProvider {
 export type createStylesOptions = {
   name?: string;
   index?: number;
+  // used to build a proper priority of styles in DOM based on JSS index option between
+  // components library styles and external styles
+  internalUsage?: boolean,
 }
 
 interface IPalette {

@@ -21,6 +21,7 @@
     "Combobox": "combobox",
     "InputToggleLayout": "input-toggle-layout",
     "Text": "text",
-    "Dialog": "dialog"
+    "Dialog": "dialog",
+    "Icons": "icons"
   }
 }

@@ -8,4 +8,4 @@ export default createStyles((theme) => ({
     fontSize: toRem(14),
     fontFamily: theme.font,
   },
-}));
+}), { internalUsage: true });

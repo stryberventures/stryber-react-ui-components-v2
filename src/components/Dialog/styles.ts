@@ -24,4 +24,4 @@ export default createStyles((theme) => ({
     boxShadow: `0px ${toRem(2)} ${toRem(11)} rgba(0, 0, 0, .37)`,
     fontFamily: theme.font,
   },
-}));
+}), { internalUsage: true });

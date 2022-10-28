@@ -30,4 +30,4 @@ export default createStyles((theme) => ({
   rightContent: {
     marginLeft: toRem(16),
   },
-}));
+}), { internalUsage: true });

@@ -69,4 +69,4 @@ export default createStyles((theme: ITheme) => ({
       height: toRem(8),
     },
   },
-}));
+}), { internalUsage: true });

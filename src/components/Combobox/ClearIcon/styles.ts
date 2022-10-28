@@ -10,4 +10,4 @@ export default createStyles((theme) => ({
     alignSelf: 'center',
     padding: 6.5,
   },
-}))
+}), { internalUsage: true })

@@ -57,4 +57,4 @@ export default createStyles((theme) => ({
   fullWidth: {
     width: '100%'
   },
-}), { index: 1 });
+}), { index: 1, internalUsage: true });

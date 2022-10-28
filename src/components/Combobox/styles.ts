@@ -11,4 +11,4 @@ export default createStyles(() => ({
     marginRight: toRem(10),
     zIndex: 99,
   }
-}));
+}), { internalUsage: true });

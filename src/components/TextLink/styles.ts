@@ -41,4 +41,4 @@ export default createStyles((theme) => ({
     pointerEvents: 'none',
     cursor: 'default',
   },
-}));
+}), { internalUsage: true });

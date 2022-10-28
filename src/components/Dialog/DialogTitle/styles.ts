@@ -6,4 +6,4 @@ export default createStyles((theme) => ({
     marginBottom: 24,
     color: theme.text.primary,
   },
-}));
+}), { internalUsage: true });

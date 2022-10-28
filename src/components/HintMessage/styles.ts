@@ -11,4 +11,4 @@ export default createStyles((theme) => ({
   disabled: {
     color: theme.text.disabled,
   }
-}));
+}), { internalUsage: true });

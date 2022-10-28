@@ -21,4 +21,4 @@ export default createStyles((theme) => ({
     backgroundColor: theme.default.light,
   },
   readOnly: {},
-}));
+}), { internalUsage: true });

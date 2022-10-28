@@ -62,4 +62,4 @@ export default createStyles((theme) => ({
   error: {
     marginTop: toRem(8),
   },
-}));
+}), { internalUsage: true });

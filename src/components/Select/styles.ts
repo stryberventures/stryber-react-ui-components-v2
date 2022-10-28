@@ -8,4 +8,4 @@ export default createStyles(() => ({
     maxHeight: toRem(190),
     overflow: 'auto',
   },
-}));
+}), { internalUsage: true });
