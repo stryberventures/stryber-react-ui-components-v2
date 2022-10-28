@@ -9,7 +9,7 @@ import FormInitialValues, { FormInitialValuesCode } from '../../storybook/previe
 import FormSetErrorOnSubmit, { FormSetErrorOnSubmitCode } from '../../storybook/preview/Form/SetErrorOnSubmit';
 
 export default {
-  title: 'Components/Form',
+  title: 'Core/Form',
   component: Form,
   parameters: {
     pkg,
