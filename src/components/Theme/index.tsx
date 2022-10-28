@@ -41,6 +41,8 @@ ThemeProvider.displayName = 'ThemeProvider';
 
 const useTheme = () => useContext(ThemeContext);
 
+const externalStylesIndex = 50;
+
 function createStyles<TStyles extends string = string, TProps = unknown>(
   styles: (theme: ThemeType) => Styles<TStyles, TProps>,
   options?: createStylesOptions,
@@ -49,7 +51,12 @@ function createStyles<TStyles extends string = string, TProps = unknown>(
     const theme = { ...defaultTheme, ...providedTheme };
     
     return styles(theme);
-  }, options);
+  }, {
+    ...options,
+    ...(!options?.internalUsage && {
+      index: options?.index ? options.index + externalStylesIndex : externalStylesIndex,
+    })
+  });
 }
 
 export {

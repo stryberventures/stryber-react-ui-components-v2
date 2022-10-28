@@ -67,4 +67,4 @@ export default createStyles((theme) => ({
       color: theme.primary.light,
     }
   },
-}));
+}), { internalUsage: true });

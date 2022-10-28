@@ -215,4 +215,4 @@ export default createStyles((theme) => ({
       left: 'initial',
     }
   },
-}));
+}), { internalUsage: true });

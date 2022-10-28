@@ -9,4 +9,4 @@ export default createStyles(() => ({
     gap: 16,
     marginTop: 48,
   },
-}));
+}), { internalUsage: true });

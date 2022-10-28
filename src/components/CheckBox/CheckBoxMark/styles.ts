@@ -73,4 +73,4 @@ export default createStyles((theme) => ({
   circle: {
     borderRadius: '50%',
   },
-}));
+}), { internalUsage: true });

@@ -6,4 +6,4 @@ export default createStyles((theme) => ({
     color: theme.error.dark,
     lineHeight: toRem(17),
   },
-}));
+}), { internalUsage: true });

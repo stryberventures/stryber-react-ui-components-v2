@@ -64,4 +64,4 @@ export default createStyles((theme) => ({
     fontFamily: theme.font,
   },
   fullWidth: {}
-}));
+}), { internalUsage: true });

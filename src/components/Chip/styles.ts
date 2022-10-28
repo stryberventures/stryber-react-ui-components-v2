@@ -102,4 +102,4 @@ export default createStyles((theme) => ({
   iconLeft: {},
   iconRight: {},
   iconOnly: {},
-}));
+}), { internalUsage: true });

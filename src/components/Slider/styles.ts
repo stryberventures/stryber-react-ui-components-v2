@@ -188,4 +188,4 @@ export default createStyles( (theme) => ({
     borderRadius: toRem(2),
     backgroundColor: theme.default.light,
   },
-}))
+}), { internalUsage: true })

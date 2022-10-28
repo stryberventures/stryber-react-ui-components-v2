@@ -93,4 +93,4 @@ export default createStyles((theme) => ({
   fullWidth: {
     width: '100%',
   }
-}));
+}), { internalUsage: true });

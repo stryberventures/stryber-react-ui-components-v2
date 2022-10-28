@@ -109,4 +109,4 @@ export default createStyles((theme) => ({
   right: {
     textAlign: 'right',
   },
-}));
+}), { internalUsage: true });

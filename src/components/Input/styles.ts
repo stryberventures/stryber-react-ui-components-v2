@@ -101,4 +101,4 @@ export default createStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
   }
-}));
+}), { internalUsage: true });

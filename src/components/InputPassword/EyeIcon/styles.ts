@@ -17,4 +17,4 @@ export default createStyles((theme) => ({
       fill: theme.text.disabled,
     },
   }
-}));
+}), { internalUsage: true });
