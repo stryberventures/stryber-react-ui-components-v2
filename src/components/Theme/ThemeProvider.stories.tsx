@@ -19,7 +19,7 @@ import pkg from './package.json';
 
 
 export default {
-  title: 'components/Theme',
+  title: 'Core/Theme',
   component: ThemeProvider,
   parameters: {
     pkg,
