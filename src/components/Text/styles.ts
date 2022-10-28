@@ -1,5 +1,5 @@
 import { createStyles } from '../Theme';
-import { TextVariant } from './';
+import { TextVariant } from './types';
 import toRem from '../../utils/toRem';
 
 

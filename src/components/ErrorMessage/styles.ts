@@ -5,6 +5,5 @@ export default createStyles((theme) => ({
   errorMessage: {
     color: theme.error.dark,
     lineHeight: toRem(17),
-    fontFamily: theme.font,
   },
 }));

@@ -8,6 +8,7 @@
     "@stryberventures/gaia-react.form": ">=0.0.1",
     "@stryberventures/gaia-react.dropdown": ">=0.0.1",
     "@stryberventures/gaia-react.checkbox": ">=0.0.1",
-    "@stryberventures/gaia-react.theme": ">=0.0.1"
+    "@stryberventures/gaia-react.theme": ">=0.0.1",
+    "@stryberventures/gaia-react.text": ">=0.0.1"
   }
 }

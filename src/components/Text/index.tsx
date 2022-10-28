@@ -1,24 +1,8 @@
 import React  from 'react';
 import classNames from 'classnames';
+import { TextVariant } from './types';
 import useStyles from './styles';
 
-
-export enum TextVariant {
-  h1 = 'h1',
-  h2 = 'h2',
-  h3 = 'h3',
-  h4 = 'h4',
-  quote = 'quote',
-  label = 'label',
-  body = 'body',
-  description = 'description',
-  subline = 'subline',
-  caption = 'caption',
-  smallText = 'smallText',
-  footnote = 'footnote',
-  buttonLabel = 'buttonLabel',
-  labelHighlight = 'labelHighlight',
-}
 
 type TTextVariant = keyof typeof TextVariant;
 
