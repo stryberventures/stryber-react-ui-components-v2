@@ -14,6 +14,7 @@ import Tooltip from '../Tooltip'
 import Multiselect from '../Multiselect';
 import Switch from '../Switch';
 import TextArea from '../TextArea';
+import { CloseIcon } from '../Icons';
 import Dialog from '../Dialog';
 import pkg from './package.json';
 
@@ -34,24 +35,6 @@ const Template: ComponentStory<typeof ThemeProvider> = (args) => {
   return (
     <ThemeProvider {...args}>
       <div style={{ position: 'relative' }}>
-        <h2 style={{ fontFamily: 'Inter', color: '#003CB8' }}>Dialog</h2>
-        <Button onClick={() => setDialogOpen(true)}>Open Dialog</Button>
-        <Dialog
-          open={dialogOpen}
-          overlayClassName={dialogClasses.overlay}
-          onClose={() => setDialogOpen(false)}
-        >
-          <Dialog.Title>Dialog Title</Dialog.Title>
-          <Dialog.Content>
-            <Text variant='body'>Dialog content</Text>
-          </Dialog.Content>
-          <Dialog.Actions>
-            <Button onClick={() => setDialogOpen(false)} size="small">
-              Cancel
-            </Button>
-          </Dialog.Actions>
-        </Dialog>
-        <h1> </h1>
         <h2 style={{ fontFamily: 'Inter', color: '#003CB8' }}>Button </h2>
         <Button variant="contained">Contained primary</Button>
         <h1> </h1>
@@ -72,6 +55,31 @@ const Template: ComponentStory<typeof ThemeProvider> = (args) => {
         <CheckBox checked={true} color="secondary" label="Checked"/>
         <h1> </h1>
         <CheckBox checked={true} disabled color="secondary" label="Disabled"/>
+        <h2 style={{ fontFamily: 'Inter', color: '#003CB8' }}>Dialog</h2>
+        <Button onClick={() => setDialogOpen(true)}>Open Dialog</Button>
+        <Dialog
+          open={dialogOpen}
+          onClose={() => setDialogOpen(false)}
+          overlayClassName={dialogClasses.overlay}
+        >
+          <Dialog.Title className={dialogClasses.title}>
+            <Text variant="subline">Dialog Title</Text>
+            <CloseIcon
+              width={16}
+              height={16}
+              onClick={() => setDialogOpen(false)}
+            />
+          </Dialog.Title>
+          <Dialog.Content>
+            <Text variant='body'>Dialog content</Text>
+          </Dialog.Content>
+          <Dialog.Actions>
+            <Button onClick={() => setDialogOpen(false)} size="small">
+              Cancel
+            </Button>
+          </Dialog.Actions>
+        </Dialog>
+        <h1> </h1>
         <h2 style={{ fontFamily: 'Inter', color: '#003CB8' }}>Switch</h2>
         <Switch checked={true} label="Primary on"/>
         <h1> </h1>
@@ -192,8 +200,12 @@ DefaultTheme.args = {
 function useDialogStyles () {
   return createStyles(() => ({
     overlay: {
-      width: '100vw',
-      height: '100vh',
+      backgroundColor: 'rgba(0, 0, 0, .25)',
+    },
+    title: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
     }
   }))();
 }
