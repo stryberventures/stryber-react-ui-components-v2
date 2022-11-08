@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useMemo, useState } from 'react';
+import React, { useCallback, useContext, useMemo, useState, useEffect, useRef } from 'react';
 import { createUseStyles, Styles, ThemeProvider as JssThemeProvider } from 'react-jss';
 import { createStylesOptions, IThemeContext, IThemeProvider, ThemeType } from './types';
 import { GlobalStyles } from './GlobalStyles';
@@ -12,22 +12,29 @@ const ThemeContext = React.createContext<IThemeContext>({
 });
 
 const ThemeProvider = React.memo(
-  ({ theme: initial, children }: IThemeProvider) => {
-    const [theme, setTheme] = useState<ThemeType>(merge(defaultTheme, initial));
+  ({ theme: initialTheme, children }: IThemeProvider) => {
+    const didMountRef = useRef(false);
+    const [theme, setTheme] = useState<ThemeType>(merge(defaultTheme, initialTheme));
     const updateTheme = useCallback(<T,>(updatedTheme: T) => {
       setTheme(currentTheme => merge(currentTheme, updatedTheme));
     }, []);
+    console.log('render');
+    // const memoizedValue = useMemo((): IThemeContext => {
+    //   return {
+    //     theme,
+    //     updateTheme,
+    //   };
+    // }, [theme, updateTheme]);
 
-    const memoizedValue = useMemo((): IThemeContext => {
-      return {
-        theme,
-        updateTheme,
-      };
-    }, [theme, updateTheme]);
+    useEffect(() => {
+      // console.log('initial', initialTheme);
+      didMountRef.current && updateTheme(initialTheme);
+      didMountRef.current = true;
+    }, [initialTheme]);
 
     return (
-      <ThemeContext.Provider value={memoizedValue}>
-        <JssThemeProvider theme={memoizedValue.theme}>
+      <ThemeContext.Provider value={{theme, updateTheme}}>
+        <JssThemeProvider theme={theme}>
           <GlobalStyles>
             {children}
           </GlobalStyles>

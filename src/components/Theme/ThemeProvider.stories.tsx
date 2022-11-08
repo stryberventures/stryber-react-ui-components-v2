@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { createStyles, ThemeProvider } from '.';
+import { createStyles, ThemeProvider, useTheme } from '.';
 import Button from '../Button';
 import { defaultTheme } from './defaultTheme';
 import Input from '../Input';
@@ -28,11 +28,27 @@ export default {
   },
 } as ComponentMeta<typeof ThemeProvider>;
 
+const ThemeChanges = (props: {theme: any}) => {
+  const { updateTheme } = useTheme();
+  // useEffect(() => {
+  //   console.log('UPDATE');
+  //   updateTheme(props.theme);
+  // }, [props.theme])
+  useEffect(() => {
+    setTimeout(() => {
+      console.log('update');
+      updateTheme({primary: {main: 'orange'}});
+    },2000);
+  }, []);
+  return null;
+}
+
 const Template: ComponentStory<typeof ThemeProvider> = (args) => {
   const [dialogOpen, setDialogOpen] = useState<boolean>(false);
   const dialogClasses = useDialogStyles();
   return (
     <ThemeProvider {...args}>
+      <ThemeChanges theme={args.theme} />
       <div style={{ position: 'relative' }}>
         <h2 style={{ fontFamily: 'Inter', color: '#003CB8' }}>Dialog</h2>
         <Button onClick={() => setDialogOpen(true)}>Open Dialog</Button>

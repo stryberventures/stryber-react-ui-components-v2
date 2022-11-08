@@ -1,4 +1,9 @@
+<<<<<<< Updated upstream
 import React from 'react';
+=======
+import React, { useEffect } from 'react';
+import useStyles from './styles';
+>>>>>>> Stashed changes
 import classNames from 'classnames';
 import useTextStyles from '../Text/styles';
 import useStyles from './styles';
