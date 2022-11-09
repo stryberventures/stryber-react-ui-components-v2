@@ -46,18 +46,15 @@ const FormValidation = () => {
         placeholder="Select a value"
       />
       <h1> </h1>
-      <div style={{ display: 'flex', gap: 20 }}>
-        <Button type="submit">Submit</Button>
-        <Button type="reset" variant="outlined">Reset</Button>
-      </div>
+      <Button type="submit">Submit</Button>
     </Form>
   )
 };
 
-
 export default FormValidation;
 
-export const FormValidationCode = `<Form
+export const FormValidationCode = `
+<Form
   validationSchema={yup.object({
     email: yup.string().email().required(),
     password: yup.string().required(),
@@ -73,14 +70,14 @@ export const FormValidationCode = `<Form
   <h1> </h1>
   <Select
     name="select"
-    options={[{ label: 'One', value: 1 }, { label: 'Two', value: 2 }, { label: 'Three', value: 3 }]}
+    options={[{ label: 'One', value: 1 }, { label: 'Two', value: '2' }, { label: 'Three', value: '3' }]}
     label="Select"
     placeholder="Select a value"
   />
   <h1> </h1>
   <Multiselect
     name="multiselect"
-    options={[{ label: 'One', value: 1 }, { label: 'Two', value: 2 }, { label: 'Three', value: 3 }]}
+    options={[{ label: 'One', value: '1' }, { label: 'Two', value: '2' }, { label: 'Three', value: '3' }]}
     label="Multiselect"
     placeholder="Select at least one value"
   />
@@ -92,9 +89,7 @@ export const FormValidationCode = `<Form
     placeholder="Select a value"
   />
   <h1> </h1>
-  <div style={{ display: 'flex', gap: 20 }}>
-    <Button type="submit">Submit</Button>
-    <Button type="reset" variant="outlined">Reset</Button>
-  </div>
+  <Button type="submit">Submit</Button>
 </Form>
+
 `

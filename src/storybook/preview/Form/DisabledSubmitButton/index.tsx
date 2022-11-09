@@ -27,10 +27,7 @@ const FormDisabledSubmitButton = () => {
       <h1> </h1>
       <Input name="password" placeholder="Password" label="Password" />
       <h1> </h1>
-      <div style={{ display: 'flex', gap: 20 }}>
-        <Button type="submit" disabled={disabled}>Submit</Button>
-        <Button type="reset" variant="outlined">Reset</Button>
-      </div>
+      <Button type="submit" disabled={disabled}>Submit</Button>
     </Form>
   );
 };
@@ -60,10 +57,7 @@ const FormDisabledSubmitButton = () => {
       <h1> </h1>
       <Input name="password" placeholder="Password" label="Password" />
       <h1> </h1>
-      <div style={{ display: 'flex', gap: 20 }}>
-        <Button type="submit" disabled={disabled}>Submit</Button>
-        <Button type="reset" variant="outlined">Reset</Button>
-      </div>
+      <Button type="submit" disabled={disabled}>Submit</Button>
     </Form>
   );
 };

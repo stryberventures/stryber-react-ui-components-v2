@@ -15,8 +15,8 @@ const FormInitialValues = () => {
       initialValues={{
         email: 'somemail@mail.com',
         password: 'TGBwfe23',
-        select: 'Two',
-        multiselect: ['Two', 'Three'],
+        select: '2',
+        multiselect: ['2', '3'],
         combobox: 1,
         checkbox: true,
       }}
@@ -50,10 +50,7 @@ const FormInitialValues = () => {
       <h1> </h1>
       <CheckBox name="checkbox" label="Remember me" />
       <h1> </h1>
-      <div style={{ display: 'flex', gap: 20 }}>
-        <Button type="submit">Submit</Button>
-        <Button type="reset" variant="outlined">Reset</Button>
-      </div>
+      <Button type="submit">Submit</Button>
     </Form>
   )
 };
@@ -65,8 +62,8 @@ export const FormInitialValuesCode = `
   initialValues={{
     email: 'somemail@mail.com',
     password: 'TGBwfe23',
-    select: 'Two',
-    multiselect: ['Two', 'Three'],
+    select: '2',
+    multiselect: ['2', '3'],
     combobox: 1,
     checkbox: true
   }}
@@ -79,14 +76,14 @@ export const FormInitialValuesCode = `
   <h1> </h1>
   <Select
     name="select"
-    options={['One', 'Two', 'Three']}
+    options={[{ label: 'One', value: '1' }, { label: 'Two', value: '2' }, { label: 'Three', value: '3' }]}
     label="Select"
     placeholder="Select a value"
   />
   <h1> </h1>
   <Multiselect
     name="multiselect"
-    options={['One', 'Two', 'Three']}
+    options={[{ label: 'One', value: '1' }, { label: 'Two', value: '2' }, { label: 'Three', value: '3' }]}
     label="Multiselect"
     placeholder="Select at least one value"
   />
@@ -100,9 +97,6 @@ export const FormInitialValuesCode = `
   <h1> </h1>
   <CheckBox name="checkbox" label="Remember me" />
   <h1> </h1>
-  <div style={{ display: 'flex', gap: 20 }}>
-    <Button type="submit">Submit</Button>
-    <Button type="reset" variant="outlined">Reset</Button>
-  </div>
+  <Button type="submit">Submit</Button>
 </Form>
 `
