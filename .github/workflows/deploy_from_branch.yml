@@ -1,11 +1,11 @@
 name: Deploy from a branch
-on:
-  workflow_dispatch:
-    inputs:
-      branch:
-        description: 'From which branch you want to deploy?'
-        required: true
-        type: environment
+on: workflow_dispatch
+#   workflow_dispatch:
+#     inputs:
+#       branch:
+#         description: 'From which branch you want to deploy?'
+#         required: true
+#         type: environment
 
 jobs:
   build-and-deploy:
