@@ -17,7 +17,6 @@ const ThemeProvider = React.memo(
     const updateTheme = useCallback(<T,>(updatedTheme: T) => {
       setTheme(currentTheme => merge(currentTheme, updatedTheme));
     }, []);
-
     const memoizedValue = useMemo((): IThemeContext => {
       return {
         theme,

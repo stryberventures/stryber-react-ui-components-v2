@@ -42,4 +42,16 @@ export const defaultTheme: ITheme = {
     contrast: '#fff',
   },
   font: 'Inter, sans-serif',
+  grid: {
+    columns: 12,
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 520,
+        md: 980,
+        lg: 1200,
+        xl: 1500,
+      }
+    },
+  },
 }

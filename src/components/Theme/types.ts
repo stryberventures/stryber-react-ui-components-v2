@@ -62,4 +62,12 @@ export interface ITheme {
     hint: string,
   }
   font: string,
+  grid: {
+    columns: number,
+    breakpoints: {
+      values: {
+        [key: string]: number,
+      }
+    }
+  },
 }
