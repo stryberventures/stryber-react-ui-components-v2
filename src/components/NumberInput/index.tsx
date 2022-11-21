@@ -74,9 +74,9 @@ const NumberInput: React.FC<INumberInput> = (props) => {
         endAdornment={(
           quantityCounter && (
             <div data-testid="testContainer" className={classes.btnsContainer}>
-              <div data-testid="testMinus" className={classes.counterBtn} onClick={ handleDecrease }><Minus/></div>
+              <button data-testid="testMinus" className={classes.counterBtn} onClick={ handleDecrease }><Minus/></button>
               <div className={classes.separatorLine}><VerticalLine/></div>
-              <div data-testid="testPlus" className={classes.counterBtn} onClick={ handleIncrease }><Plus/></div>
+              <button data-testid="testPlus" className={classes.counterBtn} onClick={ handleIncrease }><Plus/></button>
             </div>
           )
         )}
@@ -86,3 +86,7 @@ const NumberInput: React.FC<INumberInput> = (props) => {
 };
 
 export default NumberInput;
+
+NumberInput.defaultProps = {
+  color: 'primary',
+}

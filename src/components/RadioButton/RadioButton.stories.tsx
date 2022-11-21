@@ -17,9 +17,9 @@ export default {
 
 const RadioGroup: ComponentStory<typeof RadioButton> = (args) => (
   <Form initialValues={{ radio: '1' }}>
-    <RadioButton {...args} value="1" name="radio" label="Option 1" />
+    <RadioButton {...args} value="1" name="radio1" label="Option 1" />
     <div style={{ marginTop: 10 }}/>
-    <RadioButton {...args} value="2" name="radio" label="Option 2" />
+    <RadioButton {...args} value="2" name="radio2" label="Option 2" />
   </Form>
 );
 

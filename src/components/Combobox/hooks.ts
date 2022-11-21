@@ -52,21 +52,29 @@ export const useCombobox = (props: ICombobox) => {
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    switch (e.key) {
-      case 'Enter':
-        return onSelectOption(filteredOptions[activeIndex.index]);
-      case 'ArrowDown':
-        return setActiveIndex((currentIndex) => {
-          const nextIndex = currentIndex.index + 1;
-          if (nextIndex > filteredOptions.length - 1) return { type: 'keyboard', index: 0 };
-          return { type: 'keyboard', index: nextIndex };
-        });
-      case 'ArrowUp':
-        return setActiveIndex((currentIndex) => {
-          const nextIndex = currentIndex.index - 1;
-          if (nextIndex < 0) return { type: 'keyboard', index: filteredOptions.length - 1 };
-          return { type: 'keyboard', index: nextIndex };
-        })
+    if (!isOpen) {
+      e.key === 'Enter' && dropdownRef.current?.open();
+    } else {
+      switch (e.key) {
+        case 'Enter':
+          return onSelectOption(filteredOptions[activeIndex.index]);
+        case 'ArrowDown':
+          return setActiveIndex((currentIndex) => {
+            const nextIndex = currentIndex.index + 1;
+            if (nextIndex > filteredOptions.length - 1) return { type: 'keyboard', index: 0 };
+            return { type: 'keyboard', index: nextIndex };
+          });
+        case 'ArrowUp':
+          return setActiveIndex((currentIndex) => {
+            const nextIndex = currentIndex.index - 1;
+            if (nextIndex < 0) return { type: 'keyboard', index: filteredOptions.length - 1 };
+            return { type: 'keyboard', index: nextIndex };
+          })
+        case 'Escape':
+          return dropdownRef.current?.close();
+        case 'Tab':
+          return dropdownRef.current?.close();
+      }
     }
   }
 

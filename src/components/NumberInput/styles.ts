@@ -1,5 +1,6 @@
 import { createStyles } from '../Theme';
 import toRem from '../../utils/toRem'
+import { INumberInput } from './index';
 
 
 export default createStyles((theme) => ({
@@ -52,10 +53,13 @@ export default createStyles((theme) => ({
     padding: `0 ${toRem(5.5)}`,
     display: 'flex',
   },
-  counterBtn: {
+  counterBtn: (props: INumberInput) => ({
     cursor: 'pointer',
     borderRadius: '50%',
     userSelect: 'none',
+    background: 'none',
+    border: 'none',
+    outline: 'none',
     '-moz-user-select': 'none',
     '-webkit-user-select': 'none',
     '-ms-user-select': 'none',
@@ -65,6 +69,10 @@ export default createStyles((theme) => ({
     '&:active': {
       boxShadow: `0px 0px 0px ${toRem(4)}`,
       color: theme.primary.light,
+    },
+    '&:focus': {
+      boxShadow: `0 0 0 ${toRem(4)} ${theme[props.color!].light}`,
+      border: `1px solid ${theme[props.color!].main}`,
     }
-  },
+  }),
 }), { internalUsage: true });

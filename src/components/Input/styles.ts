@@ -19,7 +19,7 @@ export default createStyles((theme) => ({
     padding: [toRem(4), toRem(8)],
     height: toRem(44),
     backgroundColor: theme.background.default,
-    '&:focus-within:not($inputContainerError), &:not($inputContainerError)$highlighted': {
+    '&:focus-within:not($inputContainerError):not($disabled), &:not($inputContainerError)$highlighted': {
       border: `1px solid ${theme[props.color!].main}`,
       boxShadow: `0 0 0 ${toRem(4)} ${theme[props.color!].light}`,
     },

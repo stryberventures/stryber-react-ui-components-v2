@@ -18,7 +18,7 @@ export interface ISelect extends Omit<IDropdownBase, 'onChange'> {
 
 const Select: React.FC<ISelect> = (props) => {
   const { options, label, color, placeholder, fullWidth, onChange, onToggle, ...rest } = props;
-  const { value, error, onDropdownToggle, onOptionClick, dropdownRef } = useSelect(props);
+  const { value, error, onDropdownToggle, onOptionClick, dropdownRef, activeIndex, setActiveIndex, handleKeyDown } = useSelect(props);
   const classes = useStyles();
 
   return (
@@ -33,12 +33,14 @@ const Select: React.FC<ISelect> = (props) => {
       error={error}
       ref={dropdownRef}
       fullWidth={fullWidth}
+      onKeyDown={handleKeyDown}
     >
-      {options.map((option) => (
+      {options.map((option, index) => (
         <MenuItem
           key={option.value}
-          selected={value === option.label}
+          selected={index === activeIndex.index}
           onClick={() => onOptionClick(option)}
+          onMouseEnter={() => setActiveIndex({ type: 'mouse', index })}
         >
           {option.label}
         </MenuItem>

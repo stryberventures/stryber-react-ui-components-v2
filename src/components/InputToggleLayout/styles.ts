@@ -1,5 +1,6 @@
 import { createStyles } from '../Theme';
 import toRem from '../../utils/toRem'
+import { IInputToggle } from './types';
 
 
 export default createStyles((theme) => ({
@@ -13,8 +14,15 @@ export default createStyles((theme) => ({
   disabled: {
     pointerEvents: 'none',
   },
-  input: () => ( {
-    display: 'none',
+  input: (props: IInputToggle) => ( {
+    width: 0,
+    height: 0,
+    opacity: 0,
+    margin: 0,
+    '&:focus + span': {
+      boxShadow: `0 0 0 ${toRem(4)} ${theme[props.color!].light}`,
+    }
+    //display: 'none',
   }),
   container: {
     userSelect: 'none',

@@ -53,12 +53,12 @@ const Tooltip: React.FC<ITooltip> = (props) => {
           {...rest}>
           <div className={classes.tooltipBox}>
             {visible && (
-              <div
+              <button
                 data-testid="testCloseBtn"
                 className={classes.closeBtn}
                 onClick={() => setIsVisible(false)}>
                 <CloseIcon/>
-              </div>
+              </button>
             )}
             {title && typeof title == 'string'
               ? (
