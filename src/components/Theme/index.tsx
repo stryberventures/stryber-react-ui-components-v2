@@ -1,10 +1,11 @@
-import React, { useCallback, useContext, useMemo, useState } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import { createUseStyles, Styles, ThemeProvider as JssThemeProvider } from 'react-jss';
 import { createStylesOptions, IThemeContext, IThemeProvider, ThemeType } from './types';
 import { GlobalStyles } from './GlobalStyles';
 import { defaultTheme } from './defaultTheme';
 import { Classes } from 'jss';
 import merge from './utils';
+import { useEffectAfterMount } from '../../hooks/useEffectAfterMount';
 
 const ThemeContext = React.createContext<IThemeContext>({
   theme: defaultTheme,
@@ -17,16 +18,19 @@ const ThemeProvider = React.memo(
     const updateTheme = useCallback(<T,>(updatedTheme: T) => {
       setTheme(currentTheme => merge(currentTheme, updatedTheme));
     }, []);
-    const memoizedValue = useMemo((): IThemeContext => {
-      return {
-        theme,
-        updateTheme,
-      };
-    }, [theme, updateTheme]);
+
+    const contextValue: IThemeContext =  {
+      theme,
+      updateTheme,
+    };
+
+    useEffectAfterMount(() => {
+      updateTheme(initial);
+    }, [initial])
 
     return (
-      <ThemeContext.Provider value={memoizedValue}>
-        <JssThemeProvider theme={memoizedValue.theme}>
+      <ThemeContext.Provider value={contextValue}>
+        <JssThemeProvider theme={contextValue.theme}>
           <GlobalStyles>
             {children}
           </GlobalStyles>
@@ -48,7 +52,7 @@ function createStyles<TStyles extends string = string, TProps = unknown>(
 ): (data?: TProps) => Classes<TStyles> {
   return createUseStyles((providedTheme) => {
     const theme = { ...defaultTheme, ...providedTheme };
-    
+
     return styles(theme);
   }, {
     ...options,

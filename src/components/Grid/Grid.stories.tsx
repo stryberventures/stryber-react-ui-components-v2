@@ -3,7 +3,6 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Grid from './';
 import pkg from './package.json';
 import { buildExcludeArgTypes } from '../../storybook/utils';
-import { useGrid } from '../../hooks/useGrid';
 import toRem from '../../utils/toRem';
 
 export default {
@@ -16,45 +15,75 @@ export default {
 } as ComponentMeta<typeof Grid>;
 
 const Template: ComponentStory<typeof Grid> = (args) => {
-  const { breakpoint } = useGrid();
   return (
-    <>
-      <h1>breakpoint: {breakpoint}</h1>
+    <Grid
+      container
+      component={'main'}
+      gap={toRem(20)}
+    >
+      <Grid
+        item
+        xs={9}
+        sm={12}
+        md={6}
+        xl={6}
+        style={{ border: '1px solid black', height: 120 }}
+      >
+        xs={9}, sm={12}, md={6}, xl={6}
+      </Grid>
       <Grid
         container
-        component={'main'}
-        gap={toRem(20)}
+        columns={6}
+        gap={toRem(4)}
+        item
+        xs={3}
+        md={6}
+        xl={6}
+        style={{ padding: `${toRem(4)}`, border: '1px solid black', height: 120 }}
       >
         <Grid
-          item
-          xs={9}
-          sm={12}
-          md={6}
-          xl={6}
-          style={{ border: '1px solid black', height: 120 }}
-        >
-          1
-        </Grid>
-        <Grid
-          item
-          xs={3}
-          md={6}
-          xl={6}
-          style={{ border: '1px solid black', height: 120 }}
-        >
-          2
-        </Grid>
-        <Grid
+          style={{ border: '1px solid black' }}
           item
           xs={6}
-          md={12}
-          xl={8}
-          style={{ border: '1px solid black', height: 120 }}
+          md={3}
         >
-          3
+          xs={3}, md={3}
+        </Grid>
+        <Grid
+          style={{ border: '1px solid black' }}
+          item
+          xs={6}
+          md={3}
+        >
+          xs={6}, md={3}
+        </Grid>
+        <Grid
+          style={{ border: '1px solid black' }}
+          item
+          xs={6}
+          md={2}
+        >
+          xs={6}, md={2}
+        </Grid>
+        <Grid
+          style={{ border: '1px solid black' }}
+          item
+          xs={6}
+          md={4}
+        >
+          xs={6}, md={4}
         </Grid>
       </Grid>
-    </>
+      <Grid
+        item
+        xs={6}
+        md={12}
+        xl={8}
+        style={{ border: '1px solid black', height: 120 }}
+      >
+        xs={6}, md={12}, xl={8}
+      </Grid>
+    </Grid>
   );
 }
 
