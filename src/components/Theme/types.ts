@@ -65,9 +65,7 @@ export interface ITheme {
   grid: {
     columns: number,
     breakpoints: {
-      values: {
-        [key: string]: number,
-      }
+      [key: string]: number,
     }
   },
 }

@@ -45,13 +45,11 @@ export const defaultTheme: ITheme = {
   grid: {
     columns: 12,
     breakpoints: {
-      values: {
-        xs: 0,
-        sm: 520,
-        md: 980,
-        lg: 1200,
-        xl: 1500,
-      }
+      xs: 0,
+      sm: 520,
+      md: 980,
+      lg: 1200,
+      xl: 1500,
     },
   },
 }

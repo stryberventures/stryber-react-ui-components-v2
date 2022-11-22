@@ -49,19 +49,19 @@ export default createStyles((theme) => {
       return ({
         gridColumnEnd: `span ${props.columns || theme.grid.columns}`,
     
-        [`@media (min-width: ${theme.grid.breakpoints.values.xs}px)`]: {
+        [`@media (min-width: ${theme.grid.breakpoints.xs}px)`]: {
           gridColumnEnd: (props: any) => `span ${getBreakpointValue(Breakpoints.xs, props, defaultValue)}`,
         },
-        [`@media (min-width: ${theme.grid.breakpoints.values.sm}px)`]: {
+        [`@media (min-width: ${theme.grid.breakpoints.sm}px)`]: {
           gridColumnEnd: (props: any) => `span ${getBreakpointValue(Breakpoints.sm, props, defaultValue)}`,
         },
-        [`@media (min-width: ${theme.grid.breakpoints.values.md}px)`]: {
+        [`@media (min-width: ${theme.grid.breakpoints.md}px)`]: {
           gridColumnEnd: (props: any) => `span ${getBreakpointValue(Breakpoints.md, props, defaultValue)}`,
         },
-        [`@media (min-width: ${theme.grid.breakpoints.values.lg}px)`]: {
+        [`@media (min-width: ${theme.grid.breakpoints.lg}px)`]: {
           gridColumnEnd: (props: any) => `span ${getBreakpointValue(Breakpoints.lg, props, defaultValue)}`,
         },
-        [`@media (min-width: ${theme.grid.breakpoints.values.xl}px)`]: {
+        [`@media (min-width: ${theme.grid.breakpoints.xl}px)`]: {
           gridColumnEnd: (props: any) => `span ${getBreakpointValue(Breakpoints.xl, props, defaultValue)}`,
         },
       })
