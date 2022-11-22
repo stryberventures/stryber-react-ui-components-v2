@@ -6,7 +6,6 @@ import { Breakpoints, TBreakpoint } from './types';
 
 const getBreakpointValue = (breakpoint: TBreakpoint, breakpointValues: IGrid, defaultValue: number): number => {
   let breakpointValue;
-  if (!breakpointValues.container) console.log('breakpointValues ==>>', breakpointValues);
   switch (breakpoint) {
     case Breakpoints.xl:
       breakpointValue = breakpointValues[Breakpoints.xl] || breakpointValues[Breakpoints.lg] || breakpointValues[Breakpoints.md] || breakpointValues[Breakpoints.sm] || breakpointValues[Breakpoints.xs];
