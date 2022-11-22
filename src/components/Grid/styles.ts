@@ -26,7 +26,8 @@ const getBreakpointValue = (breakpoint: TBreakpoint, breakpointValues: IGrid, de
   return breakpointValue || defaultValue;
 };
 
-function getGaps(gap: string | string[]): string {
+function getGaps(gap?: string | string[]): string {
+  if (!gap) return toRem(10);
   return (Array.isArray(gap)) ? gap.join(' ') : gap;
 }
 
@@ -41,7 +42,7 @@ export default createStyles((theme) => {
         boxSizing: 'inherit',
       },
       gridTemplateColumns: `repeat(${props.columns || theme.grid.columns}, 1fr)`,
-      gap: getGaps(props.gap || toRem(10)),
+      gap: getGaps(props?.gap),
     }),
     gridItem: (props: IGrid) => {
       const defaultValue = props.columns || theme.grid.columns;
