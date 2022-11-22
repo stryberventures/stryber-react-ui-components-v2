@@ -1,17 +1,18 @@
 import React from 'react';
 import classNames from 'classnames';
 import useStyles from './styles';
-import { Breakpoints, TGridTag } from './types';
+import { Breakpoints, TBreakpointsValues, TGridTag } from './types';
+import toRem from '../../utils/toRem';
 
 
 export interface IGrid extends React.HTMLAttributes<any>{
   container?: boolean;
   item?: boolean;
-  [Breakpoints.xs]?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-  [Breakpoints.sm]?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-  [Breakpoints.md]?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-  [Breakpoints.lg]?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-  [Breakpoints.xl]?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+  [Breakpoints.xs]?: TBreakpointsValues;
+  [Breakpoints.sm]?: TBreakpointsValues;
+  [Breakpoints.md]?: TBreakpointsValues;
+  [Breakpoints.lg]?: TBreakpointsValues;
+  [Breakpoints.xl]?: TBreakpointsValues;
   gap?: string | string[];
   columns?: number;
   className?: string;
@@ -51,4 +52,6 @@ export default Grid;
 Grid.defaultProps = {
   component: 'div',
   xs: 12,
+  gap: toRem(10),
+  columns: 12,
 }

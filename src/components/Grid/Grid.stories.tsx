@@ -12,6 +12,11 @@ export default {
     pkg,
   },
   argTypes: buildExcludeArgTypes(['className']),
+  args: {
+    xs: 12,
+    gap: toRem(10),
+    columns: 12,
+  },
 } as ComponentMeta<typeof Grid>;
 
 const Template: ComponentStory<typeof Grid> = (args) => {
@@ -20,6 +25,7 @@ const Template: ComponentStory<typeof Grid> = (args) => {
       container
       component={'main'}
       gap={toRem(20)}
+      {...args}
     >
       <Grid
         item
