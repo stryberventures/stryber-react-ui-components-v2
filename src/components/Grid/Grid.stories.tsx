@@ -14,7 +14,13 @@ export default {
   argTypes: buildExcludeArgTypes(['className']),
   args: {
     xs: 12,
-    gap: toRem(10),
+    gap: {
+      xs: toRem(10),
+      sm: toRem(12),
+      md: toRem(16),
+      lg: toRem(18),
+      xl: toRem(20),
+    },
     columns: 12,
   },
 } as ComponentMeta<typeof Grid>;
@@ -22,27 +28,17 @@ export default {
 const Template: ComponentStory<typeof Grid> = (args) => {
   return (
     <Grid
+      {...args}
       container
       component={'main'}
-      gap={toRem(20)}
-      {...args}
     >
-      <Grid
-        item
-        xs={9}
-        sm={12}
-        md={6}
-        xl={6}
-        style={{ border: '1px solid black', height: 120 }}
-      >
-        xs={9}, sm={12}, md={6}, xl={6}
-      </Grid>
       <Grid
         container
         columns={6}
-        gap={toRem(4)}
+        gap={{ xs: toRem(0), md: toRem(10), xl: `${toRem(20)} ${toRem(40)}`, }}
         item
-        xs={3}
+        xs={9}
+        sm={12}
         md={6}
         xl={6}
         style={{ padding: `${toRem(4)}`, border: '1px solid black', height: 120 }}
@@ -78,6 +74,45 @@ const Template: ComponentStory<typeof Grid> = (args) => {
           md={4}
         >
           xs={6}, md={4}
+        </Grid>
+      </Grid>
+      <Grid
+        container
+        item
+        columns={6}
+        gap={`${toRem(4)} ${toRem(8)}`}
+        xs={3}
+        md={6}
+        xl={6}
+        style={{ border: '1px solid black', height: 120 }}
+      >
+        <Grid
+          item
+          xs={3}
+          style={{ border: '1px solid black' }}
+        >
+          div 1
+        </Grid>
+        <Grid
+          item
+          xs={3}
+          style={{ border: '1px solid black' }}
+        >
+          div 2
+        </Grid>
+        <Grid
+          item
+          xs={3}
+          style={{ border: '1px solid black' }}
+        >
+          div 3
+        </Grid>
+        <Grid
+          item
+          xs={3}
+          style={{ border: '1px solid black' }}
+        >
+          div 4
         </Grid>
       </Grid>
       <Grid

@@ -64,6 +64,9 @@ export interface ITheme {
   font: string,
   grid: {
     columns: number,
+    gap: {
+      [key: string]: string,
+    }
     breakpoints: {
       [key: string]: number,
     }
