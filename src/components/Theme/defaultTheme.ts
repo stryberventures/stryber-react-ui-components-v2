@@ -1,4 +1,5 @@
 import { ITheme } from './types';
+import toRem from '../../utils/toRem';
 
 export const defaultTheme: ITheme = {
   background: {
@@ -42,4 +43,21 @@ export const defaultTheme: ITheme = {
     contrast: '#fff',
   },
   font: 'Inter, sans-serif',
+  grid: {
+    columns: 12,
+    gap: {
+      xs: toRem(10),
+      sm: toRem(10),
+      md: toRem(10),
+      lg: toRem(10),
+      xl: toRem(10),
+    },
+    breakpoints: {
+      xs: 0,
+      sm: 520,
+      md: 980,
+      lg: 1200,
+      xl: 1500,
+    },
+  },
 }
