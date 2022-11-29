@@ -70,7 +70,7 @@ export interface ITheme {
   
     }
     breakpoints: {
-      [key in Breakpoints]: string;
+      [key in Breakpoints]: number;
     }
   }
 }
