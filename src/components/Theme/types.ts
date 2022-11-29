@@ -1,4 +1,5 @@
 import React from 'react';
+import { Breakpoints } from '../Grid/types';
 
 type RecursivePartial<T> = {
   [P in keyof T]?: RecursivePartial<T[P]>;
@@ -65,10 +66,11 @@ export interface ITheme {
   grid: {
     columns: number,
     gap: {
-      [key: string]: string,
+      [key in Breakpoints]: string;
+  
     }
     breakpoints: {
-      [key: string]: number,
+      [key in Breakpoints]: string;
     }
-  },
+  }
 }
