@@ -21,7 +21,7 @@ export interface IThemeContext {
 
 export interface IThemeProvider {
   theme: CustomTheme;
-  children: React.ReactNode,
+  children: React.ReactNode;
 }
 
 export type createStylesOptions = {
@@ -29,48 +29,49 @@ export type createStylesOptions = {
   index?: number;
   // used to build a proper priority of styles in DOM based on JSS index option between
   // components library styles and external styles
-  internalUsage?: boolean,
+  internalUsage?: boolean;
 }
 
 interface IPalette {
-  main: string,
-  dark: string,
-  light: string,
-  contrast: string,
+  main: string;
+  dark: string;
+  light: string;
+  contrast: string;
 }
 
 interface IDefaultPalette {
-  main: string,
-  dark: string,
-  light: string,
-  extraLight: string,
+  main: string;
+  dark: string;
+  light: string;
+  extraLight: string;
 }
 
 export interface ITheme {
-  primary: IPalette,
-  secondary: IPalette,
-  error: IPalette,
-  success: IPalette,
-  default: IDefaultPalette,
+  primary: IPalette;
+  secondary: IPalette;
+  error: IPalette;
+  success: IPalette;
+  default: IDefaultPalette;
   background: {
-    default: string,
-    disabled: string,
+    default: string;
+    disabled: string;
   },
   text: {
-    primary: string,
-    secondary: string,
-    disabled: string,
-    hint: string,
+    primary: string;
+    secondary: string;
+    disabled: string;
+    hint: string;
   }
-  font: string,
+  font: string;
   grid: {
-    columns: number,
+    columns: {
+      [key in Breakpoints]: number;
+    };
     gap: {
       [key in Breakpoints]: string;
-  
-    }
+    };
     breakpoints: {
       [key in Breakpoints]: number;
-    }
+    };
   }
 }

@@ -1,6 +1,22 @@
 import { ITheme } from './types';
 import toRem from '../../utils/toRem';
 
+export const defaultColumns = {
+  xs: 4,
+  sm: 4,
+  md: 8,
+  lg: 12,
+  xl: 12,
+};
+
+export const defaultGaps = {
+  xs: toRem(16),
+  sm: toRem(16),
+  md: toRem(24),
+  lg: toRem(24),
+  xl: toRem(40),
+};
+
 export const defaultTheme: ITheme = {
   background: {
     default: '#fff',
@@ -44,20 +60,14 @@ export const defaultTheme: ITheme = {
   },
   font: 'Inter, sans-serif',
   grid: {
-    columns: 12,
-    gap: {
-      xs: toRem(10),
-      sm: toRem(10),
-      md: toRem(10),
-      lg: toRem(10),
-      xl: toRem(10),
-    },
+    columns: defaultColumns,
+    gap: defaultGaps,
     breakpoints: {
       xs: 0,
-      sm: 520,
-      md: 980,
-      lg: 1200,
-      xl: 1500,
+      sm: 360,
+      md: 656,
+      lg: 1024,
+      xl: 1280,
     },
   },
 }

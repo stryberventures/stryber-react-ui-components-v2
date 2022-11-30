@@ -1,6 +1,6 @@
 import { createStyles } from '../Theme';
-import { IBreakpointValues, IGrid } from './';
-import { Breakpoints, TBreakpoint } from './types';
+import { Breakpoints, IBreakpointValues, TBreakpoint } from './types';
+import { IGrid } from './';
 
 
 export default createStyles((theme) => {
@@ -8,97 +8,116 @@ export default createStyles((theme) => {
     grid: {
       display: 'grid',
     },
-    gridContainer: (props: IGrid) => ({
+    gridContainer: {
       boxSizing: 'border-box',
       '*, *::after, *:before': {
         boxSizing: 'inherit',
       },
-      gridTemplateColumns: `repeat(${props.columns || theme.grid.columns}, 1fr)`,
 
       [`@media (min-width: ${theme.grid.breakpoints.xs}px)`]: {
-        gap: (props: any) => getGapValue({
+        gridTemplateColumns: (props: IGrid) => `repeat(${getColumnsNumber({
+          breakpoint: Breakpoints.xs,
+          breakpointValues: props.columns,
+          defaultValue: theme.grid.columns[Breakpoints.xs],
+        })}, 1fr)`,
+        gap: (props: IGrid) => getGapValue({
           breakpoint: Breakpoints.xs,
           breakpointValues: props.gap,
           defaultValue: theme.grid.gap[Breakpoints.xs],
         }),
       },
       [`@media (min-width: ${theme.grid.breakpoints.sm}px)`]: {
-        gap: (props: any) => getGapValue({
+        gridTemplateColumns: (props: IGrid) => `repeat(${getColumnsNumber({
+          breakpoint: Breakpoints.sm,
+          breakpointValues: props.columns,
+          defaultValue: theme.grid.columns[Breakpoints.sm],
+        })}, 1fr)`,
+        gap: (props: IGrid) => getGapValue({
           breakpoint: Breakpoints.sm,
           breakpointValues: props.gap,
           defaultValue: theme.grid.gap[Breakpoints.sm],
         }),
       },
       [`@media (min-width: ${theme.grid.breakpoints.md}px)`]: {
-        gap: (props: any) => getGapValue({
+        gridTemplateColumns: (props: IGrid) => `repeat(${getColumnsNumber({
+          breakpoint: Breakpoints.md,
+          breakpointValues: props.columns,
+          defaultValue: theme.grid.columns[Breakpoints.md],
+        })}, 1fr)`,
+        gap: (props: IGrid) => getGapValue({
           breakpoint: Breakpoints.md,
           breakpointValues: props.gap,
           defaultValue: theme.grid.gap[Breakpoints.md],
         }),
       },
       [`@media (min-width: ${theme.grid.breakpoints.lg}px)`]: {
-        gap: (props: any) => getGapValue({
+        gridTemplateColumns: (props: IGrid) => `repeat(${getColumnsNumber({
+          breakpoint: Breakpoints.lg,
+          breakpointValues: props.columns,
+          defaultValue: theme.grid.columns[Breakpoints.lg],
+        })}, 1fr)`,
+        gap: (props: IGrid) => getGapValue({
           breakpoint: Breakpoints.lg,
           breakpointValues: props.gap,
           defaultValue: theme.grid.gap[Breakpoints.lg],
         }),
       },
       [`@media (min-width: ${theme.grid.breakpoints.xl}px)`]: {
-        gap: (props: any) => getGapValue({
+        gridTemplateColumns: (props: IGrid) => `repeat(${getColumnsNumber({
+          breakpoint: Breakpoints.xl,
+          breakpointValues: props.columns,
+          defaultValue: theme.grid.columns[Breakpoints.xl],
+        })}, 1fr)`,
+        gap: (props: IGrid) => getGapValue({
           breakpoint: Breakpoints.xl,
           breakpointValues: props.gap,
           defaultValue: theme.grid.gap[Breakpoints.xl],
         }),
       },
-    }),
-    gridItem: (props: IGrid) => {
-      const defaultValue = props.columns || theme.grid.columns;
-      return ({
-        gridColumnEnd: `span ${props.columns || theme.grid.columns}`,
-    
-        [`@media (min-width: ${theme.grid.breakpoints.xs}px)`]: {
-          gridColumnEnd: (props: any) => `span ${getColumnsValue({
-            breakpoint: Breakpoints.xs,
-            breakpointValues: props,
-            defaultValue,
-          })}`,
-        },
-        [`@media (min-width: ${theme.grid.breakpoints.sm}px)`]: {
-          gridColumnEnd: (props: any) => `span ${getColumnsValue({
-            breakpoint: Breakpoints.sm,
-            breakpointValues: props,
-            defaultValue,
-          })}`,
-        },
-        [`@media (min-width: ${theme.grid.breakpoints.md}px)`]: {
-          gridColumnEnd: (props: any) => `span ${getColumnsValue({
-            breakpoint: Breakpoints.md,
-            breakpointValues: props,
-            defaultValue,
-          })}`,
-        },
-        [`@media (min-width: ${theme.grid.breakpoints.lg}px)`]: {
-          gridColumnEnd: (props: any) => `span ${getColumnsValue({
-            breakpoint: Breakpoints.lg,
-            breakpointValues: props,
-            defaultValue,
-          })}`,
-        },
-        [`@media (min-width: ${theme.grid.breakpoints.xl}px)`]: {
-          gridColumnEnd: (props: any) => `span ${getColumnsValue({
-            breakpoint: Breakpoints.xl,
-            breakpointValues: props,
-            defaultValue,
-          })}`,
-        },
-      })
+    },
+    gridItem: {
+      [`@media (min-width: ${theme.grid.breakpoints.xs}px)`]: {
+        gridColumnEnd: (props: IGrid) => `span ${getColumnsValue({
+          breakpoint: Breakpoints.xs,
+          breakpointValues: props,
+          defaultValue: theme.grid.columns[Breakpoints.xs],
+        })}`,
+      },
+      [`@media (min-width: ${theme.grid.breakpoints.sm}px)`]: {
+        gridColumnEnd: (props: IGrid) => `span ${getColumnsValue({
+          breakpoint: Breakpoints.sm,
+          breakpointValues: props,
+          defaultValue: theme.grid.columns[Breakpoints.sm],
+        })}`,
+      },
+      [`@media (min-width: ${theme.grid.breakpoints.md}px)`]: {
+        gridColumnEnd: (props: IGrid) => `span ${getColumnsValue({
+          breakpoint: Breakpoints.md,
+          breakpointValues: props,
+          defaultValue: theme.grid.columns[Breakpoints.md],
+        })}`,
+      },
+      [`@media (min-width: ${theme.grid.breakpoints.lg}px)`]: {
+        gridColumnEnd: (props: IGrid) => `span ${getColumnsValue({
+          breakpoint: Breakpoints.lg,
+          breakpointValues: props,
+          defaultValue: theme.grid.columns[Breakpoints.lg],
+        })}`,
+      },
+      [`@media (min-width: ${theme.grid.breakpoints.xl}px)`]: {
+        gridColumnEnd: (props: IGrid) => `span ${getColumnsValue({
+          breakpoint: Breakpoints.xl,
+          breakpointValues: props,
+          defaultValue: theme.grid.columns[Breakpoints.xl],
+        })}`,
+      },
     },
   })
 }, { internalUsage: true });
 
 interface IGetFallbackValue {
   breakpoint: TBreakpoint;
-  breakpointValues: IBreakpointValues;
+  breakpointValues?: IBreakpointValues;
   defaultValue: number | string;
 }
 
@@ -106,19 +125,19 @@ function getFallbackValue ({ breakpoint, breakpointValues, defaultValue }: IGetF
   let breakpointValue;
   switch (breakpoint) {
     case Breakpoints.xl:
-      breakpointValue = breakpointValues[Breakpoints.xl] || breakpointValues[Breakpoints.lg] || breakpointValues[Breakpoints.md] || breakpointValues[Breakpoints.sm] || breakpointValues[Breakpoints.xs];
+      breakpointValue = breakpointValues?.[Breakpoints.xl] || breakpointValues?.[Breakpoints.lg] || breakpointValues?.[Breakpoints.md] || breakpointValues?.[Breakpoints.sm] || breakpointValues?.[Breakpoints.xs];
       break;
     case Breakpoints.lg:
-      breakpointValue = breakpointValues[Breakpoints.lg] || breakpointValues[Breakpoints.md] || breakpointValues[Breakpoints.sm] || breakpointValues[Breakpoints.xs];
+      breakpointValue = breakpointValues?.[Breakpoints.lg] || breakpointValues?.[Breakpoints.md] || breakpointValues?.[Breakpoints.sm] || breakpointValues?.[Breakpoints.xs];
       break;
     case Breakpoints.md:
-      breakpointValue = breakpointValues[Breakpoints.md] || breakpointValues[Breakpoints.sm] || breakpointValues[Breakpoints.xs];
+      breakpointValue = breakpointValues?.[Breakpoints.md] || breakpointValues?.[Breakpoints.sm] || breakpointValues?.[Breakpoints.xs];
       break;
     case Breakpoints.sm:
-      breakpointValue = breakpointValues[Breakpoints.sm] || breakpointValues[Breakpoints.xs];
+      breakpointValue = breakpointValues?.[Breakpoints.sm] || breakpointValues?.[Breakpoints.xs];
       break;
     default:
-      breakpointValue = breakpointValues[Breakpoints.xs];
+      breakpointValue = breakpointValues?.[Breakpoints.xs];
       break;
   }
   return breakpointValue || defaultValue;
@@ -126,7 +145,7 @@ function getFallbackValue ({ breakpoint, breakpointValues, defaultValue }: IGetF
 
 interface IGetGapValue {
   breakpoint: TBreakpoint;
-  breakpointValues: string | IBreakpointValues;
+  breakpointValues?: string | IBreakpointValues;
   defaultValue: string;
 }
 
@@ -137,5 +156,9 @@ function getGapValue ({ breakpoint, breakpointValues, defaultValue }: IGetGapVal
 }
 
 function getColumnsValue ({ breakpoint, breakpointValues, defaultValue }: IGetFallbackValue): number | string {
+  return getFallbackValue({ breakpoint, breakpointValues, defaultValue, });
+}
+
+function getColumnsNumber ({ breakpoint, breakpointValues, defaultValue }: IGetFallbackValue): number | string {
   return getFallbackValue({ breakpoint, breakpointValues, defaultValue, });
 }

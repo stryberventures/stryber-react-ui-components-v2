@@ -1,16 +1,13 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Breakpoints, TBreakpointsValues, TGridTag } from './types';
-import toRem from '../../utils/toRem';
+import {
+  Breakpoints,
+  IBreakpointValues,
+  TBreakpointsValues,
+  TGridTag,
+} from './types';
 import useStyles from './styles';
 
-export interface IBreakpointValues {
-  [Breakpoints.xs]?: string | number;
-  [Breakpoints.sm]?: string | number;
-  [Breakpoints.md]?: string | number;
-  [Breakpoints.lg]?: string | number;
-  [Breakpoints.xl]?: string | number;
-}
 
 export interface IGrid extends React.HTMLAttributes<any>{
   container?: boolean;
@@ -21,7 +18,7 @@ export interface IGrid extends React.HTMLAttributes<any>{
   [Breakpoints.lg]?: TBreakpointsValues;
   [Breakpoints.xl]?: TBreakpointsValues;
   gap?: string | IBreakpointValues;
-  columns?: number;
+  columns?: IBreakpointValues;
   className?: string;
   component?: TGridTag;
 }
@@ -38,8 +35,6 @@ const Grid: React.FC<IGrid> = (props) => {
     md,
     lg,
     xl,
-    gap,
-    columns,
     ...rest
   } = props;
   const classes = useStyles(props);
@@ -66,8 +61,4 @@ export default Grid;
 Grid.defaultProps = {
   component: 'div',
   xs: 12,
-  gap: {
-    xs: toRem(10),
-  },
-  columns: 12,
 }
