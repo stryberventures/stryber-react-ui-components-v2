@@ -5,7 +5,7 @@
 The components library based on React and Typescript, represented with Storybook and 
 tested with React Testing Library
 
-Explore [GAIA components](https://stryberventures.github.io/stryber-react-ui-components-v2) for Web
+Explore [GAIA components](https://gaia-components-react.vercel.app) for Web
 
 ## Docs
 
@@ -36,19 +36,9 @@ npm run test
 ```
 
 ## Components website ##
+[Components website](https://gaia-components-react.vercel.app) is hosted on [Vercel](https://vercel.com/stryber/stryber-react-ui-components-v2)
+and it builds and deploys the sources automatically once pull request is created and merged.
 
-[Components website](https://stryberventures.github.io/stryber-react-ui-components-v2)
-is hosted on Github Pages and it builds and deploys the sources automatically
-based on Github actions (.github/workflows/storybook.yml)
+[Production website](https://gaia-components-react.vercel.app) - based on `master` branch
 
-### Deploying from a branch
-It's also possible to deploy a feature branch to be tested in the website. To do that, it's easy as:
-1. Go to the [Actions tab](https://github.com/stryberventures/stryber-react-ui-components-v2/actions)
-2. Select [`Deploy from a branch`](https://github.com/stryberventures/stryber-react-ui-components-v2/actions/workflows/deploy_from_branch.yml) on the left sidebar
-3. On the right panel click the `Run workflow` button 
-4. Once clicked, it will display a combo box with the available branches 
-5. Select the desired branch to be deployed 
-6. After selecting the branch, click the green `Run workflow` button
-7. After the pipeline is over and successful, the code for that branch should be live.
-
-PS: It's always good to bring the state of the website back to what is was before; to do that, just do the same steps described above but now select branch `dev` in step 5. Gaia should be back to its previous state once the pipeline has finished.
+[Devevelopment website](https://dev-gaia-components-react.vercel.app) - based on `dev` branch
