@@ -72,5 +72,8 @@ export interface ITheme {
     breakpoints: {
       [key in Breakpoints]: number;
     }
+  };
+  spacing: {
+    [key: number]: string;
   }
 }
