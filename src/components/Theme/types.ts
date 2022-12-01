@@ -14,6 +14,8 @@ declare global {
 export type ThemeType = ITheme & DesignSystem.IProjectTheme;
 export type CustomTheme = RecursivePartial<ThemeType> & RecursivePartial<DesignSystem.IProjectTheme> & Record<string, any>;
 
+type TSpacing = 2 | 4 | 8 | 12 | 16 | 24 | 32 | 40 | 48 | 64 | 80 | 96 | 160;
+
 export interface IThemeContext {
   theme: ThemeType;
   updateTheme: (updatedTheme: CustomTheme) => void;
@@ -72,5 +74,8 @@ export interface ITheme {
     breakpoints: {
       [key in Breakpoints]: number;
     }
+  };
+  spacing: {
+    [key in TSpacing]: string;
   }
 }
