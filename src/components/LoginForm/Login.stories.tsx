@@ -25,6 +25,7 @@ const Template: ComponentStory<typeof LoginForm> = () => {
   return (
     <LoginForm
       className={classes.form}
+      title="Login"
       inputs={[{
         label: 'Login',
         name: 'login',
@@ -36,7 +37,10 @@ const Template: ComponentStory<typeof LoginForm> = () => {
         login: yup.string().email().required(),
         password: yup.string().required(),
       })}
-      forgotPasswordLink={'?path=/story/components-login--login-module'}
+      forgotPassword={{
+        link: '?path=/story/components-login--login-module',
+        text: 'Forgot password?',
+      }}
       onSubmit={onSubmit}
     />
   );

@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from '../Form';
 import { IFormProps } from '../Form/types';
+import Text from '../Text';
 import Input from '../Input';
 import InputPassword from '../InputPassword';
 import TextLink from '../TextLink';
@@ -9,8 +10,13 @@ import * as yup from 'yup';
 
 
 export interface ILoginForm extends Omit<IFormProps, 'children'> {
-  forgotPasswordLink?: string;
+  forgotPassword?: {
+    link: string,
+    text: string,
+  };
   inputs?: { label: string, name: string, placeholder?: string }[];
+  title?: string;
+  buttonText?: string;
 }
 
 const LoginForm = (props: ILoginForm) => {
@@ -27,7 +33,9 @@ const LoginForm = (props: ILoginForm) => {
       email: yup.string().email().required(),
       password: yup.string().required(),
     }),
-    forgotPasswordLink,
+    buttonText = 'Login',
+    title,
+    forgotPassword,
     className,
     onSubmit,
     ...rest
@@ -40,6 +48,9 @@ const LoginForm = (props: ILoginForm) => {
       validationSchema={validationSchema}
       {...rest}
     >
+      {title && (
+        <Text variant={'body'}>{title}</Text>
+      )}
       {inputs.map(({ label, name, placeholder }) => {
         const InputComponent = name == 'password' ? InputPassword : Input;
         return (
@@ -52,13 +63,13 @@ const LoginForm = (props: ILoginForm) => {
           />
         )
       })}
-      {forgotPasswordLink && (
-        <TextLink href={forgotPasswordLink}>
-          Forgot Password?
+      {forgotPassword && (
+        <TextLink href={forgotPassword.link}>
+          {forgotPassword.text || 'Forgot password?'}
         </TextLink>
       )}
       <Button type="submit" fullWidth>
-        Login
+        {buttonText}
       </Button>
     </Form>
   );
