@@ -67,9 +67,13 @@ export interface ITheme {
     columns: {
       [key in Breakpoints]: number;
     };
+    margin: {
+      [key in Breakpoints]: string;
+    };
     gap: {
       [key in Breakpoints]: string;
     };
+    maxWidth: number,
     breakpoints: {
       [key in Breakpoints]: number;
     };

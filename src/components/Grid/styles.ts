@@ -13,8 +13,8 @@ export default createStyles((theme) => {
       '*, *::after, *:before': {
         boxSizing: 'inherit',
       },
-
       [`@media (min-width: ${theme.grid.breakpoints.xs}px)`]: {
+        margin: (props: IGrid) => props.withMargins && `0 ${theme.grid.margin.xs}`,
         gridTemplateColumns: (props: IGrid) => `repeat(${getColumnsNumber({
           breakpoint: Breakpoints.xs,
           breakpointValues: props.columns,
@@ -27,6 +27,7 @@ export default createStyles((theme) => {
         }),
       },
       [`@media (min-width: ${theme.grid.breakpoints.sm}px)`]: {
+        margin: (props: IGrid) => props.withMargins && `0 ${theme.grid.margin.sm}`,
         gridTemplateColumns: (props: IGrid) => `repeat(${getColumnsNumber({
           breakpoint: Breakpoints.sm,
           breakpointValues: props.columns,
@@ -39,6 +40,7 @@ export default createStyles((theme) => {
         }),
       },
       [`@media (min-width: ${theme.grid.breakpoints.md}px)`]: {
+        margin: (props: IGrid) => props.withMargins && `0 ${theme.grid.margin.md}`,
         gridTemplateColumns: (props: IGrid) => `repeat(${getColumnsNumber({
           breakpoint: Breakpoints.md,
           breakpointValues: props.columns,
@@ -51,6 +53,7 @@ export default createStyles((theme) => {
         }),
       },
       [`@media (min-width: ${theme.grid.breakpoints.lg}px)`]: {
+        margin: (props: IGrid) => props.withMargins && `0 ${theme.grid.margin.lg}`,
         gridTemplateColumns: (props: IGrid) => `repeat(${getColumnsNumber({
           breakpoint: Breakpoints.lg,
           breakpointValues: props.columns,
@@ -63,6 +66,7 @@ export default createStyles((theme) => {
         }),
       },
       [`@media (min-width: ${theme.grid.breakpoints.xl}px)`]: {
+        margin: (props: IGrid) => props.withMargins && `0 ${theme.grid.margin.xl}`,
         gridTemplateColumns: (props: IGrid) => `repeat(${getColumnsNumber({
           breakpoint: Breakpoints.xl,
           breakpointValues: props.columns,
@@ -72,6 +76,20 @@ export default createStyles((theme) => {
           breakpoint: Breakpoints.xl,
           breakpointValues: props.gap,
           defaultValue: theme.grid.gap[Breakpoints.xl],
+        }),
+      },
+      [`@media (min-width: ${theme.grid.breakpoints.xxl}px)`]: {
+        maxWidth: 1320,
+        margin: (props: IGrid) => props.withMargins && '0 auto',
+        gridTemplateColumns: (props: IGrid) => `repeat(${getColumnsNumber({
+          breakpoint: Breakpoints.xxl,
+          breakpointValues: props.columns,
+          defaultValue: theme.grid.columns[Breakpoints.xxl],
+        })}, 1fr)`,
+        gap: (props: IGrid) => getGapValue({
+          breakpoint: Breakpoints.xxl,
+          breakpointValues: props.gap,
+          defaultValue: theme.grid.gap[Breakpoints.xxl],
         }),
       },
     },
@@ -111,6 +129,13 @@ export default createStyles((theme) => {
           defaultValue: theme.grid.columns[Breakpoints.xl],
         })}`,
       },
+      [`@media (min-width: ${theme.grid.breakpoints.xxl}px)`]: {
+        gridColumnEnd: (props: IGrid) => `span ${getColumnsValue({
+          breakpoint: Breakpoints.xxl,
+          breakpointValues: props,
+          defaultValue: theme.grid.columns[Breakpoints.xxl],
+        })}`,
+      },
     },
   })
 }, { internalUsage: true });
@@ -124,6 +149,9 @@ interface IGetFallbackValue {
 function getFallbackValue ({ breakpoint, breakpointValues, defaultValue }: IGetFallbackValue): number | string {
   let breakpointValue;
   switch (breakpoint) {
+    case Breakpoints.xxl:
+      breakpointValue = breakpointValues?.[Breakpoints.xxl] || breakpointValues?.[Breakpoints.xl] || breakpointValues?.[Breakpoints.lg] || breakpointValues?.[Breakpoints.md] || breakpointValues?.[Breakpoints.sm] || breakpointValues?.[Breakpoints.xs];
+      break;
     case Breakpoints.xl:
       breakpointValue = breakpointValues?.[Breakpoints.xl] || breakpointValues?.[Breakpoints.lg] || breakpointValues?.[Breakpoints.md] || breakpointValues?.[Breakpoints.sm] || breakpointValues?.[Breakpoints.xs];
       break;

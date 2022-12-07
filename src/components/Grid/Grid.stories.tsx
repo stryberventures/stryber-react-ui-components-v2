@@ -23,83 +23,86 @@ export default {
 
 const Template: ComponentStory<typeof Grid> = (args) => {
   return (
-    <Grid
-      {...args}
-      container
-      component={'main'}
-      style={{ backgroundColor: 'rgba(85,85,85,0.15)' }}
-    >
+    <div style={{ boxSizing: 'border-box' }}>
       <Grid
+        {...args}
         container
-        gap={{ xs: toRem(0), md: toRem(10), xl: `${toRem(20)} ${toRem(40)}`, }}
-        columns={{ xs: 2, sm: 2, md: 4, lg: 8, xl: 8 }}
-        item
-        xs={2}
-        sm={2}
-        md={8}
-        style={{ padding: `${toRem(4)}`, border: '1px solid crimson', height: 120, backgroundColor: 'rgba(85,85,85,0.15)' }}
+        withMargins
+        component={'main'}
+        style={{ backgroundColor: 'rgba(85,85,85,0.15)', }}
       >
         <Grid
-          style={{ border: '1px solid black', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          container
+          gap={{ xs: toRem(0), md: toRem(10), xl: `${toRem(20)} ${toRem(40)}`, }}
+          columns={{ xs: 2, sm: 2, md: 4, lg: 8, xl: 8 }}
           item
           xs={2}
-          md={2}
+          sm={2}
+          md={8}
+          style={{ padding: `${toRem(4)}`, border: '1px solid crimson', height: 120, backgroundColor: 'rgba(85,85,85,0.15)' }}
         >
-          xs={2}, md={2}
+          <Grid
+            style={{ border: '1px solid black', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            item
+            xs={2}
+            md={2}
+          >
+            xs={2}, md={2}
+          </Grid>
+          <Grid
+            style={{ border: '1px solid black', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            item
+            xs={1}
+            md={2}
+          >
+            xs={1}, md={2}
+          </Grid>
+          <Grid
+            style={{ border: '1px solid black', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            item
+            xs={1}
+            md={2}
+          >
+            xs={1}, md={2}
+          </Grid>
+          <Grid
+            style={{ border: '1px solid black', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            item
+            xs={2}
+            md={2}
+          >
+            xs={2}, md={2}
+          </Grid>
         </Grid>
         <Grid
-          style={{ border: '1px solid black', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          container
           item
-          xs={1}
-          md={2}
-        >
-          xs={1}, md={2}
-        </Grid>
-        <Grid
-          style={{ border: '1px solid black', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-          item
-          xs={1}
-          md={2}
-        >
-          xs={1}, md={2}
-        </Grid>
-        <Grid
-          style={{ border: '1px solid black', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-          item
+          gap={toRem(30)}
+          columns={{ xs: 1, sm: 1, md: 4 }}
           xs={2}
-          md={2}
+          sm={2}
+          md={4}
+          style={{ padding: `${toRem(4)}`, border: '1px solid crimson', backgroundColor: 'rgba(85,85,85,0.15)' }}
         >
-          xs={2}, md={2}
+          <Grid
+            item
+            xs={2}
+            style={{ display: 'flex', padding: `${toRem(4)}`, border: '1px solid black', backgroundColor: 'rgb(255,255,255)' }}
+          >
+            <div style={{ flexGrow: 1, padding: toRem(10), backgroundColor: 'rgba(79,79,79,0.15)' }}>Flex item</div>
+            <div style={{ flexGrow: 1, padding: toRem(10), backgroundColor: 'rgba(168,127,127,0.15)' }}>Flex item</div>
+          </Grid>
+          <Grid
+            item
+            xs={2}
+            style={{ display: 'flex', padding: `${toRem(4)}`, border: '1px solid black', backgroundColor: 'rgb(255,255,255)' }}
+          >
+            <div style={{ flexGrow: 1, padding: toRem(10), backgroundColor: 'rgba(79,79,79,0.15)' }}>Flex item</div>
+            <div style={{ flexGrow: 1, padding: toRem(10), backgroundColor: 'rgba(168,127,127,0.15)' }}>Flex item</div>
+          </Grid>
         </Grid>
       </Grid>
-      <Grid
-        container
-        item
-        gap={toRem(30)}
-        columns={{ xs: 1, sm: 1, md: 4 }}
-        xs={2}
-        sm={2}
-        md={4}
-        style={{ padding: `${toRem(4)}`, border: '1px solid crimson', backgroundColor: 'rgba(85,85,85,0.15)' }}
-      >
-        <Grid
-          item
-          xs={2}
-          style={{ display: 'flex', padding: `${toRem(4)}`, border: '1px solid black', backgroundColor: 'rgb(255,255,255)' }}
-        >
-          <div style={{ flexGrow: 1, padding: toRem(10), backgroundColor: 'rgba(79,79,79,0.15)' }}>Flex item</div>
-          <div style={{ flexGrow: 1, padding: toRem(10), backgroundColor: 'rgba(168,127,127,0.15)' }}>Flex item</div>
-        </Grid>
-        <Grid
-          item
-          xs={2}
-          style={{ display: 'flex', padding: `${toRem(4)}`, border: '1px solid black', backgroundColor: 'rgb(255,255,255)' }}
-        >
-          <div style={{ flexGrow: 1, padding: toRem(10), backgroundColor: 'rgba(79,79,79,0.15)' }}>Flex item</div>
-          <div style={{ flexGrow: 1, padding: toRem(10), backgroundColor: 'rgba(168,127,127,0.15)' }}>Flex item</div>
-        </Grid>
-      </Grid>
-    </Grid>
+    </div>
   );
 }
 

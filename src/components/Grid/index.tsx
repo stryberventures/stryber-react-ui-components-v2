@@ -11,12 +11,14 @@ import useStyles from './styles';
 
 export interface IGrid extends React.HTMLAttributes<any>{
   container?: boolean;
+  withMargins?: boolean;
   item?: boolean;
   [Breakpoints.xs]?: TBreakpointsValues;
   [Breakpoints.sm]?: TBreakpointsValues;
   [Breakpoints.md]?: TBreakpointsValues;
   [Breakpoints.lg]?: TBreakpointsValues;
   [Breakpoints.xl]?: TBreakpointsValues;
+  [Breakpoints.xxl]?: TBreakpointsValues;
   gap?: string | IBreakpointValues;
   columns?: IBreakpointValues;
   className?: string;
@@ -27,6 +29,7 @@ const Grid: React.FC<IGrid> = (props) => {
   const {
     children,
     container,
+    withMargins,
     item = false,
     component = 'div',
     className,
@@ -35,6 +38,9 @@ const Grid: React.FC<IGrid> = (props) => {
     md,
     lg,
     xl,
+    xxl,
+    gap,
+    columns,
     ...rest
   } = props;
   const classes = useStyles(props);
