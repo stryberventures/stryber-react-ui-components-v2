@@ -32,12 +32,12 @@ const Button: React.FC<IButton> = (props) => {
   } = props;
   const classes = useStyles(props);
   const textClasses = useTextStyles();
-
   return (
     <button
       className={classNames(
         classes.button,
-        textClasses.buttonLabel,
+        (size == 'mini') ? textClasses.components3 : textClasses.components1,
+        textClasses.bold,
         classes[variant],
         classes[size],
         classes[shape],

@@ -63,7 +63,7 @@ const Template: ComponentStory<typeof ThemeProvider> = (args) => {
           overlayClassName={dialogClasses.overlay}
         >
           <Dialog.Title className={dialogClasses.title}>
-            <Text variant="subline">Dialog Title</Text>
+            <Text variant="h4" weight="semiBold">Dialog Title</Text>
             <CloseIcon
               width={16}
               height={16}
@@ -71,7 +71,7 @@ const Template: ComponentStory<typeof ThemeProvider> = (args) => {
             />
           </Dialog.Title>
           <Dialog.Content>
-            <Text variant='body'>Dialog content</Text>
+            <Text variant='body1'>Dialog content</Text>
           </Dialog.Content>
           <Dialog.Actions>
             <Button onClick={() => setDialogOpen(false)} size="small">
@@ -105,6 +105,10 @@ const Template: ComponentStory<typeof ThemeProvider> = (args) => {
         <h1> </h1>
         <RadioButton checked={true} disabled color="secondary" label="Disabled" />
         <h2 style={{ fontFamily: 'Inter', color: '#003CB8' }}>Text Elements</h2>
+        <Text variant="display1">Display 1</Text>
+        <h1> </h1>
+        <Text variant="display2">Display 2</Text>
+        <h1> </h1>
         <Text variant="h1">H1</Text>
         <h1> </h1>
         <Text variant="h2">H2</Text>
@@ -113,25 +117,21 @@ const Template: ComponentStory<typeof ThemeProvider> = (args) => {
         <h1> </h1>
         <Text variant="h4">H4</Text>
         <h1> </h1>
-        <Text variant="quote">Quote</Text>
+        <Text variant="body1">Body 1</Text>
         <h1> </h1>
-        <Text variant="label">Label</Text>
+        <Text variant="body2">Body 2</Text>
         <h1> </h1>
-        <Text variant="body">Body</Text>
+        <Text variant="body3">Body 3</Text>
         <h1> </h1>
-        <Text variant="description">Description</Text>
+        <Text variant="caption1">Caption 1</Text>
         <h1> </h1>
-        <Text variant="subline">Subline</Text>
+        <Text variant="caption2">Caption 2</Text>
         <h1> </h1>
-        <Text variant="caption">Caption</Text>
+        <Text variant="components1">Components 1</Text>
         <h1> </h1>
-        <Text variant="smallText">Small text</Text>
+        <Text variant="components2">Components 2</Text>
         <h1> </h1>
-        <Text variant="footnote">Footnote</Text>
-        <h1> </h1>
-        <Text variant="buttonLabel">Button label</Text>
-        <h1> </h1>
-        <Text variant="labelHighlight">Label Highlight</Text>
+        <Text variant="components3">Components 3</Text>
         <h1> </h1>
         <h2 style={{ fontFamily: 'Inter', color: '#003CB8' }}>TextLink</h2>
         <TextLink>Primary</TextLink>

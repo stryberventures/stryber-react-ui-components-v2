@@ -15,7 +15,8 @@ export const HintMessage = (props: IHintMessage) => {
 
   return (
     <Text
-      variant="label"
+      variant="components2"
+      weight="regular"
       {...rest}
       className={classNames(classes.hintMessage, className, {
         [classes.disabled]: disabled,

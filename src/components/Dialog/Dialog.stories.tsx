@@ -39,7 +39,8 @@ const Template: ComponentStory<typeof Dialog> = (args) => {
       >
         <Dialog.Title className={classes.dialogTitle}>
           <Text
-            variant="subline"
+            variant="h4"
+            weight="semiBold"
             className={classes.dialogText}
           >
             Dialog Title
@@ -50,7 +51,7 @@ const Template: ComponentStory<typeof Dialog> = (args) => {
           />
         </Dialog.Title>
         <Dialog.Content>
-          <Text variant="body">
+          <Text variant="body1">
             Dialog content
           </Text>
         </Dialog.Content>
