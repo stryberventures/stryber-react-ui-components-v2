@@ -20,7 +20,7 @@ it('should apply theme colors', () => {
   const red = 'rgb(255, 0, 0)';
   const black = 'rgb(0, 0, 0)';
   render(
-    <ThemeProvider theme={{ primary: { main: red, contrast: black, light: red, dark: red } }}>
+    <ThemeProvider theme={{ colors: { primary: { main: red, contrast: black, light: red, dark: red } }}}>
       <Button>{label}</Button>
     </ThemeProvider>
   );
