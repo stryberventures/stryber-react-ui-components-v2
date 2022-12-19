@@ -94,7 +94,7 @@ export const defaultTheme: ITheme = {
     text: {
       headline: '#101828',
       secondary: '#475467',
-      disabled: '#E4E7EC',
+      disabled: '#D2D2D2',
       tint: '#98A2B3',
     },
     background: {
