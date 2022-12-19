@@ -1,11 +1,14 @@
 import React from 'react';
 import classNames from 'classnames';
+import Text from '../Text';
 import useStyles from './styles';
-import useTextStyles from '../Text/styles';
+
 
 export interface ITextLink extends React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement> {
   children: string,
   color?: 'primary' | 'secondary',
+  size?: 'small' | 'medium' | 'large',
+  weight: 'normal' | 'semiBold',
   disabled?: boolean,
   iconLeft?: React.ReactNode,
   iconRight?: React.ReactNode,
@@ -13,22 +16,28 @@ export interface ITextLink extends React.DetailedHTMLProps<React.AnchorHTMLAttri
 }
 
 const TextLink: React.FC<ITextLink> = (props) => {
-  const { children, disabled, iconLeft, iconRight, className, ...rest } = props;
+  const { children, size, weight, disabled, iconLeft, iconRight, className, ...rest } = props;
   const classes = useStyles(props);
-  const textClasses = useTextStyles(props);
 
   return (
     <a
       className={classNames(
         classes.textLink,
-        textClasses.buttonLabel,
         className, {
           [classes.disabled]: disabled
         })}
       {...rest}
     >
       {iconLeft}
-      {children}
+      {/* TODO use new Text variant */}
+      {/* TODO use weight from props */}
+      <Text
+        variant="body"
+        component="span"
+        className={classes.text}
+      >
+        {children}
+      </Text>
       {iconRight}
     </a>
   );

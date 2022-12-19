@@ -9,31 +9,41 @@ export default createStyles((theme) => ({
       display: 'inline-flex',
       alignItems: 'center',
       gap: toRem(8),
-      padding: [toRem(8), toRem(16)],
-      borderRadius: toRem(8),
       cursor: 'pointer',
       color: theme[props.color!].main,
       textDecoration: 'none',
       '-webkit-tap-highlight-color': 'transparent',
       '& svg path': {
-        fill: theme[props.color!].main,
+        fill: theme[props.color!].main, // TODO use colors from new theme structure
       },
       '&:visited svg path': {
-        fill: '#8C0A8F',
+        fill: theme[props.color!].dark, // TODO use colors from new theme structure
       },
       '&:visited': {
-        color: '#8C0A8F',
-      },
-      '&:hover': {
-        backgroundColor: theme[props.color!].light,
+        color: theme[props.color!].dark, // TODO use colors from new theme structure
       },
       '&:active': {
-        boxShadow: `0 0 0 ${toRem(4)} ${theme[props.color!].light}`,
-        outlineOffset: toRem(-2),
-        backgroundColor: 'transparent',
+        color: theme[props.color!].dark, // TODO use colors from new theme structure
       },
     })
   },
+  text: (props: ITextLink) => ({
+    position: 'relative',
+    '&:after': {
+      position: 'absolute',
+      left: 0,
+      bottom: 4,
+      width: '100%',
+      borderBottom: '2px solid transparent',
+      transition: 'border-bottom .3s ease-out',
+      content: '""',
+    },
+    '&:hover': {
+      '&:after': {
+        borderBottom: `2px solid ${theme[props.color!].main}`, // TODO use colors from new theme structure
+      },
+    },
+  }),
   disabled: {
     opacity: 0.4,
     pointerEvents: 'none',
