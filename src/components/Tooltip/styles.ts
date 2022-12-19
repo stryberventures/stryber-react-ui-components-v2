@@ -34,7 +34,7 @@ export default createStyles((theme) => ({
       height: toRem(12),
       borderRadius: toRem(2),
       transform: 'rotate(45deg)',
-      backgroundColor: theme.background.default,
+      backgroundColor: theme.colors.background.white,
       bottom: toRem(-6),
       left: 'calc(50% - 5px)',
     }
@@ -51,36 +51,36 @@ export default createStyles((theme) => ({
     height: toRem(20),
     width: toRem(20),
     borderRadius: toRem(4),
-    backgroundColor: theme.default.light,
+    backgroundColor: theme.colors.neutralGray.light200,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     cursor: 'pointer',
     '&:hover': {
-      backgroundColor: theme.default.main,
+      backgroundColor: theme.colors.neutralGray.main500,
     }
   },
   title: {
-    color: theme.text.secondary,
+    color: theme.colors.text.secondary,
   },
   text: {
     marginTop: toRem(5),
   },
   light: {
     '& $tooltipBox': {
-      backgroundColor: theme.background.default,
-      color: theme.text.hint,
+      backgroundColor: theme.colors.background.white,
+      color: theme.colors.text.tint,
     }
   },
   dark: {
     '& $tooltipBox': {
-      backgroundColor: theme.text.primary,
-      color: theme.primary.contrast,
+      backgroundColor: theme.colors.text.headline,
+      color: theme.colors.contrast.white,
       '& $title': {
-        color: theme.primary.contrast,
+        color: theme.colors.contrast.white,
       },
       '&:after': {
-        backgroundColor: theme.text.primary
+        backgroundColor: theme.colors.text.headline
       }
     }
   },

@@ -9,7 +9,7 @@ export default createStyles((theme) => ({
     height: toRem(24),
     position: 'relative',
     borderRadius: toRem(12),
-    backgroundColor: theme.default.dark,
+    backgroundColor: theme.colors.neutralGray.main500,
     '&:not($disabled)': {
       cursor: 'pointer',
     },
@@ -17,16 +17,16 @@ export default createStyles((theme) => ({
       opacity: 0.3,
     },
     '& $circleHighlight': {
-      backgroundColor: theme[props.color!].contrast,
+      backgroundColor: theme.colors.background.white,
     }
   }),
   disabled: {
     opacity: 0.45,
   },
   checked: (props: ISwitchIcon) => ({
-    backgroundColor: theme[props.color!].main,
+    backgroundColor: theme.colors[props.color!].main500,
     '&:hover': {
-      backgroundColor: theme[props.color!].dark,
+      backgroundColor: theme.colors[props.color!].dark600,
     },
   }),
   '@keyframes slideLeft': {
@@ -52,7 +52,7 @@ export default createStyles((theme) => ({
     position: 'relative',
     height: toRem(20),
     width: toRem(20),
-    backgroundColor: theme[props.color!].contrast,
+    backgroundColor: theme.colors.background.white,
     borderRadius: '50%',
   }),
   circleHighlight: {

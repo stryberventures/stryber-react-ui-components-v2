@@ -14,10 +14,10 @@ export default createStyles((theme) => ({
     alignItems: 'center',
   },
   title: {
-    color: theme.text.secondary,
+    color: theme.colors.text.secondary,
   },
   subtitle: {
-    color: theme.text.hint,
+    color: theme.colors.text.tint,
   },
   listItemText: {
     display: 'block',

@@ -19,7 +19,7 @@ export default createStyles((theme) => ({
     flexDirection: 'column',
     width: toRem(500),
     padding: [toRem(24), toRem(48), toRem(24), toRem(24)],
-    backgroundColor: theme.background.default,
+    backgroundColor: theme.colors.background.white,
     borderRadius: toRem(4),
     boxShadow: `0px ${toRem(2)} ${toRem(11)} rgba(0, 0, 0, .37)`,
     fontFamily: theme.font,

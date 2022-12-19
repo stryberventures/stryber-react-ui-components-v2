@@ -11,13 +11,13 @@ export default createStyles((theme) => ({
     borderRadius: toRem(4),
     position: 'relative',
     fontFamily: theme.font,
-    backgroundColor: theme.background.default,
+    backgroundColor: theme.colors.background.white,
     '&:focus-within:not($containerError)': {
-      border: `${toRem(1)} solid ${theme[props.color!].main}`,
-      boxShadow: `0 0 0 ${toRem(4)} ${theme[props.color!].light}`,
+      border: `${toRem(1)} solid ${theme.colors[props.color!].main500}`,
+      boxShadow: `0 0 0 ${toRem(4)} ${theme.colors[props.color!].extraLight50}`,
     },
     '&:not($containerError)': {
-      border: `${toRem(1)} solid ${theme.default.main}`,
+      border: `${toRem(1)} solid ${theme.colors.neutralGray.medium300}`,
       padding: `${toRem(8)} ${toRem(15)}`,
     },
     '&$fullWidth': {
@@ -27,13 +27,13 @@ export default createStyles((theme) => ({
   containerDisabled: {
     pointerEvents: 'none',
     userSelect: 'none',
-    backgroundColor: theme.background.default,
+    backgroundColor: theme.colors.background.white,
   },
   containerError: {
-    border: `${toRem(1)} solid ${theme.error.main}`,
+    border: `${toRem(1)} solid ${theme.colors.error.main500}`,
     padding: `${toRem(5)} ${toRem(8)}`,
     '&:focus-within': {
-      boxShadow: `0 0 0 ${toRem(4)} ${theme.error.light}`,
+      boxShadow: `0 0 0 ${toRem(4)} ${theme.colors.error.light100}`,
     },
   },
   textarea: {
@@ -44,18 +44,18 @@ export default createStyles((theme) => ({
     width: '100%',
     padding: 0,
     marginTop: toRem(8),
-    color: theme.text.primary,
+    color: theme.colors.text.headline,
     resize: 'none',
-    backgroundColor: theme.background.default,
+    backgroundColor: theme.colors.background.white,
     '-webkit-tap-highlight-color': 'transparent',
   },
   label: {
-    color: theme.text.secondary,
+    color: theme.colors.text.secondary,
     height: toRem(17),
   },
   textDisabled: {
-    color: theme.text.disabled,
-    backgroundColor: theme.background.default,
+    color: theme.colors.text.disabled,
+    backgroundColor: theme.colors.background.white,
   },
   message: {
     marginTop: toRem(8),

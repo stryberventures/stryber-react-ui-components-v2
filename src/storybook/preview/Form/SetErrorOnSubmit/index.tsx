@@ -12,7 +12,7 @@ const FormSetErrorOnSubmit = () => {
         setErrors({ email: 'This email is already taken' });
       }}
     >
-      <h2 style={{ fontFamily: 'Inter', color: defaultTheme.primary.main }}>Set error from formActions</h2>
+      <h2 style={{ fontFamily: 'Inter', color: defaultTheme.colors.primary.main500 }}>Set error from formActions</h2>
       <Input label={'Email'} name="email" placeholder="some@mail.com"/>
       <h1> </h1>
       <InputPassword label={'Password'} name="password" placeholder="Password is required"/>
@@ -31,7 +31,7 @@ export const FormSetErrorOnSubmitCode = `
     setErrors({ email: 'This email is already taken' });
   }}
 >
-  <h2 style={{ fontFamily: 'Inter', color: defaultTheme.primary.main }}>Set error from formActions</h2>
+  <h2 style={{ fontFamily: 'Inter', color: defaultTheme.colors.primary.main500 }}>Set error from formActions</h2>
   <Input label={'Email'} name="email" placeholder="some@mail.com"/>
   <h1> </h1>
   <InputPassword label={'Password'} name="password" placeholder="Password is required"/>
