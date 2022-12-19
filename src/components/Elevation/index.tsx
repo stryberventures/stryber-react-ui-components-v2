@@ -35,6 +35,6 @@ const Elevation: React.FC<Elevation> = (props) => {
 export default Elevation;
 
 Elevation.defaultProps = {
-  variant: 'medium',
+  variant: 'extraLight',
   component: 'div',
 };

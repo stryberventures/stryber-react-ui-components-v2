@@ -14,7 +14,7 @@ export default {
     pkg,
   },
   args: {
-    variant: 'medium',
+    variant: 'extraLight',
     component: 'div',
   },
   argTypes: buildExcludeArgTypes(['className']),
