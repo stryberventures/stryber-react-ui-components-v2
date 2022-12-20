@@ -13,17 +13,17 @@ export default createStyles((theme) => ({
     overflow: 'hidden',
     '&:not($readOnly):hover': {
       cursor: 'pointer',
-      backgroundColor: theme.default.extraLight,
+      backgroundColor: theme.colors.neutralGray.light100,
     },
   },
   menuItemText: {
     lineHeight: toRem(33),
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
-    color: theme.text.primary,
+    color: theme.colors.text.headline,
   },
   selected: {
-    backgroundColor: theme.default.light,
+    backgroundColor: theme.colors.neutralGray.light100,
   },
   readOnly: {},
 }), { internalUsage: true });

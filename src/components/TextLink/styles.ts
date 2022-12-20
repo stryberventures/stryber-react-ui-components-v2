@@ -12,11 +12,11 @@ export default createStyles((theme) => ({
       padding: [toRem(8), toRem(16)],
       borderRadius: toRem(8),
       cursor: 'pointer',
-      color: theme[props.color!].main,
+      color: theme.colors[props.color!].main500,
       textDecoration: 'none',
       '-webkit-tap-highlight-color': 'transparent',
       '& svg path': {
-        fill: theme[props.color!].main,
+        fill: theme.colors[props.color!].main500,
       },
       '&:visited svg path': {
         fill: '#8C0A8F',
@@ -25,10 +25,10 @@ export default createStyles((theme) => ({
         color: '#8C0A8F',
       },
       '&:hover': {
-        backgroundColor: theme[props.color!].light,
+        backgroundColor: theme.colors[props.color!].extraLight50,
       },
       '&:active': {
-        boxShadow: `0 0 0 ${toRem(4)} ${theme[props.color!].light}`,
+        boxShadow: `0 0 0 ${toRem(4)} ${theme.colors[props.color!].extraLight50}`,
         outlineOffset: toRem(-2),
         backgroundColor: 'transparent',
       },

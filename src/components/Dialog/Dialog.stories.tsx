@@ -84,7 +84,7 @@ const useStyles = createStyles((theme: ITheme) => ({
     justifyContent: 'space-between',
   },
   dialogText: {
-    color: theme.text.primary,
+    color: theme.colors.text.headline,
   },
   closeIcon: {
     width: 16,

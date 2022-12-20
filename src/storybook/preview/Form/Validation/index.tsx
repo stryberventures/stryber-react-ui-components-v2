@@ -20,7 +20,7 @@ const FormValidation = () => {
         multiselect: yup.array().required().min(1),
       })}
     >
-      <h2 style={{ fontFamily: 'Inter', color: defaultTheme.primary.main }}>Form with validation</h2>
+      <h2 style={{ fontFamily: 'Inter', color: defaultTheme.colors.primary.main500 }}>Form with validation</h2>
       <Input label={'Email'} name="email" placeholder="some@mail.com"/>
       <h1> </h1>
       <InputPassword label={'Password'} name="password" placeholder="Password is required"/>
@@ -66,7 +66,7 @@ export const FormValidationCode = `<Form
     multiselect: yup.array().required().min(1),
   })}
 >
-  <h2 style={{ fontFamily: 'Inter', color: defaultTheme.primary.main }}>Form with validation</h2>
+  <h2 style={{ fontFamily: 'Inter', color: defaultTheme.colors.primary.main500 }}>Form with validation</h2>
   <Input label={'Email'} name="email" placeholder="some@mail.com"/>
   <h1> </h1>
   <InputPassword label={'Password'} name="password" placeholder="Password is required"/>

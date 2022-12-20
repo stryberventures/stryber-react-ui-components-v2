@@ -5,8 +5,8 @@ import toRem from '../../../utils/toRem';
 
 export default createStyles((theme) => ({
   checkboxMark: (props: ICheckBoxMark) => ({
-    backgroundColor: theme[props.color!].contrast,
-    border: [toRem(1), 'solid', theme[props.color!].main],
+    backgroundColor: theme.colors.contrast.white,
+    border: [toRem(1), 'solid', theme.colors[props.color!].main500],
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -14,15 +14,15 @@ export default createStyles((theme) => ({
       display: 'none',
     },
     '&:hover:not($disabled)': {
-      backgroundColor: theme[props.color!].light,
-      border: [toRem(1), 'solid', theme[props.color!].dark],
+      backgroundColor: theme.colors[props.color!].extraLight50,
+      border: [toRem(1), 'solid', theme.colors[props.color!].dark600],
     },
     '& ~ $disabled, &:hover ~ $disabled': {
-      backgroundColor: theme[props.color!].contrast,
+      backgroundColor: theme.colors.contrast.white,
       boxShadow: 'none',
     },
     '&:active:not($disabled)': {
-      outline: `${toRem(4)} solid ${theme[props.color!].light}`,
+      outline: `${toRem(4)} solid ${theme.colors[props.color!].extraLight50}`,
     },
   }),
   clickArea: {
@@ -32,21 +32,21 @@ export default createStyles((theme) => ({
   },
   disabled: (props: ICheckBoxMark) => ({
     '& svg path': {
-      fill: theme[props.color!].main,
+      fill: theme.colors[props.color!].main500,
     },
     opacity: 0.45,
     pointerEvents: 'none',
-    backgroundColor: theme.background.disabled,
+    backgroundColor: theme.colors.background.extraLightGrey,
   }),
   checked: (props: ICheckBoxMark) => ({
     '& svg': {
       display: 'block',
     },
     '&:not($disabled)': {
-      backgroundColor: theme[props.color!].main,
+      backgroundColor: theme.colors[props.color!].main500,
     },
     '&:not($disabled):hover': {
-      backgroundColor: theme[props.color!].dark,
+      backgroundColor: theme.colors[props.color!].dark600,
     },
   }),
   small: {

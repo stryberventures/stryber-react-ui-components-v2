@@ -2,7 +2,7 @@ import { createStyles } from '../../Theme'
 
 export default createStyles((theme) => ({
   clearIcon: {
-    backgroundColor: theme.default.main,
+    backgroundColor: theme.colors.neutralGray.main500,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

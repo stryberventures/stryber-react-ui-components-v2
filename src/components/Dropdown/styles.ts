@@ -17,10 +17,10 @@ export default createStyles((theme) => ({
     right: 0,
   },
   content: {
-    backgroundColor: theme.background.default,
+    backgroundColor: theme.colors.background.white,
     position: 'absolute',
     zIndex: 99,
-    border: `${toRem(1)} solid ${theme.default.main}`,
+    border: `${toRem(1)} solid ${theme.colors.neutralGray.medium300}`,
     borderRadius: toRem(4),
     top: toRem(44),
     marginTop: toRem(8),
@@ -33,7 +33,7 @@ export default createStyles((theme) => ({
     marginRight: toRem(5),
     transition: 'transform 0.3s',
     '& svg path': {
-      fill: theme.default.dark,
+      fill: theme.colors.neutralGray.main500,
     },
   },
   toggleIconOpened: {
@@ -41,7 +41,7 @@ export default createStyles((theme) => ({
   },
   toggleIconDisabled: {
     '& svg path': {
-      fill: theme.text.disabled,
+      fill: theme.colors.text.disabled,
     },
   },
   input: {
