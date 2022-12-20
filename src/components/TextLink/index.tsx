@@ -21,7 +21,8 @@ const TextLink: React.FC<ITextLink> = (props) => {
     <a
       className={classNames(
         classes.textLink,
-        textClasses.buttonLabel,
+        textClasses.components1,
+        textClasses.bold,
         className, {
           [classes.disabled]: disabled
         })}

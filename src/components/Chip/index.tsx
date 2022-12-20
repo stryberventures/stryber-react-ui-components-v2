@@ -39,7 +39,8 @@ const Chip: React.FC<IChip> = (props) => {
       {iconLeft}
       {children && (
         <Text
-          variant="labelHighlight"
+          variant="components2"
+          weight="medium"
           className={classes.chipText}
         >
           {children}

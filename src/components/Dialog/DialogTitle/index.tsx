@@ -15,7 +15,8 @@ const DialogTitle: React.FC<IDialogTitle> = (props) => {
   return typeof children == 'string'
     ? (
       <Text
-        variant="subline"
+        variant="h4"
+        weight="semiBold"
         className={classNames(classes.dialogTitle, className)}
       >
         {children}

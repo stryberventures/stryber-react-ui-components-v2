@@ -6,99 +6,68 @@ import toRem from '../../utils/toRem';
 export default createStyles((theme) => ({
   text: {
     display: 'inline-block',
+    fontFamily: theme.font,
+  },
+  [TextVariant.display1]: {
+    fontSize: toRem(72),
+    lineHeight: toRem(80),
+  },
+  [TextVariant.display2]: {
+    fontSize: toRem(60),
+    lineHeight: toRem(72),
   },
   [TextVariant.h1]: {
     padding: 0,
     margin: 0,
-    fontFamily: theme.font,
-    fontSize: toRem(64),
-    fontWeight: '700',
-    lineHeight: 1.3,
+    fontSize: toRem(48),
+    lineHeight: toRem(56),
   },
   [TextVariant.h2]: {
     padding: 0,
     margin: 0,
-    fontFamily: theme.font,
-    fontSize: toRem(56),
-    fontWeight: '700',
-    lineHeight: 1.3,
+    fontSize: toRem(38),
+    lineHeight: toRem(46),
   },
   [TextVariant.h3]: {
     padding: 0,
     margin: 0,
-    fontFamily: theme.font,
-    fontSize: toRem(48),
-    fontWeight: '700',
-    lineHeight: 1.25,
+    fontSize: toRem(32),
+    lineHeight: toRem(40),
   },
   [TextVariant.h4]: {
     padding: 0,
     margin: 0,
-    fontFamily: theme.font,
-    fontSize: toRem(32),
-    fontWeight: '700',
-    lineHeight: 1.5,
+    fontSize: toRem(28),
+    lineHeight: toRem(34),
   },
-  [TextVariant.subline]: {
-    fontFamily: theme.font,
-    fontSize: toRem(24),
-    fontWeight: '600',
-    lineHeight: 1.5,
+  [TextVariant.body1]: {
+    fontSize: toRem(18),
+    lineHeight: toRem(28),
   },
-  [TextVariant.body]: {
-    fontFamily: theme.font,
+  [TextVariant.body2]: {
     fontSize: toRem(16),
-    fontWeight: '400',
-    lineHeight: 1.5,
+    lineHeight: toRem(24),
   },
-  [TextVariant.quote]: {
-    fontFamily: theme.font,
-    fontSize: toRem(40),
-    fontWeight: '700',
-    lineHeight: 1.5,
-    fontStyle: 'italic',
+  [TextVariant.body3]: {
+    fontSize: toRem(14),
+    lineHeight: toRem(20),
   },
-  [TextVariant.description]: {
-    fontFamily: theme.font,
+  [TextVariant.caption1]: {
     fontSize: toRem(12),
-    fontWeight: '700',
-    lineHeight: 1.5,
+    lineHeight: toRem(14),
   },
-  [TextVariant.caption]: {
-    fontFamily: theme.font,
-    fontSize: toRem(12),
-    fontWeight: '400',
-    lineHeight: 1.5,
-  },
-  [TextVariant.smallText]: {
-    fontFamily: theme.font,
+  [TextVariant.caption2]: {
     fontSize: toRem(10),
-    fontWeight: '400',
-    lineHeight: 1.5,
+    lineHeight: toRem(12),
   },
-  [TextVariant.footnote]: {
-    fontFamily: theme.font,
-    fontSize: toRem(10),
-    fontWeight: '400',
-    lineHeight: 1.5,
-  },
-  [TextVariant.buttonLabel]: {
-    fontFamily: theme.font,
+  [TextVariant.components1]: {
     fontSize: toRem(16),
-    fontWeight: '700',
-    lineHeight: 1.5,
   },
-  [TextVariant.label]: {
-    fontFamily: theme.font,
+  [TextVariant.components2]: {
     fontSize: toRem(14),
-    fontWeight: '400',
-    lineHeight: 1.2,
   },
-  [TextVariant.labelHighlight]: {
-    fontFamily: theme.font,
-    fontSize: toRem(14),
-    fontWeight: '500',
-    lineHeight: 1.5,
+  [TextVariant.components3]: {
+    fontSize: toRem(10),
   },
   left: {
     textAlign: 'left',
@@ -108,5 +77,17 @@ export default createStyles((theme) => ({
   },
   right: {
     textAlign: 'right',
+  },
+  regular: {
+    fontWeight: '400',
+  },
+  medium: {
+    fontWeight: '500',
+  },
+  semiBold: {
+    fontWeight: '600',
+  },
+  bold: {
+    fontWeight: '700',
   },
 }), { internalUsage: true });
