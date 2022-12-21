@@ -17,8 +17,8 @@ export interface ITag extends React.HTMLAttributes<HTMLButtonElement> {
   iconRight?: React.ReactNode;
   testId?: string;
   className?: string;
-  onSelect?: () => any;
-  onRemove?: () => any;
+  onSelect?: () => void;
+  onRemove?: () => void;
 }
 
 const Tag: React.FC<ITag> = (props) => {
