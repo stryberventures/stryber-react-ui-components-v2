@@ -43,7 +43,7 @@ export default createStyles((theme) => ({
     },
     '&:hover': {
       '&:after': {
-        borderBottom: `2px solid ${theme.colors[props.color!].main500}`, // TODO use colors from new theme structure
+        borderBottom: `2px solid ${theme.colors[props.color!].main500}`,
       },
     },
   }),
