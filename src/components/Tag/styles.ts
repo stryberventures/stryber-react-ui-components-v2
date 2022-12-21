@@ -28,7 +28,7 @@ export default createStyles((theme) => ({
     },
     '& svg path': {
       fill: theme.colors[props.color!].medium300,
-    }
+    },
   }),
   round: {
     borderRadius: toRem(100),
@@ -79,7 +79,10 @@ export default createStyles((theme) => ({
     transition: `border-color ${transitionDelay} ${transitionAnimation}, color ${transitionDelay} ${transitionAnimation}, fill ${transitionDelay} ${transitionAnimation}`,
     '& svg path': {
       fill: theme.colors.contrast.white,
-    }
+    },
+    '&:hover, &:focus-visible': {
+      borderColor: theme.colors[props.color!].dark600,
+    },
   }),
   '&.selected, &:active': (props: ITag) => ({
     borderColor: theme.colors[props.color!].light200,
