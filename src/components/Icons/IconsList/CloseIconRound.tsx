@@ -15,6 +15,7 @@ const CloseIconRound = (props: ICloseIconRound) => {
       viewBox="0 0 20 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      data-testid="closeIconRound"
       {...rest}
     >
       <path

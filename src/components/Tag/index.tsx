@@ -15,6 +15,7 @@ export interface ITag extends React.HTMLAttributes<HTMLButtonElement> {
   disabled?: boolean;
   iconLeft?: React.ReactNode;
   iconRight?: React.ReactNode;
+  testId?: string;
   className?: string;
   onSelect?: (data?: any) => any;
   onRemove?: (data?: any) => any;
@@ -29,6 +30,7 @@ const Tag: React.FC<ITag> = (props) => {
     disabled = false,
     selected = false,
     children,
+    testId,
     className,
     onSelect,
     onRemove,
@@ -41,6 +43,7 @@ const Tag: React.FC<ITag> = (props) => {
   };
   return (
     <button
+      data-testid={testId}
       type="button"
       className={classNames(
         className,
