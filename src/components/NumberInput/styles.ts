@@ -9,7 +9,7 @@ export default createStyles((theme) => ({
   inputIcon: {
     fontFamily: theme.font,
     fontSize: toRem(14),
-    color: theme.text.hint,
+    color: theme.colors.text.tint,
     height: toRem(17),
     paddingRight: toRem(5),
     position: 'absolute',
@@ -60,11 +60,11 @@ export default createStyles((theme) => ({
     '-webkit-user-select': 'none',
     '-ms-user-select': 'none',
     '&:hover': {
-      backgroundColor: theme.default.extraLight,
+      backgroundColor: theme.colors.neutralGray.light100,
     },
     '&:active': {
       boxShadow: `0px 0px 0px ${toRem(4)}`,
-      color: theme.primary.light,
+      color: theme.colors.primary.extraLight50,
     }
   },
 }), { internalUsage: true });

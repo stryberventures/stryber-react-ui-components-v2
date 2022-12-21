@@ -63,7 +63,8 @@ const Input: React.FC<IInput> = (props) => {
         <div className={classes.inputArea}>
           {label && (
             <Text
-              variant="label"
+              variant="components2"
+              weight="regular"
               onClick={() => {inputRef.current?.focus()}}
               className={classNames(
                 classes.label,
@@ -82,10 +83,13 @@ const Input: React.FC<IInput> = (props) => {
               value={value}
               className={classNames(
                 classes.input,
-                textClasses.label, {
+                textClasses.components2,
+                textClasses.regular,
+                {
                   [classes.disabled]: disabled,
                   [classes.textDisabled]: disabled,
-                })}
+                }
+                )}
               placeholder={placeholder}
               onChange={onChange}
               onBlur={onBlur}

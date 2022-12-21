@@ -14,7 +14,8 @@ export const ErrorMessage = (props: IErrorMessage) => {
 
   return (
     <Text
-      variant="label"
+      variant="components2"
+      weight="regular"
       className={classNames(classes.errorMessage, className)}
     >
       {text}

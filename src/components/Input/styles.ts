@@ -18,29 +18,29 @@ export default createStyles((theme) => ({
     alignItems: 'center',
     padding: [toRem(4), toRem(8)],
     height: toRem(44),
-    backgroundColor: theme.background.default,
+    backgroundColor: theme.colors.background.white,
     '&:focus-within:not($inputContainerError), &:not($inputContainerError)$highlighted': {
-      border: `1px solid ${theme[props.color!].main}`,
-      boxShadow: `0 0 0 ${toRem(4)} ${theme[props.color!].light}`,
+      border: `1px solid ${theme.colors[props.color!].main500}`,
+      boxShadow: `0 0 0 ${toRem(4)} ${theme.colors[props.color!].extraLight50}`,
     },
     '&:not($inputContainerError)': {
-      border: `${toRem(1)} solid ${theme.default.main}`,
+      border: `${toRem(1)} solid ${theme.colors.neutralGray.medium300}`,
     },
     '&$withLabel': {
       alignItems: 'initial',
     },
     '&$disabled': {
-      backgroundColor: theme.background.disabled,
+      backgroundColor: theme.colors.neutralGray.extraLight50,
     }
   }),
   highlighted: {},
   inputContainerError: {
-    border: `1px solid ${theme.error.main}`,
+    border: `1px solid ${theme.colors.error.main500}`,
     '&$highlighted': {
-      boxShadow: `0 0 0 ${toRem(4)} ${theme.error.light}`,
+      boxShadow: `0 0 0 ${toRem(4)} ${theme.colors.error.extraLight50}`,
     },
     '&:focus-within': {
-      boxShadow: `0 0 0 ${toRem(4)} ${theme.error.light}`,
+      boxShadow: `0 0 0 ${toRem(4)} ${theme.colors.error.extraLight50}`,
     },
   },
   input: {
@@ -58,10 +58,10 @@ export default createStyles((theme) => ({
     height: toRem(17),
     padding: 0,
     width: '100%',
-    color: theme.text.primary,
-    backgroundColor: theme.background.default,
+    color: theme.colors.text.headline,
+    backgroundColor: theme.colors.background.white,
     '&::placeholder': {
-      color: theme.text.hint,
+      color: theme.colors.neutralGray.main500,
     }
   },
   inputArea: {
@@ -71,26 +71,26 @@ export default createStyles((theme) => ({
   },
   prefix: {
     fontSize: toRem(14),
-    color: theme.text.primary,
-    backgroundColor: theme.background.default,
+    color: theme.colors.text.headline,
+    backgroundColor: theme.colors.background.white,
     whiteSpace: 'nowrap',
   },
   disabled: {
     pointerEvents: 'none',
     userSelect: 'none',
-    backgroundColor: theme.background.disabled,
+    backgroundColor: theme.colors.neutralGray.extraLight50,
   },
   label: {
-    color: theme.text.secondary,
+    color: theme.colors.text.secondary,
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     height: toRem(17),
   },
   textDisabled: {
-    color: theme.text.disabled,
+    color: theme.colors.text.disabled,
     '&::placeholder': {
-      color: theme.text.disabled,
+      color: theme.colors.text.disabled,
     }
   },
   message: {

@@ -6,8 +6,8 @@ import toRem from '../../../utils/toRem'
 
 export default createStyles((theme: ITheme) => ({
   radioBoxMark: (props: IRadioBoxMarkProps) => ({
-    backgroundColor: theme[props.color!].contrast,
-    border: [toRem(1), 'solid', theme[props.color!].main],
+    backgroundColor: theme.colors.background.white,
+    border: [toRem(1), 'solid', theme.colors[props.color!].main500],
     borderRadius: '50%',
     display: 'flex',
     justifyContent: 'center',
@@ -16,24 +16,24 @@ export default createStyles((theme: ITheme) => ({
       display: 'none',
     },
     '&:hover:not($disabled)': {
-      backgroundColor: theme[props.color!].light,
-      border: [toRem(1), 'solid', theme[props.color!].dark],
+      backgroundColor: theme.colors[props.color!].extraLight50,
+      border: [toRem(1), 'solid', theme.colors[props.color!].dark600],
     },
     '& ~ $disabled, &:hover ~ $disabled': {
-      backgroundColor: theme[props.color!].contrast,
+      backgroundColor: theme.colors.background.white,
       boxShadow: 'none',
     },
     '&:active:not($disabled)': {
-      outline: `${toRem(4)} solid ${theme[props.color!].light}`,
+      outline: `${toRem(4)} solid ${theme.colors[props.color!].extraLight50}`,
     },
   }),
   disabled: (props: IRadioBoxMarkProps) => ({
     '& svg circle': {
-      fill: theme[props.color!].main,
+      fill: theme.colors[props.color!].main500,
     },
     opacity: 0.45,
     cursorEvents: 'none',
-    backgroundColor: theme.background.disabled,
+    backgroundColor: theme.colors.neutralGray.extraLight50,
   }),
   clickArea: {
     position: 'absolute',
@@ -45,10 +45,10 @@ export default createStyles((theme: ITheme) => ({
       display: 'block',
     },
     '&:not($disabled)': {
-      backgroundColor: theme[props.color!].main,
+      backgroundColor: theme.colors[props.color!].main500,
     },
     '&:not($disabled):hover': {
-      backgroundColor: theme[props.color!].dark,
+      backgroundColor: theme.colors[props.color!].dark600,
     },
   }),
   small: {

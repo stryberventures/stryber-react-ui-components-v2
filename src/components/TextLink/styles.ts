@@ -10,20 +10,23 @@ export default createStyles((theme) => ({
       alignItems: 'center',
       gap: toRem(8),
       cursor: 'pointer',
-      color: theme[props.color!].main,
+      color: theme.colors[props.color!].main500,
       textDecoration: 'none',
       '-webkit-tap-highlight-color': 'transparent',
       '& svg path': {
-        fill: theme[props.color!].main, // TODO use colors from new theme structure
+        fill: theme.colors[props.color!].main500,
       },
       '&:visited svg path': {
-        fill: theme[props.color!].dark, // TODO use colors from new theme structure
+        fill: theme.colors[props.color!].dark600,
       },
       '&:visited': {
-        color: theme[props.color!].dark, // TODO use colors from new theme structure
+        color: theme.colors[props.color!].dark600,
+      },
+      '&:hover': {
+        color: theme.colors[props.color!].dark600,
       },
       '&:active': {
-        color: theme[props.color!].dark, // TODO use colors from new theme structure
+        color: theme.colors[props.color!].dark600,
       },
     })
   },
@@ -40,7 +43,7 @@ export default createStyles((theme) => ({
     },
     '&:hover': {
       '&:after': {
-        borderBottom: `2px solid ${theme[props.color!].main}`, // TODO use colors from new theme structure
+        borderBottom: `2px solid ${theme.colors[props.color!].main500}`, // TODO use colors from new theme structure
       },
     },
   }),

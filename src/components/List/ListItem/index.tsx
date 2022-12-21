@@ -35,14 +35,16 @@ const ListItem: React.FC<IListItem> = (props) => {
         {leftContent && <div className={classes.leftContent}>{leftContent}</div>}
         <div>
           <Text
-            variant="labelHighlight"
+            variant="components2"
+            weight="medium"
             className={classNames(classes.title, classes.listItemText)}
           >
             {title}
           </Text>
           {subtitle && (
             <Text
-              variant="label"
+              variant="components2"
+              weight="regular"
               className={classNames(classes.subtitle, classes.listItemText)}
             >
               {subtitle}

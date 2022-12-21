@@ -20,7 +20,7 @@ const FormDisabledSubmitButton = () => {
         password: yup.string().required(),
       })}
     >
-      <h2 style={{ fontFamily: 'Inter', color: defaultTheme.primary.main }}>
+      <h2 style={{ fontFamily: 'Inter', color: defaultTheme.colors.primary.main500 }}>
         isValid from formActions
       </h2>
       <Input name="email" placeholder="Email" label="Email" />
@@ -53,7 +53,7 @@ const FormDisabledSubmitButton = () => {
         password: yup.string().required(),
       })}
     >
-      <h2 style={{ fontFamily: 'Inter', color: defaultTheme.primary.main }}>
+      <h2 style={{ fontFamily: 'Inter', color: defaultTheme.colors.primary.main500 }}>
         isValid from formActions
       </h2>
       <Input name="email" placeholder="Email" label="Email" />

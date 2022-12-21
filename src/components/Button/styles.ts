@@ -15,28 +15,28 @@ export default createStyles((theme) => ({
       cursor: 'pointer',
     },
     '&:active:not($disabled)': {
-      boxShadow: `0 0 0 ${toRem(4)} ${theme[props.color!].light}`,
+      boxShadow: `0 0 0 ${toRem(4)} ${theme.colors[props.color!].extraLight50}`,
     },
   }),
   contained: (props: IButton) => ({
-    backgroundColor: theme[props.color!].main,
-    color: theme[props.color!].contrast,
+    backgroundColor: theme.colors[props.color!].main500,
+    color: theme.colors.contrast.white,
     '& $icon path': {
-      fill: theme[props.color!].contrast,
+      fill: theme.colors.contrast.white,
     },
     '&:hover': {
-      backgroundColor: theme[props.color!].dark,
+      backgroundColor: theme.colors[props.color!].dark600,
     }
   }),
   outlined: (props: IButton) => ({
-    backgroundColor: theme[props.color!].contrast,
-    color: theme[props.color!].main,
-    border: [toRem(2), 'solid', theme[props.color!].main],
+    backgroundColor: theme.colors.contrast.white,
+    color: theme.colors[props.color!].main500,
+    border: [toRem(2), 'solid', theme.colors[props.color!].main500],
     '& $icon path': {
-      fill: theme[props.color!].main,
+      fill: theme.colors[props.color!].main500,
     },
     '&:hover': {
-      backgroundColor: theme[props.color!].light,
+      backgroundColor: theme.colors[props.color!].extraLight50,
     },
     '&$mini': {
       padding: [toRem(2.5), toRem(8)],

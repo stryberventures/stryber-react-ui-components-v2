@@ -34,7 +34,8 @@ const InputToggleLayout: React.FC<IInputToggle> = (props) => {
         <div className={classes.text}>
           {title &&
             <Text
-              variant="labelHighlight"
+              variant="components2"
+              weight="medium"
               className={classNames(
                 classes.title,
                 classes[size],
@@ -49,7 +50,8 @@ const InputToggleLayout: React.FC<IInputToggle> = (props) => {
           {label && typeof label == 'string'
             ? (
               <Text
-                variant="label"
+                variant="components2"
+                weight="regular"
                 className={classNames(
                   classes.label,
                   classes[size],
