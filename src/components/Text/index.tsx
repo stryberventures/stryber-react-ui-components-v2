@@ -60,3 +60,10 @@ const Text: React.FC<IText> = (props) => {
 };
 
 export default Text;
+
+Text.defaultProps = {
+  variant: 'body2',
+  align: 'left',
+  weight: 'regular',
+  component: 'span',
+}

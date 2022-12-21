@@ -1,13 +1,15 @@
 import { createStyles } from '../Theme';
 import { TextVariant } from './types';
 import toRem from '../../utils/toRem';
+import { IText } from './index';
 
 
 export default createStyles((theme) => ({
-  text: {
+  text: (props: IText) => ({
     display: 'inline-block',
     fontFamily: theme.font,
-  },
+    color: props.color,
+  }),
   [TextVariant.display1]: {
     fontSize: toRem(72),
     lineHeight: toRem(80),
