@@ -17,8 +17,8 @@ export interface ITag extends React.HTMLAttributes<HTMLButtonElement> {
   iconRight?: React.ReactNode;
   testId?: string;
   className?: string;
-  onSelect?: (data?: any) => any;
-  onRemove?: (data?: any) => any;
+  onSelect?: () => any;
+  onRemove?: () => any;
 }
 
 const Tag: React.FC<ITag> = (props) => {
@@ -60,9 +60,7 @@ const Tag: React.FC<ITag> = (props) => {
       {...rest}
     >
       {iconLeft}
-      <Text
-        variant={getVariant(size)}
-      >
+      <Text variant={getVariant(size)}>
         {children}
       </Text>
       {iconRight}
