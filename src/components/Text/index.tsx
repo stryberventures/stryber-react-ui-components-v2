@@ -12,7 +12,6 @@ export interface IText extends React.HTMLAttributes<HTMLElement> {
   align?: 'left' | 'center' | 'right';
   variant?: TTextVariant;
   component?: TTag,
-  color?: string;
   weight?: 'regular' | 'medium' | 'semiBold' | 'bold';
 }
 
