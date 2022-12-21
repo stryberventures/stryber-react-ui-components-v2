@@ -78,6 +78,27 @@ Disabled.args = {
   onRemove: undefined,
 };
 
+export const RemovableLarge = Template.bind({});
+RemovableLarge.args = {
+  children: 'Removable Large',
+  size: 'large',
+  onRemove: () => {},
+};
+
+export const RemovableMedium = Template.bind({});
+RemovableMedium.args = {
+  children: 'Removable Medium',
+  size: 'medium',
+  onRemove: () => {},
+};
+
+export const RemovableSmall = Template.bind({});
+RemovableSmall.args = {
+  children: 'Removable Small',
+  size: 'small',
+  onRemove: () => {},
+};
+
 const removableTags = [
   { id: 1, text: 'Tag 1', iconRight: <RightArrow /> },
   { id: 2, text: 'Tag 2', },
@@ -139,10 +160,10 @@ const RemovableTemplate: ComponentStory<typeof Tag> = (args) => {
   )
 };
 
-export const RemovableLarge = RemovableTemplate.bind({});
-RemovableLarge.args = {
-  children: 'Removable Large',
-  size: 'large',
+export const Removable = RemovableTemplate.bind({});
+Removable.args = {
+  children: 'Removable Medium',
+  size: 'medium',
   onRemove: () => {},
 };
 

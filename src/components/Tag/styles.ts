@@ -48,6 +48,9 @@ export default createStyles((theme) => ({
     gap: theme.spacing[4],
     height: toRem(16),
   },
+  text: {
+    whiteSpace: 'nowrap',
+  },
   iconWrapper: (props: ITag) => ({
     display: 'flex',
     alignItems: 'center',

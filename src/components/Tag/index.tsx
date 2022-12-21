@@ -60,7 +60,10 @@ const Tag: React.FC<ITag> = (props) => {
       {...rest}
     >
       {iconLeft}
-      <Text variant={getVariant(size)}>
+      <Text
+        variant={getVariant(size)}
+        className={classes.text}
+      >
         {children}
       </Text>
       {iconRight}
