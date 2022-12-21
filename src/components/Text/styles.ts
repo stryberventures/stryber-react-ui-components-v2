@@ -4,10 +4,10 @@ import toRem from '../../utils/toRem';
 
 
 export default createStyles((theme) => ({
-  text: () => ({
+  text: {
     display: 'inline-block',
     fontFamily: theme.font,
-  }),
+  },
   [TextVariant.display1]: {
     fontSize: toRem(72),
     lineHeight: toRem(80),
