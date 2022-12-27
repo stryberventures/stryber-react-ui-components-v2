@@ -5,7 +5,7 @@ export enum KEYS {
   enter = 'Enter',
 }
 
-export function useKeyPress (targetKey: string, callback: (data?: any) => void) {
+export function useKeyPress (targetKey: string, callback: () => void) {
   const keyDownHandler = (e: KeyboardEvent) => {
     if(e.key == targetKey) callback();
   };

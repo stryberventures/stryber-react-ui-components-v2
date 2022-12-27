@@ -4,6 +4,7 @@ import Text, { TTextVariant } from '../Text';
 import { CloseIconRound } from '../Icons';
 import useStyles from './styles';
 
+
 type TTagSize = 'small' | 'medium' | 'large';
 
 export interface ITag extends React.HTMLAttributes<HTMLButtonElement> {
@@ -37,7 +38,8 @@ const Tag: React.FC<ITag> = (props) => {
     ...rest
   } = props;
   const classes = useStyles(props);
-  const handleOnRemove = (event: any) => {
+  const handleOnSelect = () => onSelect?.();
+  const handleOnRemove = (event: React.BaseSyntheticEvent) => {
     event.stopPropagation();
     onRemove?.();
   };
@@ -56,7 +58,7 @@ const Tag: React.FC<ITag> = (props) => {
           [classes.disabled]: disabled,
         })
       }
-      onClick={onSelect}
+      onClick={handleOnSelect}
       {...rest}
     >
       {iconLeft}
