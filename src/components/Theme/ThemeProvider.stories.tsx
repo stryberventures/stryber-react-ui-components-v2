@@ -1,11 +1,11 @@
 import React from 'react';
 import classNames from 'classnames';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { createStyles, ThemeProvider } from '.';
-import { defaultTheme } from './defaultTheme';
+import { defaultTheme, ThemeColor } from './defaultTheme';
 import Text from '../Text';
 import pkg from './package.json';
-import { IThemeProvider, ThemeType } from './types';
+import { IThemeProvider } from './types';
 
 
 export default {
@@ -77,43 +77,44 @@ const contrastMapping = {
 interface IBlock {
   withSubTitle: boolean;
   label: string;
-  colors: string[];
+  colors: ThemeColor[];
 }
 
 const blocks: IBlock[] = [
   {
     withSubTitle: true,
     label: 'Brand colors',
-    colors: ['primary', 'secondary'],
+    colors: [ThemeColor.primary, ThemeColor.secondary],
   },
   {
     withSubTitle: true,
     label: 'Status Colors',
-    colors: ['error', 'success', 'warning'],
+    colors: [ThemeColor.error, ThemeColor.success, ThemeColor.warning],
   },
   {
     withSubTitle: false,
     label: 'Contrast colors',
-    colors: ['contrast'],
+    colors: [ThemeColor.contrast],
   },
   {
     withSubTitle: false,
     label: 'Neutral Gray',
-    colors: ['neutralGray'],
+    colors: [ThemeColor.neutralGray],
   },
   {
     withSubTitle: false,
     label: 'Text',
-    colors: ['text'],
+    colors: [ThemeColor.text],
   },
   {
     withSubTitle: false,
     label: 'Surface and background',
-    colors: ['background'],
+    colors: [ThemeColor.background],
   },
 ];
 
-const Template: ComponentStory<typeof ThemeProvider> = ({ theme, ...args }: IThemeProvider) => {
+
+const Template: ComponentStory<typeof ThemeProvider> = ({ theme = defaultTheme, ...args }: IThemeProvider) => {
   const classes = useStyles();
   return (
     <ThemeProvider theme={theme} {...args}>
@@ -121,8 +122,10 @@ const Template: ComponentStory<typeof ThemeProvider> = ({ theme, ...args }: IThe
         return (
           <div key={label} className={classes.block}>
             <Text variant="h4" className={classes.title}>{label}</Text>
-            {colors.map((color: string) => {
-              const themeColors: ThemeType['colors'] = theme.colors;
+            {colors.map((color: ThemeColor) => {
+              const themeColors = theme.colors;
+              {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+              {/* @ts-ignore */}
               const themeColorsNames = Object.keys(themeColors[color]);
               return (
                 <div
@@ -130,10 +133,10 @@ const Template: ComponentStory<typeof ThemeProvider> = ({ theme, ...args }: IThe
                   className={classes.row}
                 >
                   {withSubTitle && <Text className={classes.subTitle} variant="body1">{color}</Text>}
-                  {themeColorsNames.map((colorName: string) => {
-                    const bgColor = themeColors?.[color][colorName];
-                    console.log('color, colorName ==>>', color, colorName);
-                    console.log('contrastMapping?.[color]?.[colorName] ==>>', contrastMapping?.[color]?.[colorName]);
+                  {themeColorsNames.map((colorName) => {
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore
+                    const bgColor = themeColors[color][colorName];
                     return (
                       <div
                         key={colorName}
@@ -147,14 +150,20 @@ const Template: ComponentStory<typeof ThemeProvider> = ({ theme, ...args }: IThe
                               [classes.withBorder]: (color == 'contrast') || (color == 'background' && colorName == 'white')
                             })}
                         >
+                          {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+                          {/* @ts-ignore */}
                           {contrastMapping?.[color]?.[colorName] == 'both' ? (
                             <>
+                              {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+                              {/* @ts-ignore */}
                               <Text style={{ color: theme.colors.contrast.white }}>AAA/</Text><Text style={{ color: theme.colors.contrast.black }}>AAA</Text>
                             </>
                           ) : (
                             <Text
                               component="p"
                               className={classes.cardText}
+                              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                              // @ts-ignore
                               style={{ color: contrastMapping?.[color]?.[colorName] ? theme?.colors?.contrast?.black : theme?.colors?.contrast?.white }}
                             >
                               AAA
