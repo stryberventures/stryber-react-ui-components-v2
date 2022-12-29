@@ -69,6 +69,12 @@ export default createStyles((theme) => ({
   [TextVariant.components3]: {
     fontSize: toRem(10),
   },
+  [TextVariant.buttonLabelMini]: {
+    fontSize: toRem(10),
+  },
+  [TextVariant.buttonLabelLarge]: {
+    fontSize: toRem(16),
+  },
   left: {
     textAlign: 'left',
   },

@@ -11,20 +11,41 @@ export default {
   parameters: {
     pkg,
   },
+  args: {
+    color: 'primary',
+    size: 'medium',
+    shape: 'round',
+    variant: 'contained',
+    disabled: false,
+    fullWidth: false,
+    onClick: (e) => console.log('!!!!!',e),
+  },
   argTypes: buildExcludeArgTypes(['iconLeft', 'iconRight', 'className']),
 } as ComponentMeta<typeof Button>;
 
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
+export const Default = Template.bind({});
+Default.args = {
+  children: 'Default',
+};
+
 export const Contained = Template.bind({});
 Contained.args = {
   children: 'Contained',
+  variant: 'contained',
 };
 
 export const Outlined = Template.bind({});
 Outlined.args = {
   children: 'Outlined',
   variant: 'outlined',
+};
+
+export const Ghost = Template.bind({});
+Ghost.args = {
+  children: 'Ghost',
+  variant: 'ghost',
 };
 
 export const Mini = Template.bind({});
@@ -38,21 +59,21 @@ export const Small = Template.bind({});
 Small.args = {
   size: 'small',
   children: 'Small',
-  shape: 'flat',
+  shape: 'square',
 };
 
 export const Medium = Template.bind({});
 Medium.args = {
   size: 'medium',
   children: 'Medium',
-  shape: 'flat',
+  shape: 'square',
 };
 
 export const Large = Template.bind({});
 Large.args = {
   size: 'large',
   children: 'Large',
-  shape: 'flat',
+  shape: 'square',
 };
 
 export const Round = Template.bind({});
@@ -73,6 +94,13 @@ export const Disabled = Template.bind({});
 Disabled.args = {
   children: 'Disabled',
   disabled: true,
+};
+
+export const Icon = Template.bind({});
+Icon.args = {
+  icon: Placeholder,
+  shape: 'circle',
+  size: 'mini',
 };
 
 export const LeftIcon = Template.bind({});
