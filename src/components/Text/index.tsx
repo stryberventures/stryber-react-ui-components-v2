@@ -8,7 +8,6 @@ type TTextVariant = keyof typeof TextVariant;
 
 export interface IText extends React.HTMLAttributes<HTMLElement> {
   className?: string,
-  children: string,
   align?: 'left' | 'center' | 'right';
   variant?: TTextVariant;
   component?: TTag,
