@@ -4,7 +4,7 @@ import toRem from '../../../utils/toRem';
 
 
 export default createStyles((theme) => ({
-  switchIcon: (props: ISwitchIcon) => ({
+  switchIcon: {
     width: toRem(44),
     height: toRem(24),
     position: 'relative',
@@ -19,7 +19,7 @@ export default createStyles((theme) => ({
     '& $circleHighlight': {
       backgroundColor: theme.colors.background.white,
     }
-  }),
+  },
   disabled: {
     opacity: 0.45,
   },
@@ -48,13 +48,13 @@ export default createStyles((theme) => ({
     animationName: '$slideRight',
     transform: `translateX(${toRem(20)})`,
   },
-  circle: (props: ISwitchIcon) => ({
+  circle: {
     position: 'relative',
     height: toRem(20),
     width: toRem(20),
     backgroundColor: theme.colors.background.white,
     borderRadius: '50%',
-  }),
+  },
   circleHighlight: {
     content: '""',
     position: 'absolute',

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import useStyles from './styles';
 import Input, { IInput } from '../Input'
 import classNames from 'classnames';
-import { CountIcon } from '../Icons';
+import { CountIcon, VerticalLineDeprecated } from '../Icons';
 import { useFormContext } from '../Form';
 
 export interface INumberInput extends Omit<IInput, 'value' | 'onChange'> {
@@ -75,7 +75,7 @@ const NumberInput: React.FC<INumberInput> = (props) => {
           quantityCounter && (
             <div data-testid="testContainer" className={classes.btnsContainer}>
               <div data-testid="testMinus" className={classes.counterBtn} onClick={ handleDecrease }><CountIcon variant="minus" /></div>
-              <div className={classes.separatorLine}><VerticalLine/></div>
+              <div className={classes.separatorLine}><VerticalLineDeprecated /></div>
               <div data-testid="testPlus" className={classes.counterBtn} onClick={ handleIncrease }><CountIcon variant="plus"/></div>
             </div>
           )

@@ -5,7 +5,7 @@ export interface ICheckBoxIcon extends React.SVGProps<SVGSVGElement> {
   fill?: string,
 }
 
-const CheckBoxIcon = (props: ICheckBoxIcon) => {
+const CheckBoxIconDeprecated = (props: ICheckBoxIcon) => {
   const { fill, ...rest } = props;
   return (
     <svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" {...rest}>
@@ -16,9 +16,9 @@ const CheckBoxIcon = (props: ICheckBoxIcon) => {
   );
 }
 
-CheckBoxIcon.defaultProps = {
+CheckBoxIconDeprecated.defaultProps = {
   fill: 'white',
   width: toRem(14),
   height: toRem(14),
 }
-export default CheckBoxIcon;
+export default CheckBoxIconDeprecated;

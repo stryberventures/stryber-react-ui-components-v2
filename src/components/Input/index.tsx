@@ -89,7 +89,7 @@ const Input: React.FC<IInput> = (props) => {
                   [classes.disabled]: disabled,
                   [classes.textDisabled]: disabled,
                 }
-                )}
+              )}
               placeholder={placeholder}
               onChange={onChange}
               onBlur={onBlur}

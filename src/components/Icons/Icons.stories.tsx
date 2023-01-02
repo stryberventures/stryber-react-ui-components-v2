@@ -4,8 +4,8 @@ import * as Icons from './index';
 import pkg from './package.json';
 import { createStyles } from '../Theme';
 import Text from '../Text';
-import { paymentMethodVariants as paymentMethodVariantsArr } from './new/PaymentMethodIcon';
-import { socialVariants as socialVariantsArr } from './new/SocialIcon';
+import { paymentMethodVariants as paymentMethodVariantsArr } from './IconsList/PaymentMethodIcon';
+import { socialVariants as socialVariantsArr } from './IconsList/SocialIcon';
 import toRem from '../../utils/toRem';
 
 
@@ -69,7 +69,7 @@ export const AllIcons = () => {
     for (const name in Icons) {
       iconsArr.push({ name: [name as keyof typeof Icons], Icon: Icons[name as keyof typeof Icons] });
     }
-    return iconsArr;
+    return iconsArr.filter(({ name }) => !name[0].includes('Deprecated'));
   };
   return (
     <>
@@ -85,7 +85,6 @@ export const AllIcons = () => {
               className={classNames(
                 classes.iconWrapper,
                 {
-                  [classes.columnSpan3]: (iconName as keyof typeof Icons) == 'PaymentMethodIcon' || (iconName as keyof typeof Icons) == 'SocialIcon',
                   [classes.payment]: (iconName as keyof typeof Icons) == 'PaymentMethodIcon',
                   [classes.social]: (iconName as keyof typeof Icons) == 'SocialIcon',
                 }
@@ -102,7 +101,7 @@ export const AllIcons = () => {
                   [classes.socialVariantsWrapper]: (iconName as keyof typeof Icons) == 'SocialIcon',
                 })}>
                 {displayIcon(iconName as keyof typeof Icons, Icon)?.map(
-                  ({ variant, Icon: IconVariant}, idx) => {
+                  ({ variant, Icon: IconVariant }, idx) => {
                     if ((iconName as keyof typeof Icons) == 'SocialIcon') {
                       return (
                         <div
@@ -170,14 +169,13 @@ function useStyles () {
       padding: 20,
       gap: toRem(12),
     },
-    columnSpan3: {
-      gridColumn: 'span 3',
-    },
     payment: {
-      gridRow: '9 / span 2',
+      gridRow: '9 / span 1',
+      gridColumn: 'span 1',
     },
     social: {
-      gridRow: '11 / span 4',
+      gridRow: '9 / span 1',
+      gridColumn: 'span 2',
     },
     iconVariantsWrapper: {
       display: 'flex',
@@ -187,7 +185,7 @@ function useStyles () {
     },
     paymentVariantsWrapper: {
       display: 'grid',
-      gridTemplateColumns: 'repeat(3, 1fr)',
+      gridTemplateColumns: 'repeat(2, 1fr)',
     },
     socialVariantsWrapper: {
       display: 'grid',

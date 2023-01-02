@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import useStyles from './styles';
-import { CheckBoxIcon } from '../../Icons';
+import { CheckBoxIconDeprecated } from '../../Icons';
 
 export interface ICheckBoxMark {
   checked?: boolean;
@@ -26,7 +26,7 @@ export const CheckBoxMark = (props: ICheckBoxMark) => {
         { [classes.disabled]: disabled },
         { [classes.checked]: checked },
       )}>
-      <CheckBoxIcon/>
+      <CheckBoxIconDeprecated />
       <div className={classes.clickArea}/>
     </span>
   );
