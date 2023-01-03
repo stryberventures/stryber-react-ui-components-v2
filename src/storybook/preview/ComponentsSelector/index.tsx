@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import useStyles from './styles'
-import CheckBox from '../components/CheckBox';
-import CodeBox from '../storybook/addons/NpmInstall/CodeBox';
+import CheckBox from '../../../components/CheckBox';
+import CodeBox from '../../addons/NpmInstall/CodeBox';
 
 const ComponentsSelector = () => {
   const classes = useStyles();
 
-  const context = require.context('../components', true, /package.json$/);
+  const context = require.context('../../../components', true, /package.json$/);
   const components: string[] = [];
 
   context.keys().forEach((key: string) => {
@@ -44,7 +44,7 @@ const ComponentsSelector = () => {
     });
   }
   useEffect(() => setInstallData(removeDuplicates(allData)), [allData]);
-  const jsonFile = async (name: string) => await import(`../components/${name}/package.json`);
+  const jsonFile = async (name: string) => await import(`../../../components/${name}/package.json`);
 
   return (
     <div className={classes.selectorContainer}>
