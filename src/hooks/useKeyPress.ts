@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 
 export enum KEYS {
   esc = 'Escape',
+  enter = 'Enter',
 }
 
 export function useKeyPress (targetKey: string, callback: () => void) {

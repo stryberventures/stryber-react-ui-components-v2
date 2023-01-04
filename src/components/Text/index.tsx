@@ -4,7 +4,7 @@ import { TextVariant } from './types';
 import useStyles from './styles';
 
 
-type TTextVariant = keyof typeof TextVariant;
+export type TTextVariant = keyof typeof TextVariant;
 
 export interface IText extends React.HTMLAttributes<HTMLElement> {
   className?: string,

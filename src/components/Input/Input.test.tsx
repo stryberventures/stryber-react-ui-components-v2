@@ -49,7 +49,7 @@ it('should display the hint', () => {
 
 it('should render the adornment', () => {
   render(<Input label="Input" endAdornment={<LeftArrow />} />);
-  const icon = screen.getByTestId('test-svg');
+  const icon = screen.getByTestId('leftArrow');
   expect(icon).toBeVisible();
 });
 
