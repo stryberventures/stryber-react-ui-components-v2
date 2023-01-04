@@ -19,6 +19,7 @@ export { default as DocumentIcon } from './IconsList/DocumentIcon';
 export { default as DeleteIcon } from './IconsList/DeleteIcon';
 export { default as ContentCopyIcon } from './IconsList/ContentCopyIcon';
 export { default as MoreIcon } from './IconsList/MoreIcon';
+export { default as CursorIcon } from './IconsList/CursorIcon';
 export { default as SearchIcon } from './IconsList/SearchIcon';
 export { default as FilesIcon } from './IconsList/FilesIcon';
 export { default as PaymentMethodIcon } from './IconsList/PaymentMethodIcon';
@@ -26,9 +27,3 @@ export { default as SocialIcon } from './IconsList/SocialIcon';
 export { default as CheckBoxIconDeprecated } from './IconsList/VerticalLineDeprecated';
 export { default as RadioBoxIconDeprecated } from './IconsList/VerticalLineDeprecated';
 export { default as VerticalLineDeprecated } from './IconsList/VerticalLineDeprecated';
-// export { default as ArrowDownIcon } from './IconsList/ArrowDownIcon';
-// export { default as CloseIcon } from './IconsList/CloseIcon';
-// export { default as EyeSlash } from './IconsList/EyeSlash';
-// export { default as Minus } from './IconsList/Minus';
-// export { default as Plus } from './IconsList/Plus';
-

@@ -2,11 +2,15 @@ import React from 'react';
 import classNames from 'classnames';
 import * as Icons from './index';
 import pkg from './package.json';
-import { createStyles } from '../Theme';
+import { createStyles, useTheme } from '../Theme';
 import Text from '../Text';
 import { paymentMethodVariants as paymentMethodVariantsArr } from './IconsList/PaymentMethodIcon';
 import { socialVariants as socialVariantsArr } from './IconsList/SocialIcon';
 import toRem from '../../utils/toRem';
+import { IArrowIconVariant, TCursorVariants, TMoreVariants, TSingleVariants } from './types';
+import { IEyeIconVariant } from './IconsList/EyeIcon';
+import { TCountIconVariants } from './IconsList/CountIcon';
+import { TLoadIconVariants } from './IconsList/LoadIcon';
 
 
 export default {
@@ -16,15 +20,16 @@ export default {
   },
 };
 
-const arrowVariants = ['down', 'up', 'left', 'right'];
-const eyeVariants = ['open', 'closed'];
-const countVariants = ['minus', 'plus'];
-const loadVariants = ['download', 'upload'];
-const moreVariants = ['vertical', 'horizontal'];
-const singleVariants = ['default'];
+const arrowVariants: IArrowIconVariant[] = ['down', 'up', 'left', 'right'];
+const eyeVariants: IEyeIconVariant[] = ['open', 'closed'];
+const countVariants: TCountIconVariants[] = ['minus', 'plus'];
+const loadVariants: TLoadIconVariants[] = ['download', 'upload'];
+const moreVariants: TMoreVariants[] = ['vertical', 'horizontal'];
+const singleVariants: TSingleVariants[] = ['default'];
 const paymentMethodVariants = Object.keys(paymentMethodVariantsArr);
 const socialVariants = Object.keys(socialVariantsArr(''));
 const commonVariants = ['default', 'filled'];
+const cursorVariants: TCursorVariants[] = ['arrow', 'drag', 'hover'];
 
 const mapIconVariants = (Icon: React.FC<any>) => (variant: string) => ({
   variant,
@@ -41,6 +46,8 @@ const displayIcon = (name: keyof typeof Icons, Icon: React.FC<any>) => {
   if (name == 'SocialIcon') {
     return socialVariants.map(mapIconVariants(Icon));
   }
+  
+  // TODO return svg components instead of strings from all the files
   if (name === 'EyeIcon') {
     return eyeVariants.map(mapIconVariants(Icon));
   }
@@ -56,6 +63,9 @@ const displayIcon = (name: keyof typeof Icons, Icon: React.FC<any>) => {
   if (name === 'CloseIcon') {
     return singleVariants.map(mapIconVariants(Icon));
   }
+  if (name === 'CursorIcon') {
+    return cursorVariants.map(mapIconVariants(Icon));
+  }
   if (name === 'SearchIcon') {
     return singleVariants.map(mapIconVariants(Icon));
   }
@@ -64,6 +74,7 @@ const displayIcon = (name: keyof typeof Icons, Icon: React.FC<any>) => {
 
 export const AllIcons = () => {
   const classes = useStyles();
+  const { theme } = useTheme();
   const getIconsArr = () => {
     const iconsArr = [];
     for (const name in Icons) {
@@ -122,7 +133,7 @@ export const AllIcons = () => {
                               <Text variant="body3" weight="semiBold">type</Text>
                               <Text variant="body3"> plain)</Text>
                             </div>
-                            <IconVariant variant={variant} type="plain" />
+                            <IconVariant type="plain" />
                           </div>
                         </div>
                       );
@@ -133,7 +144,13 @@ export const AllIcons = () => {
                         className={classes.iconVariant}
                       >
                         <Text variant="body3">{variant}</Text>
-                        <IconVariant variant={variant} />
+                        <IconVariant
+                          variant={variant}
+                          fill={(iconName as keyof typeof Icons) == 'PaymentMethodIcon' ? 'none' : theme.colors.primary.medium300}
+                          className={classNames({
+                            [classes.icon]: (iconName as keyof typeof Icons) != 'PaymentMethodIcon',
+                          })}
+                        />
                       </div>
                     );
                   },
@@ -148,7 +165,7 @@ export const AllIcons = () => {
 }
 
 function useStyles () {
-  return createStyles(() => ({
+  return createStyles((theme) => ({
     title: {
       marginBottom: toRem(24),
     },
@@ -190,7 +207,7 @@ function useStyles () {
     socialVariantsWrapper: {
       display: 'grid',
       gridTemplateColumns: 'repeat(2, 1fr)',
-      gap: `${toRem(12)} ${toRem(60)}`,
+      gap: `${toRem(12)} ${toRem(32)}`,
       width: '100%',
     },
     twoColumnsGrid: {
@@ -212,6 +229,19 @@ function useStyles () {
       '&:not(:last-child)': {
         marginRight: toRem(12),
       },
+    },
+    icon: {
+      width: 20,
+      height: 20,
+      cursor: 'pointer',
+      transition: 'fill .3s',
+      '& path': {
+        fill: theme.colors.primary.medium400,
+        transition: 'fill .3s',
+      },
+      '&:hover path': {
+        fill: theme.colors.primary.dark600
+      }
     },
     textWrapper: {
       display: 'inline-flex',

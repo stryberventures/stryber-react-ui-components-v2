@@ -41,9 +41,7 @@ export const createCommonIcon = <Variants extends string>(
     const { theme } = useTheme();
     const fillColor = fill || theme.colors.text.headline;
     return (
-      <svg {...rest}>
-        {createPathDComponent(parseSvgPathD(iconVariants[variant]), fillColor)}
-      </svg>
+      <svg />
     );
   };
   CommonIcon.displayName = name;
