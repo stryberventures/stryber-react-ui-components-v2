@@ -28,9 +28,21 @@ export const defaultMargins = {
   xxl: toRem(150),
 };
 
+export enum ThemeColor {
+  primary = 'primary',
+  secondary = 'secondary',
+  error = 'error',
+  success = 'success',
+  warning = 'warning',
+  contrast = 'contrast',
+  neutralGray = 'neutralGray',
+  text = 'text',
+  background = 'background',
+}
+
 export const defaultTheme: ITheme = {
   colors: {
-    primary: {
+    [ThemeColor.primary]: {
       dark600: '#001D9A',
       main500: '#003CB8',
       medium400: '#034ECF',
@@ -39,7 +51,7 @@ export const defaultTheme: ITheme = {
       light100: '#C2C9F1',
       extraLight50: '#E7EAF9',
     },
-    secondary: {
+    [ThemeColor.secondary]: {
       dark600: '#3D2181',
       main500: '#58329A',
       medium400: '#6C3FA9',
@@ -48,7 +60,7 @@ export const defaultTheme: ITheme = {
       light100: '#D2C5E5',
       extraLight50: '#EDE7F4',
     },
-    error: {
+    [ThemeColor.error]: {
       dark600: '#BF2600',
       main500: '#DE350B',
       medium400: '#FF4130',
@@ -57,7 +69,7 @@ export const defaultTheme: ITheme = {
       light100: '#FFBDAD',
       extraLight50: '#FFEBE6',
     },
-    success: {
+    [ThemeColor.success]: {
       dark600: '#006644',
       main500: '#00875A',
       medium400: '#36A176',
@@ -66,7 +78,7 @@ export const defaultTheme: ITheme = {
       light100: '#ABF5D1',
       extraLight50: '#E3FCEF',
     },
-    warning: {
+    [ThemeColor.warning]: {
       dark600: '#EC7603',
       main500: '#FF991F',
       medium400: '#FFAB00',
@@ -75,11 +87,11 @@ export const defaultTheme: ITheme = {
       light100: '#FFF0B3',
       extraLight50: '#FFFAE6',
     },
-    contrast: {
+    [ThemeColor.contrast]: {
       white: '#FFFFFF',
       black: '#000000',
     },
-    neutralGray: {
+    [ThemeColor.neutralGray]: {
       extraDark900: '#101828',
       extraDark800: '#1D2939',
       dark700: '#344054',
@@ -91,13 +103,13 @@ export const defaultTheme: ITheme = {
       light100: '#F2F4F7',
       extraLight50: '#F9FAFB',
     },
-    text: {
+    [ThemeColor.text]: {
       headline: '#101828',
       secondary: '#475467',
       disabled: '#D2D2D2',
       tint: '#98A2B3',
     },
-    background: {
+    [ThemeColor.background]: {
       white: '#FFFFFF',
       extraLightGrey: '#F9FAFB',
     },

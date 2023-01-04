@@ -18,12 +18,12 @@ it('should contain a link', () => {
 
 it('should contain left icon', () => {
   render(<TextLink href={link} iconLeft={<LeftArrow />}>Text link</TextLink>);
-  const icon = screen.getByTestId('test-svg');
+  const icon = screen.getByTestId('leftArrow');
   expect(icon).toBeVisible();
 });
 
 it('should contain right icon', () => {
   render(<TextLink href={link} iconRight={<LeftArrow />}>Text link</TextLink>);
-  const icon = screen.getByTestId('test-svg');
+  const icon = screen.getByTestId('leftArrow');
   expect(icon).toBeVisible();
 });
