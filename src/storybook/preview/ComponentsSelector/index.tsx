@@ -5,19 +5,20 @@ import CodeBox from '../../addons/NpmInstall/CodeBox';
 
 const ComponentsSelector = () => {
   const classes = useStyles();
+  const [allData, setAllData] = useState<string[]>([]);
+  const [installData, setInstallData] = useState<string[]>([]);
+  const components: string[] = [];
 
   const context = require.context('../../../components', true, /package.json$/);
-  const components: string[] = [];
 
   context.keys().forEach((key: string) => {
     const fileLink = key.replace('./', '');
     const name = fileLink.substring(0, fileLink.indexOf('/'));
     components.push(name);
   });
-  const componentsFiltered = components.filter((item, index) => components.indexOf(item) === index);
-  const [allData, setAllData] = useState<string[]>([]);
-  const [installData, setInstallData] = useState<string[]>([]);
+
   const removeDuplicates = (arr: string[]) => arr.filter((item, index) => arr.indexOf(item) == index);
+  const componentsFiltered = removeDuplicates(components);
 
   const handleChange = (e: React.BaseSyntheticEvent) => {
     jsonFile(e.target.name).then(r => {
