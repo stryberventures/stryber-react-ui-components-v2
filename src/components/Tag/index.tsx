@@ -71,6 +71,7 @@ const Tag: React.FC<ITag> = (props) => {
       {iconRight}
       {onRemove && (
         <CloseCircleIcon
+          data-testid="closeIconRound"
           className={classNames(classes.icon, classes[`${size}Icon`])}
           onClick={handleOnRemove}
         />
