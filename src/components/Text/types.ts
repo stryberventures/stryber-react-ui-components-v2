@@ -13,4 +13,6 @@ export enum TextVariant {
   components1 = 'components1',
   components2 = 'components2',
   components3 = 'components3',
+  buttonLabelMini = 'buttonLabelMini',
+  buttonLabelLarge = 'buttonLabelLarge',
 }
