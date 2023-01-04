@@ -90,7 +90,7 @@ export default createStyles((theme) => ({
     lineHeight: toRem(15),
   }),
   small: (props: IButton) => ({
-    padding: `${toRem(props.icon ? 10 : 10)} ${toRem(props.icon ? 10 : 18)}`,
+    padding: `${toRem(10)} ${toRem(props.icon ? 10 : 18)}`,
     gap: toRem(10),
   }),
   medium: (props: IButton) => ({

@@ -18,9 +18,8 @@ export default {
     variant: 'contained',
     disabled: false,
     fullWidth: false,
-    onClick: (e) => console.log('!!!!!',e),
   },
-  argTypes: buildExcludeArgTypes(['iconLeft', 'iconRight', 'className']),
+  argTypes: buildExcludeArgTypes(['icon', 'iconLeft', 'iconRight', 'className']),
 } as ComponentMeta<typeof Button>;
 
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
