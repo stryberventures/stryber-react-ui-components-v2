@@ -3,77 +3,105 @@ import { createStyles } from '../Theme';
 import toRem from '../../utils/toRem';
 
 export default createStyles((theme) => ({
-  button: (props: IButton) => ({
+  button: {
+    fontFamily: theme.font,
     userSelect: 'none',
     outline: 'none',
-    border: 'none',
+    border: '1.5px solid transparent',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    transition: 'background-color .3s ease-out, border-color .3s ease-out',
     '-webkit-tap-highlight-color': 'transparent',
     '&:hover': {
       cursor: 'pointer',
     },
-    '&:active:not($disabled)': {
-      boxShadow: `0 0 0 ${toRem(4)} ${theme.colors[props.color!].extraLight50}`,
-    },
-  }),
+  },
   contained: (props: IButton) => ({
     backgroundColor: theme.colors[props.color!].main500,
+    borderColor: theme.colors[props.color!].main500,
     color: theme.colors.contrast.white,
     '& $icon path': {
       fill: theme.colors.contrast.white,
     },
-    '&:hover': {
-      backgroundColor: theme.colors[props.color!].dark600,
+    '&:hover:not($disabled), &:focus:not($disabled)': {
+      backgroundColor: theme.colors[props.color!].medium400,
+      borderColor: theme.colors[props.color!].medium400,
+    },
+    '&:active:not($disabled)': {
+      backgroundColor: theme.colors[props.color!].medium300,
+      borderColor: theme.colors[props.color!].medium300,
+    },
+    '&$disabled': {
+      backgroundColor: theme.colors.neutralGray.light200,
+      borderColor: theme.colors.neutralGray.light200,
     }
   }),
   outlined: (props: IButton) => ({
     backgroundColor: theme.colors.contrast.white,
     color: theme.colors[props.color!].main500,
-    border: [toRem(2), 'solid', theme.colors[props.color!].main500],
+    border: [toRem(1.5), 'solid', theme.colors[props.color!].main500],
     '& $icon path': {
       fill: theme.colors[props.color!].main500,
     },
-    '&:hover': {
+    '&:hover:not($disabled), &:focus:not($disabled)': {
       backgroundColor: theme.colors[props.color!].extraLight50,
     },
-    '&$mini': {
-      padding: [toRem(2.5), toRem(8)],
+    '&:active:not($disabled)': {
+      backgroundColor: theme.colors[props.color!].light100,
     },
-    '&$small': {
-      padding: [toRem(6), toRem(16)],
+    '&$disabled': {
+      color: theme.colors.neutralGray.medium300,
+      borderColor: theme.colors.neutralGray.medium300,
+      '& $icon path': {
+        fill: theme.colors.neutralGray.medium300,
+      },
     },
-    '&$medium': {
-      padding: [toRem(14), toRem(24)],
+  }),
+  ghost: (props: IButton) => ({
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
+    color: theme.colors[props.color!].main500,
+    '& $icon path': {
+      fill: theme.colors[props.color!].main500,
     },
-    '&$large': {
-      padding: [toRem(22), toRem(32)],
+    '&:hover:not($disabled), &:focus:not($disabled)': {
+      backgroundColor: theme.colors[props.color!].extraLight50,
+      borderColor: theme.colors[props.color!].extraLight50,
+    },
+    '&:active:not($disabled)': {
+      backgroundColor: theme.colors[props.color!].light100,
+      borderColor: theme.colors[props.color!].light100,
+    },
+    '&$disabled': {
+      color: theme.colors.neutralGray.medium300,
+      '& $icon path': {
+        fill: theme.colors.neutralGray.medium300,
+      },
     },
   }),
   disabled: {
-    opacity: 0.3,
     pointerEvents: 'none',
   },
-  mini: {
+  mini: (props: IButton) => ({
     gap: toRem(8),
-    padding: `${toRem(4.5)} ${toRem(8)}`,
+    padding: `${toRem(props.icon ? 6 : 4.5)} ${toRem(props.icon ? 6 : 8)}`,
     fontSize: toRem(10),
     lineHeight: toRem(15),
-  },
-  small: {
-    padding: `${toRem(8)} ${toRem(16)}`,
+  }),
+  small: (props: IButton) => ({
+    padding: `${toRem(10)} ${toRem(props.icon ? 10 : 18)}`,
     gap: toRem(10),
-  },
-  medium: {
-    padding: `${toRem(16)} ${toRem(24)}`,
+  }),
+  medium: (props: IButton) => ({
+    padding: `${toRem(props.icon ? 10 : 18)} ${toRem(props.icon ? 10 : 18)}`,
     gap: toRem(10),
-  },
-  large: {
-    padding: `${toRem(24)} ${toRem(32)}`,
+  }),
+  large: (props: IButton) => ({
+    padding: `${toRem(props.icon ? 10 : 26)} ${toRem(props.icon ? 10 : 34)}`,
     gap: toRem(14),
-  },
-  flat: {},
+  }),
+  square: {},
   round: {
     borderRadius: toRem(4),
   },
@@ -82,11 +110,11 @@ export default createStyles((theme) => ({
   },
   icon: {
     '$mini &': {
-      width: toRem(14),
+      width: 'auto',
       height: toRem(14),
     },
     '$small &, $medium &, $large &': {
-      width: toRem(20),
+      width: 'auto',
       height: toRem(20),
     },
   },
