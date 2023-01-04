@@ -24,6 +24,5 @@ export { default as SearchIcon } from './IconsList/SearchIcon';
 export { default as FilesIcon } from './IconsList/FilesIcon';
 export { default as PaymentMethodIcon } from './IconsList/PaymentMethodIcon';
 export { default as SocialIcon } from './IconsList/SocialIcon';
-export { default as CheckBoxIconDeprecated } from './IconsList/VerticalLineDeprecated';
-export { default as RadioBoxIconDeprecated } from './IconsList/VerticalLineDeprecated';
+export { default as RadioBoxIconDeprecated } from './IconsList/RadioIconDeprecated';
 export { default as VerticalLineDeprecated } from './IconsList/VerticalLineDeprecated';
