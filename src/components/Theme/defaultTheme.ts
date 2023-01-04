@@ -106,7 +106,7 @@ export const defaultTheme: ITheme = {
     [ThemeColor.text]: {
       headline: '#101828',
       secondary: '#475467',
-      disabled: '#D2D2D2',
+      disabled: '#D0D5DD',
       tint: '#98A2B3',
     },
     [ThemeColor.background]: {
