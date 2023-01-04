@@ -33,7 +33,7 @@ const iconVariants = {
 export type TLoadIconVariants = 'download' | 'upload';
 
 interface ILoadIcon extends React.SVGProps<SVGSVGElement> {
-  variant: TLoadIconVariants,
+  variant?: TLoadIconVariants,
 }
 
 export default function LoadIcon ({

@@ -36,7 +36,7 @@ const iconVariants = {
 };
 
 interface IMoreIcon extends React.SVGProps<SVGSVGElement> {
-  variant: TMoreVariants,
+  variant?: TMoreVariants,
 }
 
 export default function MoreIcon ({

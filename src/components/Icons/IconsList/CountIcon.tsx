@@ -37,7 +37,7 @@ const iconVariants = {
 export type TCountIconVariants = 'minus' | 'plus';
 
 interface ICountIcon extends React.SVGProps<SVGSVGElement> {
-  variant: TCountIconVariants,
+  variant?: TCountIconVariants,
 }
 
 export default function CountIcon ({

@@ -19,7 +19,7 @@ const iconVariants = {
 
 
 interface ICloseIcon extends React.SVGProps<SVGSVGElement> {
-  variant: TSingleVariants,
+  variant?: TSingleVariants,
 }
 
 export default function CloseIcon ({

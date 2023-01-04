@@ -110,7 +110,7 @@ const iconVariants = {
 };
 
 interface ICursorIcon extends React.SVGProps<SVGSVGElement> {
-  variant: TCursorVariants,
+  variant?: TCursorVariants,
 }
 
 export default function CursorIcon ({

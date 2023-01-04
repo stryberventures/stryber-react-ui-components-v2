@@ -4,8 +4,11 @@ import * as Icons from './index';
 import pkg from './package.json';
 import { createStyles, useTheme } from '../Theme';
 import Text from '../Text';
-import { paymentMethodVariants as paymentMethodVariantsArr } from './IconsList/PaymentMethodIcon';
-import { socialVariants as socialVariantsArr } from './IconsList/SocialIcon';
+import {
+  paymentMethodVariants as paymentMethodVariantsArr,
+  TPaymentMethodVariants
+} from './IconsList/PaymentMethodIcon';
+import { socialVariants as socialVariantsArr, TSocialVariants } from './IconsList/SocialIcon';
 import toRem from '../../utils/toRem';
 import { IArrowIconVariant, TCursorVariants, TMoreVariants, TSingleVariants } from './types';
 import { IEyeIconVariant } from './IconsList/EyeIcon';
@@ -26,8 +29,8 @@ const countVariants: TCountIconVariants[] = ['minus', 'plus'];
 const loadVariants: TLoadIconVariants[] = ['download', 'upload'];
 const moreVariants: TMoreVariants[] = ['vertical', 'horizontal'];
 const singleVariants: TSingleVariants[] = ['default'];
-const paymentMethodVariants = Object.keys(paymentMethodVariantsArr);
-const socialVariants = Object.keys(socialVariantsArr(''));
+const paymentMethodVariants = Object.keys(paymentMethodVariantsArr) as TPaymentMethodVariants[];
+const socialVariants = Object.keys(socialVariantsArr) as TSocialVariants[];
 const commonVariants = ['default', 'filled'];
 const cursorVariants: TCursorVariants[] = ['arrow', 'drag', 'hover'];
 
@@ -46,8 +49,6 @@ const displayIcon = (name: keyof typeof Icons, Icon: React.FC<any>) => {
   if (name == 'SocialIcon') {
     return socialVariants.map(mapIconVariants(Icon));
   }
-  
-  // TODO return svg components instead of strings from all the files
   if (name === 'EyeIcon') {
     return eyeVariants.map(mapIconVariants(Icon));
   }
@@ -74,7 +75,6 @@ const displayIcon = (name: keyof typeof Icons, Icon: React.FC<any>) => {
 
 export const AllIcons = () => {
   const classes = useStyles();
-  const { theme } = useTheme();
   const getIconsArr = () => {
     const iconsArr = [];
     for (const name in Icons) {
@@ -84,22 +84,18 @@ export const AllIcons = () => {
   };
   return (
     <>
-      <Text variant="h4" className={classes.title}>
+      <Text variant="h4" className={classes.allIconsTitle}>
         All Icons:
       </Text>
-      <div className={classes.container}>
+      <div className={classes.allIconsContainer}>
         {getIconsArr().map(({ name, Icon }, index) => {
           const iconName = name[0];
           return (
             <div
               key={index}
-              className={classNames(
-                classes.iconWrapper,
-                {
-                  [classes.payment]: (iconName as keyof typeof Icons) == 'PaymentMethodIcon',
-                  [classes.social]: (iconName as keyof typeof Icons) == 'SocialIcon',
-                }
-              )}
+              className={classNames(classes.iconWrapper, {
+                [classes.span2Rows]: ((iconName as keyof typeof Icons) == 'PaymentMethodIcon') || (iconName as keyof typeof Icons) == 'SocialIcon'
+              })}
             >
               <Text
                 variant="components2"
@@ -113,44 +109,18 @@ export const AllIcons = () => {
                 })}>
                 {displayIcon(iconName as keyof typeof Icons, Icon)?.map(
                   ({ variant, Icon: IconVariant }, idx) => {
-                    if ((iconName as keyof typeof Icons) == 'SocialIcon') {
-                      return (
-                        <div
-                          key={variant + idx}
-                          className={classes.twoColumnsGrid}
-                        >
-                          <div className={classes.socialIconVariant}>
-                            <Text variant="body3">{variant} (</Text>
-                            <div className={classes.textWrapper}>
-                              <Text variant="body3" weight="semiBold">type</Text>
-                              <Text variant="body3"> color)</Text>
-                            </div>
-                            <IconVariant variant={variant} />
-                          </div>
-                          <div className={classes.socialIconVariant}>
-                            <Text variant="body3">{variant} (</Text>
-                            <div className={classes.textWrapper}>
-                              <Text variant="body3" weight="semiBold">type</Text>
-                              <Text variant="body3"> plain)</Text>
-                            </div>
-                            <IconVariant type="plain" />
-                          </div>
-                        </div>
-                      );
-                    }
                     return (
                       <div
                         key={variant + idx}
                         className={classes.iconVariant}
                       >
-                        <Text variant="body3">{variant}</Text>
                         <IconVariant
                           variant={variant}
-                          fill={(iconName as keyof typeof Icons) == 'PaymentMethodIcon' ? 'none' : theme.colors.primary.medium300}
                           className={classNames({
-                            [classes.icon]: (iconName as keyof typeof Icons) != 'PaymentMethodIcon',
+                            [classes.icon20]: (iconName as keyof typeof Icons) != 'PaymentMethodIcon',
                           })}
                         />
+                        <Text variant="body3">{variant}</Text>
                       </div>
                     );
                   },
@@ -164,15 +134,117 @@ export const AllIcons = () => {
   )
 }
 
+export const PaymentMethodIcons = () => {
+  const classes = useStyles();
+  return (
+    <>
+      <Text variant="h4" className={classes.title}>Payment Methods</Text>
+      <div className={classes.container}>
+        {paymentMethodVariants.map((variant: TPaymentMethodVariants) => {
+          return (
+            <div key={variant} className={classes.iconContainer}>
+              <Icons.PaymentMethodIcon
+                variant={variant}
+                className={classes.pointer}
+                width={54}
+                height={44}
+              />
+              <Text variant="body3" className={classes.text}>{variant}</Text>
+            </div>
+          )
+        })}
+      </div>
+    </>
+  );
+};
+
+export const SocialMediaIcons = () => {
+  const classes = useStyles();
+  return (
+    <>
+      <Text variant="h4" className={classes.title}>Social Media</Text>
+      <div className={classNames(classes.container, classes.withBackground)}>
+        {socialVariants.map((variant: TSocialVariants) => {
+          return (
+            <div key={variant} className={classes.iconContainer}>
+              <Icons.SocialIcon
+                variant={variant}
+                className={classes.pointer}
+              />
+              <Text variant="body3" className={classes.text}>{variant}</Text>
+            </div>
+          )
+        })}
+      </div>
+    </>
+  );
+};
+
+export const StyledWithJSSSocialMediaIcons = () => {
+  const classes = useStyles();
+  const { theme } = useTheme();
+  return (
+    <>
+      <Text variant="h4" className={classes.title}>Social Media</Text>
+      <div className={classNames(classes.container, classes.withBackground)}>
+        {socialVariants.map((variant: TSocialVariants) => {
+          return (
+            <div key={variant} className={classes.iconContainer}>
+              <Icons.SocialIcon
+                variant={variant}
+                className={classes.pointer}
+                fill={theme.colors.neutralGray.main500}
+                width={40}
+                height={40}
+              />
+              <Text variant="body3" className={classes.text}>{variant}</Text>
+            </div>
+          )
+        })}
+      </div>
+    </>
+  );
+};
+
+export const StyledWithClassnameSocialMediaIcons = () => {
+  const classes = useStyles();
+  const { theme } = useTheme();
+  return (
+    <>
+      <Text variant="h4" className={classes.title}>Social Media</Text>
+      <div className={classNames(classes.container, classes.withBackground)}>
+        {socialVariants.map((variant: TSocialVariants) => {
+          return (
+            <div key={variant} className={classes.iconContainer}>
+              <Icons.SocialIcon
+                variant={variant}
+                className={classNames(classes.pointer,
+                  {
+                    [classes.socialIcon]: variant != 'youTube',
+                    [classes.youtube]: variant == 'youTube',
+                  })}
+                fill={theme.colors.neutralGray.main500}
+                width={40}
+                height={40}
+              />
+              <Text variant="body3" className={classes.text}>{variant}</Text>
+            </div>
+          )
+        })}
+      </div>
+    </>
+  );
+};
+
 function useStyles () {
   return createStyles((theme) => ({
-    title: {
+    allIconsTitle: {
       marginBottom: toRem(24),
     },
     subtitle: {
       marginBottom: toRem(16),
     },
-    container: {
+    allIconsContainer: {
       display: 'grid',
       gridTemplateColumns: 'repeat(3, 1fr)',
       gap: toRem(20),
@@ -186,19 +258,14 @@ function useStyles () {
       padding: 20,
       gap: toRem(12),
     },
-    payment: {
-      gridRow: '9 / span 1',
-      gridColumn: 'span 1',
-    },
-    social: {
-      gridRow: '9 / span 1',
-      gridColumn: 'span 2',
-    },
     iconVariantsWrapper: {
       display: 'flex',
       flexDirection: 'row',
       flexFlow: 'wrap',
       gap: toRem(12),
+    },
+    span2Rows: {
+      gridRow: '10 / span 2',
     },
     paymentVariantsWrapper: {
       display: 'grid',
@@ -208,11 +275,6 @@ function useStyles () {
       display: 'grid',
       gridTemplateColumns: 'repeat(2, 1fr)',
       gap: `${toRem(12)} ${toRem(32)}`,
-      width: '100%',
-    },
-    twoColumnsGrid: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(2, 1fr)',
       width: '100%',
     },
     socialIconVariant: {
@@ -230,11 +292,14 @@ function useStyles () {
         marginRight: toRem(12),
       },
     },
-    icon: {
+    icon20: {
       width: 20,
       height: 20,
+    },
+    coloredIcon: {
+      width: 100,
+      height: 100,
       cursor: 'pointer',
-      transition: 'fill .3s',
       '& path': {
         fill: theme.colors.primary.medium400,
         transition: 'fill .3s',
@@ -243,10 +308,50 @@ function useStyles () {
         fill: theme.colors.primary.dark600
       }
     },
-    textWrapper: {
-      display: 'inline-flex',
-      alignItems: 'center',
-      gap: toRem(4),
+    // social media and payment styles
+    title: {
+      marginBottom: toRem(24),
     },
+    container: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(4, 150px)',
+      width: 720,
+      gap: toRem(40),
+      padding: 20,
+      borderRadius: 10,
+    },
+    withBackground: {
+      backgroundColor: theme.colors.neutralGray.light100,
+    },
+    iconContainer: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: toRem(16),
+      marginBottom: toRem(16),
+    },
+    text: {
+      textTransform: 'capitalize',
+    },
+    pointer: {
+      pointer: 'cursor',
+    },
+    socialIcon: {
+      '& path': {
+        fill: theme.colors.primary.medium300,
+        transition: 'fill .3s',
+      },
+      '&:hover path': {
+        fill: theme.colors.primary.dark600,
+      },
+    },
+    youtube: {
+      '& path:first-child': {
+        fill: theme.colors.primary.medium300,
+        transition: 'fill .3s',
+      },
+      '&:hover path:first-child': {
+        fill: theme.colors.primary.dark600,
+      },
+    }
   }))();
 }

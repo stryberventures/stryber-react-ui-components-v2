@@ -32,7 +32,7 @@ const iconVariants = {
 };
 
 interface IProfileIcon extends React.SVGProps<SVGSVGElement> {
-  variant: TCommonIconVariants,
+  variant?: TCommonIconVariants,
 }
 
 export default function ProfileIcon ({

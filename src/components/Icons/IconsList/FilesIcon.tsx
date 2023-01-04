@@ -32,7 +32,7 @@ const iconVariants = {
 };
 
 interface IFilesIcon extends React.SVGProps<SVGSVGElement> {
-  variant: TCommonIconVariants,
+  variant?: TCommonIconVariants,
 }
 
 export default function FilesIcon ({

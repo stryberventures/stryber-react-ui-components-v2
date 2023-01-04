@@ -34,7 +34,7 @@ const iconVariants = {
 };
 
 interface IDeleteIcon extends React.SVGProps<SVGSVGElement> {
-  variant: TCommonIconVariants,
+  variant?: TCommonIconVariants,
 }
 
 export default function DeleteIcon ({

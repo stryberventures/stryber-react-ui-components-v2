@@ -31,7 +31,7 @@ const iconVariants = {
   ),
 };
 interface ICloseCircleIcon extends React.SVGProps<SVGSVGElement> {
-  variant: TCommonIconVariants,
+  variant?: TCommonIconVariants,
 }
 
 export default function CloseCircleIcon ({

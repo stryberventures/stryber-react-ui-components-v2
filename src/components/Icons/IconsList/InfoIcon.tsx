@@ -32,7 +32,7 @@ const iconVariants = {
 };
 
 interface IInfoIcon extends React.SVGProps<SVGSVGElement> {
-  variant: TCommonIconVariants,
+  variant?: TCommonIconVariants,
 }
 
 export default function InfoIcon ({

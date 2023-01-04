@@ -99,8 +99,10 @@ export const paymentMethodVariants = {
   ),
 };
 
+export type TPaymentMethodVariants = keyof typeof paymentMethodVariants
+
 interface IPaymentMethodIcon extends React.SVGProps<SVGSVGElement>{
-  variant: keyof typeof paymentMethodVariants;
+  variant?: TPaymentMethodVariants;
 }
 
 export default function PaymentMethodIcon ({ variant= 'visa', width = 34, height = 24, ...rest }: IPaymentMethodIcon) {

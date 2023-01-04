@@ -1,4 +1,3 @@
-import { createCommonIcon } from '../utils';
 import React from 'react';
 import { IArrowIconVariant } from '../types';
 

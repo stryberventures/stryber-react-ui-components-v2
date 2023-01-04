@@ -31,7 +31,7 @@ const iconVariants = {
 };
 
 interface IMicIcon extends React.SVGProps<SVGSVGElement> {
-  variant: TCommonIconVariants,
+  variant?: TCommonIconVariants,
 }
 
 export default function MicIcon ({
