@@ -12,7 +12,6 @@ export interface IText extends React.HTMLAttributes<HTMLElement> {
   align?: 'left' | 'center' | 'right';
   variant?: TTextVariant;
   component?: TTag,
-  color?: string;
   weight?: 'regular' | 'medium' | 'semiBold' | 'bold';
 }
 
@@ -60,3 +59,10 @@ const Text: React.FC<IText> = (props) => {
 };
 
 export default Text;
+
+Text.defaultProps = {
+  variant: 'body2',
+  align: 'left',
+  weight: 'regular',
+  component: 'span',
+}
