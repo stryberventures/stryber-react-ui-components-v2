@@ -20,11 +20,14 @@ export default {
 
 const contrastMapping = {
   primary: {
+    medium300: 'black',
     light200: 'black',
     light100: 'black',
     extraLight50: 'black',
   },
   secondary: {
+    medium400: 'black',
+    medium300: 'black',
     light200: 'black',
     light100: 'black',
     extraLight50: 'black',
