@@ -9,7 +9,7 @@ export default createStyles((theme) => ({
     maxWidth: 1000,
   },
   itemContainer: {
-    marginBottom: 3,
+    marginBottom: 5,
   },
   title: {
     marginTop: 0,
@@ -25,7 +25,6 @@ export default createStyles((theme) => ({
       padding: '11px 1rem',
       lineHeight: '18px',
       fontSize: 16,
-      color: theme.colors.text.secondary
     }
   }
 }))
