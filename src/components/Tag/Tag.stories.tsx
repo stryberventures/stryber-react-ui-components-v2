@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import Tag from './index';
+import Tag, { defaultTagProps } from './index';
 import Input from '../Input';
 import Button from '../Button';
 import LeftArrow from '../../storybook/icons/leftArrow';
@@ -15,13 +15,7 @@ export default {
   parameters: {
     pkg,
   },
-  args: {
-    shape: 'round',
-    size: 'large',
-    color: 'primary',
-    selected: false,
-    disabled: false,
-  },
+  args: defaultTagProps,
   argTypes: buildExcludeArgTypes(['iconLeft', 'iconRight', 'className']),
 } as ComponentMeta<typeof Tag>;
 
