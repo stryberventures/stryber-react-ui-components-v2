@@ -1,8 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import TextLink from './index';
-import LeftArrow from '../../storybook/icons/leftArrow';
-import RightArrow from '../../storybook/icons/rightArrow';
+import { LoadIcon, HomeIcon, CalendarIcon } from '../Icons';
 import pkg from './package.json';
 import { buildExcludeArgTypes } from '../../storybook/utils';
 
@@ -11,6 +10,12 @@ export default {
   component: TextLink,
   parameters: {
     pkg,
+  },
+  args: {
+    color: 'primary',
+    size: 'medium',
+    weight: 'regular',
+    disabled: false,
   },
   argTypes: buildExcludeArgTypes(['iconLeft', 'iconRight', 'className']),
 } as ComponentMeta<typeof TextLink>;
@@ -22,12 +27,13 @@ Primary.args = {
   children: 'Text link',
   href: 'https://www.google.com',
   target: '_blank',
+  iconLeft: <HomeIcon />
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
   children: 'Text link',
-  href: 'https://www.google.com',
+  href: 'https://www.yahoo.com',
   target: '_blank',
   color: 'secondary',
 };
@@ -35,7 +41,7 @@ Secondary.args = {
 export const Disabled = Template.bind({});
 Disabled.args = {
   children: 'Text link',
-  href: 'https://www.google.com',
+  href: 'https://www.facebook.com',
   target: '_blank',
   disabled: true,
 };
@@ -43,13 +49,15 @@ Disabled.args = {
 export const IconLeft = Template.bind({});
 IconLeft.args = {
   children: 'Text link',
-  href: 'https://www.google.com',
+  href: 'https://www.bbc.com',
   target: '_blank',
-  iconLeft: <LeftArrow />
+  iconLeft: <LoadIcon />
 };
 
 export const IconRight = Template.bind({});
 IconRight.args = {
   children: 'Text link',
-  iconRight: <RightArrow />
+  href: 'https://www.cnn.com/d',
+  target: '_blank',
+  iconRight: <CalendarIcon variant={'filled'} />
 };
