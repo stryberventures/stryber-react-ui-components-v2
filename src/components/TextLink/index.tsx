@@ -6,9 +6,10 @@ import useStyles from './styles';
 
 export interface ITextLink extends React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement> {
   children: string,
+  href: string,
   color?: 'primary' | 'secondary',
   size?: 'small' | 'medium' | 'large',
-  weight: 'normal' | 'semiBold',
+  weight?: 'regular' | 'semiBold' | 'bold',
   disabled?: boolean,
   iconLeft?: React.ReactNode,
   iconRight?: React.ReactNode,
@@ -16,7 +17,7 @@ export interface ITextLink extends React.DetailedHTMLProps<React.AnchorHTMLAttri
 }
 
 const TextLink: React.FC<ITextLink> = (props) => {
-  const { children, size, weight, disabled, iconLeft, iconRight, className, ...rest } = props;
+  const { children, size = 'medium', weight = 'regular', disabled, iconLeft, iconRight, className, ...rest } = props;
   const classes = useStyles(props);
 
   return (
@@ -30,8 +31,8 @@ const TextLink: React.FC<ITextLink> = (props) => {
     >
       {iconLeft}
       <Text
-        variant="body1"
-        weight="bold"
+        variant={`body${(size == 'small') ? '3' : (size == 'medium') ? '2' : '1'}`}
+        weight={weight}
         className={classes.text}
       >
         {children}
@@ -43,6 +44,8 @@ const TextLink: React.FC<ITextLink> = (props) => {
 
 TextLink.defaultProps = {
   color: 'primary',
+  size: 'medium',
+  weight: 'regular',
 }
 
 export default TextLink;
