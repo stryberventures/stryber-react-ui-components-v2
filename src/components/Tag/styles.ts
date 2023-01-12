@@ -27,7 +27,7 @@ export default createStyles((theme) => ({
       }
     },
     '& svg path': {
-      fill: theme.colors[props.color!].medium300,
+      fill: theme.colors[props.color!].main500,
     },
   }),
   round: {
@@ -80,7 +80,7 @@ export default createStyles((theme) => ({
     backgroundColor: theme.colors[props.color!].light200,
     color: theme.colors.contrast.white,
     transition: `border-color ${transitionDelay} ${transitionAnimation}, color ${transitionDelay} ${transitionAnimation}, fill ${transitionDelay} ${transitionAnimation}`,
-    '& svg path': {
+    '&:not($disabled) svg path': {
       fill: theme.colors.contrast.white,
     },
     '&:hover, &:focus-visible': {
@@ -97,5 +97,8 @@ export default createStyles((theme) => ({
     backgroundColor: theme.colors.neutralGray.light100,
     border: [1, 'solid', theme.colors.neutralGray.light100],
     cursor: 'default',
+    '& svg path': {
+      fill: theme.colors.text.disabled,
+    },
   }),
 }), { internalUsage: true });

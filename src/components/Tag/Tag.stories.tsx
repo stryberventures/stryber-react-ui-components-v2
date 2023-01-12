@@ -3,8 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Tag from './index';
 import Input from '../Input';
 import Button from '../Button';
-import LeftArrow from '../../storybook/icons/leftArrow';
-import RightArrow from '../../storybook/icons/rightArrow';
+import { DocumentIcon, FilesIcon, EditIcon, ProfileIcon, PointArrowIcon } from '../Icons';
 import pkg from './package.json';
 import { buildExcludeArgTypes } from '../../storybook/utils';
 import toRem from '../../utils/toRem';
@@ -31,6 +30,7 @@ export const Default = Template.bind({});
 Default.args = {
   children: 'Default',
   onRemove: undefined,
+  iconLeft: <PointArrowIcon variant="left" />,
 };
 
 export const Square = Template.bind({});
@@ -59,14 +59,14 @@ SquareMiddle.args = {
 export const LeftIcon = Template.bind({});
 LeftIcon.args = {
   children: 'Square removable',
-  iconLeft: <LeftArrow />,
+  iconLeft: <DocumentIcon />,
   onRemove: undefined,
 };
 
 export const RightIconMedium = Template.bind({});
 RightIconMedium.args = {
   children: 'Right icon medium',
-  iconRight: <RightArrow />,
+  iconRight: <FilesIcon />,
   size: 'medium',
   onRemove: undefined,
 };
@@ -76,6 +76,7 @@ Disabled.args = {
   children: 'Disabled',
   disabled: true,
   onRemove: undefined,
+  iconRight: <EditIcon variant="filled" />,
 };
 
 export const RemovableLarge = Template.bind({});
@@ -100,7 +101,7 @@ RemovableSmall.args = {
 };
 
 const removableTags = [
-  { id: 1, text: 'Tag 1', iconRight: <RightArrow /> },
+  { id: 1, text: 'Tag 1', iconRight: <ProfileIcon /> },
   { id: 2, text: 'Tag 2', },
   { id: 3, text: 'Tag 3', },
   { id: 4, text: 'Tag 4', },
