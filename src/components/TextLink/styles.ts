@@ -15,7 +15,8 @@ export default createStyles((theme) => ({
       '& svg path': {
         fill: theme.colors[props.color!].main500,
       },
-      '&:hover, &:hover:not(:visited)': {
+      '&:hover, &:hover:not(:visited), &:focus': {
+        outline: 'none',
         '& $text': {
           color: theme.colors[props.color!].medium400,
         },
@@ -67,14 +68,15 @@ export default createStyles((theme) => ({
   disabled: (props: ITextLink) => ({
     pointerEvents: 'none',
     cursor: 'default',
+    outline: 'none',
     '& $text': {
-      color: theme.colors[props.color!].light200,
+      color: `${theme.colors[props.color!].light200} !important`,
     },
     '& $text:after': {
-      borderColor: theme.colors[props.color!].light200,
+      borderColor: `${theme.colors[props.color!].light200} !important`,
     },
     '& svg path': {
-      fill: theme.colors[props.color!].light200,
+      fill: `${theme.colors[props.color!].light200} !important`,
     },
   }),
 }), { internalUsage: true });
