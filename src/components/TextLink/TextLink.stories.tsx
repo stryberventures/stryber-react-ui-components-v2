@@ -11,6 +11,12 @@ export default {
   parameters: {
     pkg,
   },
+  args: {
+    color: 'primary',
+    size: 'medium',
+    weight: 'regular',
+    disabled: false,
+  },
   argTypes: buildExcludeArgTypes(['iconLeft', 'iconRight', 'className']),
 } as ComponentMeta<typeof TextLink>;
 

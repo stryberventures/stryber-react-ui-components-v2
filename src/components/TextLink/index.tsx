@@ -46,6 +46,7 @@ TextLink.defaultProps = {
   color: 'primary',
   size: 'medium',
   weight: 'regular',
+  disabled: false,
 }
 
 export default TextLink;
