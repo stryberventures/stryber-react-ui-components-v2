@@ -24,7 +24,6 @@
     "Dialog": "dialog",
     "Icons": "icons",
     "Grid": "grid",
-    "Tag": "tag",
-    "Elevation": "elevation"
+    "List": "list"
   }
 }
