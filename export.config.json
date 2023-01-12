@@ -22,6 +22,8 @@
     "InputToggleLayout": "input-toggle-layout",
     "Text": "text",
     "Dialog": "dialog",
-    "Icons": "icons"
+    "Icons": "icons",
+    "Grid": "grid",
+    "List": "list"
   }
 }
