@@ -4,7 +4,7 @@ import { EyeIcon } from './EyeIcon';
 import Chip from '../Chip';
 import useStyles from './styles';
 import { IValidationItemProps, usePasswordValidation } from './hooks';
-import { CheckBoxIcon } from '../Icons';
+import { CheckIcon } from '../Icons';
 import classNames from 'classnames';
 
 export interface IInputPassword extends Omit<IInput, 'endAdornment'> {
@@ -47,7 +47,7 @@ const InputPassword: React.FC<IInputPassword> = (props) => {
             <Chip
               key={label}
               color={matched ? 'success' : 'default'}
-              iconLeft={matched && <CheckBoxIcon className={classes.chipMatched}/>}
+              iconLeft={matched && <CheckIcon className={classes.chipMatched}/>}
             >
               {label}
             </Chip>
