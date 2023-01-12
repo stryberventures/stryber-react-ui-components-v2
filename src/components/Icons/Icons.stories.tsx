@@ -321,7 +321,7 @@ function useStyles () {
       borderRadius: 10,
     },
     withBackground: {
-      backgroundColor: theme.colors.neutralGray.light100,
+      backgroundColor: theme.colors.neutralGray.medium300,
     },
     iconContainer: {
       display: 'flex',
