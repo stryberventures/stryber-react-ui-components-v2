@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import Text, { TTextVariant } from '../Text';
-import { CloseIconRound } from '../Icons';
+import { CloseCircleIcon } from '../Icons';
 import useStyles from './styles';
 
 
@@ -70,7 +70,8 @@ const Tag: React.FC<ITag> = (props) => {
       </Text>
       {iconRight}
       {onRemove && (
-        <CloseIconRound
+        <CloseCircleIcon
+          data-testid="closeIconRound"
           className={classNames(classes.icon, classes[`${size}Icon`])}
           onClick={handleOnRemove}
         />

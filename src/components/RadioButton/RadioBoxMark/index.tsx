@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import useStyles from './styles';
-import { RadioBoxIcon } from '../../Icons';
+import { RadioBoxIconDeprecated } from '../../Icons';
 
 export interface IRadioBoxMarkProps {
   checked?: boolean;
@@ -24,7 +24,7 @@ export const RadioBoxMark = (props: IRadioBoxMarkProps) => {
         { [classes.disabled]: disabled },
         { [classes.checked]: checked },
       )}>
-      <RadioBoxIcon/>
+      <RadioBoxIconDeprecated />
       <div className={classes.clickArea}/>
     </span>
   );

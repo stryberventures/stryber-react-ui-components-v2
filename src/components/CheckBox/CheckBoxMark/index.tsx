@@ -1,7 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
 import useStyles from './styles';
-import { CheckBoxIcon } from '../../Icons';
+import { CheckIcon } from '../../Icons';
+import { useTheme } from '../../Theme';
 
 export interface ICheckBoxMark {
   checked?: boolean;
@@ -19,14 +20,14 @@ export const CheckBoxMark = (props: ICheckBoxMark) => {
     disabled
   } = props;
   const classes = useStyles(props);
-
+  const { theme } = useTheme();
   return (
     <span
       className={classNames(classes.checkboxMark, classes[shape], classes[size],
         { [classes.disabled]: disabled },
         { [classes.checked]: checked },
       )}>
-      <CheckBoxIcon/>
+      <CheckIcon variant="default" fill={theme.colors.contrast.white} />
       <div className={classes.clickArea}/>
     </span>
   );

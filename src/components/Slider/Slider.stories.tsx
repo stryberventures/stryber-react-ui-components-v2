@@ -6,7 +6,7 @@ import Slider from './index';
 import Button from '../Button';
 import pkg from './package.json';
 import { buildExcludeArgTypes } from '../../storybook/utils';
-import { Minus, Plus } from '../Icons';
+import { CountIcon } from '../Icons';
 
 export default {
   title: 'Components/Slider',
@@ -275,8 +275,8 @@ WithIcons.args = {
   min: 0,
   max: 10,
   thumbLabels: 'tooltip',
-  leftLabel: <div style={{ height: 16, display: 'flex', alignItems: 'center' }}><Minus /></div>,
-  rightLabel: <div style={{ height: 15 }}><Plus /></div>
+  leftLabel: <div style={{ height: 16, display: 'flex', alignItems: 'center' }}><CountIcon variant="minus" /></div>,
+  rightLabel: <div style={{ height: 15 }}><CountIcon variant="plus" /></div>
 };
 WithIcons.decorators = [
   (Story) => (
