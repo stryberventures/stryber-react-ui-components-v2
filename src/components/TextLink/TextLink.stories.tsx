@@ -1,8 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import TextLink from './index';
-import LeftArrow from '../../storybook/icons/leftArrow';
-import RightArrow from '../../storybook/icons/rightArrow';
+import { LoadIcon, HomeIcon, CalendarIcon } from '../Icons';
 import pkg from './package.json';
 import { buildExcludeArgTypes } from '../../storybook/utils';
 
@@ -22,7 +21,7 @@ Primary.args = {
   children: 'Text link',
   href: 'https://www.google.com',
   target: '_blank',
-  iconLeft: <LeftArrow />
+  iconLeft: <HomeIcon />
 };
 
 export const Secondary = Template.bind({});
@@ -46,7 +45,7 @@ IconLeft.args = {
   children: 'Text link',
   href: 'https://www.bbc.com',
   target: '_blank',
-  iconLeft: <LeftArrow />
+  iconLeft: <LoadIcon />
 };
 
 export const IconRight = Template.bind({});
@@ -54,5 +53,5 @@ IconRight.args = {
   children: 'Text link',
   href: 'https://www.cnn.com/d',
   target: '_blank',
-  iconRight: <RightArrow />
+  iconRight: <CalendarIcon variant={'filled'} />
 };
