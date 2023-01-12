@@ -1,16 +1,22 @@
 import { createStyles } from '../Theme';
-import { ITag } from './index';
+import { defaultTagProps, ITag } from './index';
 import toRem from '../../utils/toRem';
 
 const transitionDelay = '.3s';
 const transitionAnimation = 'ease-out';
+
+const tagPaddings = {
+  small: [toRem(2), toRem(6)],
+  medium: [toRem(4), toRem(8)],
+  large: [toRem(4), toRem(12)],
+}
 
 export default createStyles((theme) => ({
   tag: (props: ITag) => ({
     boxSizing: 'border-box',
     display: 'inline-flex',
     alignItems: 'center',
-    padding: [theme.spacing[4], theme.spacing[12]],
+    padding: tagPaddings[props.size || defaultTagProps.size],
     border: [1, 'solid', theme.colors[props.color!].extraLight50],
     outline: 'none',
     backgroundColor: theme.colors[props.color!].extraLight50,
