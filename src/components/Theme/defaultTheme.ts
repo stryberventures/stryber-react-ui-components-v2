@@ -41,6 +41,7 @@ export enum ThemeColor {
 }
 
 export const defaultTheme: ITheme = {
+  toRem,
   colors: {
     [ThemeColor.primary]: {
       dark600: '#001D9A',

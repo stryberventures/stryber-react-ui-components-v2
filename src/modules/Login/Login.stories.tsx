@@ -11,8 +11,6 @@ import { FullViewportDecorator } from '../../storybook/preview/FullViewportDecor
 
 // TODO replace imports
 // TODO raw loader types?
-// TODO how to export utils/toRem?
-// TODO Storybook - show code by default for module
 
 // TODO - write script which deploys all components (which were updated)
 
