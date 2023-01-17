@@ -36,6 +36,6 @@ it('should display the label', () => {
 
 it('should display the custom content', () => {
   render(<Switch label={<>Message <LeftArrow /></>} />);
-  expect(screen.getByTestId('test-svg')).toBeVisible();
+  expect(screen.getByTestId('leftArrow')).toBeVisible();
   expect(screen.queryByText('Message')).toBeVisible();
 });

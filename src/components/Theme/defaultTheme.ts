@@ -28,36 +28,48 @@ export const defaultMargins = {
   xxl: toRem(150),
 };
 
+export enum ThemeColor {
+  primary = 'primary',
+  secondary = 'secondary',
+  error = 'error',
+  success = 'success',
+  warning = 'warning',
+  contrast = 'contrast',
+  neutralGray = 'neutralGray',
+  text = 'text',
+  background = 'background',
+}
+
 export const defaultTheme: ITheme = {
   colors: {
-    primary: {
+    [ThemeColor.primary]: {
       dark600: '#001D9A',
-      main500: '#003CB8',
-      medium400: '#034ECF',
-      medium300: '#4669D7',
-      light200: '#98A7E7',
-      light100: '#C2C9F1',
-      extraLight50: '#E7EAF9',
+      main500: '#0029DB',
+      medium400: '#3D61FF',
+      medium300: '#607EFF',
+      light200: '#A7B7FF',
+      light100: '#CAD4FF',
+      extraLight50: '#EDF1FF',
     },
-    secondary: {
-      dark600: '#3D2181',
-      main500: '#58329A',
-      medium400: '#6C3FA9',
-      medium300: '#815BB6',
-      light200: '#B49FD4',
-      light100: '#D2C5E5',
-      extraLight50: '#EDE7F4',
+    [ThemeColor.secondary]: {
+      dark600: '#3A1F7A',
+      main500: '#532CAE',
+      medium400: '#8664D8',
+      medium300: '#9C80DF',
+      light200: '#BDAAEA',
+      light100: '#DED5F4',
+      extraLight50: '#F4F1FB',
     },
-    error: {
+    [ThemeColor.error]: {
       dark600: '#BF2600',
       main500: '#DE350B',
-      medium400: '#FF4130',
+      medium400: '#FF4830',
       medium300: '#FF7452',
       light200: '#FF8F73',
       light100: '#FFBDAD',
       extraLight50: '#FFEBE6',
     },
-    success: {
+    [ThemeColor.success]: {
       dark600: '#006644',
       main500: '#00875A',
       medium400: '#36A176',
@@ -66,8 +78,8 @@ export const defaultTheme: ITheme = {
       light100: '#ABF5D1',
       extraLight50: '#E3FCEF',
     },
-    warning: {
-      dark600: '#EC7603',
+    [ThemeColor.warning]: {
+      dark600: '#FF8B00',
       main500: '#FF991F',
       medium400: '#FFAB00',
       medium300: '#FFC400',
@@ -75,11 +87,11 @@ export const defaultTheme: ITheme = {
       light100: '#FFF0B3',
       extraLight50: '#FFFAE6',
     },
-    contrast: {
+    [ThemeColor.contrast]: {
       white: '#FFFFFF',
       black: '#000000',
     },
-    neutralGray: {
+    [ThemeColor.neutralGray]: {
       extraDark900: '#101828',
       extraDark800: '#1D2939',
       dark700: '#344054',
@@ -91,13 +103,13 @@ export const defaultTheme: ITheme = {
       light100: '#F2F4F7',
       extraLight50: '#F9FAFB',
     },
-    text: {
+    [ThemeColor.text]: {
       headline: '#101828',
       secondary: '#475467',
-      disabled: '#D2D2D2',
+      disabled: '#D0D5DD',
       tint: '#98A2B3',
     },
-    background: {
+    [ThemeColor.background]: {
       white: '#FFFFFF',
       extraLightGrey: '#F9FAFB',
     },
