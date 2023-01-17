@@ -1,6 +1,7 @@
 import React from 'react';
 import useStyles from './styles';
 import classNames from 'classnames';
+import Elevation from '../../Elevation'
 
 export interface ISwitchIcon {
   checked?: boolean,
@@ -18,13 +19,19 @@ export const SwitchIcon = (props: ISwitchIcon) => {
       [classes.checked]: checked,
       [classes.disabled]: disabled,
     })}>
+      
       <div className={classNames(
         classes.circleContainer,
         { [classes.circleContainerChecked]: checked, }
       )}>
         <div className={classes.circleHighlight} />
-        <div className={classes.circle}/>
+        <Elevation
+          variant='light'
+          component='div'>
+          <div className={classes.circle}/>
+        </Elevation>
       </div>
+      
     </div>
   );
 }

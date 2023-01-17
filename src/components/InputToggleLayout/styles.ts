@@ -44,7 +44,6 @@ export default createStyles((theme) => ({
   reverse: {
     '& $controlContainer': {
       flexDirection: 'row-reverse',
-      //justifyContent: 'flex-end',
     },
     '& $text': {
       marginRight: toRem(8),
