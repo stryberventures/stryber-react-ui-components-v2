@@ -1,5 +1,5 @@
 import { ITheme } from './types';
-import toRem from '../../utils/toRem';
+import { toRem } from './index';
 
 export const defaultColumns = {
   xs: 4,
@@ -41,7 +41,6 @@ export enum ThemeColor {
 }
 
 export const defaultTheme: ITheme = {
-  toRem,
   colors: {
     [ThemeColor.primary]: {
       dark600: '#001D9A',

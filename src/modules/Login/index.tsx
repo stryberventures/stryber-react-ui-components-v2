@@ -4,8 +4,7 @@ import Input from '../../components/Input';
 import InputPassword from '../../components/InputPassword';
 import CheckBox from '../../components/CheckBox';
 import Button from '../../components/Button';
-import toRem from '../../utils/toRem';
-import { createStyles } from '../../components/Theme';
+import { createStyles, toRem } from '../../components/Theme';
 
 const useStyles = createStyles((theme) => ({
   row: {

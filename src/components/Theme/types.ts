@@ -58,7 +58,6 @@ interface IGrayPalette {
 }
 
 export interface ITheme {
-  toRem: (px: number) => string,
   colors: {
     primary: IPalette;
     secondary: IPalette;

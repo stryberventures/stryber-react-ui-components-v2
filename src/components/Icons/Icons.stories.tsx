@@ -2,14 +2,13 @@ import React from 'react';
 import classNames from 'classnames';
 import * as Icons from './index';
 import pkg from './package.json';
-import { createStyles, useTheme } from '../Theme';
+import { createStyles, useTheme, toRem } from '../../components/Theme';
 import Text from '../Text';
 import {
   paymentMethodVariants as paymentMethodVariantsArr,
   TPaymentMethodVariants
 } from './IconsList/PaymentMethodIcon';
 import { socialVariants as socialVariantsArr, TSocialVariants } from './IconsList/SocialIcon';
-import toRem from '../../utils/toRem';
 import { IArrowIconVariant, TCursorVariants, TMoreVariants, TSingleVariants } from './types';
 import { IEyeIconVariant } from './IconsList/EyeIcon';
 import { TCountIconVariants } from './IconsList/CountIcon';

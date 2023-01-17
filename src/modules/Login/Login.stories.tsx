@@ -9,16 +9,12 @@ import file from '!!raw-loader!./index'
 import { replacePaths } from '../../storybook/utils';
 import { FullViewportDecorator } from '../../storybook/preview/FullViewportDecorator';
 
-// TODO replace imports
 // TODO raw loader types?
 
 // TODO - write script which deploys all components (which were updated)
 
 // TODO Dependencies - peer dependencies of dependencies are not in the list (the issue is not only about the module)
-
-const sourceToDisplay = replacePaths(file).then((res) => {
-  console.log('res', res);
-});
+const sourceToDisplay = replacePaths(file);
 
 export default {
   title: 'Modules/Authentication',
@@ -47,7 +43,7 @@ export const Login = Template.bind({});
 Login.parameters = {
   docs: {
     source: {
-      code: file,
+      code: sourceToDisplay,
     },
   },
 };

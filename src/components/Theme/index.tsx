@@ -62,9 +62,16 @@ function createStyles<TStyles extends string = string, TProps = unknown>(
   });
 }
 
+export const BASIC_FONT_SIZE = 16;
+
+function toRem(px: number): string {
+  return `${px / BASIC_FONT_SIZE}rem`;
+}
+
 export {
   defaultTheme,
   ThemeProvider,
   createStyles,
+  toRem,
   useTheme,
 }
