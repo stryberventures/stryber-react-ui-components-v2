@@ -5,7 +5,7 @@ export interface IRadioIcon extends React.SVGProps<SVGSVGElement> {
   fill?: string,
 }
 
-const RadioIcon = (props: IRadioIcon) => {
+const RadioIconDeprecated = (props: IRadioIcon) => {
   const { fill, ...rest } = props;
   return (
     <svg viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg" {...rest}>
@@ -14,10 +14,10 @@ const RadioIcon = (props: IRadioIcon) => {
   );
 }
 
-RadioIcon.defaultProps = {
+RadioIconDeprecated.defaultProps = {
   fill: 'white',
   width: toRem(8),
   height: toRem(8),
 }
 
-export default RadioIcon;
+export default RadioIconDeprecated;

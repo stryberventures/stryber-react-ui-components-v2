@@ -1,17 +1,27 @@
 import React from 'react';
 import classNames from 'classnames';
 import Text, { TTextVariant } from '../Text';
-import { CloseIconRound } from '../Icons';
+import { CloseCircleIcon } from '../Icons';
 import useStyles from './styles';
 
 
 type TTagSize = 'small' | 'medium' | 'large';
+type TTagShape = 'square' | 'round';
+type TTagColor = 'primary' | 'secondary';
+
+export const defaultTagProps = {
+  size: 'large' as TTagSize,
+  shape: 'round' as TTagShape,
+  color: 'primary' as TTagColor,
+  selected: false,
+  disabled: false,
+}
 
 export interface ITag extends React.HTMLAttributes<HTMLButtonElement> {
   children: string;
-  color?: 'primary' | 'secondary';
+  color?: TTagColor;
   size?: TTagSize;
-  shape?: 'square' | 'round';
+  shape?: TTagShape;
   selected?: boolean;
   disabled?: boolean;
   iconLeft?: React.ReactNode;
@@ -24,12 +34,12 @@ export interface ITag extends React.HTMLAttributes<HTMLButtonElement> {
 
 const Tag: React.FC<ITag> = (props) => {
   const {
-    size = 'large',
-    shape = 'round',
+    size = defaultTagProps.size,
+    shape = defaultTagProps.shape,
+    disabled = defaultTagProps.disabled,
+    selected = defaultTagProps.selected,
     iconLeft,
     iconRight,
-    disabled = false,
-    selected = false,
     children,
     testId,
     className,
@@ -70,7 +80,8 @@ const Tag: React.FC<ITag> = (props) => {
       </Text>
       {iconRight}
       {onRemove && (
-        <CloseIconRound
+        <CloseCircleIcon
+          data-testid="closeIconRound"
           className={classNames(classes.icon, classes[`${size}Icon`])}
           onClick={handleOnRemove}
         />
@@ -79,13 +90,7 @@ const Tag: React.FC<ITag> = (props) => {
   );
 }
 
-Tag.defaultProps = {
-  size: 'large',
-  shape: 'round',
-  color: 'primary',
-  selected: false,
-  disabled: false,
-}
+Tag.defaultProps = defaultTagProps;
 
 export default Tag;
 
