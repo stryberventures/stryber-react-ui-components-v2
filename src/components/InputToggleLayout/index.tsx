@@ -7,8 +7,9 @@ import Text from '../Text';
 
 const InputToggleLayout: React.FC<IInputToggle> = (props) => {
   const {
-    name = '', size = 'medium', className, type, checked, disabled, value, children, title, control,
-    onChange, onFocus, errorMessage, placeholder, label, controlled, reverse, fullWidth, ...rest
+    name = '', size = 'small', className, type, checked, disabled, value, children, title, control,
+    onChange, onFocus, errorMessage, placeholder, label, hint, heading, controlled,
+    reverse, fullWidth, controlCentered, ...rest
   } = props;
   const classes = useStyles(props);
   
@@ -17,9 +18,21 @@ const InputToggleLayout: React.FC<IInputToggle> = (props) => {
       [classes.disabled]: disabled,
     }, className)}>
       <label className={classNames(classes.container, {
-        [classes.reverse]: reverse,
-        [classes.fullWidth]: fullWidth
+        [classes.reverse]: reverse
       })}>
+        {heading &&
+            <Text
+              variant={size === 'medium' ? 'caption1' : 'caption2'}
+              weight="medium"
+              className={classNames(
+                classes.heading, {
+                  [classes.textDisabled]: disabled,
+                }
+              )}
+            >
+              {heading}
+            </Text>
+        }
         <input
           {...rest}
           type={type}
@@ -30,9 +43,14 @@ const InputToggleLayout: React.FC<IInputToggle> = (props) => {
           onChange={onChange}
           onFocus={onFocus}
         />
-        {control}
-        <div className={classes.text}>
-          {title &&
+        <div className={classNames(
+          classes.controlContainer, { 
+            [classes.fullWidth]: fullWidth, 
+            [classes.controlCentered]: controlCentered 
+          })}>
+          {control}
+          <div className={classes.text}>
+            {title &&
             <Text
               variant="components2"
               weight="medium"
@@ -46,27 +64,42 @@ const InputToggleLayout: React.FC<IInputToggle> = (props) => {
             >
               {title}
             </Text>
-          }
-          {label && typeof label == 'string'
-            ? (
-              <Text
-                variant="components2"
-                weight="regular"
-                className={classNames(
-                  classes.label,
-                  classes[size],
-                  {
-                    [classes.textDisabled]: disabled,
-                  }
-                )}
-              >
-                {label}
-              </Text>
-            )
-            : label
-          }
+            }
+            {label && typeof label == 'string'
+              ? (
+                <Text
+                  variant={size === 'medium' ? 'components1' : 'components2'}
+                  weight="regular"
+                  className={classNames(
+                    classes.label,
+                    classes[size],
+                    {
+                      [classes.textDisabled]: disabled,
+                    }
+                  )}
+                >
+                  {label}
+                </Text>
+              )
+              : label
+            }
+          </div>
         </div>
+        {hint &&
+            <Text
+              variant={size === 'medium' ? 'body2' : 'body3'}
+              weight="medium"
+              className={classNames(
+                classes.hint, {
+                  [classes.textDisabled]: disabled,
+                }
+              )}
+            >
+              {hint}
+            </Text>
+        }
       </label>
+      
       {errorMessage && <ErrorMessage text={errorMessage} className={classes.error}/>}
     </div>
   );
@@ -78,6 +111,7 @@ InputToggleLayout.defaultProps = {
   color: 'primary',
   checked: false,
   disabled: false,
+  controlCentered: false,
 }
 
 export default InputToggleLayout;

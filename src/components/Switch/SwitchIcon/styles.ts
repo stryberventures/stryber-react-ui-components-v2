@@ -1,31 +1,63 @@
 import { ISwitchIcon } from './index';
 import { createStyles, toRem } from '../../../components/Theme';
 
-
 export default createStyles((theme) => ({
-  switchIcon: {
-    width: toRem(44),
-    height: toRem(24),
+  switchIcon: (props: ISwitchIcon) => ({
     position: 'relative',
     borderRadius: toRem(12),
-    backgroundColor: theme.colors.neutralGray.main500,
+    backgroundColor: theme.colors.neutralGray.medium400,
     '&:not($disabled)': {
       cursor: 'pointer',
     },
-    '&:hover $circleHighlight': {
-      opacity: 0.3,
+    '&:hover:not($disabled)': {
+      backgroundColor: theme.colors.neutralGray.medium300,
+      boxShadow: `0px 0px 0px 3px ${theme.colors[props.color!].light100}`,
     },
-    '& $circleHighlight': {
-      backgroundColor: theme.colors.background.white,
+    '&:active:not($disabled)': {
+      backgroundColor: theme.colors.neutralGray.light200,
+    },
+    '&$disabled': {
+      backgroundColor: theme.colors.neutralGray.light200,
+    },
+  }),
+  medium: {
+    minWidth: toRem(44),
+    width: toRem(44),
+    minHeight: toRem(24),
+    height: toRem(24),
+    '& $circle': {
+      height: toRem(20),
+      width: toRem(20),
+    },
+    '& $circleContainerChecked': {
+      transform: `translateX(${toRem(20)})`,
+    }
+  },
+  small: {
+    minWidth: toRem(29),
+    width: toRem(29),
+    minHeight: toRem(17),
+    height: toRem(17),
+    '& $circle': {
+      height: toRem(13),
+      width: toRem(13),
+    },
+    '& $circleContainerChecked': {
+      transform: `translateX(${toRem(12)})`,
     }
   },
   disabled: {
-    opacity: 0.45,
+    '& $label': {
+      color: theme.colors.text.disabled,
+    }
   },
   checked: (props: ISwitchIcon) => ({
     backgroundColor: theme.colors[props.color!].main500,
-    '&:hover': {
-      backgroundColor: theme.colors[props.color!].dark600,
+    '&:hover:not($disabled)': {
+      backgroundColor: theme.colors[props.color!].medium400,
+    },
+    '&:active:not($disabled)': {
+      backgroundColor: theme.colors[props.color!].medium300,
     },
   }),
   '@keyframes slideLeft': {
@@ -41,16 +73,13 @@ export default createStyles((theme) => ({
     left: toRem(2),
     position: 'absolute',
     animationName: '$slideLeft',
-    transition: 'transform 0.15s',
+    transition: 'transform 0.3s',
   },
   circleContainerChecked: {
     animationName: '$slideRight',
-    transform: `translateX(${toRem(20)})`,
   },
   circle: {
     position: 'relative',
-    height: toRem(20),
-    width: toRem(20),
     backgroundColor: theme.colors.background.white,
     borderRadius: '50%',
   },
@@ -64,5 +93,7 @@ export default createStyles((theme) => ({
     opacity: 0,
     borderRadius: '50%',
     transition: 'opacity 0.15s',
+    border: 'none',
+    outline: 'none',
   },
 }));
