@@ -19,6 +19,8 @@ export const Primary = Template.bind({});
 Primary.args = {
   checked: true,
   label: 'Primary',
+  heading: 'Switches heading',
+  hint: 'Write a switches sentence here',
 };
 
 export const Secondary = Template.bind({});
@@ -26,20 +28,43 @@ Secondary.args = {
   checked: true,
   color: 'secondary',
   label: 'Secondary',
+  heading: 'Switches heading',
+  hint: 'Write a switches sentence here',
 };
 
-export const DisabledOn = Template.bind({});
-DisabledOn.args = {
+export const Small = Template.bind({});
+Small.args = {
+  checked: false,
+  label: 'Small',
+  size: 'small',
+  heading: 'Switches heading',
+  hint: 'Write a switches sentence here',
+};
+
+export const MultiLine = Template.bind({});
+MultiLine.args = {
+  checked: false,
+  label: 'Switches label Switches label Switches label',
+  size: 'small',
+  heading: 'Switches heading',
+  hint: 'Write a switches sentence here Write a switches sentence here Write a switches sentence here',
+  controlCentered: false,
+};
+
+MultiLine.decorators = [
+  (Story) => (
+    <div style={{ width: '250px' }}>
+      <Story />
+    </div>
+  ),
+];
+export const Disabled = Template.bind({});
+Disabled.args = {
   checked: true,
   disabled: true,
   label: 'Disabled on',
-};
-
-export const DisabledOff = Template.bind({});
-DisabledOff.args = {
-  checked: false,
-  disabled: true,
-  label: 'Disabled off',
+  heading: 'Switches heading',
+  hint: 'Write a switches sentence here',
 };
 
 export const CustomContent = Template.bind({});
@@ -53,8 +78,18 @@ export const Reverse = Template.bind({});
 Reverse.args = {
   label: 'Reverse',
   reverse: true,
+  heading: 'Switches heading',
+  hint: 'Write a switches sentence here',
+  fullWidth: true,
 };
 
+Reverse.decorators = [
+  (Story) => (
+    <div style={{ width: '400px' }}>
+      <Story />
+    </div>
+  ),
+];
 export const FullWidth = Template.bind({});
 FullWidth.args = {
   label: 'Full Width',

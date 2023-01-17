@@ -10,6 +10,8 @@ export interface IInputToggleBase extends Omit<React.HTMLProps<HTMLInputElement>
   value?: string,
   label?: string | React.ReactElement,
   title?: string,
+  hint?: string,
+  heading?: string,
   errorMessage?: string,
   onChange?: (e: React.BaseSyntheticEvent) => void,
   onFocus?: (e: React.BaseSyntheticEvent) => void,
@@ -19,6 +21,7 @@ export interface IInputToggleBase extends Omit<React.HTMLProps<HTMLInputElement>
 
 export interface IInputToggleBaseControlled extends IInputToggleBase {
   controlled?: boolean,
+  controlCentered?: boolean,
 }
 
 export interface IInputToggle extends IInputToggleBaseControlled {
