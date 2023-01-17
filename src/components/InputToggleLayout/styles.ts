@@ -12,13 +12,22 @@ export default createStyles((theme) => ({
   },
   disabled: {
     pointerEvents: 'none',
+    '& $heading': {
+      color: theme.colors.text.disabled
+    },
+    '& $hint': {
+      color: theme.colors.text.disabled
+    },
   },
   input: () => ( {
-    display: 'none',
+    position: 'absolute',
+    width: 0,
+    height: 0,
   }),
   container: {
     userSelect: 'none',
     display: 'flex',
+    flexDirection: 'column',
     alignItems: 'flex-start',
     height: '100%',
     width: '100%',
@@ -33,8 +42,9 @@ export default createStyles((theme) => ({
     position: 'relative',
   },
   reverse: {
-    flexDirection: 'row-reverse',
-    justifyContent: 'flex-end',
+    '& $controlContainer': {
+      flexDirection: 'row-reverse',
+    },
     '& $text': {
       marginRight: toRem(8),
       marginLeft: 0,
@@ -42,6 +52,7 @@ export default createStyles((theme) => ({
   },
   fullWidth: {
     justifyContent: 'space-between',
+    width: '100%',
   },
   medium: {
     lineHeight: toRem(20),
@@ -61,4 +72,24 @@ export default createStyles((theme) => ({
   error: {
     marginTop: toRem(8),
   },
+  heading: {
+    marginBottom: toRem(12),
+    color: theme.colors.contrast.black,
+    fontWeight: 400,
+    lineHeight: '150%',
+    width: 'fit-content',
+  },
+  hint: {
+    marginTop: toRem(8),
+    color: theme.colors.neutralGray.main500,
+    fontWeight: 400,
+    lineHeight: toRem(20),
+    width: 'fit-content',
+  },
+  controlContainer: {
+    display: 'flex',
+  },
+  controlCentered: {
+    alignItems: 'center',
+  }
 }), { internalUsage: true });
