@@ -26,7 +26,7 @@ export default createStyles( (theme) => ({
     }
   },
   thumb: {
-    backgroundColor: theme.background.default,
+    backgroundColor: theme.colors.background.white,
     border: 'none',
     borderRadius: '50%',
     boxShadow: `0 0 ${toRem(4)} 0 #00000040`,
@@ -47,10 +47,10 @@ export default createStyles( (theme) => ({
   },
   disabled: {
     '& $thumb': {
-      backgroundColor: theme.default.light,
+      backgroundColor: theme.colors.neutralGray.light200,
     },
     '& $sideLabel, $sliderRange, $dotsContainer': {
-      backgroundColor: theme.default.main,
+      backgroundColor: theme.colors.neutralGray.medium300,
       color: '#E3E8EE',
     },
     '& $sliderTrack, $sliderRange, $thumb': {
@@ -61,11 +61,11 @@ export default createStyles( (theme) => ({
     position: 'relative',
     bottom: toRem(34),
     width: 'fit-content',
-    color: theme.primary.contrast,
+    color: theme.colors.contrast.white,
     fontSize: toRem(12),
     height: toRem(16),
     padding: `${toRem(2)} ${toRem(4)}`,
-    backgroundColor: theme.default.dark,
+    backgroundColor: theme.colors.neutralGray.dark600,
     borderRadius: toRem(4),
     display: 'none',
     alignItems: 'center',
@@ -82,7 +82,7 @@ export default createStyles( (theme) => ({
     margin: '0 auto',
     fontSize: toRem(14),
     fontWeight: 600,
-    color: theme.text.hint,
+    color: theme.colors.text.tint,
     width: 'fit-content',
     display: 'none',
     '-webkit-touch-callout': 'none',
@@ -117,7 +117,7 @@ export default createStyles( (theme) => ({
     position: 'absolute',
     borderRadius: toRem(3),
     height: toRem(4),
-    backgroundColor: theme.default.main,
+    backgroundColor: theme.colors.neutralGray.medium300,
     width: '100%',
     zIndex: 1,
     cursor: 'pointer',
@@ -131,7 +131,7 @@ export default createStyles( (theme) => ({
     position: 'absolute',
     borderRadius: toRem(3),
     height: toRem(4),
-    backgroundColor: theme[props.color!].main,
+    backgroundColor: theme.colors[props.color!].main500,
     opacity: 0.6,
     zIndex: 2,
     cursor: 'pointer',
@@ -142,12 +142,12 @@ export default createStyles( (theme) => ({
     'user-select': 'none',
   }),
   sideLabel: {
-    color: theme.primary.contrast,
+    color: theme.colors.contrast.white,
     fontSize: toRem(12),
     lineHeight: toRem(16),
     padding: `${toRem(2)} ${toRem(4)}`,
     margin: `0 ${toRem(8)}`,
-    backgroundColor: theme.default.dark,
+    backgroundColor: theme.colors.neutralGray.main500,
     borderRadius: toRem(4),
     '-webkit-touch-callout': 'none',
     '-moz-user-select': 'none',
@@ -160,17 +160,17 @@ export default createStyles( (theme) => ({
   },
   show: {
     '&$error>div>div:not(inputContainerError)': {
-      borderColor: theme.error.main,
+      borderColor: theme.colors.error.main500,
     },
     '&$error>div>div:focus-within:not(inputContainerError)': {
-      borderColor: theme.error.main,
+      borderColor: theme.colors.error.main500,
     },
   },
   error: {
     '&>div>div:not(inputContainerError)': {
       borderWidth: toRem(1),
       borderStyle: 'solid',
-      borderColor: theme.error.main,
+      borderColor: theme.colors.error.main500,
     }
   },
   dotsContainer: {
@@ -186,6 +186,6 @@ export default createStyles( (theme) => ({
     width: toRem(4),
     height: toRem(4),
     borderRadius: toRem(2),
-    backgroundColor: theme.default.light,
+    backgroundColor: theme.colors.neutralGray.light100,
   },
 }), { internalUsage: true })

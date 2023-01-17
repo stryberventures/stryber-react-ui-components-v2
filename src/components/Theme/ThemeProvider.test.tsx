@@ -18,14 +18,21 @@ it('should render the child', () => {
 it('should apply theme colors', () => {
   const label = 'Button';
   const red = 'rgb(255, 0, 0)';
-  const black = 'rgb(0, 0, 0)';
+  const contrast = 'rgb(0, 0, 0)';
   render(
-    <ThemeProvider theme={{ primary: { main: red, contrast: black, light: red, dark: red } }}>
+    <ThemeProvider
+      theme={{
+        colors: {
+          primary: { main500: red, light100: red, dark600: red },
+          contrast: { white: contrast }
+        }
+      }}
+    >
       <Button>{label}</Button>
     </ThemeProvider>
   );
   const button = screen.getByRole('button');
   const buttonStyles = getComputedStyle(button);
   expect(buttonStyles.backgroundColor).toMatch(red);
-  expect(buttonStyles.color).toMatch(black);
+  expect(buttonStyles.color).toMatch(contrast);
 });

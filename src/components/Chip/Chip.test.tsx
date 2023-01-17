@@ -12,10 +12,10 @@ it('should be rendered', () => {
 
 it('should contain left icon', () => {
   render(<Chip iconLeft={<LeftArrow />}>Chip</Chip>);
-  expect(screen.getByTestId('test-svg')).toBeVisible();
+  expect(screen.getByTestId('leftArrow')).toBeVisible();
 });
 
 it('should contain right icon', () => {
   render(<Chip iconRight={<LeftArrow />}>Chip</Chip>);
-  expect(screen.getByTestId('test-svg')).toBeVisible();
+  expect(screen.getByTestId('leftArrow')).toBeVisible();
 });

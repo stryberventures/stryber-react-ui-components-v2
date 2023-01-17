@@ -63,7 +63,8 @@ const Tooltip: React.FC<ITooltip> = (props) => {
             {title && typeof title == 'string'
               ? (
                 <Text
-                  variant="labelHighlight"
+                  variant="components2"
+                  weight="medium"
                   className={classes.title}
                 >
                   {title}
@@ -73,7 +74,8 @@ const Tooltip: React.FC<ITooltip> = (props) => {
             {text && typeof text == 'string'
               ? (
                 <Text
-                  variant="label"
+                  variant="components2"
+                  weight="regular"
                   className={classes.text}
                 >
                   {text}

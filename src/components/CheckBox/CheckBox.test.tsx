@@ -48,6 +48,6 @@ it('should display the error', () => {
 
 it('should display the custom content', () => {
   render(<CheckBox label={<>Message <LeftArrow /></>} />);
-  expect(screen.getByTestId('test-svg')).toBeVisible();
+  expect(screen.getByTestId('leftArrow')).toBeVisible();
   expect(screen.queryByText('Message')).toBeVisible();
 });

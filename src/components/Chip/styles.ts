@@ -19,8 +19,8 @@ export default createStyles((theme) => ({
   contained: (props: IChipStyle) => ({
     '&:not($default)': {
       padding: [toRem(6), toRem(16)],
-      backgroundColor: theme[props.color!].main,
-      color: theme[props.color!].contrast,
+      backgroundColor: theme.colors[props.color!].main500,
+      color: theme.colors.contrast.white,
       '&$iconLeft': {
         paddingLeft: toRem(8),
       },
@@ -31,19 +31,19 @@ export default createStyles((theme) => ({
         padding: [toRem(7), toRem(8)],
       },
       '&:hover:not($disabled)': {
-        backgroundColor: theme[props.color!].dark,
+        backgroundColor: theme.colors[props.color!].dark600,
       },
       '& svg path': {
-        fill: theme[props.color!].contrast,
+        fill: theme.colors.contrast.white,
       }
     }
   }),
   outlined: (props: IChipStyle) => ({
     '&:not($default)': {
       padding: [toRem(5), toRem(15)],
-      color: theme[props.color!].main,
-      border: `${toRem(1)} solid ${theme[props.color!].main}`,
-      backgroundColor: theme[props.color!].contrast,
+      color: theme.colors[props.color!].main500,
+      border: `${toRem(1)} solid ${theme.colors[props.color!].main500}`,
+      backgroundColor: theme.colors.contrast.white,
       '&$iconLeft': {
         paddingLeft: toRem(7),
       },
@@ -54,19 +54,19 @@ export default createStyles((theme) => ({
         padding: [toRem(6), toRem(7)],
       },
       '&:hover:not($disabled)': {
-        backgroundColor: theme.default.extraLight,
+        backgroundColor: theme.colors.neutralGray.light100,
       },
       '& svg path': {
-        fill: theme[props.color!].main,
+        fill: theme.colors[props.color!].main500,
       }
     }
   }),
   default: {
-    backgroundColor: theme.default.light,
-    color: theme.default.dark,
+    backgroundColor: theme.colors.neutralGray.light200,
+    color: theme.colors.neutralGray.main500,
     padding: `${toRem(6)} ${toRem(16)}`,
     '& svg path': {
-      fill: theme.default.dark,
+      fill: theme.colors.neutralGray.dark600,
     },
     '&$iconLeft': {
       paddingLeft: toRem(8),
@@ -81,17 +81,17 @@ export default createStyles((theme) => ({
   disabled: {
     '&:not($default)': {
       '&$contained': {
-        color: theme.default.main,
-        backgroundColor: theme.default.light,
+        color: theme.colors.neutralGray.medium300,
+        backgroundColor: theme.colors.neutralGray.light200,
         '& svg path': {
-          fill: theme.default.main,
+          fill: theme.colors.neutralGray.medium300,
         },
       },
       '&$outlined': {
-        color: theme.default.main,
-        border: `${toRem(1)} solid ${theme.default.main}`,
+        color: theme.colors.neutralGray.medium300,
+        border: `${toRem(1)} solid ${theme.colors.neutralGray.medium300}`,
         '& svg path': {
-          fill: theme.default.main,
+          fill: theme.colors.neutralGray.medium300,
         },
       },
     }

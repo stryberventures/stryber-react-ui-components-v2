@@ -9,12 +9,12 @@ export default createStyles((theme) => ({
     alignItems: 'center',
     paddingLeft: toRem(8),
     '& svg path': {
-      fill: theme.default.dark,
+      fill: theme.colors.neutralGray.main500,
     },
   },
   disabled: {
     '& svg path': {
-      fill: theme.text.disabled,
+      fill: theme.colors.text.disabled,
     },
   }
 }), { internalUsage: true });

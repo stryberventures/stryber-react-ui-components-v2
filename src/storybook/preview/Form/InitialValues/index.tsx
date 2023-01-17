@@ -22,7 +22,7 @@ const FormInitialValues = () => {
       }}
       onSubmit={(formValues) => {console.log('on submit', formValues)}}
     >
-      <h2 style={{ fontFamily: 'Inter', color: defaultTheme.primary.main }}>Form with initial values</h2>
+      <h2 style={{ fontFamily: 'Inter', color: defaultTheme.colors.primary.main500 }}>Form with initial values</h2>
       <Input label={'Email'} name="email" placeholder="some@mail.com"/>
       <h1> </h1>
       <InputPassword label={'Password'} name="password" placeholder="Password is required"/>
@@ -72,7 +72,7 @@ export const FormInitialValuesCode = `
   }}
   onSubmit={(formValues) => {console.log('on submit', formValues)}}
 >
-  <h2 style={{ fontFamily: 'Inter', color: defaultTheme.primary.main }}>Form with initial values</h2>
+  <h2 style={{ fontFamily: 'Inter', color: defaultTheme.colors.primary.main500 }}>Form with initial values</h2>
   <Input label={'Email'} name="email" placeholder="some@mail.com"/>
   <h1> </h1>
   <InputPassword label={'Password'} name="password" placeholder="Password is required"/>

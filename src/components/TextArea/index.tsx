@@ -81,7 +81,8 @@ const TextArea: React.FC<ITextArea> = (props) => {
       })}>
         {label && (
           <Text
-            variant="label"
+            variant="components2"
+            weight="regular"
             className={classNames(classes.label, { [classes.textDisabled]: disabled })}>
             {label}
           </Text>
@@ -91,7 +92,8 @@ const TextArea: React.FC<ITextArea> = (props) => {
           value={controlled ? value : internalValue}
           className={classNames(
             classes.textarea,
-            textClasses.label,
+            textClasses.components2,
+            textClasses.regular,
             { [classes.textDisabled]: disabled }
           )}
           onChange={onChangeWrapper}

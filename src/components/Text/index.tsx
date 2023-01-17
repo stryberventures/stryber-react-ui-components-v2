@@ -4,7 +4,7 @@ import { TextVariant } from './types';
 import useStyles from './styles';
 
 
-type TTextVariant = keyof typeof TextVariant;
+export type TTextVariant = keyof typeof TextVariant;
 
 export interface IText extends React.HTMLAttributes<HTMLElement> {
   className?: string,
@@ -12,15 +12,13 @@ export interface IText extends React.HTMLAttributes<HTMLElement> {
   align?: 'left' | 'center' | 'right';
   variant?: TTextVariant;
   component?: TTag,
-  color?: string;
+  weight?: 'regular' | 'medium' | 'semiBold' | 'bold';
 }
 
 type TTag = keyof Pick<JSX.IntrinsicElements, 'h1' | 'h2' | 'h3' | 'h4' | 'span' | 'label' | 'p' | 'q' | 'b' | 'i' | 'small' | 'strong' | 'em' | 'del' | 'ins' | 'sub' | 'sup' | 'li'>;
 
 function defineTag(variant: TTextVariant): TTag {
   switch (variant) {
-    case TextVariant.quote:
-      return 'q';
     case TextVariant.h1:
     case TextVariant.h2:
     case TextVariant.h3:
@@ -36,8 +34,9 @@ const Text: React.FC<IText> = (props) => {
     className,
     children,
     component,
-    variant = 'body',
+    variant = 'body2',
     align = 'left',
+    weight = 'regular',
     ...rest
   } = props;
   const classes = useStyles(props);
@@ -49,6 +48,7 @@ const Text: React.FC<IText> = (props) => {
         classes.text,
         classes[variant],
         classes[align],
+        classes[weight],
         className,
       )}
       {...rest}
@@ -59,3 +59,10 @@ const Text: React.FC<IText> = (props) => {
 };
 
 export default Text;
+
+Text.defaultProps = {
+  variant: 'body2',
+  align: 'left',
+  weight: 'regular',
+  component: 'span',
+}

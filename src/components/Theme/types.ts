@@ -14,6 +14,8 @@ declare global {
 export type ThemeType = ITheme & DesignSystem.IProjectTheme;
 export type CustomTheme = RecursivePartial<ThemeType> & RecursivePartial<DesignSystem.IProjectTheme> & Record<string, any>;
 
+type TSpacing = 2 | 4 | 8 | 12 | 16 | 24 | 32 | 40 | 48 | 64 | 80 | 96 | 160;
+
 export interface IThemeContext {
   theme: ThemeType;
   updateTheme: (updatedTheme: CustomTheme) => void;
@@ -21,7 +23,7 @@ export interface IThemeContext {
 
 export interface IThemeProvider {
   theme: CustomTheme;
-  children: React.ReactNode,
+  children: React.ReactNode;
 }
 
 export type createStylesOptions = {
@@ -29,48 +31,72 @@ export type createStylesOptions = {
   index?: number;
   // used to build a proper priority of styles in DOM based on JSS index option between
   // components library styles and external styles
-  internalUsage?: boolean,
+  internalUsage?: boolean;
 }
 
 interface IPalette {
-  main: string,
-  dark: string,
-  light: string,
-  contrast: string,
+  dark600: string;
+  main500: string;
+  medium400: string;
+  medium300: string;
+  light200: string;
+  light100: string;
+  extraLight50: string;
 }
 
-interface IDefaultPalette {
-  main: string,
-  dark: string,
-  light: string,
-  extraLight: string,
+interface IGrayPalette {
+  extraDark900: string;
+  extraDark800: string;
+  dark700: string;
+  dark600: string;
+  main500: string;
+  medium400: string;
+  medium300: string;
+  light200: string;
+  light100: string;
+  extraLight50: string;
 }
 
 export interface ITheme {
-  primary: IPalette,
-  secondary: IPalette,
-  error: IPalette,
-  success: IPalette,
-  default: IDefaultPalette,
-  background: {
-    default: string,
-    disabled: string,
-  },
-  text: {
-    primary: string,
-    secondary: string,
-    disabled: string,
-    hint: string,
-  }
-  font: string,
+  colors: {
+    primary: IPalette;
+    secondary: IPalette;
+    error: IPalette;
+    warning: IPalette;
+    success: IPalette;
+    neutralGray: IGrayPalette;
+    background: {
+      white: string;
+      extraLightGrey: string;
+    },
+    text: {
+      headline: string;
+      secondary: string;
+      disabled: string;
+      tint: string;
+    };
+    contrast: {
+      white: string,
+      black: string,
+    };
+  };
+  font: string;
   grid: {
-    columns: number,
+    columns: {
+      [key in Breakpoints]: number;
+    };
+    margin: {
+      [key in Breakpoints]: string;
+    };
     gap: {
       [key in Breakpoints]: string;
-  
-    }
+    };
+    maxWidth: number,
     breakpoints: {
       [key in Breakpoints]: number;
-    }
+    };
+  };
+  spacing: {
+    [key in TSpacing]: string;
   }
 }

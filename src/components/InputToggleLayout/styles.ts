@@ -50,13 +50,13 @@ export default createStyles((theme) => ({
     lineHeight: toRem(16),
   },
   title: {
-    color: theme.text.secondary,
+    color: theme.colors.text.secondary,
   },
   label: {
-    color: theme.text.hint,
+    color: theme.colors.text.tint,
   },
   textDisabled: {
-    color: theme.text.disabled,
+    color: theme.colors.text.disabled,
   },
   error: {
     marginTop: toRem(8),

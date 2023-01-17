@@ -15,13 +15,14 @@ export interface ITextLink extends React.DetailedHTMLProps<React.AnchorHTMLAttri
 const TextLink: React.FC<ITextLink> = (props) => {
   const { children, disabled, iconLeft, iconRight, className, ...rest } = props;
   const classes = useStyles(props);
-  const textClasses = useTextStyles(props);
+  const textClasses = useTextStyles();
 
   return (
     <a
       className={classNames(
         classes.textLink,
-        textClasses.buttonLabel,
+        textClasses.components1,
+        textClasses.bold,
         className, {
           [classes.disabled]: disabled
         })}

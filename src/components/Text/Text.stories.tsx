@@ -15,7 +15,7 @@ export default {
 
 const Template: ComponentStory<typeof Text> = (args) => (
   <Text
-    variant={'h1'}
+    variant="h1"
     {...args}
   >
     {args.children}
