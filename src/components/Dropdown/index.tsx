@@ -2,7 +2,7 @@ import React, { ForwardedRef, forwardRef, ReactNode } from 'react';
 import useStyles from './styles';
 import Input from '../Input';
 import classNames from 'classnames';
-import { ArrowDownIcon } from '../Icons';
+import { ArrowIcon } from '../Icons';
 import { useDropdown } from './hooks';
 
 export interface IDropdownBase extends React.HTMLAttributes<HTMLDivElement>{
@@ -69,7 +69,7 @@ const Dropdown = forwardRef((props: IDropdown, ref: ForwardedRef<IDropdownRef>) 
               [classes.toggleIconDisabled]: disabled,
               [classes.toggleIconOpened]: open,
             })}>
-              <ArrowDownIcon />
+              <ArrowIcon variant="down" />
             </div>
           </>
         )}

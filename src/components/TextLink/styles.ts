@@ -8,35 +8,75 @@ export default createStyles((theme) => ({
     return ({
       display: 'inline-flex',
       alignItems: 'center',
-      gap: toRem(8),
-      padding: [toRem(8), toRem(16)],
-      borderRadius: toRem(8),
+      gap: toRem(7),
       cursor: 'pointer',
-      color: theme.colors[props.color!].main500,
       textDecoration: 'none',
       '-webkit-tap-highlight-color': 'transparent',
       '& svg path': {
         fill: theme.colors[props.color!].main500,
       },
-      '&:visited svg path': {
-        fill: '#8C0A8F',
+      '&:hover, &:hover:not(:visited), &:focus': {
+        outline: 'none',
+        '& $text': {
+          color: theme.colors[props.color!].medium400,
+        },
+        '& $text:after': {
+          borderColor: theme.colors[props.color!].medium400,
+        },
+        '& svg path': {
+          fill: theme.colors[props.color!].medium400,
+        },
       },
-      '&:visited': {
-        color: '#8C0A8F',
+      '&:active, &:visited:active': {
+        '& $text': {
+          color: `${theme.colors[props.color!].medium300} !important`,
+        },
+        '& $text:after': {
+          borderColor: `${theme.colors[props.color!].medium300} !important`,
+        },
+        '& svg path': {
+          fill: `${theme.colors[props.color!].medium300} !important`,
+        },
       },
-      '&:hover': {
-        backgroundColor: theme.colors[props.color!].extraLight50,
-      },
-      '&:active': {
-        boxShadow: `0 0 0 ${toRem(4)} ${theme.colors[props.color!].extraLight50}`,
-        outlineOffset: toRem(-2),
-        backgroundColor: 'transparent',
+      '&:visited:not($disabled), &:visited:hover:not($disabled)': {
+        '& $text': {
+          color: theme.colors[props.color!].dark600,
+        },
+        '& $text:after': {
+          borderColor: theme.colors[props.color!].dark600,
+        },
+        '& svg path': {
+          fill: theme.colors[props.color!].dark600,
+        },
       },
     })
   },
-  disabled: {
-    opacity: 0.4,
+  text: (props: ITextLink) => ({
+    position: 'relative',
+    color: theme.colors[props.color!].main500,
+    transition: 'color .3s ease-out',
+    '&:after': {
+      position: 'absolute',
+      left: 0,
+      bottom: props.size == 'small' ? 2 : (props.size == 'medium') ? 3 : 4,
+      width: '100%',
+      borderBottom: '1.5px solid transparent',
+      transition: 'border-bottom .2s ease-out',
+      content: '""',
+    },
+  }),
+  disabled: (props: ITextLink) => ({
     pointerEvents: 'none',
     cursor: 'default',
-  },
+    outline: 'none',
+    '& $text': {
+      color: `${theme.colors[props.color!].light200} !important`,
+    },
+    '& $text:after': {
+      borderColor: `${theme.colors[props.color!].light200} !important`,
+    },
+    '& svg path': {
+      fill: `${theme.colors[props.color!].light200} !important`,
+    },
+  }),
 }), { internalUsage: true });
