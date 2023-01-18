@@ -6,6 +6,7 @@
       "dom.iterable",
       "esnext"
     ],
+    "types": ["raw-loader.d.ts", "node", "jest"],
     "declaration": true,
     "declarationDir": "dist",
     "allowJs": true,

@@ -3,13 +3,9 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Button from './index';
 import pkg from './package.json';
 import LoginComponent from './index';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import file from '!!raw-loader!./index'
+import file from '!!raw-loader!./index';
 import { replacePaths } from '../../storybook/utils';
 import { FullViewportDecorator } from '../../storybook/preview/FullViewportDecorator';
-
-// TODO raw loader types?
 
 // TODO - write script which deploys all components (which were updated)
 
