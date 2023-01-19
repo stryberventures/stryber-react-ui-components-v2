@@ -131,6 +131,19 @@ RightIcon.args = {
   iconRight: Placeholder,
 };
 
+export const LeftRightIcon = Template.bind({});
+LeftRightIcon.args = {
+  children: 'Right Icon',
+  iconLeft: Placeholder,
+  iconRight: Placeholder,
+};
+
+export const ErrorState = Template.bind({});
+ErrorState.args = {
+  children: 'Error State',
+  color: 'error',
+};
+
 export const FullWidth = Template.bind({});
 FullWidth.args = {
   children: 'Full Width',
