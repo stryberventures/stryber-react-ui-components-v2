@@ -65,8 +65,8 @@ const Button: React.FC<IButton> = (props) => {
       }}
       {...rest}
     >
-      {IconLeftComponent && <IconLeftComponent className={classes.icon}/>}
       {IconComponent && <IconComponent className={classes.icon} />}
+      {IconLeftComponent && <IconLeftComponent className={classes.icon}/>}
       {children}
       {IconRightComponent && <IconRightComponent className={classes.icon}/>}
     </button>

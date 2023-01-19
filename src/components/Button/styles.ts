@@ -3,20 +3,25 @@ import { createStyles } from '../Theme';
 import toRem from '../../utils/toRem';
 
 export default createStyles((theme) => ({
-  button: {
+  button: (props: IButton) => ({
+    boxSizing: 'border-box',
     fontFamily: theme.font,
     userSelect: 'none',
     outline: 'none',
-    border: '1.5px solid transparent',
+    border: `${props.size == 'mini' ? 1 : 1.5}px solid transparent`,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     transition: 'background-color .3s ease-out, border-color .3s ease-out',
+    lineHeight: '150%',
     '-webkit-tap-highlight-color': 'transparent',
+    '*': {
+      boxSizing: 'inherit',
+    },
     '&:hover': {
       cursor: 'pointer',
     },
-  },
+  }),
   contained: (props: IButton) => ({
     backgroundColor: theme.colors[props.color!].main500,
     borderColor: theme.colors[props.color!].main500,
@@ -40,7 +45,7 @@ export default createStyles((theme) => ({
   outlined: (props: IButton) => ({
     backgroundColor: theme.colors.contrast.white,
     color: theme.colors[props.color!].main500,
-    border: [toRem(1.5), 'solid', theme.colors[props.color!].main500],
+    borderColor: theme.colors[props.color!].main500,
     '& $icon path': {
       fill: theme.colors[props.color!].main500,
     },
@@ -84,22 +89,20 @@ export default createStyles((theme) => ({
     pointerEvents: 'none',
   },
   mini: (props: IButton) => ({
-    gap: toRem(8),
-    padding: `${toRem(props.icon ? 6 : 4.5)} ${toRem(props.icon ? 6 : 8)}`,
-    fontSize: toRem(10),
-    lineHeight: toRem(15),
+    gap: toRem(6),
+    padding: `${toRem(4)} ${toRem(props.icon ? 4 : 8)}`,
   }),
   small: (props: IButton) => ({
-    padding: `${toRem(10)} ${toRem(props.icon ? 10 : 18)}`,
+    padding: `${toRem(8)} ${toRem(props.icon ? 8 : 16)}`,
     gap: toRem(10),
   }),
-  medium: (props: IButton) => ({
-    padding: `${toRem(props.icon ? 10 : 18)} ${toRem(props.icon ? 10 : 18)}`,
+  medium: {
+    padding: `${toRem(16)}`,
     gap: toRem(10),
-  }),
+  },
   large: (props: IButton) => ({
-    padding: `${toRem(props.icon ? 10 : 26)} ${toRem(props.icon ? 10 : 34)}`,
-    gap: toRem(14),
+    padding: `${toRem(24)} ${toRem(props.icon ? 24 : 32)}`,
+    gap: toRem(10),
   }),
   square: {},
   round: {
