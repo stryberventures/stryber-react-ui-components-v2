@@ -4,7 +4,7 @@ import { createStylesOptions, IThemeContext, IThemeProvider, ThemeType } from '.
 import { GlobalStyles } from './GlobalStyles';
 import { defaultTheme } from './defaultTheme';
 import { Classes } from 'jss';
-import merge from './utils';
+import { merge, toRem } from './utils';
 import { useEffectAfterMount } from '../../hooks/useEffectAfterMount';
 
 const ThemeContext = React.createContext<IThemeContext>({
@@ -62,16 +62,10 @@ function createStyles<TStyles extends string = string, TProps = unknown>(
   });
 }
 
-export const BASIC_FONT_SIZE = 16;
-
-function toRem(px: number): string {
-  return `${px / BASIC_FONT_SIZE}rem`;
-}
-
 export {
   defaultTheme,
   ThemeProvider,
-  createStyles,
   toRem,
+  createStyles,
   useTheme,
 }
