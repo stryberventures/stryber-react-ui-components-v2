@@ -1,8 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
+import { ComponentStory } from '@storybook/react';
 import * as Icons from './index';
 import pkg from './package.json';
-import { createStyles, useTheme, toRem } from '../../components/Theme';
+import { createStyles, toRem } from '../../components/Theme';
 import Text from '../Text';
 import {
   paymentMethodVariants as paymentMethodVariantsArr,
@@ -20,6 +21,11 @@ export default {
   parameters: {
     pkg,
   },
+  args: {
+    fill: undefined,
+    width: 40,
+    height: 40,
+  }
 };
 
 const arrowVariants: IArrowIconVariant[] = ['down', 'up', 'left', 'right'];
@@ -33,43 +39,27 @@ const socialVariants = Object.keys(socialVariantsArr) as TSocialVariants[];
 const commonVariants = ['default', 'filled'];
 const cursorVariants: TCursorVariants[] = ['arrow', 'drag', 'hover'];
 
-const mapIconVariants = (Icon: React.FC<any>) => (variant: string) => ({
-  variant,
-  Icon,
-});
+const TemplateSocial: ComponentStory<typeof Icons.SocialIcon> = (args) => {
+  const classes = useStyles();
+  return (
+    <div className={classes.socialIconsWrapper}>
+      {socialVariants.map((variant: TSocialVariants) => {
+        return (
+          <Icons.SocialIcon
+            {...args}
+            key={variant}
+            variant={variant}
+            className={classes.pointer}
+          />
+        )
+      })}
+    </div>
+  )
+}
 
-const displayIcon = (name: keyof typeof Icons, Icon: React.FC<any>) => {
-  if (name.includes('Arrow')) {
-    return arrowVariants.map(mapIconVariants(Icon));
-  }
-  if (name == 'PaymentMethodIcon') {
-    return paymentMethodVariants.map(mapIconVariants(Icon));
-  }
-  if (name == 'SocialIcon') {
-    return socialVariants.map(mapIconVariants(Icon));
-  }
-  if (name === 'EyeIcon') {
-    return eyeVariants.map(mapIconVariants(Icon));
-  }
-  if (name === 'CountIcon') {
-    return countVariants.map(mapIconVariants(Icon));
-  }
-  if (name === 'LoadIcon') {
-    return loadVariants.map(mapIconVariants(Icon));
-  }
-  if (name === 'MoreIcon') {
-    return moreVariants.map(mapIconVariants(Icon));
-  }
-  if (name === 'CloseIcon') {
-    return singleVariants.map(mapIconVariants(Icon));
-  }
-  if (name === 'CursorIcon') {
-    return cursorVariants.map(mapIconVariants(Icon));
-  }
-  if (name === 'SearchIcon') {
-    return singleVariants.map(mapIconVariants(Icon));
-  }
-  return commonVariants.map(mapIconVariants(Icon));
+export const SocialMediaIcons = TemplateSocial.bind({});
+SocialMediaIcons.args = {
+  fill: '#475467',
 };
 
 export const AllIcons = () => {
@@ -157,83 +147,46 @@ export const PaymentMethodIcons = () => {
   );
 };
 
-export const SocialMediaIcons = () => {
-  const classes = useStyles();
-  return (
-    <>
-      <Text variant="h4" className={classes.title}>Social Media</Text>
-      <div className={classNames(classes.container, classes.withBackground)}>
-        {socialVariants.map((variant: TSocialVariants) => {
-          return (
-            <div key={variant} className={classes.iconContainer}>
-              <Icons.SocialIcon
-                variant={variant}
-                className={classes.pointer}
-              />
-              <Text variant="body3" className={classes.text}>{variant}</Text>
-            </div>
-          )
-        })}
-      </div>
-    </>
-  );
-};
+function displayIcon (name: keyof typeof Icons, Icon: React.FC<any>) {
+  if (name.includes('Arrow')) {
+    return arrowVariants.map(mapIconVariants(Icon));
+  }
+  if (name == 'PaymentMethodIcon') {
+    return paymentMethodVariants.map(mapIconVariants(Icon));
+  }
+  if (name == 'SocialIcon') {
+    return socialVariants.map(mapIconVariants(Icon));
+  }
+  if (name === 'EyeIcon') {
+    return eyeVariants.map(mapIconVariants(Icon));
+  }
+  if (name === 'CountIcon') {
+    return countVariants.map(mapIconVariants(Icon));
+  }
+  if (name === 'LoadIcon') {
+    return loadVariants.map(mapIconVariants(Icon));
+  }
+  if (name === 'MoreIcon') {
+    return moreVariants.map(mapIconVariants(Icon));
+  }
+  if (name === 'CloseIcon') {
+    return singleVariants.map(mapIconVariants(Icon));
+  }
+  if (name === 'CursorIcon') {
+    return cursorVariants.map(mapIconVariants(Icon));
+  }
+  if (name === 'SearchIcon') {
+    return singleVariants.map(mapIconVariants(Icon));
+  }
+  return commonVariants.map(mapIconVariants(Icon));
+}
 
-export const StyledWithJSSSocialMediaIcons = () => {
-  const classes = useStyles();
-  const { theme } = useTheme();
-  return (
-    <>
-      <Text variant="h4" className={classes.title}>Social Media</Text>
-      <div className={classNames(classes.container, classes.withBackground)}>
-        {socialVariants.map((variant: TSocialVariants) => {
-          return (
-            <div key={variant} className={classes.iconContainer}>
-              <Icons.SocialIcon
-                variant={variant}
-                className={classes.pointer}
-                fill={theme.colors.neutralGray.main500}
-                width={40}
-                height={40}
-              />
-              <Text variant="body3" className={classes.text}>{variant}</Text>
-            </div>
-          )
-        })}
-      </div>
-    </>
-  );
-};
-
-export const StyledWithClassnameSocialMediaIcons = () => {
-  const classes = useStyles();
-  const { theme } = useTheme();
-  return (
-    <>
-      <Text variant="h4" className={classes.title}>Social Media</Text>
-      <div className={classNames(classes.container, classes.withBackground)}>
-        {socialVariants.map((variant: TSocialVariants) => {
-          return (
-            <div key={variant} className={classes.iconContainer}>
-              <Icons.SocialIcon
-                variant={variant}
-                className={classNames(classes.pointer,
-                  {
-                    [classes.socialIcon]: variant != 'youTube',
-                    [classes.youtube]: variant == 'youTube',
-                  })}
-                fill={theme.colors.neutralGray.main500}
-                width={40}
-                height={40}
-              />
-              <Text variant="body3" className={classes.text}>{variant}</Text>
-            </div>
-          )
-        })}
-      </div>
-    </>
-  );
-};
+function mapIconVariants (Icon: React.FC<any>) {
+  return (variant: string) => ({
+    variant,
+    Icon,
+  });
+}
 
 function useStyles () {
   return createStyles((theme) => ({
@@ -246,6 +199,10 @@ function useStyles () {
     allIconsContainer: {
       display: 'grid',
       gridTemplateColumns: 'repeat(3, 1fr)',
+      gap: toRem(20),
+    },
+    socialIconsWrapper: {
+      display: 'flex',
       gap: toRem(20),
     },
     iconWrapper: {
