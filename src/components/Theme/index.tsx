@@ -4,7 +4,7 @@ import { createStylesOptions, IThemeContext, IThemeProvider, ThemeType } from '.
 import { GlobalStyles } from './GlobalStyles';
 import { defaultTheme } from './defaultTheme';
 import { Classes } from 'jss';
-import merge from './utils';
+import { merge, toRem } from './utils';
 import { useEffectAfterMount } from '../../hooks/useEffectAfterMount';
 
 const ThemeContext = React.createContext<IThemeContext>({
@@ -65,6 +65,7 @@ function createStyles<TStyles extends string = string, TProps = unknown>(
 export {
   defaultTheme,
   ThemeProvider,
+  toRem,
   createStyles,
   useTheme,
 }

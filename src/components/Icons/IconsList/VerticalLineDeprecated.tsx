@@ -1,5 +1,5 @@
 import React from 'react';
-import toRem from '../../../utils/toRem';
+import { toRem } from '../../../components/Theme';
 
 export interface IVertivalLine extends React.SVGProps<SVGSVGElement> {
   fill?: string,

@@ -1,6 +1,5 @@
-import { createStyles } from '../Theme';
 import { ISlider } from './index';
-import toRem from '../../utils/toRem';
+import { createStyles, toRem } from '../../components/Theme';
 
 
 export default createStyles( (theme) => ({

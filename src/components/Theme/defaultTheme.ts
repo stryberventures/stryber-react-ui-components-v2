@@ -1,5 +1,5 @@
 import { ITheme } from './types';
-import toRem from '../../utils/toRem';
+import { toRem } from './utils';
 
 export const defaultColumns = {
   xs: 4,

@@ -6,7 +6,7 @@ import Button from '../Button';
 import { DocumentIcon, FilesIcon, EditIcon, ProfileIcon, PointArrowIcon } from '../Icons';
 import pkg from './package.json';
 import { buildExcludeArgTypes } from '../../storybook/utils';
-import toRem from '../../utils/toRem';
+import { toRem } from '../../components/Theme';
 
 export default {
   title: 'Components/Tag',

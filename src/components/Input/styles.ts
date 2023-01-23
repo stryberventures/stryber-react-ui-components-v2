@@ -1,5 +1,4 @@
-import { createStyles } from '../Theme';
-import toRem from '../../utils/toRem';
+import { createStyles, toRem } from '../../components/Theme';
 import { IInput } from './index';
 
 export default createStyles((theme) => ({
