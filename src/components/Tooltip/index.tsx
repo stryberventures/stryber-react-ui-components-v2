@@ -22,6 +22,7 @@ const Tooltip: React.FC<ITooltip> = (props) => {
   const {
     version = 'light',
     position = 'top',
+    noArrow = false,
     title,
     text,
     visible,
@@ -63,7 +64,11 @@ const Tooltip: React.FC<ITooltip> = (props) => {
           {...rest}
         >
           <div className={classes.tooltipWrapper}>
-            <Elevation variant="light" className={classNames(classes.elevation, classes[version])}>
+            <Elevation
+              data-testid="tooltip"
+              variant="light"
+              className={classNames(classes.elevation, classes[version])}
+            >
               <div className={classes.tooltipBox}>
                 {title && typeof title == 'string'
                   ? (
