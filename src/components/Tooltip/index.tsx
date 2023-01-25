@@ -7,7 +7,7 @@ import { useOutsideClick } from '../../hooks/useOnOutsideClick';
 
 export interface ITooltip extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   version?: 'light' | 'dark';
-  noArrow: boolean;
+  noArrow?: boolean;
   position?: 'top' | 'topStart' | 'topEnd' |
   'bottom' | 'bottomStart' | 'bottomEnd' |
   'left' | 'leftStart' | 'leftEnd' |
