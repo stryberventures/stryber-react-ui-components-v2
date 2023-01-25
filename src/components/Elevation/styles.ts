@@ -1,6 +1,6 @@
 import { createStyles, toRem } from '../../components/Theme';
 
-export default createStyles((theme) => ({
+export default createStyles(() => ({
   elevation: {
     boxSizing: 'border-box',
     borderRadius: toRem(16),
