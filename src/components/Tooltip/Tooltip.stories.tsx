@@ -15,21 +15,6 @@ export default {
 } as ComponentMeta<typeof Tooltip>;
 
 const Template: ComponentStory<typeof Tooltip> = (args) => <Tooltip {...args} />;
-export const Top = Template.bind({});
-Top.args = {
-  version: 'light',
-  position: 'top',
-  children: 'Tooltip top version',
-  title: 'Tooltip title',
-  text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
-};
-Top.decorators = [
-  (Story) => (
-    <div style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <Story />
-    </div>
-  ),
-];
 
 export const AlwaysVisible = Template.bind({});
 AlwaysVisible.args = {
@@ -41,6 +26,22 @@ AlwaysVisible.args = {
   text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
 };
 AlwaysVisible.decorators = [
+  (Story) => (
+    <div style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <Story />
+    </div>
+  ),
+];
+
+export const Top = Template.bind({});
+Top.args = {
+  version: 'light',
+  position: 'top',
+  children: 'Tooltip top version',
+  title: 'Tooltip title',
+  text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
+};
+Top.decorators = [
   (Story) => (
     <div style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <Story />
