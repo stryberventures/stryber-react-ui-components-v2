@@ -64,7 +64,7 @@ export default createStyles((theme) => ({
     color: theme.colors.text.secondary,
   },
   label: {
-    color: theme.colors.text.tint,
+    color: theme.colors.text.headline,
   },
   textDisabled: {
     color: theme.colors.text.disabled,

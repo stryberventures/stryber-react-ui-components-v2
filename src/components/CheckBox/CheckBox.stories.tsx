@@ -20,7 +20,10 @@ export const Checked = Template.bind({});
 Checked.args = {
   size: 'medium',
   checked: true,
-  label: 'Checked'
+  label: 'Checked',
+  heading: 'Checkbox heading',
+  hint: 'Checkbox hint',
+  controlCentered: true,
 };
 
 export const Small = Template.bind({});
@@ -87,3 +90,21 @@ FullWidth.args = {
   label: 'Full Width',
   fullWidth: true,
 };
+
+export const Multiline = Template.bind({});
+Multiline.args = {
+  size: 'medium',
+  checked: true,
+  label: 'Checkbox label Checkbox label Checkbox label Checkbox label Checkbox',
+  heading: 'Checkbox heading',
+  hint: 'Write a check box sentence here Write a check box sentence here Write a check box sentence here',
+  controlCentered: true,
+};
+
+Multiline.decorators = [
+  (Story) => (
+    <div style={{ width: '400px' }}>
+      <Story />
+    </div>
+  ),
+];

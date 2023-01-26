@@ -6,7 +6,7 @@ import toRem from '../../../utils/toRem';
 export default createStyles((theme) => ({
   checkboxMark: (props: ICheckBoxMark) => ({
     backgroundColor: theme.colors.contrast.white,
-    border: [toRem(1), 'solid', theme.colors[props.color!].main500],
+    border: [toRem(1), 'solid', theme.colors.neutralGray.dark600],
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -14,8 +14,12 @@ export default createStyles((theme) => ({
       display: 'none',
     },
     '&:hover:not($disabled)': {
-      backgroundColor: theme.colors[props.color!].extraLight50,
-      border: [toRem(1), 'solid', theme.colors[props.color!].dark600],
+      backgroundColor: theme.colors.neutralGray.extraLight50,
+      borderColor: theme.colors[props.color!].light200,
+    },
+    '&:focus:not($disabled)': {
+      backgroundColor: theme.colors.neutralGray.extraLight50,
+      borderColor: theme.colors[props.color!].light200,
     },
     '& ~ $disabled, &:hover ~ $disabled': {
       backgroundColor: theme.colors.contrast.white,
@@ -44,9 +48,12 @@ export default createStyles((theme) => ({
     },
     '&:not($disabled)': {
       backgroundColor: theme.colors[props.color!].main500,
+      borderColor: theme.colors[props.color!].main500,
     },
     '&:not($disabled):hover': {
-      backgroundColor: theme.colors[props.color!].dark600,
+      backgroundColor: theme.colors[props.color!].medium400,
+      borderColor: theme.colors[props.color!].medium400,
+      boxShadow: `0px 0px 0px 3px ${theme.colors[props.color!].light100}`,
     },
   }),
   small: {
