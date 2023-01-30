@@ -16,6 +16,7 @@ export interface IDialog extends React.HTMLAttributes<HTMLDivElement>{
   disableEscPress?: boolean;
   modalContainer?: TPortalContainer;
   onClose?: () => void;
+  className?: string;
 }
 
 const Dialog = (props: IDialog) => {
@@ -27,6 +28,7 @@ const Dialog = (props: IDialog) => {
     overlayClassName,
     modalContainer,
     onClose,
+    className,
     ...rest
   } = props;
   const classes = useStyles();
@@ -46,7 +48,7 @@ const Dialog = (props: IDialog) => {
         data-testid="test-dialog-overlay"
       >
         <div
-          className={classes.dialog}
+          className={classNames(classes.dialog, className)}
           onClick={(e) => e.stopPropagation()}
           data-testid="test-dialog"
           {...rest}
