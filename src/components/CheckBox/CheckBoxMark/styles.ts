@@ -10,14 +10,18 @@ export default createStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    boxSizing: 'border-box',
+    '& *, & *:after, & *:before': {
+      boxSizing: 'inherit',
+    },
     '& svg': {
       display: 'none',
     },
-    '&:hover:not($disabled)': {
+    '&:hover:not($disabled), &:focus': {
       backgroundColor: theme.colors.neutralGray.extraLight50,
       borderColor: theme.colors[props.color!].light200,
     },
-    '&:focus:not($disabled)': {
+    '&:focus:not($disabled):not(:hover)': {
       backgroundColor: theme.colors.neutralGray.extraLight50,
       borderColor: theme.colors[props.color!].light200,
     },
@@ -26,7 +30,8 @@ export default createStyles((theme) => ({
       boxShadow: 'none',
     },
     '&:active:not($disabled)': {
-      outline: `${toRem(4)} solid ${theme.colors[props.color!].extraLight50}`,
+      border: `${toRem(1)} solid ${theme.colors.neutralGray.dark600}`,
+      backgroundColor: theme.colors.neutralGray.light200,
     },
   }),
   clickArea: {
@@ -50,10 +55,15 @@ export default createStyles((theme) => ({
       backgroundColor: theme.colors[props.color!].main500,
       borderColor: theme.colors[props.color!].main500,
     },
-    '&:not($disabled):hover': {
+    '&:not($disabled):hover:not(:active)': {
       backgroundColor: theme.colors[props.color!].medium400,
       borderColor: theme.colors[props.color!].medium400,
       boxShadow: `0px 0px 0px 3px ${theme.colors[props.color!].light100}`,
+    },
+    '&:not($disabled):hover:active': {
+      boxShadow: 'none',
+      backgroundColor: theme.colors[props.color!].medium400,
+      borderColor: theme.colors[props.color!].medium400,
     },
   }),
   small: {
@@ -66,9 +76,9 @@ export default createStyles((theme) => ({
     },
   },
   medium: {
-    height: toRem(18),
-    width: toRem(18),
-    minWidth: toRem(18),
+    height: toRem(20),
+    width: toRem(20),
+    minWidth: toRem(20),
     '& svg': {
       width: toRem(14),
       height: toRem(14),

@@ -12,7 +12,7 @@ export default createStyles((theme) => ({
   }),
   small: {
     '&:not($reversed) label>span:last-child': {
-      marginLeft: toRem(37),
+      marginLeft: toRem(39),
     },
     '&$reversed label span:last-child': {
       width: 'calc(100% - 37px)',
@@ -20,7 +20,7 @@ export default createStyles((theme) => ({
   },
   medium: {
     '&:not($reversed) label>span:last-child': {
-      marginLeft: toRem(52),
+      marginLeft: toRem(54),
     },
     '&$reversed label span:last-child': {
       width: 'calc(100% - 52px)',

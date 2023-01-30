@@ -8,11 +8,11 @@ import Text from '../Text';
 const InputToggleLayout: React.FC<IInputToggle> = (props) => {
   const {
     name = '', size = 'small', className, type, checked, disabled, value, children, title, control,
-    onChange, onFocus, errorMessage, placeholder, label, hint, heading, controlled,
+    onChange, onFocus, errorMessage, placeholder, label, hint, controlled,
     reverse, fullWidth, controlCentered, ...rest
   } = props;
-  const classes = useStyles(props);
-  
+  const classes = useStyles();
+  // TODO ask designers all questions
   return (
     <div className={classNames(classes.inputToggleLayout, {
       [classes.disabled]: disabled,
@@ -20,19 +20,6 @@ const InputToggleLayout: React.FC<IInputToggle> = (props) => {
       <label className={classNames(classes.container, {
         [classes.reverse]: reverse
       })}>
-        {heading &&
-            <Text
-              variant={size === 'medium' ? 'caption1' : 'caption2'}
-              weight="medium"
-              className={classNames(
-                classes.heading, {
-                  [classes.textDisabled]: disabled,
-                }
-              )}
-            >
-              {heading}
-            </Text>
-        }
         <input
           {...rest}
           type={type}
@@ -44,9 +31,9 @@ const InputToggleLayout: React.FC<IInputToggle> = (props) => {
           onFocus={onFocus}
         />
         <div className={classNames(
-          classes.controlContainer, { 
-            [classes.fullWidth]: fullWidth, 
-            [classes.controlCentered]: controlCentered 
+          classes.controlContainer, {
+            [classes.fullWidth]: fullWidth,
+            [classes.controlCentered]: controlCentered
           })}>
           {control}
           <div className={classes.text}>
@@ -87,7 +74,7 @@ const InputToggleLayout: React.FC<IInputToggle> = (props) => {
         </div>
         {hint &&
             <Text
-              variant={size === 'medium' ? 'body2' : 'body3'}
+              variant="components2"
               weight="medium"
               className={classNames(
                 classes.hint, {
@@ -99,7 +86,6 @@ const InputToggleLayout: React.FC<IInputToggle> = (props) => {
             </Text>
         }
       </label>
-      
       {errorMessage && <ErrorMessage text={errorMessage} className={classes.error}/>}
     </div>
   );

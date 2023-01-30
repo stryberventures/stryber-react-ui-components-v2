@@ -31,10 +31,11 @@ export default createStyles((theme) => ({
     alignItems: 'flex-start',
     height: '100%',
     width: '100%',
+    padding: [4, 8, 4, 4],
     '-webkit-tap-highlight-color': 'transparent',
   },
   text: {
-    marginLeft: toRem(8),
+    marginLeft: toRem(10),
     fontFamily: theme.font,
     display: 'flex',
     flexDirection: 'column',
@@ -55,16 +56,15 @@ export default createStyles((theme) => ({
     width: '100%',
   },
   medium: {
-    lineHeight: toRem(20),
   },
   small: {
-    lineHeight: toRem(16),
   },
   title: {
     color: theme.colors.text.secondary,
   },
   label: {
     color: theme.colors.text.headline,
+    lineHeight: '150%',
   },
   textDisabled: {
     color: theme.colors.text.disabled,
@@ -72,22 +72,15 @@ export default createStyles((theme) => ({
   error: {
     marginTop: toRem(8),
   },
-  heading: {
-    marginBottom: toRem(12),
-    color: theme.colors.contrast.black,
-    fontWeight: 400,
-    lineHeight: '150%',
-    width: 'fit-content',
-  },
   hint: {
-    marginTop: toRem(8),
-    color: theme.colors.neutralGray.main500,
+    color: theme.colors.text.secondary,
     fontWeight: 400,
-    lineHeight: toRem(20),
+    lineHeight: '120%',
     width: 'fit-content',
   },
   controlContainer: {
     display: 'flex',
+    alignItems: 'center',
   },
   controlCentered: {
     alignItems: 'center',

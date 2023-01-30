@@ -12,7 +12,7 @@ const CheckBox:React.FC<ICheckBox> = (props) => {
   const { checked, errorMessage, onChange, onFocus } = useCheckedState(props);
   const {
     size = 'medium', shape, disabled, label, color, className, reverse, fullWidth,
-    heading, hint, controlCentered, ...rest 
+    hint, controlCentered, ...rest
   } = props;
   const  classes = useStyles(props);
   return (
@@ -25,7 +25,6 @@ const CheckBox:React.FC<ICheckBox> = (props) => {
       onChange={onChange}
       onFocus={onFocus}
       label={label}
-      heading={heading}
       hint={hint}
       disabled={disabled}
       reverse={reverse}

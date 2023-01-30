@@ -16,38 +16,21 @@ export default {
 
 const Template: ComponentStory<typeof CheckBox> = (args) => <CheckBox {...args} />;
 
-export const Checked = Template.bind({});
-Checked.args = {
+export const Default = Template.bind({});
+Default.args = {
+  label: 'Default',
+  hint: 'Advocates for every stakeholder',
   size: 'medium',
-  checked: true,
-  label: 'Checked',
-  heading: 'Checkbox heading',
-  hint: 'Checkbox hint',
-  controlCentered: true,
-};
-
-export const Small = Template.bind({});
-Small.args = {
-  size: 'small',
-  label: 'Small'
-};
-
-export const Medium = Template.bind({});
-Medium.args = {
-  size: 'medium',
-  label: 'Medium',
 };
 
 export const Circle = Template.bind({});
 Circle.args = {
-  size: 'medium',
   shape: 'circle',
   label: 'Circle',
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  size: 'medium',
   disabled: true,
   label: 'Disabled',
   checked: true,
@@ -79,24 +62,20 @@ CustomContent.args = {
 
 export const Reverse = Template.bind({});
 Reverse.args = {
-  size: 'medium',
   label: 'Reverse',
   reverse: true,
 };
 
 export const FullWidth = Template.bind({});
 FullWidth.args = {
-  size: 'medium',
   label: 'Full Width',
   fullWidth: true,
 };
 
 export const Multiline = Template.bind({});
 Multiline.args = {
-  size: 'medium',
   checked: true,
   label: 'Checkbox label Checkbox label Checkbox label Checkbox label Checkbox',
-  heading: 'Checkbox heading',
   hint: 'Write a check box sentence here Write a check box sentence here Write a check box sentence here',
   controlCentered: true,
 };
