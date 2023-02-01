@@ -8,8 +8,9 @@ export interface ICheckBoxMark {
   checked?: boolean;
   size?: 'small' | 'medium';
   shape?: 'square' | 'circle';
-  color?: 'primary' | 'secondary',
+  color?: 'primary' | 'secondary' | 'error',
   disabled?: boolean;
+  indeterminate?: boolean;
 }
 
 export const CheckBoxMark = (props: ICheckBoxMark) => {
@@ -17,7 +18,8 @@ export const CheckBoxMark = (props: ICheckBoxMark) => {
     checked,
     size = 'medium',
     shape = 'square',
-    disabled
+    disabled,
+    indeterminate,
   } = props;
   const classes = useStyles(props);
   const { theme } = useTheme();
@@ -25,9 +27,12 @@ export const CheckBoxMark = (props: ICheckBoxMark) => {
     <span
       className={classNames(classes.checkboxMark, classes[shape], classes[size],
         { [classes.disabled]: disabled },
-        { [classes.checked]: checked },
+        { [classes.checked]: checked || indeterminate },
       )}>
-      <CheckIcon variant="default" fill={theme.colors.contrast.white} />
+      {indeterminate
+        ? <div className={classes.indeterminate} />
+        : <CheckIcon variant="default" fill={theme.colors.contrast.white} />
+      }
       <div className={classes.clickArea}/>
     </span>
   );

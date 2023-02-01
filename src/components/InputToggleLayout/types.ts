@@ -4,7 +4,7 @@ export interface IInputToggleBase extends Omit<React.HTMLProps<HTMLInputElement>
   className?: string,
   name?: string,
   size?: 'small' | 'medium',
-  color?: 'primary' | 'secondary',
+  color?: 'primary' | 'secondary' | 'error',
   checked?: boolean,
   disabled?: boolean,
   value?: string,

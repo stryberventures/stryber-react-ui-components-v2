@@ -156,7 +156,6 @@ const Form = forwardRef((props: IFormProps, ref: ForwardedRef<IFormRef>) => {
     /** Running first validation on mount */
     validate(formValues);
   }, []);
-
   return (
     <form
       { ...rest }
@@ -206,7 +205,9 @@ export const useFormContext = (fieldName = 'unnamed') => {
     updateFormValue: formValues ? updateFormValue : () => {},
     updateFormTouched: formTouched ? updateFormTouched : () => {},
     unsetFormValue: formValues ? unsetFormValue : () => {},
-    formActions
+    formActions,
+    formValues,
+    fieldName,
   };
 };
 

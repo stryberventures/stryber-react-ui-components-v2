@@ -66,6 +66,22 @@ export default createStyles((theme) => ({
       borderColor: theme.colors[props.color!].medium400,
     },
   }),
+  indeterminate: {
+    position: 'relative',
+    width: '100%',
+    height: '100%',
+    '&:after': {
+      display: 'block',
+      width: toRem(9),
+      height: toRem(1),
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translateX(-50%) translateY(-50%)',
+      backgroundColor: 'white',
+      content: '""',
+    }
+  },
   small: {
     height: toRem(14),
     width: toRem(14),

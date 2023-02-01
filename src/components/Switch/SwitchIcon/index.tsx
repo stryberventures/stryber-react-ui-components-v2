@@ -5,7 +5,7 @@ import Elevation from '../../Elevation'
 
 export interface ISwitchIcon {
   checked?: boolean,
-  color?: 'primary' | 'secondary',
+  color?: 'primary' | 'secondary' | 'error',
   disabled?: boolean,
   size?: 'small' | 'medium',
 }

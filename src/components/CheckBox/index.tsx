@@ -12,7 +12,7 @@ const CheckBox:React.FC<ICheckBox> = (props) => {
   const { checked, errorMessage, onChange, onFocus } = useCheckedState(props);
   const {
     size = 'medium', shape, disabled, label, color, className, reverse, fullWidth,
-    hint, controlCentered, ...rest
+    hint, controlCentered, indeterminate, ...rest
   } = props;
   const  classes = useStyles(props);
   return (
@@ -38,6 +38,7 @@ const CheckBox:React.FC<ICheckBox> = (props) => {
           shape={shape}
           disabled={disabled}
           color={color}
+          indeterminate={indeterminate}
         />
       }
     />
