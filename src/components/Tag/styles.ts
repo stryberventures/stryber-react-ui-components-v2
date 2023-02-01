@@ -1,5 +1,5 @@
 import { defaultTagProps, ITag } from './index';
-import { createStyles, toRem } from '../../components/Theme';
+import { createStyles, toRem } from '../Theme';
 
 const transitionDelay = '.3s';
 const transitionAnimation = 'ease-out';

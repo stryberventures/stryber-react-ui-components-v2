@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { ComponentStory } from '@storybook/react';
 import * as Icons from './index';
 import pkg from './package.json';
-import { createStyles, toRem } from '../../components/Theme';
+import { createStyles, toRem } from '../Theme';
 import Text from '../Text';
 import {
   paymentMethodVariants as paymentMethodVariantsArr,

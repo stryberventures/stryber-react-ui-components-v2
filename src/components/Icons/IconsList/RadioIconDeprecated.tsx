@@ -1,5 +1,5 @@
 import React from 'react';
-import { toRem } from '../../../components/Theme';
+import { toRem } from '../../Theme';
 
 export interface IRadioIcon extends React.SVGProps<SVGSVGElement> {
   fill?: string,

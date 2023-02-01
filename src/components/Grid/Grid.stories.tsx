@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Grid from './';
 import pkg from './package.json';
 import { buildExcludeArgTypes } from '../../storybook/utils';
-import { toRem } from '../../components/Theme';
+import { toRem } from '../Theme';
 import { defaultGaps, defaultColumns } from '../Theme/defaultTheme';
 
 export default {
