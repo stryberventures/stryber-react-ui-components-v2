@@ -1,6 +1,6 @@
 import { ITheme } from '../../Theme/types';
 import { IRadioBoxMarkProps } from './index';
-import { createStyles, toRem } from '../../../components/Theme'
+import { createStyles, toRem } from '../../Theme'
 
 
 export default createStyles((theme: ITheme) => ({

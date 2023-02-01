@@ -1,4 +1,4 @@
-import { createStyles, toRem } from '../../components/Theme';
+import { createStyles, toRem } from '../Theme';
 import { ISwitch } from './index';
 
 export default createStyles((theme) => ({

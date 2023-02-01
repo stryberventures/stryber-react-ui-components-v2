@@ -1,4 +1,4 @@
-import { createStyles, toRem } from '../../components/Theme';
+import { createStyles, toRem } from '../Theme';
 
 export default createStyles((theme) => ({
   hintMessage: {

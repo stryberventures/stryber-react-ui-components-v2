@@ -1,4 +1,4 @@
-import { createStyles } from '../../../components/Theme';
+import { createStyles, toRem } from '../../../components/Theme';
 
 export default createStyles((theme) => ({
   selectorContainer: {

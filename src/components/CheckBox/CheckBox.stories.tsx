@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import CheckBox from './index';
 import pkg from './package.json';
 import { buildExcludeArgTypes } from '../../storybook/utils';
-import { toRem } from '../../components/Theme';
+import { toRem } from '../Theme';
 
 export default {
   title: 'Components/CheckBox',
