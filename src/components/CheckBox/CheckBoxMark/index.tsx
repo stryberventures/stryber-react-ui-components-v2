@@ -25,9 +25,12 @@ export const CheckBoxMark = (props: ICheckBoxMark) => {
   const { theme } = useTheme();
   return (
     <span
-      className={classNames(classes.checkboxMark, classes[shape], classes[size],
-        { [classes.disabled]: disabled },
-        { [classes.checked]: checked || indeterminate },
+      className={classNames(
+        classes.checkboxMark, classes[shape], classes[size],
+        {
+          [classes.disabled]: disabled,
+          [classes.checked]: checked || indeterminate
+        },
       )}>
       {indeterminate
         ? <div className={classes.indeterminate} />

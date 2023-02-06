@@ -11,7 +11,7 @@ export interface ISwitch extends ISwitchIcon, Omit<IInputToggleBaseControlled, '
 const Switch: React.FC<ISwitch> = (props) => {
   const { checked, errorMessage, onChange, onFocus } = useCheckedState(props);
   const {
-    disabled, label, color, className, size = 'medium', hint,
+    disabled, label, color, className, size = 'medium', hint, heading,
     reverse, controlCentered, ...rest
   } = props;
   const classes = useStyles(props);

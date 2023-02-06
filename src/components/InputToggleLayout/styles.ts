@@ -6,9 +6,6 @@ export default createStyles((theme) => ({
   inputToggleLayout: {
     display: 'flex',
     flexDirection: 'column',
-    '&:hover': {
-      cursor: 'pointer',
-    },
   },
   disabled: {
     pointerEvents: 'none',
@@ -30,9 +27,13 @@ export default createStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'flex-start',
     height: '100%',
-    width: '100%',
+    width: 'fit-content',
+    maxWidth: '100%',
     padding: [4, 8, 4, 4],
     '-webkit-tap-highlight-color': 'transparent',
+    '&:hover': {
+      cursor: 'pointer',
+    },
   },
   text: {
     marginLeft: toRem(10),
@@ -70,7 +71,7 @@ export default createStyles((theme) => ({
     color: theme.colors.text.disabled,
   },
   error: {
-    marginTop: toRem(8),
+    marginLeft: theme.spacing['4'],
   },
   hint: {
     color: theme.colors.text.secondary,

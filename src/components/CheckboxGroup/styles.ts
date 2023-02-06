@@ -1,12 +1,12 @@
 import { createStyles } from '../Theme';
 
-export default createStyles(() => ({
+
+export default createStyles((theme) => ({
   checkboxGroup: {
     display: 'flex',
     flexDirection: 'column',
   },
-  form: {
-    marginLeft: 24,
+  childCheckboxes: {
+    marginLeft: theme.spacing['24'],
   },
-  childCheckbox: {},
 }));

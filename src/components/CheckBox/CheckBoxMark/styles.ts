@@ -39,17 +39,21 @@ export default createStyles((theme) => ({
     width: toRem(26),
     height: toRem(26),
   },
-  disabled: (props: ICheckBoxMark) => ({
-    '& svg path': {
-      fill: theme.colors[props.color!].main500,
+  disabled: {
+    backgroundColor: theme.colors.neutralGray.medium300,
+    borderColor: theme.colors.neutralGray.medium300,
+    '&:not($checked)': {
+      backgroundColor: 'transparent',
+      borderColor: theme.colors.neutralGray.medium300,
     },
-    opacity: 0.45,
-    pointerEvents: 'none',
-    backgroundColor: theme.colors.background.extraLightGrey,
-  }),
+  },
   checked: (props: ICheckBoxMark) => ({
     '& svg': {
       display: 'block',
+    },
+    '&$disabled': {
+      backgroundColor: theme.colors.neutralGray.medium300,
+      borderColor: theme.colors.neutralGray.medium300,
     },
     '&:not($disabled)': {
       backgroundColor: theme.colors[props.color!].main500,
@@ -66,7 +70,7 @@ export default createStyles((theme) => ({
       borderColor: theme.colors[props.color!].medium400,
     },
   }),
-  indeterminate: {
+  indeterminate: () => ({
     position: 'relative',
     width: '100%',
     height: '100%',
@@ -80,8 +84,11 @@ export default createStyles((theme) => ({
       transform: 'translateX(-50%) translateY(-50%)',
       backgroundColor: 'white',
       content: '""',
-    }
-  },
+    },
+    '&$disabled': {
+      borderColor: theme.colors.neutralGray.medium300,
+    },
+  }),
   small: {
     height: toRem(14),
     width: toRem(14),

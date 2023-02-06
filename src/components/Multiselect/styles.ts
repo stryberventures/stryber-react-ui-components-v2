@@ -10,7 +10,6 @@ export default createUseStyles({
   },
   checkbox: {
     '& [class*="text"]': {
-      width: `calc(100% - ${toRem(28)})`,
       display: 'block',
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
@@ -22,7 +21,8 @@ export default createUseStyles({
       overflow: 'hidden',
     },
     '& label': {
-      alignItems: 'center',
+      justifyContent: 'center',
+      width: '100%',
       height: toRem(33),
     }
   },

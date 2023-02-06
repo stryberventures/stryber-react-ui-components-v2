@@ -12,7 +12,6 @@ const InputToggleLayout: React.FC<IInputToggle> = (props) => {
     reverse, fullWidth, controlCentered, ...rest
   } = props;
   const classes = useStyles();
-  // TODO ask designers all questions
   return (
     <div className={classNames(classes.inputToggleLayout, {
       [classes.disabled]: disabled,
@@ -86,7 +85,12 @@ const InputToggleLayout: React.FC<IInputToggle> = (props) => {
             </Text>
         }
       </label>
-      {errorMessage && <ErrorMessage text={errorMessage} className={classes.error}/>}
+      {errorMessage && (
+        <ErrorMessage
+          text={errorMessage}
+          className={classes.error}
+        />
+      )}
     </div>
   );
 };

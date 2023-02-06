@@ -27,7 +27,8 @@ export const SwitchIcon = (props: ISwitchIcon) => {
         <div className={classes.circleHighlight} />
         <Elevation
           variant='light'
-          component='div'>
+          component='div'
+        >
           <div className={classes.circle}/>
         </Elevation>
       </div>

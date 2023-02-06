@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { BaseSyntheticEvent, useEffect, useState } from 'react';
 import Checkbox, { ICheckBox } from '../CheckBox';
+import { useFormContext } from '../Form';
 import useStyles from './styles';
-import Form, { useFormContext } from '../Form';
+import classNames from 'classnames';
 
 
-type TChildCheckbox = {
+export type TChildCheckbox = {
   name: string;
   label: string;
   checked?: boolean;
   error?: string;
   hint?: string;
+  disabled?: boolean;
 };
 
 export interface ICheckboxGroupProps
@@ -17,118 +19,131 @@ export interface ICheckboxGroupProps
   name: string;
   checkboxes: TChildCheckbox[];
   error: string;
-  onChange?: (selectedCheckboxes: string[]) => void;
+  onChange?: (e: BaseSyntheticEvent) => void;
 }
 
 interface IChildCheckboxesState {
-  [key: string]: boolean;
+  [key: string]: TChildCheckbox;
 }
 
 const CheckboxGroup: React.FC<ICheckboxGroupProps> = ({
   name,
-  color,
   checkboxes,
+  disabled,
   error,
-  onChange,
   ...rest
 }) => {
   const classes = useStyles();
-  const {
-    fieldError,
-    formValues,
-    unsetFormValue,
-    updateFormValue,
-    updateFormTouched,
-  } = useFormContext(name);
-  const errorMessage = fieldError || error;
-  const [childCheckboxes, setChildCheckboxes] = useState<IChildCheckboxesState>(
-    checkboxes.reduce(
-      (obj, { name: childName, checked }) => {
-        return ({
-          ...obj,
-          [childName]: formValues?.[name]
-            ? true
-            : formValues?.[name] || checked,
-        });
-      },
-      {},
-    ),
-  );
+  const { updateFormValue } = useFormContext(name);
+  const onChangeWrapper = (newState: IChildCheckboxesState) => {
+    setChildCheckboxes(newState);
+  };
+  const setAllChildVal = (val: boolean): IChildCheckboxesState => {
+    const newValue: IChildCheckboxesState = {};
+    for (const _name in childCheckboxes) {
+      newValue[_name] = {
+        ...childCheckboxes[_name],
+        checked: !childCheckboxes[_name].disabled ? val : childCheckboxes[_name].checked,
+      }
+    }
+    setChildCheckboxes(newValue);
+    return newValue;
+  };
   const checkChildValues = (
-    checkboxChildObj: IChildCheckboxesState,
+    _checkboxes: IChildCheckboxesState,
     type: 'some' | 'all',
   ) => {
-    const checkboxValArr = Object.values(checkboxChildObj);
+    const checkboxArr = Object.values(_checkboxes);
     if (type === 'some') {
-      return checkboxValArr.some(val => val);
+      
+      return checkboxArr.some((val) => val?.checked);
     }
-    return checkboxValArr.every(val => val);
+    return checkboxArr.every(val => val?.checked);
   };
-  const getSelectedCheckboxesArr = (obj: IChildCheckboxesState) =>
-    [
-      ...(checkChildValues(obj, 'all') ? [name] : []),
-      ...Object.entries(obj).map(childVal => {
-        if (childVal[1]) {
-          return childVal[0];
-        }
-        return;
-      }),
-    ].filter(Boolean);
-  const onChangeWrapper = (newState: IChildCheckboxesState) => {
-    const newArrState = getSelectedCheckboxesArr(newState);
-    setChildCheckboxes(newState);
-    onChange && onChange(newArrState as string[]);
-  };
-  const handleChildCheckboxForm = (newFormData: IChildCheckboxesState) => {
-    onChangeWrapper({ ...childCheckboxes, ...newFormData });
-  };
-  const setAllChildVal = (val: boolean) =>
-    Object.keys(childCheckboxes).reduce(
-      (obj, childName) => ({ ...obj, [childName]: val }),
-      {},
+  const handleParentCheckboxChange = () => {
+    const enabledCheckboxes = Object.values(childCheckboxes).reduce(
+      (acc, checkbox) => {
+        return checkbox.disabled ? acc : { ...acc, [checkbox.name]: checkbox }
+      },
+      {}
     );
-  const handleParentCheckboxChange = () =>
-    onChangeWrapper(setAllChildVal(!checkChildValues(childCheckboxes, 'all')));
+    onChangeWrapper(setAllChildVal(!checkChildValues(enabledCheckboxes,'some')))
+  };
+  const [childCheckboxes, setChildCheckboxes] = useState<{[key: string]: TChildCheckbox}>(
+    checkboxes.reduce(
+      (acc, checkbox) => {
+        return {
+          ...acc,
+          [checkbox.name]: {
+            ...checkbox,
+            checked: !!checkbox?.checked,
+          },
+        }
+      },
+      {}
+    )
+  );
+  const handleChildCheckboxChange = (e: BaseSyntheticEvent, _name: string) => {
+    setChildCheckboxes({
+      ...childCheckboxes,
+      [_name]: {
+        ...childCheckboxes[_name],
+        checked: !childCheckboxes[_name].disabled
+          ? e.target.checked
+          : childCheckboxes[_name].checked,
+      },
+    });
+  }
+  useEffect(
+    () => {
+      const checkboxesArray = Object.values(childCheckboxes);
+      updateFormValue(name, checkboxesArray);
+    },
+    [childCheckboxes]
+  );
   return (
-    <div className={classes.checkboxGroup}>
-      {/* TODO handle errors in every checkbox */}
+    <div className={classNames(classes.checkboxGroup, rest.className)}>
       {/* TODO remove sizes from checkbox and radio button */}
       {/* TODO handle onKeyDown */}
       {/* TODO call onBlur after onKeyDown */}
       {/* TODO check styles for focused state */}
-      {/* TODO fix bad setState() error */}
       <Checkbox
+        {...rest}
+        disabled={disabled}
         name={name}
         controlled
         indeterminate={
           checkChildValues(childCheckboxes, 'some') &&
           !checkChildValues(childCheckboxes, 'all')
         }
-        color={color}
         onChange={handleParentCheckboxChange}
         checked={checkChildValues(childCheckboxes, 'all')}
-        errorMessage={errorMessage}
-        {...rest}
+        errorMessage={error}
+        color={rest.color}
       />
-      <Form
-        initialValues={childCheckboxes}
-        onChange={handleChildCheckboxForm}
-        className={classes.form}
-      >
-        {checkboxes
-          .reduce((acc: React.ReactElement[], props: TChildCheckbox) => {
-            return [...acc, <Checkbox
-              {...props}
-              checked={formValues?.[props.name]}
-              key={props.name}
-              className={classes.childCheckbox}
-              color={color}
-            />];
-          }, [])
-        }
-      </Form>
+      <div className={classes.childCheckboxes}>
+        {Object.values(childCheckboxes)
+          .map((props: TChildCheckbox) => {
+            return (
+              <Checkbox
+                controlled
+                checked={childCheckboxes[props.name].checked}
+                disabled={disabled || props.disabled}
+                onChange={(e: BaseSyntheticEvent) => handleChildCheckboxChange(e, props.name)}
+                key={props.name}
+                color={rest.color}
+                errorMessage={props.error}
+                {...props}
+              />
+            )
+          })}
+      </div>
     </div>
   );
 };
+
+CheckboxGroup.defaultProps = {
+  color: 'primary',
+}
 
 export default CheckboxGroup;
