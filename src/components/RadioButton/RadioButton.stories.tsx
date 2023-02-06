@@ -4,7 +4,7 @@ import RadioButton from './index';
 import pkg from './package.json';
 import Form from '../Form';
 import { buildExcludeArgTypes } from '../../storybook/utils';
-import toRem from '../../utils/toRem';
+import { toRem } from '../Theme';
 
 export default {
   title: 'Components/RadioButton',

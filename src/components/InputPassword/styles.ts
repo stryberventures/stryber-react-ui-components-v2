@@ -1,8 +1,7 @@
-import { createUseStyles } from 'react-jss';
-import toRem from '../../utils/toRem'
+import { createStyles, toRem } from '../Theme'
 
 
-export default createUseStyles({
+export default createStyles(() => ({
   inputPassword: {
     width: toRem(320),
   },
@@ -21,4 +20,4 @@ export default createUseStyles({
   fullWidth: {
     width: '100%',
   }
-});
+}));

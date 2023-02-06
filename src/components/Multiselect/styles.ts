@@ -1,8 +1,7 @@
-import { createUseStyles } from 'react-jss';
-import toRem from '../../utils/toRem'
+import { createStyles, toRem } from '../Theme'
 
 
-export default createUseStyles({
+export default createStyles(() => ({
   content: {
     padding: [toRem(8), 0],
     maxHeight: toRem(190),
@@ -26,4 +25,4 @@ export default createUseStyles({
       height: toRem(33),
     }
   },
-});
+}));

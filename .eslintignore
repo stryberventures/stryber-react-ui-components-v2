@@ -2,7 +2,7 @@ build/*
 preBuild.js
 postBuild.js
 webpack.config.js
-deploy.js
+deploy-to-npm.js
 buildConstants.js
 babel.config.js
 jest.config.js

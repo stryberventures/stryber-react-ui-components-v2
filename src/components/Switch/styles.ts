@@ -1,6 +1,5 @@
-import { createStyles } from '../Theme';
+import { createStyles, toRem } from '../Theme';
 import { ISwitch } from './index';
-import toRem from '../../utils/toRem';
 
 export default createStyles((theme) => ({
   switch: (props: ISwitch) => ({

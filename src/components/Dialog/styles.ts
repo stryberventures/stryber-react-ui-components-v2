@@ -1,5 +1,4 @@
-import { createStyles } from '../Theme';
-import toRem from '../../utils/toRem';
+import { createStyles, toRem } from '../Theme';
 
 
 export default createStyles((theme) => ({
@@ -17,8 +16,8 @@ export default createStyles((theme) => ({
   dialog: {
     display: 'flex',
     flexDirection: 'column',
-    width: toRem(500),
-    padding: [toRem(24), toRem(48), toRem(24), toRem(24)],
+    maxWidth: toRem(500),
+    padding: toRem(24),
     backgroundColor: theme.colors.background.white,
     borderRadius: toRem(4),
     boxShadow: `0px ${toRem(2)} ${toRem(11)} rgba(0, 0, 0, .37)`,

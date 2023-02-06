@@ -1,6 +1,5 @@
-import { createStyles } from '../Theme';
 import { ITextArea } from './index';
-import toRem from '../../utils/toRem';
+import { createStyles, toRem } from '../Theme';
 
 
 export default createStyles((theme) => ({

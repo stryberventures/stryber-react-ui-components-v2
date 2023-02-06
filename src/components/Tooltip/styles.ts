@@ -1,6 +1,10 @@
-import { createStyles } from '../Theme';
-import toRem from '../../utils/toRem';
+import { createStyles, toRem } from '../Theme';
+import { ITooltip } from './index';
 
+const PADDING = 16;
+const ARROW_HEIGHT = 5;
+const ARROW_SHIFT = 15;
+const DISTANCE_TO_TARGET = 6;
 
 export default createStyles((theme) => ({
   tooltip: {
@@ -8,211 +12,211 @@ export default createStyles((theme) => ({
     width: 'max-content',
     display: 'flex',
     justifyContent: 'center',
+    boxSizing: 'border-box',
+    '& *, *:after, *:before': {
+      boxSizing: 'inherit',
+    },
   },
   tooltipTarget: {
     cursor: 'pointer',
+    padding: toRem(PADDING),
   },
   tooltipContainer: {
     position: 'absolute',
     zIndex: 99,
   },
-  tooltipBox: {
+  tooltipWrapper: {
+    padding: toRem(PADDING),
+  },
+  elevation: {
+    borderRadius: toRem(4),
+  },
+  tooltipBox: (props: ITooltip) => ({
     fontFamily: theme.font,
     fontSize: toRem(14),
     fontWeight: 400,
     maxWidth: toRem(320),
     width: 'max-content',
-    padding: `${toRem(8)} ${toRem(10)}`,
-    borderRadius: toRem(8),
-    boxSizing: 'border-box',
+    padding: toRem(12),
     position: 'relative',
-    boxShadow: '0px 0px 16px -4px rgba(16, 24, 40, 0.2), 0px 0px 6px -2px rgba(16, 24, 40, 0.03)',
     '&:after': {
+      display: props.noArrow ? 'none' : 'block',
       content: '""',
       position: 'absolute',
       width: toRem(12),
       height: toRem(12),
-      borderRadius: toRem(2),
       transform: 'rotate(45deg)',
-      backgroundColor: theme.colors.background.white,
-      bottom: toRem(-6),
-      left: 'calc(50% - 5px)',
+      backgroundColor: theme.colors.neutralGray.extraLight50,
+      boxShadow: '1px 1px 1px rgba(102, 112, 133, 0.2)',
     }
-  },
+  }),
   visible: {
     '& $title': {
       paddingRight: toRem(24),
     }
   },
-  closeBtn: {
-    position: 'absolute',
-    top: toRem(8),
-    right: toRem(8),
-    height: toRem(20),
-    width: toRem(20),
-    borderRadius: toRem(4),
-    backgroundColor: theme.colors.neutralGray.light200,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    cursor: 'pointer',
-    '&:hover': {
-      backgroundColor: theme.colors.neutralGray.main500,
-    }
-  },
   title: {
-    color: theme.colors.text.secondary,
+    color: theme.colors.text.headline,
+    marginBottom: toRem(4),
+    lineHeight: '150%',
   },
   text: {
-    marginTop: toRem(5),
+    lineHeight: '120%',
   },
   light: {
-    '& $tooltipBox': {
-      backgroundColor: theme.colors.background.white,
-      color: theme.colors.text.tint,
-    }
+    backgroundColor: theme.colors.neutralGray.extraLight50,
+    color: theme.colors.text.secondary,
   },
   dark: {
+    backgroundColor: theme.colors.neutralGray.extraDark900,
+    color: theme.colors.text.tint,
     '& $tooltipBox': {
-      backgroundColor: theme.colors.text.headline,
-      color: theme.colors.contrast.white,
       '& $title': {
-        color: theme.colors.contrast.white,
+        color: theme.colors.neutralGray.light200,
       },
       '&:after': {
-        backgroundColor: theme.colors.text.headline
+        backgroundColor: theme.colors.neutralGray.extraDark900
       }
     }
   },
   top: {
     display: 'flex',
     justifyContent: 'center',
+    bottom: getTooltipPosition(),
     '& $tooltipBox': {
       margin: '0 auto',
     },
-    bottom: `calc(100% + ${toRem(12)})`,
     '& $tooltipBox:after': {
-      bottom: toRem(-5),
-      left: `calc(50% - ${toRem(6)})`,
+      bottom: toRem(-ARROW_HEIGHT),
+      left: `calc(50% - ${toRem(DISTANCE_TO_TARGET)})`,
     }
   },
   topStart: {
-    bottom: `calc(100% + ${toRem(12)})`,
+    bottom: getTooltipPosition(),
     margin: 'initial',
-    right: `calc(100% - ${toRem(32)})`,
+    left: 0,
     '& $tooltipBox:after': {
-      bottom: toRem(-5),
-      right: toRem(15),
-      left: 'initial',
+      bottom: toRem(-ARROW_HEIGHT),
+      left: toRem(ARROW_SHIFT),
+      right: 'initial',
     }
   },
   topEnd: {
-    bottom: `calc(100% + ${toRem(12)})`,
+    bottom: getTooltipPosition(),
     margin: 'initial',
-    left: `calc(100% - ${toRem(32)})`,
+    right: 0,
     '& $tooltipBox:after': {
-      bottom: toRem(-5),
-      left: toRem(15),
+      bottom: toRem(-ARROW_HEIGHT),
+      right: toRem(ARROW_SHIFT),
+      left: 'initial',
     }
   },
   bottom: {
     display: 'flex',
     justifyContent: 'center',
+    top: getTooltipPosition(),
     '& $tooltipBox': {
       margin: '0 auto',
     },
-    top: `calc(100% + ${toRem(12)})`,
     '& $tooltipBox:after': {
-      top: toRem(-5),
-      left: `calc(50% - ${toRem(6)})`,
+      top: toRem(-ARROW_HEIGHT),
+      left: `calc(50% - ${toRem(DISTANCE_TO_TARGET)})`,
+      boxShadow: '-1px -1px 1px rgba(102, 112, 133, 0.1)',
     }
   },
   bottomStart: {
-    top: `calc(100% + ${toRem(12)})`,
     margin: 'initial',
-    right: `calc(100% - ${toRem(32)})`,
+    top: getTooltipPosition(),
+    left: 0,
     '& $tooltipBox:after': {
-      top: toRem(-5),
-      right: toRem(15),
-      left: 'initial',
+      top: toRem(-ARROW_HEIGHT),
+      left: toRem(ARROW_SHIFT),
+      boxShadow: '-1px -1px 1px rgba(102, 112, 133, 0.1)',
     }
   },
   bottomEnd: {
-    top: `calc(100% + ${toRem(12)})`,
+    top: getTooltipPosition(),
     margin: 'initial',
-    left: `calc(100% - ${toRem(32)})`,
+    right: 0,
     '& $tooltipBox:after': {
-      top: toRem(-5),
-      left: toRem(15),
+      top: toRem(-ARROW_HEIGHT),
+      right: toRem(ARROW_SHIFT),
+      boxShadow: '-1px -1px 1px rgba(102, 112, 133, 0.1)',
     }
   },
   right: {
     height: '100%',
-    left: `calc(100% + ${toRem(12)})`,
+    left: getTooltipPosition(),
     top: 0,
     display: 'flex',
     alignItems: 'center',
     '& $tooltipBox:after': {
-      top: `calc(50% - ${toRem(6)})`,
-      left: toRem(-5),
+      top: `calc(50% - ${toRem(ARROW_HEIGHT)})`,
+      left: toRem(-ARROW_HEIGHT),
+      boxShadow: '-1px 1px 1px rgba(102, 112, 133, 0.2)',
     }
   },
   rightStart: {
-    height: '100%',
-    left: `calc(100% + ${toRem(12)})`,
-    bottom: `calc(100% - ${toRem(32)})`,
+    left: getTooltipPosition(),
+    top: `${toRem(-PADDING + ARROW_HEIGHT)}`,
     display: 'flex',
     alignItems: 'flex-end',
     '& $tooltipBox:after': {
-      bottom: toRem(15),
-      left: toRem(-5),
+      top: toRem(ARROW_SHIFT),
+      left: toRem(-ARROW_HEIGHT),
+      boxShadow: '-1px 1px 1px rgba(102, 112, 133, 0.2)',
     }
   },
   rightEnd: {
-    height: '100%',
-    left: `calc(100% + ${toRem(12)})`,
-    top: `calc(100% - ${toRem(32)})`,
+    left: getTooltipPosition(),
+    bottom: toRem(-PADDING + ARROW_HEIGHT),
     display: 'flex',
     alignItems: 'flex-start',
     '& $tooltipBox:after': {
-      top: toRem(15),
-      left: toRem(-5),
+      bottom: toRem(ARROW_SHIFT),
+      left: toRem(-ARROW_HEIGHT),
+      boxShadow: '-1px 1px 1px rgba(102, 112, 133, 0.2)',
     }
   },
   left: {
     height: '100%',
-    right: `calc(100% + ${toRem(12)})`,
+    right: getTooltipPosition(),
     top: 0,
     display: 'flex',
     alignItems: 'center',
     '& $tooltipBox:after': {
-      top: `calc(50% - ${toRem(6)})`,
-      right: toRem(-5),
+      top: `calc(50% - ${toRem(ARROW_HEIGHT)})`,
+      right: toRem(-ARROW_HEIGHT),
       left: 'initial',
+      boxShadow: '1px -1px 1px rgba(102, 112, 133, 0.2)',
     }
   },
   leftStart: {
-    height: '100%',
-    right: `calc(100% + ${toRem(12)})`,
-    bottom: `calc(100% - ${toRem(32)})`,
+    right: getTooltipPosition(),
+    top: toRem(-PADDING + ARROW_HEIGHT),
     display: 'flex',
     alignItems: 'flex-end',
     '& $tooltipBox:after': {
-      bottom: toRem(15),
+      top: toRem(ARROW_SHIFT),
       left: 'initial',
-      right: toRem(-5),
+      right: toRem(-ARROW_HEIGHT),
+      boxShadow: '1px -1px 1px rgba(102, 112, 133, 0.2)',
     }
   },
   leftEnd: {
-    height: '100%',
-    right: `calc(100% + ${toRem(12)})`,
-    top: `calc(100% - ${toRem(32)})`,
+    right: getTooltipPosition(),
+    bottom: toRem(-PADDING + ARROW_HEIGHT),
     display: 'flex',
     alignItems: 'flex-start',
     '& $tooltipBox:after': {
-      top: toRem(15),
-      right: toRem(-5),
+      bottom: toRem(ARROW_SHIFT),
+      right: toRem(-ARROW_HEIGHT),
       left: 'initial',
+      boxShadow: '1px -1px 1px rgba(102, 112, 133, 0.2)',
     }
   },
 }), { internalUsage: true });
+
+function getTooltipPosition () {
+  return `calc(100% - ${toRem((PADDING * 2) - (ARROW_HEIGHT * 2) - DISTANCE_TO_TARGET)})`;
+}

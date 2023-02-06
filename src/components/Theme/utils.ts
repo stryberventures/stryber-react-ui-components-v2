@@ -7,7 +7,7 @@ export function isObject(item: any) {
  * @param source mergeObject base object
  * @param target mergeObject
  */
-export default function merge(source: any, target: any) {
+export function merge(source: any, target: any) {
   const output = Object.assign({}, source);
   if (isObject(source) && isObject(target)) {
     Object.keys(target).forEach(key => {
@@ -22,4 +22,10 @@ export default function merge(source: any, target: any) {
     });
   }
   return output;
+}
+
+export const BASIC_FONT_SIZE = 16;
+
+export function toRem(px: number): string {
+  return `${px / BASIC_FONT_SIZE}rem`;
 }

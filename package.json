@@ -1,16 +1,19 @@
 {
   "name": "gaia-react",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Gaia UI React library",
   "scripts": {
-    "start": "start-storybook -p 6006",
+    "start": "start-storybook -p 6006 -s public",
     "build": "webpack --config webpack.config.js && node postBuild.js",
-    "build-storybook": "build-storybook -o docs-build",
+    "build-storybook": "build-storybook -o docs-build -s public",
     "lint": "eslint . --ext .ts,.tsx",
     "tsc-compile": "tsc --noemit --project tsconfig.checkAll.json",
-    "test": "jest"
+    "test": "jest",
+    "deploy": "node deploy-to-npm.js"
   },
   "dependencies": {
+    "@storybook/addons": "^6.5.15",
+    "@storybook/theming": "^6.5.15",
     "classnames": "^2.3.1",
     "react": "^17.0.2",
     "react-jss": "^10.9.0",
@@ -40,7 +43,7 @@
     "@typescript-eslint/eslint-plugin": "^5.16.0",
     "@typescript-eslint/parser": "^5.16.0",
     "babel-jest": "^27.5.1",
-    "eslint": "^8.11.0",
+    "eslint": "^8.32.0",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.29.4",
     "fs-extra": "^10.0.1",
