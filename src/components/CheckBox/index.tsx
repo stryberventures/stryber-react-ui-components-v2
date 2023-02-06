@@ -20,6 +20,7 @@ const CheckBox:React.FC<ICheckBox> = (props) => {
       {...rest}
       size={size}
       type="checkbox"
+      indeterminate={indeterminate}
       checked={checked}
       errorMessage={errorMessage}
       onChange={onChange}
@@ -34,7 +35,6 @@ const CheckBox:React.FC<ICheckBox> = (props) => {
       control={
         <CheckBoxMark
           checked={checked}
-          size={size}
           shape={shape}
           disabled={disabled}
           color={color}

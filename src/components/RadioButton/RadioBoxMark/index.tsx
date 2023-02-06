@@ -13,14 +13,13 @@ export interface IRadioBoxMarkProps {
 export const RadioBoxMark = (props: IRadioBoxMarkProps) => {
   const {
     checked,
-    size = 'medium',
     disabled
   } = props;
   const classes = useStyles(props);
 
   return (
     <span
-      className={classNames(classes.radioBoxMark, classes[size],
+      className={classNames(classes.radioBoxMark,
         { [classes.disabled]: disabled },
         { [classes.checked]: checked },
       )}>

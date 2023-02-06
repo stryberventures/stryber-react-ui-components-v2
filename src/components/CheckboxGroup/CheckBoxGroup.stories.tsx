@@ -7,7 +7,7 @@ import Elevation from '../Elevation';
 import CheckboxGroup, { TChildCheckbox } from './';
 import pkg from './package.json';
 import { buildExcludeArgTypes } from '../../storybook/utils';
-import toRem from '../../utils/toRem';
+import { toRem } from '../Theme/utils';
 
 export default {
   title: 'Components/CheckboxGroup',

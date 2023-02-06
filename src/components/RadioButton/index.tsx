@@ -26,7 +26,6 @@ const RadioButton: React.FC<IRadioButton> = (props) => {
       control={
         <RadioBoxMark
           checked={checked}
-          size={size}
           disabled={disabled}
           color={color}
         />

@@ -20,7 +20,6 @@ export const Default = Template.bind({});
 Default.args = {
   label: 'Default',
   hint: 'Advocates for every stakeholder',
-  size: 'medium',
 };
 
 export const Circle = Template.bind({});

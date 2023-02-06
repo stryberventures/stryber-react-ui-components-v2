@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+
 export interface IInputToggleBase extends Omit<React.HTMLProps<HTMLInputElement>, 'type' | 'size' | 'shape' | 'label' | 'children'> {
   className?: string,
   name?: string,
@@ -25,6 +26,7 @@ export interface IInputToggleBaseControlled extends IInputToggleBase {
 }
 
 export interface IInputToggle extends IInputToggleBaseControlled {
-  type?: 'radio' | 'checkbox',
-  control: React.ReactNode,
+  type?: 'radio' | 'checkbox';
+  indeterminate?: boolean;
+  control: React.ReactNode;
 }

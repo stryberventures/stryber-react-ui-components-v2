@@ -10,17 +10,22 @@ export default createStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     boxSizing: 'border-box',
+    height: toRem(20),
+    width: toRem(20),
+    minWidth: toRem(20),
     '& *, & *:after, & *:before': {
       boxSizing: 'inherit',
     },
     '& svg': {
       display: 'none',
+      width: toRem(14),
+      height: toRem(14),
     },
     '&:hover:not($disabled), &:focus': {
       backgroundColor: theme.colors.neutralGray.extraLight50,
       borderColor: theme.colors[props.color!].light200,
     },
-    '&:focus:not($disabled):not(:hover)': {
+    '&:focus:not($disabled)': {
       backgroundColor: theme.colors.neutralGray.extraLight50,
       borderColor: theme.colors[props.color!].light200,
     },
@@ -88,24 +93,6 @@ export default createStyles((theme) => ({
       borderColor: theme.colors.neutralGray.medium300,
     },
   }),
-  small: {
-    height: toRem(14),
-    width: toRem(14),
-    minWidth: toRem(14),
-    '& svg': {
-      width: toRem(12),
-      height: toRem(12),
-    },
-  },
-  medium: {
-    height: toRem(20),
-    width: toRem(20),
-    minWidth: toRem(20),
-    '& svg': {
-      width: toRem(14),
-      height: toRem(14),
-    },
-  },
   square: {
     borderRadius: toRem(4),
   },

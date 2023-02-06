@@ -1,10 +1,10 @@
 import { createStyles } from '../Theme';
-import toRem from '../../utils/toRem';
+import { toRem } from '../Theme/utils';
 import { ICheckBox } from './index';
 
 export default createStyles((theme) => ({
   checkbox: (props: ICheckBox) => ({
-    '& input:focus + div>span': {
+    '&:not($disabled) input:focus-visible + div>span)': {
       boxShadow: `0 0 0 2px white, 0 0 0 4px ${theme.colors[props.color!].light200}`,
     },
   }),

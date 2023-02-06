@@ -6,7 +6,6 @@ import { useTheme } from '../../Theme';
 
 export interface ICheckBoxMark {
   checked?: boolean;
-  size?: 'small' | 'medium';
   shape?: 'square' | 'circle';
   color?: 'primary' | 'secondary' | 'error',
   disabled?: boolean;
@@ -16,7 +15,6 @@ export interface ICheckBoxMark {
 export const CheckBoxMark = (props: ICheckBoxMark) => {
   const {
     checked,
-    size = 'medium',
     shape = 'square',
     disabled,
     indeterminate,
@@ -26,7 +24,7 @@ export const CheckBoxMark = (props: ICheckBoxMark) => {
   return (
     <span
       className={classNames(
-        classes.checkboxMark, classes[shape], classes[size],
+        classes.checkboxMark, classes[shape],
         {
           [classes.disabled]: disabled,
           [classes.checked]: checked || indeterminate

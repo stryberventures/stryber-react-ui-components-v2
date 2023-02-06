@@ -103,10 +103,6 @@ const CheckboxGroup: React.FC<ICheckboxGroupProps> = ({
   );
   return (
     <div className={classNames(classes.checkboxGroup, rest.className)}>
-      {/* TODO remove sizes from checkbox and radio button */}
-      {/* TODO handle onKeyDown */}
-      {/* TODO call onBlur after onKeyDown */}
-      {/* TODO check styles for focused state */}
       <Checkbox
         {...rest}
         disabled={disabled}

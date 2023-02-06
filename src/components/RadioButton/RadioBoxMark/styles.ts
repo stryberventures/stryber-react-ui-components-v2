@@ -11,8 +11,13 @@ export default createStyles((theme: ITheme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    height: toRem(18),
+    width: toRem(18),
+    minWidth: toRem(18),
     '& svg': {
       display: 'none',
+      width: toRem(8),
+      height: toRem(8),
     },
     '&:hover:not($disabled)': {
       backgroundColor: theme.colors[props.color!].extraLight50,
@@ -50,22 +55,4 @@ export default createStyles((theme: ITheme) => ({
       backgroundColor: theme.colors[props.color!].dark600,
     },
   }),
-  small: {
-    height: toRem(14),
-    width: toRem(14),
-    minWidth: toRem(14),
-    '& svg': {
-      width: toRem(6),
-      height: toRem(6),
-    },
-  },
-  medium: {
-    height: toRem(18),
-    width: toRem(18),
-    minWidth: toRem(18),
-    '& svg': {
-      width: toRem(8),
-      height: toRem(8),
-    },
-  },
 }), { internalUsage: true });

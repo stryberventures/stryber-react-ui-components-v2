@@ -16,9 +16,7 @@ const InputToggleLayout: React.FC<IInputToggle> = (props) => {
     <div className={classNames(classes.inputToggleLayout, {
       [classes.disabled]: disabled,
     }, className)}>
-      <label className={classNames(classes.container, {
-        [classes.reverse]: reverse
-      })}>
+      <label className={classNames(classes.container, { [classes.reverse]: reverse })}>
         <input
           {...rest}
           type={type}
