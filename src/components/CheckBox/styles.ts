@@ -4,8 +4,8 @@ import { ICheckBox } from './index';
 
 export default createStyles((theme) => ({
   checkbox: (props: ICheckBox) => ({
-    '&:not($disabled) input:focus-visible + div>span)': {
-      boxShadow: `0 0 0 2px white, 0 0 0 4px ${theme.colors[props.color!].light200}`,
+    '& input:enabled:focus-visible + div>span': {
+      boxShadow: `0 0 0 2px white, 0 0 0 ${toRem(4)} ${theme.colors[props.color!].light200}`,
     },
   }),
   small: {
@@ -13,7 +13,7 @@ export default createStyles((theme) => ({
       marginLeft: toRem(26),
     },
     '&$reversed label span:last-child': {
-      width: 'calc(100% - 24px)',
+      width: `calc(100% - ${toRem(24)})`,
     },
   },
   medium: {
@@ -21,7 +21,7 @@ export default createStyles((theme) => ({
       marginLeft: toRem(30),
     },
     '&$reversed label span:last-child': {
-      width: 'calc(100% - 28px)',
+      width: `calc(100% - ${toRem(28)})`,
     },
   },
   reversed: {},
