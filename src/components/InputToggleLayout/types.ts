@@ -4,7 +4,6 @@ import * as React from 'react';
 export interface IInputToggleBase extends Omit<React.HTMLProps<HTMLInputElement>, 'type' | 'size' | 'shape' | 'label' | 'children'> {
   className?: string,
   name?: string,
-  size?: 'small' | 'medium',
   color?: 'primary' | 'secondary' | 'error',
   checked?: boolean,
   disabled?: boolean,

@@ -1,21 +1,20 @@
 import React from 'react';
-import useStyles from './styles';
 import classNames from 'classnames';
+import useStyles from './styles';
 import Elevation from '../../Elevation'
 
 export interface ISwitchIcon {
   checked?: boolean,
   color?: 'primary' | 'secondary' | 'error',
   disabled?: boolean,
-  size?: 'small' | 'medium',
 }
 
 export const SwitchIcon = (props: ISwitchIcon) => {
-  const { checked, disabled, size = 'medium' } = props;
+  const { checked, disabled } = props;
   const classes = useStyles(props);
 
   return (
-    <div className={classNames(classes.switchIcon, classes[size], {
+    <div className={classNames(classes.switchIcon, {
       [classes.checked]: checked,
       [classes.disabled]: disabled,
     })}>

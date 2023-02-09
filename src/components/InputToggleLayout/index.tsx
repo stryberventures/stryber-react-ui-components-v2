@@ -7,7 +7,7 @@ import Text from '../Text';
 
 const InputToggleLayout: React.FC<IInputToggle> = (props) => {
   const {
-    name = '', size = 'small', className, type, checked, disabled, value, children, title, control,
+    name = '', className, type, checked, disabled, value, children, title, control,
     onChange, onFocus, errorMessage, placeholder, label, hint, controlled,
     reverse, fullWidth, ...rest
   } = props;
@@ -96,7 +96,6 @@ const InputToggleLayout: React.FC<IInputToggle> = (props) => {
 
 InputToggleLayout.defaultProps = {
   type: 'checkbox',
-  size: 'medium',
   color: 'primary',
   checked: false,
   disabled: false,

@@ -11,7 +11,7 @@ export interface IRadioButton extends IRadioBoxMarkProps, IInputToggleBase {}
 
 const RadioButton: React.FC<IRadioButton> = (props) => {
   const { checked, errorMessage, onChange, onFocus } = useRadioButtonState(props);
-  const { size, disabled, color, label, children, reverse, fullWidth, className, ...rest } = props;
+  const { disabled, color, label, children, reverse, fullWidth, className, ...rest } = props;
   const classes = useStyles(color);
   return (
     <InputToggleLayout
@@ -21,7 +21,6 @@ const RadioButton: React.FC<IRadioButton> = (props) => {
       errorMessage={errorMessage}
       onChange={onChange}
       onFocus={onFocus}
-      size={size}
       label={label}
       disabled={disabled}
       reverse={reverse}

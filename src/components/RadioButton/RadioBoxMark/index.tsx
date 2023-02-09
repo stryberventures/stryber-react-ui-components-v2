@@ -6,7 +6,6 @@ export type TRadioButtonColor = 'primary' | 'secondary' | 'error';
 
 export interface IRadioBoxMarkProps {
   checked?: boolean;
-  size?: 'small' | 'medium';
   color?: TRadioButtonColor,
   disabled?: boolean;
 }

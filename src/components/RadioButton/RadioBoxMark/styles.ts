@@ -15,6 +15,7 @@ export default createStyles((theme: ITheme) => ({
     width: toRem(22),
     minWidth: toRem(22),
     transition: 'background-color .3s ease-out, border-color .3s ease-out, box-shadow .3s ease-out',
+    boxSizing: 'border-box',
     '& *, & *:after, & *:before': {
       boxSizing: 'inherit',
     },

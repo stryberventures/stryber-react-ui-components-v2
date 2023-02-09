@@ -5,61 +5,53 @@ export default createStyles((theme) => ({
   switchIcon: (props: ISwitchIcon) => ({
     position: 'relative',
     borderRadius: toRem(12),
+    minWidth: toRem(36),
+    width: toRem(36),
+    minHeight: toRem(20),
+    height: toRem(20),
     backgroundColor: theme.colors.neutralGray.medium400,
+    transition: 'background-color .3s ease-out, border-color .3s ease-out, box-shadow .3s ease-out',
+    boxSizing: 'border-box',
+    '& *, & *:after, & *:before': {
+      boxSizing: 'inherit',
+    },
+    '& $circle': {
+      height: toRem(16),
+      width: toRem(16),
+    },
+    '& $circleContainerChecked': {
+      transform: 'translateX(100%)',
+    },
     '&:not($disabled)': {
       cursor: 'pointer',
     },
     '&:hover:not($disabled)': {
       backgroundColor: theme.colors.neutralGray.medium300,
-      boxShadow: `0px 0px 0px 3px ${theme.colors[props.color!].light100}`,
+      boxShadow: `0px 0px 0px 3px ${theme.colors[props.color!].extraLight50}`,
     },
-    '&:active:not($disabled)': {
-      backgroundColor: theme.colors.neutralGray.light200,
-    },
-    '&$disabled': {
-      backgroundColor: theme.colors.neutralGray.light200,
+    '&:not($disabled):not($checked):hover:active': {
+      backgroundColor: theme.colors.neutralGray.medium300,
+      boxShadow: 'none',
     },
   }),
-  medium: {
-    minWidth: toRem(44),
-    width: toRem(44),
-    minHeight: toRem(24),
-    height: toRem(24),
-    '& $circle': {
-      height: toRem(20),
-      width: toRem(20),
-    },
-    '& $circleContainerChecked': {
-      transform: `translateX(${toRem(20)})`,
-    }
-  },
-  small: {
-    minWidth: toRem(29),
-    width: toRem(29),
-    minHeight: toRem(17),
-    height: toRem(17),
-    '& $circle': {
-      height: toRem(13),
-      width: toRem(13),
-    },
-    '& $circleContainerChecked': {
-      transform: `translateX(${toRem(12)})`,
-    }
-  },
-  disabled: {
-    '& $label': {
-      color: theme.colors.text.disabled,
-    }
-  },
   checked: (props: ISwitchIcon) => ({
     backgroundColor: theme.colors[props.color!].main500,
     '&:hover:not($disabled)': {
       backgroundColor: theme.colors[props.color!].medium400,
     },
-    '&:active:not($disabled)': {
+    '&:not($disabled):hover:active': {
       backgroundColor: theme.colors[props.color!].medium300,
+      boxShadow: 'none',
+    },
+    '&$disabled': {
+      backgroundColor: theme.colors.neutralGray.light200,
     },
   }),
+  disabled: {
+    '& $label': {
+      color: theme.colors.text.disabled,
+    }
+  },
   '@keyframes slideLeft': {
     from: { transform: 'translateX(100%)' },
     to: { transform: 'translateX(0%)' },

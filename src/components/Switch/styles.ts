@@ -3,10 +3,8 @@ import { ISwitch } from './index';
 
 export default createStyles((theme) => ({
   switch: (props: ISwitch) => ({
-    '& input:focus + div': {
-      '&>div:first-child': {
-        boxShadow: `0 0 0 2px white, 0 0 0 4px ${theme.colors[props.color!].light200}`,
-      }
+    '& input:focus-visible + div > div': {
+      boxShadow: `0 0 0 ${toRem(2)} white, 0 0 0 ${toRem(4)} ${theme.colors[props.color!].light200}`,
     },
   }),
   small: {
