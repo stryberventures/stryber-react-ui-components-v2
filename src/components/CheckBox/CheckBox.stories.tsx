@@ -16,16 +16,29 @@ export default {
 
 const Template: ComponentStory<typeof CheckBox> = (args) => <CheckBox {...args} />;
 
-export const Default = Template.bind({});
-Default.args = {
-  label: 'Default',
+export const Primary = Template.bind({});
+Primary.args = {
+  label: 'Primary',
+  hint: 'Advocates for every stakeholder',
+  color: 'primary'
+};
+
+export const Secondary = Template.bind({});
+Secondary.args = {
+  color: 'secondary',
+  label: 'Secondary',
+};
+
+export const HintOnly = Template.bind({});
+HintOnly.args = {
   hint: 'Advocates for every stakeholder',
 };
 
-export const Circle = Template.bind({});
-Circle.args = {
-  shape: 'circle',
-  label: 'Circle',
+export const Error = Template.bind({});
+Error.args = {
+  label: 'Remember me',
+  errorMessage: 'This is a error message',
+  color: 'error',
 };
 
 export const Disabled = Template.bind({});
@@ -35,21 +48,16 @@ Disabled.args = {
   checked: true,
 };
 
-export const Title = Template.bind({});
-Title.args = {
-  title: 'Remember me',
+export const FullWidth = Template.bind({});
+FullWidth.args = {
+  label: 'Full Width',
+  fullWidth: true,
 };
 
-export const Error = Template.bind({});
-Error.args = {
-  label: 'Remember me',
-  errorMessage: 'This is a error message',
-};
-
-export const TitleAndLabel = Template.bind({});
-TitleAndLabel.args = {
-  title: 'Remember me',
-  label: 'Save my login details for next time',
+export const Circle = Template.bind({});
+Circle.args = {
+  shape: 'circle',
+  label: 'Circle',
 };
 
 export const CustomContent = Template.bind({});
@@ -65,18 +73,11 @@ Reverse.args = {
   reverse: true,
 };
 
-export const FullWidth = Template.bind({});
-FullWidth.args = {
-  label: 'Full Width',
-  fullWidth: true,
-};
-
 export const Multiline = Template.bind({});
 Multiline.args = {
   checked: true,
   label: 'Checkbox label Checkbox label Checkbox label Checkbox label Checkbox',
   hint: 'Write a check box sentence here Write a check box sentence here Write a check box sentence here',
-  controlCentered: true,
 };
 
 Multiline.decorators = [

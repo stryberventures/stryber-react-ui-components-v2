@@ -22,7 +22,7 @@ export const CheckBoxMark = (props: ICheckBoxMark) => {
   const classes = useStyles(props);
   const { theme } = useTheme();
   return (
-    <span
+    <div
       className={classNames(
         classes.checkboxMark, classes[shape],
         {
@@ -35,13 +35,12 @@ export const CheckBoxMark = (props: ICheckBoxMark) => {
         : <CheckIcon variant="default" fill={theme.colors.contrast.white} />
       }
       <div className={classes.clickArea}/>
-    </span>
+    </div>
   );
 };
 
 CheckBoxMark.defaultProps = {
   checked: false,
-  size: 'medium',
   shape: 'square',
   color: 'primary',
 }

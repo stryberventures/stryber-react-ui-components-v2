@@ -1,36 +1,38 @@
 import React from 'react';
 import classNames from 'classnames';
 import useStyles from './styles';
-import { RadioBoxIconDeprecated } from '../../Icons';
+
+export type TRadioButtonColor = 'primary' | 'secondary' | 'error';
 
 export interface IRadioBoxMarkProps {
   checked?: boolean;
   size?: 'small' | 'medium';
-  color?: 'primary' | 'secondary' | 'error',
+  color?: TRadioButtonColor,
   disabled?: boolean;
 }
 
 export const RadioBoxMark = (props: IRadioBoxMarkProps) => {
   const {
     checked,
-    disabled
+    disabled,
   } = props;
+  console.log('props.color', props.color);
   const classes = useStyles(props);
-
   return (
-    <span
+    <div
       className={classNames(classes.radioBoxMark,
-        { [classes.disabled]: disabled },
-        { [classes.checked]: checked },
+        {
+          [classes.checked]: checked,
+          [classes.disabled]: disabled,
+        },
       )}>
-      <RadioBoxIconDeprecated />
+      {checked && <div className={classes.radioBoxIcon} />}
       <div className={classes.clickArea}/>
-    </span>
+    </div>
   );
 };
 
 RadioBoxMark.defaultProps = {
   checked: false,
-  size: 'medium',
   color: 'primary',
 }

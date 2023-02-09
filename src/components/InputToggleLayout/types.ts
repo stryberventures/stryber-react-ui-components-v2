@@ -22,7 +22,6 @@ export interface IInputToggleBase extends Omit<React.HTMLProps<HTMLInputElement>
 
 export interface IInputToggleBaseControlled extends IInputToggleBase {
   controlled?: boolean,
-  controlCentered?: boolean,
 }
 
 export interface IInputToggle extends IInputToggleBaseControlled {

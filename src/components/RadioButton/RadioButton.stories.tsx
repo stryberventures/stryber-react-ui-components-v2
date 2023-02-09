@@ -1,8 +1,8 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import Form from '../Form';
 import RadioButton from './index';
 import pkg from './package.json';
-import Form from '../Form';
 import { buildExcludeArgTypes } from '../../storybook/utils';
 import { toRem } from '../Theme';
 
@@ -12,85 +12,71 @@ export default {
   parameters: {
     pkg,
   },
-  argTypes: buildExcludeArgTypes(['name', 'className', 'value', 'onChange', 'onFocus']),
+  argTypes: buildExcludeArgTypes(['name', 'className', 'value', 'onChange', 'onFocus', 'errorMessage', 'heading', 'label', 'size']),
 } as ComponentMeta<typeof RadioButton>;
 
-const RadioGroup: ComponentStory<typeof RadioButton> = (args) => (
-  <Form initialValues={{ radio: '1' }}>
-    <RadioButton {...args} value="1" name="radio" label="Option 1" />
-    <div style={{ marginTop: 10 }}/>
-    <RadioButton {...args} value="2" name="radio" label="Option 2" />
-  </Form>
-);
+const radioButton = {
+  value: '1',
+  name: 'radio',
+  label: 'Option 1',
+};
+const Radio: ComponentStory<typeof RadioButton> = (args) => {
+  return (
+    <Form>
+      <RadioButton {...args} />
+    </Form>
+  );
+};
 
-const Radio: ComponentStory<typeof RadioButton> = (args) => <RadioButton {...args} />;
-
-export const Primary = RadioGroup.bind({});
+export const Primary = Radio.bind({});
 Primary.args = {
-  size: 'medium',
-  label: 'Primary'
+  ...radioButton,
+  hint: 'Advocates for every stakeholder',
 };
 
-export const Secondary = RadioGroup.bind({});
+export const Secondary = Radio.bind({});
 Secondary.args = {
-  size: 'medium',
-  label: 'Secondary',
   color: 'secondary',
+  ...radioButton,
 };
 
-export const Small = RadioGroup.bind({});
-Small.args = {
-  size: 'small',
-  label: 'Small'
-};
-
-export const Medium = RadioGroup.bind({});
-Medium.args = {
-  size: 'medium',
-  label: 'Medium',
-};
-
-export const Disabled = RadioGroup.bind({});
-Disabled.args = {
-  size: 'medium',
-  disabled: true,
-  label: 'Disabled',
-};
-
-export const Title = Radio.bind({});
-Title.args = {
-  title: 'Remember me',
+export const HintOnly = Radio.bind({});
+HintOnly.args = {
+  ...radioButton,
+  label: '',
+  hint: 'Advocates for every stakeholder',
 };
 
 export const Error = Radio.bind({});
 Error.args = {
-  label: 'Remember me',
-  errorMessage: 'This is a error message'
+  label: 'Error',
+  errorMessage: 'This is a error message',
+  color: 'error',
 };
 
-export const TitleAndLabel = Radio.bind({});
-TitleAndLabel.args = {
-  title: 'Remember me',
-  label: 'Save my login details for next time',
+export const Disabled = Radio.bind({});
+Disabled.args = {
+  disabled: true,
+  hint: 'Advocates for every stakeholder',
+};
+
+export const FullWidth = Radio.bind({});
+FullWidth.args = {
+  ...radioButton,
+  fullWidth: true,
 };
 
 export const CustomContent = Radio.bind({});
 CustomContent.args = {
+  ...radioButton,
   label: (
     <div style={{ lineHeight: toRem(22) }}>Check <a href="https://google.com">terms</a> and <a href="https://google.com">conditions</a></div>
   ),
 };
 
-export const Reverse = RadioGroup.bind({});
+export const Reverse = Radio.bind({});
 Reverse.args = {
-  size: 'medium',
-  label: 'Reverse',
+  ...radioButton,
   reverse: true,
-};
-
-export const FullWidth = RadioGroup.bind({});
-FullWidth.args = {
-  size: 'medium',
-  label: 'Full Width',
   fullWidth: true,
 };

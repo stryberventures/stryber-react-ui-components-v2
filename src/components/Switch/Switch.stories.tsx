@@ -48,7 +48,6 @@ MultiLine.args = {
   size: 'small',
   heading: 'Switches heading',
   hint: 'Write a switches sentence here Write a switches sentence here Write a switches sentence here',
-  controlCentered: false,
 };
 
 MultiLine.decorators = [

@@ -3,13 +3,16 @@ import InputToggleLayout from '../InputToggleLayout';
 import { RadioBoxMark, IRadioBoxMarkProps } from './RadioBoxMark';
 import { useRadioButtonState } from './hooks';
 import { IInputToggleBase } from '../InputToggleLayout/types';
+import classNames from 'classnames';
+import useStyles from './styles';
+
 
 export interface IRadioButton extends IRadioBoxMarkProps, IInputToggleBase {}
 
 const RadioButton: React.FC<IRadioButton> = (props) => {
   const { checked, errorMessage, onChange, onFocus } = useRadioButtonState(props);
-  const { size, disabled, color, label, children, reverse, fullWidth, ...rest } = props;
-
+  const { size, disabled, color, label, children, reverse, fullWidth, className, ...rest } = props;
+  const classes = useStyles(color);
   return (
     <InputToggleLayout
       {...rest}
@@ -23,6 +26,7 @@ const RadioButton: React.FC<IRadioButton> = (props) => {
       disabled={disabled}
       reverse={reverse}
       fullWidth={fullWidth}
+      className={classNames(classes.radiobutton, className)}
       control={
         <RadioBoxMark
           checked={checked}
@@ -32,6 +36,10 @@ const RadioButton: React.FC<IRadioButton> = (props) => {
       }
     />
   );
+};
+
+RadioButton.defaultProps = {
+  color: 'primary',
 }
 
 export default RadioButton;

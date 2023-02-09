@@ -12,7 +12,7 @@ const Switch: React.FC<ISwitch> = (props) => {
   const { checked, errorMessage, onChange, onFocus } = useCheckedState(props);
   const {
     disabled, label, color, className, size = 'medium', hint, heading,
-    reverse, controlCentered, ...rest
+    reverse, ...rest
   } = props;
   const classes = useStyles(props);
 
@@ -29,7 +29,6 @@ const Switch: React.FC<ISwitch> = (props) => {
       size={size}
       disabled={disabled}
       reverse={reverse}
-      controlCentered={controlCentered}
       className={classNames(classes.switch, classes[size], { [classes.reversed]: reverse }, className)}
       control={
         <SwitchIcon checked={checked} color={color} disabled={disabled} size={size}/>
