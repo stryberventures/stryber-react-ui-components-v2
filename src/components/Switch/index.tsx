@@ -14,7 +14,7 @@ const Switch: React.FC<ISwitch> = (props) => {
     disabled, label, color, className, hint, heading,
     reverse, ...rest
   } = props;
-  const classes = useStyles(props);
+  const classes = useStyles(color);
 
   return (
     <InputToggleLayout

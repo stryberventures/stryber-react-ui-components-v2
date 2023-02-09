@@ -4,9 +4,9 @@ import { createStyles, toRem } from '../../Theme'
 
 
 export default createStyles((theme: ITheme) => ({
-  radioBoxMark: (props: IRadioBoxMarkProps) => ({
+  radioBoxMark: (color: IRadioBoxMarkProps['color']) => ({
     backgroundColor: theme.colors.background.white,
-    border: [toRem(1), 'solid', theme.colors[props.color == 'error' ? props.color : 'neutralGray'].dark600],
+    border: [toRem(1), 'solid', theme.colors[color == 'error' ? color : 'neutralGray'].dark600],
     borderRadius: '50%',
     display: 'flex',
     justifyContent: 'center',
@@ -21,7 +21,7 @@ export default createStyles((theme: ITheme) => ({
     },
     '&:hover:not($disabled)': {
       backgroundColor: theme.colors.neutralGray.extraLight50,
-      borderColor: theme.colors[props.color!].light200,
+      borderColor: theme.colors[color!].light200,
     },
     '& ~ $disabled, &:hover ~ $disabled': {
       backgroundColor: theme.colors.contrast.white,
@@ -32,24 +32,24 @@ export default createStyles((theme: ITheme) => ({
       backgroundColor: theme.colors.neutralGray.light200,
     },
   }),
-  checked: (props: IRadioBoxMarkProps) => ({
+  checked: (color: IRadioBoxMarkProps['color']) => ({
     '&$disabled': {
       backgroundColor: theme.colors.neutralGray.medium300,
       borderColor: theme.colors.neutralGray.medium300,
     },
     '&:not($disabled)': {
-      backgroundColor: theme.colors[props.color!].main500,
-      borderColor: theme.colors[props.color!].main500,
+      backgroundColor: theme.colors[color!].main500,
+      borderColor: theme.colors[color!].main500,
     },
     '&:not($disabled):hover:not(:active)': {
-      backgroundColor: theme.colors[props.color!].medium400,
-      borderColor: theme.colors[props.color!].medium400,
-      boxShadow: `0px 0px 0px 3px ${theme.colors[props.color!].light100}`,
+      backgroundColor: theme.colors[color!].medium400,
+      borderColor: theme.colors[color!].medium400,
+      boxShadow: `0px 0px 0px 3px ${theme.colors[color!].light100}`,
     },
     '&:not($disabled):hover:active': {
       boxShadow: 'none',
-      backgroundColor: theme.colors[props.color!].medium300,
-      borderColor: theme.colors[props.color!].medium300,
+      backgroundColor: theme.colors[color!].medium300,
+      borderColor: theme.colors[color!].medium300,
     },
   }),
   disabled: {

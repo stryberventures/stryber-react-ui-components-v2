@@ -2,7 +2,7 @@ import { ISwitchIcon } from './index';
 import { createStyles, toRem } from '../../Theme';
 
 export default createStyles((theme) => ({
-  switchIcon: (props: ISwitchIcon) => ({
+  switchIcon: (color: ISwitchIcon['color']) => ({
     position: 'relative',
     borderRadius: toRem(12),
     minWidth: toRem(36),
@@ -27,20 +27,20 @@ export default createStyles((theme) => ({
     },
     '&:hover:not($disabled)': {
       backgroundColor: theme.colors.neutralGray.medium300,
-      boxShadow: `0px 0px 0px 3px ${theme.colors[props.color!].extraLight50}`,
+      boxShadow: `0px 0px 0px 3px ${theme.colors[color!].extraLight50}`,
     },
     '&:not($disabled):not($checked):hover:active': {
       backgroundColor: theme.colors.neutralGray.medium300,
       boxShadow: 'none',
     },
   }),
-  checked: (props: ISwitchIcon) => ({
-    backgroundColor: theme.colors[props.color!].main500,
+  checked: (color: ISwitchIcon['color']) => ({
+    backgroundColor: theme.colors[color!].main500,
     '&:hover:not($disabled)': {
-      backgroundColor: theme.colors[props.color!].medium400,
+      backgroundColor: theme.colors[color!].medium400,
     },
     '&:not($disabled):hover:active': {
-      backgroundColor: theme.colors[props.color!].medium300,
+      backgroundColor: theme.colors[color!].medium300,
       boxShadow: 'none',
     },
     '&$disabled': {

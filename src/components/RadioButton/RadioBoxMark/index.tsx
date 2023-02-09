@@ -2,11 +2,10 @@ import React from 'react';
 import classNames from 'classnames';
 import useStyles from './styles';
 
-export type TRadioButtonColor = 'primary' | 'secondary' | 'error';
 
 export interface IRadioBoxMarkProps {
   checked?: boolean;
-  color?: TRadioButtonColor,
+  color?: 'primary' | 'secondary' | 'error',
   disabled?: boolean;
 }
 
@@ -15,8 +14,7 @@ export const RadioBoxMark = (props: IRadioBoxMarkProps) => {
     checked,
     disabled,
   } = props;
-  console.log('props.color', props.color);
-  const classes = useStyles(props);
+  const classes = useStyles(props.color);
   return (
     <div
       className={classNames(classes.radioBoxMark,

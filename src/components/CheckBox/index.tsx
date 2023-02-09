@@ -14,7 +14,7 @@ const CheckBox:React.FC<ICheckBox> = (props) => {
     shape, disabled, label, color, className, reverse, fullWidth,
     hint, indeterminate, ...rest
   } = props;
-  const  classes = useStyles(props);
+  const  classes = useStyles(color);
   return (
     <InputToggleLayout
       {...rest}

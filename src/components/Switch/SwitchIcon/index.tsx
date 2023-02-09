@@ -10,8 +10,8 @@ export interface ISwitchIcon {
 }
 
 export const SwitchIcon = (props: ISwitchIcon) => {
-  const { checked, disabled } = props;
-  const classes = useStyles(props);
+  const { checked, disabled, color } = props;
+  const classes = useStyles(color);
 
   return (
     <div className={classNames(classes.switchIcon, {

@@ -19,7 +19,7 @@ export const CheckBoxMark = (props: ICheckBoxMark) => {
     disabled,
     indeterminate,
   } = props;
-  const classes = useStyles(props);
+  const classes = useStyles(props.color);
   const { theme } = useTheme();
   return (
     <div
