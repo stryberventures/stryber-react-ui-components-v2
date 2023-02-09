@@ -1,5 +1,6 @@
 import React, { useCallback, useRef, useState } from 'react';
 import classNames from 'classnames';
+import { CSSTransition } from 'react-transition-group';
 import Elevation from '../Elevation';
 import Text from '../Text';
 import useStyles from './styles';
@@ -54,7 +55,18 @@ const Tooltip: React.FC<ITooltip> = (props) => {
       >
         {children}
       </div>
-      {showTooltip && (
+      <CSSTransition
+        noderef={tooltipRef}
+        in={showTooltip}
+        timeout={300}
+        unmountOnExit
+        classNames={{
+          enter: classes.animatedEnter,
+          enterActive: classes.animatedEnterActive,
+          exit: classes.animatedExit,
+          exitActive: classes.animatedExitActive,
+        }}
+      >
         <div
           ref={tooltipRef}
           role="tooltip"
@@ -97,7 +109,7 @@ const Tooltip: React.FC<ITooltip> = (props) => {
             </Elevation>
           </div>
         </div>
-      )}
+      </CSSTransition>
     </div>
   );
 }

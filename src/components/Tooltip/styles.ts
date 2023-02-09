@@ -215,6 +215,21 @@ export default createStyles((theme) => ({
       boxShadow: '1px -1px 1px rgba(102, 112, 133, 0.2)',
     }
   },
+  animatedEnter: {
+    opacity: 0,
+  },
+  animatedEnterActive: {
+    opacity: 1,
+    transform: 'translateX(0)',
+    transition: 'opacity 300ms, transform 300ms',
+  },
+  animatedExit: {
+    opacity: 1,
+  },
+  animatedExitActive: {
+    opacity: 0,
+    transition: 'opacity 300ms, transform 300ms',
+  },
 }), { internalUsage: true });
 
 function getTooltipPosition () {
