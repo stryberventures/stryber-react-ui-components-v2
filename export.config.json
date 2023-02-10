@@ -13,6 +13,7 @@
     "Tooltip": "tooltip",
     "RadioButton": "radio-button",
     "CheckBox": "checkbox",
+    "CheckboxGroup": "checkbox-group",
     "InputPassword": "input-password",
     "NumberInput": "number-input",
     "Select": "select",

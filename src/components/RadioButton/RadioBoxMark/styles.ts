@@ -44,7 +44,7 @@ export default createStyles((theme: ITheme) => ({
     '&:not($disabled):hover:not(:active)': {
       backgroundColor: theme.colors[color!].medium400,
       borderColor: theme.colors[color!].medium400,
-      boxShadow: `0px 0px 0px 3px ${theme.colors[color!].light100}`,
+      boxShadow: `0px 0px 0px 3px ${theme.colors[color!].extraLight50}`,
     },
     '&:not($disabled):hover:active': {
       boxShadow: 'none',

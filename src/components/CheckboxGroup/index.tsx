@@ -1,8 +1,8 @@
 import React, { BaseSyntheticEvent, useEffect, useState } from 'react';
+import classNames from 'classnames';
 import Checkbox, { ICheckBox } from '../CheckBox';
 import { useFormContext } from '../Form';
 import useStyles from './styles';
-import classNames from 'classnames';
 
 
 export type TChildCheckbox = {

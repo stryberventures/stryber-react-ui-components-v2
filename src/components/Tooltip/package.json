@@ -5,6 +5,7 @@
     "classnames": ">=2.0.0",
     "react": ">=17.0.0",
     "react-jss": ">=10.0.0",
+    "@types/react-transition-group": "",,
     "@stryberventures/gaia-react.theme": ">=0.0.1",
     "@stryberventures/gaia-react.icons": ">=0.0.1",
     "@stryberventures/gaia-react.text": ">=0.0.1"
