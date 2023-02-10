@@ -3,27 +3,28 @@ import classNames from 'classnames';
 import useStyles from './styles';
 
 
-type TElevationVariant = 'extraLight' | 'light' | 'medium' | 'heavy' | 'extraHeavy';
+type TDividerVariant = 'fullBleed' | 'inset' | 'middle';
 
-export interface Elevation extends React.HTMLAttributes<any> {
+export interface IDivider extends React.HTMLAttributes<any> {
   children: React.ReactNode;
-  variant?: TElevationVariant;
+  variant?: TDividerVariant;
+  multiline?: boolean;
   component?: keyof JSX.IntrinsicElements;
 }
 
-const Elevation: React.FC<Elevation> = (props) => {
+const Divider: React.FC<IDivider> = (props) => {
   const {
-    variant = 'extraLight',
+    variant = 'fullBleed',
     component: Tag = 'div',
     className,
     children,
     ...rest
   } = props;
-  const classes = useStyles(props);
+  const classes = useStyles();
   return (
     <Tag
       className={classNames(
-        classes.elevation,
+        classes.divider,
         classes[variant],
         className,
       )}
@@ -34,9 +35,9 @@ const Elevation: React.FC<Elevation> = (props) => {
   );
 }
 
-export default Elevation;
+export default Divider;
 
-Elevation.defaultProps = {
-  variant: 'extraLight',
+Divider.defaultProps = {
+  variant: 'fullBleed',
   component: 'div',
 };

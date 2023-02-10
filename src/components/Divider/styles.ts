@@ -1,26 +1,44 @@
-import { createStyles, toRem } from '../Theme';
+import { createStyles } from '../Theme';
 
-export default createStyles(() => ({
-  elevation: {
+export default createStyles((theme) => ({
+  divider: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: theme.spacing[12],
+    width: '100%',
+    padding: [theme.spacing[12], theme.spacing[16]],
     boxSizing: 'border-box',
-    borderRadius: toRem(16),
     '& *, & *:before, & *:after': {
       boxSizing: 'inherit',
     },
+    '&:last-child': {
+      borderBottom: 'none',
+    },
   },
-  extraLight: {
-    boxShadow: '0px 1px 2px rgba(102, 112, 133, 0.3), 0px 1px 3px 1px rgba(102, 112, 133, 0.15)',
+  fullBleed: {
+    borderBottom: `1px solid ${theme.colors.neutralGray.light200}`,
   },
-  light: {
-    boxShadow: '0px 1px 2px rgba(102, 112, 133, 0.3), 0px 2px 6px 2px rgba(102, 112, 133, 0.15)',
+  inset: {
+    paddingRight: 0,
+    '& :nth-child(2)': {
+      position: 'relative',
+      width: '100%',
+    },
+    '&:not(:last-child) :nth-child(2):after': {
+      display: 'block',
+      position: 'absolute',
+      top: `calc(100% + ${theme.spacing[12]})`,
+      width: '100%',
+      content: '""',
+      borderBottom: `1px solid ${theme.colors.neutralGray.light200}`,
+    },
   },
-  medium: {
-    boxShadow: '0px 4px 8px 3px rgba(102, 112, 133, 0.15), 0px 1px 3px rgba(102, 112, 133, 0.3)',
-  },
-  heavy: {
-    boxShadow: '0px 6px 10px 4px rgba(102, 112, 133, 0.15), 0px 2px 3px rgba(102, 112, 133, 0.3)',
-  },
-  extraHeavy: {
-    boxShadow: '0px 8px 12px 6px rgba(102, 112, 133, 0.15), 0px 4px 4px rgba(102, 112, 133, 0.3)',
+  middle: {
+    width: `calc(100% - ${theme.spacing[32]})`,
+    paddingRight: 0,
+    paddingLeft: 0,
+    margin: [0, theme.spacing[16]],
+    borderBottom: `1px solid ${theme.colors.neutralGray.light200}`,
   },
 }), { internalUsage: true });
