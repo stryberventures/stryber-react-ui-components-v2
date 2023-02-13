@@ -2,6 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Divider from './';
 import { ProfileIcon } from '../Icons';
+import Elevation from '../Elevation';
 import Text from '../Text';
 import pkg from './package.json';
 import { buildExcludeArgTypes } from '../../storybook/utils';
@@ -14,59 +15,106 @@ export default {
   parameters: {
     pkg,
   },
-  args: {
-    variant: 'fullBleed',
-    component: 'div',
-  },
+  args: {},
   argTypes: buildExcludeArgTypes(['className']),
 } as ComponentMeta<typeof Divider>;
 
 const Template: ComponentStory<typeof Divider> = (args) => {
   return (
-    <div style={{ width: 500, border: '1px solid #D0D5DD', borderRadius: 6 }}>
-      <Divider {...args}>
-        <ProfileIcon variant="filled" />
-        <Text>Lorem ipsum dolor</Text>
-      </Divider>
-      <Divider {...args}>
-        <div style={{ alignSelf: 'flex-start', minWidth: 16, paddingTop: toRem(3) }}>
-          <ProfileIcon variant="filled" />
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column',  }}>
-          <Text weight="bold">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</Text>
-          <Text>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Text>
-        </div>
-      </Divider>
-      <Divider {...args} />
-    </div>
+    <Divider {...args} />
   );
 }
 
 export const FullBleed = Template.bind({});
-FullBleed.args = {
-  variant: 'fullBleed',
-  children: (
-    <Text>Lorem ipsum dolor</Text>
+FullBleed.decorators = [
+  (Story) => (
+    <Elevation style={{ width: toRem(500), display: 'flex', flexDirection: 'column', }}>
+      <div style={{ display: 'flex', flexDirection: 'column', padding: `${toRem(12)} ${toRem(16)}`, }}>
+        <Text weight="bold">Lorem ipsum dolor sit amet, consectetur adipiscing elit</Text>
+        <Text>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </Text>
+      </div>
+      <Story />
+      <div style={{ display: 'flex', flexDirection: 'column', padding: `${toRem(12)} ${toRem(16)}`, }}>
+        <Text weight="bold">Lorem ipsum dolor sit amet, consectetur adipiscing elit</Text>
+        <Text>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </Text>
+      </div>
+      <Story />
+      <div style={{ display: 'flex', flexDirection: 'column', padding: `${toRem(12)} ${toRem(16)}`, }}>
+        <Text weight="bold">Lorem ipsum dolor sit amet, consectetur adipiscing elit</Text>
+        <Text>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </Text>
+      </div>
+    </Elevation>
   ),
-};
+];
 
 export const Inset = Template.bind({});
-Inset.args = {
-  variant: 'inset',
-  children: (
-    <>
-      <ProfileIcon variant="filled" />
-      <Text>Lorem ipsum dolor</Text>
-    </>
-  ),
-};
+Inset.decorators = [
+  (Story) => (
+    <Elevation>
+      <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'nowrap' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', width: toRem(48), paddingLeft: toRem(16), }}>
+          <ProfileIcon variant="filled" />
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+          <Text style={{ padding: `${toRem(12)} 0` }}>Lorem ipsum dolor</Text>
+          <Story />
+        </div>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'nowrap' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', width: toRem(48), paddingLeft: toRem(16), }}>
+          <ProfileIcon variant="filled" />
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+          <Text style={{ padding: `${toRem(12)} 0` }}>Lorem ipsum dolor</Text>
+          <Story />
+        </div>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'nowrap' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', width: toRem(48), paddingLeft: toRem(16), }}>
+          <ProfileIcon variant="filled" />
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+          <Text style={{ padding: `${toRem(12)} 0` }}>Lorem ipsum dolor</Text>
+        </div>
+      </div>
+    </Elevation>
+  )
+]
 
 export const Middle = Template.bind({});
-Middle.args = {
-  variant: 'middle',
-  children: (
-    <Text>Lorem ipsum dolor</Text>
-  ),
-};
+Middle.decorators = [
+  (Story) => (
+    <Elevation>
+      <div style={{ padding: '0 16px' }}>
+        <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'nowrap',  gap: toRem(16)  }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
+            <ProfileIcon variant="filled" />
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+            <Text style={{ padding: `${toRem(12)} 0` }}>Lorem ipsum dolor</Text>
+          </div>
+        </div>
+        <Story />
+        <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'nowrap', gap: toRem(16) }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
+            <ProfileIcon variant="filled" />
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+            <Text style={{ padding: `${toRem(12)} 0` }}>Lorem ipsum dolor</Text>
+          </div>
+        </div>
+        <Story />
+        <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'nowrap', gap: toRem(16)  }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
+            <ProfileIcon variant="filled" />
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+            <Text style={{ padding: `${toRem(12)} 0` }}>Lorem ipsum dolor</Text>
+          </div>
+        </div>
+      </div>
+    </Elevation>
+  )
+];
 
 
