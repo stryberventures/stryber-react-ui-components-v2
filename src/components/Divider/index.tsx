@@ -14,7 +14,7 @@ const Divider: React.FC<IDivider> = (props) => {
     ...rest
   } = props;
   const classes = useStyles();
-  const Tag = component || 'hr'
+  const Tag = component || 'hr';
   return (
     <Tag
       className={classNames(
