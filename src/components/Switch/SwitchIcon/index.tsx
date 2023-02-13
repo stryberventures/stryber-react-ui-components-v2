@@ -1,21 +1,20 @@
 import React from 'react';
-import useStyles from './styles';
 import classNames from 'classnames';
+import useStyles from './styles';
 import Elevation from '../../Elevation'
 
 export interface ISwitchIcon {
   checked?: boolean,
-  color?: 'primary' | 'secondary',
+  color?: 'primary' | 'secondary' | 'error',
   disabled?: boolean,
-  size?: 'small' | 'medium',
 }
 
 export const SwitchIcon = (props: ISwitchIcon) => {
-  const { checked, disabled, size = 'medium' } = props;
-  const classes = useStyles(props);
+  const { checked, disabled, color } = props;
+  const classes = useStyles(color);
 
   return (
-    <div className={classNames(classes.switchIcon, classes[size], {
+    <div className={classNames(classes.switchIcon, {
       [classes.checked]: checked,
       [classes.disabled]: disabled,
     })}>
@@ -27,7 +26,8 @@ export const SwitchIcon = (props: ISwitchIcon) => {
         <div className={classes.circleHighlight} />
         <Elevation
           variant='light'
-          component='div'>
+          component='div'
+        >
           <div className={classes.circle}/>
         </Elevation>
       </div>

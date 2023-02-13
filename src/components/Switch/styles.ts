@@ -2,16 +2,14 @@ import { createStyles, toRem } from '../Theme';
 import { ISwitch } from './index';
 
 export default createStyles((theme) => ({
-  switch: (props: ISwitch) => ({
-    '& input:focus + div': {
-      '&>div:first-child': {
-        boxShadow: `0 0 0 2px white, 0 0 0 4px ${theme.colors[props.color!].light200}`,
-      }
+  switch: (color: ISwitch['color']) => ({
+    '& input:focus-visible + div > div': {
+      boxShadow: `0 0 0 ${toRem(2)} white, 0 0 0 ${toRem(4)} ${theme.colors[color!].light200}`,
     },
   }),
   small: {
     '&:not($reversed) label>span:last-child': {
-      marginLeft: toRem(37),
+      marginLeft: toRem(39),
     },
     '&$reversed label span:last-child': {
       width: 'calc(100% - 37px)',
@@ -19,7 +17,7 @@ export default createStyles((theme) => ({
   },
   medium: {
     '&:not($reversed) label>span:last-child': {
-      marginLeft: toRem(52),
+      marginLeft: toRem(54),
     },
     '&$reversed label span:last-child': {
       width: 'calc(100% - 52px)',

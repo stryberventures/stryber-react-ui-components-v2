@@ -16,55 +16,48 @@ export default {
 
 const Template: ComponentStory<typeof CheckBox> = (args) => <CheckBox {...args} />;
 
-export const Checked = Template.bind({});
-Checked.args = {
-  size: 'medium',
-  checked: true,
-  label: 'Checked'
+export const Primary = Template.bind({});
+Primary.args = {
+  label: 'Primary',
+  hint: 'Advocates for every stakeholder',
+  color: 'primary'
 };
 
-export const Small = Template.bind({});
-Small.args = {
-  size: 'small',
-  label: 'Small'
+export const Secondary = Template.bind({});
+Secondary.args = {
+  color: 'secondary',
+  label: 'Secondary',
 };
 
-export const Medium = Template.bind({});
-Medium.args = {
-  size: 'medium',
-  label: 'Medium',
-};
-
-export const Circle = Template.bind({});
-Circle.args = {
-  size: 'medium',
-  shape: 'circle',
-  label: 'Circle',
-};
-
-export const Disabled = Template.bind({});
-Disabled.args = {
-  size: 'medium',
-  disabled: true,
-  label: 'Disabled',
-  checked: true,
-};
-
-export const Title = Template.bind({});
-Title.args = {
-  title: 'Remember me',
+export const HintOnly = Template.bind({});
+HintOnly.args = {
+  hint: 'Advocates for every stakeholder',
 };
 
 export const Error = Template.bind({});
 Error.args = {
   label: 'Remember me',
   errorMessage: 'This is a error message',
+  color: 'error',
 };
 
-export const TitleAndLabel = Template.bind({});
-TitleAndLabel.args = {
-  title: 'Remember me',
-  label: 'Save my login details for next time',
+export const Disabled = Template.bind({});
+Disabled.args = {
+  disabled: true,
+  label: 'Disabled',
+  checked: true,
+};
+
+export const FullWidth = Template.bind({});
+FullWidth.args = {
+  label: 'Full Width',
+  fullWidth: true,
+};
+
+export const Circle = Template.bind({});
+Circle.args = {
+  shape: 'circle',
+  label: 'Circle',
 };
 
 export const CustomContent = Template.bind({});
@@ -76,14 +69,21 @@ CustomContent.args = {
 
 export const Reverse = Template.bind({});
 Reverse.args = {
-  size: 'medium',
   label: 'Reverse',
   reverse: true,
 };
 
-export const FullWidth = Template.bind({});
-FullWidth.args = {
-  size: 'medium',
-  label: 'Full Width',
-  fullWidth: true,
+export const Multiline = Template.bind({});
+Multiline.args = {
+  checked: true,
+  label: 'Checkbox label Checkbox label Checkbox label Checkbox label Checkbox',
+  hint: 'Write a check box sentence here Write a check box sentence here Write a check box sentence here',
 };
+
+Multiline.decorators = [
+  (Story) => (
+    <div style={{ width: '400px' }}>
+      <Story />
+    </div>
+  ),
+];

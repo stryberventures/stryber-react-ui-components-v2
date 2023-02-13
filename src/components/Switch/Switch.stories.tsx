@@ -10,7 +10,7 @@ export default {
   parameters: {
     pkg,
   },
-  argTypes: buildExcludeArgTypes(['name', 'value', 'className', 'onFocus', 'onChange', 'controlled']),
+  argTypes: buildExcludeArgTypes(['name', 'value', 'className', 'onFocus', 'onChange', 'controlled', 'size']),
 } as ComponentMeta<typeof Switch>;
 
 const Template: ComponentStory<typeof Switch> = (args) => <Switch {...args} />;
@@ -18,6 +18,7 @@ const Template: ComponentStory<typeof Switch> = (args) => <Switch {...args} />;
 export const Primary = Template.bind({});
 Primary.args = {
   checked: true,
+  title: 'Title',
   label: 'Primary',
   heading: 'Switches heading',
   hint: 'Write a switches sentence here',
@@ -32,23 +33,12 @@ Secondary.args = {
   hint: 'Write a switches sentence here',
 };
 
-export const Small = Template.bind({});
-Small.args = {
-  checked: false,
-  label: 'Small',
-  size: 'small',
-  heading: 'Switches heading',
-  hint: 'Write a switches sentence here',
-};
-
 export const MultiLine = Template.bind({});
 MultiLine.args = {
   checked: false,
   label: 'Switches label Switches label Switches label',
-  size: 'small',
   heading: 'Switches heading',
   hint: 'Write a switches sentence here Write a switches sentence here Write a switches sentence here',
-  controlCentered: false,
 };
 
 MultiLine.decorators = [

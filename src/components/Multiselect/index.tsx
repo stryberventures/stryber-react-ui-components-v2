@@ -40,7 +40,6 @@ const Multiselect: React.FC<IMultiselect> = (props) => {
             name={option.label}
             controlled={true}
             color={color}
-            size="small"
             checked={selectedOptions.map(option => option).indexOf(option.label) >= 0}
             onChange={onCheckboxChange}
             label={option.label}
