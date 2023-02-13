@@ -1,5 +1,6 @@
 import React, { useCallback, useRef, useState } from 'react';
 import classNames from 'classnames';
+import { CSSTransition } from 'react-transition-group';
 import Elevation from '../Elevation';
 import Text from '../Text';
 import useStyles from './styles';
@@ -7,6 +8,7 @@ import { useOutsideClick } from '../../hooks/useOnOutsideClick';
 
 export interface ITooltip extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   version?: 'light' | 'dark';
+  color?: 'primary' | 'secondary';
   noArrow?: boolean;
   position?: 'top' | 'topStart' | 'topEnd' |
   'bottom' | 'bottomStart' | 'bottomEnd' |
@@ -23,6 +25,7 @@ const Tooltip: React.FC<ITooltip> = (props) => {
     version = 'light',
     position = 'top',
     noArrow = false,
+    color = 'primary',
     title,
     text,
     visible,
@@ -41,7 +44,7 @@ const Tooltip: React.FC<ITooltip> = (props) => {
   return (
     <div
       className={classNames(classes.tooltip, className)}
-      onClick={() => setIsVisible(true)}
+      onClick={() => setIsVisible(!setIsVisible)}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onFocus={() => setIsFocused(true)}
@@ -54,7 +57,18 @@ const Tooltip: React.FC<ITooltip> = (props) => {
       >
         {children}
       </div>
-      {showTooltip && (
+      <CSSTransition
+        noderef={tooltipRef}
+        in={showTooltip}
+        timeout={300}
+        unmountOnExit
+        classNames={{
+          enter: classes.animatedEnter,
+          enterActive: classes.animatedEnterActive,
+          exit: classes.animatedExit,
+          exitActive: classes.animatedExitActive,
+        }}
+      >
         <div
           ref={tooltipRef}
           role="tooltip"
@@ -97,7 +111,7 @@ const Tooltip: React.FC<ITooltip> = (props) => {
             </Elevation>
           </div>
         </div>
-      )}
+      </CSSTransition>
     </div>
   );
 }
@@ -105,6 +119,7 @@ const Tooltip: React.FC<ITooltip> = (props) => {
 export default Tooltip;
 
 Tooltip.defaultProps = {
+  color: 'primary',
   version: 'light',
   position: 'top',
   noArrow: false,

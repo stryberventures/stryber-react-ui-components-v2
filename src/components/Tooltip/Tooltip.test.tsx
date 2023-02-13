@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom'
 import * as React from 'react'
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import Tooltip from './index'
 
 it('should be rendered with title', () => {
@@ -55,7 +55,7 @@ it('should contain version and position classes', () => {
   expect(tooltipContainer.className).toMatch('top');
 });
 
-it('should hide tooltip on outside click', () => {
+it('should hide tooltip on outside click', async () => {
   render(
     <div data-testid="outside-container">
       <Tooltip title="title" visible={true}>Tooltip target</Tooltip>
@@ -64,5 +64,5 @@ it('should hide tooltip on outside click', () => {
   const outside = screen.getByTestId('outside-container');
   const tooltip = screen.getByRole('tooltip');
   fireEvent.click(outside);
-  expect(tooltip).not.toBeInTheDocument();
+  await waitFor(() => expect(tooltip).not.toBeInTheDocument(), { timeout: 300 });
 });

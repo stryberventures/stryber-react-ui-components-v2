@@ -12,15 +12,21 @@ export default createStyles((theme) => ({
     width: 'max-content',
     display: 'flex',
     justifyContent: 'center',
+    fontFamily: theme.font,
     boxSizing: 'border-box',
     '& *, *:after, *:before': {
       boxSizing: 'inherit',
     },
   },
-  tooltipTarget: {
+  tooltipTarget: (props: ITooltip) => ({
     cursor: 'pointer',
     padding: toRem(PADDING),
-  },
+    '&:focus-visible': {
+      outline: 'none',
+      boxShadow: `0 0 0 2px white, 0 0 0 4px ${theme.colors[props.color!].light200}`,
+      borderRadius: toRem(12),
+    },
+  }),
   tooltipContainer: {
     position: 'absolute',
     zIndex: 99,
@@ -214,6 +220,21 @@ export default createStyles((theme) => ({
       left: 'initial',
       boxShadow: '1px -1px 1px rgba(102, 112, 133, 0.2)',
     }
+  },
+  animatedEnter: {
+    opacity: 0,
+  },
+  animatedEnterActive: {
+    opacity: 1,
+    transform: 'translateX(0)',
+    transition: 'opacity 300ms, transform 300ms',
+  },
+  animatedExit: {
+    opacity: 1,
+  },
+  animatedExitActive: {
+    opacity: 0,
+    transition: 'opacity 300ms, transform 300ms',
   },
 }), { internalUsage: true });
 
