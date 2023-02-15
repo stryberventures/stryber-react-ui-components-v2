@@ -18,12 +18,13 @@ export interface ITab {
   removable?: boolean;
 }
 
-interface ITabProps extends ITab {
+export interface ITabProps extends ITab {
   onChange: (id: ITab['id']) => void;
   onRemove?: (id: ITab['id']) => void;
   className?: string;
   color?: 'primary' | 'secondary';
   direction?: TTabsDirection;
+  size?: 'small' | 'medium' | 'large';
 }
 
 const Tab: React.FC<ITabProps> = ({
@@ -36,6 +37,7 @@ const Tab: React.FC<ITabProps> = ({
   removable,
   direction,
   color,
+  size = 'large',
   onChange,
   onRemove,
   ...rest
@@ -47,7 +49,7 @@ const Tab: React.FC<ITabProps> = ({
   const handleOnRemove = (e: BaseSyntheticEvent) => {
     e.stopPropagation();
     onRemove?.(id);
-  }
+  };
   return (
     <div
       role="button"
@@ -56,6 +58,7 @@ const Tab: React.FC<ITabProps> = ({
       onKeyDown={(e: React.KeyboardEvent) => e.key == KEYS.enter && handleOnChange()}
       className={classNames(
         classes.tab,
+        classes[size],
         {
           [classes.active]: active,
           [classes.disabled]: disabled,
@@ -72,8 +75,8 @@ const Tab: React.FC<ITabProps> = ({
           <Text
             component="span"
             className={classes.label}
-            variant="components2"
-            weight="medium"
+            variant={size == 'medium' ? 'components1' : 'components2'}
+            weight={size == 'large' ? 'medium' : 'semiBold'}
           >
             {label}
           </Text>

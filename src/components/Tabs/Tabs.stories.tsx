@@ -56,8 +56,9 @@ export default {
     direction: 'vertical',
     color: 'primary',
     tabs: defaultTabs,
+    size: 'large',
   },
-  argTypes: buildExcludeArgTypes(['className', 'children', 'onChange', 'onRemove', 'tabs']),
+  argTypes: buildExcludeArgTypes(['className', 'children', 'onChange', 'onRemove', 'tabs', 'size']),
 } as ComponentMeta<typeof Tabs>;
 
 const Template: ComponentStory<typeof Tabs> = (args) => {
@@ -79,3 +80,29 @@ const Template: ComponentStory<typeof Tabs> = (args) => {
 }
 
 export const Default = Template.bind({});
+
+const TabsTemplate: ComponentStory<typeof Tabs> = (args) => {
+  return (
+    <Tabs
+      {...args}
+      tabs={defaultTabs}
+      onChange={() => {}}
+      onRemove={() => {}}
+    />
+  );
+};
+
+export const Small = TabsTemplate.bind({});
+Small.args = {
+  size: 'small',
+}
+
+export const Medium = TabsTemplate.bind({});
+Medium.args = {
+  size: 'medium',
+}
+
+export const Large = TabsTemplate.bind({});
+Large.args = {
+  size: 'large',
+}

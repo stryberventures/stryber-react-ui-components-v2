@@ -7,7 +7,7 @@ export default createStyles((theme) => {
       display: 'flex',
       alignItems: 'center',
       gap: toRem(18),
-      padding: [toRem(14), toRem(22)],
+      padding: `0 ${toRem(22)}`,
       cursor: 'pointer',
       color: theme.colors.text.secondary,
       transition: 'color .3s, border-color .3s',
@@ -43,6 +43,15 @@ export default createStyles((theme) => {
         },
       },
     }),
+    small: {
+      minHeight: toRem(48),
+    },
+    medium: {
+      minHeight: toRem(48),
+    },
+    large: {
+      minHeight: toRem(58),
+    },
     horizontal: (color: ITab['color']) => ({
       justifyContent: 'center',
       borderBottom: `${toRem(3)} solid transparent`,

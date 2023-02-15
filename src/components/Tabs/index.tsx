@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import Tab, { ITab } from './Tab';
+import Tab, { ITab, ITabProps } from './Tab';
 import useStyles from './styles';
 
 
@@ -13,6 +13,7 @@ export interface ITabs {
   className?: string;
   color?: 'primary' | 'secondary';
   direction?: TTabsDirection;
+  size?: ITabProps['size'];
   children?: React.ReactNode;
 }
 
@@ -24,6 +25,7 @@ const Tabs: React.FC<ITabs> = ({
   onChange,
   onRemove,
   children,
+  size,
   ...rest
 }) => {
   const classes = useStyles(color);
@@ -42,6 +44,7 @@ const Tabs: React.FC<ITabs> = ({
             key={index}
             direction={direction}
             color={color}
+            size={size}
             onChange={(id: ITab['id']) => onChange(id)}
             onRemove={(id: ITab['id']) => onRemove?.(id)}
           />
