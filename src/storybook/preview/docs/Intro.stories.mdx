@@ -1,0 +1,30 @@
+import {Meta} from '@storybook/addon-docs';
+
+<Meta title="Overview/Intro" parameters={{
+    previewTabs: {
+        canvas: {hidden: true},
+        npm: {hidden: true},
+    },
+    viewMode: 'docs',
+}} />
+
+## Description
+
+In GAIA components library each component is a package
+## How to install components in your project
+
+To install the components in your project:
+
+1. Choose component you would like to install
+2. Go to `Npm install` tab
+3. Copy command to install the package
+
+⚠️ When install the package please check the warnings in the console regarding peer dependencies and install them if your project doesn't have required packages ⚠️
+
+We recommend to install the next packages and their peerDeps beforehand:
+
+```shell script
+npm install @stryberventures/gaia-react.theme @stryberventures/gaia-react.form @stryberventures/gaia-react.text @stryberventures/gaia-react.icons react-jss classnames yup
+```
+
+since they are used in most of the components
