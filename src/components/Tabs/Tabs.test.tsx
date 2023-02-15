@@ -1,61 +1,55 @@
 import '@testing-library/jest-dom'
 import * as React from 'react'
-import { render, screen, fireEvent } from '@testing-library/react'
-import Button from './index'
-import Placeholder from '../../storybook/icons/placeholder';
+import { fireEvent, render, screen } from '@testing-library/react'
+import Tabs from './index'
+import { ITab } from './Tab';
 
-it('should be rendered', () => {
-  const label = 'Test button'
-  render(<Button>{label}</Button>)
-  expect(screen.queryByText(label)).toBeInTheDocument();
+
+const onClick = jest.fn();
+
+const defaultTabs: ITab[] = [
+  {
+    id: 'home',
+    label: 'Home',
+    active: true,
+    disabled: false,
+  },
+  {
+    id: 'profile',
+    label: 'Profile',
+    active: false,
+    disabled: false,
+    removable: true,
+  },
+  {
+    id: 'payment',
+    label: 'Payment',
+    active: false,
+    disabled: true,
+    removable: false,
+  },
+];
+
+it('should render all tabs', () => {
+  render(<Tabs tabs={defaultTabs} onChange={() => {}} />)
+  expect(screen.queryByText('Home')).toBeInTheDocument();
+  expect(screen.queryByText('Profile')).toBeInTheDocument();
+  expect(screen.queryByText('Payment')).toBeInTheDocument();
 });
 
-it('should be visible', () => {
-  render(<Button>Button</Button>)
-  const button = screen.getByRole('button');
-  expect(button).toBeVisible();
+it('should remove removable tab', () => {
+  const { getByTestId } = render(<Tabs tabs={[defaultTabs[1]]} onChange={() => {}} />);
+  fireEvent.click(getByTestId('test-remove-tab'));
+  setTimeout(() => {
+    expect(onClick).toHaveBeenCalled();
+    expect(screen.queryByText('Profile')).not.toBeInTheDocument();
+  }, 0);
 });
 
-it('should contain default classes', () => {
-  render(<Button>Button</Button>)
-  const button = screen.getByRole('button');
-  expect(button.className).toMatch(/(contained)/i);
-  expect(button.className).toMatch(/(medium)/i);
-  expect(button.className).toMatch(/(round)/i);
-});
-
-it('should contain variant, size and shape classes', () => {
-  render(<Button variant="outlined" size="small" shape="round">Button</Button>)
-  const button = screen.getByRole('button');
-  expect(button.className).toMatch(/(outlined)/i);
-  expect(button.className).toMatch(/(small)/i);
-  expect(button.className).toMatch(/(round)/i);
-});
-
-it('should call onClick handler', () => {
+it('should not click disabled tab', () => {
   const onClick = jest.fn();
-  render(<Button onClick={onClick}>Button</Button>)
-  const button = screen.getByRole('button');
-  fireEvent.click(button);
-  expect(onClick).toHaveBeenCalled();
-});
-
-it('should not call onClick handler when disabled', () => {
-  const onClick = jest.fn();
-  render(<Button disabled={true} onClick={onClick}>Button</Button>)
-  const button = screen.getByRole('button');
-  fireEvent.click(button);
+  render(<Tabs tabs={[defaultTabs[2]]} onChange={onClick} />)
+  const tab = screen.getByRole('button');
+  fireEvent.click(tab);
   expect(onClick).not.toHaveBeenCalled();
-});
-
-it('should contain left icon', () => {
-  render(<Button iconLeft={Placeholder}>Button</Button>);
-  const icon = screen.getByTestId('placeholderIcon');
-  expect(icon).toBeVisible();
-});
-
-it('should contain right icon', () => {
-  render(<Button iconRight={Placeholder}>Button</Button>);
-  const icon = screen.getByTestId('placeholderIcon');
-  expect(icon).toBeVisible();
 });
