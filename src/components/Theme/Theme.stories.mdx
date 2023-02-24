@@ -1,0 +1,118 @@
+import {Meta} from '@storybook/addon-docs';
+
+<Meta title="Core/Theme/README" parameters={{
+    previewTabs: {
+        canvas: {hidden: true},
+        npm: {hidden: true},
+    },
+    viewMode: 'docs',
+}} />
+
+## Installation
+
+To install `Theme` component run:
+```shell script
+npm install @stryberventures/gaia-react.theme
+```
+
+## Setup `ThemeProvider`
+
+Wrap your app root component with `ThemeProvider`:
+
+```tsx
+<ThemeProvider theme={yourThemeObject}>
+  <App />
+</ThemeProvider>
+```
+
+## Setup theme object and types
+
+You can extend or redefine theme object:
+```typescript
+const theme = {
+  // Example how we can extend theme object:
+  margins: {
+    small: 8,
+    medium: 16,
+    large: 24,
+  },
+  // Example how we can redefine default theme object properties:
+  primary: {
+    main: 'red',
+    light: 'blue',
+    dark: 'grey',
+    contrast: 'white',
+  },
+};
+
+// We take type from theme object:
+type ProjectThemeType = typeof theme;
+
+// And put this type to global theme interface:
+// (It is needed for getting types automatically in `useTheme` and `createStyles`)
+declare global {
+  namespace DesignSystem {
+    interface IProjectTheme extends ProjectThemeType {}
+  }
+}
+
+export default theme;
+```
+
+## `useTheme` hook
+
+You can use useTheme hook to get or update theme object inside components:
+
+```tsx
+const {theme, updateTheme} = useTheme();
+```
+
+`theme` object already contain all types as we defined it globally in the example above
+
+## `createStyles` function
+
+You can use this function to get theme object in styles:
+
+```typescript
+import { createStyles } from '@stryberventures/gaia-react.theme';
+
+export const useStyles = createStyles((theme) => ({
+  button: {
+    backgroundColor: theme.primary.main,
+  },
+}));
+```
+
+If you want to pass props to styles:
+
+```typescript
+// components.tsx
+const classes = useStyles(props);
+```
+```typescript
+// styles.ts
+export default createStyles((theme) => ({
+  button: (props: IButton) => ({
+    color: props.color,
+  }),
+})
+```
+
+## Setup Font
+
+To setup default `Inter` font add next tag to `<head>` of your html document:
+
+```
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+</style>
+```
+
+To change the font change fontFamily property in theme object:
+```ts
+const theme = {
+  fontFamily: 'Monospace',
+};
+```
+
+That will apply this font to all components
