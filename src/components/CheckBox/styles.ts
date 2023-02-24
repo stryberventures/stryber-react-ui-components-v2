@@ -1,13 +1,7 @@
 import { createStyles } from '../Theme';
 import { toRem } from '../Theme/utils';
-import { ICheckBox } from './index';
 
 export default createStyles((theme) => ({
-  checkbox: (color: ICheckBox['color']) => ({
-    '& input:enabled:focus-visible + div > div': {
-      boxShadow: `0 0 0 2px white, 0 0 0 ${toRem(4)} ${theme.colors[color!].light200}`,
-    },
-  }),
   '&:not($reversed) label>span$hint': {
     marginLeft: toRem(30),
   },

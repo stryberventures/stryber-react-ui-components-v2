@@ -1,4 +1,5 @@
 import { createStyles, toRem } from '../Theme'
+import { IInputToggle } from './types';
 
 
 export default createStyles((theme) => ({
@@ -19,15 +20,15 @@ export default createStyles((theme) => ({
       color: theme.colors.text.disabled
     },
   },
-  title: {
+  title: () => ({
     color: theme.colors.text.headline,
     lineHeight: '120%',
     margin: [0, theme.spacing[8], theme.spacing[8], theme.spacing[4]],
-  },
+  }),
   titleReverse: {
     textAlign: 'right',
   },
-  labelContainer: {
+  labelContainer: (color: IInputToggle['color']) => ({
     display: 'grid',
     gridTemplateRows: 'auto',
     gridTemplateColumns: 'auto 1fr',
@@ -41,7 +42,10 @@ export default createStyles((theme) => ({
     '&:hover': {
       cursor: 'pointer',
     },
-  },
+    '&:has(input:focus-visible) input + div > div': {
+      boxShadow: `0 0 0 2px white, 0 0 0 ${toRem(4)} ${theme.colors[color!].light200}`,
+    },
+  }),
   reverse: {
     gridTemplateColumns: '1fr auto',
     '& $inputContainer': {

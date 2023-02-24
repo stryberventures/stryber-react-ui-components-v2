@@ -11,6 +11,7 @@ export interface ITextArea extends React.TextareaHTMLAttributes<HTMLTextAreaElem
   label?: string,
   disabled?: boolean,
   color?: 'primary' | 'secondary',
+  variant?: 'labelOutside',
   errorMessage?: string,
   name?: string,
   controlled?: boolean,
@@ -27,6 +28,7 @@ const TextArea: React.FC<ITextArea> = (props) => {
   const {
     value = '',
     name = '',
+    variant = '',
     label,
     onChange,
     onBlur,
@@ -39,11 +41,12 @@ const TextArea: React.FC<ITextArea> = (props) => {
     hint,
     maxLengthClassName,
     fullWidth,
+    color,
     ...rest
   } = props;
   const { updateFormTouched, updateFormValue, unsetFormValue, fieldValue, fieldError } = useFormContext(name);
   const errorMessage = fieldError || error;
-  const classes = useStyles(props);
+  const classes = useStyles(color);
   const textClasses = useTextStyles();
   const [internalValue, setInternalValue] = React.useState(fieldValue || value);
   const [length, setLength] = React.useState(internalValue.toString().length);
@@ -71,19 +74,35 @@ const TextArea: React.FC<ITextArea> = (props) => {
     !controlled && updateFormTouched(name, true);
     onBlur && onBlur(e);
   }
-
   return (
-    <div className={className}>
-      <div className={classNames(classes.textArea, {
-        [classes.containerDisabled]: disabled,
-        [classes.containerError]: !!errorMessage,
-        [classes.fullWidth]: fullWidth,
-      })}>
-        {label && (
+    <div className={classNames(classes.textAreaWrapper, {
+      [classes.fullWidth]: fullWidth,
+    }, className)}>
+      {label && variant == 'labelOutside' && (
+        <Text
+          variant="components2"
+          weight="regular"
+          className={classNames(
+            classes.label,
+            { [classes.textDisabled]: disabled },
+            classes.labelOutside
+          )}
+        >
+          {label}
+        </Text>
+      )}
+      <div
+        className={classNames(classes.textArea, {
+          [classes.containerDisabled]: disabled,
+          [classes.containerError]: !!errorMessage,
+        })}
+      >
+        {label && !variant && (
           <Text
-            variant="components2"
+            variant="caption1"
             weight="regular"
-            className={classNames(classes.label, { [classes.textDisabled]: disabled })}>
+            className={classNames(classes.label, { [classes.textDisabled]: disabled })}
+          >
             {label}
           </Text>
         )}
@@ -92,24 +111,42 @@ const TextArea: React.FC<ITextArea> = (props) => {
           value={controlled ? value : internalValue}
           className={classNames(
             classes.textarea,
-            textClasses.components2,
+            textClasses.components1,
             textClasses.regular,
             { [classes.textDisabled]: disabled }
           )}
           onChange={onChangeWrapper}
           onBlur={onBlurWrapper}
           maxLength={maxLength}
+          disabled={disabled}
           {...rest}
         />
       </div>
-      {hint && <HintMessage text={hint} disabled={disabled} className={classes.message} />}
-      {errorMessage && <ErrorMessage text={errorMessage} className={classes.message}/>}
-      {showLength && (
-        <HintMessage
-          text={maxLength ? `${length}/${maxLength}` : `${length}`}
-          disabled={disabled}
-          className={classNames(classes.message, maxLengthClassName)}
-        />
+      {(!!hint || !!errorMessage || showLength || !!maxLength) && (
+        <div className={classes.hintContainer}>
+          <div className={classes.messagesWrapper}>
+            {hint && !errorMessage && (
+              <HintMessage
+                text={hint}
+                disabled={disabled}
+                className={classes.hint}
+              />
+            )}
+            {errorMessage && (
+              <ErrorMessage
+                text={errorMessage}
+                className={classes.error}
+              />
+            )}
+          </div>
+          {showLength && (
+            <HintMessage
+              text={maxLength ? `${length}/${maxLength}` : `${length}`}
+              disabled={disabled}
+              className={classNames(classes.hint, classes.lengthContainer, maxLengthClassName)}
+            />
+          )}
+        </div>
       )}
     </div>
   );

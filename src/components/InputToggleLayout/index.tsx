@@ -9,9 +9,9 @@ const InputToggleLayout: React.FC<IInputToggle> = (props) => {
   const {
     name = '', className, type, checked, disabled, value, children, title, control,
     onChange, onFocus, errorMessage, placeholder, label, hint, controlled,
-    reverse, fullWidth, ...rest
+    reverse, fullWidth, color, ...rest
   } = props;
-  const classes = useStyles();
+  const classes = useStyles(color);
   return (
     <div className={classNames(classes.inputToggleLayout, {
       [classes.disabled]: disabled,

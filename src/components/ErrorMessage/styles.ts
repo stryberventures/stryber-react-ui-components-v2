@@ -10,4 +10,8 @@ export default createStyles((theme) => ({
     color: theme.colors.error.dark600,
     lineHeight: toRem(17),
   },
+  icon: {
+    minWidth: toRem(16),
+    minHeight: toRem(16),
+  },
 }), { internalUsage: true });
