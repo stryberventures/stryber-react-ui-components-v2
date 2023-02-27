@@ -23,10 +23,12 @@ export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
   prefixClassName?: string,
   errorClassName?: string,
   hintClassName?: string,
+  beginAdornment?: React.ReactNode,
   endAdornment?: React.ReactNode,
   mask?: string,
   fullWidth?: boolean,
   highlighted?: boolean,
+  mobile?: boolean,
 }
 
 const Input: React.FC<IInput> = (props) => {
@@ -34,7 +36,7 @@ const Input: React.FC<IInput> = (props) => {
   const textClasses = useTextClasses(props);
   const {
     label, className, hint, prefix, prefixClassName, errorClassName, hintClassName,
-    endAdornment, placeholder, onClick, fullWidth, highlighted, ...rest
+    beginAdornment, endAdornment, placeholder, onClick, fullWidth, highlighted, ...rest
   } = props;
   const {
     name,
@@ -42,17 +44,64 @@ const Input: React.FC<IInput> = (props) => {
     disabled,
     errorMessage,
     inputProps,
+    mobile,
+    inputInUse,
+    setInputInUse,
     onChange,
     onBlur
   } = useInput(rest);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  return (
-    <div className={classNames(classes.inputRoot, {
-      [classes.fullWidth]: fullWidth
-    }, className)}>
+  const onInputContainerClick = (e: any) => {
+    onClick && onClick(e);
+    if (mobile) {
+      setInputInUse(true);
+      inputRef.current && inputRef.current.focus();
+    }
+  };
+  const onInputFocus = (e: any) => {
+    props.onFocus && props.onFocus(e);
+    if (mobile) {
+      setInputInUse(true)
+    }
+  }
+  const onInputBlur = (e: any) => {
+    onBlur(e);
+    if (mobile && !e.target.value) {
+      setInputInUse(false)
+    }
+  }
+
+  const renderLabel = () => {
+    if (!label) {
+      return null;
+    }
+    const variant = mobile && inputInUse
+      ? 'caption1'
+      : mobile
+        ? 'components1'
+        : 'components2';
+
+    return (
+      <Text
+        variant={variant}
+        weight="regular"
+        onClick={() => {inputRef.current?.focus()}}
+        className={classNames(
+          classes.label,
+          { [classes.labelMobile]: mobile },
+          { [classes.textDisabled]: disabled }
+        )}
+      >
+        {label}
+      </Text>
+    );
+  };
+  const renderCore = () => (
+    <>
+      { !mobile && renderLabel() }
       <div
-        onClick={onClick}
+        onClick={onInputContainerClick}
         className={classNames(classes.inputContainer, {
           [classes.disabled]: disabled,
           [classes.inputContainerError]: !!errorMessage,
@@ -60,21 +109,16 @@ const Input: React.FC<IInput> = (props) => {
           [classes.highlighted]: highlighted,
         })}
       >
+        {beginAdornment}
         <div className={classes.inputArea}>
-          {label && (
-            <Text
-              variant="components2"
-              weight="regular"
-              onClick={() => {inputRef.current?.focus()}}
-              className={classNames(
-                classes.label,
-                { [classes.textDisabled]: disabled }
-              )}
-            >
-              {label}
-            </Text>
-          )}
-          <div className={classes.inputWrapper}>
+          { mobile && renderLabel() }
+          <div
+            className={classNames(
+              classes.inputWrapper,
+              { [classes.mobileInputWrapper]: mobile },
+              { [classes.mobileInputWrapperInUse]: mobile && inputInUse },
+            )}
+          >
             {prefix && <div className={classNames(classes.prefix, prefixClassName)}>{prefix}</div>}
             <input
               {...inputProps}
@@ -83,21 +127,30 @@ const Input: React.FC<IInput> = (props) => {
               value={value}
               className={classNames(
                 classes.input,
-                textClasses.components2,
+                textClasses.components1,
                 textClasses.regular,
                 {
-                  [classes.disabled]: disabled,
                   [classes.textDisabled]: disabled,
                 }
               )}
               placeholder={placeholder}
+              disabled={disabled}
               onChange={onChange}
-              onBlur={onBlur}
+              onBlur={onInputBlur}
+              onFocus={onInputFocus}
             />
           </div>
         </div>
         {endAdornment}
       </div>
+    </>
+  );
+
+  return (
+    <div className={classNames(classes.inputRoot, {
+      [classes.fullWidth]: fullWidth
+    }, className)}>
+      {renderCore()}
       {errorMessage && <ErrorMessage text={errorMessage} className={classNames(classes.message, errorClassName)}/>}
       {hint && <HintMessage text={hint} disabled={disabled} className={classNames(classes.message, hintClassName)}/>}
     </div>

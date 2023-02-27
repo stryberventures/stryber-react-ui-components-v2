@@ -37,6 +37,14 @@ WithValue.args = {
   value: 'olivia@example.com',
 };
 
+export const Highlighted = Template.bind({});
+Highlighted.args = {
+  label: 'Highlighted',
+  placeholder: 'placeholder@example.com',
+  value: 'olivia@example.com',
+  highlighted: true,
+};
+
 export const Disabled = Template.bind({});
 Disabled.args = {
   label: 'Disabled',
@@ -78,6 +86,28 @@ FullWidth.args = {
   fullWidth: true,
 };
 
+export const BeginAdornment = Template.bind({});
+BeginAdornment.args = {
+  label: 'Begin adornment',
+  placeholder: 'placeholder@example.com',
+  value: 'olivia@example.com',
+  beginAdornment: <div style={
+    {
+      display: 'flex',
+      alignContent: 'center',
+      justifyContent: 'center',
+      width: toRem(32),
+      height: toRem(32),
+      marginRight: toRem(10),
+      backgroundColor: '#D0D5DD',
+      borderRadius: toRem(16),
+      lineHeight: toRem(32),
+      textAlign: 'center',
+      color: 'white',
+    }
+  }>O</div>
+};
+
 export const EndAdornment = Template.bind({});
 EndAdornment.args = {
   label: 'End adornment',
@@ -90,6 +120,7 @@ EndAdornment.args = {
       justifyContent: 'center',
       width: toRem(32),
       height: toRem(32),
+      marginLeft: toRem(10),
       backgroundColor: '#D0D5DD',
       borderRadius: toRem(16),
       lineHeight: toRem(32),

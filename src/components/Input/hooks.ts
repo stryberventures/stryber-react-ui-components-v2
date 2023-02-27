@@ -1,6 +1,6 @@
 import { IInput } from './index';
 import { useFormContext } from '../Form';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { applyDigitMask } from './utils';
 
 export const useInput = (props: IInput) => {
@@ -10,6 +10,7 @@ export const useInput = (props: IInput) => {
     value = '',
     controlled,
     errorMessage: error,
+    mobile = false,
     onChange,
     onBlur,
     mask,
@@ -18,9 +19,11 @@ export const useInput = (props: IInput) => {
   const { updateFormTouched, updateFormValue, unsetFormValue, fieldValue, fieldError } = useFormContext(name);
   const errorMessage = fieldError || error;
   const initValue = fieldValue || value;
-  const [internalValue, setInternalValue] = React.useState<string>(
+  const [internalValue, setInternalValue] = useState<string>(
     mask && initValue ? applyDigitMask(initValue, mask) : initValue,
   );
+  const [inputInUse, setInputInUse] = useState<boolean>(mobile && !!value);
+
   const onChangeWrapper = (e: React.BaseSyntheticEvent) => {
     if (disabled) {
       return null;
@@ -63,6 +66,9 @@ export const useInput = (props: IInput) => {
     disabled,
     inputProps,
     value: controlled ? value : internalValue,
+    mobile,
+    inputInUse,
+    setInputInUse,
     onChange: onChangeWrapper,
     onBlur: onBlurWrapper,
   }
