@@ -11,28 +11,27 @@ const defaultTabs: ITab[] = [
     id: 'home',
     icon: <HomeIcon />,
     label: 'Home',
-    active: true,
+    active: false,
     disabled: false,
   },
   {
     id: 'profile',
     icon: <ProfileIcon />,
     label: 'Profile',
-    active: false,
-    disabled: false,
-    removable: true,
+    active: true,
+    disabled: true,
   },
   {
     id: 'info',
     icon: <InfoIcon />,
-    label: '',
+    label: 'Info',
     active: false,
     disabled: false,
   },
   {
     id: 'documents',
     icon: <DocumentIcon />,
-    label: '',
+    label: 'Documents',
     active: false,
     disabled: false,
   },
@@ -41,8 +40,7 @@ const defaultTabs: ITab[] = [
     icon: <CreditCardIcon />,
     label: 'Payment',
     active: false,
-    disabled: true,
-    removable: true,
+    disabled: false,
   },
 ];
 
@@ -53,56 +51,51 @@ export default {
     pkg,
   },
   args: {
-    direction: 'vertical',
+    direction: 'horizontal',
     color: 'primary',
     tabs: defaultTabs,
-    size: 'large',
+    size: 'small',
+    variant: 'default',
   },
-  argTypes: buildExcludeArgTypes(['className', 'children', 'onChange', 'onRemove', 'tabs', 'size']),
+  argTypes: buildExcludeArgTypes(['className', 'children', 'onChange', 'tabs']),
 } as ComponentMeta<typeof Tabs>;
 
 const Template: ComponentStory<typeof Tabs> = (args) => {
-  const [tabs, setTabs] = useState(defaultTabs);
+  const [tabs, setTabs] = useState(args.tabs);
   const onChange = (tabId: ITab['id']) => {
     setTabs(tabs.map((tab) => ({ ...tab, active: tab.id == tabId })));
-  };
-  const onRemove = (tabId: ITab['id']) => {
-    setTabs(tabs.filter(({ id }) => id != tabId));
   };
   return (
     <Tabs
       {...args}
       tabs={tabs}
       onChange={onChange}
-      onRemove={onRemove}
     />
   );
 }
 
 export const Default = Template.bind({});
 
-const TabsTemplate: ComponentStory<typeof Tabs> = (args) => {
-  return (
-    <Tabs
-      {...args}
-      tabs={defaultTabs}
-      onChange={() => {}}
-      onRemove={() => {}}
-    />
-  );
-};
-
-export const Small = TabsTemplate.bind({});
-Small.args = {
-  size: 'small',
+export const Fitted = Template.bind({});
+Fitted.args = {
+  variant: 'fitted',
+  tabs: [defaultTabs[0], defaultTabs[1], defaultTabs[2]],
 }
 
-export const Medium = TabsTemplate.bind({});
-Medium.args = {
-  size: 'medium',
+export const WithoutIcons = Template.bind({});
+WithoutIcons.args = {
+  variant: 'default',
+  tabs: defaultTabs.map((tab) => ({
+    ...tab,
+    icon: null,
+  })),
 }
 
-export const Large = TabsTemplate.bind({});
-Large.args = {
-  size: 'large',
+export const IconsOnly = Template.bind({});
+IconsOnly.args = {
+  variant: 'default',
+  tabs: defaultTabs.map((tab) => ({
+    ...tab,
+    label: '',
+  })),
 }

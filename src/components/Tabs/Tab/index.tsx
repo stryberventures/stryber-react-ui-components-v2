@@ -15,16 +15,15 @@ export interface ITab {
   label: string | React.ReactNode;
   active: boolean;
   disabled?: boolean;
-  removable?: boolean;
 }
 
 export interface ITabProps extends ITab {
   onChange: (id: ITab['id']) => void;
-  onRemove?: (id: ITab['id']) => void;
   className?: string;
   color?: 'primary' | 'secondary';
   direction?: TTabsDirection;
-  size?: 'small' | 'medium' | 'large';
+  size?: 'small' | 'medium';
+  variant?: 'fitted' | 'default';
 }
 
 const Tab: React.FC<ITabProps> = ({
@@ -34,21 +33,16 @@ const Tab: React.FC<ITabProps> = ({
   icon,
   active,
   disabled,
-  removable,
   direction,
   color,
-  size = 'large',
+  size = 'small',
+  variant = 'default',
   onChange,
-  onRemove,
   ...rest
 }) => {
   const classes = useStyles(color);
   const handleOnChange = () => {
     !disabled && !active && onChange(id);
-  };
-  const handleOnRemove = (e: BaseSyntheticEvent) => {
-    e.stopPropagation();
-    onRemove?.(id);
   };
   return (
     <div
@@ -58,12 +52,12 @@ const Tab: React.FC<ITabProps> = ({
       onKeyDown={(e: React.KeyboardEvent) => e.key == KEYS.enter && handleOnChange()}
       className={classNames(
         classes.tab,
-        classes[size],
         {
           [classes.active]: active,
           [classes.disabled]: disabled,
           [classes.vertical]: direction == 'vertical',
           [classes.horizontal]: direction == 'horizontal',
+          [classes.fitted]: variant == 'fitted',
         },
         className)
       }
@@ -75,28 +69,13 @@ const Tab: React.FC<ITabProps> = ({
           <Text
             component="span"
             className={classes.label}
-            variant={size == 'medium' ? 'components1' : 'components2'}
-            weight={size == 'large' ? 'medium' : 'semiBold'}
+            variant={size == 'small' ? 'components2' : 'components1'}
+            weight="medium"
           >
             {label}
           </Text>
         )
         : label}
-      {removable && onRemove && (
-        <div
-          className={classes.iconWrapper}
-          tabIndex={0}
-          role="button"
-          onClick={handleOnRemove}
-          onKeyDown={(e: React.KeyboardEvent) => (e.key == KEYS.enter) && handleOnRemove(e)}
-          data-testid="test-remove-tab"
-        >
-          <CloseIcon
-            width={toRem(18)}
-            height={toRem(18)}
-          />
-        </div>
-      )}
     </div>
   );
 }

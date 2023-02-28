@@ -1,17 +1,28 @@
 import { createStyles, toRem } from '../../Theme';
 import { ITab } from './index';
 
+
 export default createStyles((theme) => {
   return ({
     tab: (color: ITab['color']) => ({
       display: 'flex',
       alignItems: 'center',
-      gap: toRem(18),
-      padding: `0 ${toRem(22)}`,
+      gap: toRem(16),
+      padding: `${toRem(16)} ${toRem(20)}`, // TODO check changes in the design
       cursor: 'pointer',
       color: theme.colors.text.secondary,
-      transition: 'color .3s, border-color .3s',
+      transition: 'color .3s',
+      position: 'relative',
+      '&:after': {
+        display: 'block',
+        position: 'absolute',
+        content: '""',
+        borderRadius: toRem(4),
+        transition: 'background-color .3s',
+        zIndex: 2,
+      },
       '& svg path': {
+        transition: 'fill .3s',
         fill: theme.colors.text.secondary,
       },
       '&$active': {
@@ -20,18 +31,28 @@ export default createStyles((theme) => {
           fill: theme.colors[color!].dark600,
         },
       },
-      '&:active': {
+      '&:active:hover': {
         color: theme.colors[color!].medium300,
         '& svg path': {
-          fill: theme.colors[color!].medium300,
+          fill: [theme.colors[color!].medium300, '!important'],
         },
       },
-      '&:hover, &:not($disabled):focus-visible': {
+      '&:hover': {
         color: theme.colors[color!].medium400,
-        outline: 'none',
         '& svg path': {
           fill: [theme.colors[color!].medium400, '!important'],
         },
+      },
+      '&:not($disabled):focus-visible': {
+        backgroundColor: theme.colors[color!].extraLight50,
+        outline: 'none',
+      },
+      '&:not($disabled):focus-visible:active': {
+        color: theme.colors[color!].medium300,
+        outline: 'none',
+        '& svg path': {
+          fill: theme.colors[color!].medium300,
+        }
       },
       '&$disabled': {
         pointerEvents: 'none',
@@ -39,46 +60,45 @@ export default createStyles((theme) => {
         outline: 'none',
         color: theme.colors.text.disabled,
         '& svg path': {
-          fill: theme.colors.text.disabled,
+          fill: [theme.colors.text.disabled, '!important'],
+        },
+      },
+      '&$active:not($disabled)': {
+        '&:after': {
+          backgroundColor: theme.colors[color!].dark600,
+        },
+      },
+      '&$active$disabled': {
+        '&:after': {
+          backgroundColor: theme.colors.neutralGray.light200,
         },
       },
     }),
-    small: {
-      minHeight: toRem(48),
+    fitted: {
+      flexGrow: 1,
     },
-    medium: {
-      minHeight: toRem(48),
-    },
-    large: {
-      minHeight: toRem(58),
-    },
-    horizontal: (color: ITab['color']) => ({
+    horizontal: {
       justifyContent: 'center',
-      borderBottom: `${toRem(3)} solid transparent`,
-      '&$active': {
-        borderBottomColor: theme.colors[color!].dark600,
+      '&:after': {
+        bottom: 0,
+        left: 0,
+        width: '100%',
+        height: toRem(2),
       },
-    }),
-    vertical: (color: ITab['color']) => ({
+    },
+    vertical: {
       justifyContent: 'flex-start',
-      borderBottom: 'none',
-      borderLeft: `${toRem(3)} solid transparent`,
-      '&$active': {
-        borderLeftColor: theme.colors[color!].dark600,
+      '&:after': {
+        top: 0,
+        left: 0,
+        width: toRem(2),
+        height: '100%',
       },
-    }),
+    },
     active: {},
     disabled: {},
     label: {
       color: 'inherit',
     },
-    iconWrapper: (color: ITab['color']) => ({
-      display: 'flex',
-      alignItems: 'center',
-      outline: 'none',
-      '&:focus-visible *': {
-        fill: theme.colors[color!].medium400,
-      }
-    })
   })
 }, { internalUsage: true });

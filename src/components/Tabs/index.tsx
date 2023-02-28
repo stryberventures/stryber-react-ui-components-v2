@@ -9,9 +9,9 @@ export type TTabsDirection = 'horizontal' | 'vertical';
 export interface ITabs {
   tabs: ITab[];
   onChange: (id: ITab['id']) => void;
-  onRemove?: (id: ITab['id']) => void;
   className?: string;
   color?: 'primary' | 'secondary';
+  variant?: 'fitted' | 'default';
   direction?: TTabsDirection;
   size?: ITabProps['size'];
   children?: React.ReactNode;
@@ -20,10 +20,10 @@ export interface ITabs {
 const Tabs: React.FC<ITabs> = ({
   color = 'primary',
   direction = 'horizontal',
+  variant = 'default',
   tabs = [],
   className,
   onChange,
-  onRemove,
   children,
   size,
   ...rest
@@ -45,8 +45,8 @@ const Tabs: React.FC<ITabs> = ({
             direction={direction}
             color={color}
             size={size}
+            variant={variant}
             onChange={(id: ITab['id']) => onChange(id)}
-            onRemove={(id: ITab['id']) => onRemove?.(id)}
           />
         );
       })}
