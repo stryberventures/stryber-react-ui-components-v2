@@ -10,13 +10,13 @@ export const useInput = (props: IInput) => {
     value = '',
     controlled,
     errorMessage: error,
-    mobile = false,
     onChange,
     onFocus,
     onBlur,
     onInput,
     onClick,
     mask,
+    variant,
     ...inputProps
   } = props;
   const inputRef = useRef<HTMLInputElement>(null);
@@ -26,6 +26,7 @@ export const useInput = (props: IInput) => {
   const [internalValue, setInternalValue] = useState<string>(
     mask && initValue ? applyDigitMask(initValue, mask) : initValue,
   );
+  const mobile = variant === 'mobile';
   const [inputInUse, setInputInUse] = useState<boolean>(mobile && !!value);
   const [inFocus, setInFocus] = useState<boolean>(false);
 

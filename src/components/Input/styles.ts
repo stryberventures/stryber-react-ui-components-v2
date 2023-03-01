@@ -17,7 +17,7 @@ export default createStyles((theme) => ({
     flexDirection: 'row',
     alignItems: 'center',
     padding: [toRem(4), toRem(14)],
-    height: toRem(props.mobile ? 56 : 48),
+    height: toRem(props.variant === 'mobile' ? 56 : 48),
     border: `${toRem(1)} solid ${theme.colors.neutralGray.medium300}`,
     backgroundColor: theme.colors.background.white,
     '&:hover, &:hover $input': {

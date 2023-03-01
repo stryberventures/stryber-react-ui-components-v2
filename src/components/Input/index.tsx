@@ -30,7 +30,7 @@ export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
   mask?: string,
   fullWidth?: boolean,
   highlighted?: boolean,
-  mobile?: boolean,
+  variant?: 'default' | 'mobile',
   clearButton?: boolean,
 }
 
