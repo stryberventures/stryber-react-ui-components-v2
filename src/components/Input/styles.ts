@@ -18,21 +18,30 @@ export default createStyles((theme) => ({
     alignItems: 'center',
     padding: [toRem(4), toRem(14)],
     height: toRem(props.mobile ? 56 : 48),
-    backgroundColor: theme.colors.background.white,
     border: `${toRem(1)} solid ${theme.colors.neutralGray.medium300}`,
+    backgroundColor: theme.colors.background.white,
+    '&:hover, &:hover $input': {
+      backgroundColor: theme.colors.background.extraLightGrey,
+    },
+    '&:hover:not($disabled):not($inputContainerError)': {
+      border: `${toRem(1)} solid ${theme.colors.primary.medium400}`,
+    },
     '&:focus-within': {
       paddingLeft: toRem(13),
       paddingRight: toRem(13),
-      boxShadow: `0px 0px 0px ${toRem(2)} #fff, 0 0 0 ${toRem(4)} ${theme.colors[props.color!].light200}`,
+      backgroundColor: theme.colors.background.white,
+    },
+    '&:focus-within $input': {
+      backgroundColor: theme.colors.background.white,
     },
     '&:focus-within:not($disabled):not($inputContainerError)': {
       border: `${toRem(2)} solid ${theme.colors[props.color!].main500}`,
     },
     '&$disabled': {
-      backgroundColor: theme.colors.neutralGray.extraLight50,
+      backgroundColor: theme.colors.background.extraLightGrey,
     },
     '&$highlighted': {
-      boxShadow: `0px 0px 0px ${toRem(2)} #fff, 0 0 0 ${toRem(4)} ${theme.colors[props.color!].light200}`,
+      border: `${toRem(1)} solid ${theme.colors.primary.medium400}`,
     },
   }),
   disabled: {
@@ -44,7 +53,7 @@ export default createStyles((theme) => ({
     border: `${toRem(1)} solid ${theme.colors.error.main500}`,
     '&:focus-within': {
       border: `${toRem(2)} solid ${theme.colors.error.main500}`,
-    }
+    },
   }),
   input: {
     '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
@@ -67,7 +76,7 @@ export default createStyles((theme) => ({
       color: theme.colors.text.disabled,
     },
     '&[disabled]': {
-      backgroundColor: theme.colors.neutralGray.extraLight50,
+      backgroundColor: theme.colors.background.extraLightGrey,
     }
   },
   inputArea: {
