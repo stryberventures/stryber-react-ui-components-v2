@@ -19,7 +19,7 @@ const Elevation: React.FC<Elevation> = (props) => {
     children,
     ...rest
   } = props;
-  const classes = useStyles(props);
+  const classes = useStyles();
   return (
     <Tag
       className={classNames(

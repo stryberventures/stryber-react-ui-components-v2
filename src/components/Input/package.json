@@ -1,6 +1,6 @@
 {
   "name": "@stryberventures/gaia-react.input",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "peerDependencies": {
     "classnames": ">=2.0.0",
     "react": ">=17.0.0",
