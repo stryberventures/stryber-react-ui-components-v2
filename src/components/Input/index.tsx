@@ -150,7 +150,7 @@ const Input: React.FC<IInput> = (props) => {
     }, className)}>
       {renderCore()}
       {errorMessage && <ErrorMessage text={errorMessage} className={classNames(classes.message, errorClassName)}/>}
-      {hint && <HintMessage text={hint} disabled={disabled} className={classNames(classes.message, hintClassName)}/>}
+      {!errorMessage && hint && <HintMessage text={hint} disabled={disabled} className={classNames(classes.message, hintClassName)}/>}
     </div>
   );
 };
