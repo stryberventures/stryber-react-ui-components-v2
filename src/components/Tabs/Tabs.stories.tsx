@@ -35,13 +35,6 @@ const defaultTabs: ITab[] = [
     active: false,
     disabled: false,
   },
-  {
-    id: 'payment',
-    icon: <CreditCardIcon />,
-    label: 'Payment',
-    active: false,
-    disabled: false,
-  },
 ];
 
 export default {
@@ -79,7 +72,6 @@ export const Default = Template.bind({});
 export const Fitted = Template.bind({});
 Fitted.args = {
   variant: 'fitted',
-  tabs: [defaultTabs[0], defaultTabs[1], defaultTabs[2]],
 }
 
 export const WithoutIcons = Template.bind({});
@@ -87,15 +79,6 @@ WithoutIcons.args = {
   variant: 'default',
   tabs: defaultTabs.map((tab) => ({
     ...tab,
-    icon: undefined,
-  })),
-}
-
-export const IconsOnly = Template.bind({});
-IconsOnly.args = {
-  variant: 'default',
-  tabs: defaultTabs.map((tab) => ({
-    ...tab,
-    label: '',
+    icon: null,
   })),
 }

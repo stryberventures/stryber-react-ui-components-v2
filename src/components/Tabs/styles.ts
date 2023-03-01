@@ -7,8 +7,6 @@ export default createStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'stretch',
-    minWidth: '100%',
-    width: 'fit-content',
     position: 'relative',
     boxSizing: 'border-box',
     '&:after': {
@@ -28,6 +26,10 @@ export default createStyles((theme) => ({
       width: 0,
       height: 0,
     },
+  },
+  horizontal: {
+    width: 'fit-content',
+    minWidth: '100%',
   },
   vertical: {
     width: 'fit-content',

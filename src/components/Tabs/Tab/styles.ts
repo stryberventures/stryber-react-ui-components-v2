@@ -8,7 +8,6 @@ export default createStyles((theme) => {
       display: 'flex',
       alignItems: 'center',
       gap: toRem(16),
-      padding: `0 ${toRem(20)}`,
       cursor: 'pointer',
       color: theme.colors.text.secondary,
       transition: 'color .3s',
@@ -85,6 +84,7 @@ export default createStyles((theme) => {
     },
     horizontal: {
       justifyContent: 'center',
+      padding: `0 ${toRem(20)}`,
       '&:after': {
         bottom: 0,
         left: 0,
@@ -94,6 +94,7 @@ export default createStyles((theme) => {
     },
     vertical: {
       justifyContent: 'flex-start',
+      padding: `0 ${toRem(50)}`,
       '&:after': {
         top: 0,
         left: 0,
