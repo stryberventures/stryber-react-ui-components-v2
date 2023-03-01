@@ -135,6 +135,7 @@ export default createStyles((theme) => ({
   clearButton: {
     width: 20,
     height: 20,
+    marginLeft: toRem(10),
     backgroundColor: 'white',
     '&:hover': {
       cursor: 'pointer',
