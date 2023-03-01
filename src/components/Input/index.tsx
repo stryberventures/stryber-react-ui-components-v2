@@ -52,7 +52,7 @@ const Input: React.FC<IInput> = (props) => {
     inputInUse,
     inputRef,
     inFocus,
-    onResetButtonMouseDown,
+    onResetButtonPointerDown,
     onInputContainerClick,
     onChange,
     onInputBlur,
@@ -131,7 +131,7 @@ const Input: React.FC<IInput> = (props) => {
         { (clearButton && inFocus && !!value) && (
           <div
             className={classes.clearButton}
-            onMouseDown={onResetButtonMouseDown}
+            onPointerDown={onResetButtonPointerDown}
           >
             <CloseCircleIcon
               variant="filled"

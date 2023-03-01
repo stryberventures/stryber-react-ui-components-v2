@@ -54,11 +54,9 @@ export const useInput = (props: IInput) => {
     onChange && onChange(e);
   };
 
-  const onResetButtonMouseDown = () => {
+  const onResetButtonPointerDown = (e: React.BaseSyntheticEvent) => {
+    e.preventDefault();
     setInternalValue('');
-    setTimeout(() => {
-      inputRef.current && inputRef.current.focus();
-    }, 0);
   };
 
   const onInputContainerClick = (e: any) => {
@@ -107,7 +105,7 @@ export const useInput = (props: IInput) => {
     inFocus,
     setInternalValue,
     onChange: onChangeWrapper,
-    onResetButtonMouseDown,
+    onResetButtonPointerDown,
     onInputContainerClick,
     onInputFocus,
     onInputBlur,
