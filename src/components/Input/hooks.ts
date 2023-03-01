@@ -64,8 +64,8 @@ export const useInput = (props: IInput) => {
     onClick && onClick(e);
     if (mobile) {
       setInputInUse(true);
-      inputRef.current && inputRef.current.focus();
     }
+    inputRef.current && inputRef.current.focus();
   };
 
   const onInputFocus = (e: any) => {

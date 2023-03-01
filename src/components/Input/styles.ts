@@ -107,6 +107,7 @@ export default createStyles((theme) => ({
   labelMobile: {
     marginBottom: 0,
     color: theme.colors.text.secondary,
+    transition: 'font-size 0.2s',
   },
   textDisabled: {
     color: theme.colors.text.disabled,
@@ -125,12 +126,14 @@ export default createStyles((theme) => ({
   },
   mobileInputWrapper: {
     height: 0,
-    transition: 'height 0.2s, padding 0.2s',
+    transition: 'height 0.2s, padding 0.2s, opacity 0.3s',
     overflow: 'hidden',
+    opacity: 0,
   },
   mobileInputWrapperInUse: {
     height: toRem(24),
     paddingTop: toRem(2),
+    opacity: 1,
   },
   clearButton: {
     width: 20,
