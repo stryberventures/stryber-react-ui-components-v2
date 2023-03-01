@@ -18,7 +18,7 @@ export interface ITextLink extends React.DetailedHTMLProps<React.AnchorHTMLAttri
 
 const TextLink: React.FC<ITextLink> = (props) => {
   const { children, size = 'medium', weight = 'regular', disabled, iconLeft, iconRight, className, ...rest } = props;
-  const classes = useStyles(props);
+  const classes = useStyles()(props);
 
   return (
     <a

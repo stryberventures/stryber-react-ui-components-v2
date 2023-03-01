@@ -43,7 +43,7 @@ const Grid: React.FC<IGrid> = (props) => {
     columns,
     ...rest
   } = props;
-  const classes = useStyles(props);
+  const classes = useStyles()(props);
   const Tag = component;
   return(
     <Tag

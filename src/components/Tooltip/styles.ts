@@ -6,7 +6,7 @@ const ARROW_HEIGHT = 5;
 const ARROW_SHIFT = 15;
 const DISTANCE_TO_TARGET = 6;
 
-export default createStyles((theme) => ({
+export default () => createStyles((theme) => ({
   tooltip: {
     position: 'relative',
     width: 'max-content',

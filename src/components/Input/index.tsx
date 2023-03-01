@@ -30,8 +30,8 @@ export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
 }
 
 const Input: React.FC<IInput> = (props) => {
-  const classes = useStyles(props);
-  const textClasses = useTextClasses(props);
+  const classes = useStyles()(props);
+  const textClasses = useTextClasses();
   const {
     label, className, hint, prefix, prefixClassName, errorClassName, hintClassName,
     endAdornment, placeholder, onClick, fullWidth, highlighted, ...rest

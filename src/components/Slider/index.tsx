@@ -48,7 +48,7 @@ export const Slider = (props: ISlider) => {
     onChange,
     ...rest
   } = props;
-  const classes = useStyles(props);
+  const classes = useStyles(color);
   const { fieldValue, unsetFormValue, updateFormValue } = useFormContext(name);
   const [minVal, setMinVal] = useState(Array.isArray(fieldValue) ? fieldValue[0] : fieldValue || minValue);
   const [maxVal, setMaxVal] = useState(fieldValue ? fieldValue[1] : maxValue);

@@ -3,7 +3,7 @@ import { createStyles, toRem } from '../Theme';
 
 
 export default createStyles((theme) => ({
-  textArea: (props: ITextArea) => ({
+  textArea: (color: ITextArea['color']) => ({
     boxSizing: 'border-box',
     width: toRem(320),
     height: toRem(143),
@@ -12,8 +12,8 @@ export default createStyles((theme) => ({
     fontFamily: theme.font,
     backgroundColor: theme.colors.background.white,
     '&:focus-within:not($containerError)': {
-      border: `${toRem(1)} solid ${theme.colors[props.color!].main500}`,
-      boxShadow: `0 0 0 ${toRem(4)} ${theme.colors[props.color!].extraLight50}`,
+      border: `${toRem(1)} solid ${theme.colors[color!].main500}`,
+      boxShadow: `0 0 0 ${toRem(4)} ${theme.colors[color!].extraLight50}`,
     },
     '&:not($containerError)': {
       border: `${toRem(1)} solid ${theme.colors.neutralGray.medium300}`,

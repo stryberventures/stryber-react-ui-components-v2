@@ -126,11 +126,11 @@ export default createStyles( (theme) => ({
     '-ms-user-select': 'none',
     'user-select': 'none',
   },
-  sliderRange: (props: ISlider) => ({
+  sliderRange: (color: ISlider['color']) => ({
     position: 'absolute',
     borderRadius: toRem(3),
     height: toRem(4),
-    backgroundColor: theme.colors[props.color!].main500,
+    backgroundColor: theme.colors[color!].main500,
     opacity: 0.6,
     zIndex: 2,
     cursor: 'pointer',
