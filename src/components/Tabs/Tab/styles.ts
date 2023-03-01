@@ -8,7 +8,7 @@ export default createStyles((theme) => {
       display: 'flex',
       alignItems: 'center',
       gap: toRem(16),
-      padding: `${toRem(16)} ${toRem(20)}`, // TODO check changes in the design
+      padding: `0 ${toRem(20)}`,
       cursor: 'pointer',
       color: theme.colors.text.secondary,
       transition: 'color .3s',
@@ -74,6 +74,12 @@ export default createStyles((theme) => {
         },
       },
     }),
+    small: {
+      height: toRem(48),
+    },
+    medium: {
+      height: toRem(56),
+    },
     fitted: {
       flexGrow: 1,
     },

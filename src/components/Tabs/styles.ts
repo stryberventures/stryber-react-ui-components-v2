@@ -7,7 +7,8 @@ export default createStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'stretch',
-    width: '100%',
+    minWidth: '100%',
+    width: 'fit-content',
     position: 'relative',
     boxSizing: 'border-box',
     '&:after': {

@@ -1,9 +1,7 @@
-import React, { BaseSyntheticEvent } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { KEYS } from '../../../hooks/useKeyPress';
-import { toRem } from '../../Theme/utils';
 import Text from '../../Text';
-import { CloseIcon } from '../../Icons';
 import { TTabsDirection } from '../index';
 import useStyles from './styles';
 
@@ -52,6 +50,7 @@ const Tab: React.FC<ITabProps> = ({
       onKeyDown={(e: React.KeyboardEvent) => e.key == KEYS.enter && handleOnChange()}
       className={classNames(
         classes.tab,
+        classes[size],
         {
           [classes.active]: active,
           [classes.disabled]: disabled,

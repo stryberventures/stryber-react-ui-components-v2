@@ -87,7 +87,7 @@ WithoutIcons.args = {
   variant: 'default',
   tabs: defaultTabs.map((tab) => ({
     ...tab,
-    icon: null,
+    icon: undefined,
   })),
 }
 
