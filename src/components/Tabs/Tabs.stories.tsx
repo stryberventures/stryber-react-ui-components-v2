@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import pkg from './package.json';
 import Tabs from './index';
-import { CreditCardIcon, DocumentIcon, HomeIcon, InfoIcon, ProfileIcon } from '../Icons';
+import { DocumentIcon, HomeIcon, InfoIcon, ProfileIcon } from '../Icons';
 import { buildExcludeArgTypes } from '../../storybook/utils';
 import { ITab } from './Tab';
 

@@ -5,8 +5,6 @@ import Tabs from './index'
 import { ITab } from './Tab';
 
 
-const onClick = jest.fn();
-
 const defaultTabs: ITab[] = [
   {
     id: 'home',
@@ -19,14 +17,12 @@ const defaultTabs: ITab[] = [
     label: 'Profile',
     active: false,
     disabled: false,
-    removable: true,
   },
   {
     id: 'payment',
     label: 'Payment',
     active: false,
     disabled: true,
-    removable: false,
   },
 ];
 
@@ -37,14 +33,6 @@ it('should render all tabs', () => {
   expect(screen.queryByText('Payment')).toBeInTheDocument();
 });
 
-it('should remove removable tab', () => {
-  const { getByTestId } = render(<Tabs tabs={[defaultTabs[1]]} onChange={() => {}} />);
-  fireEvent.click(getByTestId('test-remove-tab'));
-  setTimeout(() => {
-    expect(onClick).toHaveBeenCalled();
-    expect(screen.queryByText('Profile')).not.toBeInTheDocument();
-  }, 0);
-});
 
 it('should not click disabled tab', () => {
   const onClick = jest.fn();
