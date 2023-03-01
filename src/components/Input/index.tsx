@@ -1,10 +1,12 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import useStyles from './styles';
 import useTextClasses from '../Text/styles';
 import { ErrorMessage } from '../ErrorMessage';
 import { HintMessage } from '../HintMessage';
+import { CloseCircleIcon } from '../Icons';
 import Text from '../Text';
+import { useTheme } from '../Theme';
 import { useInput } from './hooks';
 
 export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
@@ -34,9 +36,10 @@ export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
 const Input: React.FC<IInput> = (props) => {
   const classes = useStyles(props);
   const textClasses = useTextClasses(props);
+  const { theme } = useTheme();
   const {
     label, className, hint, prefix, prefixClassName, errorClassName, hintClassName,
-    beginAdornment, endAdornment, placeholder, onClick, fullWidth, highlighted, ...rest
+    beginAdornment, endAdornment, placeholder, fullWidth, highlighted, ...rest
   } = props;
   const {
     name,
@@ -46,31 +49,14 @@ const Input: React.FC<IInput> = (props) => {
     inputProps,
     mobile,
     inputInUse,
-    setInputInUse,
+    inputRef,
+    inFocus,
+    onResetButtonMouseDown,
+    onInputContainerClick,
     onChange,
-    onBlur
+    onInputBlur,
+    onInputFocus,
   } = useInput(rest);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  const onInputContainerClick = (e: any) => {
-    onClick && onClick(e);
-    if (mobile) {
-      setInputInUse(true);
-      inputRef.current && inputRef.current.focus();
-    }
-  };
-  const onInputFocus = (e: any) => {
-    props.onFocus && props.onFocus(e);
-    if (mobile) {
-      setInputInUse(true)
-    }
-  }
-  const onInputBlur = (e: any) => {
-    onBlur(e);
-    if (mobile && !e.target.value) {
-      setInputInUse(false)
-    }
-  }
 
   const renderLabel = () => {
     if (!label) {
@@ -141,6 +127,17 @@ const Input: React.FC<IInput> = (props) => {
             />
           </div>
         </div>
+        { (inFocus && !!value) && (
+          <div
+            className={classes.clearButton}
+            onMouseDown={onResetButtonMouseDown}
+          >
+            <CloseCircleIcon
+              variant="filled"
+              fill={theme.colors.text.tint}
+            />
+          </div>
+        )}
         {endAdornment}
       </div>
     </>

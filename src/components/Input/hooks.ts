@@ -1,6 +1,6 @@
 import { IInput } from './index';
 import { useFormContext } from '../Form';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { applyDigitMask } from './utils';
 
 export const useInput = (props: IInput) => {
@@ -12,10 +12,14 @@ export const useInput = (props: IInput) => {
     errorMessage: error,
     mobile = false,
     onChange,
+    onFocus,
     onBlur,
+    onInput,
+    onClick,
     mask,
     ...inputProps
   } = props;
+  const inputRef = useRef<HTMLInputElement>(null);
   const { updateFormTouched, updateFormValue, unsetFormValue, fieldValue, fieldError } = useFormContext(name);
   const errorMessage = fieldError || error;
   const initValue = fieldValue || value;
@@ -23,6 +27,8 @@ export const useInput = (props: IInput) => {
     mask && initValue ? applyDigitMask(initValue, mask) : initValue,
   );
   const [inputInUse, setInputInUse] = useState<boolean>(mobile && !!value);
+  const [inFocus, setInFocus] = useState<boolean>(false);
+
 
   const onChangeWrapper = (e: React.BaseSyntheticEvent) => {
     if (disabled) {
@@ -47,10 +53,38 @@ export const useInput = (props: IInput) => {
     onChange && onChange(e);
   };
 
-  const onBlurWrapper = (e: React.BaseSyntheticEvent) => {
+  const onResetButtonMouseDown = () => {
+    setInternalValue('');
+    setTimeout(() => {
+      inputRef.current && inputRef.current.focus();
+    }, 0);
+  };
+
+  const onInputContainerClick = (e: any) => {
+    onClick && onClick(e);
+    if (mobile) {
+      setInputInUse(true);
+      inputRef.current && inputRef.current.focus();
+    }
+  };
+
+  const onInputFocus = (e: any) => {
+    onFocus && onFocus(e);
+    if (mobile) {
+      setInputInUse(true)
+    }
+    setInFocus(true);
+  };
+
+  const onInputBlur = (e: React.BaseSyntheticEvent) => {
     const { name } = e.target;
     !controlled && updateFormTouched(name, true);
     onBlur && onBlur(e);
+
+    if (mobile && !e.target.value) {
+      setInputInUse(false)
+    }
+    setInFocus(false);
   };
 
   useEffect(() => {
@@ -68,8 +102,13 @@ export const useInput = (props: IInput) => {
     value: controlled ? value : internalValue,
     mobile,
     inputInUse,
-    setInputInUse,
+    inputRef,
+    inFocus,
+    setInternalValue,
     onChange: onChangeWrapper,
-    onBlur: onBlurWrapper,
+    onResetButtonMouseDown,
+    onInputContainerClick,
+    onInputFocus,
+    onInputBlur,
   }
 }

@@ -20,18 +20,20 @@ export default createStyles((theme) => ({
     height: toRem(props.mobile ? 56 : 48),
     backgroundColor: theme.colors.background.white,
     border: `${toRem(1)} solid ${theme.colors.neutralGray.medium300}`,
-    '&:focus-within:not($disabled)': {
-      border: `${toRem(2)} solid ${theme.colors[props.color!].main500}`,
+    '&:focus-within': {
       paddingLeft: toRem(13),
       paddingRight: toRem(13),
       boxShadow: `0px 0px 0px ${toRem(2)} #fff, 0 0 0 ${toRem(4)} ${theme.colors[props.color!].light200}`,
+    },
+    '&:focus-within:not($disabled):not($inputContainerError)': {
+      border: `${toRem(2)} solid ${theme.colors[props.color!].main500}`,
     },
     '&$disabled': {
       backgroundColor: theme.colors.neutralGray.extraLight50,
     },
     '&$highlighted': {
       boxShadow: `0px 0px 0px ${toRem(2)} #fff, 0 0 0 ${toRem(4)} ${theme.colors[props.color!].light200}`,
-    }
+    },
   }),
   disabled: {
     pointerEvents: 'none',
@@ -120,5 +122,13 @@ export default createStyles((theme) => ({
   mobileInputWrapperInUse: {
     height: toRem(24),
     paddingTop: toRem(2),
+  },
+  clearButton: {
+    width: 20,
+    height: 20,
+    backgroundColor: 'white',
+    '&:hover': {
+      cursor: 'pointer',
+    }
   }
 }), { internalUsage: true });
