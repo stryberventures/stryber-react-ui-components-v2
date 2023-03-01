@@ -46,7 +46,7 @@ const TextArea: React.FC<ITextArea> = (props) => {
   } = props;
   const { updateFormTouched, updateFormValue, unsetFormValue, fieldValue, fieldError } = useFormContext(name);
   const errorMessage = fieldError || error;
-  const classes = useStyles(color);
+  const classes = useStyles(props.color);
   const textClasses = useTextStyles();
   const [internalValue, setInternalValue] = React.useState(fieldValue || value);
   const [length, setLength] = React.useState(internalValue.toString().length);

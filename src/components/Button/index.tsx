@@ -33,7 +33,7 @@ const Button: React.FC<IButton> = (props) => {
     onClick,
     ...rest
   } = props;
-  const classes = useStyles(props);
+  const classes = useStyles()(props);
   const textClasses = useTextStyles();
   const btnRef: React.Ref<HTMLButtonElement> = useRef(null);
   const handleOnClick = (e: React.MouseEvent<HTMLButtonElement> | KeyboardEvent<HTMLButtonElement>) => {

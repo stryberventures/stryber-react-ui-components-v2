@@ -10,7 +10,7 @@ const tagPaddings = {
   large: [toRem(4), toRem(12)],
 }
 
-export default createStyles((theme) => ({
+export default () => createStyles((theme) => ({
   tag: (props: ITag) => ({
     boxSizing: 'border-box',
     display: 'inline-flex',

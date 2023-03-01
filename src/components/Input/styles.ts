@@ -1,7 +1,7 @@
 import { createStyles, toRem } from '../Theme';
 import { IInput } from './index';
 
-export default createStyles((theme) => ({
+export default () => createStyles((theme) => ({
   inputRoot: {
     width: toRem(320),
   },

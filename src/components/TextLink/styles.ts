@@ -2,7 +2,7 @@ import { ITextLink } from './index';
 import { createStyles, toRem } from '../Theme';
 
 
-export default createStyles((theme) => ({
+export default () => createStyles((theme) => ({
   textLink: (props: ITextLink) => {
     return ({
       display: 'inline-flex',
