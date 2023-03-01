@@ -31,6 +31,7 @@ export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
   fullWidth?: boolean,
   highlighted?: boolean,
   mobile?: boolean,
+  clearButton?: boolean,
 }
 
 const Input: React.FC<IInput> = (props) => {
@@ -39,7 +40,7 @@ const Input: React.FC<IInput> = (props) => {
   const { theme } = useTheme();
   const {
     label, className, hint, prefix, prefixClassName, errorClassName, hintClassName,
-    beginAdornment, endAdornment, placeholder, fullWidth, highlighted, ...rest
+    beginAdornment, endAdornment, placeholder, fullWidth, highlighted, clearButton = false, ...rest
   } = props;
   const {
     name,
@@ -127,7 +128,7 @@ const Input: React.FC<IInput> = (props) => {
             />
           </div>
         </div>
-        { (inFocus && !!value) && (
+        { (clearButton && inFocus && !!value) && (
           <div
             className={classes.clearButton}
             onMouseDown={onResetButtonMouseDown}

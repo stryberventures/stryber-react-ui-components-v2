@@ -12,7 +12,7 @@ export default {
     pkg,
   },
   argTypes: buildExcludeArgTypes(['name', 'controlled', 'onChange', 'endAdornment',
-    'onBlur', 'prefixClassName', 'contentClassName', 'hintClassName', 'errorClassName']),
+    'beginAdornment', 'onBlur', 'prefixClassName', 'contentClassName', 'hintClassName', 'errorClassName']),
 } as ComponentMeta<typeof Input>;
 
 const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
@@ -143,4 +143,13 @@ Prefix.args = {
   prefix: 'G-',
   mask: 'XXX-XXX',
   placeholder: 'XXX-XXX',
+};
+
+export const ClearButton = Template.bind({});
+ClearButton.args = {
+  label: 'Clear button',
+  placeholder: 'olivia@example.com',
+  value: 'olivia@example.com',
+  mobile: true,
+  clearButton: true,
 };
