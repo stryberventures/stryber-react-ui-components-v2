@@ -38,7 +38,7 @@ const Text: React.FC<IText> = (props) => {
     weight = 'regular',
     ...rest
   } = props;
-  const classes = useStyles(props);
+  const classes = useStyles();
   const Tag = component || defineTag(variant);
   return (
     <Tag

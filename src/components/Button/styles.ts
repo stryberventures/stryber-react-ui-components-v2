@@ -1,7 +1,7 @@
 import { IButton } from './index';
 import { createStyles, toRem } from '../Theme';
 
-export default createStyles((theme) => ({
+export default () => createStyles((theme) => ({
   button: (props: IButton) => ({
     boxSizing: 'border-box',
     fontFamily: theme.font,

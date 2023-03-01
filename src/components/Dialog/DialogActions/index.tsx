@@ -10,7 +10,7 @@ export interface IDialogActions extends React.HTMLAttributes<HTMLElement> {
 
 const DialogActions: React.FC<IDialogActions> = (props) => {
   const { children, className } = props;
-  const classes = useStyles(props);
+  const classes = useStyles();
   return (
     <div className={classNames(classes.dialogActions, className)}>
       {children}

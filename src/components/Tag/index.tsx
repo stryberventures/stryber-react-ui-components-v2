@@ -47,7 +47,7 @@ const Tag: React.FC<ITag> = (props) => {
     onRemove,
     ...rest
   } = props;
-  const classes = useStyles(props);
+  const classes = useStyles()(props);
   const handleOnSelect = () => onSelect?.();
   const handleOnRemove = (event: React.BaseSyntheticEvent) => {
     event.stopPropagation();
