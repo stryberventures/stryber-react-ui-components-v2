@@ -28,6 +28,7 @@
     "Grid": "grid",
     "List": "list",
     "Elevation": "elevation",
-    "Tag": "tag"
+    "Tag": "tag",
+    "Tabs": "tabs"
   }
 }
