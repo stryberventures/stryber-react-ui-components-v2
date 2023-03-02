@@ -1,10 +1,6 @@
 import { createStyles, toRem } from '../Theme';
 import { IInput } from './index';
-
-const getDimension = (d: string | number) => {
-  const chunks = d.toString().split('%');
-  return chunks.length > 1 ? d : toRem(Number.parseInt(chunks[0]));
-}
+import { getDimension } from './utils';
 
 export default () => createStyles((theme) => ({
   inputRoot: (props: IInput) => ({
