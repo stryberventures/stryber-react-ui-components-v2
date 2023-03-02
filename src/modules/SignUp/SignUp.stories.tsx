@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import pkg from './package.json';
-import LoginComponent from './index';
+import SignUpComponent from './index';
 import file from '!!raw-loader!./index';
 import { replacePaths } from '../../storybook/utils';
 import { FullViewportDecorator } from '../../storybook/preview/FullViewportDecorator';
@@ -9,8 +9,8 @@ import { FullViewportDecorator } from '../../storybook/preview/FullViewportDecor
 const sourceToDisplay = replacePaths(file);
 
 export default {
-  title: 'Modules/Authentication/Login',
-  component: LoginComponent,
+  title: 'Modules/Authentication/SingUp',
+  component: SignUpComponent,
   parameters: {
     pkg,
   },
@@ -27,12 +27,12 @@ export default {
       return <Story/>
     },
   ],
-} as ComponentMeta<typeof LoginComponent>;
+} as ComponentMeta<typeof SignUpComponent>;
 
-const Template: ComponentStory<typeof LoginComponent> = () => <LoginComponent />;
+const Template: ComponentStory<typeof SignUpComponent> = () => <SignUpComponent />;
 
-export const Login = Template.bind({});
-Login.parameters = {
+export const SignUp = Template.bind({});
+SignUp.parameters = {
   docs: {
     source: {
       code: sourceToDisplay,
