@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { ErrorMessage } from '../ErrorMessage';
 import { HintMessage } from '../HintMessage';
@@ -11,7 +11,7 @@ export interface ITextArea extends React.TextareaHTMLAttributes<HTMLTextAreaElem
   label?: string,
   disabled?: boolean,
   color?: 'primary' | 'secondary',
-  variant?: 'labelOutside',
+  variant?: 'labelInside' | 'labelOutside',
   errorMessage?: string,
   name?: string,
   controlled?: boolean,
@@ -28,10 +28,11 @@ const TextArea: React.FC<ITextArea> = (props) => {
   const {
     value = '',
     name = '',
-    variant = '',
+    variant = 'labelInside',
     label,
     onChange,
     onBlur,
+    onFocus,
     errorMessage: error,
     disabled,
     controlled,
@@ -75,9 +76,12 @@ const TextArea: React.FC<ITextArea> = (props) => {
     onBlur && onBlur(e);
   }
   return (
-    <div className={classNames(classes.textAreaWrapper, {
-      [classes.fullWidth]: fullWidth,
-    }, className)}>
+    <div
+      className={classNames(
+        classes.textAreaWrapper,
+        { [classes.fullWidth]: fullWidth, },
+        className)}
+    >
       {label && variant == 'labelOutside' && (
         <Text
           variant="components2"
@@ -85,7 +89,6 @@ const TextArea: React.FC<ITextArea> = (props) => {
           className={classNames(
             classes.label,
             { [classes.textDisabled]: disabled },
-            classes.labelOutside
           )}
         >
           {label}
@@ -97,11 +100,14 @@ const TextArea: React.FC<ITextArea> = (props) => {
           [classes.containerError]: !!errorMessage,
         })}
       >
-        {label && !variant && (
+        {label && variant == 'labelInside' && (
           <Text
-            variant="caption1"
+            variant="components1"
             weight="regular"
-            className={classNames(classes.label, { [classes.textDisabled]: disabled })}
+            className={classNames(
+              classes.label,
+              { [classes.textDisabled]: disabled }
+            )}
           >
             {label}
           </Text>

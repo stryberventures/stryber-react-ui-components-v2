@@ -4,10 +4,13 @@ import { createStyles, toRem } from '../Theme';
 
 export default createStyles((theme) => ({
   textAreaWrapper: {
-    // display: 'inline-block',
-    width: 'fit-content',
-    minWidth: toRem(320),
+    width: toRem(340),
+    height: toRem(136),
     minHeight: toRem(136),
+    boxSizing: 'border-box',
+    '& *, &:after, &:before': {
+      boxSizing: 'inherit',
+    },
   },
   fullWidth: {
     width: '100%',
@@ -15,6 +18,7 @@ export default createStyles((theme) => ({
   textArea: (color: ITextArea['color']) => ({
     boxSizing: 'border-box',
     width: '100%',
+    height: '100%',
     padding: `${toRem(8)} ${toRem(12)}`,
     borderRadius: toRem(4),
     position: 'relative',
@@ -32,18 +36,22 @@ export default createStyles((theme) => ({
     },
     '&:hover:not($containerError)': {
       border: `${toRem(1)} solid ${theme.colors[color!].medium300}`,
-    },
-    '&:hover:active:not($containerError)': {
-      border: `${toRem(1)} solid ${theme.colors[color!].medium400}`,
+      backgroundColor: theme.colors.neutralGray.extraLight50,
     },
     '&$containerError': {
       border: `${toRem(1)} solid ${theme.colors.error.main500}`,
     },
-    '&:has($textarea:focus)': {
-      boxShadow: 'none',
-    },
     '&:has($textarea:focus-visible)': {
+      border: `${toRem(1)} solid ${theme.colors[color!].main500}`,
       boxShadow: `0 0 0 ${toRem(2)} white, 0 0 0 ${toRem(4)} ${theme.colors[color!].light200}`,
+      '& $label': {
+        fontSize: toRem(12),
+        transform: `translateY(${toRem(-6)})`,
+        marginBottom: 0,
+      },
+      '& $textarea': {
+        transform: `translateY(${toRem(-6)})`,
+      },
     },
     '&$fullWidth': {
       width: '100%',
@@ -57,27 +65,25 @@ export default createStyles((theme) => ({
   containerError: {},
   label: {
     position: 'relative',
-    color: theme.colors.text.secondary,
-    lineHeight: '120%',
+    color: theme.colors.text.headline,
+    height: toRem(24),
     marginBottom: toRem(8),
+    transition: 'font-size .3s, transform .3s, margin-bottom .3s',
     '&$textDisabled': {
       color: theme.colors.text.disabled,
     },
-  },
-  labelOutside: {
-    color: theme.colors.text.headline,
   },
   textarea: {
     position: 'relative',
     border: 'none',
     outline: 'none',
     textOverflow: 'ellipsis',
-    height: toRem(114),
     width: '100%',
     padding: 0,
     color: theme.colors.text.headline,
     resize: 'none',
     backgroundColor: 'transparent',
+    transition: 'transform .3s',
     '-webkit-tap-highlight-color': 'transparent',
     '&::placeholder': {
       color: theme.colors.text.disabled,
@@ -92,7 +98,7 @@ export default createStyles((theme) => ({
   hintContainer: {
     display: 'grid',
     gap: toRem(8),
-    gridTemplateColumns: `1fr minmax(${toRem(40)}, ${toRem(64)})`,
+    gridTemplateColumns: '1fr minmax(0, max-content)',
     marginTop: toRem(8),
   },
   messagesWrapper: {

@@ -3,8 +3,7 @@ import { useCheckedState } from '../InputToggleLayout/hooks';
 import InputToggleLayout from '../InputToggleLayout';
 import { ISwitchIcon, SwitchIcon } from './SwitchIcon';
 import { IInputToggleBaseControlled } from '../InputToggleLayout/types';
-import useStyles from './styles';
-import classNames from 'classnames';
+
 
 export interface ISwitch extends ISwitchIcon, IInputToggleBaseControlled {}
 

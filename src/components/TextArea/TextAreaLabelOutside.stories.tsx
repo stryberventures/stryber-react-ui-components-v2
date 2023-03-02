@@ -52,6 +52,7 @@ export const Disabled = Template.bind({});
 Disabled.args = {
   label: 'Disabled',
   disabled: true,
+  value: 'Disabled text',
 };
 
 export const WithLengthIndicator = Template.bind({});
