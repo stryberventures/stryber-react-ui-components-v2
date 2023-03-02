@@ -62,7 +62,7 @@ const Tab: React.FC<ITabProps> = ({
       }
       {...rest}
     >
-      {icon && icon}
+      {!!icon && icon}
       {label && typeof (label == 'string')
         ? (
           <Text
