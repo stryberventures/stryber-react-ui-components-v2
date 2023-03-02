@@ -126,7 +126,7 @@ const Input: React.FC<IInput> = (props) => {
             />
           </div>
         </div>
-        { (clearButton && inFocus && !!value) && (
+        { (clearButton && inFocus && !!value && !props.readOnly) && (
           <div
             className={classes.clearButton}
             onPointerDown={onResetButtonPointerDown}
