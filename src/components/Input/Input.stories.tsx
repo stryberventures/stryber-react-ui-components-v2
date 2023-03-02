@@ -75,7 +75,7 @@ export const FullWidth = Template.bind({});
 FullWidth.args = {
   label: 'Fits parent width',
   placeholder: 'olivia@example.com',
-  fullWidth: true,
+  width: '100%',
 };
 
 export const LeftIcon = Template.bind({});

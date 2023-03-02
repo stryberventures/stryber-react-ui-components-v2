@@ -1,13 +1,15 @@
 import { createStyles, toRem } from '../Theme';
 import { IInput } from './index';
 
+const getDimension = (d: string | number) => {
+  const chunks = d.toString().split('%');
+  return chunks.length > 1 ? d : toRem(Number.parseInt(chunks[0]));
+}
+
 export default createStyles((theme) => ({
-  inputRoot: {
-    width: toRem(320),
-  },
-  fullWidth: {
-    width: '100%',
-  },
+  inputRoot: (props: IInput) => ({
+    width: getDimension(props.width || 320),
+  }),
   inputContainer: (props: IInput) => ({
     boxSizing: 'border-box',
     borderRadius: toRem(4),
