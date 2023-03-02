@@ -23,10 +23,7 @@ const Chip: React.FC<IChip> = (props) => {
     color,
     ...rest
   } = props;
-  const classes = useStyles({
-    ...props,
-    color: color === 'default' ? 'primary' : color
-  });
+  const classes = useStyles(color === 'default' ? 'primary' : color);
 
   return (
     <div className={classNames(classes.chip, classes[variant], className, {

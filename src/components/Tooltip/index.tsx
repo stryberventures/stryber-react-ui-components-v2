@@ -33,7 +33,7 @@ const Tooltip: React.FC<ITooltip> = (props) => {
     className,
     ...rest
   } = props;
-  const classes = useStyles(props);
+  const classes = useStyles()(props);
   const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [isVisible, setIsVisible] = useState(visible);

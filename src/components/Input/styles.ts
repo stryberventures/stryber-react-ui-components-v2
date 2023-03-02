@@ -6,7 +6,7 @@ const getDimension = (d: string | number) => {
   return chunks.length > 1 ? d : toRem(Number.parseInt(chunks[0]));
 }
 
-export default createStyles((theme) => ({
+export default () => createStyles((theme) => ({
   inputRoot: (props: IInput) => ({
     width: getDimension(props.width || 320),
   }),

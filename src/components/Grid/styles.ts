@@ -3,7 +3,7 @@ import { Breakpoints, IBreakpointValues, TBreakpoint } from './types';
 import { IGrid } from './';
 
 
-export default createStyles((theme) => {
+export default () => createStyles((theme) => {
   return ({
     grid: {
       display: 'grid',
