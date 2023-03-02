@@ -37,14 +37,6 @@ WithValue.args = {
   value: 'olivia@example.com',
 };
 
-export const Highlighted = Template.bind({});
-Highlighted.args = {
-  label: 'Highlighted',
-  placeholder: 'placeholder@example.com',
-  value: 'olivia@example.com',
-  highlighted: true,
-};
-
 export const Disabled = Template.bind({});
 Disabled.args = {
   label: 'Disabled',

@@ -29,7 +29,6 @@ export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
   rightIcon?: React.ReactNode,
   mask?: string,
   fullWidth?: boolean,
-  highlighted?: boolean,
   variant?: 'default' | 'mobile',
   clearButton?: boolean,
 }
@@ -40,7 +39,7 @@ const Input: React.FC<IInput> = (props) => {
   const { theme } = useTheme();
   const {
     label, className, hint, prefix, prefixClassName, errorClassName, hintClassName,
-    leftIcon, rightIcon, placeholder, fullWidth, highlighted, clearButton = false, ...rest
+    leftIcon, rightIcon, placeholder, fullWidth, clearButton = false, ...rest
   } = props;
   const {
     name,
@@ -93,7 +92,6 @@ const Input: React.FC<IInput> = (props) => {
           [classes.disabled]: disabled,
           [classes.inputContainerError]: !!errorMessage,
           [classes.withLabel]: label,
-          [classes.highlighted]: highlighted,
         })}
       >
         {leftIcon}

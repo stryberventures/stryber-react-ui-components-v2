@@ -60,7 +60,6 @@ const Dropdown = forwardRef((props: IDropdown, ref: ForwardedRef<IDropdownRef>) 
         hint={hint}
         errorMessage={error}
         onChange={onInputChange}
-        highlighted={open}
         className={classNames(classes.input, { [classes.inputDisabled]: disabled })}
         rightIcon={(
           <>

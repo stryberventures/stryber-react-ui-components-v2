@@ -40,15 +40,11 @@ export default createStyles((theme) => ({
     '&$disabled': {
       backgroundColor: theme.colors.background.extraLightGrey,
     },
-    '&$highlighted': {
-      border: `${toRem(1)} solid ${theme.colors.primary.medium400}`,
-    },
   }),
   disabled: {
     pointerEvents: 'none',
     userSelect: 'none',
   },
-  highlighted: {},
   inputContainerError: () => ({
     border: `${toRem(1)} solid ${theme.colors.error.main500}`,
     '&:focus-within': {
