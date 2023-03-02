@@ -25,8 +25,8 @@ export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
   prefixClassName?: string,
   errorClassName?: string,
   hintClassName?: string,
-  beginAdornment?: React.ReactNode,
-  endAdornment?: React.ReactNode,
+  leftIcon?: React.ReactNode,
+  rightIcon?: React.ReactNode,
   mask?: string,
   fullWidth?: boolean,
   highlighted?: boolean,
@@ -40,7 +40,7 @@ const Input: React.FC<IInput> = (props) => {
   const { theme } = useTheme();
   const {
     label, className, hint, prefix, prefixClassName, errorClassName, hintClassName,
-    beginAdornment, endAdornment, placeholder, fullWidth, highlighted, clearButton = false, ...rest
+    leftIcon, rightIcon, placeholder, fullWidth, highlighted, clearButton = false, ...rest
   } = props;
   const {
     name,
@@ -96,7 +96,7 @@ const Input: React.FC<IInput> = (props) => {
           [classes.highlighted]: highlighted,
         })}
       >
-        {beginAdornment}
+        {leftIcon}
         <div className={classes.inputArea}>
           { mobile && renderLabel() }
           <div
@@ -139,7 +139,7 @@ const Input: React.FC<IInput> = (props) => {
             />
           </div>
         )}
-        {endAdornment}
+        {rightIcon}
       </div>
     </>
   );

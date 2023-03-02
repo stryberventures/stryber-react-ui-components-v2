@@ -7,7 +7,7 @@ import { IValidationItemProps, usePasswordValidation } from './hooks';
 import { CheckIcon } from '../Icons';
 import classNames from 'classnames';
 
-export interface IInputPassword extends Omit<IInput, 'endAdornment'> {
+export interface IInputPassword extends Omit<IInput, 'rightIcon'> {
   validationSchema?: IValidationItemProps[];
   onValidationChange?: (valid: boolean) => void;
 }
@@ -32,7 +32,7 @@ const InputPassword: React.FC<IInputPassword> = (props) => {
         onChange={onInputChange}
         type={visible ? 'text' : 'password'}
         fullWidth={fullWidth}
-        endAdornment={
+        rightIcon={
           <EyeIcon
             data-testid="password-icon"
             visible={visible}

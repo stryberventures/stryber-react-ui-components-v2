@@ -12,7 +12,7 @@ export default {
     pkg,
   },
   argTypes: buildExcludeArgTypes(['name', 'onChange', 'onBlur', 'controlled', 'prefixClassName',
-    'errorClassName', 'hintClassName', 'endAdornment', 'mask']),
+    'errorClassName', 'hintClassName', 'rightIcon', 'mask']),
 } as ComponentMeta<typeof NumberInput>;
 
 const Template: ComponentStory<typeof NumberInput> = (args) => <NumberInput {...args} />;

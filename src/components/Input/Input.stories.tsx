@@ -11,8 +11,8 @@ export default {
   parameters: {
     pkg,
   },
-  argTypes: buildExcludeArgTypes(['name', 'controlled', 'onChange', 'endAdornment',
-    'beginAdornment', 'onBlur', 'prefixClassName', 'contentClassName', 'hintClassName', 'errorClassName']),
+  argTypes: buildExcludeArgTypes(['name', 'controlled', 'onChange', 'rightIcon',
+    'leftIcon', 'onBlur', 'prefixClassName', 'contentClassName', 'hintClassName', 'errorClassName']),
 } as ComponentMeta<typeof Input>;
 
 const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
@@ -86,12 +86,12 @@ FullWidth.args = {
   fullWidth: true,
 };
 
-export const BeginAdornment = Template.bind({});
-BeginAdornment.args = {
-  label: 'Begin adornment',
+export const LeftIcon = Template.bind({});
+LeftIcon.args = {
+  label: 'Left icon',
   placeholder: 'placeholder@example.com',
   value: 'olivia@example.com',
-  beginAdornment: <div style={
+  leftIcon: <div style={
     {
       display: 'flex',
       alignContent: 'center',
@@ -108,12 +108,12 @@ BeginAdornment.args = {
   }>O</div>
 };
 
-export const EndAdornment = Template.bind({});
-EndAdornment.args = {
+export const RightIcon = Template.bind({});
+RightIcon.args = {
   label: 'End adornment',
   placeholder: 'placeholder@example.com',
   value: 'olivia@example.com',
-  endAdornment: <div style={
+  rightIcon: <div style={
     {
       display: 'flex',
       alignContent: 'center',
