@@ -104,10 +104,10 @@ export const useInput = (props: IInput) => {
     inputRef,
     inFocus,
     setInternalValue,
-    onChange: onChangeWrapper,
-    onResetButtonPointerDown,
     onInputContainerClick,
-    onInputFocus,
-    onInputBlur,
+    onResetButtonPointerDown,
+    onChange: onChangeWrapper,
+    onFocus: onInputFocus,
+    onBlur: onInputBlur,
   }
 }

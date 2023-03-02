@@ -54,8 +54,8 @@ const Input: React.FC<IInput> = (props) => {
     onResetButtonPointerDown,
     onInputContainerClick,
     onChange,
-    onInputBlur,
-    onInputFocus,
+    onBlur,
+    onFocus,
   } = useInput(rest);
 
   const renderLabel = () => {
@@ -121,8 +121,8 @@ const Input: React.FC<IInput> = (props) => {
               placeholder={placeholder}
               disabled={disabled}
               onChange={onChange}
-              onBlur={onInputBlur}
-              onFocus={onInputFocus}
+              onBlur={onBlur}
+              onFocus={onFocus}
             />
           </div>
         </div>
