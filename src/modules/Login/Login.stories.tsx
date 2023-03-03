@@ -36,7 +36,7 @@ Login.parameters = {
   docs: {
     source: {
       code: sourceToDisplay,
-      open: true,
+      state: 'open',
     },
   },
 };
