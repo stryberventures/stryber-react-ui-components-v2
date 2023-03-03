@@ -132,7 +132,7 @@ export default createStyles((theme) => ({
     }
   },
   textDisabled: {
-    color: [theme.colors.text.disabled, '!important'],
+    color: `${theme.colors.text.disabled} !important`,
   },
   hintContainer: {
     display: 'grid',
