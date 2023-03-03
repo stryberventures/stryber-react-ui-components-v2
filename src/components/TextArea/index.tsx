@@ -8,6 +8,7 @@ import useStyles from './styles';
 import useTextStyles from '../Text/styles';
 
 export interface ITextArea extends React.TextareaHTMLAttributes<HTMLTextAreaElement>{
+  id: string,
   label?: string,
   disabled?: boolean,
   color?: 'primary' | 'secondary',
@@ -43,6 +44,7 @@ const TextArea: React.FC<ITextArea> = (props) => {
     maxLengthClassName,
     fullWidth,
     color,
+    id,
     ...rest
   } = props;
   const { updateFormTouched, updateFormValue, unsetFormValue, fieldValue, fieldError } = useFormContext(name);
@@ -69,12 +71,12 @@ const TextArea: React.FC<ITextArea> = (props) => {
     updateFormValue(name, value);
     onChange && onChange(e);
   };
-
   const onBlurWrapper = (e: React.BaseSyntheticEvent) => {
     const { name } = e.target;
     !controlled && updateFormTouched(name, true);
     onBlur && onBlur(e);
   }
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
   return (
     <div
       className={classNames(
@@ -83,36 +85,47 @@ const TextArea: React.FC<ITextArea> = (props) => {
         className)}
     >
       {label && variant == 'labelOutside' && (
-        <Text
-          variant="components2"
-          weight="regular"
-          className={classNames(
-            classes.label,
-            { [classes.textDisabled]: disabled },
-          )}
-        >
-          {label}
-        </Text>
-      )}
-      <div
-        className={classNames(classes.textArea, {
-          [classes.containerDisabled]: disabled,
-          [classes.containerError]: !!errorMessage,
-        })}
-      >
-        {label && variant == 'labelInside' && (
+        <label htmlFor={id} className={classes.label}>
           <Text
-            variant="components1"
+            variant="components2"
             weight="regular"
             className={classNames(
-              classes.label,
-              { [classes.textDisabled]: disabled }
+              classes.labelText,
+              { [classes.textDisabled]: disabled },
             )}
           >
             {label}
           </Text>
+        </label>
+      )}
+      <div
+        className={classNames(
+          classes.textArea,
+          classes[variant],
+          {
+            [classes.containerDisabled]: disabled,
+            [classes.containerError]: !!errorMessage,
+            [classes.labelMinified]: variant == 'labelInside' && textareaRef?.current?.value,
+          },
+        )}
+      >
+        {label && variant == 'labelInside' && (
+          <label htmlFor={id} className={classes.label}>
+            <Text
+              variant="components1"
+              weight="regular"
+              className={classNames(
+                classes.labelText,
+                { [classes.textDisabled]: disabled, }
+              )}
+            >
+              {label}
+            </Text>
+          </label>
         )}
         <textarea
+          ref={textareaRef}
+          id={id}
           name={name}
           value={controlled ? value : internalValue}
           className={classNames(
@@ -149,7 +162,12 @@ const TextArea: React.FC<ITextArea> = (props) => {
             <HintMessage
               text={maxLength ? `${length}/${maxLength}` : `${length}`}
               disabled={disabled}
-              className={classNames(classes.hint, classes.lengthContainer, maxLengthClassName)}
+              className={classNames(
+                classes.hint,
+                classes.lengthContainer,
+                maxLengthClassName,
+                { [classes.textDisabled]: disabled },
+              )}
             />
           )}
         </div>

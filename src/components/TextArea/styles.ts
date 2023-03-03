@@ -1,6 +1,20 @@
 import { ITextArea } from './index';
 import { createStyles, toRem } from '../Theme';
+import { ThemeType } from '../Theme/types';
 
+
+const labelMinifiedStyles = (theme: ThemeType) => ({
+  '& $labelText': {
+    transform: `translateY(${toRem(-6)})`,
+    color: theme.colors.text.secondary,
+    fontSize: toRem(12),
+    lineHeight: '120%',
+  },
+  '& $textarea': {
+    transform: `translateY(${toRem(-6)})`,
+    opacity: 1,
+  },
+});
 
 export default createStyles((theme) => ({
   textAreaWrapper: {
@@ -16,15 +30,15 @@ export default createStyles((theme) => ({
     width: '100%',
   },
   textArea: (color: ITextArea['color']) => ({
-    boxSizing: 'border-box',
+    display: 'flex',
+    flexDirection: 'column',
+    position: 'relative',
     width: '100%',
     height: '100%',
-    padding: `${toRem(8)} ${toRem(12)}`,
     borderRadius: toRem(4),
-    position: 'relative',
-    fontFamily: theme.font,
     backgroundColor: theme.colors.background.white,
     transition: 'background-color .3s, border-color .3s, box-shadow .3s',
+    fontFamily: theme.font,
     '& *': {
       fontFamily: theme.font,
     },
@@ -42,21 +56,35 @@ export default createStyles((theme) => ({
       border: `${toRem(1)} solid ${theme.colors.error.main500}`,
     },
     '&:has($textarea:focus-visible)': {
-      border: `${toRem(1)} solid ${theme.colors[color!].main500}`,
       boxShadow: `0 0 0 ${toRem(2)} white, 0 0 0 ${toRem(4)} ${theme.colors[color!].light200}`,
-      '& $label': {
-        fontSize: toRem(12),
-        transform: `translateY(${toRem(-6)})`,
-        marginBottom: 0,
-      },
-      '& $textarea': {
-        transform: `translateY(${toRem(-6)})`,
-      },
+    },
+    '&:not($containerError):has($textarea:focus-visible)': {
+      border: `${toRem(1)} solid ${theme.colors[color!].main500}`,
+    },
+    '&$labelInside:has($textarea:focus-visible)': {
+      ...labelMinifiedStyles(theme),
     },
     '&$fullWidth': {
       width: '100%',
     },
   }),
+  labelInside: {
+    '& $label': {
+      padding: `${toRem(8)} ${toRem(12)}`,
+      marginBottom: 0,
+    },
+    '& $textarea': {
+      opacity: 0,
+    }
+  },
+  labelOutside: {
+    '& $textarea': {
+      paddingTop: toRem(8),
+    }
+  },
+  labelMinified: {
+    ...labelMinifiedStyles(theme),
+  },
   containerDisabled: {
     pointerEvents: 'none',
     userSelect: 'none',
@@ -64,26 +92,31 @@ export default createStyles((theme) => ({
   },
   containerError: {},
   label: {
+    display: 'block',
+    marginBottom: toRem(8),
+    width: '100%',
+  },
+  labelText: {
     position: 'relative',
     color: theme.colors.text.headline,
-    height: toRem(24),
-    marginBottom: toRem(8),
-    transition: 'font-size .3s, transform .3s, margin-bottom .3s',
+    lineHeight: '150%',
+    transition: 'font-size .3s, transform .3s, line-height .3s, color .3s',
     '&$textDisabled': {
-      color: theme.colors.text.disabled,
+      // color: theme.colors.text.disabled,
     },
   },
   textarea: {
+    flexGrow: 1,
     position: 'relative',
     border: 'none',
     outline: 'none',
     textOverflow: 'ellipsis',
     width: '100%',
-    padding: 0,
+    padding: `0 ${toRem(12)} ${toRem(8)}`,
     color: theme.colors.text.headline,
     resize: 'none',
     backgroundColor: 'transparent',
-    transition: 'transform .3s',
+    transition: 'transform .3s, opacity .3s',
     '-webkit-tap-highlight-color': 'transparent',
     '&::placeholder': {
       color: theme.colors.text.disabled,
@@ -93,8 +126,14 @@ export default createStyles((theme) => ({
       color: theme.colors.text.disabled,
       overflow: 'hidden',
     },
+    '&::-webkit-scrollbar': {
+      width: 0,
+      height: 0,
+    }
   },
-  textDisabled: {},
+  textDisabled: {
+    color: [theme.colors.text.disabled, '!important'],
+  },
   hintContainer: {
     display: 'grid',
     gap: toRem(8),
