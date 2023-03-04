@@ -142,6 +142,6 @@ ClearButton.args = {
   label: 'Clear button',
   placeholder: 'olivia@example.com',
   value: 'olivia@example.com',
-  variant: 'mobile',
+  variant: 'floatingLabel',
   clearButton: true,
 };

@@ -15,7 +15,7 @@ export default () => createStyles((theme) => ({
     flexDirection: 'row',
     alignItems: 'center',
     padding: [toRem(4), toRem(14)],
-    height: toRem(props.variant === 'mobile' ? 56 : 48),
+    height: toRem(props.variant === 'floatingLabel' ? 56 : 48),
     border: `${toRem(1)} solid ${theme.colors.neutralGray.medium300}`,
     backgroundColor: theme.colors.background.white,
     '&:hover, &:hover $input': {
@@ -98,7 +98,7 @@ export default () => createStyles((theme) => ({
       cursor: 'default',
     }
   },
-  labelMobile: {
+  floatingLabel: {
     marginBottom: 0,
     color: theme.colors.text.secondary,
     transition: 'font-size 0.2s',
@@ -118,13 +118,13 @@ export default () => createStyles((theme) => ({
     flexDirection: 'row',
     alignItems: 'baseline',
   },
-  mobileInputWrapper: {
+  floatingLabelInputWrapper: {
     height: 0,
     transition: 'height 0.2s, padding 0.2s, opacity 0.3s',
     overflow: 'hidden',
     opacity: 0,
   },
-  mobileInputWrapperInUse: {
+  floatingLabelInputWrapperInUse: {
     height: toRem(24),
     paddingTop: toRem(2),
     opacity: 1,

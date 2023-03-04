@@ -29,7 +29,7 @@ export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
   rightIcon?: React.ReactNode,
   mask?: string,
   width?: string,
-  variant?: 'default' | 'mobile',
+  variant?: 'labelOutside' | 'floatingLabel',
   clearButton?: boolean,
 }
 
@@ -47,7 +47,7 @@ const Input: React.FC<IInput> = (props) => {
     disabled,
     errorMessage,
     inputProps,
-    mobile,
+    floatingLabel,
     inputInUse,
     inputRef,
     inFocus,
@@ -62,9 +62,9 @@ const Input: React.FC<IInput> = (props) => {
     if (!label) {
       return null;
     }
-    const variant = mobile && inputInUse
+    const variant = floatingLabel && inputInUse
       ? 'caption1'
-      : mobile
+      : floatingLabel
         ? 'components1'
         : 'components2';
 
@@ -75,7 +75,7 @@ const Input: React.FC<IInput> = (props) => {
         onClick={() => {inputRef.current?.focus()}}
         className={classNames(
           classes.label,
-          { [classes.labelMobile]: mobile },
+          { [classes.floatingLabel]: floatingLabel },
           { [classes.textDisabled]: disabled }
         )}
       >
@@ -85,7 +85,7 @@ const Input: React.FC<IInput> = (props) => {
   };
   const renderCore = () => (
     <>
-      { !mobile && renderLabel() }
+      { !floatingLabel && renderLabel() }
       <div
         onClick={onInputContainerClick}
         className={classNames(classes.inputContainer, {
@@ -96,12 +96,12 @@ const Input: React.FC<IInput> = (props) => {
       >
         {leftIcon}
         <div className={classes.inputArea}>
-          { mobile && renderLabel() }
+          { floatingLabel && renderLabel() }
           <div
             className={classNames(
               classes.inputWrapper,
-              { [classes.mobileInputWrapper]: mobile },
-              { [classes.mobileInputWrapperInUse]: mobile && inputInUse },
+              { [classes.floatingLabelInputWrapper]: floatingLabel },
+              { [classes.floatingLabelInputWrapperInUse]: floatingLabel && inputInUse },
             )}
           >
             {prefix && <div className={classNames(classes.prefix, prefixClassName)}>{prefix}</div>}

@@ -26,8 +26,8 @@ export const useInput = (props: IInput) => {
   const [internalValue, setInternalValue] = useState<string>(
     mask && initValue ? applyDigitMask(initValue, mask) : initValue,
   );
-  const mobile = variant === 'mobile';
-  const [inputInUse, setInputInUse] = useState<boolean>(mobile && !!value);
+  const floatingLabel = variant === 'floatingLabel';
+  const [inputInUse, setInputInUse] = useState<boolean>(floatingLabel && !!value);
   const [inFocus, setInFocus] = useState<boolean>(false);
 
 
@@ -61,7 +61,7 @@ export const useInput = (props: IInput) => {
 
   const onInputContainerClick = (e: any) => {
     onClick && onClick(e);
-    if (mobile) {
+    if (floatingLabel) {
       setInputInUse(true);
     }
     inputRef.current && inputRef.current.focus();
@@ -69,7 +69,7 @@ export const useInput = (props: IInput) => {
 
   const onInputFocus = (e: any) => {
     onFocus && onFocus(e);
-    if (mobile) {
+    if (floatingLabel) {
       setInputInUse(true)
     }
     setInFocus(true);
@@ -80,7 +80,7 @@ export const useInput = (props: IInput) => {
     !controlled && updateFormTouched(name, true);
     onBlur && onBlur(e);
 
-    if (mobile && !e.target.value) {
+    if (floatingLabel && !e.target.value) {
       setInputInUse(false)
     }
     setInFocus(false);
@@ -99,7 +99,7 @@ export const useInput = (props: IInput) => {
     disabled,
     inputProps,
     value: controlled ? value : internalValue,
-    mobile,
+    floatingLabel,
     inputInUse,
     inputRef,
     inFocus,
