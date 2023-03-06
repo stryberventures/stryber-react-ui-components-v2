@@ -13,7 +13,6 @@ export const useInput = (props: IInput) => {
     onChange,
     onFocus,
     onBlur,
-    onInput,
     onClick,
     mask,
     variant,
