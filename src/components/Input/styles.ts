@@ -1,11 +1,13 @@
 import { createStyles, toRem } from '../Theme';
 import { IInput } from './index';
-import { getDimension } from './utils';
 
 export default () => createStyles((theme) => ({
-  inputRoot: (props: IInput) => ({
-    width: getDimension(props.width || 320),
-  }),
+  inputRoot: {
+    width: toRem(320),
+  },
+  fullWidth: {
+    width: '100%',
+  },
   inputContainer: (props: IInput) => ({
     boxSizing: 'border-box',
     borderRadius: toRem(4),

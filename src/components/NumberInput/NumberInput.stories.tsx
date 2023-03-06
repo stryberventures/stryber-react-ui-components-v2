@@ -34,7 +34,7 @@ export const FullWidth = Template.bind({});
 FullWidth.args = {
   label: 'Full parent width',
   placeholder: 'Number',
-  width: '100%',
+  fullWidth: true,
 };
 
 export const PrefixWithClass = Template.bind({});
@@ -43,7 +43,6 @@ PrefixWithClass.args = {
   placeholder: 'Number',
   prefix: '$',
   prefixClassName: 'prefix',
-  width: '100%',
 };
 
 PrefixWithClass.decorators = [

@@ -28,7 +28,7 @@ export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
   leftIcon?: React.ReactNode,
   rightIcon?: React.ReactNode,
   mask?: string,
-  width?: string,
+  fullWidth?: boolean,
   variant?: 'labelOutside' | 'floatingLabel',
   clearButton?: boolean,
 }
@@ -39,7 +39,7 @@ const Input: React.FC<IInput> = (props) => {
   const { theme } = useTheme();
   const {
     label, className, hint, prefix, prefixClassName, errorClassName, hintClassName,
-    leftIcon, rightIcon, placeholder, width, clearButton = false, ...rest
+    leftIcon, rightIcon, placeholder, clearButton = false, fullWidth, ...rest
   } = props;
   const {
     name,
@@ -143,7 +143,9 @@ const Input: React.FC<IInput> = (props) => {
   );
 
   return (
-    <div className={classNames(classes.inputRoot, className)}>
+    <div className={classNames(classes.inputRoot, {
+      [classes.fullWidth]: fullWidth,
+    }, className)}>
       {renderCore()}
       {errorMessage && <ErrorMessage text={errorMessage} className={classNames(classes.message, errorClassName)}/>}
       {!errorMessage && hint && <HintMessage text={hint} disabled={disabled} className={classNames(classes.message, hintClassName)}/>}
