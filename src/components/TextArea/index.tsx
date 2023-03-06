@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import { ErrorMessage } from '../ErrorMessage';
 import { HintMessage } from '../HintMessage';
@@ -12,7 +12,7 @@ export interface ITextArea extends React.TextareaHTMLAttributes<HTMLTextAreaElem
   label?: string,
   disabled?: boolean,
   color?: 'primary' | 'secondary',
-  variant?: 'labelInside' | 'labelOutside',
+  variant?: 'floatingLabel' | 'labelOutside',
   errorMessage?: string,
   name?: string,
   controlled?: boolean,
@@ -29,7 +29,7 @@ const TextArea: React.FC<ITextArea> = (props) => {
   const {
     value = '',
     name = '',
-    variant = 'labelInside',
+    variant = 'labelOutside',
     label,
     onChange,
     onBlur,
@@ -105,11 +105,11 @@ const TextArea: React.FC<ITextArea> = (props) => {
           {
             [classes.containerDisabled]: disabled,
             [classes.containerError]: !!errorMessage,
-            [classes.labelMinified]: variant == 'labelInside' && textareaRef?.current?.value,
+            [classes.labelMinified]: variant == 'floatingLabel' && textareaRef?.current?.value,
           },
         )}
       >
-        {label && variant == 'labelInside' && (
+        {label && variant == 'floatingLabel' && (
           <label htmlFor={id} className={classes.label}>
             <Text
               variant="components1"

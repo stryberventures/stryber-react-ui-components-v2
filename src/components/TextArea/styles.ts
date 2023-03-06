@@ -61,14 +61,14 @@ export default createStyles((theme) => ({
     '&:not($containerError):has($textarea:focus-visible)': {
       border: `${toRem(1)} solid ${theme.colors[color!].main500}`,
     },
-    '&$labelInside:has($textarea:focus-visible)': {
+    '&$floatingLabel:has($textarea:focus-visible)': {
       ...labelMinifiedStyles(theme),
     },
     '&$fullWidth': {
       width: '100%',
     },
   }),
-  labelInside: {
+  floatingLabel: {
     '& $label': {
       padding: `${toRem(8)} ${toRem(12)}`,
       marginBottom: 0,

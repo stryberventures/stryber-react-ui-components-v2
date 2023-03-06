@@ -12,6 +12,10 @@ export default {
   },
   args: {
     variant: 'labelOutside',
+    color: 'primary',
+    disabled: false,
+    showLength: false,
+    fullWidth: false,
   },
   argTypes: buildExcludeArgTypes(['name', 'controlled', 'onChange', 'onBlur', 'maxLengthClassName', 'id']),
 } as ComponentMeta<typeof TextArea>;

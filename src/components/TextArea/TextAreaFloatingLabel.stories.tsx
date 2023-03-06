@@ -5,12 +5,19 @@ import pkg from './package.json';
 import { buildExcludeArgTypes } from '../../storybook/utils';
 
 export default {
-  title: 'Components/TextArea/LabelInside',
+  title: 'Components/TextArea/FloatingLabel',
   component: TextArea,
   parameters: {
     pkg,
   },
-  argTypes: buildExcludeArgTypes(['name', 'controlled', 'onChange', 'onBlur', 'maxLengthClassName']),
+  args: {
+    color: 'primary',
+    variant: 'floatingLabel',
+    disabled: false,
+    showLength: false,
+    fullWidth: false,
+  },
+  argTypes: buildExcludeArgTypes(['name', 'controlled', 'onChange', 'onBlur', 'maxLengthClassName', 'id']),
 } as ComponentMeta<typeof TextArea>;
 
 const Template: ComponentStory<typeof TextArea> = (args) => <TextArea {...args} />;
