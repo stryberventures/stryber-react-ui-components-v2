@@ -1,6 +1,6 @@
 import { IInput } from './index';
 import { useFormContext } from '../Form';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { applyDigitMask } from './utils';
 
 export const useInput = (props: IInput) => {
@@ -11,16 +11,25 @@ export const useInput = (props: IInput) => {
     controlled,
     errorMessage: error,
     onChange,
+    onFocus,
     onBlur,
+    onClick,
     mask,
+    variant,
     ...inputProps
   } = props;
+  const inputRef = useRef<HTMLInputElement>(null);
   const { updateFormTouched, updateFormValue, unsetFormValue, fieldValue, fieldError } = useFormContext(name);
   const errorMessage = fieldError || error;
   const initValue = fieldValue || value;
-  const [internalValue, setInternalValue] = React.useState<string>(
+  const [internalValue, setInternalValue] = useState<string>(
     mask && initValue ? applyDigitMask(initValue, mask) : initValue,
   );
+  const floatingLabel = variant === 'floatingLabel';
+  const [inputInUse, setInputInUse] = useState<boolean>(floatingLabel && !!value);
+  const [inFocus, setInFocus] = useState<boolean>(false);
+
+
   const onChangeWrapper = (e: React.BaseSyntheticEvent) => {
     if (disabled) {
       return null;
@@ -44,10 +53,36 @@ export const useInput = (props: IInput) => {
     onChange && onChange(e);
   };
 
-  const onBlurWrapper = (e: React.BaseSyntheticEvent) => {
+  const onResetButtonPointerDown = (e: React.BaseSyntheticEvent) => {
+    e.preventDefault();
+    setInternalValue('');
+  };
+
+  const onInputContainerClick = (e: any) => {
+    onClick && onClick(e);
+    if (floatingLabel) {
+      setInputInUse(true);
+    }
+    inputRef.current && inputRef.current.focus();
+  };
+
+  const onInputFocus = (e: any) => {
+    onFocus && onFocus(e);
+    if (floatingLabel) {
+      setInputInUse(true)
+    }
+    setInFocus(true);
+  };
+
+  const onInputBlur = (e: React.BaseSyntheticEvent) => {
     const { name } = e.target;
     !controlled && updateFormTouched(name, true);
     onBlur && onBlur(e);
+
+    if (floatingLabel && !e.target.value) {
+      setInputInUse(false)
+    }
+    setInFocus(false);
   };
 
   useEffect(() => {
@@ -63,7 +98,15 @@ export const useInput = (props: IInput) => {
     disabled,
     inputProps,
     value: controlled ? value : internalValue,
+    floatingLabel,
+    inputInUse,
+    inputRef,
+    inFocus,
+    setInternalValue,
+    onInputContainerClick,
+    onResetButtonPointerDown,
     onChange: onChangeWrapper,
-    onBlur: onBlurWrapper,
+    onFocus: onInputFocus,
+    onBlur: onInputBlur,
   }
 }

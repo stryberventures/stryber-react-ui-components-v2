@@ -3,8 +3,13 @@
     "classnames": ">=2.0.0",
     "react": ">=17.0.0",
     "react-jss": ">=10.0.0",
+    "yup": ">=0.32.11",
     "@stryberventures/gaia-react.input": ">=0.0.1",
     "@stryberventures/gaia-react.input-password": ">=0.0.1",
-    "@stryberventures/gaia-react.theme": ">=0.0.1"
+    "@stryberventures/gaia-react.theme": ">=0.0.1",
+    "@stryberventures/gaia-react.button": ">=0.0.1",
+    "@stryberventures/gaia-react.checkbox": ">=0.0.1",
+    "@stryberventures/gaia-react.text-link": ">=0.0.1",
+    "@stryberventures/gaia-react.form": ">=0.0.1"
   }
 }

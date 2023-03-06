@@ -7,7 +7,7 @@ export default createStyles((theme) => ({
     gap: theme.spacing['8'],
     marginTop: theme.spacing['8'],
     marginBottom: theme.spacing['8'],
-    color: theme.colors.error.dark600,
+    color: theme.colors.error.main500,
     lineHeight: toRem(16),
   },
   icon: {

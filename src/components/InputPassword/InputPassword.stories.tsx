@@ -69,5 +69,5 @@ export const FullWidth = Template.bind({});
 FullWidth.args = {
   label: 'Input password',
   placeholder: 'Enter password',
-  fullWidth: true,
+  width: '100%',
 };

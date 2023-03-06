@@ -23,7 +23,7 @@ export const ErrorMessage = (props: IErrorMessage) => {
     >
       <InfoIcon
         variant="filled"
-        fill={theme.colors.error.dark600}
+        fill={theme.colors.error.main500}
         className={classes.icon}
       />
       {text}
