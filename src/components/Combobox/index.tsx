@@ -48,7 +48,7 @@ const Combobox: React.FC<ICombobox> = (props) => {
       onToggle={onDropdownToggle}
       fullWidth={fullWidth}
       onKeyDown={handleKeyDown}
-      endAdornment={inputValue && isOpen && <ClearIcon onClick={() => clearSelectedOption()} className={classes.clearIcon} />}
+      rightIcon={inputValue && isOpen && <ClearIcon onClick={() => clearSelectedOption()} className={classes.clearIcon} />}
       onOutsideClick={handleOutsideClick}
     >
       {!filteredOptions.length && (

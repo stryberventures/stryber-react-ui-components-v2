@@ -1,3 +1,4 @@
+import { toRem } from '../Theme';
 /**
  * @description applies a mask to a string of digits
  * @param mask '+X(XXX)-XXXX'
@@ -13,6 +14,11 @@ export const applyDigitMask = (value: string, mask: string): string => {
     return newValue;
   });
   i = maskedValue.indexOf('X') >= 0 ? maskedValue.indexOf('X') : mask.length;
-  
+
   return maskedValue.slice(0, i);
+}
+
+export const getDimension = (d: string | number) => {
+  const chunks = d.toString().split('%');
+  return chunks.length > 1 ? d : toRem(Number.parseInt(chunks[0]));
 }

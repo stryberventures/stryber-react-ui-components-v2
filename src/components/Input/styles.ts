@@ -1,47 +1,54 @@
 import { createStyles, toRem } from '../Theme';
 import { IInput } from './index';
+import { getDimension } from './utils';
 
 export default () => createStyles((theme) => ({
-  inputRoot: {
-    width: toRem(320),
-  },
-  fullWidth: {
-    width: '100%',
-  },
+  inputRoot: (props: IInput) => ({
+    width: getDimension(props.width || 320),
+  }),
   inputContainer: (props: IInput) => ({
     boxSizing: 'border-box',
     borderRadius: toRem(4),
     position: 'relative',
     fontFamily: theme.font,
     display: 'flex',
+    flexDirection: 'row',
     alignItems: 'center',
-    padding: [toRem(4), toRem(8)],
-    height: toRem(44),
+    padding: [toRem(4), toRem(14)],
+    height: toRem(props.variant === 'floatingLabel' ? 56 : 48),
+    border: `${toRem(1)} solid ${theme.colors.neutralGray.medium300}`,
     backgroundColor: theme.colors.background.white,
-    '&:focus-within:not($inputContainerError), &:not($inputContainerError)$highlighted': {
-      border: `1px solid ${theme.colors[props.color!].main500}`,
-      boxShadow: `0 0 0 ${toRem(4)} ${theme.colors[props.color!].extraLight50}`,
+    '&:hover, &:hover $input': {
+      backgroundColor: theme.colors.background.extraLightGrey,
     },
-    '&:not($inputContainerError)': {
-      border: `${toRem(1)} solid ${theme.colors.neutralGray.medium300}`,
-    },
-    '&$withLabel': {
-      alignItems: 'initial',
-    },
-    '&$disabled': {
-      backgroundColor: theme.colors.neutralGray.extraLight50,
-    }
-  }),
-  highlighted: {},
-  inputContainerError: {
-    border: `1px solid ${theme.colors.error.main500}`,
-    '&$highlighted': {
-      boxShadow: `0 0 0 ${toRem(4)} ${theme.colors.error.extraLight50}`,
+    '&:hover:not($disabled):not($inputContainerError)': {
+      border: `${toRem(1)} solid ${theme.colors.primary.medium400}`,
     },
     '&:focus-within': {
-      boxShadow: `0 0 0 ${toRem(4)} ${theme.colors.error.extraLight50}`,
+      paddingLeft: toRem(13),
+      paddingRight: toRem(13),
+      backgroundColor: theme.colors.background.white,
     },
+    '&:focus-within $input': {
+      backgroundColor: theme.colors.background.white,
+    },
+    '&:focus-within:not($disabled):not($inputContainerError)': {
+      border: `${toRem(2)} solid ${theme.colors[props.color!].main500}`,
+    },
+    '&$disabled': {
+      backgroundColor: theme.colors.background.extraLightGrey,
+    },
+  }),
+  disabled: {
+    pointerEvents: 'none',
+    userSelect: 'none',
   },
+  inputContainerError: () => ({
+    border: `${toRem(1)} solid ${theme.colors.error.main500}`,
+    '&:focus-within': {
+      border: `${toRem(2)} solid ${theme.colors.error.main500}`,
+    },
+  }),
   input: {
     '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
       '-webkit-appearance': 'none',
@@ -54,37 +61,47 @@ export default () => createStyles((theme) => ({
     border: 'none',
     outline: 'none',
     textOverflow: 'ellipsis',
-    height: toRem(17),
+    height: toRem(24),
     padding: 0,
     width: '100%',
     color: theme.colors.text.headline,
     backgroundColor: theme.colors.background.white,
     '&::placeholder': {
-      color: theme.colors.neutralGray.main500,
+      color: theme.colors.text.disabled,
+    },
+    '&[disabled]': {
+      backgroundColor: theme.colors.background.extraLightGrey,
     }
   },
   inputArea: {
     display: 'flex',
     flexDirection: 'column',
+    justifyContent: 'center',
     width: '100%',
+    height: '100%',
+    overflow: 'hidden',
   },
   prefix: {
-    fontSize: toRem(14),
+    fontSize: toRem(16),
     color: theme.colors.text.headline,
     backgroundColor: theme.colors.background.white,
-    whiteSpace: 'nowrap',
-  },
-  disabled: {
-    pointerEvents: 'none',
-    userSelect: 'none',
-    backgroundColor: theme.colors.neutralGray.extraLight50,
+    whiteSpace: 'pre',
   },
   label: {
-    color: theme.colors.text.secondary,
+    display: 'block',
+    marginBottom: theme.spacing['8'],
+    color: theme.colors.text.headline,
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
-    height: toRem(17),
+    '&:hover': {
+      cursor: 'default',
+    }
+  },
+  floatingLabel: {
+    marginBottom: 0,
+    color: theme.colors.text.secondary,
+    transition: 'font-size 0.2s',
   },
   textDisabled: {
     color: theme.colors.text.disabled,
@@ -99,5 +116,26 @@ export default () => createStyles((theme) => ({
   inputWrapper: {
     display: 'flex',
     flexDirection: 'row',
+    alignItems: 'baseline',
+  },
+  floatingLabelInputWrapper: {
+    height: 0,
+    transition: 'height 0.2s, padding 0.2s, opacity 0.3s',
+    overflow: 'hidden',
+    opacity: 0,
+  },
+  floatingLabelInputWrapperInUse: {
+    height: toRem(24),
+    paddingTop: toRem(2),
+    opacity: 1,
+  },
+  clearButton: {
+    width: 20,
+    height: 20,
+    marginLeft: toRem(10),
+    backgroundColor: 'white',
+    '&:hover': {
+      cursor: 'pointer',
+    }
   }
 }), { internalUsage: true });

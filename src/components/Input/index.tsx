@@ -1,10 +1,12 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import useStyles from './styles';
 import useTextClasses from '../Text/styles';
 import { ErrorMessage } from '../ErrorMessage';
 import { HintMessage } from '../HintMessage';
+import { CloseCircleIcon } from '../Icons';
 import Text from '../Text';
+import { useTheme } from '../Theme';
 import { useInput } from './hooks';
 
 export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
@@ -23,18 +25,21 @@ export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
   prefixClassName?: string,
   errorClassName?: string,
   hintClassName?: string,
-  endAdornment?: React.ReactNode,
+  leftIcon?: React.ReactNode,
+  rightIcon?: React.ReactNode,
   mask?: string,
-  fullWidth?: boolean,
-  highlighted?: boolean,
+  width?: string,
+  variant?: 'labelOutside' | 'floatingLabel',
+  clearButton?: boolean,
 }
 
 const Input: React.FC<IInput> = (props) => {
   const classes = useStyles()(props);
   const textClasses = useTextClasses();
+  const { theme } = useTheme();
   const {
     label, className, hint, prefix, prefixClassName, errorClassName, hintClassName,
-    endAdornment, placeholder, onClick, fullWidth, highlighted, ...rest
+    leftIcon, rightIcon, placeholder, width, clearButton = false, ...rest
   } = props;
   const {
     name,
@@ -42,39 +47,63 @@ const Input: React.FC<IInput> = (props) => {
     disabled,
     errorMessage,
     inputProps,
+    floatingLabel,
+    inputInUse,
+    inputRef,
+    inFocus,
+    onResetButtonPointerDown,
+    onInputContainerClick,
     onChange,
-    onBlur
+    onBlur,
+    onFocus,
   } = useInput(rest);
-  const inputRef = useRef<HTMLInputElement>(null);
 
-  return (
-    <div className={classNames(classes.inputRoot, {
-      [classes.fullWidth]: fullWidth
-    }, className)}>
+  const renderLabel = () => {
+    if (!label) {
+      return null;
+    }
+    const variant = floatingLabel && inputInUse
+      ? 'caption1'
+      : floatingLabel
+        ? 'components1'
+        : 'components2';
+
+    return (
+      <Text
+        variant={variant}
+        weight="regular"
+        onClick={() => {inputRef.current?.focus()}}
+        className={classNames(
+          classes.label,
+          { [classes.floatingLabel]: floatingLabel },
+          { [classes.textDisabled]: disabled }
+        )}
+      >
+        {label}
+      </Text>
+    );
+  };
+  const renderCore = () => (
+    <>
+      { !floatingLabel && renderLabel() }
       <div
-        onClick={onClick}
+        onClick={onInputContainerClick}
         className={classNames(classes.inputContainer, {
           [classes.disabled]: disabled,
           [classes.inputContainerError]: !!errorMessage,
           [classes.withLabel]: label,
-          [classes.highlighted]: highlighted,
         })}
       >
+        {leftIcon}
         <div className={classes.inputArea}>
-          {label && (
-            <Text
-              variant="components2"
-              weight="regular"
-              onClick={() => {inputRef.current?.focus()}}
-              className={classNames(
-                classes.label,
-                { [classes.textDisabled]: disabled }
-              )}
-            >
-              {label}
-            </Text>
-          )}
-          <div className={classes.inputWrapper}>
+          { floatingLabel && renderLabel() }
+          <div
+            className={classNames(
+              classes.inputWrapper,
+              { [classes.floatingLabelInputWrapper]: floatingLabel },
+              { [classes.floatingLabelInputWrapperInUse]: floatingLabel && inputInUse },
+            )}
+          >
             {prefix && <div className={classNames(classes.prefix, prefixClassName)}>{prefix}</div>}
             <input
               {...inputProps}
@@ -83,23 +112,41 @@ const Input: React.FC<IInput> = (props) => {
               value={value}
               className={classNames(
                 classes.input,
-                textClasses.components2,
+                textClasses.components1,
                 textClasses.regular,
                 {
-                  [classes.disabled]: disabled,
                   [classes.textDisabled]: disabled,
                 }
               )}
               placeholder={placeholder}
+              disabled={disabled}
               onChange={onChange}
               onBlur={onBlur}
+              onFocus={onFocus}
             />
           </div>
         </div>
-        {endAdornment}
+        { (clearButton && inFocus && !!value && !props.readOnly) && (
+          <div
+            className={classes.clearButton}
+            onPointerDown={onResetButtonPointerDown}
+          >
+            <CloseCircleIcon
+              variant="filled"
+              fill={theme.colors.text.tint}
+            />
+          </div>
+        )}
+        {rightIcon}
       </div>
+    </>
+  );
+
+  return (
+    <div className={classNames(classes.inputRoot, className)}>
+      {renderCore()}
       {errorMessage && <ErrorMessage text={errorMessage} className={classNames(classes.message, errorClassName)}/>}
-      {hint && <HintMessage text={hint} disabled={disabled} className={classNames(classes.message, hintClassName)}/>}
+      {!errorMessage && hint && <HintMessage text={hint} disabled={disabled} className={classNames(classes.message, hintClassName)}/>}
     </div>
   );
 };

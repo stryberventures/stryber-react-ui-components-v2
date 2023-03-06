@@ -12,7 +12,7 @@ export default {
     pkg,
   },
   argTypes: buildExcludeArgTypes(['name', 'onChange', 'onBlur', 'controlled', 'prefixClassName',
-    'errorClassName', 'hintClassName', 'endAdornment', 'mask']),
+    'errorClassName', 'hintClassName', 'rightIcon', 'mask']),
 } as ComponentMeta<typeof NumberInput>;
 
 const Template: ComponentStory<typeof NumberInput> = (args) => <NumberInput {...args} />;
@@ -34,7 +34,7 @@ export const FullWidth = Template.bind({});
 FullWidth.args = {
   label: 'Full parent width',
   placeholder: 'Number',
-  fullWidth: true,
+  width: '100%',
 };
 
 export const PrefixWithClass = Template.bind({});
@@ -43,7 +43,7 @@ PrefixWithClass.args = {
   placeholder: 'Number',
   prefix: '$',
   prefixClassName: 'prefix',
-  fullWidth: true,
+  width: '100%',
 };
 
 PrefixWithClass.decorators = [

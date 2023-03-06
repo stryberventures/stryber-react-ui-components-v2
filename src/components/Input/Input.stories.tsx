@@ -11,8 +11,8 @@ export default {
   parameters: {
     pkg,
   },
-  argTypes: buildExcludeArgTypes(['name', 'controlled', 'onChange', 'endAdornment',
-    'onBlur', 'prefixClassName', 'contentClassName', 'hintClassName', 'errorClassName']),
+  argTypes: buildExcludeArgTypes(['name', 'controlled', 'onChange', 'rightIcon',
+    'leftIcon', 'onBlur', 'prefixClassName', 'contentClassName', 'hintClassName', 'errorClassName']),
 } as ComponentMeta<typeof Input>;
 
 const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
@@ -75,21 +75,44 @@ export const FullWidth = Template.bind({});
 FullWidth.args = {
   label: 'Fits parent width',
   placeholder: 'olivia@example.com',
-  fullWidth: true,
+  width: '100%',
 };
 
-export const EndAdornment = Template.bind({});
-EndAdornment.args = {
-  label: 'End adornment',
+export const LeftIcon = Template.bind({});
+LeftIcon.args = {
+  label: 'Left icon',
   placeholder: 'placeholder@example.com',
   value: 'olivia@example.com',
-  endAdornment: <div style={
+  leftIcon: <div style={
     {
       display: 'flex',
       alignContent: 'center',
       justifyContent: 'center',
       width: toRem(32),
       height: toRem(32),
+      marginRight: toRem(10),
+      backgroundColor: '#D0D5DD',
+      borderRadius: toRem(16),
+      lineHeight: toRem(32),
+      textAlign: 'center',
+      color: 'white',
+    }
+  }>O</div>
+};
+
+export const RightIcon = Template.bind({});
+RightIcon.args = {
+  label: 'End adornment',
+  placeholder: 'placeholder@example.com',
+  value: 'olivia@example.com',
+  rightIcon: <div style={
+    {
+      display: 'flex',
+      alignContent: 'center',
+      justifyContent: 'center',
+      width: toRem(32),
+      height: toRem(32),
+      marginLeft: toRem(10),
       backgroundColor: '#D0D5DD',
       borderRadius: toRem(16),
       lineHeight: toRem(32),
@@ -112,4 +135,13 @@ Prefix.args = {
   prefix: 'G-',
   mask: 'XXX-XXX',
   placeholder: 'XXX-XXX',
+};
+
+export const ClearButton = Template.bind({});
+ClearButton.args = {
+  label: 'Clear button',
+  placeholder: 'olivia@example.com',
+  value: 'olivia@example.com',
+  variant: 'floatingLabel',
+  clearButton: true,
 };

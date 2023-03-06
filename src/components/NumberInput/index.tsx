@@ -71,7 +71,7 @@ const NumberInput: React.FC<INumberInput> = (props) => {
         errorMessage={error}
         prefix={prefix}
         autoComplete='off'
-        endAdornment={(
+        rightIcon={(
           quantityCounter && (
             <div data-testid="testContainer" className={classes.btnsContainer}>
               <div data-testid="testMinus" className={classes.counterBtn} onClick={ handleDecrease }><CountIcon variant="minus" /></div>

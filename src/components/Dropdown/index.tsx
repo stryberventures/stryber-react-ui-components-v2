@@ -24,7 +24,7 @@ export interface IDropdown extends IDropdownBase {
   contentClassName?: string,
   inputReadOnly?: boolean,
   onInputChange?: (e: React.BaseSyntheticEvent) => void,
-  endAdornment?: ReactNode;
+  rightIcon?: ReactNode;
   onOutsideClick?: () => void;
 }
 
@@ -36,7 +36,7 @@ export interface IDropdownRef {
 const Dropdown = forwardRef((props: IDropdown, ref: ForwardedRef<IDropdownRef>) => {
   const {
     inputReadOnly = true, children, label, placeholder, value, className, color, name, fullWidth,
-    hint, error, disabled, onClick, onToggle, contentClassName, onInputChange, endAdornment, onOutsideClick, ...rest
+    hint, error, disabled, onClick, onToggle, contentClassName, onInputChange, rightIcon, onOutsideClick, ...rest
   } = props;
   const classes = useStyles();
   const { open, onInputClick, onOverlayClick } = useDropdown(props, ref);
@@ -60,11 +60,10 @@ const Dropdown = forwardRef((props: IDropdown, ref: ForwardedRef<IDropdownRef>) 
         hint={hint}
         errorMessage={error}
         onChange={onInputChange}
-        highlighted={open}
         className={classNames(classes.input, { [classes.inputDisabled]: disabled })}
-        endAdornment={(
+        rightIcon={(
           <>
-            {endAdornment}
+            {rightIcon}
             <div className={classNames(classes.toggleIcon, {
               [classes.toggleIconDisabled]: disabled,
               [classes.toggleIconOpened]: open,
