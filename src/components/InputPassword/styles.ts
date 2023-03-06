@@ -1,11 +1,9 @@
 import { createStyles, toRem } from '../Theme';
-import { IInput } from '../Input';
-import { getDimension } from '../Input/utils';
 
 export default () => createStyles(() => ({
-  inputPassword: (props: IInput) => ({
-    width: getDimension(props.width || 320),
-  }),
+  inputPassword: {
+    width: toRem(320),
+  },
   inputLayout: {
     width: '100%',
   },

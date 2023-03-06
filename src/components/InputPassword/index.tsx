@@ -13,7 +13,7 @@ export interface IInputPassword extends Omit<IInput, 'rightIcon'> {
 }
 
 const InputPassword: React.FC<IInputPassword> = (props) => {
-  const { disabled, validationSchema, onValidationChange, value, className, ...rest } = props;
+  const { disabled, validationSchema, onValidationChange, value, className, fullWidth, ...rest } = props;
   const { onInputChange, schema } = usePasswordValidation({ validationSchema, value, onValidationChange });
   const [visible, setVisible] = useState(false);
   const classes = useStyles()(props);
@@ -23,7 +23,7 @@ const InputPassword: React.FC<IInputPassword> = (props) => {
   }
 
   return (
-    <div className={classNames(classes.inputPassword, className)}>
+    <div className={classNames(classes.inputPassword, className, { [classes.fullWidth]: fullWidth })}>
       <Input
         {...rest}
         disabled={disabled}
@@ -31,6 +31,7 @@ const InputPassword: React.FC<IInputPassword> = (props) => {
         className={classes.inputLayout}
         onChange={onInputChange}
         type={visible ? 'text' : 'password'}
+        fullWidth={fullWidth}
         rightIcon={
           <EyeIcon
             data-testid="password-icon"
