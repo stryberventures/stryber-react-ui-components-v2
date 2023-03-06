@@ -8,7 +8,6 @@ import useStyles from './styles';
 import useTextStyles from '../Text/styles';
 
 export interface ITextArea extends React.TextareaHTMLAttributes<HTMLTextAreaElement>{
-  id: string,
   label?: string,
   disabled?: boolean,
   color?: 'primary' | 'secondary',
@@ -85,18 +84,17 @@ const TextArea: React.FC<ITextArea> = (props) => {
         className)}
     >
       {label && variant == 'labelOutside' && (
-        <label htmlFor={id} className={classes.label}>
-          <Text
-            variant="components2"
-            weight="regular"
-            className={classNames(
-              classes.labelText,
-              { [classes.textDisabled]: disabled },
-            )}
-          >
-            {label}
-          </Text>
-        </label>
+        <Text
+          variant="components2"
+          weight="regular"
+          className={classNames(
+            classes.label,
+            { [classes.textDisabled]: disabled },
+          )}
+          onClick={() => textareaRef?.current?.focus()}
+        >
+          {label}
+        </Text>
       )}
       <div
         className={classNames(
@@ -105,23 +103,22 @@ const TextArea: React.FC<ITextArea> = (props) => {
           {
             [classes.containerDisabled]: disabled,
             [classes.containerError]: !!errorMessage,
-            [classes.labelMinified]: variant == 'floatingLabel' && textareaRef?.current?.value,
+            [classes.labelMinified]: variant == 'floatingLabel' && (value || internalValue || textareaRef?.current?.value),
           },
         )}
       >
         {label && variant == 'floatingLabel' && (
-          <label htmlFor={id} className={classes.label}>
-            <Text
-              variant="components1"
-              weight="regular"
-              className={classNames(
-                classes.labelText,
-                { [classes.textDisabled]: disabled, }
-              )}
-            >
-              {label}
-            </Text>
-          </label>
+          <Text
+            variant="components1"
+            weight="regular"
+            className={classNames(
+              classes.label,
+              { [classes.textDisabled]: disabled, }
+            )}
+            onClick={() => textareaRef?.current?.focus()}
+          >
+            {label}
+          </Text>
         )}
         <textarea
           ref={textareaRef}

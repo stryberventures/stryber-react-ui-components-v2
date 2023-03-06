@@ -13,6 +13,7 @@ export default {
   args: {
     variant: 'labelOutside',
     color: 'primary',
+    placeholder: 'Your message',
     disabled: false,
     showLength: false,
     fullWidth: false,
@@ -26,40 +27,28 @@ export const Primary = Template.bind({});
 Primary.args = {
   label: 'Your message',
   placeholder: 'Your message',
-  id: 'primary'
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
   label: 'Your message',
   color: 'secondary',
-  id: 'secondary',
-};
-
-export const WithValue = Template.bind({});
-WithValue.args = {
-  id: 'withValue',
-  label: 'With value',
-  value: '"And now I will show you what is really a very interesting study, Mr. Windibank," Holmes continued. "I think of writing another little monograph some of these days on the typewriter and its relation to crime.',
 };
 
 export const Hint = Template.bind({});
 Hint.args = {
-  id: 'withHintMessage',
   label: 'With hint message',
   hint: 'Hint message',
 };
 
 export const Error = Template.bind({});
 Error.args = {
-  id: 'withError',
   label: 'With error',
   errorMessage: 'This is an error message',
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  id: 'disabled',
   label: 'Disabled',
   disabled: true,
   value: 'Disabled text',
@@ -67,7 +56,6 @@ Disabled.args = {
 
 export const WithLengthIndicator = Template.bind({});
 WithLengthIndicator.args = {
-  id: 'withLengthIndicator',
   label: 'With length indicator',
   disabled: true,
   showLength: true,
@@ -76,7 +64,6 @@ WithLengthIndicator.args = {
 
 export const FullWidth = Template.bind({});
 FullWidth.args = {
-  id: 'fullWidth',
   label: 'Full Width',
   fullWidth: true,
   hint: 'And now I will show you what is really a very interesting study, Mr. Windibank',

@@ -4,8 +4,7 @@ import { ThemeType } from '../Theme/types';
 
 
 const labelMinifiedStyles = (theme: ThemeType) => ({
-  '& $labelText': {
-    transform: `translateY(${toRem(-6)})`,
+  '& $label': {
     color: theme.colors.text.secondary,
     fontSize: toRem(12),
     lineHeight: '120%',
@@ -95,15 +94,10 @@ export default createStyles((theme) => ({
     display: 'block',
     marginBottom: toRem(8),
     width: '100%',
-  },
-  labelText: {
     position: 'relative',
     color: theme.colors.text.headline,
     lineHeight: '150%',
-    transition: 'font-size .3s, transform .3s, line-height .3s, color .3s',
-    '&$textDisabled': {
-      // color: theme.colors.text.disabled,
-    },
+    transition: 'font-size .3s, line-height .3s, color .3s',
   },
   textarea: {
     flexGrow: 1,
