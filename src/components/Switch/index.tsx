@@ -3,8 +3,7 @@ import { useCheckedState } from '../InputToggleLayout/hooks';
 import InputToggleLayout from '../InputToggleLayout';
 import { ISwitchIcon, SwitchIcon } from './SwitchIcon';
 import { IInputToggleBaseControlled } from '../InputToggleLayout/types';
-import useStyles from './styles';
-import classNames from 'classnames';
+
 
 export interface ISwitch extends ISwitchIcon, IInputToggleBaseControlled {}
 
@@ -14,7 +13,6 @@ const Switch: React.FC<ISwitch> = (props) => {
     disabled, label, color, className, hint, heading,
     reverse, ...rest
   } = props;
-  const classes = useStyles(color);
 
   return (
     <InputToggleLayout
@@ -28,7 +26,7 @@ const Switch: React.FC<ISwitch> = (props) => {
       hint={hint}
       disabled={disabled}
       reverse={reverse}
-      className={classNames(classes.switch, { [classes.reversed]: reverse }, className)}
+      className={className}
       control={
         <SwitchIcon checked={checked} color={color} disabled={disabled} />
       }

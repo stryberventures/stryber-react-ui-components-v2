@@ -24,8 +24,7 @@ export const ErrorMessage = (props: IErrorMessage) => {
       <InfoIcon
         variant="filled"
         fill={theme.colors.error.main500}
-        width={theme.spacing[16]}
-        height={theme.spacing[16]}
+        className={classes.icon}
       />
       {text}
     </Text>

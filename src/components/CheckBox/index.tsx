@@ -29,7 +29,7 @@ const CheckBox:React.FC<ICheckBox> = (props) => {
       disabled={disabled}
       reverse={reverse}
       fullWidth={fullWidth}
-      className={classNames(classes.checkbox, { [classes.reversed]: reverse }, className)}
+      className={classNames({ [classes.reversed]: reverse }, className)}
       control={
         <CheckBoxMark
           checked={checked}
