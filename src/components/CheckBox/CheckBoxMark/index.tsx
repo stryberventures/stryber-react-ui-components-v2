@@ -18,8 +18,9 @@ export const CheckBoxMark = (props: ICheckBoxMark) => {
     shape = 'square',
     disabled,
     indeterminate,
+    color,
   } = props;
-  const classes = useStyles(props.color);
+  const classes = useStyles()(color);
   const { theme } = useTheme();
   return (
     <div

@@ -2,7 +2,7 @@ import { ICheckBoxMark } from './index';
 import { createStyles, toRem } from '../../Theme';
 
 
-export default createStyles((theme) => ({
+export default () => createStyles((theme) => ({
   checkboxMark: (color: ICheckBoxMark['color']) => ({
     backgroundColor: theme.colors.contrast.white,
     border: [toRem(1), 'solid', theme.colors[color == 'error' ? color : 'neutralGray'].dark600],
