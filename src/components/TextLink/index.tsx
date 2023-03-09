@@ -9,7 +9,7 @@ export interface ITextLink extends React.DetailedHTMLProps<React.AnchorHTMLAttri
   href: string,
   color?: 'primary' | 'secondary',
   size?: 'small' | 'medium' | 'large',
-  weight?: 'regular' | 'semiBold' | 'bold',
+  weight?: 'regular' | 'semiBold',
   disabled?: boolean,
   iconLeft?: React.ReactNode,
   iconRight?: React.ReactNode,
