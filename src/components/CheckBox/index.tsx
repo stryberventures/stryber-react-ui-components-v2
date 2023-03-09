@@ -3,7 +3,6 @@ import InputToggleLayout from '../InputToggleLayout';
 import { CheckBoxMark, ICheckBoxMark } from './CheckBoxMark';
 import { IInputToggleBaseControlled } from '../InputToggleLayout/types';
 import { useCheckedState } from '../InputToggleLayout/hooks';
-import classNames from 'classnames';
 
 export interface ICheckBox extends ICheckBoxMark, IInputToggleBaseControlled {}
 

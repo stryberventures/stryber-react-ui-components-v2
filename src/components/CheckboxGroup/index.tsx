@@ -9,16 +9,16 @@ export type TChildCheckbox = {
   name: string;
   label: string;
   checked?: boolean;
-  error?: string;
+  errorMessage?: string;
   hint?: string;
   disabled?: boolean;
 };
 
 export interface ICheckboxGroupProps
   extends Omit<ICheckBox, 'value' | 'onChange'> {
-  name: string;
+  name?: string;
+  errorMessage?: string,
   checkboxes: TChildCheckbox[];
-  error: string;
   onChange?: (e: BaseSyntheticEvent) => void;
 }
 
@@ -27,10 +27,10 @@ interface IChildCheckboxesState {
 }
 
 const CheckboxGroup: React.FC<ICheckboxGroupProps> = ({
-  name,
+  name = '',
   checkboxes,
   disabled,
-  error,
+  errorMessage,
   ...rest
 }) => {
   const classes = useStyles();
@@ -114,7 +114,7 @@ const CheckboxGroup: React.FC<ICheckboxGroupProps> = ({
         }
         onChange={handleParentCheckboxChange}
         checked={checkChildValues(childCheckboxes, 'all')}
-        errorMessage={error}
+        errorMessage={errorMessage}
         color={rest.color}
       />
       <div className={classes.childCheckboxes}>
@@ -128,7 +128,7 @@ const CheckboxGroup: React.FC<ICheckboxGroupProps> = ({
                 onChange={(e: BaseSyntheticEvent) => handleChildCheckboxChange(e, props.name)}
                 key={props.name}
                 color={rest.color}
-                errorMessage={props.error}
+                errorMessage={props.errorMessage}
                 {...props}
               />
             )
