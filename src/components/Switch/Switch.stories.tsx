@@ -10,7 +10,14 @@ export default {
   parameters: {
     pkg,
   },
-  argTypes: buildExcludeArgTypes(['name', 'value', 'className', 'onFocus', 'onChange', 'controlled', 'size']),
+  args: {
+    color: 'primary',
+    disabled: false,
+    checked: false,
+    reverse: false,
+    fullWidth: false,
+  },
+  argTypes: buildExcludeArgTypes(['name', 'value', 'className', 'onFocus', 'onChange', 'controlled', 'size', 'errorMessage']),
 } as ComponentMeta<typeof Switch>;
 
 const Template: ComponentStory<typeof Switch> = (args) => <Switch {...args} />;
