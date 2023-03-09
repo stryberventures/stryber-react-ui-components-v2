@@ -12,7 +12,7 @@ export default {
   parameters: {
     pkg,
   },
-  argTypes: buildExcludeArgTypes(['onFocus', 'controlled', 'className', 'onChange']),
+  argTypes: buildExcludeArgTypes(['onFocus', 'controlled', 'className', 'onChange', 'name', 'heading']),
 } as ComponentMeta<typeof CheckboxGroup>;
 
 const Template: ComponentStory<typeof CheckboxGroup> = (args) => {
@@ -40,8 +40,8 @@ const checkboxes = [
   { label: 'Green', name: 'green', checked: true },
 ]
 
-export const Default = Template.bind({});
-Default.args = {
+export const ColorPrimary = Template.bind({});
+ColorPrimary.args = {
   label: 'Colors',
   name: 'colors',
   checkboxes: checkboxes.map((item, i) =>
@@ -50,8 +50,8 @@ Default.args = {
   color: 'primary',
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
+export const ColorSecondary = Template.bind({});
+ColorSecondary.args = {
   label: 'Colors',
   name: 'colors',
   checkboxes: checkboxes.map((item, i: number) =>
@@ -63,10 +63,10 @@ export const Error = Template.bind({});
 Error.args = {
   label: 'Colors',
   name: 'colors',
-  error: 'Test error',
+  errorMessage: 'Error message',
   checkboxes: checkboxes.map((item: TChildCheckbox, i: number) => ({
-    ...(i == 0) ? { ...item, disabled: true, checked: false } : item,
-    error: (i != 0) ? 'Test error' : '',
+    ...(i == 0) ? { ...item, disabled: false, checked: true } : item,
+    errorMessage: 'Error message',
   })),
   color: 'error'
 };
