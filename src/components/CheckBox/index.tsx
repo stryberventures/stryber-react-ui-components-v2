@@ -4,7 +4,6 @@ import { CheckBoxMark, ICheckBoxMark } from './CheckBoxMark';
 import { IInputToggleBaseControlled } from '../InputToggleLayout/types';
 import { useCheckedState } from '../InputToggleLayout/hooks';
 import classNames from 'classnames';
-import useStyles from './styles';
 
 export interface ICheckBox extends ICheckBoxMark, IInputToggleBaseControlled {}
 
@@ -14,7 +13,6 @@ const CheckBox:React.FC<ICheckBox> = (props) => {
     shape, disabled, label, color, className, reverse, fullWidth,
     hint, indeterminate, ...rest
   } = props;
-  const  classes = useStyles(color);
   return (
     <InputToggleLayout
       {...rest}
@@ -29,7 +27,7 @@ const CheckBox:React.FC<ICheckBox> = (props) => {
       disabled={disabled}
       reverse={reverse}
       fullWidth={fullWidth}
-      className={classNames({ [classes.reversed]: reverse }, className)}
+      className={className}
       control={
         <CheckBoxMark
           checked={checked}

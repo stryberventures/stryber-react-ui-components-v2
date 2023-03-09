@@ -4,8 +4,6 @@ import { IInputToggle } from './types';
 
 export default createStyles((theme) => ({
   inputToggleLayout: {
-    display: 'flex',
-    flexDirection: 'column',
     boxSizing: 'border-box',
     '& *, *:before, *:after': {
       boxSizing: 'inherit',
@@ -30,9 +28,8 @@ export default createStyles((theme) => ({
   },
   labelContainer: (color: IInputToggle['color']) => ({
     display: 'grid',
-    gridTemplateRows: 'auto',
     gridTemplateColumns: 'auto 1fr',
-    gap: toRem(10),
+    gap: `${toRem(8)} ${toRem(10)}`,
     position: 'relative',
     userSelect: 'none',
     height: '100%',
@@ -45,78 +42,61 @@ export default createStyles((theme) => ({
     '&:has(input:focus-visible) input + div > div': {
       boxShadow: `0 0 0 2px white, 0 0 0 ${toRem(4)} ${theme.colors[color!].light200}`,
     },
+    '&$fullWidth': {
+      width: '100%',
+    },
   }),
   reverse: {
-    gridTemplateColumns: '1fr auto',
+    gridTemplateColumns: '1fr auto !important',
     '& $inputContainer': {
       gridColumn: '2 / 3',
     },
-    '& $textContainer': {
+    '& $label, & $hint': {
       gridColumn: 'span 1',
-      marginRight: toRem(8),
-      marginLeft: 0,
-    },
-    '&$fullWidth': {
-      '& $textContainer': {
-        alignItems: 'flex-start',
-      },
     },
   },
   inputContainer: {
-    gridColumn: '1 / 2',
-    gridRow: '1',
+    gridColumn: '1',
+    gridRow: '1 / 2',
     display: 'flex',
     justifyContent: 'center',
     paddingTop: toRem(1),
+  },
+  middleAlign: {
+    alignItems: 'center',
   },
   input: () => ( {
     position: 'absolute',
     width: 0,
     height: 0,
   }),
-  textContainer: {
-    gridColumn: '2 / 3',
-    gridRow: '1',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    minHeight: toRem(24),
-  },
   label: {
+    display: 'flex',
+    alignItems: 'center',
     color: theme.colors.text.headline,
     lineHeight: '150%',
+    gridColumn: '2 / 3',
   },
   hint: {
+    display: 'flex',
+    alignItems: 'center',
     color: theme.colors.text.secondary,
     lineHeight: '120%',
-    width: 'fit-content',
+    gridColumn: '2 / 3',
   },
-  text: {
-    marginLeft: toRem(10),
-    fontFamily: theme.font,
-    display: 'flex',
-    flexDirection: 'column',
-    fontSize: toRem(14),
-    position: 'relative',
+  firstRow: {
+    gridRow: '1 / 2',
+  },
+  secondRow: {
+    gridRow: '2 / 3',
   },
   error: {
     marginLeft: theme.spacing['4'],
   },
-  fullWidth: {
-    width: '100%',
-    '& $textContainer': {
-      alignItems: 'flex-end',
-    }
-  },
-  medium: {
-  },
-  small: {
-  },
+  fullWidth: {},
+  medium: {},
+  small: {},
   textDisabled: {
     color: theme.colors.text.disabled,
-  },
-  controlContainer: {
-    display: 'flex',
-    alignItems: 'center',
   },
 }), { internalUsage: true });

@@ -12,10 +12,11 @@ export default {
   },
   args: {
     color: 'primary',
-    disabled: false,
     checked: false,
+    disabled: false,
     reverse: false,
     fullWidth: false,
+    alignControl: 'top',
   },
   argTypes: buildExcludeArgTypes(['name', 'value', 'className', 'onFocus', 'onChange', 'controlled', 'size', 'errorMessage']),
 } as ComponentMeta<typeof Switch>;
@@ -24,7 +25,6 @@ const Template: ComponentStory<typeof Switch> = (args) => <Switch {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  checked: true,
   title: 'Title',
   label: 'Primary',
   heading: 'Switches heading',
@@ -33,7 +33,6 @@ Primary.args = {
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  checked: true,
   color: 'secondary',
   label: 'Secondary',
   heading: 'Switches heading',
@@ -42,7 +41,7 @@ Secondary.args = {
 
 export const MultiLine = Template.bind({});
 MultiLine.args = {
-  checked: false,
+  alignControl: 'middle',
   label: 'Switches label Switches label Switches label',
   heading: 'Switches heading',
   hint: 'Write a switches sentence here Write a switches sentence here Write a switches sentence here',
@@ -57,7 +56,6 @@ MultiLine.decorators = [
 ];
 export const Disabled = Template.bind({});
 Disabled.args = {
-  checked: true,
   disabled: true,
   label: 'Disabled on',
   heading: 'Switches heading',
