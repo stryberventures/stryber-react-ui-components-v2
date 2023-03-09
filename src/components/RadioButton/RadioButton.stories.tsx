@@ -12,7 +12,15 @@ export default {
   parameters: {
     pkg,
   },
-  argTypes: buildExcludeArgTypes(['name', 'className', 'value', 'onChange', 'onFocus', 'errorMessage', 'heading', 'label', 'size']),
+  args: {
+    color: 'primary',
+    disabled: false,
+    fullWidth: false,
+    reverse: false,
+    shape: 'square',
+    alignControl: 'top',
+  },
+  argTypes: buildExcludeArgTypes(['name', 'className', 'value', 'onChange', 'onFocus', 'errorMessage', 'heading', 'label', 'size', 'title',]),
 } as ComponentMeta<typeof RadioButton>;
 
 const radioButton = {

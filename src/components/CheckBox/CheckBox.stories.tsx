@@ -11,7 +11,15 @@ export default {
   parameters: {
     pkg,
   },
-  argTypes: buildExcludeArgTypes(['onFocus', 'controlled', 'className', 'onChange']),
+  args: {
+    color: 'primary',
+    disabled: false,
+    fullWidth: false,
+    reverse: false,
+    shape: 'square',
+    alignControl: 'top',
+  },
+  argTypes: buildExcludeArgTypes(['onFocus', 'controlled', 'className', 'onChange', 'value', 'title', 'heading', 'name']),
 } as ComponentMeta<typeof CheckBox>;
 
 const Template: ComponentStory<typeof CheckBox> = (args) => <CheckBox {...args} />;

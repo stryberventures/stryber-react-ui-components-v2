@@ -5,7 +5,9 @@ import { ISwitchIcon, SwitchIcon } from './SwitchIcon';
 import { IInputToggleBaseControlled } from '../InputToggleLayout/types';
 
 
-export interface ISwitch extends ISwitchIcon, IInputToggleBaseControlled {}
+export interface ISwitch extends ISwitchIcon, IInputToggleBaseControlled {
+  color?: 'primary' | 'secondary';
+}
 
 const Switch: React.FC<ISwitch> = (props) => {
   const { checked, errorMessage, onChange, onFocus } = useCheckedState(props);

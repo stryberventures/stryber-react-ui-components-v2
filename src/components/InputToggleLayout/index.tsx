@@ -7,7 +7,7 @@ import Text from '../Text';
 
 const InputToggleLayout: React.FC<IInputToggle> = (props) => {
   const {
-    name = '', className, type, checked, disabled, value, children, title, control,
+    name = '', alignControl = 'top', className, type, checked, disabled, value, children, title, control,
     onChange, onFocus, errorMessage, placeholder, label, hint, controlled,
     reverse, fullWidth, color, ...rest
   } = props;
@@ -49,40 +49,43 @@ const InputToggleLayout: React.FC<IInputToggle> = (props) => {
           onChange={onChange}
           onFocus={onFocus}
         />
-        <div className={classes.inputContainer}>
+        <div className={classNames(classes.inputContainer, { [classes.middleAlign]: alignControl == 'middle' })}>
           {control}
         </div>
-        <div className={classes.textContainer}>
-          {label && typeof label == 'string'
-            ? (
-              <Text
-                variant="components2"
-                weight="regular"
-                className={classNames(
-                  classes.label,
-                  {
-                    [classes.textDisabled]: disabled,
-                  }
-                )}
-              >
-                {label}
-              </Text>
-            )
-            : label
-          }
-          {hint &&
+        {label && typeof label == 'string'
+          ? (
             <Text
               variant="components2"
               weight="regular"
               className={classNames(
-                classes.hint,
-                { [classes.textDisabled]: disabled, }
+                classes.label,
+                classes.firstRow,
+                {
+                  [classes.textDisabled]: disabled,
+                }
               )}
             >
-              {hint}
+              {label}
             </Text>
-          }
-        </div>
+          )
+          : label
+        }
+        {hint &&
+          <Text
+            variant="components2"
+            weight="regular"
+            className={classNames(
+              classes.hint,
+              {
+                [classes.textDisabled]: disabled,
+                [classes.secondRow]: !!label,
+                [classes.firstRow]: !label,
+              }
+            )}
+          >
+            {hint}
+          </Text>
+        }
       </label>
       {errorMessage && (
         <ErrorMessage
