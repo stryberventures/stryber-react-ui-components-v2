@@ -74,9 +74,7 @@ const Dropdown = forwardRef((props: IDropdown, ref: ForwardedRef<IDropdownRef>) 
         )}
       />
       {open && (
-        <div
-          className={classNames(classes.content, contentClassName)}
-        >
+        <div className={classNames(classes.content, contentClassName)}>
           {children}
         </div>
       )}
