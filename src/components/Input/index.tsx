@@ -92,6 +92,7 @@ const Input: React.FC<IInput> = (props) => {
           [classes.disabled]: disabled,
           [classes.inputContainerError]: !!errorMessage,
           [classes.withLabel]: label,
+          [classes.fullWidth]: fullWidth,
         })}
       >
         {leftIcon}
