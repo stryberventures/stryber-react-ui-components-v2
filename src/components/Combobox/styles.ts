@@ -7,7 +7,6 @@ export default createStyles(() => ({
     overflow: 'auto',
   },
   clearIcon: {
-    marginRight: toRem(10),
     zIndex: 99,
   }
 }), { internalUsage: true });

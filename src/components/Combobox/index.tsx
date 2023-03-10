@@ -14,6 +14,7 @@ export interface ICombobox extends Omit<IDropdown, 'onChange' | 'children' | 'va
   options: IOption[],
   value?: IOption['value'],
   onChange?: (option: IOption['value'] | null) => void,
+  inputVariant?: 'labelOutside' | 'floatingLabel',
   noOptionsFoundText?: string,
 }
 
