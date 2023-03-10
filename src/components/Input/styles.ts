@@ -16,15 +16,17 @@ export default () => createStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+    gap: toRem(10),
     padding: [toRem(4), toRem(14)],
     height: toRem(props.variant === 'floatingLabel' ? 56 : 48),
     border: `${toRem(1)} solid ${theme.colors.neutralGray.medium300}`,
     backgroundColor: theme.colors.background.white,
+    transition: 'border-color .3s, border-size .3s',
     '&:hover, &:hover $input': {
       backgroundColor: theme.colors.background.extraLightGrey,
     },
     '&:hover:not($disabled):not($inputContainerError)': {
-      border: `${toRem(1)} solid ${theme.colors.primary.medium400}`,
+      border: `${toRem(1)} solid ${theme.colors[props.color!].medium400}`,
     },
     '&:focus-within': {
       paddingLeft: toRem(13),
