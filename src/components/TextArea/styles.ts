@@ -54,11 +54,8 @@ export default createStyles((theme) => ({
     '&$containerError': {
       border: `${toRem(1)} solid ${theme.colors.error.main500}`,
     },
-    '&:has($textarea:focus-visible)': {
-      boxShadow: `0 0 0 ${toRem(2)} white, 0 0 0 ${toRem(4)} ${theme.colors[color!].light200}`,
-    },
     '&:not($containerError):has($textarea:focus-visible)': {
-      border: `${toRem(1)} solid ${theme.colors[color!].main500}`,
+      border: `${toRem(2)} solid ${theme.colors[color!].main500}`,
     },
     '&$floatingLabel:has($textarea:focus-visible)': {
       ...labelMinifiedStyles(theme),
