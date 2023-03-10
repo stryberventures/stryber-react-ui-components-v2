@@ -2,6 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Input from './index';
 import pkg from './package.json';
+import { CreditCardIcon, InfoIcon } from '../Icons';
 import { buildExcludeArgTypes } from '../../storybook/utils';
 import { toRem } from '../Theme';
 
@@ -83,21 +84,7 @@ LeftIcon.args = {
   label: 'Left icon',
   placeholder: 'placeholder@example.com',
   value: 'olivia@example.com',
-  leftIcon: <div style={
-    {
-      display: 'flex',
-      alignContent: 'center',
-      justifyContent: 'center',
-      width: toRem(32),
-      height: toRem(32),
-      marginRight: toRem(10),
-      backgroundColor: '#D0D5DD',
-      borderRadius: toRem(16),
-      lineHeight: toRem(32),
-      textAlign: 'center',
-      color: 'white',
-    }
-  }>O</div>
+  leftIcon: <CreditCardIcon />
 };
 
 export const RightIcon = Template.bind({});
@@ -105,21 +92,7 @@ RightIcon.args = {
   label: 'End adornment',
   placeholder: 'placeholder@example.com',
   value: 'olivia@example.com',
-  rightIcon: <div style={
-    {
-      display: 'flex',
-      alignContent: 'center',
-      justifyContent: 'center',
-      width: toRem(32),
-      height: toRem(32),
-      marginLeft: toRem(10),
-      backgroundColor: '#D0D5DD',
-      borderRadius: toRem(16),
-      lineHeight: toRem(32),
-      textAlign: 'center',
-      color: 'white',
-    }
-  }>O</div>
+  rightIcon: <InfoIcon />
 };
 
 export const Mask = Template.bind({});
