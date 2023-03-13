@@ -14,11 +14,15 @@ export default {
   args: {
     color: 'primary',
     quantityCounter: false,
-    max: 1000000,
+    min: 0,
+    max: 100,
     variant: 'labelOutside',
+    disabled: false,
+    fullWidth: false,
+    clearButton: false,
   },
   argTypes: buildExcludeArgTypes(['name', 'onChange', 'onBlur', 'controlled', 'prefixClassName', 'postfixClassName',
-    'errorClassName', 'hintClassName', 'rightIcon', 'mask']),
+    'errorClassName', 'hintClassName', 'leftIcon', 'rightIcon', 'mask', 'value', 'clearButton']),
 } as ComponentMeta<typeof NumberInput>;
 
 const Template: ComponentStory<typeof NumberInput> = (args) => <NumberInput {...args} />;
@@ -38,13 +42,20 @@ QuantityCounter.args = {
   postfix: 'UAH'
 };
 
-export const PrefixWithClass = Template.bind({});
-PrefixWithClass.args = {
+export const Prefix = Template.bind({});
+Prefix.args = {
   label: 'Min',
   placeholder: 'Number',
   prefix: '$',
-  prefixClassName: 'prefix',
 };
+
+Prefix.decorators = [
+  (Story) => (
+    <div style={{ maxWidth: '102px' }}>
+      <Story />
+    </div>
+  ),
+];
 
 export const CustomStep = Template.bind({});
 CustomStep.args = {
@@ -53,14 +64,6 @@ CustomStep.args = {
   quantityCounter: true,
   step: 2
 };
-
-PrefixWithClass.decorators = [
-  (Story) => (
-    <div style={{ maxWidth: '102px' }}>
-      <Story />
-    </div>
-  ),
-];
 
 export const FullWidth = Template.bind({});
 FullWidth.args = {

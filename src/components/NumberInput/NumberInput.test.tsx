@@ -17,10 +17,24 @@ it('should show prefix', () => {
   expect(screen.queryByText(prefix)).toBeInTheDocument();
 });
 
+it('should show postfix', () => {
+  const postfix = 'postfix'
+  render(<NumberInput postfix={postfix}/>)
+  expect(screen.queryByText(postfix)).toBeInTheDocument();
+});
+
 it('should show hint', () => {
   const hint = 'Hint message';
   render(<NumberInput hint={hint}/>)
   expect(screen.queryByText(hint)).toBeInTheDocument();
+});
+
+it('should show error instead of hint', () => {
+  const hint = 'Hint message';
+  const errorMessage = 'Error message';
+  render(<NumberInput hint={hint} errorMessage={errorMessage} />)
+  expect(screen.queryByText(errorMessage)).toBeInTheDocument();
+  expect(screen.queryByText(hint)).not.toBeInTheDocument();
 });
 
 it('should show value', () => {
@@ -37,7 +51,7 @@ it('increase value on plus button', () => {
   expect(screen.queryByDisplayValue(value + 1)).toBeInTheDocument();
 });
 
-it('decrease value on plus button', () => {
+it('decrease value on minus button', () => {
   const value = 22;
   render(<NumberInput quantityCounter={true} value={value}/>)
   const minus = screen.getByTestId('testMinus');

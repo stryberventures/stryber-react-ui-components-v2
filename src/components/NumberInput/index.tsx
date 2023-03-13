@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import useStyles from './styles';
 import Input, { IInput } from '../Input'
 import Button from '../Button'
-import Text from '../Text'
 import classNames from 'classnames';
 import { CountIcon } from '../Icons';
 import { useFormContext } from '../Form';
@@ -23,11 +22,10 @@ const NumberInput: React.FC<INumberInput> = (props) => {
   const {
     quantityCounter = false,
     min = 0,
-    max = 1000000,
+    max = 100,
     step = 1,
     name = 'numberInput',
     value = '',
-    color = 'primary',
     errorMessage,
     onChange,
     prefix,
@@ -96,6 +94,7 @@ const NumberInput: React.FC<INumberInput> = (props) => {
                       height={toRem(8)}
                       fill={theme.colors.neutralGray.extraDark900}
                     />)}
+                  data-testid="testMinus"
                 />
                 <div className={classes.separatorLine}></div>
                 <Button
@@ -110,6 +109,7 @@ const NumberInput: React.FC<INumberInput> = (props) => {
                       height={toRem(8)}
                       fill={theme.colors.neutralGray.extraDark900}
                     />)}
+                  data-testid="testPlus"
                 />
               </div>
             )}
