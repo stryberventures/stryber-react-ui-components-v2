@@ -27,29 +27,26 @@ export default createStyles((theme) => ({
       }
     },
   },
-  quantityCounter: {
-    '& input': {
-      paddingRight: toRem(92),
-    },
+  right: {
+    display: 'flex',
+    gap: toRem(8),
+    alignItems: 'center',
+    height: '100%',
+    paddingLeft: toRem(8),
   },
   btnsContainer: {
-    position: 'absolute',
-    right: toRem(8),
-    top: 0,
     display: 'flex',
     alignItems: 'center',
     height: '100%',
-    '& $counterBtn': {
-      width: toRem(28),
-      height: toRem(28),
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }
+  },
+  prefix: {
+    marginRight: toRem(10),
   },
   separatorLine: {
-    padding: `0 ${toRem(5.5)}`,
-    display: 'flex',
+    width: toRem(1),
+    height: toRem(20),
+    margin: `0 ${toRem(12)}`,
+    backgroundColor: theme.colors.neutralGray.medium300,
   },
   counterBtn: {
     cursor: 'pointer',
@@ -58,12 +55,8 @@ export default createStyles((theme) => ({
     '-moz-user-select': 'none',
     '-webkit-user-select': 'none',
     '-ms-user-select': 'none',
-    '&:hover': {
-      backgroundColor: theme.colors.neutralGray.light100,
-    },
-    '&:active': {
-      boxShadow: `0px 0px 0px ${toRem(4)}`,
-      color: theme.colors.primary.extraLight50,
-    }
+    width: toRem(24),
+    height: toRem(24),
+    padding: '0 !important',
   },
 }), { internalUsage: true });

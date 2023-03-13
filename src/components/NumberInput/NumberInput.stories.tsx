@@ -11,30 +11,31 @@ export default {
   parameters: {
     pkg,
   },
-  argTypes: buildExcludeArgTypes(['name', 'onChange', 'onBlur', 'controlled', 'prefixClassName',
+  args: {
+    color: 'primary',
+    quantityCounter: false,
+    max: 1000000,
+    variant: 'labelOutside',
+  },
+  argTypes: buildExcludeArgTypes(['name', 'onChange', 'onBlur', 'controlled', 'prefixClassName', 'postfixClassName',
     'errorClassName', 'hintClassName', 'rightIcon', 'mask']),
 } as ComponentMeta<typeof NumberInput>;
 
 const Template: ComponentStory<typeof NumberInput> = (args) => <NumberInput {...args} />;
 
-export const ColorPrimary = Template.bind({});
-ColorPrimary.args = {
-  label: 'Color primary',
+export const Default = Template.bind({});
+Default.args = {
+  label: 'Default',
   placeholder: 'Number',
 };
 
-export const ColorSecondary = Template.bind({});
-ColorSecondary.args = {
-  label: 'Color secondary',
-  color: 'secondary',
+export const QuantityCounter = Template.bind({});
+QuantityCounter.args = {
+  label: 'Quantity counter',
   placeholder: 'Number',
-};
-
-export const FullWidth = Template.bind({});
-FullWidth.args = {
-  label: 'Full parent width',
-  placeholder: 'Number',
-  fullWidth: true,
+  quantityCounter: true,
+  prefix: '₴',
+  postfix: 'UAH'
 };
 
 export const PrefixWithClass = Template.bind({});
@@ -45,6 +46,14 @@ PrefixWithClass.args = {
   prefixClassName: 'prefix',
 };
 
+export const CustomStep = Template.bind({});
+CustomStep.args = {
+  label: 'Custom step',
+  placeholder: 'Number',
+  quantityCounter: true,
+  step: 2
+};
+
 PrefixWithClass.decorators = [
   (Story) => (
     <div style={{ maxWidth: '102px' }}>
@@ -53,17 +62,9 @@ PrefixWithClass.decorators = [
   ),
 ];
 
-export const QuantityCounter = Template.bind({});
-QuantityCounter.args = {
-  label: 'Quantity counter',
+export const FullWidth = Template.bind({});
+FullWidth.args = {
+  label: 'Full parent width',
   placeholder: 'Number',
-  quantityCounter: true,
-};
-
-export const CustomStep = Template.bind({});
-CustomStep.args = {
-  label: 'Custom step',
-  placeholder: 'Number',
-  quantityCounter: true,
-  step: 2
+  fullWidth: true,
 };
