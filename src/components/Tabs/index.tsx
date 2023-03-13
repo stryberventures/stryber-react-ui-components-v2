@@ -32,24 +32,31 @@ const Tabs: React.FC<ITabs> = ({
   return (
     <div
       className={classNames(
-        classes.tabs,
+        classes.wrapper,
         { [classes.vertical]: direction == 'vertical' },
-        className)}
-      {...rest}
+      )}
     >
-      {children || tabs.map((tab, index) => {
-        return(
-          <Tab
-            {...tab}
-            key={index}
-            direction={direction}
-            color={color}
-            size={size}
-            variant={variant}
-            onChange={(id: ITab['id']) => onChange(id)}
-          />
-        );
-      })}
+      <div
+        className={classNames(
+          classes.tabs,
+          { [classes.vertical]: direction == 'vertical' },
+          className)}
+        {...rest}
+      >
+        {children || tabs.map((tab, index) => {
+          return(
+            <Tab
+              {...tab}
+              key={index}
+              direction={direction}
+              color={color}
+              size={size}
+              variant={variant}
+              onChange={(id: ITab['id']) => onChange(id)}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }
