@@ -22,7 +22,9 @@ export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
   onChange?: (e: React.BaseSyntheticEvent) => void,
   onBlur?: (e: React.BaseSyntheticEvent) => void,
   prefix?: string,
+  postfix?: string,
   prefixClassName?: string,
+  postfixClassName?: string,
   errorClassName?: string,
   hintClassName?: string,
   leftIcon?: React.ReactNode,
@@ -38,7 +40,7 @@ const Input: React.FC<IInput> = (props) => {
   const textClasses = useTextClasses();
   const { theme } = useTheme();
   const {
-    label, className, hint, prefix, prefixClassName, errorClassName, hintClassName,
+    label, className, hint, prefix, prefixClassName, postfix, postfixClassName, errorClassName, hintClassName,
     leftIcon, rightIcon, placeholder, clearButton = false, fullWidth, ...rest
   } = props;
   const {
@@ -96,6 +98,14 @@ const Input: React.FC<IInput> = (props) => {
         })}
       >
         {leftIcon}
+        {!!prefix && (
+          <Text
+            variant="components1"
+            className={classNames(classes.prefix, prefixClassName)}
+          >
+            {prefix}
+          </Text>
+        )}
         <div className={classes.inputArea}>
           { floatingLabel && renderLabel() }
           <div
@@ -105,7 +115,6 @@ const Input: React.FC<IInput> = (props) => {
               { [classes.floatingLabelInputWrapperInUse]: floatingLabel && inputInUse },
             )}
           >
-            {prefix && <div className={classNames(classes.prefix, prefixClassName)}>{prefix}</div>}
             <input
               {...inputProps}
               name={name}
@@ -138,6 +147,7 @@ const Input: React.FC<IInput> = (props) => {
             />
           </div>
         )}
+        {!!postfix && <Text variant="components1" className={classNames(classes.postfix, postfixClassName)}>{postfix}</Text>}
         {rightIcon}
       </div>
     </>
