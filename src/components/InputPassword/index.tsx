@@ -18,9 +18,7 @@ const InputPassword: React.FC<IInputPassword> = (props) => {
   const [visible, setVisible] = useState(false);
   const classes = useStyles()(props);
 
-  const onEyeClick = () => {
-    setVisible(!visible);
-  }
+  const onEyeClick = () => { setVisible(!visible); };
 
   return (
     <div className={classNames(classes.inputPassword, className, { [classes.fullWidth]: fullWidth })}>
