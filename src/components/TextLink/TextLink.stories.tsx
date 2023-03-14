@@ -13,7 +13,7 @@ export default {
   },
   args: {
     color: 'primary',
-    size: 'medium',
+    variant: 'body2',
     weight: 'regular',
     disabled: false,
   },
