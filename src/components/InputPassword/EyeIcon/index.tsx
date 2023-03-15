@@ -11,7 +11,6 @@ interface IEyeIcon extends React.HTMLAttributes<HTMLDivElement> {
 export const EyeIcon = (props: IEyeIcon) => {
   const { visible, disabled, className, ...rest } = props;
   const classes = useStyles();
-
   return (
     <div
       {...rest}
@@ -19,7 +18,7 @@ export const EyeIcon = (props: IEyeIcon) => {
         [classes.disabled]: disabled,
       }, className)}
     >
-      {visible ? <Eye variant="open" /> : <Eye variant="closed" />}
+      <Eye variant={visible ? 'open' : 'closed'}/>
     </div>
   );
 }
