@@ -2,7 +2,7 @@ import { createStyles, toRem } from '../Theme'
 import { IInputToggle } from './types';
 
 
-export default createStyles((theme) => ({
+export default () => createStyles((theme) => ({
   inputToggleLayout: {
     boxSizing: 'border-box',
     '& *, *:before, *:after': {
