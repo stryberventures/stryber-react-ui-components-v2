@@ -16,7 +16,7 @@ export default () => createStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    padding: [toRem(4), toRem(14)],
+    padding: [toRem(4), toRem(12)],
     height: toRem(props.variant === 'floatingLabel' ? 56 : 48),
     border: `${toRem(1)} solid ${theme.colors.neutralGray.medium300}`,
     backgroundColor: theme.colors.background.white,
