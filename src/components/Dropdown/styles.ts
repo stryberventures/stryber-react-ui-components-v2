@@ -29,7 +29,6 @@ export default createStyles((theme) => ({
   toggleIcon: {
     display: 'flex',
     alignItems: 'center',
-    marginRight: toRem(5),
     transition: 'transform 0.3s',
     '& svg path': {
       fill: theme.colors.neutralGray.main500,
