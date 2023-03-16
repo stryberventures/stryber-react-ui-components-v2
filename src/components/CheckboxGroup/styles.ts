@@ -1,7 +1,7 @@
 import { createStyles } from '../Theme';
 
 
-export default createStyles((theme) => ({
+export default () => createStyles((theme) => ({
   checkboxGroup: {
     display: 'flex',
     flexDirection: 'column',

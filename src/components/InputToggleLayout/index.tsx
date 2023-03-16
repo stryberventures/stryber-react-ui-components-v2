@@ -4,6 +4,7 @@ import useStyles from './styles';
 import { IInputToggle } from './types';
 import { ErrorMessage } from '../ErrorMessage';
 import Text from '../Text';
+import { KEYS } from '../../hooks/useKeyPress';
 
 const InputToggleLayout: React.FC<IInputToggle> = (props) => {
   const {
@@ -11,7 +12,7 @@ const InputToggleLayout: React.FC<IInputToggle> = (props) => {
     onChange, onFocus, errorMessage, placeholder, label, hint, controlled,
     reverse, fullWidth, color, ...rest
   } = props;
-  const classes = useStyles(color);
+  const classes = useStyles()(color);
   return (
     <div className={classNames(classes.inputToggleLayout, {
       [classes.disabled]: disabled,
@@ -47,6 +48,13 @@ const InputToggleLayout: React.FC<IInputToggle> = (props) => {
           checked={checked}
           disabled={disabled}
           onChange={onChange}
+          onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
+            const target = e?.target as HTMLInputElement;
+            if (e.key == KEYS.enter) {
+              const event = { ...e, target: { ...e.target, checked: target.checked }, }
+              onChange?.(event);
+            }
+          }}
           onFocus={onFocus}
         />
         <div className={classNames(classes.inputContainer, { [classes.middleAlign]: alignControl == 'middle' })}>
