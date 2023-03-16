@@ -4,6 +4,7 @@ import Input from './index';
 import pkg from './package.json';
 import { CreditCardIcon, InfoIcon } from '../Icons';
 import { buildExcludeArgTypes } from '../../storybook/utils';
+import { toRem } from '../Theme';
 
 export default {
   title: 'Components/Input',
@@ -83,7 +84,7 @@ LeftIcon.args = {
   label: 'Left icon',
   placeholder: 'placeholder@example.com',
   value: 'olivia@example.com',
-  leftIcon: <CreditCardIcon />
+  leftIcon: <CreditCardIcon style={{marginRight: toRem(14)}} />
 };
 
 export const RightIcon = Template.bind({});
