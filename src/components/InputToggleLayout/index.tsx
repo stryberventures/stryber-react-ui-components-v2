@@ -51,8 +51,7 @@ const InputToggleLayout: React.FC<IInputToggle> = (props) => {
           onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
             const target = e?.target as HTMLInputElement;
             if (e.key == KEYS.enter) {
-              const event = { ...e, target: { ...e.target, checked: target.checked }, }
-              onChange?.(event);
+              onChange?.({ ...e,  target: { ...target, checked: !target.checked, name } });
             }
           }}
           onFocus={onFocus}
