@@ -91,6 +91,7 @@ export default () => createStyles((theme) => ({
     color: theme.colors.text.secondary,
     backgroundColor: theme.colors.background.white,
     whiteSpace: 'pre',
+    marginLeft: toRem(10),
   },
   label: {
     display: 'block',

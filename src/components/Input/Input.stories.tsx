@@ -84,7 +84,7 @@ LeftIcon.args = {
   label: 'Left icon',
   placeholder: 'placeholder@example.com',
   value: 'olivia@example.com',
-  leftIcon: <CreditCardIcon style={{marginRight: toRem(14)}} />
+  leftIcon: <CreditCardIcon style={{ marginRight: toRem(10) }} />,
 };
 
 export const RightIcon = Template.bind({});
@@ -92,7 +92,16 @@ RightIcon.args = {
   label: 'End adornment',
   placeholder: 'placeholder@example.com',
   value: 'olivia@example.com',
-  rightIcon: <InfoIcon />
+  rightIcon: <InfoIcon style={{ marginLeft: toRem(10) }} />,
+};
+
+export const IconBothSides = Template.bind({});
+IconBothSides.args = {
+  label: 'End adornment',
+  placeholder: 'placeholder@example.com',
+  value: 'olivia@example.com',
+  leftIcon: <CreditCardIcon style={{ marginRight: toRem(10) }} />,
+  rightIcon: <InfoIcon style={{ marginLeft: toRem(10) }} />,
 };
 
 export const Mask = Template.bind({});
