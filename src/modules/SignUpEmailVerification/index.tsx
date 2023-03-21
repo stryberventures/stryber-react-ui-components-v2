@@ -7,7 +7,6 @@ import Button from '../../components/Button';
 import DemoLogo from '../../storybook/preview/DemoLogo';
 import * as yup from 'yup';
 
-
 export interface IEmailVerificationProps {
   email: string;
 }
@@ -82,12 +81,14 @@ const EmailVerification = ({ email = '', }: IEmailVerificationProps) => {
             className={classes.codeInput}
             name="code"
             label="Insert Verification Code"
+            variant="floatingLabel"
           />
           <Button
+            fullWidth
             type="button"
             className={classes.requestCodeButton}
             variant="ghost"
-            size="small"
+            shape="circle"
             disabled={disabledResendCode}
             onClick={requestCode}
           >
@@ -159,10 +160,10 @@ const useStyles = createStyles((theme) => ({
     marginBottom: toRem(52),
   },
   submitButton: {},
-  '@media (max-width: 800px)': {
+  [`@media (max-width: ${theme.breakpoints.md}px)`]: {
     emailVerification: {
       height: '100vh',
-      padding: [toRem(40), toRem(24), toRem(105)],
+      padding: [toRem(48), toRem(24), toRem(105)],
     },
     logoWrapper: {
       justifyContent: 'center',

@@ -55,6 +55,7 @@ const SignUp = () => {
             }}
           >
             <Input
+              variant="floatingLabel"
               fullWidth
               name="email"
               label="Email"
@@ -62,6 +63,7 @@ const SignUp = () => {
               className={classes.emailInput}
             />
             <InputPassword
+              variant="floatingLabel"
               fullWidth
               name="password"
               autoComplete="new-password"
@@ -71,6 +73,7 @@ const SignUp = () => {
               className={classes.passwordInput}
             />
             <InputPassword
+              variant="floatingLabel"
               fullWidth
               name="repeatPassword"
               autoComplete="new-password"
@@ -93,7 +96,6 @@ const SignUp = () => {
               type="button"
               shape="circle"
               variant="ghost"
-              size="large"
             >
               Login
             </Button>
@@ -167,7 +169,7 @@ const useStyles = createStyles((theme) => ({
   submitButton: {
     marginBottom: toRem(12),
   },
-  '@media (max-width: 800px)': {
+  [`@media (max-width: ${theme.breakpoints.md}px)`]: {
     signUpEmail: {
       padding: [toRem(48), toRem(24), toRem(70)],
     },
