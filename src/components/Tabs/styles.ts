@@ -28,7 +28,13 @@ export default createStyles((theme) => ({
         height: '100%',
       },
     },
+    '&$rtl$vertical': {
+      '&:after': {
+        right: 0,
+      },
+    },
   },
+  rtl: {},
   tabs: {
     overflow: 'scroll',
     maxWidth: '100%',

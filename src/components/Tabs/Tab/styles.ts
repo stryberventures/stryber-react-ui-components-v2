@@ -101,7 +101,13 @@ export default createStyles((theme) => {
         width: toRem(2),
         height: '100%',
       },
+      '&$rtl': {
+        '&:after': {
+          right: 0,
+        },
+      },
     },
+    rtl: {},
     active: {},
     disabled: {},
     label: {

@@ -22,6 +22,7 @@ export interface ITabProps extends ITab {
   direction?: TTabsDirection;
   size?: 'small' | 'medium';
   variant?: 'fitted' | 'default';
+  rtl?: boolean;
 }
 
 const Tab: React.FC<ITabProps> = ({
@@ -35,6 +36,7 @@ const Tab: React.FC<ITabProps> = ({
   color,
   size = 'small',
   variant = 'default',
+  rtl = false,
   onChange,
   ...rest
 }) => {
@@ -57,6 +59,7 @@ const Tab: React.FC<ITabProps> = ({
           [classes.vertical]: direction == 'vertical',
           [classes.horizontal]: direction == 'horizontal',
           [classes.fitted]: variant == 'fitted',
+          [classes.rtl]: rtl,
         },
         className)
       }

@@ -15,6 +15,7 @@ export interface ITabs {
   direction?: TTabsDirection;
   size?: ITabProps['size'];
   children?: React.ReactNode;
+  rtl?: boolean;
 }
 
 const Tabs: React.FC<ITabs> = ({
@@ -26,6 +27,7 @@ const Tabs: React.FC<ITabs> = ({
   onChange,
   children,
   size,
+  rtl = false,
   ...rest
 }) => {
   const classes = useStyles(color);
@@ -33,7 +35,10 @@ const Tabs: React.FC<ITabs> = ({
     <div
       className={classNames(
         classes.wrapper,
-        { [classes.vertical]: direction == 'vertical' },
+        {
+          [classes.vertical]: direction == 'vertical',
+          [classes.rtl]: rtl,
+        },
       )}
     >
       <div
@@ -47,6 +52,7 @@ const Tabs: React.FC<ITabs> = ({
           return(
             <Tab
               {...tab}
+              rtl={rtl}
               key={index}
               direction={direction}
               color={color}

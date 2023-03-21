@@ -6,6 +6,7 @@ import { DocumentIcon, HomeIcon, InfoIcon, ProfileIcon } from '../Icons';
 import { buildExcludeArgTypes } from '../../storybook/utils';
 import { ITab } from './Tab';
 
+
 const defaultTabs: ITab[] = [
   {
     id: 'home',
@@ -49,6 +50,7 @@ export default {
     tabs: defaultTabs,
     size: 'small',
     variant: 'default',
+    rtl: false,
   },
   argTypes: buildExcludeArgTypes(['className', 'children', 'onChange', 'tabs']),
 } as ComponentMeta<typeof Tabs>;
@@ -76,4 +78,14 @@ Fitted.args = {
     ...tab,
     icon: null,
   })),
+}
+
+export const VerticalRTL = Template.bind({});
+VerticalRTL.args = {
+  direction: 'vertical',
+  tabs: defaultTabs,
+  rtl: true,
+}
+VerticalRTL.parameters = {
+  direction: 'rtl',
 }
