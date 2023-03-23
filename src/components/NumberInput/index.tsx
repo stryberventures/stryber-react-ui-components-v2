@@ -26,7 +26,7 @@ const NumberInput: React.FC<INumberInput> = (props) => {
     step = 1,
     name = 'numberInput',
     value = '',
-    controlled = true,
+    controlled = false,
     errorMessage,
     onChange,
     prefix,

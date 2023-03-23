@@ -1,31 +1,27 @@
 import React from 'react';
 import Form from '../../components/Form';
-import Input from '../../components/Input';
-import InputPassword from '../../components/InputPassword';
+import NumberInput from '../../components/NumberInput';
 import Button from '../../components/Button';
 import Text from '../../components/Text';
+import TextLink from '../../components/TextLink';
+import CheckBox from '../../components/CheckBox';
 import { createStyles, toRem } from '../../components/Theme';
 import DemoLogo from '../../storybook/preview/DemoLogo';
 import * as yup from 'yup';
 
 
-const emailRegEx = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gm;
-const emailErrorMessage = 'Email incorrect';
-const passwordRegEx = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
-const passwordErrorMessage = 'The password should have 8 characters, lower and upper case, numbers and special characters.';
-const repeatPasswordErrorMessage = 'Passwords don\'t match';
+const errorMessage = '';
 
 const validationSchema = yup.object().shape({
-  email: yup.string().matches(emailRegEx, emailErrorMessage).required('Email is required'),
-  password: yup.string().matches(passwordRegEx, passwordErrorMessage).required('Password is required'),
-  repeatPassword: yup.string().oneOf([yup.ref('password')], repeatPasswordErrorMessage),
+  phone: yup.string().length(19, errorMessage).required('Phone number is required'),
+  dataPrivacy: yup.bool().oneOf([true], 'Field must be checked').required(),
 });
 
-const SignUpEmail = () => {
+const SignUpPhone = () => {
   const classes = useStyles();
   const [disabled, setDisabled] = React.useState(true);
   return (
-    <div className={classes.signUpEmail}>
+    <div className={classes.signUpPhone}>
       <div className={classes.logoWrapper}>
         <DemoLogo />
       </div>
@@ -45,7 +41,7 @@ const SignUpEmail = () => {
             align="center"
             className={classes.description}
           >
-            Add your email and create a secure password, following the criteria:
+            Please insert your phone number in order to start:
           </Text>
           <Form
             className={classes.form}
@@ -54,33 +50,38 @@ const SignUpEmail = () => {
               setDisabled(!isValid)
             }}
           >
-            <Input
+            <NumberInput
               variant="floatingLabel"
               fullWidth
-              name="email"
-              label="Email"
-              placeholder="you@email.com"
-              className={classes.emailInput}
+              name="phone"
+              label="Phone Number"
+              mask="+XX (XXX) XX-XX-XXX"
+              placeholder="+49 (XXX) XX-XX-XXX"
+              className={classes.phoneInput}
             />
-            <InputPassword
-              variant="floatingLabel"
-              fullWidth
-              name="password"
-              autoComplete="new-password"
-              label="Create password"
-              placeholder="Type your password here"
-              hint={passwordErrorMessage}
-              className={classes.passwordInput}
-            />
-            <InputPassword
-              variant="floatingLabel"
-              fullWidth
-              name="repeatPassword"
-              autoComplete="new-password"
-              label="Repeat Password"
-              placeholder="Type your password here"
-              hint="This is a hint text to help user."
-              className={classes.repeatPasswordInput}
+            <CheckBox
+              className={classes.checkbox}
+              name="dataPrivacy"
+              label={(
+                <div className={classes.checkboxLabel}>
+                  <Text>I accept the</Text>
+                  <TextLink
+                    target="_blank"
+                    href={'/terms-and-conditions'}
+                    className={classes.textLink}
+                  >
+                    Terms and Conditions
+                  </TextLink>
+                  <Text>and</Text>
+                  <TextLink
+                    target="_blank"
+                    href={'/privacy-policy'}
+                    className={classes.textLink}
+                  >
+                    Data Policy
+                  </TextLink>
+                </div>
+              )}
             />
             <Button
               fullWidth
@@ -89,7 +90,7 @@ const SignUpEmail = () => {
               disabled={disabled}
               className={classes.submitButton}
             >
-              Create  Account
+              Next
             </Button>
             <Button
               fullWidth
@@ -106,10 +107,10 @@ const SignUpEmail = () => {
   );
 }
 
-export default SignUpEmail;
+export default SignUpPhone;
 
 const useStyles = createStyles((theme) => ({
-  signUpEmail: {
+  signUpPhone: {
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
@@ -144,12 +145,12 @@ const useStyles = createStyles((theme) => ({
   },
   title: {
     width: '100%',
-    marginBottom: toRem(22),
+    marginBottom: toRem(24),
     color: theme.colors.text.headline,
   },
   description: {
     width: '100%',
-    marginBottom: toRem(30),
+    marginBottom: toRem(68),
     color: theme.colors.neutralGray.main500,
   },
   form: {
@@ -157,48 +158,47 @@ const useStyles = createStyles((theme) => ({
     flexDirection: 'column',
     flexGrow: 1,
   },
-  emailInput: {
-    marginBottom: toRem(44),
+  phoneInput: {
+    marginBottom: toRem(40),
   },
-  passwordInput: {
-    marginBottom: toRem(16),
+  checkbox: {
+    marginBottom: toRem(66),
   },
-  repeatPasswordInput: {
-    marginBottom: toRem(44),
+  checkboxLabel: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: toRem(4),
+  },
+  textLink: {
+    margin: `0 ${toRem(4)}`,
   },
   submitButton: {
     marginBottom: toRem(12),
   },
   [`@media (max-width: ${theme.breakpoints.md}px)`]: {
-    signUpEmail: {
+    signUpPhone: {
       padding: [toRem(48), toRem(24), toRem(70)],
     },
     logoWrapper: {
       justifyContent: 'center',
       paddingRight: 0,
-      marginBottom: toRem(70),
+      marginBottom: toRem(90),
     },
     title: {
-      marginBottom: toRem(12),
-      fontSize: toRem(22),
+      marginBottom: toRem(16),
       lineHeight: toRem(28),
       textAlign: 'left !important',
     },
     description: {
-      marginBottom: toRem(32),
+      marginBottom: toRem(30),
       textAlign: 'left !important',
     },
     formContainer: {
       maxWidth: '100%',
     },
-    emailInput: {
-      marginBottom: toRem(24),
-    },
-    passwordInput: {
-      marginBottom: toRem(32),
-    },
-    repeatPasswordInput: {
-      marginBottom: toRem(12),
+    phoneInput: {
+      marginBottom: toRem(48),
     },
     submitButton: {
       marginTop: 'auto',
