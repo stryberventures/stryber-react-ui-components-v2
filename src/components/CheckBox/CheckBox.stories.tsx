@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import CheckBox from './index';
+import Form from '../Form';
+import Button from '../Button';
+import Text from '../Text';
+import TextLink from '../TextLink';
 import pkg from './package.json';
 import { buildExcludeArgTypes } from '../../storybook/utils';
 import { toRem } from '../Theme';
+import * as yup from 'yup';
 
 export default {
   title: 'Components/CheckBox',
@@ -18,6 +23,7 @@ export default {
     reverse: false,
     shape: 'square',
     alignControl: 'top',
+    name: 'checkbox',
   },
   argTypes: buildExcludeArgTypes(['onFocus', 'controlled', 'className', 'onChange', 'value', 'title', 'heading', 'name']),
 } as ComponentMeta<typeof CheckBox>;
@@ -95,3 +101,43 @@ Multiline.decorators = [
     </div>
   ),
 ];
+
+const validationSchema = yup.object({
+  checkbox1: yup.bool().oneOf([true], 'Error message').required(),
+  checkbox2: yup.bool().oneOf([true], 'Error message').required(),
+})
+const TemplateWithValidation: ComponentStory<typeof CheckBox> = (args) => {
+  const [errorMessage, setErrorMessage] = useState('');
+  return (
+    <Form
+      validationSchema={validationSchema}
+      onError={(errorData) => {
+        setErrorMessage(errorData?.checkbox);
+      }}
+    >
+      <CheckBox
+        name="checkbox1"
+        label="Checkbox with validation"
+        color={errorMessage ? 'error' : 'primary'}
+      />
+      <CheckBox
+        name="checkbox2"
+        label={(
+          <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+            <Text style={{ marginRight: toRem(4) }} variant="components2">Custom label with </Text>
+            <TextLink target="_blank" href={'#'} variant="body3">text link </TextLink>
+          </div>
+        )}
+        color={errorMessage ? 'error' : 'primary'}
+      />
+      <Button
+        style={{ marginTop: toRem(32) }}
+        type="submit"
+      >
+        Submit
+      </Button>
+    </Form>
+  );
+};
+
+export const WithValidation = TemplateWithValidation.bind({});
