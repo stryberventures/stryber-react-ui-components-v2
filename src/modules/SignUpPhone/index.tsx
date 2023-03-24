@@ -55,8 +55,8 @@ const SignUpPhone = () => {
               fullWidth
               name="phone"
               label="Phone Number"
-              mask="+XX (XXX) XX-XX-XXX"
-              placeholder="+49 (XXX) XX-XX-XXX"
+              mask="+XX XXX XXXXXXXX"
+              placeholder="+XX XXX XXXXXXXX"
               className={classes.phoneInput}
             />
             <CheckBox
@@ -125,7 +125,7 @@ const useStyles = createStyles((theme) => ({
     display: 'flex',
     justifyContent: 'flex-end',
     width: '100%',
-    marginBottom: toRem(62),
+    marginBottom: toRem(56),
     paddingRight: toRem(78),
     boxSizing: 'border-box',
   },
@@ -159,10 +159,14 @@ const useStyles = createStyles((theme) => ({
     flexGrow: 1,
   },
   phoneInput: {
-    marginBottom: toRem(40),
+    marginBottom: toRem(36),
+    position: 'relative',
+    ...hintAndErrorStyles,
   },
   checkbox: {
-    marginBottom: toRem(66),
+    marginBottom: toRem(62),
+    position: 'relative',
+    ...hintAndErrorStyles,
   },
   checkboxLabel: {
     display: 'flex',
@@ -174,7 +178,7 @@ const useStyles = createStyles((theme) => ({
     margin: `0 ${toRem(4)}`,
   },
   submitButton: {
-    marginBottom: toRem(12),
+    marginBottom: toRem(20),
   },
   [`@media (max-width: ${theme.breakpoints.md}px)`]: {
     signUpPhone: {
@@ -183,7 +187,7 @@ const useStyles = createStyles((theme) => ({
     logoWrapper: {
       justifyContent: 'center',
       paddingRight: 0,
-      marginBottom: toRem(90),
+      marginBottom: toRem(74),
     },
     title: {
       marginBottom: toRem(16),
@@ -191,17 +195,29 @@ const useStyles = createStyles((theme) => ({
       textAlign: 'left !important',
     },
     description: {
-      marginBottom: toRem(30),
+      marginBottom: toRem(54),
       textAlign: 'left !important',
     },
     formContainer: {
       maxWidth: '100%',
     },
     phoneInput: {
-      marginBottom: toRem(48),
+      marginBottom: toRem(44),
+    },
+    checkbox: {
+      marginBottom: toRem(12),
     },
     submitButton: {
       marginTop: 'auto',
     },
   },
 }));
+
+const hintAndErrorStyles = {
+  '& [class*=hint], & [class*=errorMessage]': {
+    position: 'absolute',
+    left: 0,
+    top: '100%',
+    width: '100%',
+  }
+}

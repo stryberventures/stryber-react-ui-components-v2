@@ -2,15 +2,15 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import file from '!!raw-loader!./index';
 import pkg from './package.json';
-import EmailComponent from './index';
-import { replacePaths } from '../../storybook/utils';
+import PhoneVerificationComponent from './index';
+import { buildExcludeArgTypes, replacePaths } from '../../storybook/utils';
 import { FullViewportDecorator } from '../../storybook/preview/FullViewportDecorator';
 
 const sourceToDisplay = replacePaths(file);
 
 export default {
-  title: 'Modules/Authentication/SignUp/Email',
-  component: EmailComponent,
+  title: 'Modules/Authentication/SignUp/PhoneVerification',
+  component: PhoneVerificationComponent,
   parameters: {
     pkg,
   },
@@ -27,12 +27,18 @@ export default {
       return <Story/>
     },
   ],
-} as ComponentMeta<typeof EmailComponent>;
+  argTypes: buildExcludeArgTypes(['className', 'requestCode']),
+} as ComponentMeta<typeof PhoneVerificationComponent>;
 
-const Template: ComponentStory<typeof EmailComponent> = () => <EmailComponent />;
+const Template: ComponentStory<typeof PhoneVerificationComponent> = (...args) => {
+  return <PhoneVerificationComponent {...args[0]} />;
+}
 
-export const Email = Template.bind({});
-Email.parameters = {
+export const PhoneVerification = Template.bind({});
+PhoneVerification.args = {
+  email: 'alina@stryber.com',
+}
+PhoneVerification.parameters = {
   docs: {
     source: {
       code: sourceToDisplay,

@@ -7,8 +7,8 @@ import Button from '../../components/Button';
 import DemoLogo from '../../storybook/preview/DemoLogo';
 import * as yup from 'yup';
 
-export interface IEmailVerificationProps {
-  email: string;
+export interface IPhoneVerificationProps {
+  phone: string;
 }
 
 const validationSchema = yup.object().shape({
@@ -18,7 +18,7 @@ const validationSchema = yup.object().shape({
 const HOURS_VALID = 24;
 const RESEND_CODE_IN_SECONDS = 30;
 
-const EmailVerification = ({ email = '', }: IEmailVerificationProps) => {
+const PhoneVerification = ({ phone = '', }: IPhoneVerificationProps) => {
   const classes = useStyles();
   const [disabledSubmit, setDisabledSubmit] = useState(true);
   const [disabledResendCode, setDisabledResendCode] = useState(false);
@@ -47,7 +47,7 @@ const EmailVerification = ({ email = '', }: IEmailVerificationProps) => {
   );
   useEffect(() => { if (resendCodeIn == 0) setDisabledResendCode(false); }, [resendCodeIn]);
   return (
-    <div className={classes.emailVerification}>
+    <div className={classes.PhoneVerification}>
       <div className={classes.logoWrapper}>
         <DemoLogo />
       </div>
@@ -59,14 +59,14 @@ const EmailVerification = ({ email = '', }: IEmailVerificationProps) => {
           align="center"
           className={classes.title}
         >
-          Email Verification
+          Phone Verification
         </Text>
         <Text
           variant="body2"
           align="center"
           className={classes.description}
         >
-          {`Please enter the 6-digit verification code that was sent to ${email}. The code is valid for ${HOURS_VALID} hours.`}
+          {`Please enter the 6-digit verification code that was sent to ${phone}. The code is valid for ${HOURS_VALID} hours.`}
         </Text>
         <Form
           className={classes.form}
@@ -80,7 +80,7 @@ const EmailVerification = ({ email = '', }: IEmailVerificationProps) => {
             controlled={false}
             className={classes.codeInput}
             name="code"
-            label="Insert Verification Code"
+            label="Insert SMS Verification Code"
             variant="floatingLabel"
           />
           <Button
@@ -109,10 +109,10 @@ const EmailVerification = ({ email = '', }: IEmailVerificationProps) => {
   );
 }
 
-export default EmailVerification;
+export default PhoneVerification;
 
 const useStyles = createStyles((theme) => ({
-  emailVerification: {
+  PhoneVerification: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -139,12 +139,12 @@ const useStyles = createStyles((theme) => ({
   },
   title: {
     width: '100%',
-    marginBottom: toRem(22),
+    marginBottom: toRem(24),
     color: theme.colors.text.headline,
   },
   description: {
     width: '100%',
-    marginBottom: toRem(50),
+    marginBottom: toRem(44),
     color: theme.colors.neutralGray.main500,
   },
   form: {
@@ -153,7 +153,7 @@ const useStyles = createStyles((theme) => ({
     width: '100%',
   },
   codeInput: {
-    marginBottom: toRem(121),
+    marginBottom: toRem(124),
     position: 'relative',
     ...hintAndErrorStyles,
   },
@@ -163,7 +163,7 @@ const useStyles = createStyles((theme) => ({
   },
   submitButton: {},
   [`@media (max-width: ${theme.breakpoints.md}px)`]: {
-    emailVerification: {
+    PhoneVerification: {
       height: '100vh',
       padding: [toRem(48), toRem(24), toRem(105)],
     },
@@ -193,7 +193,7 @@ const useStyles = createStyles((theme) => ({
     requestCodeButton: {
       alignSelf: 'center',
       marginTop: 'auto',
-      marginBottom: toRem(12),
+      marginBottom: toRem(20),
     },
     submitButton: {
       marginBottom: 0

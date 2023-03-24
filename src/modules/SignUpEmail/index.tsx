@@ -79,7 +79,6 @@ const SignUpEmail = () => {
               autoComplete="new-password"
               label="Repeat Password"
               placeholder="Type your password here"
-              hint="This is a hint text to help user."
               className={classes.repeatPasswordInput}
             />
             <Button
@@ -149,7 +148,7 @@ const useStyles = createStyles((theme) => ({
   },
   description: {
     width: '100%',
-    marginBottom: toRem(30),
+    marginBottom: toRem(52),
     color: theme.colors.neutralGray.main500,
   },
   form: {
@@ -158,16 +157,22 @@ const useStyles = createStyles((theme) => ({
     flexGrow: 1,
   },
   emailInput: {
-    marginBottom: toRem(44),
+    position: 'relative',
+    marginBottom: toRem(56),
+    ...hintAndErrorStyles,
   },
   passwordInput: {
-    marginBottom: toRem(16),
+    position: 'relative',
+    marginBottom: toRem(78),
+    ...hintAndErrorStyles,
   },
   repeatPasswordInput: {
-    marginBottom: toRem(44),
+    position: 'relative',
+    marginBottom: toRem(52),
+    ...hintAndErrorStyles,
   },
   submitButton: {
-    marginBottom: toRem(12),
+    marginBottom: toRem(20),
   },
   [`@media (max-width: ${theme.breakpoints.md}px)`]: {
     signUpEmail: {
@@ -176,7 +181,7 @@ const useStyles = createStyles((theme) => ({
     logoWrapper: {
       justifyContent: 'center',
       paddingRight: 0,
-      marginBottom: toRem(70),
+      marginBottom: toRem(56),
     },
     title: {
       marginBottom: toRem(12),
@@ -192,10 +197,10 @@ const useStyles = createStyles((theme) => ({
       maxWidth: '100%',
     },
     emailInput: {
-      marginBottom: toRem(24),
+      marginBottom: toRem(52),
     },
     passwordInput: {
-      marginBottom: toRem(32),
+      marginBottom: toRem(91),
     },
     repeatPasswordInput: {
       marginBottom: toRem(12),
@@ -205,3 +210,12 @@ const useStyles = createStyles((theme) => ({
     },
   },
 }));
+
+const hintAndErrorStyles = {
+  '& [class*=hint], & [class*=errorMessage]': {
+    position: 'absolute',
+    left: 0,
+    top: '100%',
+    width: '100%',
+  }
+}

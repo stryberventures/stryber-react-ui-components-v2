@@ -9,7 +9,7 @@ import { FullViewportDecorator } from '../../storybook/preview/FullViewportDecor
 const sourceToDisplay = replacePaths(file);
 
 export default {
-  title: 'Modules/Authentication/EmailVerification',
+  title: 'Modules/Authentication/SignUp/EmailVerification',
   component: EmailVerificationComponent,
   parameters: {
     pkg,
