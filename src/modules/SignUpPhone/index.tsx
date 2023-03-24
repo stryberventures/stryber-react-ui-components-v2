@@ -13,7 +13,7 @@ import * as yup from 'yup';
 const errorMessage = '';
 
 const validationSchema = yup.object().shape({
-  phone: yup.string().length(19, errorMessage).required('Phone number is required'),
+  phone: yup.string().length(16, errorMessage).required('Phone number is required'),
   dataPrivacy: yup.bool().oneOf([true], 'Field must be checked').required(),
 });
 
