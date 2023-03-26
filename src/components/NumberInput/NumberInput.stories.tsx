@@ -14,6 +14,7 @@ export default {
   args: {
     color: 'primary',
     quantityCounter: false,
+    controlled: true,
     min: 0,
     max: 100,
     variant: 'labelOutside',
@@ -38,6 +39,7 @@ QuantityCounter.args = {
   label: 'Quantity counter',
   placeholder: 'Number',
   quantityCounter: true,
+  controlled: true,
   prefix: '₴',
   postfix: 'UAH'
 };
@@ -62,7 +64,8 @@ CustomStep.args = {
   label: 'Custom step',
   placeholder: 'Number',
   quantityCounter: true,
-  step: 2
+  controlled: true,
+  step: 2,
 };
 
 export const FullWidth = Template.bind({});
