@@ -9,6 +9,7 @@
     "@stryberventures/gaia-react.text": ">=0.0.1",
     "@stryberventures/gaia-react.text-link": ">=0.0.1",
     "@stryberventures/gaia-react.number-input": ">=0.0.1",
+    "@stryberventures/gaia-react.input": ">=0.0.1",
     "@stryberventures/gaia-react.checkbox": ">=0.0.1",
     "@stryberventures/gaia-react.button": ">=0.0.1"
   }
