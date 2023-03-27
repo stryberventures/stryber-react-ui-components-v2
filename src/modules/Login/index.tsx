@@ -60,7 +60,7 @@ const useStyles = createStyles((theme) => ({
     marginTop: toRem(17),
     marginBottom: toRem(56),
   },
-  '@media (max-width: 800px)': {
+  [`@media (max-width: ${theme.breakpoints.md}px)`]: {
     logoWrapper: {
       justifyContent: 'center',
       paddingRight: 0,

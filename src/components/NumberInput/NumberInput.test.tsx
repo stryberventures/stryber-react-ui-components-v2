@@ -45,7 +45,7 @@ it('should show value', () => {
 
 it('increase value on plus button', () => {
   const value = 22;
-  render(<NumberInput quantityCounter={true} value={value}/>)
+  render(<NumberInput quantityCounter={true} value={value} controlled={true} />)
   const plus = screen.getByTestId('testPlus');
   fireEvent.click(plus);
   expect(screen.queryByDisplayValue(value + 1)).toBeInTheDocument();
@@ -53,7 +53,7 @@ it('increase value on plus button', () => {
 
 it('decrease value on minus button', () => {
   const value = 22;
-  render(<NumberInput quantityCounter={true} value={value}/>)
+  render(<NumberInput quantityCounter={true} value={value}  controlled={true} />)
   const minus = screen.getByTestId('testMinus');
   fireEvent.click(minus);
   expect(screen.queryByDisplayValue(value - 1)).toBeInTheDocument();
