@@ -32,7 +32,7 @@ const CheckBox:React.FC<ICheckBox> = (props) => {
           checked={checked}
           shape={shape}
           disabled={disabled}
-          color={color}
+          color={errorMessage ? 'error' : color}
           indeterminate={indeterminate}
         />
       }

@@ -32,7 +32,6 @@ export default () => createStyles((theme) => ({
     gap: `${toRem(8)} ${toRem(10)}`,
     position: 'relative',
     userSelect: 'none',
-    height: '100%',
     width: 'fit-content',
     padding: [theme.spacing[4], theme.spacing[8], theme.spacing[4], theme.spacing[4]],
     '-webkit-tap-highlight-color': 'transparent',
