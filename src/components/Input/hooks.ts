@@ -49,9 +49,13 @@ export const useInput = (props: IInput) => {
       return nextValue;
     });
 
-    !controlled && updateFormValue(name, nextValue);
     onChange && onChange(e);
   };
+  
+  useEffect(
+    () => { !controlled && updateFormValue(name, internalValue); },
+    [internalValue]
+  );
 
   const onResetButtonPointerDown = (e: React.BaseSyntheticEvent) => {
     e.preventDefault();

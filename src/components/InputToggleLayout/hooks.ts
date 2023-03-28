@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import { useFormContext } from '../Form';
 import { IInputToggleBaseControlled } from './types';
 
@@ -13,11 +14,15 @@ export const useCheckedState = (props: IInputToggleBaseControlled) => {
     if (disabled) {
       return null;
     }
-    const { name, checked } = e.target;
+    const { checked } = e.target;
     setInternalValue(checked);
-    !controlled && updateFormValue(name, checked);
     onChange && onChange(e);
   };
+  
+  useEffect(
+    () => { !controlled && updateFormValue(name, internalValue); },
+    [internalValue]
+  );
 
   const onFocusWrapper = (e: React.BaseSyntheticEvent) => {
     const { name } = e.target;

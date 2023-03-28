@@ -1,6 +1,6 @@
 import React from 'react';
 import Form from '../../components/Form';
-import NumberInput from '../../components/NumberInput';
+import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Text from '../../components/Text';
 import TextLink from '../../components/TextLink';
@@ -10,7 +10,7 @@ import DemoLogo from '../../storybook/preview/DemoLogo';
 import * as yup from 'yup';
 
 
-const errorMessage = '';
+const errorMessage = 'Phone number should contain 13 digits';
 
 const validationSchema = yup.object().shape({
   phone: yup.string().length(16, errorMessage).required('Phone number is required'),
@@ -50,13 +50,12 @@ const SignUpPhone = () => {
               setDisabled(!isValid)
             }}
           >
-            <NumberInput
+            <Input
               variant="floatingLabel"
               fullWidth
               name="phone"
               label="Phone Number"
               mask="+XX XXX XXXXXXXX"
-              placeholder="+XX XXX XXXXXXXX"
               className={classes.phoneInput}
             />
             <CheckBox
