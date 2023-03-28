@@ -26,7 +26,7 @@ const NumberInput: React.FC<INumberInput> = (props) => {
     step = 1,
     name = 'numberInput',
     value = '',
-    controlled = true,
+    controlled = false,
     errorMessage,
     onChange,
     prefix,
@@ -79,6 +79,7 @@ const NumberInput: React.FC<INumberInput> = (props) => {
         prefixClassName={classNames(classes.prefix, prefixClassName)}
         postfix={postfix}
         autoComplete='off'
+        type="number"
         rightIcon={(
           <div className={classes.right} data-testid="testContainer">
             {quantityCounter && (

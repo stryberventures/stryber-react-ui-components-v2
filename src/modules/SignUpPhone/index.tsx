@@ -56,6 +56,7 @@ const SignUpPhone = () => {
               name="phone"
               label="Phone Number"
               mask="+XX XXX XXXXXXXX"
+              placeholder="+XX XXX XXXXXXXX"
               className={classes.phoneInput}
             />
             <CheckBox
