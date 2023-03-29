@@ -11,7 +11,7 @@ import * as yup from 'yup';
 
 const emailRegEx = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gm;
 const emailErrorMessage = 'Email incorrect';
-const passwordRegEx = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+const passwordRegEx = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=(?:.*[!@#$%^&*()\-_=+{};:,<.>])+).{8,}$/;
 const passwordErrorMessage = 'The password should have 8 characters, lower and upper case, numbers and special characters.';
 const repeatPasswordErrorMessage = 'Passwords don\'t match';
 
