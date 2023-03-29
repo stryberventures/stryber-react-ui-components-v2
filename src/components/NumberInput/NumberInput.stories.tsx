@@ -1,6 +1,9 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import NumberInput from './index';
+import Text from '../Text';
+import { toRem } from '../Theme/utils';
+import { defaultTheme } from '../Theme/defaultTheme';
 import pkg from './package.json';
 import './style.css';
 import { buildExcludeArgTypes } from '../../storybook/utils';
@@ -40,7 +43,7 @@ QuantityCounter.args = {
   placeholder: 'Number',
   quantityCounter: true,
   controlled: true,
-  prefix: '₴',
+  leftIcon: <Text variant="components1" style={{ marginRight: toRem(10), color: defaultTheme.colors.text.secondary }}>₴</Text>,
   postfix: 'UAH'
 };
 

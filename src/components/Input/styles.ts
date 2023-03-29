@@ -126,7 +126,6 @@ export default () => createStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'baseline',
-    gap: toRem(8),
   },
   floatingLabelInputWrapper: {
     height: 0,
