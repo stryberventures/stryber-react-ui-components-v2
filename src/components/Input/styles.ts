@@ -83,7 +83,7 @@ export default () => createStyles((theme) => ({
     flexGrow: 1,
   },
   prefix: {
-    color: theme.colors.text.secondary,
+    color: theme.colors.text.headline,
     backgroundColor: theme.colors.background.white,
     whiteSpace: 'pre',
   },
@@ -126,7 +126,6 @@ export default () => createStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'baseline',
-    gap: toRem(8),
   },
   floatingLabelInputWrapper: {
     height: 0,

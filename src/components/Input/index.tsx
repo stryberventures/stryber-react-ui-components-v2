@@ -27,8 +27,8 @@ export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
   postfixClassName?: string,
   errorClassName?: string,
   hintClassName?: string,
-  leftIcon?: React.ReactNode,
-  rightIcon?: React.ReactNode,
+  leftIcon?: React.ReactNode | JSX.Element,
+  rightIcon?: React.ReactNode | JSX.Element,
   mask?: string,
   fullWidth?: boolean,
   variant?: 'labelOutside' | 'floatingLabel',
@@ -98,14 +98,6 @@ const Input: React.FC<IInput> = (props) => {
         })}
       >
         {leftIcon}
-        {!!prefix && (
-          <Text
-            variant="components1"
-            className={classNames(classes.prefix, prefixClassName)}
-          >
-            {prefix}
-          </Text>
-        )}
         <div className={classes.inputArea}>
           { floatingLabel && renderLabel() }
           <div
@@ -115,6 +107,14 @@ const Input: React.FC<IInput> = (props) => {
               { [classes.floatingLabelInputWrapperInUse]: floatingLabel && inputInUse },
             )}
           >
+            {!!prefix && (
+              <Text
+                variant="components1"
+                className={classNames(classes.prefix, prefixClassName)}
+              >
+                {prefix}
+              </Text>
+            )}
             <input
               {...inputProps}
               name={name}
