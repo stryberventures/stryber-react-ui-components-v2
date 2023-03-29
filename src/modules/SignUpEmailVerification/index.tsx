@@ -117,7 +117,7 @@ const useStyles = createStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     width: '100%',
-    paddingTop: toRem(48),
+    padding: `${toRem(48)} 0 ${toRem(84)}`,
     boxSizing: 'border-box',
     '*, *:after, *:before': {
       boxSizing: 'inherit',

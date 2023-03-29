@@ -112,8 +112,7 @@ const useStyles = createStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
-    height: '100vh',
-    paddingTop: toRem(48),
+    padding: `${toRem(48)} 0 ${toRem(84)}`,
     boxSizing: 'border-box',
     '*, *:after, *:before': {
       boxSizing: 'inherit',
@@ -176,6 +175,7 @@ const useStyles = createStyles((theme) => ({
   },
   [`@media (max-width: ${theme.breakpoints.md}px)`]: {
     signUpEmail: {
+      height: '100vh',
       padding: [toRem(48), toRem(24), toRem(70)],
     },
     logoWrapper: {
