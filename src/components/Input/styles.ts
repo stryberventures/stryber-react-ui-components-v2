@@ -83,7 +83,7 @@ export default () => createStyles((theme) => ({
     flexGrow: 1,
   },
   prefix: {
-    color: theme.colors.text.secondary,
+    color: theme.colors.text.headline,
     backgroundColor: theme.colors.background.white,
     whiteSpace: 'pre',
   },
