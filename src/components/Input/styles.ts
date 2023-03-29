@@ -115,6 +115,9 @@ export default () => createStyles((theme) => ({
       color: theme.colors.text.disabled,
     }
   },
+  withMarginLeft: {
+    marginLeft: toRem(12),
+  },
   message: {
     marginTop: toRem(8),
   },
@@ -144,5 +147,5 @@ export default () => createStyles((theme) => ({
     '&:hover': {
       cursor: 'pointer',
     }
-  }
+  },
 }), { internalUsage: true });
