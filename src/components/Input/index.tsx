@@ -158,8 +158,19 @@ const Input: React.FC<IInput> = (props) => {
       [classes.fullWidth]: fullWidth,
     }, className)}>
       {renderCore()}
-      {errorMessage && <ErrorMessage text={errorMessage} className={classNames(classes.message, errorClassName)}/>}
-      {!errorMessage && hint && <HintMessage text={hint} disabled={disabled} className={classNames(classes.message, hintClassName)}/>}
+      {errorMessage && (
+        <ErrorMessage
+          text={errorMessage}
+          className={classNames(classes.message, errorClassName, { [classes.withMarginLeft]: floatingLabel })}
+        />
+      )}
+      {!errorMessage && hint && (
+        <HintMessage
+          text={hint}
+          disabled={disabled}
+          className={classNames(classes.message, hintClassName, { [classes.withMarginLeft]: floatingLabel })}
+        />
+      )}
     </div>
   );
 };

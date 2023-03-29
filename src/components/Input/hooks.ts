@@ -5,6 +5,7 @@ import { applyDigitMask } from './utils';
 
 export const useInput = (props: IInput) => {
   const {
+    variant = 'labelOutside',
     disabled,
     name = '',
     value = '',
@@ -15,7 +16,6 @@ export const useInput = (props: IInput) => {
     onBlur,
     onClick,
     mask,
-    variant,
     ...inputProps
   } = props;
   const inputRef = useRef<HTMLInputElement>(null);
