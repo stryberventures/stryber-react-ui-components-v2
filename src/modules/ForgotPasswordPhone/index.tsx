@@ -9,18 +9,17 @@ import DemoLogo from '../../storybook/preview/DemoLogo';
 import * as yup from 'yup';
 
 
-const emailRegEx = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gm;
-const emailErrorMessage = 'Email incorrect';
+const errorMessage = 'Phone number should contain 13 digits';
 
 const validationSchema = yup.object().shape({
-  email: yup.string().matches(emailRegEx, emailErrorMessage).required('Email is required'),
+  phone: yup.string().length(16, errorMessage).required('Phone is required'),
 });
 
-const ForgotPasswordEmail = () => {
+const ForgotPasswordPhone = () => {
   const classes = useStyles();
   const [disabled, setDisabled] = React.useState(true);
   return (
-    <div className={classes.forgotPasswordEmail}>
+    <div className={classes.forgotPasswordPhone}>
       <div className={classes.logoWrapper}>
         <DemoLogo />
       </div>
@@ -40,9 +39,9 @@ const ForgotPasswordEmail = () => {
             align="center"
             className={classes.description}
           >
-            Enter the email address associated with your
-            account and we’ll send an email with instructions
-            to reset your password in no time!
+            Enter the phone number associated with your account and
+            we’ll send an sms message with instructions to
+            reset your password in no time!
           </Text>
           <Form
             className={classes.form}
@@ -54,10 +53,11 @@ const ForgotPasswordEmail = () => {
             <Input
               variant="floatingLabel"
               fullWidth
-              name="email"
-              label="Email"
-              placeholder="you@email.com"
-              className={classes.emailInput}
+              name="phone"
+              label="Phone Number"
+              mask="+XX XXX XXXXXXXX"
+              placeholder="+XX XXX XXXXXXXX"
+              className={classes.phoneInput}
             />
             <Button
               fullWidth
@@ -73,7 +73,6 @@ const ForgotPasswordEmail = () => {
               type="button"
               shape="circle"
               variant="ghost"
-              disabled={disabled}
               className={classes.loginButton}
             >
               Login
@@ -91,10 +90,10 @@ const ForgotPasswordEmail = () => {
   );
 }
 
-export default ForgotPasswordEmail;
+export default ForgotPasswordPhone;
 
 const useStyles = createStyles((theme) => ({
-  forgotPasswordEmail: {
+  forgotPasswordPhone: {
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
@@ -133,7 +132,7 @@ const useStyles = createStyles((theme) => ({
   },
   description: {
     width: '100%',
-    marginBottom: theme.spacing[24],
+    marginBottom: theme.spacing[40],
     color: theme.colors.neutralGray.main500,
   },
   form: {
@@ -142,20 +141,20 @@ const useStyles = createStyles((theme) => ({
     alignItems: 'center',
     flexGrow: 1,
   },
-  emailInput: {
+  phoneInput: {
     position: 'relative',
-    marginBottom: theme.spacing[96],
+    marginBottom: theme.spacing[80],
     ...hintAndErrorStyles,
   },
   submitButton: {
     marginBottom: theme.spacing[24],
   },
   loginButton: {
-    marginBottom: theme.spacing[80],
+    marginBottom: theme.spacing[32],
   },
   textLink: {},
   [`@media (max-width: ${theme.breakpoints.md}px)`]: {
-    forgotPasswordEmail: {
+    forgotPasswordPhone: {
       height: '100vh',
       padding: [toRem(48), toRem(24), toRem(70)],
     },
@@ -171,13 +170,14 @@ const useStyles = createStyles((theme) => ({
       textAlign: 'left !important',
     },
     description: {
-      marginBottom: theme.spacing[32],
+      maxWidth: '100%',
+      marginBottom: theme.spacing[24],
       textAlign: 'left !important',
     },
     formContainer: {
       maxWidth: '100%',
     },
-    emailInput: {
+    phoneInput: {
       marginBottom: theme.spacing[32],
     },
     submitButton: {
