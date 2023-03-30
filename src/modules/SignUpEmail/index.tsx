@@ -112,7 +112,7 @@ const useStyles = createStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
-    padding: `${toRem(48)} 0 ${toRem(84)}`,
+    padding: `${theme.spacing[48]} 0 ${theme.spacing[80]}`,
     boxSizing: 'border-box',
     '*, *:after, *:before': {
       boxSizing: 'inherit',
@@ -122,8 +122,8 @@ const useStyles = createStyles((theme) => ({
     display: 'flex',
     justifyContent: 'flex-end',
     width: '100%',
-    marginBottom: toRem(62),
-    paddingRight: toRem(78),
+    marginBottom: theme.spacing[64],
+    paddingRight: theme.spacing[80],
     boxSizing: 'border-box',
   },
   screen: {
@@ -142,12 +142,12 @@ const useStyles = createStyles((theme) => ({
   },
   title: {
     width: '100%',
-    marginBottom: toRem(22),
+    marginBottom: theme.spacing[24],
     color: theme.colors.text.headline,
   },
   description: {
     width: '100%',
-    marginBottom: toRem(52),
+    marginBottom: theme.spacing[48],
     color: theme.colors.neutralGray.main500,
   },
   form: {
@@ -157,53 +157,53 @@ const useStyles = createStyles((theme) => ({
   },
   emailInput: {
     position: 'relative',
-    marginBottom: toRem(56),
+    marginBottom: theme.spacing[48],
     ...hintAndErrorStyles,
   },
   passwordInput: {
     position: 'relative',
-    marginBottom: toRem(78),
+    marginBottom: theme.spacing[80],
     ...hintAndErrorStyles,
   },
   repeatPasswordInput: {
     position: 'relative',
-    marginBottom: toRem(52),
+    marginBottom: theme.spacing[48],
     ...hintAndErrorStyles,
   },
   submitButton: {
-    marginBottom: toRem(20),
+    marginBottom: theme.spacing[24],
   },
   [`@media (max-width: ${theme.breakpoints.md}px)`]: {
     signUpEmail: {
       height: '100vh',
-      padding: [toRem(48), toRem(24), toRem(70)],
+      padding: [theme.spacing[48], theme.spacing[24], theme.spacing[64]],
     },
     logoWrapper: {
       justifyContent: 'center',
       paddingRight: 0,
-      marginBottom: toRem(56),
+      marginBottom: theme.spacing[48],
     },
     title: {
-      marginBottom: toRem(12),
+      marginBottom: theme.spacing[12],
       fontSize: toRem(22),
       lineHeight: toRem(28),
       textAlign: 'left !important',
     },
     description: {
-      marginBottom: toRem(32),
+      marginBottom: theme.spacing[32],
       textAlign: 'left !important',
     },
     formContainer: {
       maxWidth: '100%',
     },
     emailInput: {
-      marginBottom: toRem(52),
+      marginBottom: theme.spacing[48],
     },
     passwordInput: {
-      marginBottom: toRem(91),
+      marginBottom: theme.spacing[96],
     },
     repeatPasswordInput: {
-      marginBottom: toRem(12),
+      marginBottom: theme.spacing[12],
     },
     submitButton: {
       marginTop: 'auto',

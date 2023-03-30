@@ -98,7 +98,7 @@ const useStyles = createStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
-    padding: `${toRem(48)} 0 ${toRem(84)}`,
+    padding: `${theme.spacing[48]} 0 ${theme.spacing[80]}`,
     boxSizing: 'border-box',
     '*, *:after, *:before': {
       boxSizing: 'inherit',
@@ -108,8 +108,8 @@ const useStyles = createStyles((theme) => ({
     display: 'flex',
     justifyContent: 'flex-end',
     width: '100%',
-    marginBottom: toRem(62),
-    paddingRight: toRem(78),
+    marginBottom: theme.spacing[64],
+    paddingRight: theme.spacing[80],
     boxSizing: 'border-box',
   },
   screen: {
@@ -157,12 +157,12 @@ const useStyles = createStyles((theme) => ({
   [`@media (max-width: ${theme.breakpoints.md}px)`]: {
     forgotPasswordEmail: {
       height: '100vh',
-      padding: [toRem(48), toRem(24), toRem(70)],
+      padding: [theme.spacing[48], theme.spacing[24], theme.spacing[64]],
     },
     logoWrapper: {
       justifyContent: 'center',
       paddingRight: 0,
-      marginBottom: toRem(56),
+      marginBottom: theme.spacing[48],
     },
     title: {
       marginBottom: theme.spacing[12],

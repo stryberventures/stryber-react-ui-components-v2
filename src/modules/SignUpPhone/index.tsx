@@ -114,7 +114,7 @@ const useStyles = createStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
-    padding: `${toRem(48)} 0 ${toRem(84)}`,
+    padding: `${theme.spacing[48]} 0 ${theme.spacing[80]}`,
     boxSizing: 'border-box',
     '*, *:after, *:before': {
       boxSizing: 'inherit',
@@ -124,8 +124,8 @@ const useStyles = createStyles((theme) => ({
     display: 'flex',
     justifyContent: 'flex-end',
     width: '100%',
-    marginBottom: toRem(56),
-    paddingRight: toRem(78),
+    marginBottom: theme.spacing[48],
+    paddingRight: theme.spacing[80],
     boxSizing: 'border-box',
   },
   screen: {
@@ -144,12 +144,12 @@ const useStyles = createStyles((theme) => ({
   },
   title: {
     width: '100%',
-    marginBottom: toRem(24),
+    marginBottom: theme.spacing[24],
     color: theme.colors.text.headline,
   },
   description: {
     width: '100%',
-    marginBottom: toRem(68),
+    marginBottom: theme.spacing[64],
     color: theme.colors.neutralGray.main500,
   },
   form: {
@@ -158,12 +158,12 @@ const useStyles = createStyles((theme) => ({
     flexGrow: 1,
   },
   phoneInput: {
-    marginBottom: toRem(36),
+    marginBottom: theme.spacing[32],
     position: 'relative',
     ...hintAndErrorStyles,
   },
   checkbox: {
-    marginBottom: toRem(62),
+    marginBottom: theme.spacing[64],
     position: 'relative',
     ...hintAndErrorStyles,
   },
@@ -171,41 +171,42 @@ const useStyles = createStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: toRem(4),
+    gap: theme.spacing[4],
   },
   textLink: {
-    margin: `0 ${toRem(4)}`,
+    margin: `0 ${theme.spacing[4]}`,
   },
   submitButton: {
-    marginBottom: toRem(20),
+    marginBottom: theme.spacing[24],
   },
   [`@media (max-width: ${theme.breakpoints.md}px)`]: {
     signUpPhone: {
       height: '100vh',
-      padding: [toRem(48), toRem(24), toRem(70)],
+      padding: [theme.spacing[48], theme.spacing[24], theme.spacing[64]],
     },
     logoWrapper: {
       justifyContent: 'center',
       paddingRight: 0,
-      marginBottom: toRem(74),
+      marginBottom: theme.spacing[80],
     },
     title: {
-      marginBottom: toRem(16),
+      marginBottom: theme.spacing[16],
+      fontSize: toRem(22),
       lineHeight: toRem(28),
       textAlign: 'left !important',
     },
     description: {
-      marginBottom: toRem(54),
+      marginBottom: theme.spacing[48],
       textAlign: 'left !important',
     },
     formContainer: {
       maxWidth: '100%',
     },
     phoneInput: {
-      marginBottom: toRem(44),
+      marginBottom: theme.spacing[40],
     },
     checkbox: {
-      marginBottom: toRem(12),
+      marginBottom: theme.spacing[12],
     },
     submitButton: {
       marginTop: 'auto',
