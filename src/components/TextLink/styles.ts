@@ -57,7 +57,7 @@ export default () => createStyles((theme) => ({
     '&:after': {
       position: 'absolute',
       left: 0,
-      bottom: props.size == 'small' ? 2 : (props.size == 'medium') ? 3 : 4,
+      bottom: props.variant == 'body3' ? 2 : (props.variant == 'body2') ? 3 : 4,
       width: '100%',
       borderBottom: '1.5px solid transparent',
       transition: 'border-bottom .2s ease-out',

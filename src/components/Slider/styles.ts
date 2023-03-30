@@ -94,7 +94,7 @@ export default createStyles( (theme) => ({
     },
     '&>div>div': {
       height: toRem(34),
-      padding: 0,
+      padding: '0 !important',
       width: 'fit-content',
     },
     '& $input': {

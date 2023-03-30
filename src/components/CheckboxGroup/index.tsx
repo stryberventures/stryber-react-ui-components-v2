@@ -33,7 +33,7 @@ const CheckboxGroup: React.FC<ICheckboxGroupProps> = ({
   errorMessage,
   ...rest
 }) => {
-  const classes = useStyles();
+  const classes = useStyles()();
   const { updateFormValue } = useFormContext(name);
   const onChangeWrapper = (newState: IChildCheckboxesState) => {
     setChildCheckboxes(newState);

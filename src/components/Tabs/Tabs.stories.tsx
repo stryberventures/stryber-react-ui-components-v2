@@ -30,7 +30,7 @@ const defaultTabs: ITab[] = [
   },
   {
     id: 'documents',
-    icon: <DocumentIcon />,
+    icon: <DocumentIcon/>,
     label: 'Documents',
     active: false,
     disabled: false,
@@ -72,11 +72,6 @@ export const Default = Template.bind({});
 export const Fitted = Template.bind({});
 Fitted.args = {
   variant: 'fitted',
-}
-
-export const WithoutIcons = Template.bind({});
-WithoutIcons.args = {
-  variant: 'default',
   tabs: defaultTabs.map((tab) => ({
     ...tab,
     icon: null,

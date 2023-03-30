@@ -1,9 +1,7 @@
 import React from 'react';
 import Form from '../../components/Form';
 import Input from '../../components/Input';
-import TextLink from '../../components/TextLink';
 import InputPassword from '../../components/InputPassword';
-import CheckBox from '../../components/CheckBox';
 import Button from '../../components/Button';
 import Text from '../../components/Text';
 import { createStyles, toRem } from '../../components/Theme';
@@ -13,17 +11,21 @@ import * as yup from 'yup';
 
 const emailRegEx = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gm;
 const emailErrorMessage = 'Email incorrect';
+const passwordRegEx = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=(?:.*[!@#$%^&*()\-_=+{};:,<.>])+).{8,}$/;
+const passwordErrorMessage = 'The password should have 8 characters, lower and upper case, numbers and special characters.';
+const repeatPasswordErrorMessage = 'Passwords don\'t match';
 
 const validationSchema = yup.object().shape({
   email: yup.string().matches(emailRegEx, emailErrorMessage).required('Email is required'),
-  password: yup.string().required('Password is required'),
+  password: yup.string().matches(passwordRegEx, passwordErrorMessage).required('Password is required'),
+  repeatPassword: yup.string().oneOf([yup.ref('password')], repeatPasswordErrorMessage),
 });
 
-const LoginEmail = () => {
+const SignUpEmail = () => {
   const classes = useStyles();
   const [disabled, setDisabled] = React.useState(true);
   return (
-    <div className={classes.loginEmail}>
+    <div className={classes.signUpEmail}>
       <div className={classes.logoWrapper}>
         <DemoLogo />
       </div>
@@ -36,7 +38,14 @@ const LoginEmail = () => {
             align="center"
             className={classes.title}
           >
-            Account Login
+            Signup
+          </Text>
+          <Text
+            variant="body2"
+            align="center"
+            className={classes.description}
+          >
+            Add your email and create a secure password, following the criteria:
           </Text>
           <Form
             className={classes.form}
@@ -58,14 +67,19 @@ const LoginEmail = () => {
               fullWidth
               name="password"
               autoComplete="new-password"
-              label="Password"
+              label="Create password"
               placeholder="Type your password here"
+              hint={passwordErrorMessage}
               className={classes.passwordInput}
             />
-            <CheckBox
-              name="remember"
-              label="Remember me"
-              className={classes.checkboxInput}
+            <InputPassword
+              variant="floatingLabel"
+              fullWidth
+              name="repeatPassword"
+              autoComplete="new-password"
+              label="Repeat Password"
+              placeholder="Type your password here"
+              className={classes.repeatPasswordInput}
             />
             <Button
               fullWidth
@@ -74,17 +88,16 @@ const LoginEmail = () => {
               disabled={disabled}
               className={classes.submitButton}
             >
+              Create  Account
+            </Button>
+            <Button
+              fullWidth
+              type="button"
+              shape="circle"
+              variant="ghost"
+            >
               Login
             </Button>
-            <TextLink
-              href={'#'}
-              className={classes.textLink}
-            >
-              Forgot Password?
-            </TextLink>
-            <TextLink href={'#'}>
-              New user? Register here
-            </TextLink>
           </Form>
         </div>
       </div>
@@ -92,10 +105,10 @@ const LoginEmail = () => {
   );
 }
 
-export default LoginEmail;
+export default SignUpEmail;
 
 const useStyles = createStyles((theme) => ({
-  loginEmail: {
+  signUpEmail: {
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
@@ -129,39 +142,39 @@ const useStyles = createStyles((theme) => ({
   },
   title: {
     width: '100%',
-    marginBottom: toRem(50),
+    marginBottom: toRem(22),
     color: theme.colors.text.headline,
+  },
+  description: {
+    width: '100%',
+    marginBottom: toRem(52),
+    color: theme.colors.neutralGray.main500,
   },
   form: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
     flexGrow: 1,
   },
   emailInput: {
     position: 'relative',
-    marginBottom: toRem(50),
+    marginBottom: toRem(56),
     ...hintAndErrorStyles,
   },
   passwordInput: {
     position: 'relative',
-    marginBottom: toRem(54),
+    marginBottom: toRem(78),
     ...hintAndErrorStyles,
   },
-  checkboxInput: {
-    alignSelf: 'flex-start',
-    marginBottom: toRem(54),
+  repeatPasswordInput: {
     position: 'relative',
+    marginBottom: toRem(52),
     ...hintAndErrorStyles,
   },
   submitButton: {
-    marginBottom: toRem(40),
-  },
-  textLink: {
-    marginBottom: toRem(44),
+    marginBottom: toRem(20),
   },
   [`@media (max-width: ${theme.breakpoints.md}px)`]: {
-    loginEmail: {
+    signUpEmail: {
       height: '100vh',
       padding: [toRem(48), toRem(24), toRem(70)],
     },
@@ -171,8 +184,13 @@ const useStyles = createStyles((theme) => ({
       marginBottom: toRem(56),
     },
     title: {
+      marginBottom: toRem(12),
       fontSize: toRem(22),
       lineHeight: toRem(28),
+      textAlign: 'left !important',
+    },
+    description: {
+      marginBottom: toRem(32),
       textAlign: 'left !important',
     },
     formContainer: {
@@ -182,17 +200,13 @@ const useStyles = createStyles((theme) => ({
       marginBottom: toRem(52),
     },
     passwordInput: {
-      marginBottom: toRem(62),
+      marginBottom: toRem(91),
     },
-    checkboxInput: {
+    repeatPasswordInput: {
       marginBottom: toRem(12),
     },
     submitButton: {
       marginTop: 'auto',
-      marginBottom: toRem(16),
-    },
-    textLink: {
-      marginBottom: toRem(58),
     },
   },
 }));

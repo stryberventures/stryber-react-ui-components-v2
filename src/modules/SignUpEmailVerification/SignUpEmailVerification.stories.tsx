@@ -1,16 +1,16 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import pkg from './package.json';
-import EmailComponent from './index';
 import file from '!!raw-loader!./index';
-import { replacePaths } from '../../storybook/utils';
+import pkg from './package.json';
+import EmailVerificationComponent from './index';
+import { buildExcludeArgTypes, replacePaths } from '../../storybook/utils';
 import { FullViewportDecorator } from '../../storybook/preview/FullViewportDecorator';
 
 const sourceToDisplay = replacePaths(file);
 
 export default {
-  title: 'Modules/Authentication/Login/Email',
-  component: EmailComponent,
+  title: 'Modules/Authentication/SignUp/EmailVerification',
+  component: EmailVerificationComponent,
   parameters: {
     pkg,
   },
@@ -27,12 +27,18 @@ export default {
       return <Story/>
     },
   ],
-} as ComponentMeta<typeof EmailComponent>;
+  argTypes: buildExcludeArgTypes(['className', 'requestCode']),
+} as ComponentMeta<typeof EmailVerificationComponent>;
 
-const Template: ComponentStory<typeof EmailComponent> = () => <EmailComponent />;
+const Template: ComponentStory<typeof EmailVerificationComponent> = (...args) => {
+  return <EmailVerificationComponent {...args[0]} />;
+}
 
-export const Email = Template.bind({});
-Email.parameters = {
+export const EmailVerification = Template.bind({});
+EmailVerification.args = {
+  email: 'alina@stryber.com',
+}
+EmailVerification.parameters = {
   docs: {
     source: {
       code: sourceToDisplay,

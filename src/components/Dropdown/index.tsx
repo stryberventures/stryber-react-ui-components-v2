@@ -6,10 +6,11 @@ import { ArrowIcon } from '../Icons';
 import { useDropdown } from './hooks';
 
 export interface IDropdownBase extends React.HTMLAttributes<HTMLDivElement>{
-  label: string,
+  label?: string,
   placeholder?: string,
   className?: string,
   disabled?: boolean,
+  inputVariant?: 'labelOutside' | 'floatingLabel',
   error?: string,
   hint?: string,
   onToggle?: (open: boolean) => void,
@@ -35,7 +36,7 @@ export interface IDropdownRef {
 
 const Dropdown = forwardRef((props: IDropdown, ref: ForwardedRef<IDropdownRef>) => {
   const {
-    inputReadOnly = true, children, label, placeholder, value, className, color, name, fullWidth,
+    inputReadOnly = true, children, label, placeholder, value, className, color, name, fullWidth, inputVariant,
     hint, error, disabled, onClick, onToggle, contentClassName, onInputChange, rightIcon, onOutsideClick, ...rest
   } = props;
   const classes = useStyles();
@@ -51,6 +52,7 @@ const Dropdown = forwardRef((props: IDropdown, ref: ForwardedRef<IDropdownRef>) 
         readOnly={inputReadOnly}
         name={name}
         label={label}
+        variant={inputVariant}
         placeholder={placeholder}
         color={color}
         value={value}

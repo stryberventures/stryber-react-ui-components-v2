@@ -92,9 +92,9 @@ export interface ITheme {
       [key in Breakpoints]: string;
     };
     maxWidth: number,
-    breakpoints: {
-      [key in Breakpoints]: number;
-    };
+  };
+  breakpoints: {
+    [key in Breakpoints]: number;
   };
   spacing: {
     [key in TSpacing]: string;

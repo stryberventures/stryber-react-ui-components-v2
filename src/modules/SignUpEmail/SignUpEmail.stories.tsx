@@ -1,16 +1,16 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import pkg from './package.json';
-import SignUpComponent from './index';
 import file from '!!raw-loader!./index';
+import pkg from './package.json';
+import EmailComponent from './index';
 import { replacePaths } from '../../storybook/utils';
 import { FullViewportDecorator } from '../../storybook/preview/FullViewportDecorator';
 
 const sourceToDisplay = replacePaths(file);
 
 export default {
-  title: 'Modules/Authentication/SingUp',
-  component: SignUpComponent,
+  title: 'Modules/Authentication/SignUp/Email',
+  component: EmailComponent,
   parameters: {
     pkg,
   },
@@ -27,12 +27,12 @@ export default {
       return <Story/>
     },
   ],
-} as ComponentMeta<typeof SignUpComponent>;
+} as ComponentMeta<typeof EmailComponent>;
 
-const Template: ComponentStory<typeof SignUpComponent> = () => <SignUpComponent />;
+const Template: ComponentStory<typeof EmailComponent> = () => <EmailComponent />;
 
-export const SignUp = Template.bind({});
-SignUp.parameters = {
+export const Email = Template.bind({});
+Email.parameters = {
   docs: {
     source: {
       code: sourceToDisplay,

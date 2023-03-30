@@ -1,29 +1,27 @@
 import React from 'react';
 import Form from '../../components/Form';
 import Input from '../../components/Input';
-import TextLink from '../../components/TextLink';
-import InputPassword from '../../components/InputPassword';
-import CheckBox from '../../components/CheckBox';
 import Button from '../../components/Button';
 import Text from '../../components/Text';
+import TextLink from '../../components/TextLink';
+import CheckBox from '../../components/CheckBox';
 import { createStyles, toRem } from '../../components/Theme';
 import DemoLogo from '../../storybook/preview/DemoLogo';
 import * as yup from 'yup';
 
 
-const emailRegEx = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gm;
-const emailErrorMessage = 'Email incorrect';
+const errorMessage = 'Phone number should contain 13 digits';
 
 const validationSchema = yup.object().shape({
-  email: yup.string().matches(emailRegEx, emailErrorMessage).required('Email is required'),
-  password: yup.string().required('Password is required'),
+  phone: yup.string().length(16, errorMessage).required('Phone number is required'),
+  dataPrivacy: yup.bool().oneOf([true], 'Field must be checked').required(),
 });
 
-const LoginEmail = () => {
+const SignUpPhone = () => {
   const classes = useStyles();
   const [disabled, setDisabled] = React.useState(true);
   return (
-    <div className={classes.loginEmail}>
+    <div className={classes.signUpPhone}>
       <div className={classes.logoWrapper}>
         <DemoLogo />
       </div>
@@ -36,7 +34,14 @@ const LoginEmail = () => {
             align="center"
             className={classes.title}
           >
-            Account Login
+            Signup
+          </Text>
+          <Text
+            variant="body2"
+            align="center"
+            className={classes.description}
+          >
+            Please insert your phone number in order to start:
           </Text>
           <Form
             className={classes.form}
@@ -48,24 +53,35 @@ const LoginEmail = () => {
             <Input
               variant="floatingLabel"
               fullWidth
-              name="email"
-              label="Email"
-              placeholder="you@email.com"
-              className={classes.emailInput}
-            />
-            <InputPassword
-              variant="floatingLabel"
-              fullWidth
-              name="password"
-              autoComplete="new-password"
-              label="Password"
-              placeholder="Type your password here"
-              className={classes.passwordInput}
+              name="phone"
+              label="Phone Number"
+              mask="+XX XXX XXXXXXXX"
+              placeholder="+XX XXX XXXXXXXX"
+              className={classes.phoneInput}
             />
             <CheckBox
-              name="remember"
-              label="Remember me"
-              className={classes.checkboxInput}
+              className={classes.checkbox}
+              name="dataPrivacy"
+              label={(
+                <div className={classes.checkboxLabel}>
+                  <Text>I accept the</Text>
+                  <TextLink
+                    target="_blank"
+                    href={'/terms-and-conditions'}
+                    className={classes.textLink}
+                  >
+                    Terms and Conditions
+                  </TextLink>
+                  <Text>and</Text>
+                  <TextLink
+                    target="_blank"
+                    href={'/privacy-policy'}
+                    className={classes.textLink}
+                  >
+                    Data Policy
+                  </TextLink>
+                </div>
+              )}
             />
             <Button
               fullWidth
@@ -74,17 +90,16 @@ const LoginEmail = () => {
               disabled={disabled}
               className={classes.submitButton}
             >
+              Next
+            </Button>
+            <Button
+              fullWidth
+              type="button"
+              shape="circle"
+              variant="ghost"
+            >
               Login
             </Button>
-            <TextLink
-              href={'#'}
-              className={classes.textLink}
-            >
-              Forgot Password?
-            </TextLink>
-            <TextLink href={'#'}>
-              New user? Register here
-            </TextLink>
           </Form>
         </div>
       </div>
@@ -92,10 +107,10 @@ const LoginEmail = () => {
   );
 }
 
-export default LoginEmail;
+export default SignUpPhone;
 
 const useStyles = createStyles((theme) => ({
-  loginEmail: {
+  signUpPhone: {
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
@@ -109,7 +124,7 @@ const useStyles = createStyles((theme) => ({
     display: 'flex',
     justifyContent: 'flex-end',
     width: '100%',
-    marginBottom: toRem(62),
+    marginBottom: toRem(56),
     paddingRight: toRem(78),
     boxSizing: 'border-box',
   },
@@ -129,70 +144,71 @@ const useStyles = createStyles((theme) => ({
   },
   title: {
     width: '100%',
-    marginBottom: toRem(50),
+    marginBottom: toRem(24),
     color: theme.colors.text.headline,
+  },
+  description: {
+    width: '100%',
+    marginBottom: toRem(68),
+    color: theme.colors.neutralGray.main500,
   },
   form: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
     flexGrow: 1,
   },
-  emailInput: {
-    position: 'relative',
-    marginBottom: toRem(50),
-    ...hintAndErrorStyles,
-  },
-  passwordInput: {
-    position: 'relative',
-    marginBottom: toRem(54),
-    ...hintAndErrorStyles,
-  },
-  checkboxInput: {
-    alignSelf: 'flex-start',
-    marginBottom: toRem(54),
+  phoneInput: {
+    marginBottom: toRem(36),
     position: 'relative',
     ...hintAndErrorStyles,
   },
-  submitButton: {
-    marginBottom: toRem(40),
+  checkbox: {
+    marginBottom: toRem(62),
+    position: 'relative',
+    ...hintAndErrorStyles,
+  },
+  checkboxLabel: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: toRem(4),
   },
   textLink: {
-    marginBottom: toRem(44),
+    margin: `0 ${toRem(4)}`,
+  },
+  submitButton: {
+    marginBottom: toRem(20),
   },
   [`@media (max-width: ${theme.breakpoints.md}px)`]: {
-    loginEmail: {
+    signUpPhone: {
       height: '100vh',
       padding: [toRem(48), toRem(24), toRem(70)],
     },
     logoWrapper: {
       justifyContent: 'center',
       paddingRight: 0,
-      marginBottom: toRem(56),
+      marginBottom: toRem(74),
     },
     title: {
-      fontSize: toRem(22),
+      marginBottom: toRem(16),
       lineHeight: toRem(28),
+      textAlign: 'left !important',
+    },
+    description: {
+      marginBottom: toRem(54),
       textAlign: 'left !important',
     },
     formContainer: {
       maxWidth: '100%',
     },
-    emailInput: {
-      marginBottom: toRem(52),
+    phoneInput: {
+      marginBottom: toRem(44),
     },
-    passwordInput: {
-      marginBottom: toRem(62),
-    },
-    checkboxInput: {
+    checkbox: {
       marginBottom: toRem(12),
     },
     submitButton: {
       marginTop: 'auto',
-      marginBottom: toRem(16),
-    },
-    textLink: {
-      marginBottom: toRem(58),
     },
   },
 }));

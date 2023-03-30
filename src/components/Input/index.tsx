@@ -22,11 +22,13 @@ export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
   onChange?: (e: React.BaseSyntheticEvent) => void,
   onBlur?: (e: React.BaseSyntheticEvent) => void,
   prefix?: string,
+  postfix?: string,
   prefixClassName?: string,
+  postfixClassName?: string,
   errorClassName?: string,
   hintClassName?: string,
-  leftIcon?: React.ReactNode,
-  rightIcon?: React.ReactNode,
+  leftIcon?: React.ReactNode | JSX.Element,
+  rightIcon?: React.ReactNode | JSX.Element,
   mask?: string,
   fullWidth?: boolean,
   variant?: 'labelOutside' | 'floatingLabel',
@@ -38,7 +40,7 @@ const Input: React.FC<IInput> = (props) => {
   const textClasses = useTextClasses();
   const { theme } = useTheme();
   const {
-    label, className, hint, prefix, prefixClassName, errorClassName, hintClassName,
+    label, className, hint, prefix, prefixClassName, postfix, postfixClassName, errorClassName, hintClassName,
     leftIcon, rightIcon, placeholder, clearButton = false, fullWidth, ...rest
   } = props;
   const {
@@ -92,6 +94,7 @@ const Input: React.FC<IInput> = (props) => {
           [classes.disabled]: disabled,
           [classes.inputContainerError]: !!errorMessage,
           [classes.withLabel]: label,
+          [classes.fullWidth]: fullWidth,
         })}
       >
         {leftIcon}
@@ -104,7 +107,14 @@ const Input: React.FC<IInput> = (props) => {
               { [classes.floatingLabelInputWrapperInUse]: floatingLabel && inputInUse },
             )}
           >
-            {prefix && <div className={classNames(classes.prefix, prefixClassName)}>{prefix}</div>}
+            {!!prefix && (
+              <Text
+                variant="components1"
+                className={classNames(classes.prefix, prefixClassName)}
+              >
+                {prefix}
+              </Text>
+            )}
             <input
               {...inputProps}
               name={name}
@@ -137,6 +147,7 @@ const Input: React.FC<IInput> = (props) => {
             />
           </div>
         )}
+        {!!postfix && <Text variant="components1" className={classNames(classes.postfix, postfixClassName)}>{postfix}</Text>}
         {rightIcon}
       </div>
     </>
@@ -147,8 +158,19 @@ const Input: React.FC<IInput> = (props) => {
       [classes.fullWidth]: fullWidth,
     }, className)}>
       {renderCore()}
-      {errorMessage && <ErrorMessage text={errorMessage} className={classNames(classes.message, errorClassName)}/>}
-      {!errorMessage && hint && <HintMessage text={hint} disabled={disabled} className={classNames(classes.message, hintClassName)}/>}
+      {errorMessage && (
+        <ErrorMessage
+          text={errorMessage}
+          className={classNames(classes.message, errorClassName, { [classes.withMarginLeft]: floatingLabel })}
+        />
+      )}
+      {!errorMessage && hint && (
+        <HintMessage
+          text={hint}
+          disabled={disabled}
+          className={classNames(classes.message, hintClassName, { [classes.withMarginLeft]: floatingLabel })}
+        />
+      )}
     </div>
   );
 };

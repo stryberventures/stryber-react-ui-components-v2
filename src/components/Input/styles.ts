@@ -16,28 +16,23 @@ export default () => createStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: toRem(10),
-    padding: [toRem(4), toRem(14)],
+    padding: [toRem(8), toRem(12)],
     height: toRem(props.variant === 'floatingLabel' ? 56 : 48),
     border: `${toRem(1)} solid ${theme.colors.neutralGray.medium300}`,
     backgroundColor: theme.colors.background.white,
-    transition: 'border-color .3s, border-size .3s',
+    transition: 'border-color .3s, box-shadow .3s',
     '&:hover, &:hover $input': {
       backgroundColor: theme.colors.background.extraLightGrey,
     },
     '&:hover:not($disabled):not($inputContainerError)': {
       border: `${toRem(1)} solid ${theme.colors[props.color!].medium400}`,
     },
-    '&:focus-within': {
-      paddingLeft: toRem(13),
-      paddingRight: toRem(13),
-      backgroundColor: theme.colors.background.white,
-    },
-    '&:focus-within $input': {
+    '&:focus-within, &:focus-within $input': {
       backgroundColor: theme.colors.background.white,
     },
     '&:focus-within:not($disabled):not($inputContainerError)': {
-      border: `${toRem(2)} solid ${theme.colors[props.color!].main500}`,
+      border: `${toRem(1)} solid ${theme.colors[props.color!].main500}`,
+      boxShadow: `0 0 0 ${toRem(1)} ${theme.colors[props.color!].main500}`,
     },
     '&$disabled': {
       backgroundColor: theme.colors.background.extraLightGrey,
@@ -53,18 +48,11 @@ export default () => createStyles((theme) => ({
   inputContainerError: () => ({
     border: `${toRem(1)} solid ${theme.colors.error.main500}`,
     '&:focus-within': {
-      border: `${toRem(2)} solid ${theme.colors.error.main500}`,
+      border: `${toRem(1)} solid ${theme.colors.error.main500}`,
+      boxShadow: `0 0 0 ${toRem(1)} ${theme.colors.error.main500}`,
     },
   }),
   input: {
-    '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
-      '-webkit-appearance': 'none',
-      appearance: 'none',
-      margin: 0,
-    },
-    '&[type=number]': {
-      '-moz-appearance': 'textfield',
-    },
     border: 'none',
     outline: 'none',
     textOverflow: 'ellipsis',
@@ -73,6 +61,14 @@ export default () => createStyles((theme) => ({
     width: '100%',
     color: theme.colors.text.headline,
     backgroundColor: theme.colors.background.white,
+    '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+      '-webkit-appearance': 'none',
+      appearance: 'none',
+      margin: 0,
+    },
+    '&[type=number]': {
+      '-moz-appearance': 'textfield',
+    },
     '&::placeholder': {
       color: theme.colors.text.disabled,
     },
@@ -87,12 +83,18 @@ export default () => createStyles((theme) => ({
     width: '100%',
     height: '100%',
     overflow: 'hidden',
+    flexGrow: 1,
   },
   prefix: {
-    fontSize: toRem(16),
     color: theme.colors.text.headline,
     backgroundColor: theme.colors.background.white,
     whiteSpace: 'pre',
+  },
+  postfix: {
+    color: theme.colors.text.secondary,
+    backgroundColor: theme.colors.background.white,
+    whiteSpace: 'pre',
+    marginLeft: toRem(10),
   },
   label: {
     display: 'block',
@@ -115,6 +117,9 @@ export default () => createStyles((theme) => ({
     '&::placeholder': {
       color: theme.colors.text.disabled,
     }
+  },
+  withMarginLeft: {
+    marginLeft: toRem(12),
   },
   message: {
     marginTop: toRem(8),
@@ -144,5 +149,5 @@ export default () => createStyles((theme) => ({
     '&:hover': {
       cursor: 'pointer',
     }
-  }
+  },
 }), { internalUsage: true });

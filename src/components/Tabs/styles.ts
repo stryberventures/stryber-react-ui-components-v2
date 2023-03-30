@@ -2,13 +2,14 @@ import { createStyles, toRem } from '../Theme';
 
 
 export default createStyles((theme) => ({
-  tabs: {
-    overflow: 'scroll',
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'stretch',
+  wrapper: {
+    overflow: 'hidden',
     position: 'relative',
+    width: '100%',
     boxSizing: 'border-box',
+    '& *, *:after, *:before': {
+      boxSizing: 'inherit',
+    },
     '&:after': {
       display: 'block',
       position: 'absolute',
@@ -19,27 +20,30 @@ export default createStyles((theme) => ({
       height: toRem(1),
       backgroundColor: theme.colors.neutralGray.light200,
     },
-    '& *, *:after, *:before': {
-      boxSizing: 'inherit',
+    '&$vertical': {
+      '&:after': {
+        top: 0,
+        left: 0,
+        width: toRem(1),
+        height: '100%',
+      },
     },
+  },
+  tabs: {
+    overflow: 'scroll',
+    maxWidth: '100%',
+    display: 'flex',
+    flexWrap: 'nowrap',
+    flexDirection: 'row',
+    alignItems: 'stretch',
     '&::-webkit-scrollbar': {
       width: 0,
       height: 0,
     },
-  },
-  horizontal: {
-    width: 'fit-content',
-    minWidth: '100%',
-  },
-  vertical: {
-    width: 'fit-content',
-    flexDirection: 'column',
-    borderBottom: 'none',
-    '&:after': {
-      top: 0,
-      left: 0,
-      width: toRem(1),
-      height: '100%',
+    '&$vertical': {
+      width: 'fit-content',
+      flexDirection: 'column',
     },
   },
+  vertical: {},
 }), { internalUsage: true });

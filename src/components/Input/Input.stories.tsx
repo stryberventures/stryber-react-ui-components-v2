@@ -12,8 +12,16 @@ export default {
   parameters: {
     pkg,
   },
+  args: {
+    variant: 'labelOutside',
+    color: 'primary',
+    placeholder: '',
+    disabled: false,
+    clearButton: false,
+    fullWidth: false,
+  },
   argTypes: buildExcludeArgTypes(['name', 'controlled', 'onChange', 'rightIcon',
-    'leftIcon', 'onBlur', 'prefixClassName', 'contentClassName', 'hintClassName', 'errorClassName']),
+    'leftIcon', 'onBlur', 'prefixClassName', 'contentClassName', 'postfixClassName', 'hintClassName', 'errorClassName', 'className', 'value']),
 } as ComponentMeta<typeof Input>;
 
 const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
@@ -84,7 +92,7 @@ LeftIcon.args = {
   label: 'Left icon',
   placeholder: 'placeholder@example.com',
   value: 'olivia@example.com',
-  leftIcon: <CreditCardIcon />
+  leftIcon: <CreditCardIcon style={{ marginRight: toRem(10) }} />,
 };
 
 export const RightIcon = Template.bind({});
@@ -92,7 +100,16 @@ RightIcon.args = {
   label: 'End adornment',
   placeholder: 'placeholder@example.com',
   value: 'olivia@example.com',
-  rightIcon: <InfoIcon />
+  rightIcon: <InfoIcon style={{ marginLeft: toRem(10) }} />,
+};
+
+export const IconBothSides = Template.bind({});
+IconBothSides.args = {
+  label: 'End adornment',
+  placeholder: 'placeholder@example.com',
+  value: 'olivia@example.com',
+  leftIcon: <CreditCardIcon style={{ marginRight: toRem(10) }} />,
+  rightIcon: <InfoIcon style={{ marginLeft: toRem(10) }} />,
 };
 
 export const Mask = Template.bind({});

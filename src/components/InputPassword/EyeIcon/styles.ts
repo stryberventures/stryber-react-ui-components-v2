@@ -8,7 +8,7 @@ export default createStyles((theme) => ({
     alignItems: 'center',
     paddingLeft: toRem(8),
     '& svg path': {
-      fill: theme.colors.neutralGray.main500,
+      fill: theme.colors.text.headline,
     },
   },
   disabled: {
