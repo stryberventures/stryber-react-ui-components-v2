@@ -12,16 +12,13 @@ export default {
   },
   args: {
     color: 'primary',
+    clearButton: true,
     disabled: false,
     fullWidth: false,
   },
-  argTypes: buildExcludeArgTypes(['name', 'value', 'className', 'onFocus', 'onChange', 'controlled', 'size', 'errorMessage', 'onBlur', 'prefix', 'prefixClassName', 'errorMessage', 'hintClassName', 'leftIcon', 'rightIcon', 'errorClassName', 'mask', 'label', 'variant']),
+  argTypes: buildExcludeArgTypes(['name', 'value', 'className', 'onFocus', 'onChange', 'controlled', 'size', 'errorMessage', 'onBlur', 'prefix', 'prefixClassName', 'errorMessage', 'hintClassName', 'leftIcon', 'rightIcon', 'errorClassName', 'mask', 'label', 'variant', 'postfix', 'postfixClassName']),
 } as ComponentMeta<typeof SearchBar>;
 
 const Template: ComponentStory<typeof SearchBar> = (args) => <SearchBar {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
-  hint: 'Write a hint message here',
-  clearButton: true,
-};
+export const Default = Template.bind({});
