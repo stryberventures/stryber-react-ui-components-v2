@@ -36,6 +36,9 @@ export default () => createStyles((theme) => ({
     },
     '&$disabled': {
       backgroundColor: theme.colors.background.extraLightGrey,
+      '& svg path': {
+        fill: theme.colors.neutralGray.light200,
+      },
     },
   }),
   disabled: {
