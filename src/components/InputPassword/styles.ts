@@ -19,4 +19,4 @@ export default () => createStyles(() => ({
   fullWidth: {
     width: '100%',
   }
-}));
+}), { internalUsage: true });
