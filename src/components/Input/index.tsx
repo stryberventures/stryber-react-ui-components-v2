@@ -161,14 +161,14 @@ const Input: React.FC<IInput> = (props) => {
       {errorMessage && (
         <ErrorMessage
           text={errorMessage}
-          className={classNames(classes.message, errorClassName, { [classes.withMarginLeft]: floatingLabel })}
+          className={classNames(classes.message, errorClassName, { [classes.withPaddingLeft]: floatingLabel })}
         />
       )}
       {!errorMessage && hint && (
         <HintMessage
           text={hint}
           disabled={disabled}
-          className={classNames(classes.message, hintClassName, { [classes.withMarginLeft]: floatingLabel })}
+          className={classNames(classes.message, hintClassName, { [classes.withPaddingLeft]: floatingLabel })}
         />
       )}
     </div>

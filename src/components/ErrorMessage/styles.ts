@@ -9,6 +9,10 @@ export default createStyles((theme) => ({
     marginBottom: theme.spacing['8'],
     color: theme.colors.error.main500,
     lineHeight: toRem(16),
+    boxSizing: 'border-box',
+    '& *': {
+      boxSizing: 'inherit',
+    },
   },
   icon: {
     minWidth: toRem(16),

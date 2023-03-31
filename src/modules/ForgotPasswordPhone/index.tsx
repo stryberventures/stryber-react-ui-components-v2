@@ -1,10 +1,9 @@
 import React from 'react';
 import Form from '../../components/Form';
 import Input from '../../components/Input';
-import Button from '../../components/Button';
 import Text from '../../components/Text';
 import TextLink from '../../components/TextLink';
-import CheckBox from '../../components/CheckBox';
+import Button from '../../components/Button';
 import { createStyles, toRem } from '../../components/Theme';
 import DemoLogo from '../../storybook/preview/DemoLogo';
 import * as yup from 'yup';
@@ -13,15 +12,14 @@ import * as yup from 'yup';
 const errorMessage = 'Phone number should contain 13 digits';
 
 const validationSchema = yup.object().shape({
-  phone: yup.string().length(16, errorMessage).required('Phone number is required'),
-  dataPrivacy: yup.bool().oneOf([true], 'Field must be checked').required(),
+  phone: yup.string().length(16, errorMessage).required('Phone is required'),
 });
 
-const SignUpPhone = () => {
+const ForgotPasswordPhone = () => {
   const classes = useStyles();
   const [disabled, setDisabled] = React.useState(true);
   return (
-    <div className={classes.signUpPhone}>
+    <div className={classes.forgotPasswordPhone}>
       <div className={classes.logoWrapper}>
         <DemoLogo />
       </div>
@@ -34,14 +32,16 @@ const SignUpPhone = () => {
             align="center"
             className={classes.title}
           >
-            Signup
+            Reset Password
           </Text>
           <Text
             variant="body2"
             align="center"
             className={classes.description}
           >
-            Please insert your phone number in order to start:
+            Enter the phone number associated with your account and
+            we’ll send an sms message with instructions to
+            reset your password in no time!
           </Text>
           <Form
             className={classes.form}
@@ -59,30 +59,6 @@ const SignUpPhone = () => {
               placeholder="+XX XXX XXXXXXXX"
               className={classes.phoneInput}
             />
-            <CheckBox
-              className={classes.checkbox}
-              name="dataPrivacy"
-              label={(
-                <div className={classes.checkboxLabel}>
-                  <Text>I accept the</Text>
-                  <TextLink
-                    target="_blank"
-                    href={'/terms-and-conditions'}
-                    className={classes.textLink}
-                  >
-                    Terms and Conditions
-                  </TextLink>
-                  <Text>and</Text>
-                  <TextLink
-                    target="_blank"
-                    href={'/privacy-policy'}
-                    className={classes.textLink}
-                  >
-                    Data Policy
-                  </TextLink>
-                </div>
-              )}
-            />
             <Button
               fullWidth
               type="submit"
@@ -90,16 +66,23 @@ const SignUpPhone = () => {
               disabled={disabled}
               className={classes.submitButton}
             >
-              Next
+              Send password instructions
             </Button>
             <Button
               fullWidth
               type="button"
               shape="circle"
               variant="ghost"
+              className={classes.loginButton}
             >
               Login
             </Button>
+            <TextLink
+              href={'#'}
+              className={classes.textLink}
+            >
+              New user? Register here
+            </TextLink>
           </Form>
         </div>
       </div>
@@ -107,10 +90,10 @@ const SignUpPhone = () => {
   );
 }
 
-export default SignUpPhone;
+export default ForgotPasswordPhone;
 
 const useStyles = createStyles((theme) => ({
-  signUpPhone: {
+  forgotPasswordPhone: {
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
@@ -124,7 +107,7 @@ const useStyles = createStyles((theme) => ({
     display: 'flex',
     justifyContent: 'flex-end',
     width: '100%',
-    marginBottom: theme.spacing[48],
+    marginBottom: theme.spacing[64],
     paddingRight: theme.spacing[80],
     boxSizing: 'border-box',
   },
@@ -149,67 +132,60 @@ const useStyles = createStyles((theme) => ({
   },
   description: {
     width: '100%',
-    marginBottom: theme.spacing[64],
+    marginBottom: theme.spacing[40],
     color: theme.colors.neutralGray.main500,
   },
   form: {
     display: 'flex',
     flexDirection: 'column',
+    alignItems: 'center',
     flexGrow: 1,
   },
   phoneInput: {
-    marginBottom: theme.spacing[32],
     position: 'relative',
+    marginBottom: theme.spacing[80],
     ...hintAndErrorStyles,
-  },
-  checkbox: {
-    marginBottom: theme.spacing[64],
-    position: 'relative',
-    ...hintAndErrorStyles,
-  },
-  checkboxLabel: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: theme.spacing[4],
-  },
-  textLink: {
-    margin: `0 ${theme.spacing[4]}`,
   },
   submitButton: {
     marginBottom: theme.spacing[24],
   },
+  loginButton: {
+    marginBottom: theme.spacing[32],
+  },
+  textLink: {},
   [`@media (max-width: ${theme.breakpoints.md}px)`]: {
-    signUpPhone: {
+    forgotPasswordPhone: {
       height: '100vh',
       padding: [theme.spacing[48], theme.spacing[24], theme.spacing[64]],
     },
     logoWrapper: {
       justifyContent: 'center',
       paddingRight: 0,
-      marginBottom: theme.spacing[80],
+      marginBottom: theme.spacing[48],
     },
     title: {
-      marginBottom: theme.spacing[16],
+      marginBottom: theme.spacing[12],
       fontSize: toRem(22),
       lineHeight: toRem(28),
       textAlign: 'left !important',
     },
     description: {
-      marginBottom: theme.spacing[48],
+      maxWidth: '100%',
+      marginBottom: theme.spacing[24],
       textAlign: 'left !important',
     },
     formContainer: {
       maxWidth: '100%',
     },
     phoneInput: {
-      marginBottom: theme.spacing[40],
-    },
-    checkbox: {
-      marginBottom: theme.spacing[12],
+      marginBottom: theme.spacing[32],
     },
     submitButton: {
       marginTop: 'auto',
+      marginBottom: theme.spacing[24],
+    },
+    loginButton: {
+      marginBottom: theme.spacing[40],
     },
   },
 }));
