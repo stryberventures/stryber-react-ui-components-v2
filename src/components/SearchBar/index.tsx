@@ -19,6 +19,7 @@ const SearchBar: React.FC<ISearchBar> = (props) => {
       leftIcon={<SearchIcon className={classes.searchIcon} style={{ marginRight: toRem(8) }} />}
       clearButton
       {...rest}
+      label=""
     />
   );
 }
