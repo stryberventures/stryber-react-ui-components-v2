@@ -72,6 +72,7 @@ const Input: React.FC<IInput> = (props) => {
 
     return (
       <Text
+        data-testid="input-label"
         variant={variant}
         weight="regular"
         onClick={() => {inputRef.current?.focus()}}
@@ -140,6 +141,7 @@ const Input: React.FC<IInput> = (props) => {
           <div
             className={classes.clearButton}
             onPointerDown={onResetButtonPointerDown}
+            data-testid="clear-button"
           >
             <CloseCircleIcon
               variant="filled"
