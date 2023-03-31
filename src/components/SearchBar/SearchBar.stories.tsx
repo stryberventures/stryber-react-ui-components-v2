@@ -15,7 +15,6 @@ export default {
     clearButton: true,
     disabled: false,
     fullWidth: false,
-    value: 'search...'
   },
   argTypes: buildExcludeArgTypes(['name', 'value', 'className', 'onFocus', 'onChange', 'controlled', 'size', 'errorMessage', 'onBlur', 'prefix', 'prefixClassName', 'errorMessage', 'hintClassName', 'leftIcon', 'rightIcon', 'errorClassName', 'mask', 'label', 'variant', 'postfix', 'postfixClassName']),
 } as ComponentMeta<typeof SearchBar>;
