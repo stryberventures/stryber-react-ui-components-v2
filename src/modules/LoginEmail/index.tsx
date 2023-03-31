@@ -99,7 +99,7 @@ const useStyles = createStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
-    padding: `${toRem(48)} 0 ${toRem(84)}`,
+    padding: `${theme.spacing[48]} 0 ${theme.spacing[80]}`,
     boxSizing: 'border-box',
     '*, *:after, *:before': {
       boxSizing: 'inherit',
@@ -109,8 +109,8 @@ const useStyles = createStyles((theme) => ({
     display: 'flex',
     justifyContent: 'flex-end',
     width: '100%',
-    marginBottom: toRem(62),
-    paddingRight: toRem(78),
+    marginBottom: theme.spacing[64],
+    paddingRight: theme.spacing[80],
     boxSizing: 'border-box',
   },
   screen: {
@@ -129,7 +129,7 @@ const useStyles = createStyles((theme) => ({
   },
   title: {
     width: '100%',
-    marginBottom: toRem(50),
+    marginBottom: theme.spacing[48],
     color: theme.colors.text.headline,
   },
   form: {
@@ -140,35 +140,35 @@ const useStyles = createStyles((theme) => ({
   },
   emailInput: {
     position: 'relative',
-    marginBottom: toRem(50),
+    marginBottom: theme.spacing[48],
     ...hintAndErrorStyles,
   },
   passwordInput: {
     position: 'relative',
-    marginBottom: toRem(54),
+    marginBottom: theme.spacing[48],
     ...hintAndErrorStyles,
   },
   checkboxInput: {
     alignSelf: 'flex-start',
-    marginBottom: toRem(54),
+    marginBottom: theme.spacing[48],
     position: 'relative',
     ...hintAndErrorStyles,
   },
   submitButton: {
-    marginBottom: toRem(40),
+    marginBottom: theme.spacing[40],
   },
   textLink: {
-    marginBottom: toRem(44),
+    marginBottom: theme.spacing[40],
   },
   [`@media (max-width: ${theme.breakpoints.md}px)`]: {
     loginEmail: {
       height: '100vh',
-      padding: [toRem(48), toRem(24), toRem(70)],
+      padding: [theme.spacing[48], theme.spacing[24], theme.spacing[64]],
     },
     logoWrapper: {
       justifyContent: 'center',
       paddingRight: 0,
-      marginBottom: toRem(56),
+      marginBottom: theme.spacing[48],
     },
     title: {
       fontSize: toRem(22),
@@ -179,20 +179,20 @@ const useStyles = createStyles((theme) => ({
       maxWidth: '100%',
     },
     emailInput: {
-      marginBottom: toRem(52),
+      marginBottom: theme.spacing[48],
     },
     passwordInput: {
-      marginBottom: toRem(62),
+      marginBottom: theme.spacing[64],
     },
     checkboxInput: {
-      marginBottom: toRem(12),
+      marginBottom: theme.spacing[12],
     },
     submitButton: {
       marginTop: 'auto',
-      marginBottom: toRem(16),
+      marginBottom: theme.spacing[16],
     },
     textLink: {
-      marginBottom: toRem(58),
+      marginBottom: theme.spacing[48],
     },
   },
 }));

@@ -117,7 +117,7 @@ const useStyles = createStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     width: '100%',
-    padding: `${toRem(48)} 0 ${toRem(84)}`,
+    padding: `${theme.spacing[48]} 0 ${theme.spacing[80]}`,
     boxSizing: 'border-box',
     '*, *:after, *:before': {
       boxSizing: 'inherit',
@@ -127,8 +127,8 @@ const useStyles = createStyles((theme) => ({
     display: 'flex',
     justifyContent: 'flex-end',
     width: '100%',
-    marginBottom: toRem(56),
-    paddingRight: toRem(78),
+    marginBottom: theme.spacing[48],
+    paddingRight: theme.spacing[80],
     boxSizing: 'border-box',
   },
   formWrapper: {
@@ -139,12 +139,12 @@ const useStyles = createStyles((theme) => ({
   },
   title: {
     width: '100%',
-    marginBottom: toRem(22),
+    marginBottom: theme.spacing[24],
     color: theme.colors.text.headline,
   },
   description: {
     width: '100%',
-    marginBottom: toRem(50),
+    marginBottom: theme.spacing[48],
     color: theme.colors.neutralGray.main500,
   },
   form: {
@@ -153,47 +153,47 @@ const useStyles = createStyles((theme) => ({
     width: '100%',
   },
   codeInput: {
-    marginBottom: toRem(121),
+    marginBottom: toRem(120),
     position: 'relative',
     ...hintAndErrorStyles,
   },
   requestCodeButton: {
     alignSelf: 'flex-start',
-    marginBottom: toRem(24),
+    marginBottom: theme.spacing[24],
   },
   submitButton: {},
   [`@media (max-width: ${theme.breakpoints.md}px)`]: {
     emailVerification: {
       height: '100vh',
-      padding: [toRem(48), toRem(24), toRem(105)],
+      padding: [theme.spacing[48], theme.spacing[24], theme.spacing[96]],
     },
     logoWrapper: {
       justifyContent: 'center',
       paddingRight: 0,
-      marginBottom: toRem(74),
+      marginBottom: theme.spacing[80],
     },
     formWrapper: {
       height: '100%',
       alignItems: 'flex-start',
     },
     title: {
-      marginBottom: toRem(16),
+      marginBottom: theme.spacing[16],
       textAlign: 'left !important',
     },
     description: {
       textAlign: 'left !important',
-      marginBottom: toRem(30),
+      marginBottom: theme.spacing[32],
     },
     form: {
       height: '100%',
     },
     codeInput: {
-      marginBottom: toRem(12),
+      marginBottom: theme.spacing[12],
     },
     requestCodeButton: {
       alignSelf: 'center',
       marginTop: 'auto',
-      marginBottom: toRem(12),
+      marginBottom: theme.spacing[12],
     },
     submitButton: {
       marginBottom: 0

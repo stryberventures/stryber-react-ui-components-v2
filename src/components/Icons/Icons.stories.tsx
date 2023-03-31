@@ -191,10 +191,10 @@ function mapIconVariants (Icon: React.FC<any>) {
 function useStyles () {
   return createStyles((theme) => ({
     allIconsTitle: {
-      marginBottom: toRem(24),
+      marginBottom: theme.spacing[24],
     },
     subtitle: {
-      marginBottom: toRem(16),
+      marginBottom: theme.spacing[16],
     },
     allIconsContainer: {
       display: 'grid',
@@ -266,7 +266,7 @@ function useStyles () {
     },
     // social media and payment styles
     title: {
-      marginBottom: toRem(24),
+      marginBottom: theme.spacing[24],
     },
     container: {
       display: 'grid',
@@ -283,7 +283,7 @@ function useStyles () {
       display: 'flex',
       alignItems: 'center',
       gap: toRem(16),
-      marginBottom: toRem(16),
+      marginBottom: theme.spacing[16],
     },
     text: {
       textTransform: 'capitalize',

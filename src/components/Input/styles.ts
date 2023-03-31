@@ -118,8 +118,8 @@ export default () => createStyles((theme) => ({
       color: theme.colors.text.disabled,
     }
   },
-  withMarginLeft: {
-    marginLeft: toRem(12),
+  withPaddingLeft: {
+    paddingLeft: toRem(12),
   },
   message: {
     marginTop: toRem(8),

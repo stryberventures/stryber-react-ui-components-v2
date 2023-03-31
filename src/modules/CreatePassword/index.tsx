@@ -1,27 +1,27 @@
 import React from 'react';
+import * as yup from 'yup';
 import Form from '../../components/Form';
-import Input from '../../components/Input';
-import Button from '../../components/Button';
+import InputPassword from '../../components/InputPassword';
 import Text from '../../components/Text';
-import TextLink from '../../components/TextLink';
-import CheckBox from '../../components/CheckBox';
+import Button from '../../components/Button';
 import { createStyles, toRem } from '../../components/Theme';
 import DemoLogo from '../../storybook/preview/DemoLogo';
-import * as yup from 'yup';
 
 
-const errorMessage = 'Phone number should contain 13 digits';
+const passwordRegEx = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=(?:.*[!@#$%^&*()\-_=+{};:,<.>])+).{8,}$/;
+const passwordErrorMessage = 'The password should have 8 characters, lower and upper case, numbers and special characters.';
+const repeatPasswordErrorMessage = 'Passwords don\'t match';
 
 const validationSchema = yup.object().shape({
-  phone: yup.string().length(16, errorMessage).required('Phone number is required'),
-  dataPrivacy: yup.bool().oneOf([true], 'Field must be checked').required(),
+  password: yup.string().matches(passwordRegEx, passwordErrorMessage).required('Password is required'),
+  repeatPassword: yup.string().oneOf([yup.ref('password')], repeatPasswordErrorMessage),
 });
 
-const SignUpPhone = () => {
+const CreatePassword = () => {
   const classes = useStyles();
   const [disabled, setDisabled] = React.useState(true);
   return (
-    <div className={classes.signUpPhone}>
+    <div className={classes.createPassword}>
       <div className={classes.logoWrapper}>
         <DemoLogo />
       </div>
@@ -34,14 +34,7 @@ const SignUpPhone = () => {
             align="center"
             className={classes.title}
           >
-            Signup
-          </Text>
-          <Text
-            variant="body2"
-            align="center"
-            className={classes.description}
-          >
-            Please insert your phone number in order to start:
+            Create new password
           </Text>
           <Form
             className={classes.form}
@@ -50,38 +43,24 @@ const SignUpPhone = () => {
               setDisabled(!isValid)
             }}
           >
-            <Input
+            <InputPassword
               variant="floatingLabel"
               fullWidth
-              name="phone"
-              label="Phone Number"
-              mask="+XX XXX XXXXXXXX"
-              placeholder="+XX XXX XXXXXXXX"
-              className={classes.phoneInput}
+              name="password"
+              autoComplete="new-password"
+              label="Create password"
+              placeholder="Type your password here"
+              hint={passwordErrorMessage}
+              className={classes.passwordInput}
             />
-            <CheckBox
-              className={classes.checkbox}
-              name="dataPrivacy"
-              label={(
-                <div className={classes.checkboxLabel}>
-                  <Text>I accept the</Text>
-                  <TextLink
-                    target="_blank"
-                    href={'/terms-and-conditions'}
-                    className={classes.textLink}
-                  >
-                    Terms and Conditions
-                  </TextLink>
-                  <Text>and</Text>
-                  <TextLink
-                    target="_blank"
-                    href={'/privacy-policy'}
-                    className={classes.textLink}
-                  >
-                    Data Policy
-                  </TextLink>
-                </div>
-              )}
+            <InputPassword
+              variant="floatingLabel"
+              fullWidth
+              name="repeatPassword"
+              autoComplete="new-password"
+              label="Repeat Password"
+              placeholder="Type your password here"
+              className={classes.repeatPasswordInput}
             />
             <Button
               fullWidth
@@ -90,15 +69,7 @@ const SignUpPhone = () => {
               disabled={disabled}
               className={classes.submitButton}
             >
-              Next
-            </Button>
-            <Button
-              fullWidth
-              type="button"
-              shape="circle"
-              variant="ghost"
-            >
-              Login
+              Confirm
             </Button>
           </Form>
         </div>
@@ -107,10 +78,10 @@ const SignUpPhone = () => {
   );
 }
 
-export default SignUpPhone;
+export default CreatePassword;
 
 const useStyles = createStyles((theme) => ({
-  signUpPhone: {
+  createPassword: {
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
@@ -124,7 +95,7 @@ const useStyles = createStyles((theme) => ({
     display: 'flex',
     justifyContent: 'flex-end',
     width: '100%',
-    marginBottom: theme.spacing[48],
+    marginBottom: theme.spacing[64],
     paddingRight: theme.spacing[80],
     boxSizing: 'border-box',
   },
@@ -144,68 +115,53 @@ const useStyles = createStyles((theme) => ({
   },
   title: {
     width: '100%',
-    marginBottom: theme.spacing[24],
+    marginBottom: theme.spacing[48],
     color: theme.colors.text.headline,
-  },
-  description: {
-    width: '100%',
-    marginBottom: theme.spacing[64],
-    color: theme.colors.neutralGray.main500,
   },
   form: {
     display: 'flex',
     flexDirection: 'column',
+    alignItems: 'center',
     flexGrow: 1,
   },
-  phoneInput: {
-    marginBottom: theme.spacing[32],
+  passwordInput: {
     position: 'relative',
+    marginBottom: theme.spacing[80],
     ...hintAndErrorStyles,
   },
-  checkbox: {
+  repeatPasswordInput: {
+    position: 'relative',
     marginBottom: theme.spacing[64],
-    position: 'relative',
     ...hintAndErrorStyles,
   },
-  checkboxLabel: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: theme.spacing[4],
-  },
-  textLink: {
-    margin: `0 ${theme.spacing[4]}`,
-  },
-  submitButton: {
-    marginBottom: theme.spacing[24],
-  },
+  submitButton: {},
   [`@media (max-width: ${theme.breakpoints.md}px)`]: {
-    signUpPhone: {
+    createPassword: {
       height: '100vh',
-      padding: [theme.spacing[48], theme.spacing[24], theme.spacing[64]],
+      padding: [theme.spacing[48], theme.spacing[24], theme.spacing[96]],
     },
     logoWrapper: {
       justifyContent: 'center',
       paddingRight: 0,
-      marginBottom: theme.spacing[80],
+      marginBottom: theme.spacing[48],
     },
     title: {
-      marginBottom: theme.spacing[16],
+      marginBottom: theme.spacing[32],
       fontSize: toRem(22),
       lineHeight: toRem(28),
       textAlign: 'left !important',
     },
     description: {
-      marginBottom: theme.spacing[48],
+      marginBottom: theme.spacing[32],
       textAlign: 'left !important',
     },
     formContainer: {
       maxWidth: '100%',
     },
-    phoneInput: {
-      marginBottom: theme.spacing[40],
+    passwordInput: {
+      marginBottom: theme.spacing[80],
     },
-    checkbox: {
+    repeatPasswordInput: {
       marginBottom: theme.spacing[12],
     },
     submitButton: {
