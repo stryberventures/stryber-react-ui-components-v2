@@ -11,11 +11,10 @@ import DemoLogo from '../../storybook/preview/DemoLogo';
 import * as yup from 'yup';
 
 
-const emailRegEx = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gm;
-const emailErrorMessage = 'Email incorrect';
+const errorMessage = 'Phone number should contain 13 digits';
 
 const validationSchema = yup.object().shape({
-  email: yup.string().matches(emailRegEx, emailErrorMessage).required('Email is required'),
+  phone: yup.string().length(16, errorMessage).required('Phone is required'),
   password: yup.string().required('Password is required'),
 });
 
