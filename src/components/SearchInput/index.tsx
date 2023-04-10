@@ -5,16 +5,18 @@ import { SearchIcon } from '../Icons';
 import { toRem } from '../Theme/utils';
 import useStyles from './styles';
 
-export interface ISearchBar extends IInput {
-  color?: 'primary' | 'secondary';
+export interface ISearchInput extends Omit<IInput, 'size'> {
+  size?: 'medium' | 'large';
 }
 
-const SearchBar: React.FC<ISearchBar> = (props) => {
-  const { className, ...rest } = props;
+const SearchInput: React.FC<ISearchInput> = (props) => {
+  const { className, size, ...rest } = props;
   const classes = useStyles()(props);
   return (
     <Input
-      className={classNames(classes.searchInput, className)}
+      className={classNames(classes.searchInput, className, {
+        [classes.large]: size === 'large',
+      })}
       variant="labelOutside"
       leftIcon={<SearchIcon className={classes.searchIcon} style={{ marginRight: toRem(8) }} />}
       clearButton
@@ -23,8 +25,8 @@ const SearchBar: React.FC<ISearchBar> = (props) => {
     />
   );
 }
-SearchBar.defaultProps = {
+SearchInput.defaultProps = {
   color: 'primary',
 }
 
-export default SearchBar;
+export default SearchInput;
