@@ -1,6 +1,6 @@
 {
-  "name": "@stryberventures/gaia-react.switch",
-  "version": "0.0.5",
+  "name": "@stryberventures/gaia-react.search-input",
+  "version": "0.0.1",
   "peerDependencies": {
     "classnames": ">=2.0.0",
     "react": ">=17.0.0",

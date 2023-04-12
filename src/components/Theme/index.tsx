@@ -44,7 +44,7 @@ ThemeProvider.displayName = 'ThemeProvider';
 
 const useTheme = () => useContext(ThemeContext);
 
-const externalStylesIndex = 50;
+// const externalStylesIndex = 50;
 
 function createStyles<TStyles extends string = string, TProps = unknown>(
   styles: (theme: ThemeType) => Styles<TStyles, TProps>,
@@ -56,9 +56,12 @@ function createStyles<TStyles extends string = string, TProps = unknown>(
     return styles(theme);
   }, {
     ...options,
-    ...(!options?.internalUsage && {
-      index: options?.index ? options.index + externalStylesIndex : externalStylesIndex,
-    })
+    // Next 3 lines of code supposed to allow to overwrite library styles with external styles (without passing the index to jss and without !important)
+    // But it breaks the module styles - whenever index remains the same (50) the styles are not updated
+    // when we switch between the modules
+    // ...(!options?.internalUsage && {
+    //   index: options?.index ? options.index + externalStylesIndex : externalStylesIndex,
+    // })
   });
 }
 

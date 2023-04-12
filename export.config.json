@@ -30,7 +30,7 @@
     "Elevation": "elevation",
     "Tag": "tag",
     "Tabs": "tabs",
-    "SearchBar": "search-bar",
+    "SearchInput": "search-input",
     "Table": "table"
   }
 }
