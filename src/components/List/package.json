@@ -1,10 +1,10 @@
 {
   "name": "@stryberventures/gaia-react.list",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "peerDependencies": {
     "react": ">=17.0.0",
     "react-jss": ">=10.0.0",
-    "@stryberventures/gaia-react.theme": ">=0.0.1",
-    "@stryberventures/gaia-react.text": ">=0.0.1"
+    "@stryberventures/gaia-react.theme": ">=0.1.0",
+    "@stryberventures/gaia-react.text": ">=0.1.0"
   }
 }
