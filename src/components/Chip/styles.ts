@@ -1,9 +1,6 @@
-import { createStyles } from '../Theme';
-import toRem from '../../utils/toRem';
+import { createStyles, toRem } from '../Theme';
 
-interface IChipStyle {
-  color?: 'primary' | 'secondary' | 'success',
-}
+type TChipColor = 'primary' | 'secondary' | 'success';
 
 export default createStyles((theme) => ({
   chip: {
@@ -16,10 +13,10 @@ export default createStyles((theme) => ({
       cursor: 'pointer',
     },
   },
-  contained: (props: IChipStyle) => ({
+  contained: (color: TChipColor) => ({
     '&:not($default)': {
       padding: [toRem(6), toRem(16)],
-      backgroundColor: theme.colors[props.color!].main500,
+      backgroundColor: theme.colors[color].main500,
       color: theme.colors.contrast.white,
       '&$iconLeft': {
         paddingLeft: toRem(8),
@@ -31,18 +28,18 @@ export default createStyles((theme) => ({
         padding: [toRem(7), toRem(8)],
       },
       '&:hover:not($disabled)': {
-        backgroundColor: theme.colors[props.color!].dark600,
+        backgroundColor: theme.colors[color].dark600,
       },
       '& svg path': {
         fill: theme.colors.contrast.white,
       }
     }
   }),
-  outlined: (props: IChipStyle) => ({
+  outlined: (color: TChipColor) => ({
     '&:not($default)': {
       padding: [toRem(5), toRem(15)],
-      color: theme.colors[props.color!].main500,
-      border: `${toRem(1)} solid ${theme.colors[props.color!].main500}`,
+      color: theme.colors[color].main500,
+      border: `${toRem(1)} solid ${theme.colors[color].main500}`,
       backgroundColor: theme.colors.contrast.white,
       '&$iconLeft': {
         paddingLeft: toRem(7),
@@ -57,7 +54,7 @@ export default createStyles((theme) => ({
         backgroundColor: theme.colors.neutralGray.light100,
       },
       '& svg path': {
-        fill: theme.colors[props.color!].main500,
+        fill: theme.colors[color].main500,
       }
     }
   }),

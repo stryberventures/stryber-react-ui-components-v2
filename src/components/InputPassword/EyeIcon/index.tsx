@@ -1,6 +1,6 @@
 import React from 'react';
 import useStyles from './styles';
-import { Eye, EyeSlash } from '../../Icons';
+import { EyeIcon as Eye } from '../../Icons';
 import classNames from 'classnames';
 
 interface IEyeIcon extends React.HTMLAttributes<HTMLDivElement> {
@@ -11,7 +11,6 @@ interface IEyeIcon extends React.HTMLAttributes<HTMLDivElement> {
 export const EyeIcon = (props: IEyeIcon) => {
   const { visible, disabled, className, ...rest } = props;
   const classes = useStyles();
-
   return (
     <div
       {...rest}
@@ -19,7 +18,7 @@ export const EyeIcon = (props: IEyeIcon) => {
         [classes.disabled]: disabled,
       }, className)}
     >
-      {visible ? <EyeSlash/> : <Eye/>}
+      <Eye variant={visible ? 'open' : 'closed'}/>
     </div>
   );
 }

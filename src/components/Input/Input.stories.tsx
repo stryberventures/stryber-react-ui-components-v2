@@ -2,8 +2,9 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Input from './index';
 import pkg from './package.json';
+import { CreditCardIcon, InfoIcon } from '../Icons';
 import { buildExcludeArgTypes } from '../../storybook/utils';
-import toRem from '../../utils/toRem';
+import { toRem } from '../Theme';
 
 export default {
   title: 'Components/Input',
@@ -11,8 +12,16 @@ export default {
   parameters: {
     pkg,
   },
-  argTypes: buildExcludeArgTypes(['name', 'controlled', 'onChange', 'endAdornment',
-    'onBlur', 'prefixClassName', 'contentClassName', 'hintClassName', 'errorClassName']),
+  args: {
+    variant: 'labelOutside',
+    color: 'primary',
+    placeholder: '',
+    disabled: false,
+    clearButton: false,
+    fullWidth: false,
+  },
+  argTypes: buildExcludeArgTypes(['name', 'controlled', 'onChange', 'rightIcon',
+    'leftIcon', 'onBlur', 'prefixClassName', 'contentClassName', 'postfixClassName', 'hintClassName', 'errorClassName', 'className', 'value']),
 } as ComponentMeta<typeof Input>;
 
 const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
@@ -73,30 +82,34 @@ NoLabel.args = {
 
 export const FullWidth = Template.bind({});
 FullWidth.args = {
+  fullWidth: true,
   label: 'Fits parent width',
   placeholder: 'olivia@example.com',
-  fullWidth: true,
 };
 
-export const EndAdornment = Template.bind({});
-EndAdornment.args = {
+export const LeftIcon = Template.bind({});
+LeftIcon.args = {
+  label: 'Left icon',
+  placeholder: 'placeholder@example.com',
+  value: 'olivia@example.com',
+  leftIcon: <CreditCardIcon style={{ marginRight: toRem(10) }} />,
+};
+
+export const RightIcon = Template.bind({});
+RightIcon.args = {
   label: 'End adornment',
   placeholder: 'placeholder@example.com',
   value: 'olivia@example.com',
-  endAdornment: <div style={
-    {
-      display: 'flex',
-      alignContent: 'center',
-      justifyContent: 'center',
-      width: toRem(32),
-      height: toRem(32),
-      backgroundColor: '#D0D5DD',
-      borderRadius: toRem(16),
-      lineHeight: toRem(32),
-      textAlign: 'center',
-      color: 'white',
-    }
-  }>O</div>
+  rightIcon: <InfoIcon style={{ marginLeft: toRem(10) }} />,
+};
+
+export const IconBothSides = Template.bind({});
+IconBothSides.args = {
+  label: 'End adornment',
+  placeholder: 'placeholder@example.com',
+  value: 'olivia@example.com',
+  leftIcon: <CreditCardIcon style={{ marginRight: toRem(10) }} />,
+  rightIcon: <InfoIcon style={{ marginLeft: toRem(10) }} />,
 };
 
 export const Mask = Template.bind({});
@@ -112,4 +125,13 @@ Prefix.args = {
   prefix: 'G-',
   mask: 'XXX-XXX',
   placeholder: 'XXX-XXX',
+};
+
+export const ClearButton = Template.bind({});
+ClearButton.args = {
+  label: 'Clear button',
+  placeholder: 'olivia@example.com',
+  value: 'olivia@example.com',
+  variant: 'floatingLabel',
+  clearButton: true,
 };

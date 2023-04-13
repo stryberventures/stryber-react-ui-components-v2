@@ -2,14 +2,15 @@ import React, { ForwardedRef, forwardRef, ReactNode } from 'react';
 import useStyles from './styles';
 import Input from '../Input';
 import classNames from 'classnames';
-import { ArrowDownIcon } from '../Icons';
+import { ArrowIcon } from '../Icons';
 import { useDropdown } from './hooks';
 
 export interface IDropdownBase extends React.HTMLAttributes<HTMLDivElement>{
-  label: string,
+  label?: string,
   placeholder?: string,
   className?: string,
   disabled?: boolean,
+  inputVariant?: 'labelOutside' | 'floatingLabel',
   error?: string,
   hint?: string,
   onToggle?: (open: boolean) => void,
@@ -24,7 +25,7 @@ export interface IDropdown extends IDropdownBase {
   contentClassName?: string,
   inputReadOnly?: boolean,
   onInputChange?: (e: React.BaseSyntheticEvent) => void,
-  endAdornment?: ReactNode;
+  rightIcon?: ReactNode;
   onOutsideClick?: () => void;
 }
 
@@ -35,8 +36,8 @@ export interface IDropdownRef {
 
 const Dropdown = forwardRef((props: IDropdown, ref: ForwardedRef<IDropdownRef>) => {
   const {
-    inputReadOnly = true, children, label, placeholder, value, className, color, name, fullWidth,
-    hint, error, disabled, onClick, onToggle, contentClassName, onInputChange, endAdornment, onOutsideClick, ...rest
+    inputReadOnly = true, children, label, placeholder, value, className, color, name, fullWidth, inputVariant,
+    hint, error, disabled, onClick, onToggle, contentClassName, onInputChange, rightIcon, onOutsideClick, ...rest
   } = props;
   const classes = useStyles();
   const { open, onInputClick, onOverlayClick } = useDropdown(props, ref);
@@ -51,6 +52,7 @@ const Dropdown = forwardRef((props: IDropdown, ref: ForwardedRef<IDropdownRef>) 
         readOnly={inputReadOnly}
         name={name}
         label={label}
+        variant={inputVariant}
         placeholder={placeholder}
         color={color}
         value={value}
@@ -60,24 +62,21 @@ const Dropdown = forwardRef((props: IDropdown, ref: ForwardedRef<IDropdownRef>) 
         hint={hint}
         errorMessage={error}
         onChange={onInputChange}
-        highlighted={open}
         className={classNames(classes.input, { [classes.inputDisabled]: disabled })}
-        endAdornment={(
+        rightIcon={(
           <>
-            {endAdornment}
+            {rightIcon}
             <div className={classNames(classes.toggleIcon, {
               [classes.toggleIconDisabled]: disabled,
               [classes.toggleIconOpened]: open,
             })}>
-              <ArrowDownIcon />
+              <ArrowIcon variant="down" />
             </div>
           </>
         )}
       />
       {open && (
-        <div
-          className={classNames(classes.content, contentClassName)}
-        >
+        <div className={classNames(classes.content, contentClassName)}>
           {children}
         </div>
       )}

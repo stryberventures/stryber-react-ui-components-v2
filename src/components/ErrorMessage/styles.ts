@@ -1,9 +1,23 @@
-import { createStyles } from '../Theme';
-import toRem from '../../utils/toRem';
+import { createStyles, toRem } from '../Theme';
 
 export default createStyles((theme) => ({
   errorMessage: {
-    color: theme.colors.error.dark600,
-    lineHeight: toRem(17),
+    display: 'flex',
+    alignItems: 'flex-start',
+    gap: theme.spacing['8'],
+    marginTop: theme.spacing['8'],
+    marginBottom: theme.spacing['8'],
+    color: theme.colors.error.main500,
+    lineHeight: toRem(16),
+    boxSizing: 'border-box',
+    '& *': {
+      boxSizing: 'inherit',
+    },
+  },
+  icon: {
+    minWidth: toRem(16),
+    width: toRem(16),
+    minHeight: toRem(16),
+    height: toRem(16),
   },
 }), { internalUsage: true });

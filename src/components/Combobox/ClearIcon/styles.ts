@@ -1,13 +1,14 @@
-import { createStyles } from '../../Theme'
+import { createStyles, toRem } from '../../Theme'
 
 export default createStyles((theme) => ({
   clearIcon: {
-    backgroundColor: theme.colors.neutralGray.main500,
+    backgroundColor: theme.colors.neutralGray.medium300,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 4,
-    alignSelf: 'center',
-    padding: 6.5,
+    borderRadius: toRem(4),
+    width: toRem(20),
+    height: toRem(20),
+    minWidth: toRem(20),
   },
 }), { internalUsage: true })

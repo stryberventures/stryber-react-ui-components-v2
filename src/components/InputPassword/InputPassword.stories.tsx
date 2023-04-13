@@ -10,8 +10,16 @@ export default {
   parameters: {
     pkg,
   },
+  args: {
+    color: 'primary',
+    variant: 'labelOutside',
+    disabled: false,
+    fullWidth: false,
+  },
   argTypes: buildExcludeArgTypes(['value', 'name', 'controlled', 'onChange', 'mask',
-    'onBlur', 'onValidationChange', 'validationSchema', 'prefixClassName', 'errorClassName', 'hintClassName']),
+    'onBlur', 'onValidationChange', 'validationSchema', 'prefixClassName', 'errorClassName', 'hintClassName',
+    'prefix', 'prefixClassName', 'postfix', 'postfixClassName', 'clearButton', 'leftIcon'
+  ]),
 } as ComponentMeta<typeof InputPassword>;
 
 const Template: ComponentStory<typeof InputPassword> = (args) =>

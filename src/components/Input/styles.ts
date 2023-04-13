@@ -1,8 +1,7 @@
-import { createStyles } from '../Theme';
-import toRem from '../../utils/toRem';
+import { createStyles, toRem } from '../Theme';
 import { IInput } from './index';
 
-export default createStyles((theme) => ({
+export default () => createStyles((theme) => ({
   inputRoot: {
     width: toRem(320),
   },
@@ -15,35 +14,53 @@ export default createStyles((theme) => ({
     position: 'relative',
     fontFamily: theme.font,
     display: 'flex',
+    flexDirection: 'row',
     alignItems: 'center',
-    padding: [toRem(4), toRem(8)],
-    height: toRem(44),
+    padding: [toRem(8), toRem(12)],
+    height: toRem(props.variant === 'floatingLabel' ? 56 : 48),
+    border: `${toRem(1)} solid ${theme.colors.neutralGray.medium300}`,
     backgroundColor: theme.colors.background.white,
-    '&:focus-within:not($inputContainerError), &:not($inputContainerError)$highlighted': {
-      border: `1px solid ${theme.colors[props.color!].main500}`,
-      boxShadow: `0 0 0 ${toRem(4)} ${theme.colors[props.color!].extraLight50}`,
+    transition: 'border-color .3s, box-shadow .3s',
+    '&:hover, &:hover $input': {
+      backgroundColor: theme.colors.background.extraLightGrey,
     },
-    '&:not($inputContainerError)': {
-      border: `${toRem(1)} solid ${theme.colors.neutralGray.medium300}`,
+    '&:hover:not($disabled):not($inputContainerError)': {
+      border: `${toRem(1)} solid ${theme.colors[props.color!].medium400}`,
     },
-    '&$withLabel': {
-      alignItems: 'initial',
+    '&:focus-within, &:focus-within $input': {
+      backgroundColor: theme.colors.background.white,
+    },
+    '&:focus-within:not($disabled):not($inputContainerError)': {
+      border: `${toRem(1)} solid ${theme.colors[props.color!].main500}`,
+      boxShadow: `0 0 0 ${toRem(1)} ${theme.colors[props.color!].main500}`,
     },
     '&$disabled': {
-      backgroundColor: theme.colors.neutralGray.extraLight50,
-    }
+      backgroundColor: theme.colors.background.extraLightGrey,
+      '& svg path': {
+        fill: theme.colors.neutralGray.light200,
+      },
+    },
   }),
-  highlighted: {},
-  inputContainerError: {
-    border: `1px solid ${theme.colors.error.main500}`,
-    '&$highlighted': {
-      boxShadow: `0 0 0 ${toRem(4)} ${theme.colors.error.extraLight50}`,
-    },
-    '&:focus-within': {
-      boxShadow: `0 0 0 ${toRem(4)} ${theme.colors.error.extraLight50}`,
-    },
+  disabled: {
+    pointerEvents: 'none',
+    userSelect: 'none',
   },
+  inputContainerError: () => ({
+    border: `${toRem(1)} solid ${theme.colors.error.main500}`,
+    '&:focus-within': {
+      border: `${toRem(1)} solid ${theme.colors.error.main500}`,
+      boxShadow: `0 0 0 ${toRem(1)} ${theme.colors.error.main500}`,
+    },
+  }),
   input: {
+    border: 'none',
+    outline: 'none',
+    textOverflow: 'ellipsis',
+    height: toRem(24),
+    padding: 0,
+    width: '100%',
+    color: theme.colors.text.headline,
+    backgroundColor: theme.colors.background.white,
     '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
       '-webkit-appearance': 'none',
       appearance: 'none',
@@ -52,46 +69,57 @@ export default createStyles((theme) => ({
     '&[type=number]': {
       '-moz-appearance': 'textfield',
     },
-    border: 'none',
-    outline: 'none',
-    textOverflow: 'ellipsis',
-    height: toRem(17),
-    padding: 0,
-    width: '100%',
-    color: theme.colors.text.headline,
-    backgroundColor: theme.colors.background.white,
     '&::placeholder': {
-      color: theme.colors.neutralGray.main500,
+      color: theme.colors.text.disabled,
+    },
+    '&[disabled]': {
+      backgroundColor: theme.colors.background.extraLightGrey,
     }
   },
   inputArea: {
     display: 'flex',
     flexDirection: 'column',
+    justifyContent: 'center',
     width: '100%',
+    height: '100%',
+    overflow: 'hidden',
+    flexGrow: 1,
   },
   prefix: {
-    fontSize: toRem(14),
     color: theme.colors.text.headline,
     backgroundColor: theme.colors.background.white,
-    whiteSpace: 'nowrap',
+    whiteSpace: 'pre',
   },
-  disabled: {
-    pointerEvents: 'none',
-    userSelect: 'none',
-    backgroundColor: theme.colors.neutralGray.extraLight50,
+  postfix: {
+    color: theme.colors.text.secondary,
+    backgroundColor: theme.colors.background.white,
+    whiteSpace: 'pre',
+    marginLeft: toRem(10),
   },
   label: {
-    color: theme.colors.text.secondary,
+    display: 'block',
+    marginBottom: theme.spacing['8'],
+    color: theme.colors.text.headline,
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
-    height: toRem(17),
+    '&:hover': {
+      cursor: 'default',
+    }
+  },
+  floatingLabel: {
+    marginBottom: 0,
+    color: theme.colors.text.secondary,
+    transition: 'font-size 0.2s',
   },
   textDisabled: {
     color: theme.colors.text.disabled,
     '&::placeholder': {
       color: theme.colors.text.disabled,
     }
+  },
+  withPaddingLeft: {
+    paddingLeft: toRem(12),
   },
   message: {
     marginTop: toRem(8),
@@ -100,5 +128,26 @@ export default createStyles((theme) => ({
   inputWrapper: {
     display: 'flex',
     flexDirection: 'row',
-  }
+    alignItems: 'baseline',
+  },
+  floatingLabelInputWrapper: {
+    height: 0,
+    transition: 'height 0.2s, padding 0.2s, opacity 0.3s',
+    overflow: 'hidden',
+    opacity: 0,
+  },
+  floatingLabelInputWrapperInUse: {
+    height: toRem(24),
+    paddingTop: toRem(2),
+    opacity: 1,
+  },
+  clearButton: {
+    width: 20,
+    height: 20,
+    marginLeft: toRem(10),
+    backgroundColor: 'white',
+    '&:hover': {
+      cursor: 'pointer',
+    }
+  },
 }), { internalUsage: true });

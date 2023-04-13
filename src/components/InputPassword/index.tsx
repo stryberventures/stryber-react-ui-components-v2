@@ -4,10 +4,10 @@ import { EyeIcon } from './EyeIcon';
 import Chip from '../Chip';
 import useStyles from './styles';
 import { IValidationItemProps, usePasswordValidation } from './hooks';
-import { CheckBoxIcon } from '../Icons';
+import { CheckIcon } from '../Icons';
 import classNames from 'classnames';
 
-export interface IInputPassword extends Omit<IInput, 'endAdornment'> {
+export interface IInputPassword extends Omit<IInput, 'rightIcon'> {
   validationSchema?: IValidationItemProps[];
   onValidationChange?: (valid: boolean) => void;
 }
@@ -16,11 +16,9 @@ const InputPassword: React.FC<IInputPassword> = (props) => {
   const { disabled, validationSchema, onValidationChange, value, className, fullWidth, ...rest } = props;
   const { onInputChange, schema } = usePasswordValidation({ validationSchema, value, onValidationChange });
   const [visible, setVisible] = useState(false);
-  const classes = useStyles();
+  const classes = useStyles()(props);
 
-  const onEyeClick = () => {
-    setVisible(!visible);
-  }
+  const onEyeClick = () => { setVisible(!visible); };
 
   return (
     <div className={classNames(classes.inputPassword, className, { [classes.fullWidth]: fullWidth })}>
@@ -32,7 +30,7 @@ const InputPassword: React.FC<IInputPassword> = (props) => {
         onChange={onInputChange}
         type={visible ? 'text' : 'password'}
         fullWidth={fullWidth}
-        endAdornment={
+        rightIcon={
           <EyeIcon
             data-testid="password-icon"
             visible={visible}
@@ -47,7 +45,7 @@ const InputPassword: React.FC<IInputPassword> = (props) => {
             <Chip
               key={label}
               color={matched ? 'success' : 'default'}
-              iconLeft={matched && <CheckBoxIcon className={classes.chipMatched}/>}
+              iconLeft={matched && <CheckIcon className={classes.chipMatched}/>}
             >
               {label}
             </Chip>

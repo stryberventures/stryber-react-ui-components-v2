@@ -1,71 +1,95 @@
 import { ICheckBoxMark } from './index';
-import { createStyles } from '../../Theme';
-import toRem from '../../../utils/toRem';
+import { createStyles, toRem } from '../../Theme';
 
 
-export default createStyles((theme) => ({
-  checkboxMark: (props: ICheckBoxMark) => ({
+export default () => createStyles((theme) => ({
+  checkboxMark: (color: ICheckBoxMark['color']) => ({
     backgroundColor: theme.colors.contrast.white,
-    border: [toRem(1), 'solid', theme.colors[props.color!].main500],
+    border: [toRem(1), 'solid', theme.colors[color == 'error' ? color : 'neutralGray'].dark600],
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    boxSizing: 'border-box',
+    height: toRem(20),
+    width: toRem(20),
+    minWidth: toRem(20),
+    transition: 'background-color .3s ease-out, border-color .3s ease-out, box-shadow .3s ease-out',
+    '& *, & *:after, & *:before': {
+      boxSizing: 'inherit',
+    },
     '& svg': {
       display: 'none',
+      width: toRem(14),
+      height: toRem(14),
     },
     '&:hover:not($disabled)': {
-      backgroundColor: theme.colors[props.color!].extraLight50,
-      border: [toRem(1), 'solid', theme.colors[props.color!].dark600],
+      backgroundColor: theme.colors.neutralGray.extraLight50,
+      borderColor: theme.colors[color!].light200,
     },
     '& ~ $disabled, &:hover ~ $disabled': {
       backgroundColor: theme.colors.contrast.white,
       boxShadow: 'none',
     },
     '&:active:not($disabled)': {
-      outline: `${toRem(4)} solid ${theme.colors[props.color!].extraLight50}`,
+      border: `${toRem(1)} solid ${theme.colors.neutralGray.dark600}`,
+      backgroundColor: theme.colors.neutralGray.light200,
     },
   }),
-  clickArea: {
-    position: 'absolute',
-    width: toRem(26),
-    height: toRem(26),
-  },
-  disabled: (props: ICheckBoxMark) => ({
-    '& svg path': {
-      fill: theme.colors[props.color!].main500,
-    },
-    opacity: 0.45,
-    pointerEvents: 'none',
-    backgroundColor: theme.colors.background.extraLightGrey,
-  }),
-  checked: (props: ICheckBoxMark) => ({
+  checked: (color: ICheckBoxMark['color']) => ({
     '& svg': {
       display: 'block',
     },
-    '&:not($disabled)': {
-      backgroundColor: theme.colors[props.color!].main500,
+    '&$disabled': {
+      backgroundColor: theme.colors.neutralGray.medium300,
+      borderColor: theme.colors.neutralGray.medium300,
     },
-    '&:not($disabled):hover': {
-      backgroundColor: theme.colors[props.color!].dark600,
+    '&:not($disabled)': {
+      backgroundColor: theme.colors[color!].main500,
+      borderColor: theme.colors[color!].main500,
+    },
+    '&:not($disabled):hover:not(:active)': {
+      backgroundColor: theme.colors[color!].medium400,
+      borderColor: theme.colors[color!].medium400,
+      boxShadow: `0px 0px 0px 3px ${theme.colors[color!].extraLight50}`,
+    },
+    '&:not($disabled):hover:active': {
+      boxShadow: 'none',
+      backgroundColor: theme.colors[color!].medium300,
+      borderColor: theme.colors[color!].medium300,
     },
   }),
-  small: {
-    height: toRem(14),
-    width: toRem(14),
-    minWidth: toRem(14),
-    '& svg': {
-      width: toRem(12),
-      height: toRem(12),
+  indeterminate: () => ({
+    position: 'relative',
+    width: '100%',
+    height: '100%',
+    '&:after': {
+      display: 'block',
+      width: toRem(9),
+      height: toRem(1),
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translateX(-50%) translateY(-50%)',
+      backgroundColor: 'white',
+      content: '""',
+    },
+    '&$disabled': {
+      borderColor: theme.colors.neutralGray.medium300,
+    },
+  }),
+  disabled: {
+    cursorEvents: 'none',
+    backgroundColor: theme.colors.neutralGray.medium300,
+    borderColor: theme.colors.neutralGray.medium300,
+    '&:not($checked)': {
+      backgroundColor: 'transparent',
+      borderColor: theme.colors.neutralGray.medium300,
     },
   },
-  medium: {
-    height: toRem(18),
-    width: toRem(18),
-    minWidth: toRem(18),
-    '& svg': {
-      width: toRem(14),
-      height: toRem(14),
-    },
+  clickArea: {
+    position: 'absolute',
+    width: toRem(32),
+    height: toRem(32),
   },
   square: {
     borderRadius: toRem(4),

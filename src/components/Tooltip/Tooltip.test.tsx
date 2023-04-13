@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom'
 import * as React from 'react'
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import Tooltip from './index'
 
 it('should be rendered with title', () => {
@@ -50,21 +50,19 @@ it('should contain version and position classes', () => {
   render(<Tooltip title="title" version="light" position="top">Tooltip target</Tooltip>);
   fireEvent.mouseOver(screen.getByText(/Tooltip target/i));
   const tooltipContainer = screen.getByRole('tooltip');
-  expect(tooltipContainer.className).toMatch('light');
+  const tooltip = screen.getByTestId('tooltip');
+  expect(tooltip.className).toMatch('light');
   expect(tooltipContainer.className).toMatch('top');
 });
 
-it('should show close button if in visible mod', () => {
-  const visible = true;
-  render(<Tooltip title="title" visible={visible}>Tooltip target</Tooltip>);
-  const closeBtn = screen.getByTestId('testCloseBtn');
-  expect(closeBtn).toBeInTheDocument();
-});
-
-it('should hide tooltip on close button click', () => {
-  render(<Tooltip title="title" visible={true}>Tooltip target</Tooltip>);
-  const closeBtn = screen.getByTestId('testCloseBtn');
+it('should hide tooltip on outside click', async () => {
+  render(
+    <div data-testid="outside-container">
+      <Tooltip title="title" visible={true}>Tooltip target</Tooltip>
+    </div>
+  );
+  const outside = screen.getByTestId('outside-container');
   const tooltip = screen.getByRole('tooltip');
-  fireEvent.click(closeBtn);
-  expect(tooltip).not.toBeInTheDocument();
+  fireEvent.click(outside);
+  await waitFor(() => expect(tooltip).not.toBeInTheDocument(), { timeout: 300 });
 });

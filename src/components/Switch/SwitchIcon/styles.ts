@@ -1,34 +1,57 @@
-import { createStyles } from '../../Theme';
 import { ISwitchIcon } from './index';
-import toRem from '../../../utils/toRem';
-
+import { createStyles, toRem } from '../../Theme';
 
 export default createStyles((theme) => ({
-  switchIcon: (props: ISwitchIcon) => ({
-    width: toRem(44),
-    height: toRem(24),
+  switchIcon: (color: ISwitchIcon['color']) => ({
     position: 'relative',
     borderRadius: toRem(12),
-    backgroundColor: theme.colors.neutralGray.main500,
+    minWidth: toRem(36),
+    width: toRem(36),
+    minHeight: toRem(20),
+    height: toRem(20),
+    backgroundColor: theme.colors.neutralGray.medium400,
+    transition: 'background-color .3s ease-out, border-color .3s ease-out, box-shadow .3s ease-out',
+    boxSizing: 'border-box',
+    '& *, & *:after, & *:before': {
+      boxSizing: 'inherit',
+    },
+    '& $circle': {
+      height: toRem(16),
+      width: toRem(16),
+    },
+    '& $circleContainerChecked': {
+      transform: 'translateX(100%)',
+    },
     '&:not($disabled)': {
       cursor: 'pointer',
     },
-    '&:hover $circleHighlight': {
-      opacity: 0.3,
+    '&:hover:not($disabled)': {
+      backgroundColor: theme.colors.neutralGray.medium300,
+      boxShadow: `0px 0px 0px 3px ${theme.colors[color!].extraLight50}`,
     },
-    '& $circleHighlight': {
-      backgroundColor: theme.colors.background.white,
-    }
+    '&:not($disabled):not($checked):hover:active': {
+      backgroundColor: theme.colors.neutralGray.medium300,
+      boxShadow: 'none',
+    },
+  }),
+  checked: (color: ISwitchIcon['color']) => ({
+    backgroundColor: theme.colors[color!].main500,
+    '&:hover:not($disabled)': {
+      backgroundColor: theme.colors[color!].medium400,
+    },
+    '&:not($disabled):hover:active': {
+      backgroundColor: theme.colors[color!].medium300,
+      boxShadow: 'none',
+    },
+    '&$disabled': {
+      backgroundColor: theme.colors.neutralGray.light200,
+    },
   }),
   disabled: {
-    opacity: 0.45,
+    '& $label': {
+      color: theme.colors.text.disabled,
+    }
   },
-  checked: (props: ISwitchIcon) => ({
-    backgroundColor: theme.colors[props.color!].main500,
-    '&:hover': {
-      backgroundColor: theme.colors[props.color!].dark600,
-    },
-  }),
   '@keyframes slideLeft': {
     from: { transform: 'translateX(100%)' },
     to: { transform: 'translateX(0%)' },
@@ -42,19 +65,16 @@ export default createStyles((theme) => ({
     left: toRem(2),
     position: 'absolute',
     animationName: '$slideLeft',
-    transition: 'transform 0.15s',
+    transition: 'transform 0.3s',
   },
   circleContainerChecked: {
     animationName: '$slideRight',
-    transform: `translateX(${toRem(20)})`,
   },
-  circle: (props: ISwitchIcon) => ({
+  circle: {
     position: 'relative',
-    height: toRem(20),
-    width: toRem(20),
     backgroundColor: theme.colors.background.white,
     borderRadius: '50%',
-  }),
+  },
   circleHighlight: {
     content: '""',
     position: 'absolute',
@@ -65,5 +85,7 @@ export default createStyles((theme) => ({
     opacity: 0,
     borderRadius: '50%',
     transition: 'opacity 0.15s',
+    border: 'none',
+    outline: 'none',
   },
 }));

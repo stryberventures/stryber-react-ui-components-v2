@@ -1,11 +1,15 @@
 import React from 'react';
 import classNames from 'classnames';
+import Text from '../Text';
 import useStyles from './styles';
-import useTextStyles from '../Text/styles';
+
 
 export interface ITextLink extends React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement> {
   children: string,
+  href: string,
   color?: 'primary' | 'secondary',
+  variant?: 'body1' | 'body2' | 'body3';
+  weight?: 'regular' | 'medium',
   disabled?: boolean,
   iconLeft?: React.ReactNode,
   iconRight?: React.ReactNode,
@@ -13,23 +17,26 @@ export interface ITextLink extends React.DetailedHTMLProps<React.AnchorHTMLAttri
 }
 
 const TextLink: React.FC<ITextLink> = (props) => {
-  const { children, disabled, iconLeft, iconRight, className, ...rest } = props;
-  const classes = useStyles(props);
-  const textClasses = useTextStyles();
+  const { children, variant = 'body2', weight = 'regular', disabled, iconLeft, iconRight, className, ...rest } = props;
+  const classes = useStyles()(props);
 
   return (
     <a
       className={classNames(
         classes.textLink,
-        textClasses.components1,
-        textClasses.bold,
         className, {
           [classes.disabled]: disabled
         })}
       {...rest}
     >
       {iconLeft}
-      {children}
+      <Text
+        variant={variant}
+        weight={weight}
+        className={classes.text}
+      >
+        {children}
+      </Text>
       {iconRight}
     </a>
   );
@@ -37,6 +44,9 @@ const TextLink: React.FC<ITextLink> = (props) => {
 
 TextLink.defaultProps = {
   color: 'primary',
+  variant: 'body2',
+  weight: 'regular',
+  disabled: false,
 }
 
 export default TextLink;
