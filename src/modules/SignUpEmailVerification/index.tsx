@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { createStyles, toRem } from '../../components/Theme';
 import Text from '../../components/Text';
 import Form from '../../components/Form';
-import NumberInput from '../../components/NumberInput';
+import Input from '../../components/Input';
 import Button from '../../components/Button';
 import DemoLogo from '../../storybook/preview/DemoLogo';
 import * as yup from 'yup';
@@ -75,10 +75,11 @@ const EmailVerification = ({ email = '', }: IEmailVerificationProps) => {
             setDisabledSubmit(!isValid)
           }}
         >
-          <NumberInput
+          <Input
             fullWidth
             controlled={false}
             className={classes.codeInput}
+            mask="XXXXXX"
             name="code"
             label="Insert Verification Code"
             variant="floatingLabel"
