@@ -66,6 +66,4 @@ FullWidth.args = {
   label: 'Full width',
   hint: 'And now I will show you what is really a very interesting study, Mr. Windibank',
   fullWidth: true,
-  showLength: true,
-  maxLength: 300,
 };
