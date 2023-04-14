@@ -9,7 +9,7 @@ export interface IButton extends Omit<React.ButtonHTMLAttributes<HTMLButtonEleme
   size?: 'mini' | 'small' | 'medium' | 'large',
   shape?: 'square' | 'round' | 'circle',
   variant?: 'contained' | 'outlined' | 'ghost',
-  color?: 'primary' | 'secondary',
+  color?: 'primary' | 'secondary' | 'error',
   disabled?: boolean,
   className?: string,
   fullWidth?: boolean,
@@ -33,7 +33,7 @@ const Button: React.FC<IButton> = (props) => {
     onClick,
     ...rest
   } = props;
-  const classes = useStyles(props);
+  const classes = useStyles()(props);
   const textClasses = useTextStyles();
   const btnRef: React.Ref<HTMLButtonElement> = useRef(null);
   const handleOnClick = (e: React.MouseEvent<HTMLButtonElement> | KeyboardEvent<HTMLButtonElement>) => {
@@ -65,8 +65,8 @@ const Button: React.FC<IButton> = (props) => {
       }}
       {...rest}
     >
-      {IconLeftComponent && <IconLeftComponent className={classes.icon}/>}
       {IconComponent && <IconComponent className={classes.icon} />}
+      {IconLeftComponent && <IconLeftComponent className={classes.icon}/>}
       {children}
       {IconRightComponent && <IconRightComponent className={classes.icon}/>}
     </button>

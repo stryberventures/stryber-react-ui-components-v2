@@ -14,6 +14,7 @@ export interface ISelect extends Omit<IDropdownBase, 'onChange'> {
   name?: string,
   value?: string | number,
   onChange?: (option: IOption) => void,
+  inputVariant?: 'labelOutside' | 'floatingLabel',
 }
 
 const Select: React.FC<ISelect> = (props) => {

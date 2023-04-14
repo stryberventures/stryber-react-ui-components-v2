@@ -3,15 +3,18 @@ import { useCheckedState } from '../InputToggleLayout/hooks';
 import InputToggleLayout from '../InputToggleLayout';
 import { ISwitchIcon, SwitchIcon } from './SwitchIcon';
 import { IInputToggleBaseControlled } from '../InputToggleLayout/types';
-import useStyles from './styles';
-import classNames from 'classnames';
 
-export interface ISwitch extends ISwitchIcon, Omit<IInputToggleBaseControlled, 'size' | 'title'> {}
+
+export interface ISwitch extends ISwitchIcon, IInputToggleBaseControlled {
+  color?: 'primary' | 'secondary';
+}
 
 const Switch: React.FC<ISwitch> = (props) => {
   const { checked, errorMessage, onChange, onFocus } = useCheckedState(props);
-  const { disabled, label, color, className, ...rest } = props;
-  const classes = useStyles();
+  const {
+    disabled, label, color, className, hint, heading,
+    reverse, ...rest
+  } = props;
 
   return (
     <InputToggleLayout
@@ -22,13 +25,18 @@ const Switch: React.FC<ISwitch> = (props) => {
       onChange={onChange}
       onFocus={onFocus}
       label={label}
+      hint={hint}
       disabled={disabled}
-      className={classNames(classes.switch, className)}
+      reverse={reverse}
+      className={className}
       control={
-        <SwitchIcon checked={checked} color={color} disabled={disabled}/>
+        <SwitchIcon checked={checked} color={color} disabled={disabled} />
       }
     />
   );
+}
+Switch.defaultProps = {
+  color: 'primary',
 }
 
 export default Switch;

@@ -1,64 +1,101 @@
-import { createStyles } from '../Theme';
-import toRem from '../../utils/toRem'
+import { createStyles, toRem } from '../Theme'
+import { IInputToggle } from './types';
 
 
-export default createStyles((theme) => ({
+export default () => createStyles((theme) => ({
   inputToggleLayout: {
-    display: 'flex',
-    flexDirection: 'column',
-    '&:hover': {
-      cursor: 'pointer',
+    boxSizing: 'border-box',
+    '& *, *:before, *:after': {
+      boxSizing: 'inherit',
     },
   },
   disabled: {
     pointerEvents: 'none',
+    '& $heading': {
+      color: theme.colors.text.disabled
+    },
+    '& $hint': {
+      color: theme.colors.text.disabled
+    },
+  },
+  title: () => ({
+    color: theme.colors.text.headline,
+    lineHeight: '120%',
+    margin: [0, theme.spacing[8], theme.spacing[8], theme.spacing[4]],
+  }),
+  titleReverse: {
+    textAlign: 'right',
+  },
+  labelContainer: (color: IInputToggle['color']) => ({
+    display: 'grid',
+    gridTemplateColumns: 'auto 1fr',
+    gap: `${toRem(8)} ${toRem(10)}`,
+    position: 'relative',
+    userSelect: 'none',
+    width: 'fit-content',
+    padding: [theme.spacing[4], theme.spacing[8], theme.spacing[4], theme.spacing[4]],
+    '-webkit-tap-highlight-color': 'transparent',
+    '&:hover': {
+      cursor: 'pointer',
+    },
+    '&:has(input:focus-visible) input + div > div': {
+      boxShadow: `0 0 0 2px white, 0 0 0 ${toRem(4)} ${theme.colors[color!].light200}`,
+    },
+    '&$fullWidth': {
+      width: '100%',
+    },
+  }),
+  reverse: {
+    gridTemplateColumns: '1fr auto !important',
+    '& $inputContainer': {
+      gridColumn: '2 / 3',
+    },
+    '& $label, & $hint': {
+      gridColumn: 'span 1',
+    },
+  },
+  inputContainer: {
+    gridColumn: '1',
+    gridRow: '1 / 2',
+    display: 'flex',
+    justifyContent: 'center',
+    paddingTop: toRem(1),
+  },
+  middleAlign: {
+    alignItems: 'center',
   },
   input: () => ( {
-    display: 'none',
+    position: 'absolute',
+    width: 0,
+    height: 0,
   }),
-  container: {
-    userSelect: 'none',
-    display: 'flex',
-    alignItems: 'flex-start',
-    height: '100%',
-    width: '100%',
-    '-webkit-tap-highlight-color': 'transparent',
-  },
-  text: {
-    marginLeft: toRem(8),
-    fontFamily: theme.font,
-    display: 'flex',
-    flexDirection: 'column',
-    fontSize: toRem(14),
-    position: 'relative',
-  },
-  reverse: {
-    flexDirection: 'row-reverse',
-    justifyContent: 'flex-end',
-    '& $text': {
-      marginRight: toRem(8),
-      marginLeft: 0,
-    }
-  },
-  fullWidth: {
-    justifyContent: 'space-between',
-  },
-  medium: {
-    lineHeight: toRem(20),
-  },
-  small: {
-    lineHeight: toRem(16),
-  },
-  title: {
-    color: theme.colors.text.secondary,
-  },
   label: {
-    color: theme.colors.text.tint,
+    display: 'flex',
+    alignItems: 'center',
+    color: theme.colors.text.headline,
+    lineHeight: '150%',
+    gridColumn: '2 / 3',
   },
-  textDisabled: {
-    color: theme.colors.text.disabled,
+  hint: {
+    display: 'flex',
+    alignItems: 'center',
+    color: theme.colors.text.secondary,
+    lineHeight: '120%',
+    gridColumn: '2 / 3',
+  },
+  firstRow: {
+    gridRow: '1 / 2',
+  },
+  secondRow: {
+    gridRow: '2 / 3',
   },
   error: {
-    marginTop: toRem(8),
+    marginLeft: theme.spacing['4'],
+  },
+  fullWidth: {},
+  medium: {},
+  small: {},
+  textDisabled: {
+    color: theme.colors.text.disabled,
   },
 }), { internalUsage: true });

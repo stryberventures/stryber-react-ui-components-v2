@@ -7,12 +7,14 @@
     "TextLink": "text-link",
     "TextArea": "text-area",
     "Dropdown": "dropdown",
+    "Divider": "divider",
     "Chip": "chip",
     "Form": "form",
     "Switch": "switch",
     "Tooltip": "tooltip",
     "RadioButton": "radio-button",
     "CheckBox": "checkbox",
+    "CheckboxGroup": "checkbox-group",
     "InputPassword": "input-password",
     "NumberInput": "number-input",
     "Select": "select",
@@ -26,6 +28,8 @@
     "Grid": "grid",
     "List": "list",
     "Elevation": "elevation",
-    "Tag": "tag"
+    "Tag": "tag",
+    "Tabs": "tabs",
+    "SearchInput": "search-input"
   }
 }

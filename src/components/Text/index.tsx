@@ -8,7 +8,6 @@ export type TTextVariant = keyof typeof TextVariant;
 
 export interface IText extends React.HTMLAttributes<HTMLElement> {
   className?: string,
-  children: string,
   align?: 'left' | 'center' | 'right';
   variant?: TTextVariant;
   component?: TTag,
@@ -39,7 +38,7 @@ const Text: React.FC<IText> = (props) => {
     weight = 'regular',
     ...rest
   } = props;
-  const classes = useStyles(props);
+  const classes = useStyles();
   const Tag = component || defineTag(variant);
   return (
     <Tag

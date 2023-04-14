@@ -1,5 +1,4 @@
-import { createStyles } from '../Theme';
-import toRem from '../../utils/toRem';
+import { createStyles, toRem } from '../Theme';
 
 export default createStyles(() => ({
   content: {
@@ -8,7 +7,6 @@ export default createStyles(() => ({
     overflow: 'auto',
   },
   clearIcon: {
-    marginRight: toRem(10),
     zIndex: 99,
   }
 }), { internalUsage: true });

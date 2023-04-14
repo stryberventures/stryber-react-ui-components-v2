@@ -6,9 +6,9 @@ export enum KEYS {
   tab = 'Tab',
 }
 
-export function useKeyPress (targetKey: string, callback: () => void) {
+export function useKeyPress (targetKey: string, callback: (e: KeyboardEvent) => void) {
   const keyDownHandler = (e: KeyboardEvent) => {
-    if(e.key == targetKey) callback();
+    if(e.key == targetKey) callback(e);
   };
   useEffect(
     () => {

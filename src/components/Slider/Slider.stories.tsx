@@ -6,7 +6,7 @@ import Slider from './index';
 import Button from '../Button';
 import pkg from './package.json';
 import { buildExcludeArgTypes } from '../../storybook/utils';
-import { Minus, Plus } from '../Icons';
+import { CountIcon } from '../Icons';
 
 export default {
   title: 'Components/Slider',
@@ -86,7 +86,7 @@ const TemplateRangeOutsideInput: ComponentStory<typeof Slider> = (args) => {
   };
   return (
     <Form>
-      <div style={{ display: 'flex', marginBottom: 20 }}>
+      <div style={{ display: 'flex', marginBottom: 20, gap: 10, alignItems: 'flex-end' }}>
         <Input
           name="test"
           label="min"
@@ -108,6 +108,7 @@ const TemplateRangeOutsideInput: ComponentStory<typeof Slider> = (args) => {
         <Button
           type="button"
           size="small"
+          style={{ height: 48}}
           disabled={(minVal > maxVal) || (maxVal > max)}
           onClick={applyChanges}
         >
@@ -275,8 +276,8 @@ WithIcons.args = {
   min: 0,
   max: 10,
   thumbLabels: 'tooltip',
-  leftLabel: <div style={{ height: 16, display: 'flex', alignItems: 'center' }}><Minus /></div>,
-  rightLabel: <div style={{ height: 15 }}><Plus /></div>
+  leftLabel: <div style={{ height: 16, display: 'flex', alignItems: 'center' }}><CountIcon variant="minus" /></div>,
+  rightLabel: <div style={{ height: 15 }}><CountIcon variant="plus" /></div>
 };
 WithIcons.decorators = [
   (Story) => (

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import useStyles from './styles';
 import Input, { IInput } from '../Input'
+import Button from '../Button'
 import classNames from 'classnames';
-import { Plus, Minus, VerticalLine } from '../Icons';
+import { CountIcon } from '../Icons';
 import { useFormContext } from '../Form';
+import { useTheme, toRem } from '../Theme';
 
 export interface INumberInput extends Omit<IInput, 'value' | 'onChange'> {
   quantityCounter?: boolean,
@@ -15,7 +17,8 @@ export interface INumberInput extends Omit<IInput, 'value' | 'onChange'> {
 }
 
 const NumberInput: React.FC<INumberInput> = (props) => {
-  const classes = useStyles(props);
+  const classes = useStyles();
+  const { theme } = useTheme();
   const {
     quantityCounter = false,
     min = 0,
@@ -23,9 +26,12 @@ const NumberInput: React.FC<INumberInput> = (props) => {
     step = 1,
     name = 'numberInput',
     value = '',
+    controlled = false,
     errorMessage,
     onChange,
     prefix,
+    prefixClassName,
+    postfix,
     className,
     ...rest
   } = props;
@@ -60,25 +66,56 @@ const NumberInput: React.FC<INumberInput> = (props) => {
   const handleDecrease = () => counterBtnPress('minus');
   const handleIncrease = () => counterBtnPress('plus');
   return (
-    <div className={classNames(classes.numberInputContainer, { [classes.quantityCounter]: quantityCounter }, className)}>
+    <div className={classNames(classes.numberInputContainer, className)}>
       <Input
         {...rest}
         name={name}
-        controlled={true}
+        controlled={controlled}
         className={classes.numberInput}
         value={`${initialValue}` || undefined}
         onChange={handleChange}
         errorMessage={error}
         prefix={prefix}
+        prefixClassName={classNames(classes.prefix, prefixClassName)}
+        postfix={postfix}
         autoComplete='off'
-        endAdornment={(
-          quantityCounter && (
-            <div data-testid="testContainer" className={classes.btnsContainer}>
-              <div data-testid="testMinus" className={classes.counterBtn} onClick={ handleDecrease }><Minus/></div>
-              <div className={classes.separatorLine}><VerticalLine/></div>
-              <div data-testid="testPlus" className={classes.counterBtn} onClick={ handleIncrease }><Plus/></div>
-            </div>
-          )
+        type="number"
+        rightIcon={(
+          <div className={classes.right} data-testid="testContainer">
+            {quantityCounter && (
+              <div className={classes.btnsContainer}>
+                <Button
+                  variant="ghost"
+                  shape="circle"
+                  className={classes.counterBtn}
+                  onClick={ handleDecrease }
+                  iconLeft={() => (
+                    <CountIcon
+                      variant="minus"
+                      width={toRem(8)}
+                      height={toRem(8)}
+                      fill={theme.colors.neutralGray.extraDark900}
+                    />)}
+                  data-testid="testMinus"
+                />
+                <div className={classes.separatorLine}></div>
+                <Button
+                  variant="ghost"
+                  shape="circle"
+                  className={classes.counterBtn}
+                  onClick={ handleIncrease }
+                  iconLeft={() => (
+                    <CountIcon
+                      variant="plus"
+                      width={toRem(8)}
+                      height={toRem(8)}
+                      fill={theme.colors.neutralGray.extraDark900}
+                    />)}
+                  data-testid="testPlus"
+                />
+              </div>
+            )}
+          </div>
         )}
       />
     </div>

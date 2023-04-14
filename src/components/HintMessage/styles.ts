@@ -1,5 +1,4 @@
-import { createStyles } from '../Theme';
-import toRem from '../../utils/toRem';
+import { createStyles, toRem } from '../Theme';
 
 export default createStyles((theme) => ({
   hintMessage: {
@@ -7,6 +6,10 @@ export default createStyles((theme) => ({
     lineHeight: toRem(17),
     fontSize: toRem(14),
     fontFamily: theme.font,
+    boxSizing: 'border-box',
+    '& *': {
+      boxSizing: 'inherit',
+    },
   },
   disabled: {
     color: theme.colors.text.disabled,

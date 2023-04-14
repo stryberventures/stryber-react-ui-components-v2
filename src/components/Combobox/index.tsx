@@ -14,6 +14,7 @@ export interface ICombobox extends Omit<IDropdown, 'onChange' | 'children' | 'va
   options: IOption[],
   value?: IOption['value'],
   onChange?: (option: IOption['value'] | null) => void,
+  inputVariant?: 'labelOutside' | 'floatingLabel',
   noOptionsFoundText?: string,
 }
 
@@ -48,7 +49,7 @@ const Combobox: React.FC<ICombobox> = (props) => {
       onToggle={onDropdownToggle}
       fullWidth={fullWidth}
       onKeyDown={handleKeyDown}
-      endAdornment={inputValue && isOpen && <ClearIcon onClick={() => clearSelectedOption()} className={classes.clearIcon} />}
+      rightIcon={inputValue && isOpen && <ClearIcon onClick={() => clearSelectedOption()} className={classes.clearIcon} />}
       onOutsideClick={handleOutsideClick}
     >
       {!filteredOptions.length && (

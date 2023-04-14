@@ -22,14 +22,26 @@ const NpmInstall = ({ active }: {active: boolean}) => {
       peerName => peerName !== 'react' && peerName !== 'react-jss' && peerName !== 'classnames',
     )
     : [];
-
   return (
     <div className={classes.container}>
-      <h3 className={classes.title}>To install package:</h3>
-      <CodeBox>
-        npm install {name}@{version}
-      </CodeBox>
-      {!!filteredPeerDependencies.length && (
+      {name && (
+        <>
+          <h3 className={classes.title}>To install package:</h3>
+          <CodeBox>
+            npm install {name}@{version}
+          </CodeBox>
+        </>
+      )}
+      {!name && (
+        <>
+          <h3 className={classes.title}>To install package dependencies:</h3>
+          <CodeBox>
+            npm install{' '}
+            {filteredPeerDependencies.join(' \\\n')}
+          </CodeBox>
+        </>
+      )}
+      {!!filteredPeerDependencies.length && name &&  (
         <>
           <h3 className={classes.title}>
             ⚠️ Make sure that all needed peer dependencies are also installed ⚠️:

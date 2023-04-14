@@ -12,7 +12,6 @@ interface IHintMessage extends React.HTMLAttributes<HTMLDivElement> {
 export const HintMessage = (props: IHintMessage) => {
   const { text, className, disabled, ...rest } = props;
   const classes = useStyles();
-
   return (
     <Text
       variant="components2"

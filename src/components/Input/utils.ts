@@ -13,6 +13,6 @@ export const applyDigitMask = (value: string, mask: string): string => {
     return newValue;
   });
   i = maskedValue.indexOf('X') >= 0 ? maskedValue.indexOf('X') : mask.length;
-  
+
   return maskedValue.slice(0, i);
 }

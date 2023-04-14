@@ -48,7 +48,7 @@ it('should display the hint', () => {
 });
 
 it('should render the adornment', () => {
-  render(<Input label="Input" endAdornment={<LeftArrow />} />);
+  render(<Input label="Input" rightIcon={<LeftArrow />} />);
   const icon = screen.getByTestId('leftArrow');
   expect(icon).toBeVisible();
 });

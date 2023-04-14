@@ -1,5 +1,5 @@
 import { ITheme } from './types';
-import toRem from '../../utils/toRem';
+import { toRem } from './utils';
 
 export const defaultColumns = {
   xs: 4,
@@ -120,14 +120,14 @@ export const defaultTheme: ITheme = {
     margin: defaultMargins,
     gap: defaultGaps,
     maxWidth: 1320,
-    breakpoints: {
-      xs: 0,
-      sm: 576,
-      md: 768,
-      lg: 992,
-      xl: 1200,
-      xxl: 1400,
-    },
+  },
+  breakpoints: {
+    xs: 0,
+    sm: 576,
+    md: 768,
+    lg: 992,
+    xl: 1200,
+    xxl: 1400,
   },
   spacing: {
     2: toRem(2),

@@ -1,37 +1,35 @@
 import React from 'react';
 import classNames from 'classnames';
 import useStyles from './styles';
-import { RadioBoxIcon } from '../../Icons';
+
 
 export interface IRadioBoxMarkProps {
   checked?: boolean;
-  size?: 'small' | 'medium';
-  color?: 'primary' | 'secondary',
+  color?: 'primary' | 'secondary' | 'error',
   disabled?: boolean;
 }
 
 export const RadioBoxMark = (props: IRadioBoxMarkProps) => {
   const {
     checked,
-    size = 'medium',
-    disabled
+    disabled,
   } = props;
-  const classes = useStyles(props);
-
+  const classes = useStyles(props.color);
   return (
-    <span
-      className={classNames(classes.radioBoxMark, classes[size],
-        { [classes.disabled]: disabled },
-        { [classes.checked]: checked },
+    <div
+      className={classNames(classes.radioBoxMark,
+        {
+          [classes.checked]: checked,
+          [classes.disabled]: disabled,
+        },
       )}>
-      <RadioBoxIcon/>
+      {checked && <div className={classes.radioBoxIcon} />}
       <div className={classes.clickArea}/>
-    </span>
+    </div>
   );
 };
 
 RadioBoxMark.defaultProps = {
   checked: false,
-  size: 'medium',
   color: 'primary',
 }

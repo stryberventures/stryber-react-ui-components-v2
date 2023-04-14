@@ -1,6 +1,5 @@
-import { createStyles } from '../Theme';
 import { ISlider } from './index';
-import toRem from '../../utils/toRem';
+import { createStyles, toRem } from '../Theme';
 
 
 export default createStyles( (theme) => ({
@@ -95,7 +94,7 @@ export default createStyles( (theme) => ({
     },
     '&>div>div': {
       height: toRem(34),
-      padding: 0,
+      padding: '0 !important',
       width: 'fit-content',
     },
     '& $input': {
@@ -127,11 +126,11 @@ export default createStyles( (theme) => ({
     '-ms-user-select': 'none',
     'user-select': 'none',
   },
-  sliderRange: (props: ISlider) => ({
+  sliderRange: (color: ISlider['color']) => ({
     position: 'absolute',
     borderRadius: toRem(3),
     height: toRem(4),
-    backgroundColor: theme.colors[props.color!].main500,
+    backgroundColor: theme.colors[color!].main500,
     opacity: 0.6,
     zIndex: 2,
     cursor: 'pointer',

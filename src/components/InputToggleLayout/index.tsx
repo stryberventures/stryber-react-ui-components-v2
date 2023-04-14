@@ -4,22 +4,41 @@ import useStyles from './styles';
 import { IInputToggle } from './types';
 import { ErrorMessage } from '../ErrorMessage';
 import Text from '../Text';
+import { KEYS } from '../../hooks/useKeyPress';
 
 const InputToggleLayout: React.FC<IInputToggle> = (props) => {
   const {
-    name = '', size = 'medium', className, type, checked, disabled, value, children, title, control,
-    onChange, onFocus, errorMessage, placeholder, label, controlled, reverse, fullWidth, ...rest
+    name = '', alignControl = 'top', className, type, checked, disabled, value, children, title, control,
+    onChange, onFocus, errorMessage, placeholder, label, hint, controlled,
+    reverse, fullWidth, color, ...rest
   } = props;
-  const classes = useStyles(props);
-  
+  const classes = useStyles()(color);
   return (
     <div className={classNames(classes.inputToggleLayout, {
       [classes.disabled]: disabled,
     }, className)}>
-      <label className={classNames(classes.container, {
-        [classes.reverse]: reverse,
-        [classes.fullWidth]: fullWidth
-      })}>
+      {title &&
+        <Text
+          variant="components2"
+          weight="regular"
+          className={classNames(
+            classes.title,
+            {
+              [classes.textDisabled]: disabled,
+              [classes.titleReverse]: reverse,
+            }
+          )}
+        >
+          {title}
+        </Text>
+      }
+      <label className={classNames(
+        classes.labelContainer,
+        {
+          [classes.reverse]: reverse,
+          [classes.fullWidth]: fullWidth,
+        })}
+      >
         <input
           {...rest}
           type={type}
@@ -27,54 +46,66 @@ const InputToggleLayout: React.FC<IInputToggle> = (props) => {
           name={name}
           value={value}
           checked={checked}
+          disabled={disabled}
           onChange={onChange}
+          onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
+            const target = e?.target as HTMLInputElement;
+            if (e.key == KEYS.enter) {
+              onChange?.({ ...e,  target: { ...target, checked: !target.checked, name } });
+            }
+          }}
           onFocus={onFocus}
         />
-        {control}
-        <div className={classes.text}>
-          {title &&
+        <div className={classNames(classes.inputContainer, { [classes.middleAlign]: alignControl == 'middle' })}>
+          {control}
+        </div>
+        {label && typeof label == 'string'
+          ? (
             <Text
               variant="components2"
-              weight="medium"
+              weight="regular"
               className={classNames(
-                classes.title,
-                classes[size],
+                classes.label,
+                classes.firstRow,
                 {
                   [classes.textDisabled]: disabled,
                 }
               )}
             >
-              {title}
+              {label}
             </Text>
-          }
-          {label && typeof label == 'string'
-            ? (
-              <Text
-                variant="components2"
-                weight="regular"
-                className={classNames(
-                  classes.label,
-                  classes[size],
-                  {
-                    [classes.textDisabled]: disabled,
-                  }
-                )}
-              >
-                {label}
-              </Text>
-            )
-            : label
-          }
-        </div>
+          )
+          : label
+        }
+        {hint &&
+          <Text
+            variant="components2"
+            weight="regular"
+            className={classNames(
+              classes.hint,
+              {
+                [classes.textDisabled]: disabled,
+                [classes.secondRow]: !!label,
+                [classes.firstRow]: !label,
+              }
+            )}
+          >
+            {hint}
+          </Text>
+        }
       </label>
-      {errorMessage && <ErrorMessage text={errorMessage} className={classes.error}/>}
+      {errorMessage && (
+        <ErrorMessage
+          text={errorMessage}
+          className={classes.error}
+        />
+      )}
     </div>
   );
 };
 
 InputToggleLayout.defaultProps = {
   type: 'checkbox',
-  size: 'medium',
   color: 'primary',
   checked: false,
   disabled: false,

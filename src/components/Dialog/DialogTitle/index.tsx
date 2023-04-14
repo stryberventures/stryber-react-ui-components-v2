@@ -11,7 +11,7 @@ export interface IDialogTitle extends React.HTMLAttributes<HTMLElement> {
 
 const DialogTitle: React.FC<IDialogTitle> = (props) => {
   const { children, className } = props;
-  const classes = useStyles(props);
+  const classes = useStyles();
   return typeof children == 'string'
     ? (
       <Text
