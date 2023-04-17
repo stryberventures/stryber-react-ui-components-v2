@@ -10,18 +10,26 @@ import { useEffectAfterMount } from '../../hooks/useEffectAfterMount';
 const ThemeContext = React.createContext<IThemeContext>({
   theme: defaultTheme,
   updateTheme: () => console.log('ThemeProvider is not rendered yet'),
+  rtl: false,
+  updateRTL: () => console.log('ThemeProvider is not rendered yet'),
 });
 
 const ThemeProvider = React.memo(
-  ({ theme: initial, children }: IThemeProvider) => {
+  ({ theme: initial, rtl: initialRTL = false, children }: IThemeProvider) => {
     const [theme, setTheme] = useState<ThemeType>(merge(defaultTheme, initial));
+    const [rtl, setRTL] = useState(initialRTL);
     const updateTheme = useCallback(<T,>(updatedTheme: T) => {
       setTheme(currentTheme => merge(currentTheme, updatedTheme));
+    }, []);
+    const updateRTL = useCallback((updatedRTL: boolean) => {
+      setRTL(updatedRTL);
     }, []);
 
     const contextValue: IThemeContext =  {
       theme,
+      rtl,
       updateTheme,
+      updateRTL,
     };
 
     useEffectAfterMount(() => {
@@ -42,7 +50,20 @@ const ThemeProvider = React.memo(
 
 ThemeProvider.displayName = 'ThemeProvider';
 
-const useTheme = () => useContext(ThemeContext);
+const useTheme = () => {
+  const { theme, updateTheme } = useContext(ThemeContext);
+  return {
+    theme,
+    updateTheme,
+  }
+}
+const useRTL = () => {
+  const { rtl, updateRTL } = useContext(ThemeContext);
+  return {
+    rtl,
+    updateRTL,
+  };
+}
 
 const externalStylesIndex = 50;
 
@@ -68,4 +89,5 @@ export {
   toRem,
   createStyles,
   useTheme,
+  useRTL,
 }

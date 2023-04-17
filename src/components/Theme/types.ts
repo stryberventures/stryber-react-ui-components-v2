@@ -19,10 +19,13 @@ type TSpacing = 2 | 4 | 8 | 12 | 16 | 24 | 32 | 40 | 48 | 64 | 80 | 96 | 160;
 export interface IThemeContext {
   theme: ThemeType;
   updateTheme: (updatedTheme: CustomTheme) => void;
+  rtl: boolean;
+  updateRTL: (rtl: boolean) => void;
 }
 
 export interface IThemeProvider {
   theme: CustomTheme;
+  rtl?: boolean;
   children: React.ReactNode;
 }
 
