@@ -13,8 +13,10 @@ export default {
   parameters: {
     pkg,
   },
-  args: {},
-  argTypes: buildExcludeArgTypes(['selectedItems', 'onSelect', 'onSort', 'className']),
+  args: {
+    color: 'primary',
+  },
+  argTypes: buildExcludeArgTypes(['selectedItems', 'onSelect', 'onSort', 'className', 'sorting']),
 } as ComponentMeta<typeof Table>;
 
 const metadata = [
@@ -30,6 +32,7 @@ const metadata = [
     formatter: (value: string | number, data: any) => (
       <TextLink
         href={'#'}
+        variant="body3"
         target="_blank"
         disabled={data?.disabled}
         onClick={(e) => {e.stopPropagation()}}

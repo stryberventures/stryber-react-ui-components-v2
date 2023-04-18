@@ -1,4 +1,5 @@
-import { createStyles, toRem } from '../../Theme';
+import { ITableRow } from './index';
+import { createStyles } from '../../Theme';
 
 export default () => createStyles((theme) => ({
   tableRow: {
@@ -7,8 +8,9 @@ export default () => createStyles((theme) => ({
     alignItems: 'stretch',
     transition: 'background-color .3s',
     cursor: 'default',
-    '&:not(:last-child)': {
-      borderBottom: [1, 'solid', theme.colors.neutralGray.light200],
+    borderBottom: [1, 'solid', theme.colors.neutralGray.light200],
+    '&:last-child': {
+      borderBottom: 0,
     },
     '&:hover': {
       backgroundColor: theme.colors.neutralGray.extraLight50,
@@ -17,9 +19,9 @@ export default () => createStyles((theme) => ({
   tableRowSelectable: {
     cursor: 'pointer',
   },
-  tableRowSelected: {
-    backgroundColor: theme.colors.primary.extraLight50,
-  },
+  tableRowSelected: (props: ITableRow) => ({
+    backgroundColor: theme.colors[props.color!].extraLight50,
+  }),
   tableRowDisabled: {
     backgroundColor: theme.colors.background.extraLightGrey,
     cursor: 'default',
@@ -30,8 +32,9 @@ export default () => createStyles((theme) => ({
   },
   tableCell: {
     display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
+    flexDirection: 'column',
+    justifyContent: 'center',
     padding: [theme.spacing[16], theme.spacing[24]],
   },
   text: {

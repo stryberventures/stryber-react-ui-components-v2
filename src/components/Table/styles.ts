@@ -1,7 +1,9 @@
+import { ITable } from './index';
 import { createStyles, toRem } from '../Theme';
 
 export default () => createStyles((theme) => ({
   table: {
+    minWidth: '100%',
     width: 'fit-content',
     boxSizing: 'border-box',
     border: [1, 'solid', theme.colors.neutralGray.light200],
@@ -18,5 +20,13 @@ export default () => createStyles((theme) => ({
     '&:hover': {
       backgroundColor: [theme.colors.neutralGray.light100, '!important'],
     }
+  },
+  paginationPlaceholder: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    padding: [theme.spacing[16], theme.spacing[24]],
+  },
+  paginationPlaceholderText: {
+    color: theme.colors.text.secondary,
   },
 }), { internalUsage: true });

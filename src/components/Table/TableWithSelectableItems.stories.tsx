@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Table from './index';
-import TextLink from '../TextLink';
 import Text from '../Text';
 import pkg from './package.json';
 import { buildExcludeArgTypes } from '../../storybook/utils';
@@ -13,8 +12,10 @@ export default {
   parameters: {
     pkg,
   },
-  args: {},
-  argTypes: buildExcludeArgTypes(['selectedItems', 'onSelect', 'onSort', 'className']),
+  args: {
+    color: 'primary',
+  },
+  argTypes: buildExcludeArgTypes(['selectedItems', 'onSelect', 'onSort', 'className', 'sorting']),
 } as ComponentMeta<typeof Table>;
 
 const metadata = [
@@ -27,16 +28,6 @@ const metadata = [
   {
     id: 'company',
     label: 'Company',
-    formatter: (value: string | number, data: any) => (
-      <TextLink
-        href={'#'}
-        target="_blank"
-        disabled={data?.disabled}
-        onClick={(e) => {e.stopPropagation()}}
-      >
-        {String(value)}
-      </TextLink>
-    ),
     width: '30%',
     minWidth: 250,
     sortable: true,

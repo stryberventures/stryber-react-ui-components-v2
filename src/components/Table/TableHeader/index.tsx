@@ -10,6 +10,7 @@ import { KEYS } from '../../../hooks/useKeyPress';
 
 
 export interface ITableHeader {
+  color?: 'primary' | 'secondary';
   metadata: IMetadata[];
   sorting?: ITableSorting;
   className?: string;

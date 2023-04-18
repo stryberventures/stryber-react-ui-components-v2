@@ -5,9 +5,14 @@ import Text from '../../Text';
 import useStyles from './styles';
 
 
-interface ITableRow {
+interface IData {
+  [key: string]: any
+}
+
+export interface ITableRow {
+  color?: 'primary' | 'secondary';
   metadata: IMetadata[];
-  data?: any; // TODO change it
+  data?: IData;
   selected?: boolean;
   className?: string;
   onSelect?: (itemId: string) => void;
@@ -31,10 +36,9 @@ const TableRow: React.FC<ITableRow> = (props) => {
               {data?.[column.id]}
             </Text>
           );
-        console.log('onSelect ==>>', onSelect);
         return (
           <div
-            key={column.id} // TODO check if it doesn't break anything
+            key={column.id}
             className={classNames(
               classes.tableCell,
               {

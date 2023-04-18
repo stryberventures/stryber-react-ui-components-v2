@@ -16,16 +16,31 @@ export interface ITable {
   tableName?: string;
   sorting?: ITableSorting,
   selectedItems?: any[],
+  selectedItemsTitle?: string,
   onSelect?: (itemId: string) => void,
   onSort?: (orderBy: string, orderDirection: TSortingDirection) => void;
   color?: 'primary' | 'secondary';
   className?: string;
   variant?: 'default' | 'zebra';
+  pagination?: any;
 }
 
 const Table: React.FC<ITable> = (props) => {
-  const { color = 'primary', variant = 'zebra', className, metadata, data, sorting, tableName, selectedItems, onSort, onSelect, } = props;
-  const classes = useStyles()(props);
+  const {
+    color = 'primary',
+    variant = 'zebra',
+    className,
+    metadata,
+    data,
+    sorting,
+    tableName,
+    selectedItems,
+    selectedItemsTitle,
+    pagination = true,
+    onSort,
+    onSelect,
+  } = props;
+  const classes = useStyles()();
   return (
     <Elevation
       variant="extraLight"
@@ -35,18 +50,22 @@ const Table: React.FC<ITable> = (props) => {
       {selectedItems && !!selectedItems.length && (
         <SelectedItems>
           <Text variant="components1" className={classes.selectedItems}>
-            {`${selectedItems.length} Items Selected`}
+            {selectedItemsTitle || `${selectedItems.length} Items Selected`}
           </Text>
-        </SelectedItems> // TODO translation??
+        </SelectedItems>
       )}
-      <TableHeader metadata={metadata} sorting={sorting} onSort={onSort} />
+      <TableHeader
+        color={color}
+        metadata={metadata}
+        sorting={sorting}
+        onSort={onSort}
+      />
       {data?.map((row, index: number) => {
         return (
           <TableRow
+            color={color}
             key={row.id}
-            className={classNames({
-              [classes.evenRow]: variant == 'zebra' && index % 2
-            })}
+            className={classNames({ [classes.evenRow]: variant == 'zebra' && index % 2 })}
             metadata={metadata}
             data={row}
             selected={selectedItems?.includes(row.id)}
@@ -54,6 +73,16 @@ const Table: React.FC<ITable> = (props) => {
           />
         )
       })}
+      {pagination && (
+        <div className={classes.paginationPlaceholder}>
+          <Text
+            variant="components1"
+            className={classes.paginationPlaceholderText}
+          >
+            Pagination placeholder
+          </Text>
+        </div>
+      )}
     </Elevation>
   );
 }
