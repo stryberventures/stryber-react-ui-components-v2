@@ -86,7 +86,7 @@ const TemplateRangeOutsideInput: ComponentStory<typeof Slider> = (args) => {
   };
   return (
     <Form>
-      <div style={{ display: 'flex', marginBottom: 20, gap: 10, alignItems: 'flex-end' }}>
+      <div style={{ display: 'flex', marginBottom: 20, gap: 10, alignItems: 'flex-start' }}>
         <Input
           name="test"
           label="min"
@@ -108,7 +108,7 @@ const TemplateRangeOutsideInput: ComponentStory<typeof Slider> = (args) => {
         <Button
           type="button"
           size="small"
-          style={{ height: 48}}
+          style={{ height: 48, marginTop: 25 }}
           disabled={(minVal > maxVal) || (maxVal > max)}
           onClick={applyChanges}
         >
