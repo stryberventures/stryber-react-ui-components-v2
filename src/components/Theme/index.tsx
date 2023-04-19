@@ -10,32 +10,31 @@ import { useEffectAfterMount } from '../../hooks/useEffectAfterMount';
 const ThemeContext = React.createContext<IThemeContext>({
   theme: defaultTheme,
   updateTheme: () => console.log('ThemeProvider is not rendered yet'),
-  rtl: false,
-  updateRTL: () => console.log('ThemeProvider is not rendered yet'),
+  dir: 'auto',
+  updateDir: () => console.log('ThemeProvider is not rendered yet'),
 });
 
 const ThemeProvider = React.memo(
   ({ theme: initial, children }: IThemeProvider) => {
     const [theme, setTheme] = useState<ThemeType>(merge(defaultTheme, initial));
-    const [rtl, setRTL] = useState(window.getComputedStyle(document.documentElement, null).direction === 'rtl');
+    const [dir, setDir] = useState(window.getComputedStyle(document.documentElement, null).direction);
     const updateTheme = useCallback(<T,>(updatedTheme: T) => {
       setTheme(currentTheme => merge(currentTheme, updatedTheme));
     }, []);
-    const updateRTL = useCallback((updatedRTL: boolean) => {
-      setRTL(updatedRTL);
+    const updateDir = useCallback((updatedDir: string) => {
+      setDir(updatedDir);
     }, []);
 
     const contextValue: IThemeContext =  {
       theme,
-      rtl,
+      dir,
       updateTheme,
-      updateRTL,
+      updateDir,
     };
 
     const documentObserver = new MutationObserver((mutationsList) => {
       mutationsList.forEach(() => {
-        const direction = window.getComputedStyle(document.documentElement, null).direction;
-        updateRTL(direction === 'rtl');
+        updateDir(window.getComputedStyle(document.documentElement, null).direction);
       });
     });
 
@@ -75,9 +74,9 @@ const useTheme = () => {
     updateTheme,
   }
 }
-const useRTL = (pRTL?: boolean) => {
-  const { rtl } = useContext(ThemeContext);
-  return typeof pRTL === 'boolean' ? pRTL : rtl;
+const useDir = (pDir?: string) => {
+  const { dir } = useContext(ThemeContext);
+  return typeof pDir === 'string' ? pDir : dir;
 }
 
 const externalStylesIndex = 50;
@@ -104,5 +103,5 @@ export {
   toRem,
   createStyles,
   useTheme,
-  useRTL,
+  useDir,
 }
