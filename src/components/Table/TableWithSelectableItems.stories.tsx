@@ -3,14 +3,11 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Table from './index';
 import Text from '../Text';
 import pkg from './package.json';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import file from '!!raw-loader!./index';
-import { buildExcludeArgTypes, replacePaths } from '../../storybook/utils';
+import { TableCode } from '../../storybook/preview/Table/Selectable';
+import { buildExcludeArgTypes } from '../../storybook/utils';
 import { ITableSorting, SortingDirection, TSortingDirection } from './types';
 
 
-const sourceToDisplay = replacePaths(file);
 
 export default {
   title: 'Components/Table/TableWithSelectableItems',
@@ -20,6 +17,7 @@ export default {
   },
   args: {
     color: 'primary',
+    variant: 'default',
   },
   argTypes: buildExcludeArgTypes(['selectedItems', 'onSelect', 'onSort', 'className', 'sorting']),
 } as ComponentMeta<typeof Table>;
@@ -90,7 +88,7 @@ const Template: ComponentStory<typeof Table> = (args) => {
   function onSort (orderBy: string, orderDirection: TSortingDirection) {
     setSorting({ orderBy, orderDirection });
   }
-  const [selectedItems, setSelectedItems] = useState<(string | number)[]>([]);
+  const [selectedItems, setSelectedItems] = useState<(string | number)[]>([1, 2]);
   function handleOnSelect (itemId: string | number) {
     const newSelectedItems = selectedItems.includes(itemId)
       ? selectedItems.filter((id) => id != itemId)
@@ -119,7 +117,7 @@ TableWithSelectableItems.args = {
 TableWithSelectableItems.parameters = {
   docs: {
     source: {
-      code: sourceToDisplay,
+      code: TableCode,
     },
   }
 }

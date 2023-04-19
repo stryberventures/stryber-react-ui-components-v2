@@ -4,14 +4,11 @@ import Table from './index';
 import TextLink from '../TextLink';
 import Text from '../Text';
 import pkg from './package.json';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import file from '!!raw-loader!./index';
-import { buildExcludeArgTypes, replacePaths } from '../../storybook/utils';
+import { TableCode } from '../../storybook/preview/Table/Default';
+import { buildExcludeArgTypes } from '../../storybook/utils';
 import { IData, ITableSorting, SortingDirection, TSortingDirection } from './types';
 
 
-const sourceToDisplay = replacePaths(file);
 
 export default {
   title: 'Components/Table/Default',
@@ -21,6 +18,7 @@ export default {
   },
   args: {
     color: 'primary',
+    variant: 'default',
   },
   argTypes: buildExcludeArgTypes(['selectedItems', 'onSelect', 'onSort', 'className', 'sorting']),
 } as ComponentMeta<typeof Table>;
@@ -139,7 +137,7 @@ Default.args = {
 Default.parameters = {
   docs: {
     source: {
-      code: sourceToDisplay,
+      code: TableCode,
     },
   },
 };
