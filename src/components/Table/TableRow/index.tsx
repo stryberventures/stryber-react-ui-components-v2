@@ -1,30 +1,26 @@
 import React from 'react';
 import classNames from 'classnames';
-import { IMetadata } from '../types';
+import { IData, IMetadata } from '../types';
 import Text from '../../Text';
 import useStyles from './styles';
 
 
-interface IData {
-  [key: string]: any
-}
-
 export interface ITableRow {
   color?: 'primary' | 'secondary';
   metadata: IMetadata[];
-  data?: IData;
+  data: IData;
   selected?: boolean;
   className?: string;
-  onSelect?: (itemId: string) => void;
+  onSelect?: (itemId: string | number) => void;
 }
 
 const TableRow: React.FC<ITableRow> = (props) => {
-  const { metadata, data = {}, className, selected, onSelect } = props;
+  const { metadata, data, className, selected, onSelect } = props;
   const classes = useStyles()(props);
   return (
     <div className={classNames(classes.tableRow, className)}>
       {metadata.map((column) => {
-        const value = column.formatter?.(data[column.id], data)
+        const value = column.formatter?.(data?.[column.id], data)
           || (
             <Text
               variant="components2"

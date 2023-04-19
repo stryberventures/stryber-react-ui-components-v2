@@ -19,6 +19,8 @@ export default () => createStyles((theme) => ({
   tableRowSelectable: {
     cursor: 'pointer',
   },
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   tableRowSelected: (props: ITableRow) => ({
     backgroundColor: theme.colors[props.color!].extraLight50,
   }),

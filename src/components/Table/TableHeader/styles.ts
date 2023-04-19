@@ -31,18 +31,9 @@ export default () => createStyles((theme) => ({
   thLabel: {
     color: theme.colors.text.secondary,
   },
-  // TODO why it has TS error? We need to use color from props
-  // sortingIconWrapper: (props: ITableHeader) => ({
-  //   position: 'relative',
-  //   left: `${toRem(-16)}`,
-  //   padding: `${theme.spacing[16]}`,
-  //   '&:focus-visible': {
-  //     outline: 'none',
-  //     boxShadow: `0 0 0 2px white, 0 0 0 4px ${theme.colors[props.color!].light200}`,
-  //     borderRadius: `${toRem(12)}`,
-  //   },
-  // }),
-  sortingIconWrapper: {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  sortingIconWrapper: (props: ITableHeader) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -57,27 +48,29 @@ export default () => createStyles((theme) => ({
       transition: 'fill .3s',
     },
     '&:hover': {
-      background: theme.colors.primary.extraLight50,
-      border: [1, 'solid', theme.colors.primary.extraLight50],
+      background: theme.colors[props.color!].extraLight50,
+      border: [1, 'solid', theme.colors[props.color!].extraLight50],
     },
     '&:active': {
-      background: theme.colors.primary.light100,
-      border: [1, 'solid', theme.colors.primary.light100],
+      background: theme.colors[props.color!].light100,
+      border: [1, 'solid', theme.colors[props.color!].light100],
     },
     '&:focus-visible': {
-      background: theme.colors.primary.extraLight50,
-      border: [1, 'solid', theme.colors.primary.medium300],
+      background: theme.colors[props.color!].extraLight50,
+      border: [1, 'solid', theme.colors[props.color!].medium300],
       borderRadius: toRem(12),
       outline: 'none',
     },
-  },
-  sortingIconActive: {
-    background: theme.colors.primary.extraLight50,
-    border: [1, 'solid', theme.colors.primary.extraLight50],
+  }),
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  sortingIconActive: (props: ITableHeader) => ({
+    background: theme.colors[props.color!].extraLight50,
+    border: [1, 'solid', theme.colors[props.color!].extraLight50],
     '& svg path': {
-      fill: theme.colors.primary.medium300,
+      fill: theme.colors[props.color!].medium300,
     },
-  },
+  }),
   sortingIcon: {
     width: toRem(12),
     height: toRem(12),
@@ -87,7 +80,9 @@ export default () => createStyles((theme) => ({
       fill: theme.colors.text.secondary,
     },
   },
-  tooltipTarget: {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  tooltipTarget: (props: ITableHeader) => ({
     padding: toRem(8),
     '& > [class*="tooltipTarget"]': {
       display: 'flex',
@@ -100,16 +95,16 @@ export default () => createStyles((theme) => ({
       border: [1, 'solid', 'transparent'],
       transition: 'background-color .3s, border-color .3s',
       '&:hover': {
-        background: theme.colors.primary.extraLight50,
-        border: [1, 'solid', theme.colors.primary.extraLight50],
+        background: theme.colors[props.color!].extraLight50,
+        border: [1, 'solid', theme.colors[props.color!].extraLight50],
       },
       '&:focus-visible': {
-        background: theme.colors.primary.extraLight50,
-        border: [1, 'solid', theme.colors.primary.medium300],
+        background: theme.colors[props.color!].extraLight50,
+        border: [1, 'solid', theme.colors[props.color!].medium300],
         boxShadow: 'none',
       },
     },
-  },
+  }),
   tooltipTargetIcon: {
     width: toRem(12),
     height: toRem(12),

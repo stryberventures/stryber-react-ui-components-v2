@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { IMetadata, ITableSorting, TSortingDirection } from './types';
+import { IData, IMetadata, ITableSorting, TSortingDirection } from './types';
 import Elevation from '../Elevation';
 import TableHeader from './TableHeader';
 import TableRow from './TableRow';
@@ -12,12 +12,12 @@ import useStyles from './styles';
 
 export interface ITable {
   metadata: IMetadata[];
-  data?: any[];
+  data?: IData[];
   tableName?: string;
   sorting?: ITableSorting,
-  selectedItems?: any[],
+  selectedItems?: (string | number)[],
   selectedItemsTitle?: string,
-  onSelect?: (itemId: string) => void,
+  onSelect?: (itemId: string | number) => void,
   onSort?: (orderBy: string, orderDirection: TSortingDirection) => void;
   color?: 'primary' | 'secondary';
   className?: string;
@@ -63,8 +63,8 @@ const Table: React.FC<ITable> = (props) => {
       {data?.map((row, index: number) => {
         return (
           <TableRow
-            color={color}
             key={row.id}
+            color={color}
             className={classNames({ [classes.evenRow]: variant == 'zebra' && index % 2 })}
             metadata={metadata}
             data={row}

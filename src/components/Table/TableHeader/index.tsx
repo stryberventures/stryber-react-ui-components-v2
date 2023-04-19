@@ -23,8 +23,8 @@ function getArrowDirection (columnId: string, sorting?: ITableSorting): IArrowIc
 }
 
 const TableHeader: React.FC<ITableHeader> = (props) => {
-  const { metadata, sorting, onSort, className } = props;
-  const classes = useStyles()();
+  const { color = 'primary', metadata, sorting, onSort, className } = props;
+  const classes = useStyles()(props);
   function handleOnSort (columnId: string) {
     const isCurrentColumnSorted = sorting?.orderBy == columnId;
     const newSortingDirection = isCurrentColumnSorted
@@ -54,7 +54,7 @@ const TableHeader: React.FC<ITableHeader> = (props) => {
                 position="bottom"
                 className={classes.tooltipTarget}
               >
-                <QuestionIcon className={classes.tooltipTargetIcon} />
+                <QuestionIcon className={classes.tooltipTargetIcon} data-testid="questionIcon" />
               </Tooltip>
             )}
             {column.sortable && (
@@ -66,6 +66,7 @@ const TableHeader: React.FC<ITableHeader> = (props) => {
                 tabIndex={0}
                 onClick={() => handleOnSort(column.id)}
                 onKeyDown={(e) => e.key == KEYS.enter && handleOnSort(column.id)}
+                data-testid="sortingIcon"
               >
                 <PointArrowIcon
                   variant={getArrowDirection(column.id, sorting)}

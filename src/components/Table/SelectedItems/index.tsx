@@ -1,7 +1,6 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import useStyles from './styles';
-import { ReactJSXElement } from '@storybook/theming/dist/ts3.9/_modules/@emotion-react-types-jsx-namespace';
 
 
 interface ISelectedItems {

@@ -4,8 +4,12 @@ import Table from './index';
 import TextLink from '../TextLink';
 import Text from '../Text';
 import pkg from './package.json';
-import { buildExcludeArgTypes } from '../../storybook/utils';
+import file from '!!raw-loader!./index';
+import { buildExcludeArgTypes, replacePaths } from '../../storybook/utils';
 import { ITableSorting, SortingDirection, TSortingDirection } from './types';
+
+
+const sourceToDisplay = replacePaths(file);
 
 export default {
   title: 'Components/Table/Default',
@@ -110,3 +114,11 @@ Default.args = {
   sorting,
   tableName: 'Table Name'
 };
+
+// Default.parameters = {
+//   docs: {
+//     source: {
+//       code: sourceToDisplay,
+//     },
+//   },
+// };

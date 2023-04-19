@@ -3,8 +3,12 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Table from './index';
 import Text from '../Text';
 import pkg from './package.json';
-import { buildExcludeArgTypes } from '../../storybook/utils';
+import file from '!!raw-loader!./index';
+import { buildExcludeArgTypes, replacePaths } from '../../storybook/utils';
 import { ITableSorting, SortingDirection, TSortingDirection } from './types';
+
+
+const sourceToDisplay = replacePaths(file);
 
 export default {
   title: 'Components/Table/TableWithSelectableItems',
@@ -84,8 +88,8 @@ const Template: ComponentStory<typeof Table> = (args) => {
   function onSort (orderBy: string, orderDirection: TSortingDirection) {
     setSorting({ orderBy, orderDirection });
   }
-  const [selectedItems, setSelectedItems] = useState<string[]>([]);
-  function handleOnSelect (itemId: string) {
+  const [selectedItems, setSelectedItems] = useState<(string | number)[]>([]);
+  function handleOnSelect (itemId: string | number) {
     const newSelectedItems = selectedItems.includes(itemId)
       ? selectedItems.filter((id) => id != itemId)
       : [...selectedItems, itemId];
@@ -109,3 +113,11 @@ TableWithSelectableItems.args = {
   sorting,
   tableName: 'Table Name'
 };
+
+TableWithSelectableItems.parameters = {
+  docs: {
+    source: {
+      code: sourceToDisplay,
+    },
+  }
+}

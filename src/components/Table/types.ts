@@ -25,3 +25,9 @@ export interface ITableSorting {
   orderBy: string;
   orderDirection: TSortingDirection;
 }
+
+export interface IData {
+  id: string | number;
+  disabled?: boolean;
+  [key: string]: any;
+}
