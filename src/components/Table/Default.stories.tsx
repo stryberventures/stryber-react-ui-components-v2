@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Table from './index';
 import TextLink from '../TextLink';
@@ -6,7 +6,7 @@ import Text from '../Text';
 import pkg from './package.json';
 import file from '!!raw-loader!./index';
 import { buildExcludeArgTypes, replacePaths } from '../../storybook/utils';
-import { ITableSorting, SortingDirection, TSortingDirection } from './types';
+import { IData, ITableSorting, SortingDirection, TSortingDirection } from './types';
 
 
 const sourceToDisplay = replacePaths(file);
@@ -29,6 +29,7 @@ const metadata = [
     label: 'ID',
     width: '12%',
     minWidth: 100,
+    sortable: true,
   },
   {
     id: 'company',
@@ -87,19 +88,41 @@ const data = [
 const sorting = {
   orderBy: 'company',
   orderDirection: SortingDirection.asc,
+};
+
+function sortBy (direction: 'asc' | 'desc') {
+
 }
 
 const Template: ComponentStory<typeof Table> = (args) => {
   const [sorting, setSorting] = useState<ITableSorting>({
-    orderBy: 'company',
+    orderBy: 'id',
     orderDirection: 'desc',
   });
+  const [sortedData, setSortedData] = useState<IData[]>(data);
+  useEffect(
+    () => {
+      setSortedData(
+        [...sortedData.sort((a: IData, b: IData) => {
+          if (a[sorting.orderBy] >= b[sorting.orderBy]) {
+            return sorting.orderDirection == 'asc' ? 1 : -1;
+          }
+          if (a[sorting.orderBy] <= b[sorting.orderBy]) {
+            return sorting.orderDirection == 'asc' ? -1 : 1;
+          }
+          return 0;
+        })]
+      );
+    },
+    [sorting]
+  );
   function onSort (orderBy: string, orderDirection: TSortingDirection) {
     setSorting({ orderBy, orderDirection });
   }
   return (
     <Table
       {...args}
+      data={sortedData}
       sorting={sorting}
       onSort={onSort}
       onSelect={undefined}
@@ -115,10 +138,10 @@ Default.args = {
   tableName: 'Table Name'
 };
 
-// Default.parameters = {
-//   docs: {
-//     source: {
-//       code: sourceToDisplay,
-//     },
-//   },
-// };
+Default.parameters = {
+  docs: {
+    source: {
+      code: sourceToDisplay,
+    },
+  },
+};
