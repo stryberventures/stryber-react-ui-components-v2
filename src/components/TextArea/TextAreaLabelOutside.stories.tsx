@@ -57,7 +57,6 @@ Disabled.args = {
 export const WithLengthIndicator = Template.bind({});
 WithLengthIndicator.args = {
   label: 'With length indicator',
-  disabled: true,
   showLength: true,
   maxLength: 300,
 };

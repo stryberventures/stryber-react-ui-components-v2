@@ -73,7 +73,6 @@ const ForgotPasswordEmail = () => {
               type="button"
               shape="circle"
               variant="ghost"
-              disabled={disabled}
               className={classes.loginButton}
             >
               Login
