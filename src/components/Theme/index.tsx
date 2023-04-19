@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react';
+import React, { useCallback, useContext, useState, useEffect } from 'react';
 import { createUseStyles, Styles, ThemeProvider as JssThemeProvider } from 'react-jss';
 import { createStylesOptions, IThemeContext, IThemeProvider, ThemeType } from './types';
 import { GlobalStyles } from './GlobalStyles';
@@ -15,9 +15,9 @@ const ThemeContext = React.createContext<IThemeContext>({
 });
 
 const ThemeProvider = React.memo(
-  ({ theme: initial, rtl: initialRTL = false, children }: IThemeProvider) => {
+  ({ theme: initial, children }: IThemeProvider) => {
     const [theme, setTheme] = useState<ThemeType>(merge(defaultTheme, initial));
-    const [rtl, setRTL] = useState(initialRTL);
+    const [rtl, setRTL] = useState(window.getComputedStyle(document.documentElement, null).direction === 'rtl');
     const updateTheme = useCallback(<T,>(updatedTheme: T) => {
       setTheme(currentTheme => merge(currentTheme, updatedTheme));
     }, []);
@@ -32,9 +32,27 @@ const ThemeProvider = React.memo(
       updateRTL,
     };
 
+    const documentObserver = new MutationObserver((mutationsList) => {
+      mutationsList.forEach(() => {
+        const direction = window.getComputedStyle(document.documentElement, null).direction;
+        updateRTL(direction === 'rtl');
+      });
+    });
+
     useEffectAfterMount(() => {
       updateTheme(initial);
     }, [initial])
+
+    useEffect(() => {
+      documentObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['dir', 'style', 'class']
+      });
+
+      return () => {
+        documentObserver.disconnect();
+      }
+    });
 
     return (
       <ThemeContext.Provider value={contextValue}>
@@ -57,12 +75,9 @@ const useTheme = () => {
     updateTheme,
   }
 }
-const useRTL = () => {
-  const { rtl, updateRTL } = useContext(ThemeContext);
-  return {
-    rtl,
-    updateRTL,
-  };
+const useRTL = (pRTL?: boolean) => {
+  const { rtl } = useContext(ThemeContext);
+  return typeof pRTL === 'boolean' ? pRTL : rtl;
 }
 
 const externalStylesIndex = 50;

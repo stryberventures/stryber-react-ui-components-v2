@@ -33,7 +33,7 @@ const Button: React.FC<IButton> = (props) => {
     iconLeft: IconLeftComponent,
     iconRight: IconRightComponent,
     onClick,
-    rtl = useRTL().rtl,
+    rtl = useRTL(props.rtl),
     ...rest
   } = props;
   const classes = useStyles()({

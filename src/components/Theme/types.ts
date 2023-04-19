@@ -25,7 +25,6 @@ export interface IThemeContext {
 
 export interface IThemeProvider {
   theme: CustomTheme;
-  rtl?: boolean;
   children: React.ReactNode;
 }
 
