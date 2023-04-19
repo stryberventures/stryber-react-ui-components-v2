@@ -3,6 +3,8 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Table from './index';
 import Text from '../Text';
 import pkg from './package.json';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import file from '!!raw-loader!./index';
 import { buildExcludeArgTypes, replacePaths } from '../../storybook/utils';
 import { ITableSorting, SortingDirection, TSortingDirection } from './types';

@@ -1,5 +1,4 @@
 import { createStyles, toRem } from '../../Theme';
-import { ITable } from '../index';
 import { ITableHeader } from './index';
 
 export default () => createStyles((theme) => ({
