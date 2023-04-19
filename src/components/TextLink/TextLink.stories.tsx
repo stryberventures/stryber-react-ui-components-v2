@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import TextLink from './index';
 import { LoadIcon, HomeIcon, CalendarIcon } from '../Icons';
 import pkg from './package.json';
-import { buildExcludeArgTypes } from '../../storybook/utils';
+import { buildArgTypes } from '../../storybook/utils';
 
 export default {
   title: 'Components/TextLink',
@@ -17,7 +17,7 @@ export default {
     weight: 'regular',
     disabled: false,
   },
-  argTypes: buildExcludeArgTypes(['iconLeft', 'iconRight', 'className']),
+  argTypes: buildArgTypes(['iconLeft', 'iconRight', 'className']),
 } as ComponentMeta<typeof TextLink>;
 
 const Template: ComponentStory<typeof TextLink> = (args) => <TextLink {...args} />;

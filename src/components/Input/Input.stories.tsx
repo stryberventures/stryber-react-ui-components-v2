@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Input from './index';
 import pkg from './package.json';
 import { CreditCardIcon, InfoIcon } from '../Icons';
-import { buildExcludeArgTypes } from '../../storybook/utils';
+import { buildArgTypes } from '../../storybook/utils';
 import { toRem } from '../Theme';
 
 export default {
@@ -20,7 +20,7 @@ export default {
     clearButton: false,
     fullWidth: false,
   },
-  argTypes: buildExcludeArgTypes(['name', 'controlled', 'onChange', 'rightIcon',
+  argTypes: buildArgTypes(['name', 'controlled', 'onChange', 'rightIcon',
     'leftIcon', 'onBlur', 'prefixClassName', 'contentClassName', 'postfixClassName', 'hintClassName', 'errorClassName', 'className', 'value']),
 } as ComponentMeta<typeof Input>;
 

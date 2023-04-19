@@ -5,7 +5,7 @@ import Input from '../Input';
 import Slider from './index';
 import Button from '../Button';
 import pkg from './package.json';
-import { buildExcludeArgTypes } from '../../storybook/utils';
+import { buildArgTypes } from '../../storybook/utils';
 import { CountIcon } from '../Icons';
 
 export default {
@@ -14,7 +14,7 @@ export default {
   parameters: {
     pkg,
   },
-  argTypes: buildExcludeArgTypes(['onChange', 'name', 'leftLabel', 'rightLabel']),
+  argTypes: buildArgTypes(['onChange', 'name', 'leftLabel', 'rightLabel']),
 } as ComponentMeta<typeof Slider>;
 
 const Template: ComponentStory<typeof Slider> = (args) => <Slider {...args} />;

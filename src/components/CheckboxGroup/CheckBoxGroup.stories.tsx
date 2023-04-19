@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Form from '../Form';
 import CheckboxGroup, { TChildCheckbox } from './';
 import pkg from './package.json';
-import { buildExcludeArgTypes } from '../../storybook/utils';
+import { buildArgTypes } from '../../storybook/utils';
 import { toRem } from '../Theme/utils';
 
 export default {
@@ -12,7 +12,7 @@ export default {
   parameters: {
     pkg,
   },
-  argTypes: buildExcludeArgTypes(['onFocus', 'controlled', 'className', 'onChange', 'name', 'heading']),
+  argTypes: buildArgTypes(['onFocus', 'controlled', 'className', 'onChange', 'name', 'heading']),
 } as ComponentMeta<typeof CheckboxGroup>;
 
 const Template: ComponentStory<typeof CheckboxGroup> = (args) => {

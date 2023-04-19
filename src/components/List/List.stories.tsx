@@ -4,7 +4,7 @@ import List from './index';
 import pkg from './package.json';
 import Switch from '../../components/Switch'
 import { IListItem } from './ListItem';
-import { buildExcludeArgTypes } from '../../storybook/utils';
+import { buildArgTypes } from '../../storybook/utils';
 import { toRem } from '../Theme';
 
 const title = 'One-line Item';
@@ -20,7 +20,7 @@ export default {
   parameters: {
     pkg,
   },
-  argTypes: buildExcludeArgTypes(['listClassName']),
+  argTypes: buildArgTypes(['listClassName']),
 } as ComponentMeta<typeof List>;
 
 const Template: ComponentStory<typeof List> = (args) => <List {...args} />;

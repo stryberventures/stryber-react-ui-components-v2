@@ -6,7 +6,7 @@ import Button from '../Button';
 import Text from '../Text';
 import TextLink from '../TextLink';
 import pkg from './package.json';
-import { buildExcludeArgTypes } from '../../storybook/utils';
+import { buildArgTypes } from '../../storybook/utils';
 import { toRem } from '../Theme';
 import * as yup from 'yup';
 
@@ -25,7 +25,7 @@ export default {
     alignControl: 'top',
     name: 'checkbox',
   },
-  argTypes: buildExcludeArgTypes(['onFocus', 'controlled', 'className', 'onChange', 'value', 'title', 'heading', 'name']),
+  argTypes: buildArgTypes(['onFocus', 'controlled', 'className', 'onChange', 'value', 'title', 'heading', 'name']),
 } as ComponentMeta<typeof CheckBox>;
 
 const Template: ComponentStory<typeof CheckBox> = (args) => <CheckBox {...args} />;
