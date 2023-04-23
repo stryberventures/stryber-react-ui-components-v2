@@ -1,12 +1,14 @@
 import { createStyles } from '../Theme';
+import { ICheckboxGroupProps } from './index';
 
 
 export default () => createStyles((theme) => ({
-  checkboxGroup: {
+  checkboxGroup: (props: ICheckboxGroupProps) => ({
     display: 'flex',
     flexDirection: 'column',
-  },
-  childCheckboxes: {
-    marginLeft: theme.spacing['24'],
-  },
+    direction: props.dir || 'inherit',
+  }),
+  childCheckboxes: (props: ICheckboxGroupProps) => ({
+    [props.dir === 'rtl' ? 'marginRight': 'marginLeft']: theme.spacing['24'],
+  }),
 }));

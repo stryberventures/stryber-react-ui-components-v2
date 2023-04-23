@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import Text from '../Text';
+import { useDir } from '../Theme';
 import useStyles from './styles';
 
 export interface IChip extends React.HTMLAttributes<HTMLDivElement>{
@@ -23,7 +24,11 @@ const Chip: React.FC<IChip> = (props) => {
     color,
     ...rest
   } = props;
-  const classes = useStyles(color === 'default' ? 'primary' : color);
+  const dir = useDir(props.dir);
+  const classes = useStyles()({
+    ...props,
+    dir,
+  });
 
   return (
     <div className={classNames(classes.chip, classes[variant], className, {

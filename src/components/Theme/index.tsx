@@ -10,7 +10,7 @@ import { useEffectAfterMount } from '../../hooks/useEffectAfterMount';
 const ThemeContext = React.createContext<IThemeContext>({
   theme: defaultTheme,
   updateTheme: () => console.log('ThemeProvider is not rendered yet'),
-  dir: 'auto',
+  dir: 'ltr',
   updateDir: () => console.log('ThemeProvider is not rendered yet'),
 });
 
@@ -76,7 +76,7 @@ const useTheme = () => {
 }
 const useDir = (pDir?: string) => {
   const { dir } = useContext(ThemeContext);
-  return typeof pDir === 'string' ? pDir : dir;
+  return (typeof pDir === 'string' && pDir !== 'inherit') ? pDir : dir;
 }
 
 const externalStylesIndex = 50;
