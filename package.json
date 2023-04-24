@@ -1,7 +1,7 @@
 {
   "name": "gaia-react",
-  "version": "0.0.2",
-  "description": "Gaia UI React library",
+  "version": "0.1.0",
+  "description": "Gaia React components library",
   "scripts": {
     "start": "start-storybook -p 6006 -s public",
     "build": "webpack --config webpack.config.js && node postBuild.js",
