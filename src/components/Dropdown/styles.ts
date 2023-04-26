@@ -1,12 +1,14 @@
 import { createStyles, toRem } from '../Theme';
+import { IDropdown } from './index';
 
 export default createStyles((theme) => ({
-  dropdown: {
+  dropdown: (props: IDropdown) => ({
+    direction: props.dir || 'inherit',
     width: toRem(320),
     position: 'relative',
     display: 'inline-flex',
     userSelect: 'none',
-  },
+  }),
   overlay: {
     position: 'fixed',
     zIndex: 98,
