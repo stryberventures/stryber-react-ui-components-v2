@@ -3,6 +3,7 @@ import { createStyles, toRem } from '../Theme';
 
 export default () => createStyles((theme) => ({
   button: (props: IButton) => ({
+    direction: props.dir || 'inherit',
     boxSizing: 'border-box',
     fontFamily: theme.font,
     userSelect: 'none',

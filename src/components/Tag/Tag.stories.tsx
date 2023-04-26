@@ -5,7 +5,7 @@ import Input from '../Input';
 import Button from '../Button';
 import { DocumentIcon, FilesIcon, EditIcon, ProfileIcon, PointArrowIcon } from '../Icons';
 import pkg from './package.json';
-import { buildExcludeArgTypes } from '../../storybook/utils';
+import { buildArgTypes } from '../../storybook/utils';
 import { toRem } from '../Theme';
 
 export default {
@@ -15,7 +15,7 @@ export default {
     pkg,
   },
   args: defaultTagProps,
-  argTypes: buildExcludeArgTypes(['iconLeft', 'iconRight', 'className']),
+  argTypes: buildArgTypes(['iconLeft', 'iconRight', 'className']),
 } as ComponentMeta<typeof Tag>;
 
 const Template: ComponentStory<typeof Tag> = (args) => <Tag {...args} />;

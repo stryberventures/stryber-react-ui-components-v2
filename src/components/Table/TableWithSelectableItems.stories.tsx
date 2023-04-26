@@ -4,7 +4,7 @@ import Table from './index';
 import Text from '../Text';
 import pkg from './package.json';
 import { TableCode } from '../../storybook/preview/Table/Selectable';
-import { buildExcludeArgTypes } from '../../storybook/utils';
+import { buildArgTypes } from '../../storybook/utils';
 import { ITableSorting, SortingDirection, TSortingDirection } from './types';
 
 
@@ -19,7 +19,7 @@ export default {
     color: 'primary',
     variant: 'default',
   },
-  argTypes: buildExcludeArgTypes(['selectedItems', 'onSelect', 'onSort', 'className', 'sorting']),
+  argTypes: buildArgTypes(['selectedItems', 'onSelect', 'onSort', 'className', 'sorting']),
 } as ComponentMeta<typeof Table>;
 
 const metadata = [
@@ -48,7 +48,7 @@ const metadata = [
           {value}
         </Text>
       </div>
-      
+
     ),
     width: '30%',
     minWidth: 140,

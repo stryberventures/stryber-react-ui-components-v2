@@ -2,6 +2,7 @@ import React, { KeyboardEvent, useRef } from 'react';
 import classNames from 'classnames';
 import useTextStyles from '../Text/styles';
 import useStyles from './styles';
+import { useDir } from '../Theme';
 import { KEYS } from '../../hooks/useKeyPress';
 
 export interface IButton extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'size'>{
@@ -31,9 +32,13 @@ const Button: React.FC<IButton> = (props) => {
     iconLeft: IconLeftComponent,
     iconRight: IconRightComponent,
     onClick,
+    dir = useDir(props.dir),
     ...rest
   } = props;
-  const classes = useStyles()(props);
+  const classes = useStyles()({
+    ...props,
+    dir
+  });
   const textClasses = useTextStyles();
   const btnRef: React.Ref<HTMLButtonElement> = useRef(null);
   const handleOnClick = (e: React.MouseEvent<HTMLButtonElement> | KeyboardEvent<HTMLButtonElement>) => {

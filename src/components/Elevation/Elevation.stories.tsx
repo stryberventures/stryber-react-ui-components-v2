@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Elevation from './';
 import Text from '../Text';
 import pkg from './package.json';
-import { buildExcludeArgTypes } from '../../storybook/utils';
+import { buildArgTypes } from '../../storybook/utils';
 import { createStyles } from '../Theme/index';
 
 
@@ -17,7 +17,7 @@ export default {
     variant: 'extraLight',
     component: 'div',
   },
-  argTypes: buildExcludeArgTypes(['className']),
+  argTypes: buildArgTypes(['className']),
 } as ComponentMeta<typeof Elevation>;
 
 const Wrapper = ({ children }: any) => {

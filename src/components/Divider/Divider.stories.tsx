@@ -5,7 +5,7 @@ import { ProfileIcon } from '../Icons';
 import Elevation from '../Elevation';
 import Text from '../Text';
 import pkg from './package.json';
-import { buildExcludeArgTypes } from '../../storybook/utils';
+import { buildArgTypes } from '../../storybook/utils';
 import { toRem } from '../Theme';
 
 
@@ -16,7 +16,7 @@ export default {
     pkg,
   },
   args: {},
-  argTypes: buildExcludeArgTypes(['className']),
+  argTypes: buildArgTypes(['className']),
 } as ComponentMeta<typeof Divider>;
 
 const Template: ComponentStory<typeof Divider> = (args) => {

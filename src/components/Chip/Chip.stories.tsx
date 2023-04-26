@@ -2,6 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Chip from './index';
 import CarIcon from '../../storybook/icons/Car';
+import { buildArgTypes } from '../../storybook/utils';
 import pkg from './package.json';
 
 export default {
@@ -10,18 +11,7 @@ export default {
   parameters: {
     pkg,
   },
-  argTypes: {
-    iconLeft: {
-      table: {
-        disable: true,
-      },
-    },
-    iconRight: {
-      table: {
-        disable: true,
-      },
-    },
-  },
+  argTypes: buildArgTypes(['iconLeft', 'iconRight']),
 } as ComponentMeta<typeof Chip>;
 
 const Template: ComponentStory<typeof Chip> = (args) => <Chip {...args} />;
