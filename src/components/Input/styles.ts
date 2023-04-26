@@ -2,9 +2,10 @@ import { createStyles, toRem } from '../Theme';
 import { IInput } from './index';
 
 export default () => createStyles((theme) => ({
-  inputRoot: {
+  inputRoot: (props: IInput) => ({
+    direction: props.dir || 'inherit',
     width: toRem(320),
-  },
+  }),
   fullWidth: {
     width: '100%',
   },
@@ -96,8 +97,9 @@ export default () => createStyles((theme) => ({
     whiteSpace: 'pre',
     marginLeft: toRem(10),
   },
-  label: {
+  label: (props: IInput) => ({
     display: 'block',
+    textAlign: props.dir === 'rtl' ? 'right' : 'left',
     marginBottom: theme.spacing['8'],
     color: theme.colors.text.headline,
     textOverflow: 'ellipsis',
@@ -106,7 +108,7 @@ export default () => createStyles((theme) => ({
     '&:hover': {
       cursor: 'default',
     }
-  },
+  }),
   floatingLabel: {
     marginBottom: 0,
     color: theme.colors.text.secondary,

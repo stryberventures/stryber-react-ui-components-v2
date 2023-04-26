@@ -4,7 +4,7 @@ import Input from './index';
 import pkg from './package.json';
 import { CreditCardIcon, InfoIcon } from '../Icons';
 import { buildArgTypes } from '../../storybook/utils';
-import { toRem } from '../Theme';
+import { toRem, useDir } from '../Theme';
 
 export default {
   title: 'Components/Input',
@@ -92,7 +92,14 @@ LeftIcon.args = {
   label: 'Left icon',
   placeholder: 'placeholder@example.com',
   value: 'olivia@example.com',
-  leftIcon: <CreditCardIcon style={{ marginRight: toRem(10) }} />,
+  leftIcon: (props) => {
+    const dir = useDir(props.dir);
+    return <CreditCardIcon
+      style={{
+        [dir === 'rtl' ? 'marginLeft' : 'marginRight']: toRem(10)
+      }}
+    />
+  },
 };
 
 export const RightIcon = Template.bind({});
@@ -100,7 +107,14 @@ RightIcon.args = {
   label: 'End adornment',
   placeholder: 'placeholder@example.com',
   value: 'olivia@example.com',
-  rightIcon: <InfoIcon style={{ marginLeft: toRem(10) }} />,
+  rightIcon: (props) => {
+    const dir = useDir(props.dir);
+    return <InfoIcon
+      style={{
+        [dir === 'rtl' ? 'marginRight' : 'marginLeft']: toRem(10)
+      }}
+    />
+  },
 };
 
 export const IconBothSides = Template.bind({});
@@ -108,8 +122,22 @@ IconBothSides.args = {
   label: 'End adornment',
   placeholder: 'placeholder@example.com',
   value: 'olivia@example.com',
-  leftIcon: <CreditCardIcon style={{ marginRight: toRem(10) }} />,
-  rightIcon: <InfoIcon style={{ marginLeft: toRem(10) }} />,
+  leftIcon: (props) => {
+    const dir = useDir(props.dir);
+    return <CreditCardIcon
+      style={{
+        [dir === 'rtl' ? 'marginLeft' : 'marginRight']: toRem(10)
+      }}
+    />
+  },
+  rightIcon: (props) => {
+    const dir = useDir(props.dir);
+    return <InfoIcon
+      style={{
+        [dir === 'rtl' ? 'marginRight' : 'marginLeft']: toRem(10)
+      }}
+    />
+  },
 };
 
 export const Mask = Template.bind({});
