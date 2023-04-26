@@ -5,6 +5,7 @@ import Portal, { TPortalContainer } from '../Portal';
 import DialogTitle from './DialogTitle';
 import DialogContent from './DialogContent';
 import DialogActions from './DialogActions';
+import { useDir } from '../Theme';
 import useStyles from './styles';
 
 
@@ -29,9 +30,13 @@ const Dialog = (props: IDialog) => {
     modalContainer,
     onClose,
     className,
+    dir = useDir(props.dir),
     ...rest
   } = props;
-  const classes = useStyles();
+  const classes = useStyles({
+    ...props,
+    dir
+  });
   const [dialogOpen, setDialogOpen] = useState<boolean>(false);
   useEffect(() => { setDialogOpen(open) }, [open]);
   const handleClose = () => {
