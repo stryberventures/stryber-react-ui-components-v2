@@ -5,14 +5,18 @@ import { IInputToggle } from './types';
 import { ErrorMessage } from '../ErrorMessage';
 import Text from '../Text';
 import { KEYS } from '../../hooks/useKeyPress';
+import { useDir } from '../Theme';
 
 const InputToggleLayout: React.FC<IInputToggle> = (props) => {
   const {
     name = '', alignControl = 'top', className, type, checked, disabled, value, children, title, control,
     onChange, onFocus, errorMessage, placeholder, label, hint, controlled,
-    reverse, fullWidth, color, ...rest
+    reverse, fullWidth, color, dir = useDir(props.dir), ...rest
   } = props;
-  const classes = useStyles()(color);
+  const classes = useStyles()({
+    ...props,
+    dir,
+  });
   return (
     <div className={classNames(classes.inputToggleLayout, {
       [classes.disabled]: disabled,

@@ -3,6 +3,7 @@ import InputToggleLayout from '../InputToggleLayout';
 import { CheckBoxMark, ICheckBoxMark } from './CheckBoxMark';
 import { IInputToggleBaseControlled } from '../InputToggleLayout/types';
 import { useCheckedState } from '../InputToggleLayout/hooks';
+import { useDir } from '../Theme';
 
 export interface ICheckBox extends ICheckBoxMark, IInputToggleBaseControlled {}
 
@@ -18,6 +19,7 @@ const CheckBox:React.FC<ICheckBox> = (props) => {
     fullWidth,
     hint,
     indeterminate,
+    dir = useDir(props.dir),
     ...rest
   } = props;
   return (
@@ -35,6 +37,7 @@ const CheckBox:React.FC<ICheckBox> = (props) => {
       reverse={reverse}
       fullWidth={fullWidth}
       className={className}
+      dir={dir}
       control={
         <CheckBoxMark
           checked={checked}
