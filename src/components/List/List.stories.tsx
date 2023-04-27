@@ -11,6 +11,10 @@ const title = 'One-line Item';
 const subtitle = 'Secondary Text';
 const leftContent = <div style={{ width: toRem(40), height: toRem(40), backgroundColor: 'grey', borderRadius: '50%' }} />;
 const rightContent = <Switch/>;
+const label = 'Label'
+const hasDivider = true
+const size = 'medium'
+
 
 const listItems: IListItem[] = new Array(4).fill({ title });
 
@@ -42,6 +46,9 @@ WithLeftRightContent.args = {
     subtitle,
     leftContent,
     rightContent,
+    label,
+    hasDivider,
+    size
   })),
 };
 

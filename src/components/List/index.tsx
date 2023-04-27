@@ -21,6 +21,9 @@ const List: React.FC<IList> = (props) => {
           leftContent={listItem.leftContent}
           rightContent={listItem.rightContent}
           onClick={listItem.onClick}
+          label={listItem.label}
+          hasDivider={listItem.hasDivider}
+          size={listItem.size}
         />
       ))}
     </ul>

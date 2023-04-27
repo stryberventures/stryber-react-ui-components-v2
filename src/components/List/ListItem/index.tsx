@@ -4,27 +4,38 @@ import useStyles from './styles';
 import Text from '../../Text';
 
 export interface IListItem {
+  label?: string,
   title: string,
   subtitle?: string,
   leftContent?: React.ReactNode,
   rightContent?: React.ReactNode,
   onClick?: (e: React.BaseSyntheticEvent) => void,
+  size?: 'small' | 'medium' | 'large', 
+  hasDivider?: boolean,
   testID?: string;
 }
 
 const ListItem: React.FC<IListItem> = (props) => {
   const classes = useStyles();
+  const sizes = {
+    'small': classes.smallListItem,
+    'medium': classes.mediumListItem,
+    'large': classes.largeListItem
+  }
   const {
+    label,
     title,
     subtitle,
     rightContent,
     leftContent,
     onClick,
+    size, 
+    hasDivider,
     ...rest
   } = props
   return (
     <li
-      className={classes.listItem}
+      className={classNames(classes.listItem, hasDivider ? classes.listItemDivider : '', sizes[size || 'medium'])}
       {...rest}
     >
       <div
@@ -34,6 +45,15 @@ const ListItem: React.FC<IListItem> = (props) => {
       >
         {leftContent && <div className={classes.leftContent}>{leftContent}</div>}
         <div>
+          {label && (
+            <Text
+              variant="components2"
+              weight="regular"
+              className={classNames(classes.label, classes.listItemText)}
+            >
+              {label}
+            </Text>
+          )}
           <Text
             variant="components2"
             weight="medium"
