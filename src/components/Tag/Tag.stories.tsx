@@ -24,7 +24,7 @@ export const Default = Template.bind({});
 Default.args = {
   children: 'Default',
   onRemove: undefined,
-  iconLeft: <PointArrowIcon variant="left" />,
+  iconLeft: (props) => <PointArrowIcon variant={props.dir === 'rtl' ? 'right' : 'left'} />,
 };
 
 export const Square = Template.bind({});
@@ -53,14 +53,14 @@ SquareMiddle.args = {
 export const LeftIcon = Template.bind({});
 LeftIcon.args = {
   children: 'Square removable',
-  iconLeft: <DocumentIcon />,
+  iconLeft: () => <DocumentIcon />,
   onRemove: undefined,
 };
 
 export const RightIconMedium = Template.bind({});
 RightIconMedium.args = {
   children: 'Right icon medium',
-  iconRight: <FilesIcon />,
+  iconRight: () => <FilesIcon />,
   size: 'medium',
   onRemove: undefined,
 };
@@ -70,7 +70,7 @@ Disabled.args = {
   children: 'Disabled',
   disabled: true,
   onRemove: undefined,
-  iconRight: <EditIcon variant="filled" />,
+  iconRight: () => <EditIcon variant="filled" />,
 };
 
 export const RemovableLarge = Template.bind({});
@@ -142,7 +142,7 @@ const RemovableTemplate: ComponentStory<typeof Tag> = (args) => {
           <Tag
             {...args}
             key={id}
-            iconRight={iconRight}
+            iconRight={() => iconRight}
             selected={selected.includes(id)}
             onSelect={() => onSelect(id)}
             onRemove={() => onRemove(id)}

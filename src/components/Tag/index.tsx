@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import Text, { TTextVariant } from '../Text';
 import { CloseCircleIcon } from '../Icons';
+import { useDir } from '../Theme';
 import useStyles from './styles';
 
 
@@ -24,8 +25,8 @@ export interface ITag extends React.HTMLAttributes<HTMLButtonElement> {
   shape?: TTagShape;
   selected?: boolean;
   disabled?: boolean;
-  iconLeft?: React.ReactNode;
-  iconRight?: React.ReactNode;
+  iconLeft?: (p: ITag) => React.ReactNode;
+  iconRight?: (p: ITag) => React.ReactNode;
   testId?: string;
   className?: string;
   onSelect?: () => void;
@@ -43,11 +44,15 @@ const Tag: React.FC<ITag> = (props) => {
     children,
     testId,
     className,
+    dir = useDir(props.dir),
     onSelect,
     onRemove,
     ...rest
   } = props;
-  const classes = useStyles()(props);
+  const classes = useStyles()({
+    ...props,
+    dir
+  });
   const handleOnSelect = () => onSelect?.();
   const handleOnRemove = (event: React.BaseSyntheticEvent) => {
     event.stopPropagation();
@@ -71,14 +76,14 @@ const Tag: React.FC<ITag> = (props) => {
       onClick={handleOnSelect}
       {...rest}
     >
-      {iconLeft}
+      {iconLeft && iconLeft({ ...props, dir })}
       <Text
         variant={getVariant(size)}
         className={classes.text}
       >
         {children}
       </Text>
-      {iconRight}
+      {iconRight && iconRight({ ...props, dir })}
       {onRemove && (
         <CloseCircleIcon
           data-testid="closeIconRound"

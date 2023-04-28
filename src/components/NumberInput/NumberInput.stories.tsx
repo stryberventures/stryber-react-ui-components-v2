@@ -43,7 +43,7 @@ QuantityCounter.args = {
   placeholder: 'Number',
   quantityCounter: true,
   controlled: true,
-  leftIcon: <Text variant="components1" style={{ marginRight: toRem(10), color: defaultTheme.colors.text.secondary }}>₴</Text>,
+  leftIcon: (props) => <Text variant="components1" style={{ [props.dir === 'rtl' ? 'marginLeft' : 'marginRight']: toRem(10), color: defaultTheme.colors.text.secondary }}>₴</Text>,
   postfix: 'UAH'
 };
 

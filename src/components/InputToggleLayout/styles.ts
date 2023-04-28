@@ -70,13 +70,14 @@ export default () => createStyles((theme) => ({
     width: 0,
     height: 0,
   }),
-  label: {
+  label: (props: IInputToggle) => ({
+    textAlign: props.dir === 'rtl' ? 'right' : 'left',
     display: 'flex',
     alignItems: 'center',
     color: theme.colors.text.headline,
     lineHeight: '150%',
     gridColumn: '2 / 3',
-  },
+  }),
   hint: {
     display: 'flex',
     alignItems: 'center',

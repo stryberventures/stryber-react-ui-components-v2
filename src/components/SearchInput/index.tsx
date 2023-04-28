@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import Input, { IInput } from '../Input';
 import { SearchIcon } from '../Icons';
-import { toRem } from '../Theme/utils';
+import { toRem, useDir } from '../Theme';
 import useStyles from './styles';
 
 export interface ISearchInput extends Omit<IInput, 'size'> {
@@ -10,17 +10,24 @@ export interface ISearchInput extends Omit<IInput, 'size'> {
 }
 
 const SearchInput: React.FC<ISearchInput> = (props) => {
-  const { className, size, ...rest } = props;
+  const { className, size, dir = useDir(props.dir), ...rest } = props;
   const classes = useStyles()(props);
+  const renderLeftIcon = () => (
+    <SearchIcon
+      className={classes.searchIcon}
+      style={{ [dir === 'rtl' ? 'marginLeft' : 'marginRight']: toRem(8) }}
+    />
+  );
   return (
     <Input
       className={classNames(classes.searchInput, className, {
         [classes.large]: size === 'large',
       })}
       variant="labelOutside"
-      leftIcon={<SearchIcon className={classes.searchIcon} style={{ marginRight: toRem(8) }} />}
+      leftIcon={renderLeftIcon}
       clearButton
       {...rest}
+      dir={dir}
       label=""
     />
   );

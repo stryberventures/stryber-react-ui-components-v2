@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import Text from '../Text';
+import { useDir } from '../Theme';
 import useStyles from './styles';
 
 
@@ -17,8 +18,21 @@ export interface ITextLink extends React.DetailedHTMLProps<React.AnchorHTMLAttri
 }
 
 const TextLink: React.FC<ITextLink> = (props) => {
-  const { children, variant = 'body2', weight = 'regular', disabled, iconLeft, iconRight, className, ...rest } = props;
-  const classes = useStyles()(props);
+  const {
+    children,
+    variant = 'body2',
+    weight = 'regular',
+    disabled,
+    iconLeft,
+    iconRight,
+    className,
+    dir = useDir(props.dir),
+    ...rest
+  } = props;
+  const classes = useStyles()({
+    ...props,
+    dir,
+  });
 
   return (
     <a
