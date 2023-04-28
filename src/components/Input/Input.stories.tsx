@@ -4,7 +4,7 @@ import Input from './index';
 import pkg from './package.json';
 import { CreditCardIcon, InfoIcon } from '../Icons';
 import { buildArgTypes } from '../../storybook/utils';
-import { toRem, useDir } from '../Theme';
+import { toRem } from '../Theme';
 
 export default {
   title: 'Components/Input',
@@ -92,14 +92,13 @@ LeftIcon.args = {
   label: 'Left icon',
   placeholder: 'placeholder@example.com',
   value: 'olivia@example.com',
-  leftIcon: (props) => {
-    const dir = useDir(props.dir);
-    return <CreditCardIcon
+  leftIcon: (props) => (
+    <CreditCardIcon
       style={{
-        [dir === 'rtl' ? 'marginLeft' : 'marginRight']: toRem(10)
+        [props.dir === 'rtl' ? 'marginLeft' : 'marginRight']: toRem(10)
       }}
     />
-  },
+  ),
 };
 
 export const RightIcon = Template.bind({});
@@ -107,14 +106,13 @@ RightIcon.args = {
   label: 'End adornment',
   placeholder: 'placeholder@example.com',
   value: 'olivia@example.com',
-  rightIcon: (props) => {
-    const dir = useDir(props.dir);
-    return <InfoIcon
+  rightIcon: (props) => (
+    <InfoIcon
       style={{
-        [dir === 'rtl' ? 'marginRight' : 'marginLeft']: toRem(10)
+        [props.dir === 'rtl' ? 'marginRight' : 'marginLeft']: toRem(10)
       }}
     />
-  },
+  ),
 };
 
 export const IconBothSides = Template.bind({});
@@ -122,22 +120,20 @@ IconBothSides.args = {
   label: 'End adornment',
   placeholder: 'placeholder@example.com',
   value: 'olivia@example.com',
-  leftIcon: (props) => {
-    const dir = useDir(props.dir);
-    return <CreditCardIcon
+  leftIcon: (props) => (
+    <CreditCardIcon
       style={{
-        [dir === 'rtl' ? 'marginLeft' : 'marginRight']: toRem(10)
+        [props.dir === 'rtl' ? 'marginLeft' : 'marginRight']: toRem(10)
       }}
     />
-  },
-  rightIcon: (props) => {
-    const dir = useDir(props.dir);
-    return <InfoIcon
+  ),
+  rightIcon: (props) => (
+    <InfoIcon
       style={{
-        [dir === 'rtl' ? 'marginRight' : 'marginLeft']: toRem(10)
+        [props.dir === 'rtl' ? 'marginRight' : 'marginLeft']: toRem(10)
       }}
     />
-  },
+  ),
 };
 
 export const Mask = Template.bind({});

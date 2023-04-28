@@ -28,8 +28,8 @@ export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
   postfixClassName?: string,
   errorClassName?: string,
   hintClassName?: string,
-  leftIcon?: (props: IInput) => React.ReactNode | JSX.Element,
-  rightIcon?: (props: IInput) => React.ReactNode | JSX.Element,
+  leftIcon?: React.ReactNode | JSX.Element | ((props: IInput) => React.ReactNode | JSX.Element),
+  rightIcon?: React.ReactNode | JSX.Element | ((props: IInput) => React.ReactNode | JSX.Element),
   mask?: string,
   fullWidth?: boolean,
   variant?: 'labelOutside' | 'floatingLabel',
@@ -39,12 +39,19 @@ export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
 const Input: React.FC<IInput> = (props) => {
   const {
     label, className, hint, prefix, prefixClassName, postfix, postfixClassName, errorClassName, hintClassName,
-    leftIcon, rightIcon, placeholder, clearButton = false, fullWidth, dir = useDir(props.dir), ...rest
+    leftIcon: pLeftIcon, rightIcon: pRightIcon, placeholder, clearButton = false, fullWidth, dir = useDir(props.dir),
+    ...rest
   } = props;
   const classes = useStyles()({
     ...props,
     dir,
   });
+  const leftIcon = typeof pLeftIcon === 'function'
+    ? pLeftIcon({ ...props, dir })
+    : pLeftIcon;
+  const rightIcon = typeof pRightIcon === 'function'
+    ? pRightIcon({ ...props, dir })
+    : pRightIcon;
   const textClasses = useTextClasses();
   const { theme } = useTheme();
   const {
@@ -102,7 +109,7 @@ const Input: React.FC<IInput> = (props) => {
           [classes.fullWidth]: fullWidth,
         })}
       >
-        {leftIcon && leftIcon({ ...props, dir })}
+        {leftIcon}
         <div className={classes.inputArea}>
           { floatingLabel && renderLabel() }
           <div
@@ -155,7 +162,7 @@ const Input: React.FC<IInput> = (props) => {
           </div>
         )}
         {!!postfix && <Text variant="components1" className={classNames(classes.postfix, postfixClassName)}>{postfix}</Text>}
-        {rightIcon && rightIcon({ ...props, dir })}
+        {rightIcon}
       </div>
     </>
   );

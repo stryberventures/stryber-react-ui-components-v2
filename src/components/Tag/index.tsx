@@ -25,8 +25,8 @@ export interface ITag extends React.HTMLAttributes<HTMLButtonElement> {
   shape?: TTagShape;
   selected?: boolean;
   disabled?: boolean;
-  iconLeft?: (p: ITag) => React.ReactNode;
-  iconRight?: (p: ITag) => React.ReactNode;
+  iconLeft?: React.ReactNode | ((p: ITag) => React.ReactNode);
+  iconRight?: React.ReactNode | ((p: ITag) => React.ReactNode);
   testId?: string;
   className?: string;
   onSelect?: () => void;
@@ -39,8 +39,8 @@ const Tag: React.FC<ITag> = (props) => {
     shape = defaultTagProps.shape,
     disabled = defaultTagProps.disabled,
     selected = defaultTagProps.selected,
-    iconLeft,
-    iconRight,
+    iconLeft: pIconLeft,
+    iconRight: pIconRight,
     children,
     testId,
     className,
@@ -53,6 +53,12 @@ const Tag: React.FC<ITag> = (props) => {
     ...props,
     dir
   });
+  const iconLeft = typeof pIconLeft === 'function'
+    ? pIconLeft({ ...props, dir })
+    : pIconLeft;
+  const iconRight = typeof pIconRight === 'function'
+    ? pIconRight({ ...props, dir })
+    : pIconRight;
   const handleOnSelect = () => onSelect?.();
   const handleOnRemove = (event: React.BaseSyntheticEvent) => {
     event.stopPropagation();
@@ -76,14 +82,14 @@ const Tag: React.FC<ITag> = (props) => {
       onClick={handleOnSelect}
       {...rest}
     >
-      {iconLeft && iconLeft({ ...props, dir })}
+      {iconLeft}
       <Text
         variant={getVariant(size)}
         className={classes.text}
       >
         {children}
       </Text>
-      {iconRight && iconRight({ ...props, dir })}
+      {iconRight}
       {onRemove && (
         <CloseCircleIcon
           data-testid="closeIconRound"
