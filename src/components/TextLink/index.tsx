@@ -12,8 +12,8 @@ export interface ITextLink extends React.DetailedHTMLProps<React.AnchorHTMLAttri
   variant?: 'body1' | 'body2' | 'body3';
   weight?: 'regular' | 'medium',
   disabled?: boolean,
-  iconLeft?: React.ReactNode,
-  iconRight?: React.ReactNode,
+  iconLeft?: React.ReactNode | ((p: ITextLink) => React.ReactNode),
+  iconRight?: React.ReactNode | ((p: ITextLink) => React.ReactNode),
   className?: string,
 }
 
@@ -23,8 +23,8 @@ const TextLink: React.FC<ITextLink> = (props) => {
     variant = 'body2',
     weight = 'regular',
     disabled,
-    iconLeft,
-    iconRight,
+    iconLeft: pIconLeft,
+    iconRight: pIconRight,
     className,
     dir = useDir(props.dir),
     ...rest
@@ -33,6 +33,12 @@ const TextLink: React.FC<ITextLink> = (props) => {
     ...props,
     dir,
   });
+  const iconLeft = typeof pIconLeft === 'function'
+    ? pIconLeft({ ...props, dir })
+    : pIconLeft;
+  const iconRight = typeof pIconRight === 'function'
+    ? pIconRight({ ...props, dir })
+    : pIconRight;
 
   return (
     <a
