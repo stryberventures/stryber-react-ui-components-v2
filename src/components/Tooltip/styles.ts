@@ -31,9 +31,10 @@ export default () => createStyles((theme) => ({
     position: 'absolute',
     zIndex: 99,
   },
-  tooltipWrapper: {
+  tooltipWrapper: (props: ITooltip) => ({
+    direction: props.dir || 'inherit',
     padding: toRem(PADDING),
-  },
+  }),
   elevation: {
     borderRadius: toRem(4),
   },
@@ -59,11 +60,11 @@ export default () => createStyles((theme) => ({
       boxShadow: '1px 1px 1px rgba(102, 112, 133, 0.2)',
     }
   }),
-  visible: {
+  visible: (props: ITooltip) => ({
     '& $title': {
-      paddingRight: toRem(24),
+      [props.dir === 'rtl' ? 'paddingLeft': 'paddingRight']: toRem(24),
     }
-  },
+  }),
   title: {
     color: theme.colors.text.headline,
     marginBottom: toRem(4),
@@ -100,26 +101,26 @@ export default () => createStyles((theme) => ({
       left: `calc(50% - ${toRem(DISTANCE_TO_TARGET)})`,
     }
   },
-  topStart: {
+  topStart: (props: ITooltip) => ({
     bottom: getTooltipPosition(),
     margin: 'initial',
-    left: 0,
+    [props.dir === 'rtl' ? 'right' : 'left']: 0,
     '& $tooltipBox:after': {
       bottom: toRem(-ARROW_HEIGHT),
-      left: toRem(ARROW_SHIFT),
-      right: 'initial',
+      [props.dir === 'rtl' ? 'right' : 'left']: toRem(ARROW_SHIFT),
+      [props.dir === 'rtl' ? 'left' : 'right']: 'initial',
     }
-  },
-  topEnd: {
+  }),
+  topEnd: (props: ITooltip) => ({
     bottom: getTooltipPosition(),
     margin: 'initial',
-    right: 0,
+    [props.dir === 'rtl' ? 'left' : 'right']: 0,
     '& $tooltipBox:after': {
       bottom: toRem(-ARROW_HEIGHT),
-      right: toRem(ARROW_SHIFT),
-      left: 'initial',
+      [props.dir === 'rtl' ? 'left' : 'right']: toRem(ARROW_SHIFT),
+      [props.dir === 'rtl' ? 'right' : 'left']: 'initial',
     }
-  },
+  }),
   bottom: {
     display: 'flex',
     justifyContent: 'center',
@@ -133,97 +134,103 @@ export default () => createStyles((theme) => ({
       boxShadow: '-1px -1px 1px rgba(102, 112, 133, 0.1)',
     }
   },
-  bottomStart: {
+  bottomStart: (props: ITooltip) => ({
     margin: 'initial',
     top: getTooltipPosition(),
-    left: 0,
+    [props.dir === 'rtl' ? 'right' : 'left']: 0,
     '& $tooltipBox:after': {
       top: toRem(-ARROW_HEIGHT),
-      left: toRem(ARROW_SHIFT),
+      [props.dir === 'rtl' ? 'right' : 'left']: toRem(ARROW_SHIFT),
       boxShadow: '-1px -1px 1px rgba(102, 112, 133, 0.1)',
     }
-  },
-  bottomEnd: {
+  }),
+  bottomEnd: (props: ITooltip) => ({
     top: getTooltipPosition(),
     margin: 'initial',
-    right: 0,
+    [props.dir === 'rtl' ? 'left' : 'right']: 0,
     '& $tooltipBox:after': {
       top: toRem(-ARROW_HEIGHT),
-      right: toRem(ARROW_SHIFT),
+      [props.dir === 'rtl' ? 'left' : 'right']: toRem(ARROW_SHIFT),
       boxShadow: '-1px -1px 1px rgba(102, 112, 133, 0.1)',
     }
-  },
-  right: {
+  }),
+  right: (props: ITooltip) => ({
     height: '100%',
-    left: getTooltipPosition(),
+    [props.dir === 'rtl' ? 'right' : 'left']: getTooltipPosition(),
     top: 0,
     display: 'flex',
     alignItems: 'center',
     '& $tooltipBox:after': {
       top: `calc(50% - ${toRem(ARROW_HEIGHT)})`,
-      left: toRem(-ARROW_HEIGHT),
+      [props.dir === 'rtl' ? 'right' : 'left']: toRem(-ARROW_HEIGHT),
+      transform: `rotate(${props.dir === 'rtl' ? 225 : 45}deg)`,
       boxShadow: '-1px 1px 1px rgba(102, 112, 133, 0.2)',
     }
-  },
-  rightStart: {
-    left: getTooltipPosition(),
+  }),
+  rightStart: (props: ITooltip) => ({
+    [props.dir === 'rtl' ? 'right' : 'left']: getTooltipPosition(),
     top: `${toRem(-PADDING + ARROW_HEIGHT)}`,
     display: 'flex',
     alignItems: 'flex-end',
     '& $tooltipBox:after': {
       top: toRem(ARROW_SHIFT),
-      left: toRem(-ARROW_HEIGHT),
+      [props.dir === 'rtl' ? 'right' : 'left']: toRem(-ARROW_HEIGHT),
+      transform: `rotate(${props.dir === 'rtl' ? 225 : 45}deg)`,
       boxShadow: '-1px 1px 1px rgba(102, 112, 133, 0.2)',
     }
-  },
-  rightEnd: {
-    left: getTooltipPosition(),
+  }),
+  rightEnd: (props: ITooltip) => ({
+    [props.dir === 'rtl' ? 'right' : 'left']: getTooltipPosition(),
     bottom: toRem(-PADDING + ARROW_HEIGHT),
     display: 'flex',
     alignItems: 'flex-start',
     '& $tooltipBox:after': {
       bottom: toRem(ARROW_SHIFT),
-      left: toRem(-ARROW_HEIGHT),
+      [props.dir === 'rtl' ? 'right' : 'left']: toRem(-ARROW_HEIGHT),
+      transform: `rotate(${props.dir === 'rtl' ? 225 : 45}deg)`,
       boxShadow: '-1px 1px 1px rgba(102, 112, 133, 0.2)',
     }
-  },
-  left: {
+  }),
+  left: (props: ITooltip) => ({
     height: '100%',
-    right: getTooltipPosition(),
+    [props.dir === 'rtl' ? 'left' : 'right']: getTooltipPosition(),
     top: 0,
     display: 'flex',
     alignItems: 'center',
     '& $tooltipBox:after': {
       top: `calc(50% - ${toRem(ARROW_HEIGHT)})`,
-      right: toRem(-ARROW_HEIGHT),
       left: 'initial',
+      [props.dir === 'rtl' ? 'left' : 'right']: toRem(-ARROW_HEIGHT),
+      transform: `rotate(${props.dir === 'rtl' ? 225 : 45}deg)`,
       boxShadow: '1px -1px 1px rgba(102, 112, 133, 0.2)',
     }
-  },
-  leftStart: {
-    right: getTooltipPosition(),
+  }),
+  leftStart: (props: ITooltip) => ({
+    [props.dir === 'rtl' ? 'left' : 'right']: getTooltipPosition(),
     top: toRem(-PADDING + ARROW_HEIGHT),
     display: 'flex',
     alignItems: 'flex-end',
     '& $tooltipBox:after': {
       top: toRem(ARROW_SHIFT),
       left: 'initial',
-      right: toRem(-ARROW_HEIGHT),
+      [props.dir === 'rtl' ? 'left' : 'right']: toRem(-ARROW_HEIGHT),
+      transform: `rotate(${props.dir === 'rtl' ? 225 : 45}deg)`,
       boxShadow: '1px -1px 1px rgba(102, 112, 133, 0.2)',
     }
-  },
-  leftEnd: {
-    right: getTooltipPosition(),
+  }),
+  leftEnd: (props: ITooltip) => ({
+    [props.dir === 'rtl' ? 'left' : 'right']: getTooltipPosition(),
     bottom: toRem(-PADDING + ARROW_HEIGHT),
     display: 'flex',
     alignItems: 'flex-start',
     '& $tooltipBox:after': {
       bottom: toRem(ARROW_SHIFT),
-      right: toRem(-ARROW_HEIGHT),
       left: 'initial',
+      [props.dir === 'rtl' ? 'left' : 'right']: toRem(-ARROW_HEIGHT),
+      transform: `rotate(${props.dir === 'rtl' ? 225 : 45}deg)`,
       boxShadow: '1px -1px 1px rgba(102, 112, 133, 0.2)',
     }
-  },
+  }),
   animatedEnter: {
     opacity: 0,
   },
