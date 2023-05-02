@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Button from './index';
 import Placeholder from '../../storybook/icons/placeholder';
 import pkg from './package.json';
-import { buildExcludeArgTypes } from '../../storybook/utils';
+import { buildArgTypes } from '../../storybook/utils';
 
 export default {
   title: 'Components/Button',
@@ -19,7 +19,7 @@ export default {
     disabled: false,
     fullWidth: false,
   },
-  argTypes: buildExcludeArgTypes(['icon', 'iconLeft', 'iconRight', 'className', 'children']),
+  argTypes: buildArgTypes(['icon', 'iconLeft', 'iconRight', 'className', 'children']),
 } as ComponentMeta<typeof Button>;
 
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;

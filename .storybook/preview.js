@@ -1,5 +1,7 @@
+import React from 'react';
 import anysort from 'anysort';
 import { initializeRTL } from 'storybook-addon-rtl';
+import { ThemeProvider } from '../src/components/Theme';
 
 initializeRTL();
 
@@ -28,3 +30,11 @@ export const parameters = {
     },
   },
 }
+
+export const decorators = [
+  (Story) => (
+    <ThemeProvider theme={{}}>
+      <Story />
+    </ThemeProvider>
+  ),
+];

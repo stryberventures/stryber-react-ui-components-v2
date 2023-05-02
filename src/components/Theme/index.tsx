@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react';
+import React, { useCallback, useContext, useState, useEffect } from 'react';
 import { createUseStyles, Styles, ThemeProvider as JssThemeProvider } from 'react-jss';
 import { createStylesOptions, IThemeContext, IThemeProvider, ThemeType } from './types';
 import { GlobalStyles } from './GlobalStyles';
@@ -10,23 +10,48 @@ import { useEffectAfterMount } from '../../hooks/useEffectAfterMount';
 const ThemeContext = React.createContext<IThemeContext>({
   theme: defaultTheme,
   updateTheme: () => console.log('ThemeProvider is not rendered yet'),
+  dir: 'ltr',
+  updateDir: () => console.log('ThemeProvider is not rendered yet'),
 });
 
 const ThemeProvider = React.memo(
   ({ theme: initial, children }: IThemeProvider) => {
     const [theme, setTheme] = useState<ThemeType>(merge(defaultTheme, initial));
+    const [dir, setDir] = useState(window.getComputedStyle(document.documentElement, null).direction);
     const updateTheme = useCallback(<T,>(updatedTheme: T) => {
       setTheme(currentTheme => merge(currentTheme, updatedTheme));
+    }, []);
+    const updateDir = useCallback((updatedDir: string) => {
+      setDir(updatedDir);
     }, []);
 
     const contextValue: IThemeContext =  {
       theme,
+      dir,
       updateTheme,
+      updateDir,
     };
+
+    const documentObserver = new MutationObserver((mutationsList) => {
+      mutationsList.forEach(() => {
+        updateDir(window.getComputedStyle(document.documentElement, null).direction);
+      });
+    });
 
     useEffectAfterMount(() => {
       updateTheme(initial);
     }, [initial])
+
+    useEffect(() => {
+      documentObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['dir', 'style', 'class']
+      });
+
+      return () => {
+        documentObserver.disconnect();
+      }
+    });
 
     return (
       <ThemeContext.Provider value={contextValue}>
@@ -42,7 +67,17 @@ const ThemeProvider = React.memo(
 
 ThemeProvider.displayName = 'ThemeProvider';
 
-const useTheme = () => useContext(ThemeContext);
+const useTheme = () => {
+  const { theme, updateTheme } = useContext(ThemeContext);
+  return {
+    theme,
+    updateTheme,
+  }
+}
+const useDir = (pDir?: string) => {
+  const { dir } = useContext(ThemeContext);
+  return (typeof pDir === 'string' && pDir !== 'inherit') ? pDir : dir;
+}
 
 // const externalStylesIndex = 50;
 
@@ -71,4 +106,5 @@ export {
   toRem,
   createStyles,
   useTheme,
+  useDir,
 }

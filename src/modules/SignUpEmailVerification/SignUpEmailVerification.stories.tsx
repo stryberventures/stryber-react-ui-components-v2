@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import file from '!!raw-loader!./index';
 import pkg from './package.json';
 import EmailVerificationComponent from './index';
-import { buildExcludeArgTypes, replacePaths } from '../../storybook/utils';
+import { buildArgTypes, replacePaths } from '../../storybook/utils';
 import { FullViewportDecorator } from '../../storybook/preview/FullViewportDecorator';
 
 const sourceToDisplay = replacePaths(file);
@@ -27,7 +27,7 @@ export default {
       return <Story/>
     },
   ],
-  argTypes: buildExcludeArgTypes(['className', 'requestCode']),
+  argTypes: buildArgTypes(['className', 'requestCode']),
 } as ComponentMeta<typeof EmailVerificationComponent>;
 
 const Template: ComponentStory<typeof EmailVerificationComponent> = (...args) => {

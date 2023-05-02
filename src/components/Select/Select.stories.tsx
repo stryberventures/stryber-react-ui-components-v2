@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Select from './index';
-import { buildExcludeArgTypes } from '../../storybook/utils';
+import { buildArgTypes } from '../../storybook/utils';
 import pkg from './package.json';
 
 export default {
@@ -27,7 +27,7 @@ export default {
     disabled: false,
     fullWidth: false,
   },
-  argTypes: buildExcludeArgTypes(['name', 'onChange', 'onToggle', 'className', 'value']),
+  argTypes: buildArgTypes(['name', 'onChange', 'onToggle', 'className', 'value']),
 } as ComponentMeta<typeof Select>;
 
 const Template: ComponentStory<typeof Select> = (args) =>
