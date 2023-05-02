@@ -20,7 +20,7 @@ export default {
     variant: 'default',
   },
   argTypes: buildArgTypes(['selectedItems', 'onSelect', 'onSort', 'className', 'sorting']),
-} as ComponentMeta<typeof Table>;
+} as ComponentMeta<typeof DataTable>;
 
 const metadata = [
   {
