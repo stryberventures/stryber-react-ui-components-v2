@@ -27,7 +27,7 @@ const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   children: 'Default',
-  iconRight: Placeholder,
+  iconRight: ({ classIcon }) => <Placeholder className={classIcon} />,
 };
 
 export const Contained = Template.bind({});
@@ -98,14 +98,14 @@ Disabled.args = {
 
 export const IconMini = Template.bind({});
 IconMini.args = {
-  icon: Placeholder,
+  icon: ({ classIcon }) => <Placeholder className={classIcon} />,
   shape: 'circle',
   size: 'mini',
 };
 
 export const IconSmallOutlined = Template.bind({});
 IconSmallOutlined.args = {
-  icon: Placeholder,
+  icon: ({ classIcon }) => <Placeholder className={classIcon} />,
   shape: 'circle',
   variant: 'outlined',
   size: 'small',
@@ -113,7 +113,7 @@ IconSmallOutlined.args = {
 
 export const IconSmallGhost = Template.bind({});
 IconSmallGhost.args = {
-  icon: Placeholder,
+  icon: ({ classIcon }) => <Placeholder className={classIcon} />,
   shape: 'circle',
   variant: 'ghost',
   size: 'small',
@@ -122,20 +122,20 @@ IconSmallGhost.args = {
 export const LeftIcon = Template.bind({});
 LeftIcon.args = {
   children: 'Left Icon',
-  iconLeft: Placeholder,
+  iconLeft: ({ classIcon }) => <Placeholder className={classIcon} />,
 };
 
 export const RightIcon = Template.bind({});
 RightIcon.args = {
   children: 'Right Icon',
-  iconRight: Placeholder,
+  iconRight: ({ classIcon }) => <Placeholder className={classIcon} />,
 };
 
 export const LeftRightIcon = Template.bind({});
 LeftRightIcon.args = {
   children: 'Right Icon',
-  iconLeft: Placeholder,
-  iconRight: Placeholder,
+  iconLeft: ({ classIcon }) => <Placeholder className={classIcon} />,
+  iconRight: ({ classIcon }) => <Placeholder className={classIcon} />,
 };
 
 export const ErrorState = Template.bind({});
