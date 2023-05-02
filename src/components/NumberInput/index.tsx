@@ -34,7 +34,7 @@ const NumberInput: React.FC<INumberInput> = (props) => {
     dir = useDir(props.dir),
     ...rest
   } = props;
-  const classes = useStyles({
+  const classes = useStyles()({
     ...props,
     dir,
   });

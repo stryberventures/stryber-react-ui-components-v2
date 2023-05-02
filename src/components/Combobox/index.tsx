@@ -35,7 +35,7 @@ const Combobox: React.FC<ICombobox> = (props) => {
     inputValue, dropdownRef, onInputChange, onSelectOption, onDropdownToggle, filteredOptions, activeIndex, handleKeyDown, setActiveIndex, activeRef,
     clearSelectedOption, isOpen, handleOutsideClick,
   } = useCombobox(props);
-  const classes = useStyles({
+  const classes = useStyles()({
     ...props,
     dir,
   });

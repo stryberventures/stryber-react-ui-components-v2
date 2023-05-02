@@ -33,7 +33,7 @@ const Dialog = (props: IDialog) => {
     dir = useDir(props.dir),
     ...rest
   } = props;
-  const classes = useStyles({
+  const classes = useStyles()({
     ...props,
     dir
   });

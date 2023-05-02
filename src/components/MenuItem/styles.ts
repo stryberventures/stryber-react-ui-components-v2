@@ -2,7 +2,7 @@ import { createStyles, toRem } from '../Theme';
 import { IMenuItem } from './index';
 
 
-export default createStyles((theme) => ({
+export default () => createStyles((theme) => ({
   menuItemWrapper: (props: IMenuItem) => ({
     direction: props.dir || 'inherit',
     display: 'flex',

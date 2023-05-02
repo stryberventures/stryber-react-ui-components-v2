@@ -12,7 +12,7 @@ export interface IMenuItem extends React.HTMLAttributes<HTMLDivElement> {
 
 const MenuItem = forwardRef<HTMLDivElement,IMenuItem>( (props, ref) => {
   const { children, className, selected, dir = useDir(props.dir), readOnly = false, ...rest } = props;
-  const classes = useStyles({
+  const classes = useStyles()({
     ...props,
     dir
   });

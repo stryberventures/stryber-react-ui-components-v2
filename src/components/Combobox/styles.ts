@@ -1,7 +1,7 @@
 import { createStyles, toRem } from '../Theme';
 import { ICombobox } from './index';
 
-export default createStyles(() => ({
+export default () => createStyles(() => ({
   content: (props: ICombobox) => ({
     direction: props.dir || 'inherit',
     padding: [toRem(8), 0],

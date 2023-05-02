@@ -2,7 +2,7 @@ import { createStyles, toRem } from '../Theme';
 import { INumberInput } from './index';
 
 
-export default createStyles((theme) => ({
+export default () => createStyles((theme) => ({
   numberInputContainer: {
     position: 'relative',
   },

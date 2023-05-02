@@ -59,7 +59,7 @@ const Dropdown = forwardRef((props: IDropdown, ref: ForwardedRef<IDropdownRef>) 
     onOutsideClick,
     ...rest
   } = props;
-  const classes = useStyles({
+  const classes = useStyles()({
     ...props,
     dir
   });

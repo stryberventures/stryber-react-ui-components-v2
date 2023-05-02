@@ -15,7 +15,7 @@ const labelMinifiedStyles = (theme: ThemeType) => ({
   },
 });
 
-export default createStyles((theme) => ({
+export default () => createStyles((theme) => ({
   textAreaWrapper: (props: ITextArea) => ({
     direction: props.dir || 'inherit',
     width: toRem(340),

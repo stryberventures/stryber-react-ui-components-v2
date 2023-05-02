@@ -1,7 +1,7 @@
 import { createStyles, toRem } from '../Theme';
 import { IDropdown } from './index';
 
-export default createStyles((theme) => ({
+export default () => createStyles((theme) => ({
   dropdown: (props: IDropdown) => ({
     direction: props.dir || 'inherit',
     width: toRem(320),

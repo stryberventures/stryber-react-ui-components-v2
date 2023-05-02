@@ -50,7 +50,7 @@ const TextArea: React.FC<ITextArea> = (props) => {
   } = props;
   const { updateFormTouched, updateFormValue, unsetFormValue, fieldValue, fieldError } = useFormContext(name);
   const errorMessage = fieldError || error;
-  const classes = useStyles({
+  const classes = useStyles()({
     ...props,
     dir,
   });

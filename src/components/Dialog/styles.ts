@@ -2,7 +2,7 @@ import { createStyles, toRem } from '../Theme';
 import { IDialog } from './index';
 
 
-export default createStyles((theme) => ({
+export default () => createStyles((theme) => ({
   overlay: {
     display: 'flex',
     alignItems: 'center',
