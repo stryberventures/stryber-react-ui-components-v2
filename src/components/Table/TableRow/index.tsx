@@ -1,57 +1,47 @@
 import React from 'react';
 import classNames from 'classnames';
-import { IData, IMetadata } from '../types';
-import Text from '../../Text';
 import useStyles from './styles';
+import { useTableContextVariant, VARIANT_BODY, VARIANT_HEAD } from '../TableContext';
 
 
-export interface ITableRow {
+export interface ITableRow extends React.HTMLAttributes<HTMLTableRowElement> {
   color?: 'primary' | 'secondary';
-  metadata: IMetadata[];
-  data: IData;
   selected?: boolean;
   className?: string;
-  onSelect?: (itemId: string | number) => void;
+  disabled?: boolean;
+  component?: React.ElementType;
 }
 
 const TableRow: React.FC<ITableRow> = (props) => {
-  const { metadata, data, className, selected, onSelect } = props;
+  const variant = useTableContextVariant();
+  const {
+    component: Component = 'tr',
+    className,
+    selected,
+    disabled,
+    children ,
+    ...rest
+  } = props;
   const classes = useStyles()(props);
   return (
-    <div className={classNames(classes.tableRow, className)}>
-      {metadata.map((column) => {
-        const value = column.formatter?.(data?.[column.id], data)
-          || (
-            <Text
-              variant="components2"
-              className={classNames(
-                classes.text,
-                { [classes.textDisabled]: data?.disabled }
-              )}
-            >
-              {data?.[column.id]}
-            </Text>
-          );
-        return (
-          <div
-            key={column.id}
-            className={classNames(
-              classes.tableCell,
-              {
-                [classes.tableRowDisabled]: data?.disabled,
-                [classes.tableRowSelectable]: !!onSelect,
-                [classes.tableRowSelected]: selected,
-              }
-            )}
-            style={{ flexBasis: column.width, minWidth: column.minWidth, maxWidth: column.maxWidth }}
-            onClick={() => !data?.disabled && onSelect?.(data.id)}
-          >
-            {value}
-          </div>
-        )
-      })}
-    </div>
+    <Component className={classNames(
+      classes.tableRow,
+      {
+        [classes.tableHeadRow]: variant === VARIANT_HEAD,
+        [classes.tableBodyRow]: variant === VARIANT_BODY,
+        [classes.tableRowDisabled]: disabled,
+        [classes.tableRowSelected]: selected,
+      },
+      className)}
+    {...rest}
+    >
+      {children}
+    </Component>
   );
 };
+
+TableRow.defaultProps = {
+  color: 'primary',
+}
 
 export default TableRow;
