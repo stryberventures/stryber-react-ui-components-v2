@@ -10,22 +10,29 @@ export interface IList {
 
 const List: React.FC<IList> = (props) => {
   const { listItems, listClassName, ...rest } = props;
+  console.log(props)
   const classes = useStyles();
   return (
     <ul className={classNames(classes.list, listClassName)} {...rest}>
-      {listItems.map((listItem, index) => (
-        <ListItem
-          key={index}
-          title={listItem.title}
-          subtitle={listItem.subtitle}
-          leftContent={listItem.leftContent}
-          rightContent={listItem.rightContent}
-          onClick={listItem.onClick}
-          label={listItem.label}
-          hasDivider={listItem.hasDivider}
-          size={listItem.size}
-        />
-      ))}
+      {props.children 
+        ? props.children 
+        : listItems.map((listItem, index) => (
+          listItem.customItem 
+            ? listItem.customItem 
+            : <ListItem
+              key={index}
+              title={listItem.title}
+              subtitle={listItem.subtitle}
+              leftContent={listItem.leftContent}
+              rightContent={listItem.rightContent}
+              onClick={listItem.onClick}
+              label={listItem.label}
+              hasDivider={listItem.hasDivider}
+              fixedSize={listItem.fixedSize}
+              customItem={listItem.customItem}
+              disabled={listItem.disabled}
+            />
+        ))}
     </ul>
   )
 }

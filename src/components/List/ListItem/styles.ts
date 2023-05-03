@@ -6,6 +6,14 @@ export default createStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    '&:hover': {
+      background: theme.colors.neutralGray.light200,
+    }
+  },
+  disabled: {
+    pointerEvents: 'none',
+    opacity: '0.4',
+    background: theme.colors.background.white,
   },
   listItemDivider: {
     borderBottom: '1px solid ' + theme.colors.neutralGray.light200,
@@ -35,7 +43,9 @@ export default createStyles((theme) => ({
     color: theme.colors.text.secondary,
   },
   listItemText: {
-    display: 'block',
+    display: 'flex',
+    height: '24px',
+    alignItems: 'center'
   },
   leftContent: {
     marginRight: toRem(16),

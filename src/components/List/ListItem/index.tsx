@@ -5,17 +5,19 @@ import Text from '../../Text';
 
 export interface IListItem {
   label?: string,
-  title: string,
+  title?: string,
   subtitle?: string,
   leftContent?: React.ReactNode,
   rightContent?: React.ReactNode,
   onClick?: (e: React.BaseSyntheticEvent) => void,
-  size?: 'small' | 'medium' | 'large', 
+  fixedSize?: 'small' | 'medium' | 'large', 
   hasDivider?: boolean,
-  testID?: string;
+  disabled?: boolean,
+  testID?: string,
+  customItem?: JSX.Element;
 }
 
-const ListItem: React.FC<IListItem> = (props) => {
+const ListItem: React.FC<IListItem & React.HTMLProps<HTMLLIElement>>= (props) => {
   const classes = useStyles();
   const sizes = {
     'small': classes.smallListItem,
@@ -29,13 +31,14 @@ const ListItem: React.FC<IListItem> = (props) => {
     rightContent,
     leftContent,
     onClick,
-    size, 
+    fixedSize, 
     hasDivider,
+    disabled,
     ...rest
   } = props
   return (
     <li
-      className={classNames(classes.listItem, hasDivider ? classes.listItemDivider : '', sizes[size || 'medium'])}
+      className={classNames(classes.listItem, disabled && classes.disabled, hasDivider && classes.listItemDivider, sizes[fixedSize || 'medium'])}
       {...rest}
     >
       <div

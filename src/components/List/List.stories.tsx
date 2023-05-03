@@ -13,7 +13,8 @@ const leftContent = <div style={{ width: toRem(40), height: toRem(40), backgroun
 const rightContent = <Switch/>;
 const label = 'Label'
 const hasDivider = true
-const size = 'medium'
+const fixedSize = 'medium'
+const sizes = ['small', 'medium', 'large']
 
 
 const listItems: IListItem[] = new Array(4).fill({ title });
@@ -27,11 +28,21 @@ export default {
   argTypes: buildArgTypes(['listClassName']),
 } as ComponentMeta<typeof List>;
 
-const Template: ComponentStory<typeof List> = (args) => <List {...args} />;
+const Template: ComponentStory<typeof List> = (args) => <List {...args} ></List>;
 
 export const Default = Template.bind({});
 Default.args = {
-  listItems
+  listItems: [...listItems]
+};
+
+export const WithSize = Template.bind({});
+WithSize.args = {
+  listItems: listItems.map((item, index) => ({ ...item, title: sizes[index] || 'large', fixedSize: sizes[index] || 'large' })),
+};
+
+export const WithSizeAndDividers = Template.bind({});
+WithSizeAndDividers.args = {
+  listItems: listItems.map((item, index) => ({ ...item, label: sizes[index] || 'large',  hasDivider, fixedSize: sizes[index] || 'large' })),
 };
 
 export const WithSubtitle = Template.bind({});
@@ -48,7 +59,7 @@ WithLeftRightContent.args = {
     rightContent,
     label,
     hasDivider,
-    size
+    fixedSize
   })),
 };
 
