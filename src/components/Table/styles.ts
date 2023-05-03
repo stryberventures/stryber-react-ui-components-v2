@@ -1,7 +1,11 @@
 import { createStyles, toRem } from '../Theme';
+import { ITable } from './index';
 
 export default () => createStyles((theme) => ({
-  table: {
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+  table: (props: ITable) => ({
+    direction: props.dir || 'inherit',
     minWidth: '100%',
     width: 'fit-content',
     boxSizing: 'border-box',
@@ -10,7 +14,7 @@ export default () => createStyles((theme) => ({
     '& *, &:after, &:before': {
       boxSizing: 'inherit',
     }
-  },
+  }),
   selectedItems: {
     color: theme.colors.text.secondary,
   },

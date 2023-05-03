@@ -2,7 +2,7 @@ import { createStyles, toRem } from '../../Theme';
 import { ITableHeader } from './index';
 
 export default () => createStyles((theme) => ({
-  tableHeader: {
+  tableHeader: () => ({
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'row',
@@ -12,8 +12,8 @@ export default () => createStyles((theme) => ({
     backgroundColor: theme.colors.neutralGray.extraLight50,
     borderTop: [1, 'solid', theme.colors.neutralGray.light200],
     borderBottom: [1, 'solid', theme.colors.neutralGray.light200],
-  },
-  thCell: {
+  }),
+  thCell: (props: ITableHeader) => ({
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'row',
@@ -21,12 +21,12 @@ export default () => createStyles((theme) => ({
     position: 'relative',
     padding: [theme.spacing[12], theme.spacing[24]],
     '&:has($tooltipTarget) $sortingIconWrapper': {
-      marginLeft: 0,
+      [props.dir === 'rtl' ? 'marginRight' : 'marginLeft']: 0,
     },
     '&:not(:has($tooltipTarget)) $sortingIconWrapper': {
-      marginLeft: theme.spacing[8],
+      [props.dir === 'rtl' ? 'marginRight' : 'marginLeft']: theme.spacing[8],
     },
-  },
+  }),
   thLabel: {
     color: theme.colors.text.secondary,
   },

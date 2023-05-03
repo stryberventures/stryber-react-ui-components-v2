@@ -14,6 +14,7 @@ export interface ITableHeader {
   metadata: IMetadata[];
   sorting?: ITableSorting;
   className?: string;
+  dir: string;
   onSort?: (orderBy: string, orderDirection: TSortingDirection) => void;
 }
 
