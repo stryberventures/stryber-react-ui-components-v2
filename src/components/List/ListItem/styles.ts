@@ -38,7 +38,8 @@ export default createStyles((theme) => ({
   },
   title: {
     color: theme.colors.text.headline,
-    height: '24px'
+    height: '24px',
+    fontWeight: 400
   },
   subtitle: {
     color: theme.colors.text.secondary,
