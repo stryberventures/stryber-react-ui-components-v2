@@ -5,6 +5,7 @@ import Chip from '../Chip';
 import useStyles from './styles';
 import { IValidationItemProps, usePasswordValidation } from './hooks';
 import { CheckIcon } from '../Icons';
+import { useDir } from '../Theme';
 import classNames from 'classnames';
 
 export interface IInputPassword extends Omit<IInput, 'rightIcon'> {
@@ -13,34 +14,51 @@ export interface IInputPassword extends Omit<IInput, 'rightIcon'> {
 }
 
 const InputPassword: React.FC<IInputPassword> = (props) => {
-  const { disabled, validationSchema, onValidationChange, value, className, fullWidth, ...rest } = props;
+  const {
+    disabled,
+    validationSchema,
+    onValidationChange,
+    value,
+    className,
+    fullWidth,
+    dir = useDir(props.dir),
+    ...rest
+  } = props;
   const { onInputChange, schema } = usePasswordValidation({ validationSchema, value, onValidationChange });
   const [visible, setVisible] = useState(false);
-  const classes = useStyles()(props);
+  const classes = useStyles()({
+    ...props,
+    dir
+  });
 
   const onEyeClick = (e: React.BaseSyntheticEvent) => {
     e.stopPropagation();
     setVisible(!visible);
   };
+  const renderRightIcon = () => {
+    return (
+      <EyeIcon
+        data-testid="password-icon"
+        visible={visible}
+        disabled={disabled}
+        onClick={onEyeClick}
+        className={classes.eyeIcon}
+      />
+    )
+  }
 
   return (
     <div className={classNames(classes.inputPassword, className, { [classes.fullWidth]: fullWidth })}>
       <Input
         {...rest}
+        dir={dir}
         disabled={disabled}
         value={value}
         className={classes.inputLayout}
         onChange={onInputChange}
         type={visible ? 'text' : 'password'}
         fullWidth={fullWidth}
-        rightIcon={
-          <EyeIcon
-            data-testid="password-icon"
-            visible={visible}
-            disabled={disabled}
-            onClick={onEyeClick}
-          />
-        }
+        rightIcon={renderRightIcon}
       />
       {!!validationSchema && (
         <div className={classes.chips}>

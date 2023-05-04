@@ -8,11 +8,12 @@ import useStyles from './styles';
 
 export interface ITab {
   id: string;
-  icon?: React.ReactNode;
+  icon?: React.ReactNode | ((p: ITab) => React.ReactNode);
   color?: 'primary' | 'secondary';
   label: string | React.ReactNode;
   active: boolean;
   disabled?: boolean;
+  dir?: string;
 }
 
 export interface ITabProps extends ITab {
@@ -24,21 +25,29 @@ export interface ITabProps extends ITab {
   variant?: 'fitted' | 'default';
 }
 
-const Tab: React.FC<ITabProps> = ({
-  className,
-  id,
-  label,
-  icon,
-  active,
-  disabled,
-  direction,
-  color,
-  size = 'small',
-  variant = 'default',
-  onChange,
-  ...rest
-}) => {
-  const classes = useStyles(color);
+const Tab: React.FC<ITabProps> = (props) => {
+  const {
+    className,
+    id,
+    label,
+    icon: pIcon,
+    active,
+    disabled,
+    direction,
+    color,
+    size = 'small',
+    variant = 'default',
+    onChange,
+    dir,
+    ...rest
+  } = props;
+  const classes = useStyles()({
+    ...props,
+    dir
+  });
+  const icon = typeof pIcon === 'function'
+    ? pIcon({ ...props, dir })
+    : pIcon;
   const handleOnChange = () => {
     !disabled && !active && onChange(id);
   };

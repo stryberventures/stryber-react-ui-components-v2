@@ -1,4 +1,4 @@
-import { createStyles, toRem } from '../../Theme';
+import { createStyles } from '../../Theme';
 
 export default createStyles((theme) => ({
   eyeIcon: {
@@ -6,7 +6,6 @@ export default createStyles((theme) => ({
     cursor: 'pointer',
     display: 'flex',
     alignItems: 'center',
-    paddingLeft: toRem(8),
     '& svg path': {
       fill: theme.colors.text.headline,
     },

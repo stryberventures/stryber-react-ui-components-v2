@@ -5,6 +5,7 @@ import Elevation from '../Elevation';
 import TableHeader from './TableHeader';
 import TableRow from './TableRow';
 import Text from '../Text';
+import { useDir } from '../Theme';
 import TableName from './TableName';
 import SelectedItems from './SelectedItems';
 import useStyles from './styles';
@@ -23,6 +24,7 @@ export interface ITable {
   className?: string;
   variant?: 'default' | 'zebra';
   pagination?: any;
+  dir?: string;
 }
 
 const DataTable: React.FC<ITable> = (props) => {
@@ -37,10 +39,14 @@ const DataTable: React.FC<ITable> = (props) => {
     selectedItems,
     selectedItemsTitle,
     pagination = true,
+    dir = useDir(props.dir),
     onSort,
     onSelect,
   } = props;
-  const classes = useStyles()();
+  const classes = useStyles()({
+    ...props,
+    dir
+  });
   return (
     <Elevation
       variant="extraLight"
@@ -58,6 +64,7 @@ const DataTable: React.FC<ITable> = (props) => {
         color={color}
         metadata={metadata}
         sorting={sorting}
+        dir={dir}
         onSort={onSort}
       />
       {data?.map((row, index: number) => {

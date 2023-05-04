@@ -14,9 +14,12 @@ export interface IButton extends Omit<React.ButtonHTMLAttributes<HTMLButtonEleme
   disabled?: boolean,
   className?: string,
   fullWidth?: boolean,
-  icon?: React.FC<{className?: string}>,
-  iconLeft?: React.FC<{className?: string}>,
-  iconRight?: React.FC<{className?: string}>,
+  icon?: React.ReactNode | ((p: IIconButton) => React.ReactNode),
+  iconLeft?: React.ReactNode | ((p: IIconButton) => React.ReactNode),
+  iconRight?: React.ReactNode | ((p: IIconButton) => React.ReactNode),
+}
+interface IIconButton extends IButton {
+  classIcon: string;
 }
 
 const Button: React.FC<IButton> = (props) => {
@@ -28,9 +31,9 @@ const Button: React.FC<IButton> = (props) => {
     disabled,
     className,
     fullWidth,
-    icon: IconComponent,
-    iconLeft: IconLeftComponent,
-    iconRight: IconRightComponent,
+    icon: pIcon,
+    iconLeft: pIconLeft,
+    iconRight: pIconRight,
     onClick,
     dir = useDir(props.dir),
     ...rest
@@ -39,6 +42,15 @@ const Button: React.FC<IButton> = (props) => {
     ...props,
     dir
   });
+  const icon = typeof pIcon === 'function'
+    ? pIcon({ ...props, dir, classIcon: classes.icon })
+    : pIcon;
+  const iconLeft = typeof pIconLeft === 'function'
+    ? pIconLeft({ ...props, dir, classIcon: classes.icon })
+    : pIconLeft;
+  const iconRight = typeof pIconRight === 'function'
+    ? pIconRight({ ...props, dir, classIcon: classes.icon })
+    : pIconRight;
   const textClasses = useTextStyles();
   const btnRef: React.Ref<HTMLButtonElement> = useRef(null);
   const handleOnClick = (e: React.MouseEvent<HTMLButtonElement> | KeyboardEvent<HTMLButtonElement>) => {
@@ -70,10 +82,10 @@ const Button: React.FC<IButton> = (props) => {
       }}
       {...rest}
     >
-      {IconComponent && <IconComponent className={classes.icon} />}
-      {IconLeftComponent && <IconLeftComponent className={classes.icon}/>}
+      {icon}
+      {iconLeft}
       {children}
-      {IconRightComponent && <IconRightComponent className={classes.icon}/>}
+      {iconRight}
     </button>
   );
 }

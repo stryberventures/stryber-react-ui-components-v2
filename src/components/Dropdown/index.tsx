@@ -3,6 +3,7 @@ import useStyles from './styles';
 import Input from '../Input';
 import classNames from 'classnames';
 import { ArrowIcon } from '../Icons';
+import { useDir } from '../Theme';
 import { useDropdown } from './hooks';
 
 export interface IDropdownBase extends React.HTMLAttributes<HTMLDivElement>{
@@ -36,11 +37,44 @@ export interface IDropdownRef {
 
 const Dropdown = forwardRef((props: IDropdown, ref: ForwardedRef<IDropdownRef>) => {
   const {
-    inputReadOnly = true, children, label, placeholder, value, className, color, name, fullWidth, inputVariant,
-    hint, error, disabled, onClick, onToggle, contentClassName, onInputChange, rightIcon, onOutsideClick, ...rest
+    inputReadOnly = true,
+    children,
+    label,
+    placeholder,
+    value,
+    className,
+    color,
+    name,
+    fullWidth,
+    inputVariant,
+    hint,
+    error,
+    disabled,
+    onClick,
+    onToggle,
+    contentClassName,
+    onInputChange,
+    rightIcon,
+    dir = useDir(props.dir),
+    onOutsideClick,
+    ...rest
   } = props;
-  const classes = useStyles();
+  const classes = useStyles()({
+    ...props,
+    dir
+  });
   const { open, onInputClick, onOverlayClick } = useDropdown(props, ref);
+  const renderRightIcon = () => (
+    <>
+      {rightIcon}
+      <div className={classNames(classes.toggleIcon, {
+        [classes.toggleIconDisabled]: disabled,
+        [classes.toggleIconOpened]: open,
+      })}>
+        <ArrowIcon variant="down" />
+      </div>
+    </>
+  );
 
   return (
     <div
@@ -60,20 +94,11 @@ const Dropdown = forwardRef((props: IDropdown, ref: ForwardedRef<IDropdownRef>) 
         disabled={disabled}
         controlled={true}
         hint={hint}
+        dir={dir}
         errorMessage={error}
         onChange={onInputChange}
         className={classNames(classes.input, { [classes.inputDisabled]: disabled })}
-        rightIcon={(
-          <>
-            {rightIcon}
-            <div className={classNames(classes.toggleIcon, {
-              [classes.toggleIconDisabled]: disabled,
-              [classes.toggleIconOpened]: open,
-            })}>
-              <ArrowIcon variant="down" />
-            </div>
-          </>
-        )}
+        rightIcon={renderRightIcon}
       />
       {open && (
         <div className={classNames(classes.content, contentClassName)}>

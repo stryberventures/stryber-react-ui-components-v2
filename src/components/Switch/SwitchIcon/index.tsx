@@ -7,18 +7,19 @@ export interface ISwitchIcon {
   checked?: boolean,
   color?: 'primary' | 'secondary',
   disabled?: boolean,
+  dir?: string,
 }
 
 export const SwitchIcon = (props: ISwitchIcon) => {
-  const { checked, disabled, color } = props;
-  const classes = useStyles(color);
+  const { checked, disabled } = props;
+  const classes = useStyles()(props);
 
   return (
     <div className={classNames(classes.switchIcon, {
       [classes.checked]: checked,
       [classes.disabled]: disabled,
     })}>
-      
+
       <div className={classNames(
         classes.circleContainer,
         { [classes.circleContainerChecked]: checked, }
@@ -31,7 +32,7 @@ export const SwitchIcon = (props: ISwitchIcon) => {
           <div className={classes.circle}/>
         </Elevation>
       </div>
-      
+
     </div>
   );
 }

@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 import Elevation from '../Elevation';
 import Text from '../Text';
+import { useDir } from '../Theme';
 import useStyles from './styles';
 import { useOutsideClick } from '../../hooks/useOnOutsideClick';
 
@@ -31,9 +32,13 @@ const Tooltip: React.FC<ITooltip> = (props) => {
     visible,
     children,
     className,
+    dir = useDir(props.dir),
     ...rest
   } = props;
-  const classes = useStyles()(props);
+  const classes = useStyles()({
+    ...props,
+    dir
+  });
   const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [isVisible, setIsVisible] = useState(visible);
@@ -90,6 +95,7 @@ const Tooltip: React.FC<ITooltip> = (props) => {
                       variant="components2"
                       weight="medium"
                       className={classes.title}
+                      dir={dir}
                     >
                       {title}
                     </Text>
@@ -101,6 +107,7 @@ const Tooltip: React.FC<ITooltip> = (props) => {
                       variant="components2"
                       weight="regular"
                       className={classes.text}
+                      dir={dir}
                     >
                       {text}
                     </Text>

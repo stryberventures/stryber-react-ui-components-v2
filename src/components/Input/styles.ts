@@ -2,9 +2,10 @@ import { createStyles, toRem } from '../Theme';
 import { IInput } from './index';
 
 export default () => createStyles((theme) => ({
-  inputRoot: {
+  inputRoot: (props: IInput) => ({
+    direction: props.dir || 'inherit',
     width: toRem(320),
-  },
+  }),
   fullWidth: {
     width: '100%',
   },
@@ -90,14 +91,15 @@ export default () => createStyles((theme) => ({
     backgroundColor: theme.colors.background.white,
     whiteSpace: 'pre',
   },
-  postfix: {
+  postfix: (props: IInput) => ({
     color: theme.colors.text.secondary,
     backgroundColor: theme.colors.background.white,
     whiteSpace: 'pre',
-    marginLeft: toRem(10),
-  },
-  label: {
+    [props.dir === 'rtl' ? 'marginRight' : 'marginLeft']: toRem(10),
+  }),
+  label: (props: IInput) => ({
     display: 'block',
+    textAlign: props.dir === 'rtl' ? 'right' : 'left',
     marginBottom: theme.spacing['8'],
     color: theme.colors.text.headline,
     textOverflow: 'ellipsis',
@@ -106,7 +108,7 @@ export default () => createStyles((theme) => ({
     '&:hover': {
       cursor: 'default',
     }
-  },
+  }),
   floatingLabel: {
     marginBottom: 0,
     color: theme.colors.text.secondary,
@@ -118,9 +120,9 @@ export default () => createStyles((theme) => ({
       color: theme.colors.text.disabled,
     }
   },
-  withPaddingLeft: {
-    paddingLeft: toRem(12),
-  },
+  withPaddingLeft: (props: IInput) => ({
+    [props.dir === 'rtl' ? 'paddingRight' : 'paddingLeft']: toRem(12),
+  }),
   message: {
     marginTop: toRem(8),
   },
@@ -141,13 +143,13 @@ export default () => createStyles((theme) => ({
     paddingTop: toRem(2),
     opacity: 1,
   },
-  clearButton: {
+  clearButton: (props: IInput) => ({
     width: 20,
     height: 20,
-    marginLeft: toRem(10),
+    [props.dir === 'rtl' ? 'marginRight' : 'marginLeft']: toRem(10),
     backgroundColor: 'white',
     '&:hover': {
       cursor: 'pointer',
     }
-  },
+  }),
 }), { internalUsage: true });

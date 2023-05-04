@@ -3,6 +3,7 @@ import useStyles from './styles';
 import Dropdown, { IDropdownBase } from '../Dropdown';
 import MenuItem from '../MenuItem';
 import CheckBox from '../CheckBox';
+import { useDir } from '../Theme';
 import { useMultiselect } from './hooks';
 
 export interface IOption {
@@ -17,13 +18,24 @@ export interface IMultiselect extends Omit<IDropdownBase, 'onChange'> {
 }
 
 const Multiselect: React.FC<IMultiselect> = (props) => {
-  const { options, label, color, placeholder, fullWidth, onChange, onToggle, ...rest } = props;
+  const {
+    options,
+    label,
+    color,
+    placeholder,
+    fullWidth,
+    dir = useDir(props.dir),
+    onChange,
+    onToggle,
+    ...rest
+  } = props;
   const { value, selectedOptions, error, onCheckboxChange, onDropdownToggle } = useMultiselect(props);
   const classes = useStyles();
 
   return (
     <Dropdown
       {...rest}
+      dir={dir}
       label={label}
       placeholder={placeholder}
       onToggle={onDropdownToggle}
@@ -34,7 +46,7 @@ const Multiselect: React.FC<IMultiselect> = (props) => {
       fullWidth={fullWidth}
     >
       {options.map((option) => (
-        <MenuItem key={option.value}>
+        <MenuItem key={option.value} dir={dir}>
           <CheckBox
             className={classes.checkbox}
             name={option.label}
@@ -43,6 +55,7 @@ const Multiselect: React.FC<IMultiselect> = (props) => {
             checked={selectedOptions.map(option => option).indexOf(option.label) >= 0}
             onChange={onCheckboxChange}
             label={option.label}
+            dir={dir}
           />
         </MenuItem>
       ))}

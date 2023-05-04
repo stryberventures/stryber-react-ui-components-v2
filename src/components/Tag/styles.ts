@@ -12,6 +12,7 @@ const tagPaddings = {
 
 export default () => createStyles((theme) => ({
   tag: (props: ITag) => ({
+    direction: props.dir || 'inherit',
     boxSizing: 'border-box',
     display: 'inline-flex',
     alignItems: 'center',
@@ -97,7 +98,7 @@ export default () => createStyles((theme) => ({
     backgroundColor: theme.colors[props.color!].light200,
     color: theme.colors.contrast.white,
   }),
-  disabled: (props: ITag) => ({
+  disabled: () => ({
     color: theme.colors.text.disabled,
     backgroundColor: theme.colors.neutralGray.light100,
     border: [1, 'solid', theme.colors.neutralGray.light100],

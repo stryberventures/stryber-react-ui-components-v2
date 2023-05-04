@@ -5,6 +5,7 @@ import useTextClasses from '../Text/styles';
 import { ErrorMessage } from '../ErrorMessage';
 import { HintMessage } from '../HintMessage';
 import { CloseCircleIcon } from '../Icons';
+import { useDir } from '../Theme';
 import Text from '../Text';
 import { useTheme } from '../Theme';
 import { useInput } from './hooks';
@@ -27,8 +28,8 @@ export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
   postfixClassName?: string,
   errorClassName?: string,
   hintClassName?: string,
-  leftIcon?: React.ReactNode | JSX.Element,
-  rightIcon?: React.ReactNode | JSX.Element,
+  leftIcon?: React.ReactNode | JSX.Element | ((props: IInput) => React.ReactNode | JSX.Element),
+  rightIcon?: React.ReactNode | JSX.Element | ((props: IInput) => React.ReactNode | JSX.Element),
   mask?: string,
   fullWidth?: boolean,
   variant?: 'labelOutside' | 'floatingLabel',
@@ -36,13 +37,23 @@ export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
 }
 
 const Input: React.FC<IInput> = (props) => {
-  const classes = useStyles()(props);
-  const textClasses = useTextClasses();
-  const { theme } = useTheme();
   const {
     label, className, hint, prefix, prefixClassName, postfix, postfixClassName, errorClassName, hintClassName,
-    leftIcon, rightIcon, placeholder, clearButton = false, fullWidth, ...rest
+    leftIcon: pLeftIcon, rightIcon: pRightIcon, placeholder, clearButton = false, fullWidth, dir = useDir(props.dir),
+    ...rest
   } = props;
+  const classes = useStyles()({
+    ...props,
+    dir,
+  });
+  const leftIcon = typeof pLeftIcon === 'function'
+    ? pLeftIcon({ ...props, dir })
+    : pLeftIcon;
+  const rightIcon = typeof pRightIcon === 'function'
+    ? pRightIcon({ ...props, dir })
+    : pRightIcon;
+  const textClasses = useTextClasses();
+  const { theme } = useTheme();
   const {
     name,
     value,
@@ -118,6 +129,7 @@ const Input: React.FC<IInput> = (props) => {
             )}
             <input
               {...inputProps}
+              dir={dir}
               name={name}
               ref={inputRef}
               value={value}
@@ -164,12 +176,14 @@ const Input: React.FC<IInput> = (props) => {
         <ErrorMessage
           text={errorMessage}
           className={classNames(classes.message, errorClassName, { [classes.withPaddingLeft]: floatingLabel })}
+          dir={dir}
         />
       )}
       {!errorMessage && hint && (
         <HintMessage
           text={hint}
           disabled={disabled}
+          dir={dir}
           className={classNames(classes.message, hintClassName, { [classes.withPaddingLeft]: floatingLabel })}
         />
       )}

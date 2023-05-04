@@ -1,9 +1,11 @@
 import { createStyles, toRem } from '../Theme';
+import { IInputPassword } from './index';
 
 export default () => createStyles(() => ({
-  inputPassword: {
+  inputPassword: (props: IInputPassword) => ({
+    direction: props.dir || 'inherit',
     width: toRem(320),
-  },
+  }),
   inputLayout: {
     width: '100%',
   },
@@ -18,5 +20,8 @@ export default () => createStyles(() => ({
   },
   fullWidth: {
     width: '100%',
-  }
+  },
+  eyeIcon: (props: IInputPassword) => ({
+    [props.dir === 'rtl' ? 'paddingRight' : 'paddingLeft']: toRem(8),
+  }),
 }), { internalUsage: true });

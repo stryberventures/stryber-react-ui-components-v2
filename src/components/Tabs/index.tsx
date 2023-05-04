@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import Tab, { ITab, ITabProps } from './Tab';
+import { useDir } from '../Theme';
 import useStyles from './styles';
 
 
@@ -15,20 +16,26 @@ export interface ITabs {
   direction?: TTabsDirection;
   size?: ITabProps['size'];
   children?: React.ReactNode;
+  dir?: string;
 }
 
-const Tabs: React.FC<ITabs> = ({
-  color = 'primary',
-  direction = 'horizontal',
-  variant = 'default',
-  tabs = [],
-  className,
-  onChange,
-  children,
-  size,
-  ...rest
-}) => {
-  const classes = useStyles(color);
+const Tabs: React.FC<ITabs> = (props) => {
+  const {
+    color = 'primary',
+    direction = 'horizontal',
+    variant = 'default',
+    tabs = [],
+    className,
+    onChange,
+    children,
+    size,
+    dir = useDir(props.dir),
+    ...rest
+  } = props;
+  const classes = useStyles()({
+    ...props,
+    dir
+  });
   return (
     <div
       className={classNames(
@@ -47,6 +54,7 @@ const Tabs: React.FC<ITabs> = ({
           return(
             <Tab
               {...tab}
+              dir={dir}
               key={index}
               direction={direction}
               color={color}

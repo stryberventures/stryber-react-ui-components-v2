@@ -3,12 +3,13 @@ import { IInputToggle } from './types';
 
 
 export default () => createStyles((theme) => ({
-  inputToggleLayout: {
+  inputToggleLayout: (props: IInputToggle) => ({
+    direction: props.dir || 'inherit',
     boxSizing: 'border-box',
     '& *, *:before, *:after': {
       boxSizing: 'inherit',
     },
-  },
+  }),
   disabled: {
     pointerEvents: 'none',
     '& $heading': {
@@ -26,7 +27,7 @@ export default () => createStyles((theme) => ({
   titleReverse: {
     textAlign: 'right',
   },
-  labelContainer: (color: IInputToggle['color']) => ({
+  labelContainer: (props: IInputToggle) => ({
     display: 'grid',
     gridTemplateColumns: 'auto 1fr',
     gap: `${toRem(8)} ${toRem(10)}`,
@@ -39,7 +40,7 @@ export default () => createStyles((theme) => ({
       cursor: 'pointer',
     },
     '&:has(input:focus-visible) input + div > div': {
-      boxShadow: `0 0 0 2px white, 0 0 0 ${toRem(4)} ${theme.colors[color!].light200}`,
+      boxShadow: `0 0 0 2px white, 0 0 0 ${toRem(4)} ${theme.colors[props.color!].light200}`,
     },
     '&$fullWidth': {
       width: '100%',
@@ -69,13 +70,14 @@ export default () => createStyles((theme) => ({
     width: 0,
     height: 0,
   }),
-  label: {
+  label: (props: IInputToggle) => ({
+    textAlign: props.dir === 'rtl' ? 'right' : 'left',
     display: 'flex',
     alignItems: 'center',
     color: theme.colors.text.headline,
     lineHeight: '150%',
     gridColumn: '2 / 3',
-  },
+  }),
   hint: {
     display: 'flex',
     alignItems: 'center',

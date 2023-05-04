@@ -5,6 +5,7 @@ import { createStyles, toRem } from '../Theme';
 export default () => createStyles((theme) => ({
   textLink: (props: ITextLink) => {
     return ({
+      direction: props.dir || 'inherit',
       display: 'inline-flex',
       alignItems: 'center',
       gap: toRem(7),

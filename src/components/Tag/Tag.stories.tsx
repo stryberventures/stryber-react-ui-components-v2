@@ -24,7 +24,7 @@ export const Default = Template.bind({});
 Default.args = {
   children: 'Default',
   onRemove: undefined,
-  iconLeft: <PointArrowIcon variant="left" />,
+  iconLeft: (props) => <PointArrowIcon variant={props.dir === 'rtl' ? 'right' : 'left'} />,
 };
 
 export const Square = Template.bind({});

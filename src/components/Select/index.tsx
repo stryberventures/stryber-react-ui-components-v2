@@ -2,6 +2,7 @@ import React from 'react';
 import useStyles from './styles';
 import Dropdown, { IDropdownBase } from '../Dropdown';
 import MenuItem from '../MenuItem';
+import { useDir } from '../Theme';
 import { useSelect } from './hooks';
 
 export interface IOption {
@@ -18,13 +19,14 @@ export interface ISelect extends Omit<IDropdownBase, 'onChange'> {
 }
 
 const Select: React.FC<ISelect> = (props) => {
-  const { options, label, color, placeholder, fullWidth, onChange, onToggle, ...rest } = props;
+  const { options, label, color, placeholder, fullWidth, dir = useDir(props.dir), onChange, onToggle, ...rest } = props;
   const { value, error, onDropdownToggle, onOptionClick, dropdownRef } = useSelect(props);
   const classes = useStyles();
 
   return (
     <Dropdown
       {...rest}
+      dir={dir}
       label={label}
       placeholder={placeholder}
       onToggle={onDropdownToggle}
@@ -39,6 +41,7 @@ const Select: React.FC<ISelect> = (props) => {
         <MenuItem
           key={option.value}
           selected={value === option.label}
+          dir={dir}
           onClick={() => onOptionClick(option)}
         >
           {option.label}
