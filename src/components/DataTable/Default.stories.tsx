@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import Table from './index';
+import DataTable from './index';
 import TextLink from '../TextLink';
 import Text from '../Text';
 import pkg from './package.json';
@@ -11,8 +11,8 @@ import { IData, ITableSorting, SortingDirection, TSortingDirection } from './typ
 
 
 export default {
-  title: 'Components/Table/Default',
-  component: Table,
+  title: 'Components/DataTable/Default',
+  component: DataTable,
   parameters: {
     pkg,
   },
@@ -21,7 +21,7 @@ export default {
     variant: 'default',
   },
   argTypes: buildArgTypes(['selectedItems', 'onSelect', 'onSort', 'className', 'sorting']),
-} as ComponentMeta<typeof Table>;
+} as ComponentMeta<typeof DataTable>;
 
 const metadata = [
   {
@@ -90,7 +90,7 @@ const sorting = {
   orderDirection: SortingDirection.asc,
 };
 
-const Template: ComponentStory<typeof Table> = (args) => {
+const Template: ComponentStory<typeof DataTable> = (args) => {
   const [sorting, setSorting] = useState<ITableSorting>({
     orderBy: 'id',
     orderDirection: 'desc',
@@ -116,7 +116,7 @@ const Template: ComponentStory<typeof Table> = (args) => {
     setSorting({ orderBy, orderDirection });
   }
   return (
-    <Table
+    <DataTable
       {...args}
       data={sortedData}
       sorting={sorting}

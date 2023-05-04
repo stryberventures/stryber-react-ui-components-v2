@@ -7,6 +7,7 @@ import { IArrowIconVariant } from '../../Icons/types';
 import { IMetadata, ITableSorting, SortingDirection, TSortingDirection } from '../types';
 import useStyles from './styles';
 import { KEYS } from '../../../hooks/useKeyPress';
+import { useDir } from '../../Theme';
 
 
 export interface ITableHeader {
@@ -14,7 +15,7 @@ export interface ITableHeader {
   metadata: IMetadata[];
   sorting?: ITableSorting;
   className?: string;
-  dir: string;
+  dir?: string;
   onSort?: (orderBy: string, orderDirection: TSortingDirection) => void;
 }
 
@@ -24,8 +25,11 @@ function getArrowDirection (columnId: string, sorting?: ITableSorting): IArrowIc
 }
 
 const TableHeader: React.FC<ITableHeader> = (props) => {
-  const { color = 'primary', metadata, sorting, onSort, className } = props;
-  const classes = useStyles()(props);
+  const { metadata, sorting, onSort, className, dir = useDir(props.dir) } = props;
+  const classes = useStyles()({
+    ...props,
+    dir,
+  });
   function handleOnSort (columnId: string) {
     const isCurrentColumnSorted = sorting?.orderBy == columnId;
     const newSortingDirection = isCurrentColumnSorted

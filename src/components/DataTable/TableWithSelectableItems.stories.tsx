@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import Table from './index';
+import DataTable from './index';
 import Text from '../Text';
 import pkg from './package.json';
 import { TableCode } from '../../storybook/preview/Table/Selectable';
@@ -10,8 +10,8 @@ import { ITableSorting, SortingDirection, TSortingDirection } from './types';
 
 
 export default {
-  title: 'Components/Table/TableWithSelectableItems',
-  component: Table,
+  title: 'Components/DataTable/TableWithSelectableItems',
+  component: DataTable,
   parameters: {
     pkg,
   },
@@ -20,7 +20,7 @@ export default {
     variant: 'default',
   },
   argTypes: buildArgTypes(['selectedItems', 'onSelect', 'onSort', 'className', 'sorting']),
-} as ComponentMeta<typeof Table>;
+} as ComponentMeta<typeof DataTable>;
 
 const metadata = [
   {
@@ -80,7 +80,7 @@ const sorting = {
   orderDirection: SortingDirection.asc,
 }
 
-const Template: ComponentStory<typeof Table> = (args) => {
+const Template: ComponentStory<typeof DataTable> = (args) => {
   const [sorting, setSorting] = useState<ITableSorting>({
     orderBy: 'company',
     orderDirection: 'desc',
@@ -96,7 +96,7 @@ const Template: ComponentStory<typeof Table> = (args) => {
     setSelectedItems(newSelectedItems);
   }
   return (
-    <Table
+    <DataTable
       {...args}
       selectedItems={selectedItems}
       onSelect={handleOnSelect}
