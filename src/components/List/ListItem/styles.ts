@@ -34,17 +34,18 @@ export default createStyles((theme) => ({
   label: {
     color: theme.colors.text.secondary,
     fontSize: '12px',
-    lineHeight: '14px'
+    height: '14px'
   },
   title: {
     color: theme.colors.text.headline,
+    height: '24px'
   },
   subtitle: {
     color: theme.colors.text.secondary,
+    height: '20px'
   },
   listItemText: {
     display: 'flex',
-    height: '24px',
     alignItems: 'center'
   },
   leftContent: {
