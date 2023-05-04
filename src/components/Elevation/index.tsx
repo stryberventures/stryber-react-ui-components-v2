@@ -5,13 +5,13 @@ import useStyles from './styles';
 
 type TElevationVariant = 'extraLight' | 'light' | 'medium' | 'heavy' | 'extraHeavy';
 
-export interface Elevation extends React.HTMLAttributes<any> {
+export interface IElevation extends React.HTMLAttributes<any> {
   children: React.ReactNode;
   variant?: TElevationVariant;
   component?: keyof JSX.IntrinsicElements;
 }
 
-const Elevation: React.FC<Elevation> = (props) => {
+const Elevation: React.FC<IElevation> = (props) => {
   const {
     variant = 'extraLight',
     component: Tag = 'div',

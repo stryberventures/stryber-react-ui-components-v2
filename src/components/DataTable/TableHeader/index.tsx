@@ -23,7 +23,7 @@ function getArrowDirection (columnId: string, sorting?: ITableSorting): IArrowIc
 }
 
 const TableHeader: React.FC<ITableHeader> = (props) => {
-  const { color = 'primary', metadata, sorting, onSort, className } = props;
+  const { metadata, sorting, onSort, className } = props;
   const classes = useStyles()(props);
   function handleOnSort (columnId: string) {
     const isCurrentColumnSorted = sorting?.orderBy == columnId;

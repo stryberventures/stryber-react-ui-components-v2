@@ -8,8 +8,6 @@
     "@stryberventures/gaia-react.theme": ">=0.0.1",
     "@stryberventures/gaia-react.text": ">=0.0.1",
     "@stryberventures/gaia-react.icons": ">=0.0.1",
-    "@stryberventures/gaia-react.tooltip": ">=0.0.1",
-    "@stryberventures/gaia-react.elevation": ">=0.0.1",
-    "@stryberventures/gaia-react.select": ">=0.0.1"
+    "@stryberventures/gaia-react.tooltip": ">=0.0.1"
   }
 }

@@ -1,18 +1,11 @@
 import { ITableRow } from './index';
-import { createStyles, toRem } from '../../Theme';
+import { createStyles } from '../../Theme';
 
 export default () => createStyles((theme) => ({
   tableRow: {
-    color: theme.colors.text.headline,
-  },
-  tableHeadRow: {
-    height: toRem(44),
-    maxHeight: toRem(44),
-    backgroundColor: theme.colors.neutralGray.extraLight50,
-    borderTop: [1, 'solid', theme.colors.neutralGray.light200],
-    borderBottom: [1, 'solid', theme.colors.neutralGray.light200],
-  },
-  tableBodyRow: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'stretch',
     transition: 'background-color .3s',
     cursor: 'default',
     borderBottom: [1, 'solid', theme.colors.neutralGray.light200],
@@ -23,14 +16,30 @@ export default () => createStyles((theme) => ({
       backgroundColor: theme.colors.neutralGray.extraLight50,
     },
   },
+  tableRowSelectable: {
+    cursor: 'pointer',
+  },
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   tableRowSelected: (props: ITableRow) => ({
-    backgroundColor: [theme.colors[props.color!].extraLight50, '!important'],
+    backgroundColor: theme.colors[props.color!].extraLight50,
   }),
   tableRowDisabled: {
     backgroundColor: theme.colors.background.extraLightGrey,
     cursor: 'default',
     color: [theme.colors.text.disabled, '!important'],
+  },
+  textDisabled: {
+    color: [theme.colors.text.disabled, '!important'],
+  },
+  tableCell: {
+    display: 'flex',
+    alignItems: 'flex-start',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    padding: [theme.spacing[16], theme.spacing[24]],
+  },
+  text: {
+    color: theme.colors.text.headline
   },
 }), { internalUsage: true });

@@ -6,7 +6,7 @@ import { useSelect } from './hooks';
 
 export interface IOption {
   value: string | number,
-  label: string
+  label: string,
 }
 
 export interface ISelect extends Omit<IDropdownBase, 'onChange'> {
