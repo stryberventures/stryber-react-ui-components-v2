@@ -1,7 +1,9 @@
 import { createStyles, toRem } from '../../Theme';
+import { ITableContainer } from './index';
 
-export default () => createStyles((theme) => ({
-  tableContainer: {
+export default () => createStyles<any, ITableContainer>((theme) => ({
+  tableContainer: (props) => ({
+    direction: props.dir || 'inherit',
     minWidth: '100%',
     width: 'fit-content',
     boxSizing: 'border-box',
@@ -10,5 +12,5 @@ export default () => createStyles((theme) => ({
     '& *, &:after, &:before': {
       boxSizing: 'inherit',
     }
-  },
+  }),
 }), { internalUsage: true });

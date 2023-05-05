@@ -1,9 +1,10 @@
 import { createStyles, toRem } from '../../Theme';
+import { ITablePagination } from './index';
 
-export default () => createStyles((theme) => ({
-  paginationSelect: {
-    marginLeft: theme.spacing[16],
-  },
+export default () => createStyles<any, ITablePagination>((theme) => ({
+  paginationSelect: (props) => ({
+    [props.dir === 'rtl' ? 'marginRight' : 'marginLeft']: theme.spacing[16],
+  }),
   paginationContainer: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -17,11 +18,11 @@ export default () => createStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
   },
-  arrow: {
-    marginLeft: theme.spacing[48],
+  arrow: (props) => ({
+    [props.dir === 'rtl' ? 'marginRight' : 'marginLeft']: theme.spacing[48],
     cursor: 'pointer',
     outline: 'none',
-  },
+  }),
   disabledArrow: {
     fill: theme.colors.neutralGray.light200,
   },
