@@ -31,6 +31,8 @@
     "Tag": "tag",
     "Tabs": "tabs",
     "SearchInput": "search-input",
-    "Table": "table"
+    "Table": "table",
+    "LinearProgress": "linear-progress",
+    "CircularProgress": "circular-progress"
   }
 }
