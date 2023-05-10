@@ -14,7 +14,7 @@ export interface IListItem extends React.HTMLAttributes<HTMLLIElement>{
   hasDivider?: boolean,
   disabled?: boolean,
   testID?: string,
-  customitem?: React.ReactNode;
+  customItem?: React.ReactNode;
 }
 
 const ListItem: React.FC<IListItem> = (props) => {
@@ -30,6 +30,7 @@ const ListItem: React.FC<IListItem> = (props) => {
     size, 
     hasDivider,
     disabled,
+    customItem,
     ...rest
   } = props
   return (
