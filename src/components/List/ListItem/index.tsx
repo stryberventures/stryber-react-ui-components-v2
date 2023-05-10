@@ -10,7 +10,7 @@ export interface IListItem {
   leftContent?: React.ReactNode,
   rightContent?: React.ReactNode,
   onClick?: (e: React.BaseSyntheticEvent) => void,
-  fixedSize?: 'small' | 'medium' | 'large' , 
+  fixedSize: 'small' | 'medium' | 'large' , 
   hasDivider?: boolean,
   disabled?: boolean,
   testID?: string,
@@ -77,4 +77,8 @@ const ListItem: React.FC<IListItem & React.HTMLProps<HTMLLIElement>>= (props) =>
 }
 
 export default ListItem;
+
+ListItem.defaultProps = {
+  fixedSize: 'medium',
+}
 
