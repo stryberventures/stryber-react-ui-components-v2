@@ -19,13 +19,13 @@ export default createStyles((theme) => ({
     borderBottom: '1px solid ' + theme.colors.neutralGray.light200,
   },
   smallListItem: {
-    padding: [toRem(8), toRem(8)],
+    padding: [toRem(8), toRem(16)],
   },
   mediumListItem: {
-    padding: [toRem(12), toRem(8)],
+    padding: [toRem(12), toRem(16)],
   },
   largeListItem: {
-    padding: [toRem(16), toRem(8)],
+    padding: [toRem(16), toRem(16)],
   },
   listItemContainer: {
     display: 'flex',

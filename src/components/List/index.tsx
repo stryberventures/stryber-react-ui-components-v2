@@ -10,15 +10,14 @@ export interface IList {
 
 const List: React.FC<IList> = (props) => {
   const { listItems, listClassName, ...rest } = props;
-  console.log(props)
   const classes = useStyles();
   return (
     <ul className={classNames(classes.list, listClassName)} {...rest}>
       {props.children 
         ? props.children 
         : listItems.map((listItem, index) => (
-          listItem.customItem 
-            ? listItem.customItem 
+          listItem.customitem 
+            ? listItem.customitem 
             : <ListItem
               key={index}
               title={listItem.title}
@@ -29,7 +28,7 @@ const List: React.FC<IList> = (props) => {
               label={listItem.label}
               hasDivider={listItem.hasDivider}
               fixedSize={listItem.fixedSize}
-              customItem={listItem.customItem}
+              customitem={listItem.customitem}
               disabled={listItem.disabled}
             />
         ))}

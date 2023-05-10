@@ -5,7 +5,7 @@ import Text from '../../Text';
 
 export interface IListItem {
   label?: string,
-  title?: string,
+  title: string,
   subtitle?: string,
   leftContent?: React.ReactNode,
   rightContent?: React.ReactNode,
@@ -14,7 +14,7 @@ export interface IListItem {
   hasDivider?: boolean,
   disabled?: boolean,
   testID?: string,
-  customItem?: JSX.Element;
+  customitem?: JSX.Element;
 }
 
 const ListItem: React.FC<IListItem & React.HTMLProps<HTMLLIElement>>= (props) => {
