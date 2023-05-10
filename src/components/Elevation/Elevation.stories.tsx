@@ -21,7 +21,7 @@ export default {
 } as ComponentMeta<typeof Elevation>;
 
 const Wrapper = ({ children }: any) => {
-  return <div style={{ padding: 16, }}>{children}</div>
+  return <div style={{ padding: 16 }}>{children}</div>
 };
 
 const Template: ComponentStory<typeof Elevation> = (args) => {

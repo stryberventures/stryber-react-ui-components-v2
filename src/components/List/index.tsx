@@ -13,16 +13,25 @@ const List: React.FC<IList> = (props) => {
   const classes = useStyles();
   return (
     <ul className={classNames(classes.list, listClassName)} {...rest}>
-      {listItems.map((listItem, index) => (
-        <ListItem
-          key={index}
-          title={listItem.title}
-          subtitle={listItem.subtitle}
-          leftContent={listItem.leftContent}
-          rightContent={listItem.rightContent}
-          onClick={listItem.onClick}
-        />
-      ))}
+      {props.children 
+        ? props.children 
+        : listItems.map((listItem, index) => (
+          listItem.customItem 
+            ? listItem.customItem 
+            : <ListItem
+              key={index}
+              title={listItem.title}
+              subtitle={listItem.subtitle}
+              leftContent={listItem.leftContent}
+              rightContent={listItem.rightContent}
+              onClick={listItem.onClick}
+              label={listItem.label}
+              hasDivider={listItem.hasDivider}
+              size={listItem.size}
+              customItem={listItem.customItem}
+              disabled={listItem.disabled}
+            />
+        ))}
     </ul>
   )
 }
