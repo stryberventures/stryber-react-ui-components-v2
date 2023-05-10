@@ -10,7 +10,7 @@ export interface IListItem {
   leftContent?: React.ReactNode,
   rightContent?: React.ReactNode,
   onClick?: (e: React.BaseSyntheticEvent) => void,
-  fixedSize?: 'small' | 'medium' | 'large', 
+  fixedSize?: 'small' | 'medium' | 'large' | undefined, 
   hasDivider?: boolean,
   disabled?: boolean,
   testID?: string,
