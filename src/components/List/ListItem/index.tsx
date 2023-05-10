@@ -10,7 +10,7 @@ export interface IListItem {
   leftContent?: React.ReactNode,
   rightContent?: React.ReactNode,
   onClick?: (e: React.BaseSyntheticEvent) => void,
-  fixedSize: string, 
+  itemSize: 'small' | 'medium' | 'large', 
   hasDivider?: boolean,
   disabled?: boolean,
   testID?: string,
@@ -27,14 +27,14 @@ const ListItem: React.FC<IListItem & React.HTMLProps<HTMLLIElement>>= (props) =>
     rightContent,
     leftContent,
     onClick,
-    fixedSize, 
+    itemSize, 
     hasDivider,
     disabled,
     ...rest
   } = props
   return (
     <li
-      className={classNames(classes.listItem, disabled && classes.disabled, hasDivider && classes.listItemDivider, classes[fixedSize !== 'large' ? fixedSize === 'small' ? 'small': 'medium': 'large'])}
+      className={classNames(classes.listItem, disabled && classes.disabled, hasDivider && classes.listItemDivider, classes[itemSize])}
       {...rest}
     >
       <div
@@ -79,6 +79,6 @@ const ListItem: React.FC<IListItem & React.HTMLProps<HTMLLIElement>>= (props) =>
 export default ListItem;
 
 ListItem.defaultProps = {
-  fixedSize: 'medium',
+  itemSize: 'medium',
 }
 
