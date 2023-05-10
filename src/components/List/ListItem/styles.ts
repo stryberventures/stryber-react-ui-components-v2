@@ -6,6 +6,7 @@ export default createStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    cursor: 'pointer',
     '&:hover': {
       background: theme.colors.neutralGray.light200,
     }

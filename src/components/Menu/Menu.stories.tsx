@@ -45,16 +45,16 @@ withIcons.args = {
 export const smallList = Template.bind({});
 smallList.args = {
   hasSearch: true,
-  menuItems: listItems.map(e => {return { ...e, leftContent, itemSize: 'small' }})
+  menuItems: listItems.map(e => {return { ...e, leftContent, size: 'small' }})
 };
 export const mediumList = Template.bind({});
 mediumList.args = {
   hasSearch: true,
-  menuItems: listItems.map(e => {return { ...e, leftContent, itemSize: 'medium' }})
+  menuItems: listItems.map(e => {return { ...e, leftContent, size: 'medium' }})
 };
 export const largeList = Template.bind({});
 largeList.args = {
   hasSearch: true,
-  menuItems: listItems.map(e => {return { ...e, leftContent, itemSize: 'large' }})
+  menuItems: listItems.map(e => {return { ...e, leftContent, size: 'large' }})
 };
 

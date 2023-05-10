@@ -3,21 +3,21 @@ import classNames from 'classnames';
 import useStyles from './styles';
 import Text from '../../Text';
 
-export interface IListItem {
+export interface IListItem extends React.HTMLAttributes<HTMLLIElement>{
   label?: string,
   title: string,
   subtitle?: string,
   leftContent?: React.ReactNode,
   rightContent?: React.ReactNode,
   onClick?: (e: React.BaseSyntheticEvent) => void,
-  itemSize: 'small' | 'medium' | 'large', 
+  size: 'small' | 'medium' | 'large', 
   hasDivider?: boolean,
   disabled?: boolean,
   testID?: string,
   customitem?: React.ReactNode;
 }
 
-const ListItem: React.FC<IListItem & React.HTMLProps<HTMLLIElement>> = (props) => {
+const ListItem: React.FC<IListItem> = (props) => {
   const classes = useStyles();
 
   const {
@@ -27,14 +27,14 @@ const ListItem: React.FC<IListItem & React.HTMLProps<HTMLLIElement>> = (props) =
     rightContent,
     leftContent,
     onClick,
-    itemSize, 
+    size, 
     hasDivider,
     disabled,
     ...rest
   } = props
   return (
     <li
-      className={classNames(classes.listItem, disabled && classes.disabled, hasDivider && classes.listItemDivider, classes[itemSize])}
+      className={classNames(classes.listItem, disabled && classes.disabled, hasDivider && classes.listItemDivider, classes[size])}
       {...rest}
     >
       <div
@@ -79,6 +79,6 @@ const ListItem: React.FC<IListItem & React.HTMLProps<HTMLLIElement>> = (props) =
 export default ListItem;
 
 ListItem.defaultProps = {
-  itemSize: 'medium',
+  size: 'medium',
 }
 

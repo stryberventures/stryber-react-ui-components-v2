@@ -27,7 +27,7 @@ const List: React.FC<IList> = (props) => {
               onClick={listItem.onClick}
               label={listItem.label}
               hasDivider={listItem.hasDivider}
-              itemSize={listItem.itemSize}
+              size={listItem.size}
               customitem={listItem.customitem}
               disabled={listItem.disabled}
             />

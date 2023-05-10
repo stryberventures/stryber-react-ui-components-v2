@@ -13,7 +13,7 @@ const leftContent = <div style={{ width: toRem(40), height: toRem(40), backgroun
 const rightContent = <Switch/>;
 const label = 'Label'
 const hasDivider = true
-const itemSize = 'medium'
+const size = 'medium'
 const sizes = ['small', 'medium', 'large'] as const
 
 
@@ -37,12 +37,12 @@ Default.args = {
 
 export const WithSize = Template.bind({});
 WithSize.args = {
-  listItems: listItems.map((item, index) => ({ ...item, title: sizes[index] || 'large', itemSize: sizes[index] || 'large' })),
+  listItems: listItems.map((item, index) => ({ ...item, title: sizes[index] || 'large', size: sizes[index] || 'large' })),
 };
 
 export const WithSizeAndDividers = Template.bind({});
 WithSizeAndDividers.args = {
-  listItems: listItems.map((item, index) => ({ ...item, label: sizes[index] || 'large',  hasDivider, itemSize: sizes[index] || 'large' })),
+  listItems: listItems.map((item, index) => ({ ...item, label: sizes[index] || 'large',  hasDivider, size: sizes[index] || 'large' })),
 };
 
 export const WithSubtitle = Template.bind({});
@@ -59,7 +59,7 @@ WithLeftRightContent.args = {
     rightContent,
     label,
     hasDivider,
-    itemSize
+    size
   })),
 };
 
