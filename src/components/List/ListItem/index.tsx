@@ -14,10 +14,10 @@ export interface IListItem {
   hasDivider?: boolean,
   disabled?: boolean,
   testID?: string,
-  customitem?: JSX.Element;
+  customitem?: React.ReactNode;
 }
 
-const ListItem: React.FC<IListItem & React.HTMLProps<HTMLLIElement>>= (props) => {
+const ListItem: React.FC<IListItem & React.HTMLProps<HTMLLIElement>> = (props) => {
   const classes = useStyles();
 
   const {
