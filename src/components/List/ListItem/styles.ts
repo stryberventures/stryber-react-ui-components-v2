@@ -18,13 +18,13 @@ export default createStyles((theme) => ({
   listItemDivider: {
     borderBottom: '1px solid ' + theme.colors.neutralGray.light200,
   },
-  smallListItem: {
+  small: {
     padding: [toRem(8), toRem(16)],
   },
-  mediumListItem: {
+  medium: {
     padding: [toRem(12), toRem(16)],
   },
-  largeListItem: {
+  large: {
     padding: [toRem(16), toRem(16)],
   },
   listItemContainer: {
