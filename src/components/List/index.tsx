@@ -17,7 +17,7 @@ const List: React.FC<IList> = (props) => {
         ? props.children 
         : listItems.map((listItem, index) => (
           listItem.customItem 
-            ? <>{listItem.customItem } <></></>
+            ? listItem.customItem 
             : <ListItem
               key={index}
               title={listItem.title}
