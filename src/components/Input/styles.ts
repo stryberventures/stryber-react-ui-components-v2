@@ -6,9 +6,9 @@ export default () => createStyles((theme) => ({
     direction: props.dir || 'inherit',
     width: toRem(320),
   }),
-  fullWidth: {
+  fullWidth: () => ({
     width: '100%',
-  },
+  }),
   inputContainer: (props: IInput) => ({
     boxSizing: 'border-box',
     borderRadius: toRem(4),

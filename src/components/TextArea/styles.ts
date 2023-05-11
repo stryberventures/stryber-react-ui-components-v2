@@ -26,9 +26,9 @@ export default () => createStyles((theme) => ({
       boxSizing: 'inherit',
     },
   }),
-  fullWidth: {
+  fullWidth: () => ({
     width: '100%',
-  },
+  }),
   textArea: (props: ITextArea) => ({
     display: 'flex',
     flexDirection: 'column',
