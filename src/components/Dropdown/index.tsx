@@ -1,5 +1,6 @@
 import React, { ForwardedRef, forwardRef, ReactNode } from 'react';
 import useStyles from './styles';
+import Elevation from '../Elevation';
 import Input from '../Input';
 import classNames from 'classnames';
 import { ArrowIcon } from '../Icons';
@@ -18,6 +19,7 @@ export interface IDropdownBase extends React.HTMLAttributes<HTMLDivElement>{
   color?: 'primary' | 'secondary',
   name?: string,
   fullWidth?: boolean,
+  inputFocused?: boolean,
 }
 
 export interface IDropdown extends IDropdownBase {
@@ -57,6 +59,7 @@ const Dropdown = forwardRef((props: IDropdown, ref: ForwardedRef<IDropdownRef>) 
     rightIcon,
     dir = useDir(props.dir),
     onOutsideClick,
+    inputFocused,
     ...rest
   } = props;
   const classes = useStyles()({
@@ -86,7 +89,7 @@ const Dropdown = forwardRef((props: IDropdown, ref: ForwardedRef<IDropdownRef>) 
         readOnly={inputReadOnly}
         name={name}
         label={label}
-        variant={inputVariant}
+        variant="floatingLabel"
         placeholder={placeholder}
         color={color}
         value={value}
@@ -98,12 +101,13 @@ const Dropdown = forwardRef((props: IDropdown, ref: ForwardedRef<IDropdownRef>) 
         errorMessage={error}
         onChange={onInputChange}
         className={classNames(classes.input, { [classes.inputDisabled]: disabled })}
+        floatingLabelFocused={inputFocused}
         rightIcon={renderRightIcon}
       />
       {open && (
-        <div className={classNames(classes.content, contentClassName)}>
+        <Elevation variant="heavy" className={classNames(classes.content, contentClassName)}>
           {children}
-        </div>
+        </Elevation>
       )}
     </div>
   );

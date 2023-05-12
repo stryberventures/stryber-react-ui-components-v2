@@ -31,7 +31,7 @@ const MenuItem = forwardRef<HTMLDivElement,IMenuItem>( (props, ref) => {
     >
       {typeof children == 'string' ? (
         <Text
-          variant="components2"
+          variant="components1"
           weight="regular"
           className={classNames(classes.menuItem, classes.menuItemText, className)}
         >

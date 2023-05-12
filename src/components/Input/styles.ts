@@ -109,11 +109,11 @@ export default () => createStyles((theme) => ({
       cursor: 'default',
     }
   }),
-  floatingLabel: {
+  floatingLabel: () =>  ({
     marginBottom: 0,
     color: theme.colors.text.secondary,
     transition: 'font-size 0.2s',
-  },
+  }),
   textDisabled: {
     color: theme.colors.text.disabled,
     '&::placeholder': {

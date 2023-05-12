@@ -51,7 +51,7 @@ export const useInput = (props: IInput) => {
 
     onChange && onChange(e);
   };
-  
+
   useEffect(
     () => { !controlled && updateFormValue(name, internalValue); },
     [internalValue]
@@ -88,6 +88,10 @@ export const useInput = (props: IInput) => {
     }
     setInFocus(false);
   };
+
+  useEffect(() => {
+    setInputInUse(floatingLabel && !!value);
+  },[value])
 
   useEffect(() => {
     !controlled && updateFormValue(name, internalValue, true);
