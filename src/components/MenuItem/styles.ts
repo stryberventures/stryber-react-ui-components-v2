@@ -11,21 +11,21 @@ export default () => createStyles((theme) => ({
     boxSizing: 'border-box',
     width: '100%',
     textAlign: props.dir === 'rtl' ? 'right' : 'left',
-    padding: [0, toRem(8)],
+    padding: toRem(16),
     overflow: 'hidden',
     '&:not($readOnly):hover': {
       cursor: 'pointer',
-      backgroundColor: theme.colors.neutralGray.light100,
+      backgroundColor: theme.colors.neutralGray.extraLight50,
     },
   }),
   menuItemText: {
-    lineHeight: toRem(33),
+    lineHeight: toRem(24),
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     color: theme.colors.text.headline,
   },
   selected: {
-    backgroundColor: theme.colors.neutralGray.light100,
+    backgroundColor: theme.colors.neutralGray.light200,
   },
   readOnly: {},
 }), { internalUsage: true });

@@ -36,6 +36,7 @@ const Select: React.FC<ISelect> = (props) => {
       error={error}
       ref={dropdownRef}
       fullWidth={fullWidth}
+      inputFocused={!!value}
     >
       {options.map((option) => (
         <MenuItem

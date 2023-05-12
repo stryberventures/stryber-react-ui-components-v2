@@ -33,13 +33,14 @@ export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
   mask?: string,
   fullWidth?: boolean,
   variant?: 'labelOutside' | 'floatingLabel',
+  floatingLabelFocused?: boolean,
   clearButton?: boolean,
 }
 
 const Input: React.FC<IInput> = (props) => {
   const {
     label, className, hint, prefix, prefixClassName, postfix, postfixClassName, errorClassName, hintClassName,
-    leftIcon: pLeftIcon, rightIcon: pRightIcon, placeholder, clearButton = false, fullWidth, dir = useDir(props.dir),
+    leftIcon: pLeftIcon, rightIcon: pRightIcon, placeholder, clearButton = false, fullWidth, dir = useDir(props.dir), floatingLabelFocused,
     ...rest
   } = props;
   const classes = useStyles()({
@@ -70,12 +71,13 @@ const Input: React.FC<IInput> = (props) => {
     onBlur,
     onFocus,
   } = useInput(rest);
+  const isFloatingLabelFocused = typeof floatingLabelFocused === 'boolean' ? floatingLabel && floatingLabelFocused : floatingLabel && inputInUse;
 
   const renderLabel = () => {
     if (!label) {
       return null;
     }
-    const variant = floatingLabel && inputInUse
+    const variant = isFloatingLabelFocused
       ? 'caption1'
       : floatingLabel
         ? 'components1'
@@ -116,7 +118,7 @@ const Input: React.FC<IInput> = (props) => {
             className={classNames(
               classes.inputWrapper,
               { [classes.floatingLabelInputWrapper]: floatingLabel },
-              { [classes.floatingLabelInputWrapperInUse]: floatingLabel && inputInUse },
+              { [classes.floatingLabelInputWrapperInUse]: isFloatingLabelFocused },
             )}
           >
             {!!prefix && (

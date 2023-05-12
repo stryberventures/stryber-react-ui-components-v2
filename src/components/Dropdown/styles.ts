@@ -22,7 +22,7 @@ export default () => createStyles((theme) => ({
     position: 'absolute',
     zIndex: 99,
     border: `${toRem(1)} solid ${theme.colors.neutralGray.medium300}`,
-    borderRadius: toRem(4),
+    borderRadius: toRem(8),
     top: '100%',
     marginTop: toRem(4),
     width: '100%',
