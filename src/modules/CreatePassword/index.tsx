@@ -4,7 +4,7 @@ import Form from '../../components/Form';
 import InputPassword from '../../components/InputPassword';
 import Text from '../../components/Text';
 import Button from '../../components/Button';
-import { createStyles, toRem } from '../../components/Theme';
+import { createStyles, toRem, useDir } from '../../components/Theme';
 import DemoLogo from '../../storybook/preview/DemoLogo';
 
 
@@ -18,7 +18,8 @@ const validationSchema = yup.object().shape({
 });
 
 const CreatePassword = () => {
-  const classes = useStyles();
+  const dir = useDir();
+  const classes = useStyles()({ dir });
   const [disabled, setDisabled] = React.useState(true);
   return (
     <div className={classes.createPassword}>
@@ -80,7 +81,11 @@ const CreatePassword = () => {
 
 export default CreatePassword;
 
-const useStyles = createStyles((theme) => ({
+interface IUseStyles {
+  dir: string;
+}
+
+const useStyles = () => createStyles<any, IUseStyles>((theme) => ({
   createPassword: {
     display: 'flex',
     flexDirection: 'column',
@@ -91,14 +96,14 @@ const useStyles = createStyles((theme) => ({
       boxSizing: 'inherit',
     }
   },
-  logoWrapper: {
+  logoWrapper: ({ dir }) => ({
     display: 'flex',
     justifyContent: 'flex-end',
     width: '100%',
     marginBottom: theme.spacing[64],
-    paddingRight: theme.spacing[80],
+    [dir === 'rtl' ? 'paddingLeft' : 'paddingRight']: theme.spacing[80],
     boxSizing: 'border-box',
-  },
+  }),
   screen: {
     display: 'flex',
     flexGrow: 1,
