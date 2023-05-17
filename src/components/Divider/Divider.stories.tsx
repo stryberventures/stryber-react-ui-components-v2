@@ -6,7 +6,7 @@ import Elevation from '../Elevation';
 import Text from '../Text';
 import pkg from './package.json';
 import { buildArgTypes } from '../../storybook/utils';
-import { toRem } from '../Theme';
+import { toRem, useDir } from '../Theme';
 
 
 export default {
@@ -49,36 +49,57 @@ FullBleed.decorators = [
 
 export const Inset = Template.bind({});
 Inset.decorators = [
-  (Story) => (
-    <Elevation>
-      <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'nowrap' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', width: toRem(48), paddingLeft: toRem(16), }}>
-          <ProfileIcon variant="filled" />
+  (Story) => {
+    const dir = useDir();
+    return (
+      <Elevation>
+        <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'nowrap' }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+            width: toRem(48),
+            [dir === 'rtl' ? 'paddingRight' : 'paddingLeft']: toRem(16),
+          }}>
+            <ProfileIcon variant="filled" />
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+            <Text style={{ padding: `${toRem(12)} 0` }}>Lorem ipsum dolor</Text>
+            <Story />
+          </div>
         </div>
-        <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-          <Text style={{ padding: `${toRem(12)} 0` }}>Lorem ipsum dolor</Text>
-          <Story />
+        <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'nowrap' }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+            width: toRem(48),
+            [dir === 'rtl' ? 'paddingRight' : 'paddingLeft']: toRem(16),
+          }}>
+            <ProfileIcon variant="filled" />
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+            <Text style={{ padding: `${toRem(12)} 0` }}>Lorem ipsum dolor</Text>
+            <Story />
+          </div>
         </div>
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'nowrap' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', width: toRem(48), paddingLeft: toRem(16), }}>
-          <ProfileIcon variant="filled" />
+        <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'nowrap' }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+            width: toRem(48),
+            [dir === 'rtl' ? 'paddingRight' : 'paddingLeft']: toRem(16),
+          }}>
+            <ProfileIcon variant="filled" />
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+            <Text style={{ padding: `${toRem(12)} 0` }}>Lorem ipsum dolor</Text>
+          </div>
         </div>
-        <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-          <Text style={{ padding: `${toRem(12)} 0` }}>Lorem ipsum dolor</Text>
-          <Story />
-        </div>
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'nowrap' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', width: toRem(48), paddingLeft: toRem(16), }}>
-          <ProfileIcon variant="filled" />
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-          <Text style={{ padding: `${toRem(12)} 0` }}>Lorem ipsum dolor</Text>
-        </div>
-      </div>
-    </Elevation>
-  )
+      </Elevation>
+    )
+  }
 ]
 
 export const Middle = Template.bind({});
