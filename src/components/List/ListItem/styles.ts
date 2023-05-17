@@ -1,7 +1,8 @@
 import { createStyles, toRem } from '../../Theme'
+import { IListItem } from './index';
 
 
-export default createStyles((theme) => ({
+export default () => createStyles<any, IListItem>((theme) => ({
   listItem: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -50,10 +51,10 @@ export default createStyles((theme) => ({
     display: 'flex',
     alignItems: 'center'
   },
-  leftContent: {
-    marginRight: toRem(16),
-  },
-  rightContent: {
-    marginLeft: toRem(16),
-  },
+  leftContent: ({ dir }) => ({
+    [dir === 'rtl' ? 'marginLeft' : 'marginRight']: toRem(16),
+  }),
+  rightContent: ({ dir }) => ({
+    [dir === 'rtl' ? 'marginRight' : 'marginLeft']: toRem(16),
+  }),
 }), { internalUsage: true });

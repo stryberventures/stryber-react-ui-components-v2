@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import useStyles from './styles';
 import Text from '../../Text';
+import { useDir } from '../../Theme';
 
 export interface IListItem extends React.HTMLAttributes<HTMLLIElement>{
   label?: string,
@@ -10,7 +11,7 @@ export interface IListItem extends React.HTMLAttributes<HTMLLIElement>{
   leftContent?: React.ReactNode,
   rightContent?: React.ReactNode,
   onClick?: (e: React.BaseSyntheticEvent) => void,
-  size: 'small' | 'medium' | 'large', 
+  size: 'small' | 'medium' | 'large',
   hasDivider?: boolean,
   disabled?: boolean,
   testID?: string,
@@ -18,8 +19,6 @@ export interface IListItem extends React.HTMLAttributes<HTMLLIElement>{
 }
 
 const ListItem: React.FC<IListItem> = (props) => {
-  const classes = useStyles();
-
   const {
     label,
     title,
@@ -27,12 +26,19 @@ const ListItem: React.FC<IListItem> = (props) => {
     rightContent,
     leftContent,
     onClick,
-    size, 
+    size,
     hasDivider,
     disabled,
     customItem,
+    dir = useDir(props.dir),
     ...rest
-  } = props
+  } = props;
+
+  const classes = useStyles()({
+    ...props,
+    dir
+  });
+
   return (
     <li
       className={classNames(classes.listItem, disabled && classes.disabled, hasDivider && classes.listItemDivider, classes[size])}
