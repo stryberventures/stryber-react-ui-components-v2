@@ -54,7 +54,7 @@ export default () => createStyles((theme) => ({
     },
   },
   inputDisabled: {},
-  fullWidth: {
+  fullWidth: () => ({
     width: '100%'
-  },
+  }),
 }), { index: 1, internalUsage: true });
