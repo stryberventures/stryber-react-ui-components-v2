@@ -1,7 +1,7 @@
 import { createStyles, toRem } from '../Theme';
+import { IMenu } from './index';
 
-export default () => createStyles((theme) => ({
-
+export default () => createStyles<any, IMenu>((theme) => ({
   searchInput: {
     width: '100% !important',
     '& [class*="hint"], & [class*="error"]': {
