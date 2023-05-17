@@ -1,6 +1,8 @@
 import React from 'react';
 import useStyles from './styles';
 import classNames from 'classnames';
+import { useDir } from '../Theme';
+
 export interface ILinearProgress extends React.HTMLAttributes<HTMLDivElement> {
   variant?: 'determinate' | 'indeterminate';
   color?: 'primary' | 'secondary';
@@ -10,10 +12,13 @@ export interface ILinearProgress extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const LinearProgress: React.FC<ILinearProgress> = (props) => {
-  const { variant = 'indeterminate', className, value = 0, ...rest } = props;
-  const classes = useStyles()(props);
+  const { variant = 'indeterminate', className, value = 0, dir = useDir(props.dir), ...rest } = props;
+  const classes = useStyles()({
+    ...props,
+    dir
+  });
 
-  const transform = value - 100;
+  const transform = (value - 100) * (dir === 'rtl' ? -1 : 1);
   return (
     <div className={classNames(classes.root, className)} {...rest}>
       <span className={classes.progressContainer}>
