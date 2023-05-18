@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Tag, { defaultTagProps } from './index';
 import Input from '../Input';
 import Button from '../Button';
-import { DocumentIcon, FilesIcon, EditIcon, ProfileIcon, PointArrowIcon } from '../Icons';
+import { DocumentIcon, FilesIcon, ProfileIcon } from '../Icons';
 import pkg from './package.json';
 import { buildArgTypes } from '../../storybook/utils';
 import { toRem } from '../Theme';
@@ -15,7 +15,7 @@ export default {
     pkg,
   },
   args: defaultTagProps,
-  argTypes: buildArgTypes(['iconLeft', 'iconRight', 'className']),
+  argTypes: buildArgTypes(['iconLeft', 'iconRight', 'className', 'onSelect', 'onRemove', 'testId']),
 } as ComponentMeta<typeof Tag>;
 
 const Template: ComponentStory<typeof Tag> = (args) => <Tag {...args} />;
@@ -24,7 +24,6 @@ export const Default = Template.bind({});
 Default.args = {
   children: 'Default',
   onRemove: undefined,
-  iconLeft: (props) => <PointArrowIcon variant={props.dir === 'rtl' ? 'right' : 'left'} />,
 };
 
 export const Square = Template.bind({});
@@ -34,34 +33,31 @@ Square.args = {
   onRemove: undefined,
 };
 
-export const RoundSmall = Template.bind({});
-RoundSmall.args = {
-  children: 'Round small',
+export const Small = Template.bind({});
+Small.args = {
+  children: 'Small',
   size: 'small',
-  shape: 'round',
   onRemove: undefined,
 };
 
-export const SquareMiddle = Template.bind({});
-SquareMiddle.args = {
-  children: 'Square middle',
+export const Medium = Template.bind({});
+Medium.args = {
+  children: 'Medium',
   size: 'medium',
-  shape: 'square',
   onRemove: undefined,
 };
 
 export const LeftIcon = Template.bind({});
 LeftIcon.args = {
-  children: 'Square removable',
+  children: 'Left icon',
   iconLeft: <DocumentIcon />,
   onRemove: undefined,
 };
 
-export const RightIconMedium = Template.bind({});
-RightIconMedium.args = {
-  children: 'Right icon medium',
+export const RightIcon = Template.bind({});
+RightIcon.args = {
+  children: 'Right icon',
   iconRight: <FilesIcon />,
-  size: 'medium',
   onRemove: undefined,
 };
 
@@ -70,28 +66,22 @@ Disabled.args = {
   children: 'Disabled',
   disabled: true,
   onRemove: undefined,
-  iconRight: <EditIcon variant="filled" />,
+  iconRight: <FilesIcon />,
 };
 
-export const RemovableLarge = Template.bind({});
-RemovableLarge.args = {
-  children: 'Removable Large',
+export const Removable = Template.bind({});
+Removable.args = {
+  children: 'Removable',
   size: 'large',
   onRemove: () => {},
 };
 
-export const RemovableMedium = Template.bind({});
-RemovableMedium.args = {
-  children: 'Removable Medium',
-  size: 'medium',
-  onRemove: () => {},
-};
 
-export const RemovableSmall = Template.bind({});
-RemovableSmall.args = {
-  children: 'Removable Small',
-  size: 'small',
-  onRemove: () => {},
+export const Selected = Template.bind({});
+Selected.args = {
+  children: 'Selected',
+  selected: true,
+  onRemove: undefined,
 };
 
 const removableTags = [
@@ -155,11 +145,9 @@ const RemovableTemplate: ComponentStory<typeof Tag> = (args) => {
   )
 };
 
-export const Removable = RemovableTemplate.bind({});
-Removable.args = {
-  children: 'Removable Medium',
+export const Playground = RemovableTemplate.bind({});
+Playground.args = {
   size: 'medium',
-  onRemove: () => {},
 };
 
 function generateTagId() {

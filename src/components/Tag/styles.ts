@@ -25,9 +25,11 @@ export default () => createStyles((theme) => ({
     transition: `color ${transitionDelay} ${transitionAnimation}, border-color ${transitionDelay} ${transitionAnimation}`,
   }),
   default: (props: ITag) => ({
+    '&:focus-visible': {
+      borderColor: theme.colors[props.color!].medium400,
+    },
     '&:hover, &:focus-visible': {
       color: theme.colors[props.color!].medium300,
-      borderColor: theme.colors[props.color!].medium400,
       '& svg path': {
         fill: theme.colors[props.color!].medium300,
       }
@@ -89,7 +91,7 @@ export default () => createStyles((theme) => ({
     '&:not($disabled) svg path': {
       fill: theme.colors.contrast.white,
     },
-    '&:hover, &:focus-visible': {
+    '&:focus-visible': {
       borderColor: theme.colors[props.color!].dark600,
     },
   }),
