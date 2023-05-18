@@ -8,7 +8,7 @@ import useStyles from './styles';
 
 type TTagSize = 'small' | 'medium' | 'large';
 type TTagShape = 'square' | 'round';
-type TTagColor = 'primary' | 'secondary';
+type TTagColor = 'primary' | 'secondary' | 'success' | 'error' | 'warning' | 'neutralGray';
 
 export const defaultTagProps = {
   size: 'large' as TTagSize,
