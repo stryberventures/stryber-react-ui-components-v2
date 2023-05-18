@@ -46,6 +46,7 @@ export const useInput = (props: IInput) => {
         nextValue = prevValue.length >= targetValue.length ? targetValue : applyDigitMask(targetValue, mask);
       }
 
+
       return nextValue;
     });
 
@@ -59,7 +60,9 @@ export const useInput = (props: IInput) => {
 
   const onResetButtonPointerDown = (e: React.BaseSyntheticEvent) => {
     e.preventDefault();
-    setInternalValue('');
+    e.target.value = ''
+
+    onChangeWrapper(e);
   };
 
   const onInputContainerClick = (e: any) => {

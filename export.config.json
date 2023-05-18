@@ -20,6 +20,7 @@
     "Select": "select",
     "Slider": "slider",
     "Multiselect": "multiselect",
+    "Menu": "menu",
     "Combobox": "combobox",
     "InputToggleLayout": "input-toggle-layout",
     "Text": "text",
