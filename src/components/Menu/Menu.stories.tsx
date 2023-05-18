@@ -21,8 +21,7 @@ export default {
 const title = 'List item';
 const Template: ComponentStory<typeof Menu> = (args) => <Menu {...args} />;
 const listItems: IListItem[] = new Array(6).fill({ title });
-const leftContent = <div style={{ width: toRem(20), height: toRem(20), backgroundColor: 'grey', borderRadius: '50%' }} />;
-
+const leftContent = <div style={{ width: toRem(18), height: toRem(18), backgroundColor: 'grey', borderRadius: '50%' }} />
 
 
 export const Default = Template.bind({});
