@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import Text from '../Text';
-import { InfoIcon } from '../Icons';
+import { ErrorIcon } from '../Icons';
 import { useTheme, useDir } from '../Theme';
 import useStyles from './styles';
 
@@ -23,7 +23,7 @@ export const ErrorMessage = (props: IErrorMessage) => {
       dir={dir}
       className={classNames(classes.errorMessage, className)}
     >
-      <InfoIcon
+      <ErrorIcon
         variant="filled"
         fill={theme.colors.error.main500}
         className={classes.icon}
