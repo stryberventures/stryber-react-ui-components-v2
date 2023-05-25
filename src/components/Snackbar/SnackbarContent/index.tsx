@@ -2,28 +2,30 @@ import React from 'react';
 import useStyles from './styles';
 import Text from '../../Text';
 import * as Icons from '../../Icons';
-import { useTheme } from '../../Theme';
+import { useDir, useTheme } from '../../Theme';
 import classNames from 'classnames';
 
 export interface ISnackbarContentProps {
   message?: string;
   description?: string;
-  variant?: 'success' | 'error' | 'warning' | 'info' | 'basic';
-  handleClose?: () => void;
-  withCloseButton?: boolean;
+  variant?: 'success' | 'error' | 'warning' | 'info' | 'default';
+  onClose?: () => void;
   withIcon?: boolean;
   className?: string;
+  dir?: string;
+  style?: React.CSSProperties;
 }
 
-const SnackbarContent: React.FC<ISnackbarContentProps> = (props) => {
+const SnackbarContent = React.forwardRef<HTMLDivElement, ISnackbarContentProps>((props, ref) => {
   const {
     variant,
     message,
     description,
-    withCloseButton = false,
     withIcon = true,
-    handleClose,
+    onClose,
     className,
+    dir = useDir(props.dir),
+    style,
   } = props;
   const { theme } = useTheme();
 
@@ -40,7 +42,11 @@ const SnackbarContent: React.FC<ISnackbarContentProps> = (props) => {
     }
   }
 
-  const classes = useStyles()({ ...props, color: variantToColor() });
+  const classes = useStyles()({
+    ...props,
+    color: variantToColor(),
+    dir
+  });
 
   const renderIcon = () => {
     const iconProps = {
@@ -65,19 +71,21 @@ const SnackbarContent: React.FC<ISnackbarContentProps> = (props) => {
   }
 
   return (
-    <div className={classNames(classes.snackbarContent, className)}>
+    <div ref={ref} className={classNames(classes.snackbarContent, className)} style={style} >
       <div className={classes.mainContent}>
-        {(variant !== 'basic' && withIcon) && <div className={classes.symbol}>{renderIcon()}</div>}
+        {(variant !== 'default' && withIcon) && <div className={classes.symbol}>{renderIcon()}</div>}
         <div className={classes.message}>
-          <Text weight="semiBold" variant="components2">{message}</Text>
-          {description && <Text variant="components2">{description}</Text>}
+          <Text weight="semiBold" variant="components2" className={classes.title}>{message}</Text>
+          {description && <Text variant="components2" className={classes.description}>{description}</Text>}
         </div>
       </div>
-      {(variant !== 'basic' && withCloseButton) && (<div onClick={handleClose} data-testid="gaia-snackbar-close-button">
+      {(variant !== 'default' && !!onClose) && (<div onClick={onClose} data-testid="gaia-snackbar-close-button">
         <Icons.CloseIcon fill={theme.colors[variantToColor()!]?.dark600} className={classes.closeIcon}/>
       </div>)}
     </div>
   );
-};
+});
+
+SnackbarContent.displayName = 'SnackbarContent';
 
 export default SnackbarContent;

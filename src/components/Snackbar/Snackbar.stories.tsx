@@ -13,14 +13,6 @@ export default {
   },
   argTypes: {
     ...buildArgTypes(['dir', 'anchorOrigin']),
-    horizontalPosition: {
-      control: 'select',
-      options: ['left', 'center', 'right'],
-    },
-    verticalPosition: {
-      control: 'select',
-      options: ['top', 'bottom'],
-    },
   },
   decorators: [
     (Story) => (
@@ -48,8 +40,8 @@ const Template: ComponentStory<typeof Snackbar> = ({
   )
 };
 
-export const Basic = Template.bind({});
-Basic.args = {
+export const Default = Template.bind({});
+Default.args = {
   message: 'This is a snackbar',
   description: 'This is a description',
 };

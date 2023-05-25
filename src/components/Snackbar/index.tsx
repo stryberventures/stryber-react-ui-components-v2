@@ -1,4 +1,5 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState, useRef } from 'react';
+import { CSSTransition } from 'react-transition-group';
 import useStyles from './styles';
 import classNames from 'classnames';
 import SnackbarContent, { ISnackbarContentProps } from './SnackbarContent';
@@ -12,48 +13,68 @@ export interface ISnackbarProps extends Omit<ISnackbarContentProps, 'handleClose
     horizontal: 'left' | 'center' | 'right';
   };
   className?: string;
+  dir?: string;
 }
 
 const Snackbar: FC<ISnackbarProps> = (props) => {
   const {
     open = false,
-    autoHideDuration = 5000,
+    autoHideDuration = 3000,
     anchorOrigin,
     onClose,
     className,
     ...rest
   } = props;
   const [showSnackbar, setShowSnackbar] = useState(open);
+  const snackbarRef = useRef(null);
+  const timerAutoHide = React.useRef<ReturnType<typeof setTimeout>>();
   const classes = useStyles()(props);
 
   const handleClose = () => {
     setShowSnackbar(false);
     onClose && onClose();
+    clearTimeout(timerAutoHide.current!)
   }
 
   useEffect(() => {
     setShowSnackbar(open);
     if (open) {
-      setTimeout(() => {
+      timerAutoHide.current = setTimeout(() => {
         handleClose();
       }, autoHideDuration);
+    }
+    return () => {
+      clearTimeout(timerAutoHide.current!);
     }
   }, [open]);
 
   return (
-    <div
-      className={classNames(
-        classes.snackbar,
-        { [classes.visible]: showSnackbar },
-        classes[anchorOrigin!.horizontal],
-        classes[anchorOrigin!.vertical],
-        className,
-      )}
-      data-testid="gaia-snackbar"
+    <CSSTransition
+      nodeRef={snackbarRef}
+      in={showSnackbar}
+      timeout={300}
+      classNames={{
+        enter: classes.animatedEnter,
+        enterActive: classes.animatedEnterActive,
+        exit: classes.animatedExit,
+        exitActive: classes.animatedExitActive,
+      }}
+      unmountOnExit
     >
-      <SnackbarContent handleClose={handleClose} {...rest} />
-    </div>
-  );
+      <div
+        className={classNames(
+          classes.snackbar,
+          classes[anchorOrigin!.horizontal],
+          classes[anchorOrigin!.vertical],
+          className,
+        )}
+        ref={snackbarRef}
+        data-testid="gaia-snackbar"
+      >
+        <SnackbarContent onClose={handleClose} {...rest} />
+      </div>
+    </CSSTransition>
+  )
 };
 
 Snackbar.defaultProps = {
@@ -61,7 +82,6 @@ Snackbar.defaultProps = {
     vertical: 'top',
     horizontal: 'center',
   },
-  withCloseButton: true,
 };
 
 export { SnackbarContent };

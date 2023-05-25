@@ -1,7 +1,7 @@
 import { createStyles, toRem } from '../../Theme';
 import { ISnackbarContentProps } from './index';
 
-interface ISnackbarStylesProps extends ISnackbarContentProps {
+interface ISnackbarStylesProps extends Omit<ISnackbarContentProps, 'color'> {
   color: 'success' | 'error' | 'warning' | 'primary' | null;
 }
 
@@ -22,9 +22,9 @@ export default () => createStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
   },
-  symbol: ({ description }: ISnackbarStylesProps) => ({
+  symbol: ({ description, dir }: ISnackbarStylesProps) => ({
     alignSelf: description ? 'flex-start' : 'center',
-    marginRight: toRem(12),
+    [dir === 'rtl' ? 'marginLeft' : 'marginRight']: toRem(12),
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -32,6 +32,7 @@ export default () => createStyles((theme) => ({
   message: {
     display: 'flex',
     flexDirection: 'column',
+    gap: toRem(4),
   },
   icon: {
     fill: theme.colors.primary.main500,
@@ -39,6 +40,7 @@ export default () => createStyles((theme) => ({
   closeIcon: {
     width: 20,
     height: 20,
+    cursor: 'pointer',
   },
   '@media (max-width: 420px)': {
     mainContent: {
@@ -47,5 +49,11 @@ export default () => createStyles((theme) => ({
     symbol: {
       marginBottom: toRem(12),
     }
+  },
+  title: {
+    lineHeight: toRem(17),
+  },
+  description: {
+    lineHeight: toRem(17),
   }
 }), { internalUsage: true });

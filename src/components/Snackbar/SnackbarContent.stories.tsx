@@ -10,16 +10,16 @@ export default {
   parameters: {
     pkg,
   },
-  argTypes: buildArgTypes(['iconLeft', 'iconRight']),
+  argTypes: buildArgTypes(['iconLeft', 'iconRight', 'className', 'dir', 'style', 'onClose']),
 } as ComponentMeta<typeof SnackbarContent>;
 
-const snackbarContentVariants = ['basic', 'success', 'warning', 'error', 'info'] as const;
+const snackbarContentVariants = ['default', 'success', 'warning', 'error', 'info'] as const;
 
-const Template: ComponentStory<typeof SnackbarContent> = (args) => (
+const Template: ComponentStory<typeof SnackbarContent> = ({ onClose: _, ...rest }) => (
   <>
     {snackbarContentVariants.map((variant) => (
       <>
-        <SnackbarContent key={variant} {...args} variant={variant}/>
+        <SnackbarContent key={variant} {...rest} variant={variant}/>
         <br/>
       </>
     ))}

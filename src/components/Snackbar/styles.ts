@@ -1,18 +1,25 @@
 import { createStyles, toRem } from '../Theme';
 
 export default () => createStyles(() => ({
+  animatedEnter: {
+    opacity: 0,
+  },
+  animatedEnterActive: {
+    opacity: 1,
+    transform: 'translateX(0)',
+    transition: 'opacity 300ms, transform 300ms',
+  },
+  animatedExit: {
+    opacity: 1,
+  },
+  animatedExitActive: {
+    opacity: 0,
+    transition: 'opacity 300ms, transform 300ms',
+  },
   snackbar: {
     position: 'fixed',
     width: '90vw',
     maxWidth: 400,
-    visibility: 'hidden',
-    opacity: 0,
-    transition: 'visibility 0s linear 300ms, opacity 300ms',
-  },
-  visible: {
-    visibility: 'visible',
-    opacity: 1,
-    transition: 'visibility 0s linear 0s, opacity 300ms'
   },
   top: {
     top: toRem(40),
