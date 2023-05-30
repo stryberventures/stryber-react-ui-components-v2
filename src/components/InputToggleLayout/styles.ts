@@ -43,7 +43,9 @@ export default () => createStyles((theme) => ({
       boxShadow: `0 0 0 2px white, 0 0 0 ${toRem(4)} ${theme.colors[props.color!].light200}`,
     },
     '&$fullWidth': {
+      display: 'flex',
       width: '100%',
+      justifyContent: 'space-between',
     },
   }),
   reverse: {
