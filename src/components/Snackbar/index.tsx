@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState, useRef } from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import useStyles from './styles';
 import classNames from 'classnames';
@@ -25,19 +25,16 @@ const Snackbar: FC<ISnackbarProps> = (props) => {
     className,
     ...rest
   } = props;
-  const [showSnackbar, setShowSnackbar] = useState(open);
   const snackbarRef = useRef(null);
   const timerAutoHide = React.useRef<ReturnType<typeof setTimeout>>();
   const classes = useStyles()(props);
 
   const handleClose = () => {
-    setShowSnackbar(false);
     onClose && onClose();
     clearTimeout(timerAutoHide.current!)
   }
 
   useEffect(() => {
-    setShowSnackbar(open);
     if (open) {
       timerAutoHide.current = setTimeout(() => {
         handleClose();
@@ -51,7 +48,7 @@ const Snackbar: FC<ISnackbarProps> = (props) => {
   return (
     <CSSTransition
       nodeRef={snackbarRef}
-      in={showSnackbar}
+      in={open}
       timeout={300}
       classNames={{
         enter: classes.animatedEnter,
