@@ -12,7 +12,8 @@ export default {
     pkg,
   },
   argTypes: {
-    ...buildArgTypes(['dir', 'anchorOrigin']),
+    autoHideDuration: { name: 'autoHideDuration (ms)' },
+    ...buildArgTypes(['dir', 'anchorOrigin', 'open', 'className', 'style'])
   },
   decorators: [
     (Story) => (

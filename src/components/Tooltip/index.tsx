@@ -25,8 +25,6 @@ const Tooltip: React.FC<ITooltip> = (props) => {
   const {
     version = 'light',
     position = 'top',
-    noArrow = false,
-    color = 'primary',
     title,
     text,
     visible,
