@@ -5,7 +5,7 @@ import Input from '../Input';
 import Slider from './index';
 import Button from '../Button';
 import pkg from './package.json';
-import { buildExcludeArgTypes } from '../../storybook/utils';
+import { buildArgTypes } from '../../storybook/utils';
 import { CountIcon } from '../Icons';
 
 export default {
@@ -14,7 +14,7 @@ export default {
   parameters: {
     pkg,
   },
-  argTypes: buildExcludeArgTypes(['onChange', 'name', 'leftLabel', 'rightLabel']),
+  argTypes: buildArgTypes(['onChange', 'name', 'leftLabel', 'rightLabel']),
 } as ComponentMeta<typeof Slider>;
 
 const Template: ComponentStory<typeof Slider> = (args) => <Slider {...args} />;
@@ -86,7 +86,7 @@ const TemplateRangeOutsideInput: ComponentStory<typeof Slider> = (args) => {
   };
   return (
     <Form>
-      <div style={{ display: 'flex', marginBottom: 20, gap: 10, alignItems: 'flex-end' }}>
+      <div style={{ display: 'flex', marginBottom: 20, gap: 10, alignItems: 'flex-start' }}>
         <Input
           name="test"
           label="min"
@@ -108,7 +108,7 @@ const TemplateRangeOutsideInput: ComponentStory<typeof Slider> = (args) => {
         <Button
           type="button"
           size="small"
-          style={{ height: 48}}
+          style={{ height: 48, marginTop: 25 }}
           disabled={(minVal > maxVal) || (maxVal > max)}
           onClick={applyChanges}
         >

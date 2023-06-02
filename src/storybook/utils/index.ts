@@ -1,9 +1,10 @@
 import { components, name } from '../../../export.config.json';
+import { merge } from '../../components/Theme/utils';
 const componentsList = Object.keys(components);
 
 // takes list of properties names and builds argsTypes object
-export const buildExcludeArgTypes = (keys: string[]) => {
-  const argTypes: Record<string, any> = {};
+export const buildArgTypes = (keys: string[] = []) => {
+  let argTypes: Record<string, any> = {};
   keys.forEach((key) => {
     argTypes[key] = {
       table: {
@@ -11,6 +12,16 @@ export const buildExcludeArgTypes = (keys: string[]) => {
       }
     }
   });
+
+  argTypes = merge(argTypes, {
+    dir: {
+      control: {
+        type: 'select',
+        options: ['inherit', 'ltr', 'rtl'],
+      }
+    }
+  })
+
   return argTypes;
 }
 

@@ -1,6 +1,7 @@
 import React  from 'react';
 import classNames from 'classnames';
 import { TextVariant } from './types';
+import { useDir } from '../Theme';
 import useStyles from './styles';
 
 
@@ -28,17 +29,26 @@ function defineTag(variant: TTextVariant): TTag {
   }
 }
 
+const aligns = {
+  left: ['left', 'right'],
+  right: ['right', 'left'],
+  center: ['center', 'center']
+};
+
 const Text: React.FC<IText> = (props) => {
   const {
     className,
     children,
     component,
     variant = 'body2',
-    align = 'left',
+    align: pAlign = 'left',
     weight = 'regular',
+    dir = useDir(props.dir),
     ...rest
   } = props;
   const classes = useStyles();
+
+  const align = aligns[pAlign][dir === 'rtl' ? 1 : 0] as TTextVariant;
   const Tag = component || defineTag(variant);
   return (
     <Tag
@@ -51,6 +61,7 @@ const Text: React.FC<IText> = (props) => {
         className,
       )}
       {...rest}
+      dir={dir}
     >
       {children}
     </Tag>

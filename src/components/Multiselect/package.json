@@ -1,6 +1,6 @@
 {
   "name": "@stryberventures/gaia-react.multiselect",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "peerDependencies": {
     "react": ">=17.0.0",
     "react-jss": ">=10.0.0",

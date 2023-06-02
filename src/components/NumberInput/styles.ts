@@ -1,20 +1,10 @@
-import { createStyles, toRem } from '../Theme'
+import { createStyles, toRem } from '../Theme';
+import { INumberInput } from './index';
 
 
-export default createStyles((theme) => ({
+export default () => createStyles((theme) => ({
   numberInputContainer: {
     position: 'relative',
-  },
-  inputIcon: {
-    fontFamily: theme.font,
-    fontSize: toRem(14),
-    color: theme.colors.text.tint,
-    height: toRem(17),
-    paddingRight: toRem(5),
-    position: 'absolute',
-    left: toRem(8),
-    bottom: toRem(5),
-    zIndex: 2,
   },
   numberInput: {
     '& input': {
@@ -27,21 +17,21 @@ export default createStyles((theme) => ({
       }
     },
   },
-  right: {
+  right: (props: INumberInput) => ({
     display: 'flex',
     gap: toRem(8),
     alignItems: 'center',
     height: '100%',
-    paddingLeft: toRem(8),
-  },
+    [props.dir === 'rtl' ? 'paddingRight' : 'paddingLeft']: toRem(8),
+  }),
   btnsContainer: {
     display: 'flex',
     alignItems: 'center',
     height: '100%',
   },
-  prefix: {
-    marginRight: toRem(10),
-  },
+  prefix: (props: INumberInput) => ({
+    [props.dir === 'rtl' ? 'marginLeft' : 'marginRight']: toRem(10),
+  }),
   separatorLine: {
     width: toRem(1),
     height: toRem(20),

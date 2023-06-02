@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { ErrorMessage } from '../ErrorMessage';
 import { HintMessage } from '../HintMessage';
 import { useFormContext } from '../Form';
+import { useDir } from '../Theme';
 import Text from '../Text';
 import useStyles from './styles';
 import useTextStyles from '../Text/styles';
@@ -44,11 +45,15 @@ const TextArea: React.FC<ITextArea> = (props) => {
     fullWidth,
     color,
     id,
+    dir = useDir(props.dir),
     ...rest
   } = props;
   const { updateFormTouched, updateFormValue, unsetFormValue, fieldValue, fieldError } = useFormContext(name);
   const errorMessage = fieldError || error;
-  const classes = useStyles(props.color);
+  const classes = useStyles()({
+    ...props,
+    dir,
+  });
   const textClasses = useTextStyles();
   const [internalValue, setInternalValue] = React.useState(fieldValue || value);
   const [length, setLength] = React.useState(internalValue.toString().length);
@@ -92,6 +97,7 @@ const TextArea: React.FC<ITextArea> = (props) => {
             { [classes.textDisabled]: disabled },
           )}
           onClick={() => textareaRef?.current?.focus()}
+          dir={dir}
         >
           {label}
         </Text>
@@ -115,6 +121,7 @@ const TextArea: React.FC<ITextArea> = (props) => {
               classes.label,
               { [classes.textDisabled]: disabled, }
             )}
+            dir={dir}
             onClick={() => textareaRef?.current?.focus()}
           >
             {label}
@@ -136,6 +143,7 @@ const TextArea: React.FC<ITextArea> = (props) => {
           maxLength={maxLength}
           disabled={disabled}
           {...rest}
+          dir={dir}
         />
       </div>
       {(!!hint || !!errorMessage || showLength || !!maxLength) && (
@@ -146,12 +154,14 @@ const TextArea: React.FC<ITextArea> = (props) => {
                 text={hint}
                 disabled={disabled}
                 className={classes.hint}
+                dir={dir}
               />
             )}
             {errorMessage && (
               <ErrorMessage
                 text={errorMessage}
                 className={classes.error}
+                dir={dir}
               />
             )}
           </div>
@@ -165,6 +175,7 @@ const TextArea: React.FC<ITextArea> = (props) => {
                 maxLengthClassName,
                 { [classes.textDisabled]: disabled },
               )}
+              dir={dir}
             />
           )}
         </div>

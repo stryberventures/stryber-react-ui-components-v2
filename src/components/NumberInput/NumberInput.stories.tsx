@@ -6,7 +6,7 @@ import { toRem } from '../Theme/utils';
 import { defaultTheme } from '../Theme/defaultTheme';
 import pkg from './package.json';
 import './style.css';
-import { buildExcludeArgTypes } from '../../storybook/utils';
+import { buildArgTypes } from '../../storybook/utils';
 
 export default {
   title: 'Components/NumberInput',
@@ -25,7 +25,7 @@ export default {
     fullWidth: false,
     clearButton: false,
   },
-  argTypes: buildExcludeArgTypes(['name', 'onChange', 'onBlur', 'controlled', 'prefixClassName', 'postfixClassName',
+  argTypes: buildArgTypes(['name', 'onChange', 'onBlur', 'controlled', 'prefixClassName', 'postfixClassName',
     'errorClassName', 'hintClassName', 'leftIcon', 'rightIcon', 'mask', 'value', 'clearButton']),
 } as ComponentMeta<typeof NumberInput>;
 
@@ -43,7 +43,7 @@ QuantityCounter.args = {
   placeholder: 'Number',
   quantityCounter: true,
   controlled: true,
-  leftIcon: <Text variant="components1" style={{ marginRight: toRem(10), color: defaultTheme.colors.text.secondary }}>₴</Text>,
+  leftIcon: (props) => <Text variant="components1" style={{ [props.dir === 'rtl' ? 'marginLeft' : 'marginRight']: toRem(10), color: defaultTheme.colors.text.secondary }}>₴</Text>,
   postfix: 'UAH'
 };
 

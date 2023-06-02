@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import TextArea from './index';
 import pkg from './package.json';
-import { buildExcludeArgTypes } from '../../storybook/utils';
+import { buildArgTypes } from '../../storybook/utils';
 
 export default {
   title: 'Components/TextArea/FloatingLabel',
@@ -18,7 +18,7 @@ export default {
     showLength: false,
     fullWidth: false,
   },
-  argTypes: buildExcludeArgTypes(['name', 'controlled', 'onChange', 'onBlur', 'maxLengthClassName', 'id']),
+  argTypes: buildArgTypes(['name', 'controlled', 'onChange', 'onBlur', 'maxLengthClassName', 'id']),
 } as ComponentMeta<typeof TextArea>;
 
 const Template: ComponentStory<typeof TextArea> = (args) => <TextArea {...args} />;
@@ -66,6 +66,4 @@ FullWidth.args = {
   label: 'Full width',
   hint: 'And now I will show you what is really a very interesting study, Mr. Windibank',
   fullWidth: true,
-  showLength: true,
-  maxLength: 300,
 };

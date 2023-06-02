@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import pkg from './package.json';
 import Tabs from './index';
 import { DocumentIcon, HomeIcon, InfoIcon, ProfileIcon } from '../Icons';
-import { buildExcludeArgTypes } from '../../storybook/utils';
+import { buildArgTypes } from '../../storybook/utils';
 import { ITab } from './Tab';
 
 const defaultTabs: ITab[] = [
@@ -50,7 +50,7 @@ export default {
     size: 'small',
     variant: 'default',
   },
-  argTypes: buildExcludeArgTypes(['className', 'children', 'onChange', 'tabs']),
+  argTypes: buildArgTypes(['className', 'children', 'onChange', 'tabs']),
 } as ComponentMeta<typeof Tabs>;
 
 const Template: ComponentStory<typeof Tabs> = (args) => {

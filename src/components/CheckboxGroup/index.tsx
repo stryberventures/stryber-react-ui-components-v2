@@ -2,6 +2,7 @@ import React, { BaseSyntheticEvent, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import Checkbox, { ICheckBox } from '../CheckBox';
 import { useFormContext } from '../Form';
+import { useDir } from '../Theme';
 import useStyles from './styles';
 
 
@@ -20,20 +21,26 @@ export interface ICheckboxGroupProps
   errorMessage?: string,
   checkboxes: TChildCheckbox[];
   onChange?: (e: BaseSyntheticEvent) => void;
+  dir?: string;
 }
 
 interface IChildCheckboxesState {
   [key: string]: TChildCheckbox;
 }
 
-const CheckboxGroup: React.FC<ICheckboxGroupProps> = ({
-  name = '',
-  checkboxes,
-  disabled,
-  errorMessage,
-  ...rest
-}) => {
-  const classes = useStyles()();
+const CheckboxGroup: React.FC<ICheckboxGroupProps> = (props) => {
+  const {
+    name = '',
+    checkboxes,
+    disabled,
+    errorMessage,
+    ...rest
+  } = props;
+  const dir = useDir(props.dir);
+  const classes = useStyles()({
+    ...props,
+    dir
+  });
   const { updateFormValue } = useFormContext(name);
   const onChangeWrapper = (newState: IChildCheckboxesState) => {
     setChildCheckboxes(newState);
@@ -55,7 +62,7 @@ const CheckboxGroup: React.FC<ICheckboxGroupProps> = ({
   ) => {
     const checkboxArr = Object.values(_checkboxes);
     if (type === 'some') {
-      
+
       return checkboxArr.some((val) => val?.checked);
     }
     return checkboxArr.every(val => val?.checked);
@@ -116,6 +123,7 @@ const CheckboxGroup: React.FC<ICheckboxGroupProps> = ({
         checked={checkChildValues(childCheckboxes, 'all')}
         errorMessage={errorMessage}
         color={rest.color}
+        dir={dir}
       />
       <div className={classes.childCheckboxes}>
         {Object.values(childCheckboxes)
@@ -130,6 +138,7 @@ const CheckboxGroup: React.FC<ICheckboxGroupProps> = ({
                 color={rest.color}
                 errorMessage={props.errorMessage}
                 {...props}
+                dir={dir}
               />
             )
           })}

@@ -1,12 +1,14 @@
 import { createStyles, toRem } from '../Theme';
+import { IInputPassword } from './index';
 
 export default () => createStyles(() => ({
-  inputPassword: {
+  inputPassword: (props: IInputPassword) => ({
+    direction: props.dir || 'inherit',
     width: toRem(320),
-  },
-  inputLayout: {
+  }),
+  inputLayout: () => ({
     width: '100%',
-  },
+  }),
   chips: {
     marginTop: toRem(16),
     display: 'flex',
@@ -16,7 +18,10 @@ export default () => createStyles(() => ({
   chipMatched: {
     width: toRem(18),
   },
-  fullWidth: {
+  fullWidth: () => ({
     width: '100%',
-  }
+  }),
+  eyeIcon: (props: IInputPassword) => ({
+    [props.dir === 'rtl' ? 'paddingRight' : 'paddingLeft']: toRem(8),
+  }),
 }), { internalUsage: true });

@@ -20,6 +20,7 @@
     "Select": "select",
     "Slider": "slider",
     "Multiselect": "multiselect",
+    "Menu": "menu",
     "Combobox": "combobox",
     "InputToggleLayout": "input-toggle-layout",
     "Text": "text",
@@ -30,6 +31,9 @@
     "Elevation": "elevation",
     "Tag": "tag",
     "Tabs": "tabs",
-    "SearchInput": "search-input"
+    "SearchInput": "search-input",
+    "Table": "table",
+    "LinearProgress": "linear-progress",
+    "CircularProgress": "circular-progress"
   }
 }

@@ -4,13 +4,18 @@ import List from './index';
 import pkg from './package.json';
 import Switch from '../../components/Switch'
 import { IListItem } from './ListItem';
-import { buildExcludeArgTypes } from '../../storybook/utils';
+import { buildArgTypes } from '../../storybook/utils';
 import { toRem } from '../Theme';
 
 const title = 'One-line Item';
 const subtitle = 'Secondary Text';
 const leftContent = <div style={{ width: toRem(40), height: toRem(40), backgroundColor: 'grey', borderRadius: '50%' }} />;
 const rightContent = <Switch/>;
+const label = 'Label'
+const hasDivider = true
+const size = 'medium'
+const sizes = ['small', 'medium', 'large'] as const
+
 
 const listItems: IListItem[] = new Array(4).fill({ title });
 
@@ -20,14 +25,24 @@ export default {
   parameters: {
     pkg,
   },
-  argTypes: buildExcludeArgTypes(['listClassName']),
+  argTypes: buildArgTypes(['listClassName']),
 } as ComponentMeta<typeof List>;
 
-const Template: ComponentStory<typeof List> = (args) => <List {...args} />;
+const Template: ComponentStory<typeof List> = (args) => <List {...args} ></List>;
 
 export const Default = Template.bind({});
 Default.args = {
-  listItems
+  listItems: [...listItems]
+};
+
+export const WithSize = Template.bind({});
+WithSize.args = {
+  listItems: listItems.map((item, index) => ({ ...item, title: sizes[index] || 'large', size: sizes[index] || 'large' })),
+};
+
+export const WithSizeAndDividers = Template.bind({});
+WithSizeAndDividers.args = {
+  listItems: listItems.map((item, index) => ({ ...item, label: sizes[index] || 'large',  hasDivider, size: sizes[index] || 'large' })),
 };
 
 export const WithSubtitle = Template.bind({});
@@ -42,6 +57,9 @@ WithLeftRightContent.args = {
     subtitle,
     leftContent,
     rightContent,
+    label,
+    hasDivider,
+    size
   })),
 };
 

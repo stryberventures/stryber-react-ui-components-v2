@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import pkg from './package.json';
-import { buildExcludeArgTypes } from '../../storybook/utils';
+import { buildArgTypes } from '../../storybook/utils';
 import Text from './';
 
 export default {
@@ -10,7 +10,7 @@ export default {
   parameters: {
     pkg,
   },
-  argTypes: buildExcludeArgTypes(['className']),
+  argTypes: buildArgTypes(['className']),
 } as ComponentMeta<typeof Text>;
 
 const Template: ComponentStory<typeof Text> = (args) => (

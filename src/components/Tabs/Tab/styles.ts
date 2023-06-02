@@ -2,9 +2,9 @@ import { createStyles, toRem } from '../../Theme';
 import { ITab } from './index';
 
 
-export default createStyles((theme) => {
+export default () => createStyles((theme) => {
   return ({
-    tab: (color: ITab['color']) => ({
+    tab: (props: ITab) => ({
       display: 'flex',
       alignItems: 'center',
       gap: toRem(16),
@@ -15,6 +15,7 @@ export default createStyles((theme) => {
       '&:after': {
         display: 'block',
         position: 'absolute',
+        [props.dir === 'rtl' ? 'right' : 'left']: 0,
         content: '""',
         borderRadius: toRem(4),
         transition: 'background-color .3s',
@@ -25,32 +26,32 @@ export default createStyles((theme) => {
         fill: theme.colors.text.secondary,
       },
       '&$active': {
-        color: theme.colors[color!].dark600,
+        color: theme.colors[props.color!].dark600,
         '& svg path': {
-          fill: theme.colors[color!].dark600,
+          fill: theme.colors[props.color!].dark600,
         },
       },
       '&:active:hover': {
-        color: theme.colors[color!].medium300,
+        color: theme.colors[props.color!].medium300,
         '& svg path': {
-          fill: [theme.colors[color!].medium300, '!important'],
+          fill: [theme.colors[props.color!].medium300, '!important'],
         },
       },
       '&:hover': {
-        color: theme.colors[color!].medium400,
+        color: theme.colors[props.color!].medium400,
         '& svg path': {
-          fill: [theme.colors[color!].medium400, '!important'],
+          fill: [theme.colors[props.color!].medium400, '!important'],
         },
       },
       '&:not($disabled):focus-visible': {
-        backgroundColor: theme.colors[color!].extraLight50,
+        backgroundColor: theme.colors[props.color!].extraLight50,
         outline: 'none',
       },
       '&:not($disabled):focus-visible:active': {
-        color: theme.colors[color!].medium300,
+        color: theme.colors[props.color!].medium300,
         outline: 'none',
         '& svg path': {
-          fill: theme.colors[color!].medium300,
+          fill: theme.colors[props.color!].medium300,
         }
       },
       '&$disabled': {
@@ -64,7 +65,7 @@ export default createStyles((theme) => {
       },
       '&$active:not($disabled)': {
         '&:after': {
-          backgroundColor: theme.colors[color!].dark600,
+          backgroundColor: theme.colors[props.color!].dark600,
         },
       },
       '&$active$disabled': {

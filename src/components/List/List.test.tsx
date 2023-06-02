@@ -17,6 +17,7 @@ const listItems: IListItem[] = [
     rightContent: <div data-testid={rightContentTestID}>01</div>,
     testID: listItemTestID,
     onClick,
+    size: 'medium'
   },
 ];
 const firstItem = listItems[0];

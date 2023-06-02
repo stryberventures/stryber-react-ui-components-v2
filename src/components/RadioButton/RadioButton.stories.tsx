@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Form from '../Form';
 import RadioButton from './index';
 import pkg from './package.json';
-import { buildExcludeArgTypes } from '../../storybook/utils';
+import { buildArgTypes } from '../../storybook/utils';
 import { toRem } from '../Theme';
 
 export default {
@@ -20,7 +20,7 @@ export default {
     shape: 'square',
     alignControl: 'top',
   },
-  argTypes: buildExcludeArgTypes(['name', 'className', 'value', 'onChange', 'onFocus', 'errorMessage', 'heading', 'label', 'size', 'title',]),
+  argTypes: buildArgTypes(['name', 'className', 'value', 'onChange', 'onFocus', 'errorMessage', 'heading', 'label', 'size', 'title',]),
 } as ComponentMeta<typeof RadioButton>;
 
 const radioButtons = [
