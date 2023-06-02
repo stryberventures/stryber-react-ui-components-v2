@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useFormContext } from '../Form';
 
 export const useMultiselect = (props: IMultiselect) => {
-  const { name = '', error, onChange, options, value } = props;
+  const { name = '', error, onChange, options, value, separator = ', ', } = props;
   const { fieldError, fieldValue, updateFormTouched, updateFormValue } = useFormContext(name);
 
   const getOptionLabelByValue = (value: string[]) => {
@@ -39,7 +39,7 @@ export const useMultiselect = (props: IMultiselect) => {
   }, []);
   return {
     selectedOptions,
-    value: selectedOptions.join(', '),
+    value: selectedOptions.join(separator),
     error: fieldError || error,
     onCheckboxChange,
     onDropdownToggle,

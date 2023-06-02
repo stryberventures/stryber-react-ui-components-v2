@@ -14,6 +14,7 @@ export interface IMultiselect extends Omit<IDropdownBase, 'onChange'> {
   options: IOption[],
   name?: string,
   value?: (string | number)[],
+  separator?: string,
   onChange?: (options: IOption[]) => void;
 }
 
