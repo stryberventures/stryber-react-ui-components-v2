@@ -16,7 +16,7 @@ export default {
   parameters: {
     pkg,
   },
-  argTypes: buildArgTypes(),
+  argTypes: buildArgTypes(['disableEscPress', 'onClose', 'dir', 'className', 'modalContainer', 'overlayClassName']),
 } as ComponentMeta<typeof Dialog>;
 
 const Template: ComponentStory<typeof Dialog> = (args) => {

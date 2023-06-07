@@ -127,17 +127,19 @@ const CheckboxGroup: React.FC<ICheckboxGroupProps> = (props) => {
       />
       <div className={classes.childCheckboxes}>
         {Object.values(childCheckboxes)
-          .map((props: TChildCheckbox) => {
+          .map((childProps: TChildCheckbox) => {
             return (
               <Checkbox
                 controlled
-                checked={childCheckboxes[props.name].checked}
-                disabled={disabled || props.disabled}
-                onChange={(e: BaseSyntheticEvent) => handleChildCheckboxChange(e, props.name)}
-                key={props.name}
+                checked={childCheckboxes[childProps.name].checked}
+                disabled={disabled || childProps.disabled}
+                onChange={(e: BaseSyntheticEvent) => handleChildCheckboxChange(e, childProps.name)}
+                key={childProps.name}
                 color={rest.color}
-                errorMessage={props.errorMessage}
-                {...props}
+                errorMessage={childProps.errorMessage}
+                fullWidth={props.fullWidth}
+                reverse={props.reverse}
+                {...childProps}
                 dir={dir}
               />
             )
