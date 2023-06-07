@@ -34,7 +34,7 @@ export default () => createStyles((theme) => ({
     position: 'relative',
     userSelect: 'none',
     width: 'fit-content',
-    padding: [theme.spacing[4], theme.spacing[8], theme.spacing[4], theme.spacing[4]],
+    padding: [theme.spacing[4], theme.spacing[props.dir === 'rtl' ? 4 : 8], theme.spacing[4], theme.spacing[props.dir === 'rtl' ? 8 : 4]],
     '-webkit-tap-highlight-color': 'transparent',
     '&:hover': {
       cursor: 'pointer',
@@ -93,9 +93,9 @@ export default () => createStyles((theme) => ({
   secondRow: {
     gridRow: '2 / 3',
   },
-  error: {
-    marginLeft: theme.spacing['4'],
-  },
+  error: (props: IInputToggle) => ({
+    [props.dir === 'rtl' ? 'marginRight' : 'marginLeft']: theme.spacing['4'],
+  }),
   fullWidth: {},
   medium: {},
   small: {},
