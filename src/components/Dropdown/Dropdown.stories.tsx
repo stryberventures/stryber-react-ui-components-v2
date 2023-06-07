@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Dropdown from './index';
 import pkg from './package.json';
-import { buildExcludeArgTypes } from '../../storybook/utils';
+import { buildArgTypes } from '../../storybook/utils';
 
 export default {
   title: 'Components/Dropdown',
@@ -23,7 +23,7 @@ export default {
     fullWidth: false,
     disabled: false,
   },
-  argTypes: buildExcludeArgTypes(['name', 'onToggle', 'className', 'onOutsideClick',
+  argTypes: buildArgTypes(['name', 'onToggle', 'className', 'onOutsideClick',
     'inputReadOnly', 'onInputChange', 'contentClassName', 'children', 'value', 'rightIcon']),
 } as ComponentMeta<typeof Dropdown>;
 

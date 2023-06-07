@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Combobox from './index';
 import pkg from './package.json';
-import { buildExcludeArgTypes } from '../../storybook/utils';
+import { buildArgTypes } from '../../storybook/utils';
 
 export default {
   title: 'Components/Combobox',
@@ -25,7 +25,7 @@ export default {
     disabled: false,
     fullWidth: false,
   },
-  argTypes: buildExcludeArgTypes(['name', 'onChange', 'onToggle', 'className', 'value',
+  argTypes: buildArgTypes(['name', 'onChange', 'onToggle', 'className', 'value',
     'rightIcon', 'onOutsideClick', 'inputReadOnly', 'onInputChange', 'contentClassName']),
   parameters: {
     pkg,

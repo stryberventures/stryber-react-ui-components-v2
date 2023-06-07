@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import InputPassword from './index';
-import { buildExcludeArgTypes } from '../../storybook/utils';
+import { buildArgTypes } from '../../storybook/utils';
 import pkg from './package.json';
 
 export default {
@@ -16,7 +16,7 @@ export default {
     disabled: false,
     fullWidth: false,
   },
-  argTypes: buildExcludeArgTypes(['value', 'name', 'controlled', 'onChange', 'mask',
+  argTypes: buildArgTypes(['value', 'name', 'controlled', 'onChange', 'mask',
     'onBlur', 'onValidationChange', 'validationSchema', 'prefixClassName', 'errorClassName', 'hintClassName',
     'prefix', 'prefixClassName', 'postfix', 'postfixClassName', 'clearButton', 'leftIcon'
   ]),

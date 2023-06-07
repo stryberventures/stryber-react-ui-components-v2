@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { createStyles, toRem } from '../../components/Theme';
+import { createStyles, toRem, useDir } from '../../components/Theme';
 import Text from '../../components/Text';
 import Form from '../../components/Form';
 import Input from '../../components/Input';
@@ -19,7 +19,8 @@ const HOURS_VALID = 24;
 const RESEND_CODE_IN_SECONDS = 30;
 
 const EmailVerification = ({ email = '', }: IEmailVerificationProps) => {
-  const classes = useStyles();
+  const dir = useDir();
+  const classes = useStyles()({ dir });
   const [disabledSubmit, setDisabledSubmit] = useState(true);
   const [disabledResendCode, setDisabledResendCode] = useState(false);
   const [resendCodeIn, setResendCodeIn] = useState<number>(0);
@@ -112,7 +113,11 @@ const EmailVerification = ({ email = '', }: IEmailVerificationProps) => {
 
 export default EmailVerification;
 
-const useStyles = createStyles((theme) => ({
+interface IUseStyles {
+  dir: string;
+}
+
+const useStyles = () => createStyles<any, IUseStyles>((theme) => ({
   emailVerification: {
     display: 'flex',
     flexDirection: 'column',
@@ -124,14 +129,14 @@ const useStyles = createStyles((theme) => ({
       boxSizing: 'inherit',
     }
   },
-  logoWrapper: {
+  logoWrapper: ({ dir }) => ({
     display: 'flex',
     justifyContent: 'flex-end',
     width: '100%',
     marginBottom: theme.spacing[48],
-    paddingRight: theme.spacing[80],
+    [dir === 'rtl' ? 'paddingLeft' : 'paddingRight']: theme.spacing[80],
     boxSizing: 'border-box',
-  },
+  }),
   formWrapper: {
     display: 'flex',
     flexDirection: 'column',

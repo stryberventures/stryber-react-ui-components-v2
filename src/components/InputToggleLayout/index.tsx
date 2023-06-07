@@ -5,14 +5,18 @@ import { IInputToggle } from './types';
 import { ErrorMessage } from '../ErrorMessage';
 import Text from '../Text';
 import { KEYS } from '../../hooks/useKeyPress';
+import { useDir } from '../Theme';
 
 const InputToggleLayout: React.FC<IInputToggle> = (props) => {
   const {
     name = '', alignControl = 'top', className, type, checked, disabled, value, children, title, control,
     onChange, onFocus, errorMessage, placeholder, label, hint, controlled,
-    reverse, fullWidth, color, ...rest
+    reverse, fullWidth, color, dir = useDir(props.dir), ...rest
   } = props;
-  const classes = useStyles()(color);
+  const classes = useStyles()({
+    ...props,
+    dir,
+  });
   return (
     <div className={classNames(classes.inputToggleLayout, {
       [classes.disabled]: disabled,
@@ -59,25 +63,27 @@ const InputToggleLayout: React.FC<IInputToggle> = (props) => {
         <div className={classNames(classes.inputContainer, { [classes.middleAlign]: alignControl == 'middle' })}>
           {control}
         </div>
-        {label && typeof label == 'string'
-          ? (
-            <Text
-              variant="components2"
-              weight="regular"
-              className={classNames(
-                classes.label,
-                classes.firstRow,
-                {
-                  [classes.textDisabled]: disabled,
-                }
-              )}
-            >
-              {label}
-            </Text>
-          )
-          : label
-        }
-        {hint &&
+        <div>
+          {label && typeof label == 'string'
+            ? (
+              <Text
+                variant="components2"
+                weight="regular"
+                className={classNames(
+                  classes.label,
+                  classes.firstRow,
+                  {
+                    [classes.textDisabled]: disabled,
+                  }
+                )}
+              >
+                {label}
+              </Text>
+            )
+            : label
+          }
+
+          {hint &&
           <Text
             variant="components2"
             weight="regular"
@@ -92,7 +98,8 @@ const InputToggleLayout: React.FC<IInputToggle> = (props) => {
           >
             {hint}
           </Text>
-        }
+          }
+        </div>
       </label>
       {errorMessage && (
         <ErrorMessage
