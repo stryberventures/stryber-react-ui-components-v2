@@ -17,7 +17,7 @@ export default {
     variant: 'extraLight',
     component: 'div',
   },
-  argTypes: buildArgTypes(['className']),
+  argTypes: buildArgTypes(['className', 'component', 'children', 'dir']),
 } as ComponentMeta<typeof Elevation>;
 
 const Wrapper = ({ children }: any) => {

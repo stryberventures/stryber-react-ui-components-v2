@@ -63,25 +63,27 @@ const InputToggleLayout: React.FC<IInputToggle> = (props) => {
         <div className={classNames(classes.inputContainer, { [classes.middleAlign]: alignControl == 'middle' })}>
           {control}
         </div>
-        {label && typeof label == 'string'
-          ? (
-            <Text
-              variant="components2"
-              weight="regular"
-              className={classNames(
-                classes.label,
-                classes.firstRow,
-                {
-                  [classes.textDisabled]: disabled,
-                }
-              )}
-            >
-              {label}
-            </Text>
-          )
-          : label
-        }
-        {hint &&
+        <div>
+          {label && typeof label == 'string'
+            ? (
+              <Text
+                variant="components2"
+                weight="regular"
+                className={classNames(
+                  classes.label,
+                  classes.firstRow,
+                  {
+                    [classes.textDisabled]: disabled,
+                  }
+                )}
+              >
+                {label}
+              </Text>
+            )
+            : label
+          }
+
+          {hint &&
           <Text
             variant="components2"
             weight="regular"
@@ -96,7 +98,8 @@ const InputToggleLayout: React.FC<IInputToggle> = (props) => {
           >
             {hint}
           </Text>
-        }
+          }
+        </div>
       </label>
       {errorMessage && (
         <ErrorMessage
