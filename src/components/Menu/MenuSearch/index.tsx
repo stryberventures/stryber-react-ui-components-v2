@@ -19,7 +19,7 @@ const MenuSearch: React.FC<IMenuSearch> = (props) => {
     placeholder = 'Search',
     value,
   } = props;
-  const classes = useStyles()();
+  const classes = useStyles()(props);
   return (
     <div
       className={classNames(classes.inputContainer)}
