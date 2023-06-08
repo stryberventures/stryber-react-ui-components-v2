@@ -1,13 +1,14 @@
 import { createStyles, toRem } from '../../Theme';
+import { IMenuSearch } from './index';
 
 export default () =>
   createStyles(
     (theme) => ({
       searchInput: {
         width: '100% !important',
-        '& [class*="hint"], & [class*="error"]': {
-          marginLeft: toRem(12),
-        },
+        '& [class*="hint"], & [class*="error"]': (props: IMenuSearch) => ({
+          [props.dir === 'rtl' ? 'marginRight' : 'marginLeft']: toRem(12),
+        }),
         '& > div': {
           height: toRem(48),
           paddingTop: toRem(15),

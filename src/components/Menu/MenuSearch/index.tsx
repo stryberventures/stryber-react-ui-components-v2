@@ -5,7 +5,7 @@ import Input from '../../Input';
 import { toRem, useDir } from '../../Theme';
 import useStyles from './styles';
 
-interface IMenuSearch {
+export interface IMenuSearch {
   dir?: string;
   onChange?: (e: React.BaseSyntheticEvent) => void;
   placeholder?: string;
