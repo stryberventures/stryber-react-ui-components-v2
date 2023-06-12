@@ -5,35 +5,43 @@ import { useDir } from '../Theme';
 import useStyles from './styles';
 
 export interface IMenuItem extends React.HTMLAttributes<HTMLDivElement> {
-  children: string | ReactNode,
-  selected?: boolean,
-  readOnly?: boolean,
+  children: string | ReactNode;
+  selected?: boolean;
+  readOnly?: boolean;
 }
 
-const MenuItem = forwardRef<HTMLDivElement,IMenuItem>( (props, ref) => {
-  const { children, className, selected, dir = useDir(props.dir), readOnly = false, ...rest } = props;
+const MenuItem = forwardRef<HTMLDivElement, IMenuItem>((props, ref) => {
+  const {
+    children,
+    className,
+    selected,
+    dir = useDir(props.dir),
+    readOnly = false,
+    ...rest
+  } = props;
   const classes = useStyles()({
     ...props,
-    dir
+    dir,
   });
 
   return (
     <div
       ref={ref}
-      className={classNames(
-        classes.menuItemWrapper,
-        {
-          [classes.selected]: selected,
-          [classes.readOnly]: readOnly,
-        }
-      )}
+      className={classNames(classes.menuItemWrapper, {
+        [classes.selected]: selected,
+        [classes.readOnly]: readOnly,
+      })}
       {...rest}
     >
       {typeof children == 'string' ? (
         <Text
           variant="components1"
           weight="regular"
-          className={classNames(classes.menuItem, classes.menuItemText, className)}
+          className={classNames(
+            classes.menuItem,
+            classes.menuItemText,
+            className
+          )}
         >
           {children}
         </Text>
@@ -44,7 +52,7 @@ const MenuItem = forwardRef<HTMLDivElement,IMenuItem>( (props, ref) => {
       )}
     </div>
   );
-})
+});
 
 MenuItem.displayName = 'MenuItem';
 

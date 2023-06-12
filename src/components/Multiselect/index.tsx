@@ -1,20 +1,23 @@
 import React from 'react';
 import useStyles from './styles';
 import Dropdown, { IDropdownBase } from '../Dropdown';
-import MenuItem from '../MenuItem';
+import { MenuItem, MenuSearch } from '../Menu';
 import CheckBox from '../CheckBox';
 import { useDir } from '../Theme';
+import Tag from '../Tag';
 import { useMultiselect } from './hooks';
 
 export interface IOption {
-  value: string | number,
-  label: string
+  value: string | number;
+  label: string;
 }
 export interface IMultiselect extends Omit<IDropdownBase, 'onChange'> {
-  options: IOption[],
-  name?: string,
-  value?: (string | number)[],
+  options: IOption[];
+  name?: string;
+  value?: (string | number)[];
   onChange?: (options: IOption[]) => void;
+  withSearch?: boolean;
+  searchPlaceholder?: string;
 }
 
 const Multiselect: React.FC<IMultiselect> = (props) => {
@@ -27,10 +30,39 @@ const Multiselect: React.FC<IMultiselect> = (props) => {
     dir = useDir(props.dir),
     onChange,
     onToggle,
+    withSearch = true,
+    searchPlaceholder,
+    value: _, // we don't want to pass value to Dropdown
     ...rest
   } = props;
-  const { value, selectedOptions, error, onCheckboxChange, onDropdownToggle } = useMultiselect(props);
-  const classes = useStyles();
+  const {
+    selectedOptions,
+    error,
+    onCheckboxChange,
+    onDropdownToggle,
+    handleRemoveOption,
+    handleSearchChange,
+    filteredOptions,
+    searchValue,
+  } = useMultiselect(props);
+  const classes = useStyles()();
+
+  const renderTags = () => {
+    if (!selectedOptions.length) return null;
+    return (
+      <div className={classes.tagWrapper}>
+        {selectedOptions.map((option) => (
+          <Tag
+            shape="square"
+            key={option}
+            onRemove={() => handleRemoveOption(option)}
+          >
+            {option}
+          </Tag>
+        ))}
+      </div>
+    );
+  };
 
   return (
     <Dropdown
@@ -39,20 +71,37 @@ const Multiselect: React.FC<IMultiselect> = (props) => {
       label={label}
       placeholder={placeholder}
       onToggle={onDropdownToggle}
-      value={value}
       color={color}
       contentClassName={classes.content}
       error={error}
       fullWidth={fullWidth}
+      inputContent={renderTags()}
+      className={classes.dropdown}
     >
-      {options.map((option) => (
-        <MenuItem key={option.value} dir={dir}>
+      {withSearch && (
+        <MenuSearch
+          value={searchValue}
+          placeholder={searchPlaceholder}
+          onChange={handleSearchChange}
+        />
+      )}
+      {filteredOptions.map((option) => (
+        <MenuItem
+          key={option.value}
+          dir={dir}
+          className={classes.listItem}
+          selected={
+            !!selectedOptions.find((selected) => selected === option.label)
+          }
+        >
           <CheckBox
             className={classes.checkbox}
             name={option.label}
             controlled={true}
             color={color}
-            checked={selectedOptions.map(option => option).indexOf(option.label) >= 0}
+            checked={
+              selectedOptions.map((option) => option).indexOf(option.label) >= 0
+            }
             onChange={onCheckboxChange}
             label={option.label}
             dir={dir}
@@ -61,6 +110,6 @@ const Multiselect: React.FC<IMultiselect> = (props) => {
       ))}
     </Dropdown>
   );
-}
+};
 
 export default Multiselect;

@@ -1,29 +1,33 @@
-import '@testing-library/jest-dom'
-import * as React from 'react'
-import { render, screen, fireEvent } from '@testing-library/react'
+import '@testing-library/jest-dom';
+import * as React from 'react';
+import { render, screen } from '@testing-library/react';
 
-import Menu from './index';
+import Menu, { MenuSearch, MenuItem, MenuItemText } from './index';
+
+const title = 'Menu item';
+
+const ComponentWithMenu = () => (
+  <Menu>
+    <MenuSearch />
+    <MenuItem>
+      <MenuItemText primary={title} />
+    </MenuItem>
+  </Menu>
+);
 
 it('should be rendered', () => {
-  const title = 'List item';
-  const listItems = new Array(1).fill({ title });
-  render(<Menu menuItems={listItems}></Menu>)
+  render(<ComponentWithMenu />);
   expect(screen.queryByText(title)).toBeInTheDocument();
 });
 
 it('should be visible', () => {
-  const title = 'List item';
-  const listItems = new Array(1).fill({ title });
-  render(<Menu menuItems={listItems}></Menu>)
+  render(<ComponentWithMenu />);
   const menu = screen.getByTestId('gaia-menu-test');
   expect(menu).toBeVisible();
 });
 
 it('should have search', () => {
-  const title = 'List item';
-  const listItems = new Array(1).fill({ title });
-  render(<Menu menuItems={listItems} hasSearch={true}></Menu>)
+  render(<ComponentWithMenu />);
   const search = screen.getByTestId('gaia-menu-search');
   expect(search).toBeVisible();
 });
-

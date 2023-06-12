@@ -35,12 +35,13 @@ export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
   variant?: 'labelOutside' | 'floatingLabel',
   floatingLabelFocused?: boolean,
   clearButton?: boolean,
+  content?: React.ReactNode,
 }
 
 const Input: React.FC<IInput> = (props) => {
   const {
     label, className, hint, prefix, prefixClassName, postfix, postfixClassName, errorClassName, hintClassName,
-    leftIcon: pLeftIcon, rightIcon: pRightIcon, placeholder, clearButton = false, fullWidth, dir = useDir(props.dir), floatingLabelFocused,
+    leftIcon: pLeftIcon, content, rightIcon: pRightIcon, placeholder, clearButton = false, fullWidth, dir = useDir(props.dir), floatingLabelFocused,
     ...rest
   } = props;
   const classes = useStyles()({
@@ -129,26 +130,29 @@ const Input: React.FC<IInput> = (props) => {
                 {prefix}
               </Text>
             )}
-            <input
-              {...inputProps}
-              dir={dir}
-              name={name}
-              ref={inputRef}
-              value={value}
-              className={classNames(
-                classes.input,
-                textClasses.components1,
-                textClasses.regular,
-                {
-                  [classes.textDisabled]: disabled,
-                }
-              )}
-              placeholder={placeholder}
-              disabled={disabled}
-              onChange={onChange}
-              onBlur={onBlur}
-              onFocus={onFocus}
-            />
+            {content ?
+                content
+                :
+                (<input
+                {...inputProps}
+                dir={dir}
+                name={name}
+                ref={inputRef}
+                value={value}
+                className={classNames(
+                    classes.input,
+                    textClasses.components1,
+                    textClasses.regular,
+                    {
+                      [classes.textDisabled]: disabled,
+                    }
+                )}
+                placeholder={placeholder}
+                disabled={disabled}
+                onChange={onChange}
+                onBlur={onBlur}
+                onFocus={onFocus}
+            />)}
           </div>
         </div>
         { (clearButton && inFocus && !!value && !props.readOnly) && (
