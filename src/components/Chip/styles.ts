@@ -1,9 +1,13 @@
 import { createStyles, toRem } from '../Theme';
-
+import { IChip } from './index';
 type TChipColor = 'primary' | 'secondary' | 'success';
 
-export default createStyles((theme) => ({
-  chip: {
+
+const getThemeColorName = (color: string | undefined) => color === 'default' ? 'primary' : color as TChipColor;
+
+export default () => createStyles((theme) => ({
+  chip: (props: IChip) => ({
+    direction: props.dir || 'inherit',
     display: 'inline-flex',
     alignItems: 'center',
     gap: toRem(8),
@@ -12,34 +16,34 @@ export default createStyles((theme) => ({
     '&:not($disabled)': {
       cursor: 'pointer',
     },
-  },
-  contained: (color: TChipColor) => ({
+  }),
+  contained: (props: IChip) => ({
     '&:not($default)': {
       padding: [toRem(6), toRem(16)],
-      backgroundColor: theme.colors[color].main500,
+      backgroundColor: theme.colors[getThemeColorName(props.color)].main500,
       color: theme.colors.contrast.white,
       '&$iconLeft': {
-        paddingLeft: toRem(8),
+        [props.dir === 'rtl' ? 'paddingRight' : 'paddingLeft']: toRem(8),
       },
       '&$iconRight': {
-        paddingRight: toRem(8),
+        [props.dir === 'rtl' ? 'paddingLeft' : 'paddingRight']: toRem(8),
       },
       '&$iconOnly': {
         padding: [toRem(7), toRem(8)],
       },
       '&:hover:not($disabled)': {
-        backgroundColor: theme.colors[color].dark600,
+        backgroundColor: theme.colors[getThemeColorName(props.color)].dark600,
       },
       '& svg path': {
         fill: theme.colors.contrast.white,
       }
     }
   }),
-  outlined: (color: TChipColor) => ({
+  outlined: (props: IChip) => ({
     '&:not($default)': {
       padding: [toRem(5), toRem(15)],
-      color: theme.colors[color].main500,
-      border: `${toRem(1)} solid ${theme.colors[color].main500}`,
+      color: theme.colors[getThemeColorName(props.color)].main500,
+      border: `${toRem(1)} solid ${theme.colors[getThemeColorName(props.color)].main500}`,
       backgroundColor: theme.colors.contrast.white,
       '&$iconLeft': {
         paddingLeft: toRem(7),
@@ -54,7 +58,7 @@ export default createStyles((theme) => ({
         backgroundColor: theme.colors.neutralGray.light100,
       },
       '& svg path': {
-        fill: theme.colors[color].main500,
+        fill: theme.colors[getThemeColorName(props.color)].main500,
       }
     }
   }),

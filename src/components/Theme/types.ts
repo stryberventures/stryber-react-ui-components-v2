@@ -19,6 +19,8 @@ type TSpacing = 2 | 4 | 8 | 12 | 16 | 24 | 32 | 40 | 48 | 64 | 80 | 96 | 160;
 export interface IThemeContext {
   theme: ThemeType;
   updateTheme: (updatedTheme: CustomTheme) => void;
+  dir: string;
+  updateDir: (dir: string) => void;
 }
 
 export interface IThemeProvider {

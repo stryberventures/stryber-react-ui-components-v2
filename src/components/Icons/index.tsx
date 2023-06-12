@@ -24,3 +24,5 @@ export { default as SearchIcon } from './IconsList/SearchIcon';
 export { default as FilesIcon } from './IconsList/FilesIcon';
 export { default as PaymentMethodIcon } from './IconsList/PaymentMethodIcon';
 export { default as SocialIcon } from './IconsList/SocialIcon';
+export { default as WarningIcon } from './IconsList/WarningIcon';
+export { default as ErrorIcon } from './IconsList/ErrorIcon';

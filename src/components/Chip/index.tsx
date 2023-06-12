@@ -1,12 +1,13 @@
 import React from 'react';
 import classNames from 'classnames';
 import Text from '../Text';
+import { useDir } from '../Theme';
 import useStyles from './styles';
 
 export interface IChip extends React.HTMLAttributes<HTMLDivElement>{
   children?: string,
-  iconLeft?: React.ReactNode,
-  iconRight?: React.ReactNode,
+  iconLeft?: React.ReactNode | ((p: IChip) => React.ReactNode),
+  iconRight?: React.ReactNode | ((p: IChip) => React.ReactNode),
   variant?: 'contained' | 'outlined',
   color?: 'primary' | 'secondary' | 'success' | 'default',
   disabled?: boolean,
@@ -15,15 +16,25 @@ export interface IChip extends React.HTMLAttributes<HTMLDivElement>{
 const Chip: React.FC<IChip> = (props) => {
   const {
     children,
-    iconLeft,
-    iconRight,
+    iconLeft: pIconLeft,
+    iconRight: pIconRight,
     variant = 'contained',
     disabled,
     className,
     color,
     ...rest
   } = props;
-  const classes = useStyles(color === 'default' ? 'primary' : color);
+  const dir = useDir(props.dir);
+  const classes = useStyles()({
+    ...props,
+    dir,
+  });
+  const iconLeft = typeof pIconLeft === 'function'
+    ? pIconLeft({ ...props, dir })
+    : pIconLeft;
+  const iconRight = typeof pIconRight === 'function'
+    ? pIconRight({ ...props, dir })
+    : pIconRight;
 
   return (
     <div className={classNames(classes.chip, classes[variant], className, {

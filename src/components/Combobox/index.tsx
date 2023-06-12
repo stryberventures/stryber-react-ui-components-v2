@@ -3,6 +3,7 @@ import useStyles from './styles';
 import { useCombobox } from './hooks';
 import Dropdown, { IDropdown } from '../Dropdown';
 import MenuItem from '../MenuItem';
+import { useDir } from '../Theme';
 import ClearIcon from './ClearIcon';
 
 export interface IOption {
@@ -27,17 +28,22 @@ const Combobox: React.FC<ICombobox> = (props) => {
     onChange,
     options,
     fullWidth,
+    dir = useDir(props.dir),
     ...rest
   } = props;
   const {
     inputValue, dropdownRef, onInputChange, onSelectOption, onDropdownToggle, filteredOptions, activeIndex, handleKeyDown, setActiveIndex, activeRef,
     clearSelectedOption, isOpen, handleOutsideClick,
   } = useCombobox(props);
-  const classes = useStyles();
+  const classes = useStyles()({
+    ...props,
+    dir,
+  });
 
   return (
     <Dropdown
       {...rest}
+      dir={dir}
       label={label}
       inputReadOnly={false}
       onInputChange={onInputChange}
@@ -53,13 +59,14 @@ const Combobox: React.FC<ICombobox> = (props) => {
       onOutsideClick={handleOutsideClick}
     >
       {!filteredOptions.length && (
-        <MenuItem readOnly>
+        <MenuItem readOnly dir={dir}>
           {noOptionsFoundText}
         </MenuItem>
       )}
       {filteredOptions.map((option, index) => (
         <MenuItem
           id={String(index)}
+          dir={dir}
           key={option.value}
           onClick={() => onSelectOption(option)}
           selected={index === activeIndex.index}

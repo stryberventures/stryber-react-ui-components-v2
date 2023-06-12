@@ -1,8 +1,9 @@
 import { createStyles, toRem } from '../Theme';
+import { ITabs } from './index';
 
-
-export default createStyles((theme) => ({
-  wrapper: {
+export default () => createStyles((theme) => ({
+  wrapper: (props: ITabs) => ({
+    direction: props.dir || 'inherit',
     overflow: 'hidden',
     position: 'relative',
     width: '100%',
@@ -23,12 +24,12 @@ export default createStyles((theme) => ({
     '&$vertical': {
       '&:after': {
         top: 0,
-        left: 0,
+        [props.dir === 'rtl' ? 'right' : 'left']: 0,
         width: toRem(1),
         height: '100%',
       },
     },
-  },
+  }),
   tabs: {
     overflow: 'scroll',
     maxWidth: '100%',

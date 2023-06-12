@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { createStyles } from '../Theme/index';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import pkg from './package.json';
+import { buildArgTypes } from '../../storybook/utils';
 import Button from '../Button';
 import Dialog from './';
 import Text from '../Text';
@@ -15,7 +16,7 @@ export default {
   parameters: {
     pkg,
   },
-  argTypes: {},
+  argTypes: buildArgTypes(['disableEscPress', 'onClose', 'dir', 'className', 'modalContainer', 'overlayClassName']),
 } as ComponentMeta<typeof Dialog>;
 
 const Template: ComponentStory<typeof Dialog> = (args) => {

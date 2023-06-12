@@ -15,8 +15,9 @@ const labelMinifiedStyles = (theme: ThemeType) => ({
   },
 });
 
-export default createStyles((theme) => ({
-  textAreaWrapper: {
+export default () => createStyles((theme) => ({
+  textAreaWrapper: (props: ITextArea) => ({
+    direction: props.dir || 'inherit',
     width: toRem(340),
     height: toRem(136),
     minHeight: toRem(136),
@@ -24,11 +25,11 @@ export default createStyles((theme) => ({
     '& *, &:after, &:before': {
       boxSizing: 'inherit',
     },
-  },
-  fullWidth: {
+  }),
+  fullWidth: () => ({
     width: '100%',
-  },
-  textArea: (color: ITextArea['color']) => ({
+  }),
+  textArea: (props: ITextArea) => ({
     display: 'flex',
     flexDirection: 'column',
     position: 'relative',
@@ -48,15 +49,15 @@ export default createStyles((theme) => ({
       border: `${toRem(1)} solid ${theme.colors.neutralGray.medium300}`,
     },
     '&:hover:not($containerError)': {
-      border: `${toRem(1)} solid ${theme.colors[color!].medium300}`,
+      border: `${toRem(1)} solid ${theme.colors[props.color!].medium300}`,
       backgroundColor: theme.colors.neutralGray.extraLight50,
     },
     '&$containerError': {
       border: `${toRem(1)} solid ${theme.colors.error.main500}`,
     },
     '&:not($containerError):has($textarea:focus-visible)': {
-      border: `${toRem(1)} solid ${theme.colors[color!].main500}`,
-      boxShadow: `0 0 0 ${toRem(1)} ${theme.colors[color!].main500}`,
+      border: `${toRem(1)} solid ${theme.colors[props.color!].main500}`,
+      boxShadow: `0 0 0 ${toRem(1)} ${theme.colors[props.color!].main500}`,
     },
     '&$floatingLabel:has($textarea:focus-visible)': {
       ...labelMinifiedStyles(theme),

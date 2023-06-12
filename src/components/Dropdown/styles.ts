@@ -1,12 +1,14 @@
 import { createStyles, toRem } from '../Theme';
+import { IDropdown } from './index';
 
-export default createStyles((theme) => ({
-  dropdown: {
+export default () => createStyles((theme) => ({
+  dropdown: (props: IDropdown) => ({
+    direction: props.dir || 'inherit',
     width: toRem(320),
     position: 'relative',
     display: 'inline-flex',
     userSelect: 'none',
-  },
+  }),
   overlay: {
     position: 'fixed',
     zIndex: 98,
@@ -20,7 +22,7 @@ export default createStyles((theme) => ({
     position: 'absolute',
     zIndex: 99,
     border: `${toRem(1)} solid ${theme.colors.neutralGray.medium300}`,
-    borderRadius: toRem(4),
+    borderRadius: toRem(8),
     top: '100%',
     marginTop: toRem(4),
     width: '100%',
@@ -52,7 +54,7 @@ export default createStyles((theme) => ({
     },
   },
   inputDisabled: {},
-  fullWidth: {
+  fullWidth: () => ({
     width: '100%'
-  },
+  }),
 }), { index: 1, internalUsage: true });

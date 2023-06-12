@@ -18,7 +18,7 @@ export const useCheckedState = (props: IInputToggleBaseControlled) => {
     setInternalValue(checked);
     onChange && onChange(e);
   };
-  
+
   useEffect(
     () => { !controlled && updateFormValue(name, internalValue); },
     [internalValue]
@@ -29,7 +29,7 @@ export const useCheckedState = (props: IInputToggleBaseControlled) => {
     !controlled && updateFormTouched(name, true);
     onFocus && onFocus(e);
   };
-  
+
   React.useEffect(() => {
     !controlled && updateFormValue(name, internalValue, true);
     return () => {

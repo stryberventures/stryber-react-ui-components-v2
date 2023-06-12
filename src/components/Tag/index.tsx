@@ -2,12 +2,13 @@ import React from 'react';
 import classNames from 'classnames';
 import Text, { TTextVariant } from '../Text';
 import { CloseCircleIcon } from '../Icons';
+import { useDir } from '../Theme';
 import useStyles from './styles';
 
 
 type TTagSize = 'small' | 'medium' | 'large';
 type TTagShape = 'square' | 'round';
-type TTagColor = 'primary' | 'secondary';
+type TTagColor = 'primary' | 'secondary' | 'success' | 'error' | 'warning' | 'neutralGray';
 
 export const defaultTagProps = {
   size: 'large' as TTagSize,
@@ -24,8 +25,8 @@ export interface ITag extends React.HTMLAttributes<HTMLButtonElement> {
   shape?: TTagShape;
   selected?: boolean;
   disabled?: boolean;
-  iconLeft?: React.ReactNode;
-  iconRight?: React.ReactNode;
+  iconLeft?: React.ReactNode | ((p: ITag) => React.ReactNode);
+  iconRight?: React.ReactNode | ((p: ITag) => React.ReactNode);
   testId?: string;
   className?: string;
   onSelect?: () => void;
@@ -38,16 +39,26 @@ const Tag: React.FC<ITag> = (props) => {
     shape = defaultTagProps.shape,
     disabled = defaultTagProps.disabled,
     selected = defaultTagProps.selected,
-    iconLeft,
-    iconRight,
+    iconLeft: pIconLeft,
+    iconRight: pIconRight,
     children,
     testId,
     className,
+    dir = useDir(props.dir),
     onSelect,
     onRemove,
     ...rest
   } = props;
-  const classes = useStyles()(props);
+  const classes = useStyles()({
+    ...props,
+    dir
+  });
+  const iconLeft = typeof pIconLeft === 'function'
+    ? pIconLeft({ ...props, dir })
+    : pIconLeft;
+  const iconRight = typeof pIconRight === 'function'
+    ? pIconRight({ ...props, dir })
+    : pIconRight;
   const handleOnSelect = () => onSelect?.();
   const handleOnRemove = (event: React.BaseSyntheticEvent) => {
     event.stopPropagation();
