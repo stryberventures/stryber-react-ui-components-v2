@@ -151,10 +151,10 @@ const TemplateWithValidation: ComponentStory<typeof CheckBox> = (args) => {
               }}
             >
               <Text style={{ marginRight: toRem(4) }} variant="components2">
-                Custom label with{' '}
+                Custom label with
               </Text>
               <TextLink target="_blank" href={'#'} variant="body3">
-                text link{' '}
+                text link
               </TextLink>
             </div>
           )
