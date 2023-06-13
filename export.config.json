@@ -34,6 +34,7 @@
     "SearchInput": "search-input",
     "Table": "table",
     "LinearProgress": "linear-progress",
-    "CircularProgress": "circular-progress"
+    "CircularProgress": "circular-progress",
+    "Avatar": "avatar"
   }
 }
