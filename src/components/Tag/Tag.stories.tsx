@@ -15,7 +15,14 @@ export default {
     pkg,
   },
   args: defaultTagProps,
-  argTypes: buildArgTypes(['iconLeft', 'iconRight', 'className', 'onSelect', 'onRemove', 'testId']),
+  argTypes: buildArgTypes([
+    'iconLeft',
+    'iconRight',
+    'className',
+    'onSelect',
+    'onRemove',
+    'testId',
+  ]),
 } as ComponentMeta<typeof Tag>;
 
 const Template: ComponentStory<typeof Tag> = (args) => <Tag {...args} />;
@@ -76,7 +83,6 @@ Removable.args = {
   onRemove: () => {},
 };
 
-
 export const Selected = Template.bind({});
 Selected.args = {
   children: 'Selected',
@@ -86,10 +92,10 @@ Selected.args = {
 
 const removableTags = [
   { id: 1, text: 'Tag 1', iconRight: <ProfileIcon /> },
-  { id: 2, text: 'Tag 2', },
-  { id: 3, text: 'Tag 3', },
-  { id: 4, text: 'Tag 4', },
-  { id: 5, text: 'Tag 6', },
+  { id: 2, text: 'Tag 2' },
+  { id: 3, text: 'Tag 3' },
+  { id: 4, text: 'Tag 4' },
+  { id: 5, text: 'Tag 6' },
 ];
 
 const RemovableTemplate: ComponentStory<typeof Tag> = (args) => {
@@ -100,7 +106,9 @@ const RemovableTemplate: ComponentStory<typeof Tag> = (args) => {
     setSelected(selected.filter((id) => id != tagId));
   };
   const onSelect = (tagId: number) => {
-    selected.includes(tagId) ? unselectTag(tagId) : setSelected([...selected, tagId]);
+    selected.includes(tagId)
+      ? unselectTag(tagId)
+      : setSelected([...selected, tagId]);
   };
   const onRemove = (tagId: number) => {
     setTags(tags.filter(({ id }) => tagId != id));
@@ -112,18 +120,22 @@ const RemovableTemplate: ComponentStory<typeof Tag> = (args) => {
   };
   return (
     <>
-      <div style={{ padding: '20px 0', display: 'flex', alignItems: 'center', gap: toRem(12) }}>
+      <div
+        style={{
+          padding: '20px 0',
+          display: 'flex',
+          alignItems: 'center',
+          gap: toRem(12),
+        }}
+      >
         <Input
           type="text"
           value={newTag}
           onChange={(e) => {
-            setNewTag(e.target.value)
+            setNewTag(e.target.value);
           }}
         />
-        <Button
-          onClick={addTag}
-          size="small"
-        >
+        <Button onClick={addTag} size="small">
           Add tag
         </Button>
       </div>
@@ -142,7 +154,7 @@ const RemovableTemplate: ComponentStory<typeof Tag> = (args) => {
         ))}
       </div>
     </>
-  )
+  );
 };
 
 export const Playground = RemovableTemplate.bind({});

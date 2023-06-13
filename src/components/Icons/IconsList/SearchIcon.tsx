@@ -19,10 +19,10 @@ const iconVariants = {
 };
 
 interface ISearchIcon extends React.SVGProps<SVGSVGElement> {
-  variant?: TSingleVariants,
+  variant?: TSingleVariants;
 }
 
-export default function SearchIcon ({
+export default function SearchIcon({
   variant = 'default',
   fill = '#101828',
   width = 24,

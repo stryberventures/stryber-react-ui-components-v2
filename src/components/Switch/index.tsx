@@ -5,7 +5,6 @@ import { ISwitchIcon, SwitchIcon } from './SwitchIcon';
 import { IInputToggleBaseControlled } from '../InputToggleLayout/types';
 import { useDir } from '../Theme';
 
-
 export interface ISwitch extends ISwitchIcon, IInputToggleBaseControlled {
   color?: 'primary' | 'secondary';
 }
@@ -13,8 +12,15 @@ export interface ISwitch extends ISwitchIcon, IInputToggleBaseControlled {
 const Switch: React.FC<ISwitch> = (props) => {
   const { checked, errorMessage, onChange, onFocus } = useCheckedState(props);
   const {
-    disabled, label, color, className, hint, heading,
-    reverse, dir = useDir(props.dir), ...rest
+    disabled,
+    label,
+    color,
+    className,
+    hint,
+    heading,
+    reverse,
+    dir = useDir(props.dir),
+    ...rest
   } = props;
 
   return (
@@ -32,13 +38,18 @@ const Switch: React.FC<ISwitch> = (props) => {
       reverse={reverse}
       className={className}
       control={
-        <SwitchIcon checked={checked} color={color} disabled={disabled} dir={dir} />
+        <SwitchIcon
+          checked={checked}
+          color={color}
+          disabled={disabled}
+          dir={dir}
+        />
       }
     />
   );
-}
+};
 Switch.defaultProps = {
   color: 'primary',
-}
+};
 
 export default Switch;

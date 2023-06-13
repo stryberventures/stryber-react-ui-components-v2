@@ -1,8 +1,12 @@
 import React from 'react';
 
-
 const iconVariants = {
-  minus: ({ fill, width = 14, height = 2, ...rest }: React.SVGProps<SVGSVGElement>) => (
+  minus: ({
+    fill,
+    width = 14,
+    height = 2,
+    ...rest
+  }: React.SVGProps<SVGSVGElement>) => (
     <svg
       width={width}
       height={height}
@@ -17,7 +21,12 @@ const iconVariants = {
       />
     </svg>
   ),
-  plus: ({ fill, width = 14, height = 14, ...rest }: React.SVGProps<SVGSVGElement>) => (
+  plus: ({
+    fill,
+    width = 14,
+    height = 14,
+    ...rest
+  }: React.SVGProps<SVGSVGElement>) => (
     <svg
       width={width}
       height={height}
@@ -31,16 +40,16 @@ const iconVariants = {
         fill={fill}
       />
     </svg>
-  )
+  ),
 };
 
 export type TCountIconVariants = 'minus' | 'plus';
 
 interface ICountIcon extends React.SVGProps<SVGSVGElement> {
-  variant?: TCountIconVariants,
+  variant?: TCountIconVariants;
 }
 
-export default function CountIcon ({
+export default function CountIcon({
   variant = 'minus',
   fill = '#101828',
   ...rest

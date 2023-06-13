@@ -8,21 +8,22 @@ import Text from '../Text';
 import useStyles from './styles';
 import useTextStyles from '../Text/styles';
 
-export interface ITextArea extends React.TextareaHTMLAttributes<HTMLTextAreaElement>{
-  label?: string,
-  disabled?: boolean,
-  color?: 'primary' | 'secondary',
-  variant?: 'floatingLabel' | 'labelOutside',
-  errorMessage?: string,
-  name?: string,
-  controlled?: boolean,
-  onChange?: (e: React.BaseSyntheticEvent) => void,
-  onBlur?: (e: React.BaseSyntheticEvent) => void,
-  maxLength?: number,
-  showLength?: boolean,
+export interface ITextArea
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  label?: string;
+  disabled?: boolean;
+  color?: 'primary' | 'secondary';
+  variant?: 'floatingLabel' | 'labelOutside';
+  errorMessage?: string;
+  name?: string;
+  controlled?: boolean;
+  onChange?: (e: React.BaseSyntheticEvent) => void;
+  onBlur?: (e: React.BaseSyntheticEvent) => void;
+  maxLength?: number;
+  showLength?: boolean;
   hint?: string;
-  maxLengthClassName?: string,
-  fullWidth?: boolean,
+  maxLengthClassName?: string;
+  fullWidth?: boolean;
 }
 
 const TextArea: React.FC<ITextArea> = (props) => {
@@ -48,7 +49,13 @@ const TextArea: React.FC<ITextArea> = (props) => {
     dir = useDir(props.dir),
     ...rest
   } = props;
-  const { updateFormTouched, updateFormValue, unsetFormValue, fieldValue, fieldError } = useFormContext(name);
+  const {
+    updateFormTouched,
+    updateFormValue,
+    unsetFormValue,
+    fieldValue,
+    fieldError,
+  } = useFormContext(name);
   const errorMessage = fieldError || error;
   const classes = useStyles()({
     ...props,
@@ -79,23 +86,23 @@ const TextArea: React.FC<ITextArea> = (props) => {
     const { name } = e.target;
     !controlled && updateFormTouched(name, true);
     onBlur && onBlur(e);
-  }
+  };
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   return (
     <div
       className={classNames(
         classes.textAreaWrapper,
-        { [classes.fullWidth]: fullWidth, },
-        className)}
+        { [classes.fullWidth]: fullWidth },
+        className
+      )}
     >
       {label && variant == 'labelOutside' && (
         <Text
           variant="components2"
           weight="regular"
-          className={classNames(
-            classes.label,
-            { [classes.textDisabled]: disabled },
-          )}
+          className={classNames(classes.label, {
+            [classes.textDisabled]: disabled,
+          })}
           onClick={() => textareaRef?.current?.focus()}
           dir={dir}
         >
@@ -103,24 +110,21 @@ const TextArea: React.FC<ITextArea> = (props) => {
         </Text>
       )}
       <div
-        className={classNames(
-          classes.textArea,
-          classes[variant],
-          {
-            [classes.containerDisabled]: disabled,
-            [classes.containerError]: !!errorMessage,
-            [classes.labelMinified]: variant == 'floatingLabel' && (value || internalValue || textareaRef?.current?.value),
-          },
-        )}
+        className={classNames(classes.textArea, classes[variant], {
+          [classes.containerDisabled]: disabled,
+          [classes.containerError]: !!errorMessage,
+          [classes.labelMinified]:
+            variant == 'floatingLabel' &&
+            (value || internalValue || textareaRef?.current?.value),
+        })}
       >
         {label && variant == 'floatingLabel' && (
           <Text
             variant="components1"
             weight="regular"
-            className={classNames(
-              classes.label,
-              { [classes.textDisabled]: disabled, }
-            )}
+            className={classNames(classes.label, {
+              [classes.textDisabled]: disabled,
+            })}
             dir={dir}
             onClick={() => textareaRef?.current?.focus()}
           >
@@ -173,7 +177,7 @@ const TextArea: React.FC<ITextArea> = (props) => {
                 classes.hint,
                 classes.lengthContainer,
                 maxLengthClassName,
-                { [classes.textDisabled]: disabled },
+                { [classes.textDisabled]: disabled }
               )}
               dir={dir}
             />
@@ -186,6 +190,6 @@ const TextArea: React.FC<ITextArea> = (props) => {
 
 TextArea.defaultProps = {
   color: 'primary',
-}
+};
 
 export default TextArea;

@@ -6,9 +6,12 @@ import Text from '../Text';
 import pkg from './package.json';
 import { TableCode } from '../../storybook/preview/Table/Default';
 import { buildArgTypes } from '../../storybook/utils';
-import { IData, ITableSorting, SortingDirection, TSortingDirection } from './types';
-
-
+import {
+  IData,
+  ITableSorting,
+  SortingDirection,
+  TSortingDirection,
+} from './types';
 
 export default {
   title: 'Components/DataTable/Default',
@@ -20,7 +23,13 @@ export default {
     color: 'primary',
     variant: 'default',
   },
-  argTypes: buildArgTypes(['selectedItems', 'onSelect', 'onSort', 'className', 'sorting']),
+  argTypes: buildArgTypes([
+    'selectedItems',
+    'onSelect',
+    'onSort',
+    'className',
+    'sorting',
+  ]),
 } as ComponentMeta<typeof DataTable>;
 
 const metadata = [
@@ -40,7 +49,9 @@ const metadata = [
         variant="body3"
         target="_blank"
         disabled={data?.disabled}
-        onClick={(e) => {e.stopPropagation()}}
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
       >
         {String(value)}
       </TextLink>
@@ -53,10 +64,44 @@ const metadata = [
     id: 'status',
     label: 'Status',
     formatter: (value: string | number, data: any) => (
-      <Text variant="components2" weight="regular" style={{ display: 'flex', alignItems: 'center', gap: 8, }}>
-        {data?.disabled && <span style={{ display: 'flex', width: 10, height: 10, backgroundColor: '#D0D5DD', borderRadius: 10 }} />}
-        {!data?.disabled && value == 'active' && <span style={{ display: 'flex', width: 10, height: 10, backgroundColor: 'green', borderRadius: 10 }} />}
-        {!data?.disabled && value != 'active' && <span style={{ display: 'flex', width: 10, height: 10, backgroundColor: 'red', borderRadius: 10 }} /> }
+      <Text
+        variant="components2"
+        weight="regular"
+        style={{ display: 'flex', alignItems: 'center', gap: 8 }}
+      >
+        {data?.disabled && (
+          <span
+            style={{
+              display: 'flex',
+              width: 10,
+              height: 10,
+              backgroundColor: '#D0D5DD',
+              borderRadius: 10,
+            }}
+          />
+        )}
+        {!data?.disabled && value == 'active' && (
+          <span
+            style={{
+              display: 'flex',
+              width: 10,
+              height: 10,
+              backgroundColor: 'green',
+              borderRadius: 10,
+            }}
+          />
+        )}
+        {!data?.disabled && value != 'active' && (
+          <span
+            style={{
+              display: 'flex',
+              width: 10,
+              height: 10,
+              backgroundColor: 'red',
+              borderRadius: 10,
+            }}
+          />
+        )}
         {value}
       </Text>
     ),
@@ -71,7 +116,11 @@ const metadata = [
   {
     id: 'employees',
     label: 'Employees',
-    formatter: (value: string | number) => <Text variant="components2" weight="regular">{value}</Text>,
+    formatter: (value: string | number) => (
+      <Text variant="components2" weight="regular">
+        {value}
+      </Text>
+    ),
     width: '28%',
     minWidth: 100,
     sortable: true,
@@ -79,7 +128,13 @@ const metadata = [
 ];
 
 const data = [
-  { id: 1, company: 'Stryber', status: 'disabled', employees: 10, disabled: true },
+  {
+    id: 1,
+    company: 'Stryber',
+    status: 'disabled',
+    employees: 10,
+    disabled: true,
+  },
   { id: 2, company: 'Patreon', status: 'disabled', employees: 20 },
   { id: 3, company: 'YouTube', status: 'active', employees: 30 },
   { id: 4, company: 'Apple', status: 'active', employees: 40 },
@@ -96,23 +151,20 @@ const Template: ComponentStory<typeof DataTable> = (args) => {
     orderDirection: 'desc',
   });
   const [sortedData, setSortedData] = useState<IData[]>(data);
-  useEffect(
-    () => {
-      setSortedData(
-        [...sortedData.sort((a: IData, b: IData) => {
-          if (a[sorting.orderBy] >= b[sorting.orderBy]) {
-            return sorting.orderDirection == 'asc' ? 1 : -1;
-          }
-          if (a[sorting.orderBy] <= b[sorting.orderBy]) {
-            return sorting.orderDirection == 'asc' ? -1 : 1;
-          }
-          return 0;
-        })]
-      );
-    },
-    [sorting]
-  );
-  function onSort (orderBy: string, orderDirection: TSortingDirection) {
+  useEffect(() => {
+    setSortedData([
+      ...sortedData.sort((a: IData, b: IData) => {
+        if (a[sorting.orderBy] >= b[sorting.orderBy]) {
+          return sorting.orderDirection == 'asc' ? 1 : -1;
+        }
+        if (a[sorting.orderBy] <= b[sorting.orderBy]) {
+          return sorting.orderDirection == 'asc' ? -1 : 1;
+        }
+        return 0;
+      }),
+    ]);
+  }, [sorting]);
+  function onSort(orderBy: string, orderDirection: TSortingDirection) {
     setSorting({ orderBy, orderDirection });
   }
   return (
@@ -124,14 +176,14 @@ const Template: ComponentStory<typeof DataTable> = (args) => {
       onSelect={undefined}
     />
   );
-}
+};
 
 export const Default = Template.bind({});
 Default.args = {
   metadata,
   data,
   sorting,
-  tableName: 'Table Name'
+  tableName: 'Table Name',
 };
 
 Default.parameters = {

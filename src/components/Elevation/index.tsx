@@ -2,8 +2,12 @@ import React from 'react';
 import classNames from 'classnames';
 import useStyles from './styles';
 
-
-type TElevationVariant = 'extraLight' | 'light' | 'medium' | 'heavy' | 'extraHeavy';
+type TElevationVariant =
+  | 'extraLight'
+  | 'light'
+  | 'medium'
+  | 'heavy'
+  | 'extraHeavy';
 
 export interface IElevation extends React.HTMLAttributes<any> {
   children: React.ReactNode;
@@ -22,17 +26,13 @@ const Elevation: React.FC<IElevation> = (props) => {
   const classes = useStyles();
   return (
     <Tag
-      className={classNames(
-        classes.elevation,
-        classes[variant],
-        className,
-      )}
+      className={classNames(classes.elevation, classes[variant], className)}
       {...rest}
     >
       {children}
     </Tag>
   );
-}
+};
 
 export default Elevation;
 

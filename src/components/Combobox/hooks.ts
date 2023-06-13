@@ -9,32 +9,52 @@ interface IActiveIndex {
 }
 
 export const useCombobox = (props: ICombobox) => {
-  const { name = 'combobox', options, value = null, error, onChange, onToggle } = props;
-  const { fieldError, fieldValue, updateFormTouched, updateFormValue } = useFormContext(name);
+  const {
+    name = 'combobox',
+    options,
+    value = null,
+    error,
+    onChange,
+    onToggle,
+  } = props;
+  const { fieldError, fieldValue, updateFormTouched, updateFormValue } =
+    useFormContext(name);
   const dropdownRef = React.useRef<IDropdownRef>(null);
 
   const getOptionByValue = (optionValue: string | number) => {
-    const option = options.find(optionItem => optionItem.value === optionValue);
+    const option = options.find(
+      (optionItem) => optionItem.value === optionValue
+    );
     return option ? option : null;
   };
 
-  const [selectedOption, setSelectedOption] = useState<IOption | null>(getOptionByValue(fieldValue || value));
+  const [selectedOption, setSelectedOption] = useState<IOption | null>(
+    getOptionByValue(fieldValue || value)
+  );
   const [isOpen, setIsOpen] = useState(false);
   const activeRef: React.Ref<HTMLDivElement> = useRef(null);
   const [inputValue, setInputValue] = React.useState(
-    selectedOption?.label || '',
+    selectedOption?.label || ''
   );
 
-  const filteredOptions = selectedOption?.label === inputValue ? options : options.filter((option) =>
-    option.label.toLowerCase().includes(inputValue.toLowerCase()
-    ));
+  const filteredOptions =
+    selectedOption?.label === inputValue
+      ? options
+      : options.filter((option) =>
+          option.label.toLowerCase().includes(inputValue.toLowerCase())
+        );
 
   const getActiveIndexBySelectedOption = () => {
     const filteredOptionsLabels = filteredOptions.map((option) => option.label);
-    return selectedOption ? filteredOptionsLabels.indexOf(selectedOption.label) : 0;
-  }
+    return selectedOption
+      ? filteredOptionsLabels.indexOf(selectedOption.label)
+      : 0;
+  };
 
-  const [activeIndex, setActiveIndex] = useState<IActiveIndex>({ type: 'mouse', index: getActiveIndexBySelectedOption() });
+  const [activeIndex, setActiveIndex] = useState<IActiveIndex>({
+    type: 'mouse',
+    index: getActiveIndexBySelectedOption(),
+  });
 
   const clearSelectedOption = (skipText?: boolean) => {
     !skipText && setInputValue('');
@@ -42,14 +62,17 @@ export const useCombobox = (props: ICombobox) => {
     setActiveIndex({ type: 'mouse', index: 0 });
     updateFormValue(name, null);
     onChange && onChange(null);
-  }
+  };
 
   const handleOutsideClick = () => {
     if (selectedOption) {
-      setActiveIndex({ type: 'mouse', index: getActiveIndexBySelectedOption() });
+      setActiveIndex({
+        type: 'mouse',
+        index: getActiveIndexBySelectedOption(),
+      });
       setInputValue(selectedOption.label);
     }
-  }
+  };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     switch (e.key) {
@@ -58,17 +81,19 @@ export const useCombobox = (props: ICombobox) => {
       case 'ArrowDown':
         return setActiveIndex((currentIndex) => {
           const nextIndex = currentIndex.index + 1;
-          if (nextIndex > filteredOptions.length - 1) return { type: 'keyboard', index: 0 };
+          if (nextIndex > filteredOptions.length - 1)
+            return { type: 'keyboard', index: 0 };
           return { type: 'keyboard', index: nextIndex };
         });
       case 'ArrowUp':
         return setActiveIndex((currentIndex) => {
           const nextIndex = currentIndex.index - 1;
-          if (nextIndex < 0) return { type: 'keyboard', index: filteredOptions.length - 1 };
+          if (nextIndex < 0)
+            return { type: 'keyboard', index: filteredOptions.length - 1 };
           return { type: 'keyboard', index: nextIndex };
-        })
+        });
     }
-  }
+  };
 
   const onDropdownToggle = (open: boolean) => {
     !open && updateFormTouched(name, true);
@@ -91,7 +116,7 @@ export const useCombobox = (props: ICombobox) => {
       clearSelectedOption(true);
     }
     setInputValue(text);
-  }
+  };
 
   useEffect(() => {
     updateFormValue(name, selectedOption?.value, true);
@@ -121,5 +146,5 @@ export const useCombobox = (props: ICombobox) => {
     clearSelectedOption,
     handleOutsideClick,
     isOpen,
-  }
-}
+  };
+};

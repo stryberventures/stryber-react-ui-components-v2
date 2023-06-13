@@ -11,7 +11,7 @@ const TableHead: React.FC<ITableHead> = ({
   className,
   ...rest
 }) => (
-  <TableContext.Provider value={{ variant:VARIANT_HEAD }}>
+  <TableContext.Provider value={{ variant: VARIANT_HEAD }}>
     <Component className={className} {...rest}>
       {children}
     </Component>

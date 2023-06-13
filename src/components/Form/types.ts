@@ -3,13 +3,13 @@ import React from 'react';
 export interface IFormContext {
   updateFormValue: (name: string, data: any, init?: boolean) => void;
   updateFormTouched: (name: string, data: any) => void;
-  unsetFormValue: (name: any) => void,
+  unsetFormValue: (name: any) => void;
   formValues: any;
   formErrors: any;
   formTouched: any;
   initialValues?: any;
   loading: boolean;
-  formActions: IFormActions,
+  formActions: IFormActions;
 }
 
 export interface IFormProps {
@@ -27,10 +27,10 @@ export interface IFormProps {
 }
 
 export interface IFormActions {
-  submit: () => void,
-  reset: () => void,
-  isValid: boolean,
-  setErrors: (errors: Record<string, string>) => void,
+  submit: () => void;
+  reset: () => void;
+  isValid: boolean;
+  setErrors: (errors: Record<string, string>) => void;
 }
 
 export interface IFormRef extends IFormActions {}

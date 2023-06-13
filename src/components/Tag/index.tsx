@@ -5,10 +5,15 @@ import { CloseCircleIcon } from '../Icons';
 import { useDir } from '../Theme';
 import useStyles from './styles';
 
-
 type TTagSize = 'small' | 'medium' | 'large';
 type TTagShape = 'square' | 'round';
-type TTagColor = 'primary' | 'secondary' | 'success' | 'error' | 'warning' | 'neutralGray';
+type TTagColor =
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'error'
+  | 'warning'
+  | 'neutralGray';
 
 export const defaultTagProps = {
   size: 'large' as TTagSize,
@@ -16,7 +21,7 @@ export const defaultTagProps = {
   color: 'primary' as TTagColor,
   selected: false,
   disabled: false,
-}
+};
 
 export interface ITag extends React.HTMLAttributes<HTMLButtonElement> {
   children: string;
@@ -51,14 +56,14 @@ const Tag: React.FC<ITag> = (props) => {
   } = props;
   const classes = useStyles()({
     ...props,
-    dir
+    dir,
   });
-  const iconLeft = typeof pIconLeft === 'function'
-    ? pIconLeft({ ...props, dir })
-    : pIconLeft;
-  const iconRight = typeof pIconRight === 'function'
-    ? pIconRight({ ...props, dir })
-    : pIconRight;
+  const iconLeft =
+    typeof pIconLeft === 'function' ? pIconLeft({ ...props, dir }) : pIconLeft;
+  const iconRight =
+    typeof pIconRight === 'function'
+      ? pIconRight({ ...props, dir })
+      : pIconRight;
   const handleOnSelect = () => onSelect?.();
   const handleOnRemove = (event: React.BaseSyntheticEvent) => {
     event.stopPropagation();
@@ -68,25 +73,18 @@ const Tag: React.FC<ITag> = (props) => {
     <button
       data-testid={testId}
       type="button"
-      className={classNames(
-        className,
-        classes[size],
-        classes.tag, {
-          [classes.square]: shape == 'square',
-          [classes.round]: shape == 'round',
-          [classes.default]: !selected && !disabled,
-          [classes.selected]: selected,
-          [classes.disabled]: disabled,
-        })
-      }
+      className={classNames(className, classes[size], classes.tag, {
+        [classes.square]: shape == 'square',
+        [classes.round]: shape == 'round',
+        [classes.default]: !selected && !disabled,
+        [classes.selected]: selected,
+        [classes.disabled]: disabled,
+      })}
       onClick={handleOnSelect}
       {...rest}
     >
       {iconLeft}
-      <Text
-        variant={getVariant(size)}
-        className={classes.text}
-      >
+      <Text variant={getVariant(size)} className={classes.text}>
         {children}
       </Text>
       {iconRight}
@@ -99,13 +97,13 @@ const Tag: React.FC<ITag> = (props) => {
       )}
     </button>
   );
-}
+};
 
 Tag.defaultProps = defaultTagProps;
 
 export default Tag;
 
-function getVariant (size: TTagSize): TTextVariant {
+function getVariant(size: TTagSize): TTextVariant {
   switch (size) {
     case 'small':
       return 'components3';

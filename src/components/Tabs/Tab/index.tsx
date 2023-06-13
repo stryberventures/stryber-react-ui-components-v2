@@ -5,7 +5,6 @@ import Text from '../../Text';
 import { TTabsDirection } from '../index';
 import useStyles from './styles';
 
-
 export interface ITab {
   id: string;
   icon?: React.ReactNode | ((p: ITab) => React.ReactNode);
@@ -43,11 +42,9 @@ const Tab: React.FC<ITabProps> = (props) => {
   } = props;
   const classes = useStyles()({
     ...props,
-    dir
+    dir,
   });
-  const icon = typeof pIcon === 'function'
-    ? pIcon({ ...props, dir })
-    : pIcon;
+  const icon = typeof pIcon === 'function' ? pIcon({ ...props, dir }) : pIcon;
   const handleOnChange = () => {
     !disabled && !active && onChange(id);
   };
@@ -56,7 +53,9 @@ const Tab: React.FC<ITabProps> = (props) => {
       role="button"
       tabIndex={0}
       onClick={handleOnChange}
-      onKeyDown={(e: React.KeyboardEvent) => e.key == KEYS.enter && handleOnChange()}
+      onKeyDown={(e: React.KeyboardEvent) =>
+        e.key == KEYS.enter && handleOnChange()
+      }
       className={classNames(
         classes.tab,
         classes[size],
@@ -67,29 +66,29 @@ const Tab: React.FC<ITabProps> = (props) => {
           [classes.horizontal]: direction == 'horizontal',
           [classes.fitted]: variant == 'fitted',
         },
-        className)
-      }
+        className
+      )}
       {...rest}
     >
       {!!icon && icon}
-      {label && typeof (label == 'string')
-        ? (
-          <Text
-            component="span"
-            className={classes.label}
-            variant={size == 'small' ? 'components2' : 'components1'}
-            weight="medium"
-          >
-            {label}
-          </Text>
-        )
-        : label}
+      {label && typeof (label == 'string') ? (
+        <Text
+          component="span"
+          className={classes.label}
+          variant={size == 'small' ? 'components2' : 'components1'}
+          weight="medium"
+        >
+          {label}
+        </Text>
+      ) : (
+        label
+      )}
     </div>
   );
-}
+};
 
 export default Tab;
 
 Tab.defaultProps = {
   color: 'primary',
-}
+};

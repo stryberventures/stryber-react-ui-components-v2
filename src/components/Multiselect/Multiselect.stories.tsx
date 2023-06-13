@@ -27,11 +27,18 @@ export default {
     disabled: false,
     fullWidth: false,
   },
-  argTypes: buildArgTypes(['name', 'onChange', 'className', 'onToggle', 'value']),
+  argTypes: buildArgTypes([
+    'name',
+    'onChange',
+    'className',
+    'onToggle',
+    'value',
+  ]),
 } as ComponentMeta<typeof Multiselect>;
 
-const Template: ComponentStory<typeof Multiselect> = (args) =>
-  <Multiselect {...args} />;
+const Template: ComponentStory<typeof Multiselect> = (args) => (
+  <Multiselect {...args} />
+);
 
 export const Primary = Template.bind({});
 

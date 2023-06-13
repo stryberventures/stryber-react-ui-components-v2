@@ -20,8 +20,21 @@ export default {
     clearButton: false,
     fullWidth: false,
   },
-  argTypes: buildArgTypes(['name', 'controlled', 'onChange', 'rightIcon',
-    'leftIcon', 'onBlur', 'prefixClassName', 'contentClassName', 'postfixClassName', 'hintClassName', 'errorClassName', 'className', 'value']),
+  argTypes: buildArgTypes([
+    'name',
+    'controlled',
+    'onChange',
+    'rightIcon',
+    'leftIcon',
+    'onBlur',
+    'prefixClassName',
+    'contentClassName',
+    'postfixClassName',
+    'hintClassName',
+    'errorClassName',
+    'className',
+    'value',
+  ]),
 } as ComponentMeta<typeof Input>;
 
 const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
@@ -95,7 +108,7 @@ LeftIcon.args = {
   leftIcon: (props) => (
     <CreditCardIcon
       style={{
-        [props.dir === 'rtl' ? 'marginLeft' : 'marginRight']: toRem(10)
+        [props.dir === 'rtl' ? 'marginLeft' : 'marginRight']: toRem(10),
       }}
     />
   ),
@@ -109,7 +122,7 @@ RightIcon.args = {
   rightIcon: (props) => (
     <InfoIcon
       style={{
-        [props.dir === 'rtl' ? 'marginRight' : 'marginLeft']: toRem(10)
+        [props.dir === 'rtl' ? 'marginRight' : 'marginLeft']: toRem(10),
       }}
     />
   ),
@@ -123,14 +136,14 @@ IconBothSides.args = {
   leftIcon: (props) => (
     <CreditCardIcon
       style={{
-        [props.dir === 'rtl' ? 'marginLeft' : 'marginRight']: toRem(10)
+        [props.dir === 'rtl' ? 'marginLeft' : 'marginRight']: toRem(10),
       }}
     />
   ),
   rightIcon: (props) => (
     <InfoIcon
       style={{
-        [props.dir === 'rtl' ? 'marginRight' : 'marginLeft']: toRem(10)
+        [props.dir === 'rtl' ? 'marginRight' : 'marginLeft']: toRem(10),
       }}
     />
   ),

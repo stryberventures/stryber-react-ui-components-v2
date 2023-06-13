@@ -18,10 +18,19 @@ export default {
     showLength: false,
     fullWidth: false,
   },
-  argTypes: buildArgTypes(['name', 'controlled', 'onChange', 'onBlur', 'maxLengthClassName', 'id']),
+  argTypes: buildArgTypes([
+    'name',
+    'controlled',
+    'onChange',
+    'onBlur',
+    'maxLengthClassName',
+    'id',
+  ]),
 } as ComponentMeta<typeof TextArea>;
 
-const Template: ComponentStory<typeof TextArea> = (args) => <TextArea {...args} />;
+const Template: ComponentStory<typeof TextArea> = (args) => (
+  <TextArea {...args} />
+);
 
 export const Primary = Template.bind({});
 Primary.args = {

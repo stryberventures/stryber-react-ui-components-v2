@@ -1,21 +1,40 @@
-import React  from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { TextVariant } from './types';
 import { useDir } from '../Theme';
 import useStyles from './styles';
 
-
 export type TTextVariant = keyof typeof TextVariant;
 
 export interface IText extends React.HTMLAttributes<HTMLElement> {
-  className?: string,
+  className?: string;
   align?: 'left' | 'center' | 'right';
   variant?: TTextVariant;
-  component?: TTag,
+  component?: TTag;
   weight?: 'regular' | 'medium' | 'semiBold' | 'bold';
 }
 
-type TTag = keyof Pick<JSX.IntrinsicElements, 'h1' | 'h2' | 'h3' | 'h4' | 'span' | 'label' | 'p' | 'q' | 'b' | 'i' | 'small' | 'strong' | 'em' | 'del' | 'ins' | 'sub' | 'sup' | 'li'>;
+type TTag = keyof Pick<
+  JSX.IntrinsicElements,
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'h4'
+  | 'span'
+  | 'label'
+  | 'p'
+  | 'q'
+  | 'b'
+  | 'i'
+  | 'small'
+  | 'strong'
+  | 'em'
+  | 'del'
+  | 'ins'
+  | 'sub'
+  | 'sup'
+  | 'li'
+>;
 
 function defineTag(variant: TTextVariant): TTag {
   switch (variant) {
@@ -32,7 +51,7 @@ function defineTag(variant: TTextVariant): TTag {
 const aligns = {
   left: ['left', 'right'],
   right: ['right', 'left'],
-  center: ['center', 'center']
+  center: ['center', 'center'],
 };
 
 const Text: React.FC<IText> = (props) => {
@@ -58,7 +77,7 @@ const Text: React.FC<IText> = (props) => {
         classes[variant],
         classes[align],
         classes[weight],
-        className,
+        className
       )}
       {...rest}
       dir={dir}
@@ -75,4 +94,4 @@ Text.defaultProps = {
   align: 'left',
   weight: 'regular',
   component: 'span',
-}
+};

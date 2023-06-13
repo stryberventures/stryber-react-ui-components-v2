@@ -1,5 +1,4 @@
-import React  from 'react';
-
+import React from 'react';
 
 export interface IDialogContent extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
@@ -8,11 +7,7 @@ export interface IDialogContent extends React.HTMLAttributes<HTMLElement> {
 
 const DialogContent: React.FC<IDialogContent> = (props) => {
   const { children, className } = props;
-  return (
-    <div className={className}>
-      {children}
-    </div>
-  )
+  return <div className={className}>{children}</div>;
 };
 
 export default DialogContent;

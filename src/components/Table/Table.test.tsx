@@ -5,11 +5,12 @@ import Table, {
   TableBody,
   TableCell,
   TableContainer,
-  TableHead, TablePagination,
+  TableHead,
+  TablePagination,
   TableRow,
   TableSection,
   TableSortButton,
-  TableTooltipButton
+  TableTooltipButton,
 } from '.';
 
 it('should render table', () => {
@@ -23,10 +24,11 @@ it('should render table section', () => {
 });
 
 it('should render table container', () => {
-  render(<TableContainer data-testid="tableContainer">Test content</TableContainer>);
+  render(
+    <TableContainer data-testid="tableContainer">Test content</TableContainer>
+  );
   expect(screen.getByTestId('tableContainer')).toBeInTheDocument();
 });
-
 
 it('should render table head', () => {
   render(<TableHead data-testid="tableHead">Test content</TableHead>);
@@ -49,12 +51,20 @@ it('should render table cell', () => {
 });
 
 it('should render table pagination', () => {
-  render(<TablePagination count={5} onPageChange={() => {}} page={2} rowsPerPage={2} data-testid="tablePagination"/>);
+  render(
+    <TablePagination
+      count={5}
+      onPageChange={() => {}}
+      page={2}
+      rowsPerPage={2}
+      data-testid="tablePagination"
+    />
+  );
   expect(screen.getByTestId('tablePagination')).toBeInTheDocument();
 });
 
 it('should render table sort button', () => {
-  render(<TableSortButton data-testid="tableSortButton"/>);
+  render(<TableSortButton data-testid="tableSortButton" />);
   expect(screen.getByTestId('tableSortButton')).toBeInTheDocument();
 });
 
@@ -72,7 +82,7 @@ it('should show info', () => {
 
 it('should call onSort', () => {
   const onSort = jest.fn();
-  render(<TableSortButton onClick={onSort} data-testid="tableSortButton"/>);
+  render(<TableSortButton onClick={onSort} data-testid="tableSortButton" />);
   const sortingIcon = screen.getByTestId('tableSortButton');
   fireEvent.click(sortingIcon);
   expect(onSort).toHaveBeenCalled();

@@ -18,10 +18,19 @@ export default {
     showLength: false,
     fullWidth: false,
   },
-  argTypes: buildArgTypes(['name', 'controlled', 'onChange', 'onBlur', 'maxLengthClassName', 'id']),
+  argTypes: buildArgTypes([
+    'name',
+    'controlled',
+    'onChange',
+    'onBlur',
+    'maxLengthClassName',
+    'id',
+  ]),
 } as ComponentMeta<typeof TextArea>;
 
-const Template: ComponentStory<typeof TextArea> = (args) => <TextArea {...args} />;
+const Template: ComponentStory<typeof TextArea> = (args) => (
+  <TextArea {...args} />
+);
 
 export const Primary = Template.bind({});
 Primary.args = {
@@ -50,7 +59,8 @@ Error.args = {
 export const Disabled = Template.bind({});
 Disabled.args = {
   label: 'Disabled',
-  value: '"And now I will show you what is really a very interesting study, Mr. Windibank," Holmes continued. "I think of writing another little monograph some of these days on the typewriter and its relation to crime.',
+  value:
+    '"And now I will show you what is really a very interesting study, Mr. Windibank," Holmes continued. "I think of writing another little monograph some of these days on the typewriter and its relation to crime.',
   disabled: true,
 };
 

@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const iconVariants = {
   download: ({ fill, ...rest }: React.SVGProps<SVGSVGElement>) => (
     <svg
@@ -27,16 +26,16 @@ const iconVariants = {
         fill={fill}
       />
     </svg>
-  )
+  ),
 };
 
 export type TLoadIconVariants = 'download' | 'upload';
 
 interface ILoadIcon extends React.SVGProps<SVGSVGElement> {
-  variant?: TLoadIconVariants,
+  variant?: TLoadIconVariants;
 }
 
-export default function LoadIcon ({
+export default function LoadIcon({
   variant = 'download',
   width = 16,
   height = 16,

@@ -8,8 +8,7 @@ import {
 } from './types';
 import useStyles from './styles';
 
-
-export interface IGrid extends React.HTMLAttributes<any>{
+export interface IGrid extends React.HTMLAttributes<any> {
   container?: boolean;
   withMargins?: boolean;
   item?: boolean;
@@ -45,7 +44,7 @@ const Grid: React.FC<IGrid> = (props) => {
   } = props;
   const classes = useStyles()(props);
   const Tag = component;
-  return(
+  return (
     <Tag
       className={classNames(
         classes.grid,
@@ -53,18 +52,18 @@ const Grid: React.FC<IGrid> = (props) => {
           [classes.gridContainer]: container,
           [classes.gridItem]: item,
         },
-        className,
+        className
       )}
       {...rest}
     >
       {children}
     </Tag>
   );
-}
+};
 
 export default Grid;
 
 Grid.defaultProps = {
   component: 'div',
   xs: 12,
-}
+};

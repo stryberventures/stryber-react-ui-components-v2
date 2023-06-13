@@ -1,7 +1,7 @@
-import '@testing-library/jest-dom'
-import * as React from 'react'
-import { render, screen } from '@testing-library/react'
-import { ThemeProvider } from './index'
+import '@testing-library/jest-dom';
+import * as React from 'react';
+import { render, screen } from '@testing-library/react';
+import { ThemeProvider } from './index';
 import Button from '../Button';
 import { defaultTheme } from './defaultTheme';
 
@@ -24,8 +24,8 @@ it('should apply theme colors', () => {
       theme={{
         colors: {
           primary: { main500: red, light100: red, dark600: red },
-          contrast: { white: contrast }
-        }
+          contrast: { white: contrast },
+        },
       }}
     >
       <Button>{label}</Button>

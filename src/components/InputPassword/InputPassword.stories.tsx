@@ -16,14 +16,30 @@ export default {
     disabled: false,
     fullWidth: false,
   },
-  argTypes: buildArgTypes(['value', 'name', 'controlled', 'onChange', 'mask',
-    'onBlur', 'onValidationChange', 'validationSchema', 'prefixClassName', 'errorClassName', 'hintClassName',
-    'prefix', 'prefixClassName', 'postfix', 'postfixClassName', 'clearButton', 'leftIcon'
+  argTypes: buildArgTypes([
+    'value',
+    'name',
+    'controlled',
+    'onChange',
+    'mask',
+    'onBlur',
+    'onValidationChange',
+    'validationSchema',
+    'prefixClassName',
+    'errorClassName',
+    'hintClassName',
+    'prefix',
+    'prefixClassName',
+    'postfix',
+    'postfixClassName',
+    'clearButton',
+    'leftIcon',
   ]),
 } as ComponentMeta<typeof InputPassword>;
 
-const Template: ComponentStory<typeof InputPassword> = (args) =>
-  <InputPassword {...args} />;
+const Template: ComponentStory<typeof InputPassword> = (args) => (
+  <InputPassword {...args} />
+);
 
 export const Default = Template.bind({});
 Default.args = {
@@ -37,19 +53,23 @@ Validation.args = {
   label: 'Input password',
   placeholder: 'Enter password',
   value: 'something',
-  onValidationChange: (valid) => { console.log('valid', valid); },
-  validationSchema: [{
-    label: 'Number',
-    rule: /(?=.*\d).{1,}/gm,
+  onValidationChange: (valid) => {
+    console.log('valid', valid);
   },
-  {
-    label: 'Uppercase',
-    rule: /(?=[A-Z]).{1,}$/gm,
-  },
-  {
-    label: 'Lowercase',
-    rule: /(?=[a-z]).{1,}$/gm,
-  }]
+  validationSchema: [
+    {
+      label: 'Number',
+      rule: /(?=.*\d).{1,}/gm,
+    },
+    {
+      label: 'Uppercase',
+      rule: /(?=[A-Z]).{1,}$/gm,
+    },
+    {
+      label: 'Lowercase',
+      rule: /(?=[a-z]).{1,}$/gm,
+    },
+  ],
 };
 
 export const Disabled = Template.bind({});
@@ -63,7 +83,7 @@ export const Error = Template.bind({});
 Error.args = {
   label: 'Input password',
   placeholder: 'Enter password',
-  errorMessage: 'Field is required'
+  errorMessage: 'Field is required',
 };
 
 export const Hint = Template.bind({});

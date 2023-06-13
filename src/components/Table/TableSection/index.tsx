@@ -2,7 +2,6 @@ import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 import useStyles from './styles';
 
-
 interface ITableSection {
   children: string | ReactNode;
   className?: string;

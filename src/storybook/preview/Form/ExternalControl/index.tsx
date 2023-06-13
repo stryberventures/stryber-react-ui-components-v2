@@ -32,21 +32,22 @@ const FormExternalControl = () => {
         password: yup.string().required(),
       })}
     >
-      <h2 style={{ fontFamily: 'Inter', color: defaultTheme.colors.primary.main500 }}>Form external controls from ref</h2>
+      <h2
+        style={{
+          fontFamily: 'Inter',
+          color: defaultTheme.colors.primary.main500,
+        }}
+      >
+        Form external controls from ref
+      </h2>
       <Input name="email" placeholder="Email" label="Email" />
       <h1> </h1>
       <Input name="password" placeholder="Password" label="Password" />
       <h1> </h1>
       <div style={{ display: 'flex', gap: 20 }}>
-        <div onClick={handleSubmit}>
-          Submit
-        </div>
-        <div onClick={handleResetForm}>
-          Reset
-        </div>
-        <div onClick={handleSetError}>
-          Set error
-        </div>
+        <div onClick={handleSubmit}>Submit</div>
+        <div onClick={handleResetForm}>Reset</div>
+        <div onClick={handleSetError}>Set error</div>
       </div>
     </Form>
   );
@@ -101,4 +102,4 @@ const FormExternalControl = () => {
     </Form>
   );
 };
-`
+`;

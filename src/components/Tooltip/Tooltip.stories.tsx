@@ -14,7 +14,9 @@ export default {
   argTypes: buildArgTypes(['visible']),
 } as ComponentMeta<typeof Tooltip>;
 
-const Template: ComponentStory<typeof Tooltip> = (args) => <Tooltip {...args} />;
+const Template: ComponentStory<typeof Tooltip> = (args) => (
+  <Tooltip {...args} />
+);
 
 export const AlwaysVisible = Template.bind({});
 AlwaysVisible.args = {
@@ -23,11 +25,19 @@ AlwaysVisible.args = {
   children: 'Tooltip visible version with close option',
   title: 'Tooltip title',
   visible: true,
-  text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
+  text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
 };
 AlwaysVisible.decorators = [
   (Story) => (
-    <div style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <div
+      style={{
+        width: '100%',
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
       <Story />
     </div>
   ),
@@ -39,11 +49,19 @@ Top.args = {
   position: 'top',
   children: 'Tooltip top version',
   title: 'Tooltip title',
-  text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
+  text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
 };
 Top.decorators = [
   (Story) => (
-    <div style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <div
+      style={{
+        width: '100%',
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
       <Story />
     </div>
   ),
@@ -55,11 +73,19 @@ TopStart.args = {
   position: 'topStart',
   children: 'Tooltip top start position',
   title: 'Top start Position',
-  text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
+  text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
 };
 TopStart.decorators = [
   (Story) => (
-    <div style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <div
+      style={{
+        width: '100%',
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
       <Story />
     </div>
   ),
@@ -71,11 +97,19 @@ TopEnd.args = {
   position: 'topEnd',
   children: 'Tooltip-top end position',
   title: 'Top-end Position',
-  text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
+  text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
 };
 TopEnd.decorators = [
   (Story) => (
-    <div style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <div
+      style={{
+        width: '100%',
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
       <Story />
     </div>
   ),
@@ -87,11 +121,19 @@ Bottom.args = {
   position: 'bottom',
   children: 'Tooltip bottom position',
   title: 'Bottom Position',
-  text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
+  text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
 };
 Bottom.decorators = [
   (Story) => (
-    <div style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <div
+      style={{
+        width: '100%',
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
       <Story />
     </div>
   ),
@@ -103,11 +145,19 @@ BottomStart.args = {
   position: 'bottomStart',
   children: 'Tooltip bottom start position',
   title: 'Bottom start Position',
-  text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
+  text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
 };
 BottomStart.decorators = [
   (Story) => (
-    <div style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <div
+      style={{
+        width: '100%',
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
       <Story />
     </div>
   ),
@@ -119,11 +169,19 @@ BottomEnd.args = {
   position: 'bottomEnd',
   children: 'Tooltip bottom-end position',
   title: 'Bottom-end Position',
-  text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
+  text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
 };
 BottomEnd.decorators = [
   (Story) => (
-    <div style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <div
+      style={{
+        width: '100%',
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
       <Story />
     </div>
   ),
@@ -135,11 +193,19 @@ Left.args = {
   position: 'left',
   children: 'Tooltip left position',
   title: 'Left Position',
-  text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
+  text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
 };
 Left.decorators = [
   (Story) => (
-    <div style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <div
+      style={{
+        width: '100%',
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
       <Story />
     </div>
   ),
@@ -151,11 +217,19 @@ LeftStart.args = {
   position: 'leftStart',
   children: 'Tooltip left start position',
   title: 'Left start Position',
-  text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
+  text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
 };
 LeftStart.decorators = [
   (Story) => (
-    <div style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <div
+      style={{
+        width: '100%',
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
       <Story />
     </div>
   ),
@@ -167,11 +241,19 @@ LeftEnd.args = {
   position: 'leftEnd',
   children: 'Tooltip left-end position',
   title: 'Left-end Position',
-  text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
+  text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
 };
 LeftEnd.decorators = [
   (Story) => (
-    <div style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <div
+      style={{
+        width: '100%',
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
       <Story />
     </div>
   ),
@@ -183,11 +265,19 @@ Right.args = {
   position: 'right',
   children: 'Tooltip right position',
   title: 'Right Position',
-  text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
+  text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
 };
 Right.decorators = [
   (Story) => (
-    <div style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <div
+      style={{
+        width: '100%',
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
       <Story />
     </div>
   ),
@@ -199,11 +289,19 @@ RightStart.args = {
   position: 'rightStart',
   children: 'Tooltip right start position',
   title: 'Right start Position',
-  text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
+  text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
 };
 RightStart.decorators = [
   (Story) => (
-    <div style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <div
+      style={{
+        width: '100%',
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
       <Story />
     </div>
   ),
@@ -215,11 +313,19 @@ RightEnd.args = {
   position: 'rightEnd',
   children: 'Tooltip right-end position',
   title: 'Right-end Position',
-  text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
+  text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
 };
 RightEnd.decorators = [
   (Story) => (
-    <div style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <div
+      style={{
+        width: '100%',
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
       <Story />
     </div>
   ),
@@ -228,17 +334,36 @@ RightEnd.decorators = [
 export const CustomContent = Template.bind({});
 CustomContent.args = {
   children: 'Tooltip right-end position',
-  title: <Text variant="components2" weight="medium">Right start Position</Text>,
+  title: (
+    <Text variant="components2" weight="medium">
+      Right start Position
+    </Text>
+  ),
   text: (
     <>
-      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-      <p>It has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+      <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry.
+      </p>
+      <p>
+        It has been the industry standard dummy text ever since the 1500s, when
+        an unknown printer took a galley of type and scrambled it to make a type
+        specimen book.
+      </p>
     </>
-  )
-}
+  ),
+};
 CustomContent.decorators = [
   (Story) => (
-    <div style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <div
+      style={{
+        width: '100%',
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
       <Story />
     </div>
   ),

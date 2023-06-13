@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import useStyles from './styles';
-import Input, { IInput } from '../Input'
-import Button from '../Button'
+import Input, { IInput } from '../Input';
+import Button from '../Button';
 import classNames from 'classnames';
 import { CountIcon } from '../Icons';
 import { useFormContext } from '../Form';
 import { useTheme, toRem, useDir } from '../Theme';
 
 export interface INumberInput extends Omit<IInput, 'value' | 'onChange'> {
-  quantityCounter?: boolean,
-  min?: number,
-  max?: number,
-  step?: number,
-  value?: number,
-  onChange?: (e: number) => void,
+  quantityCounter?: boolean;
+  min?: number;
+  max?: number;
+  step?: number;
+  value?: number;
+  onChange?: (e: number) => void;
 }
 
 const NumberInput: React.FC<INumberInput> = (props) => {
@@ -49,23 +49,24 @@ const NumberInput: React.FC<INumberInput> = (props) => {
     setInitialValue(value);
     updateFormValue(name, value);
     onChange && onChange(value);
-  }
+  };
   const handleChange = (e: React.BaseSyntheticEvent) => {
     const value = e.target.value;
     if (isNaN(+value) && value !== '-') {
       e.preventDefault();
     } else valueUpdate(value);
-  }
+  };
   const counterBtnPress = (pressed: string) => {
     if (initialValue === '' || initialValue === undefined) {
       return valueUpdate(min);
     }
-    const newVal = pressed === 'plus' ? +initialValue + step : +initialValue - step;
+    const newVal =
+      pressed === 'plus' ? +initialValue + step : +initialValue - step;
     if (newVal > max) {
       valueUpdate(max);
     } else if (newVal < min) {
-      valueUpdate(min)
-    } else valueUpdate(newVal)
+      valueUpdate(min);
+    } else valueUpdate(newVal);
   };
   const handleDecrease = () => counterBtnPress('minus');
   const handleIncrease = () => counterBtnPress('plus');
@@ -77,14 +78,15 @@ const NumberInput: React.FC<INumberInput> = (props) => {
             variant="ghost"
             shape="circle"
             className={classes.counterBtn}
-            onClick={ handleDecrease }
+            onClick={handleDecrease}
             iconLeft={() => (
               <CountIcon
                 variant="minus"
                 width={toRem(8)}
                 height={toRem(8)}
                 fill={theme.colors.neutralGray.extraDark900}
-              />)}
+              />
+            )}
             data-testid="testMinus"
           />
           <div className={classes.separatorLine}></div>
@@ -92,14 +94,15 @@ const NumberInput: React.FC<INumberInput> = (props) => {
             variant="ghost"
             shape="circle"
             className={classes.counterBtn}
-            onClick={ handleIncrease }
+            onClick={handleIncrease}
             iconLeft={() => (
               <CountIcon
                 variant="plus"
                 width={toRem(8)}
                 height={toRem(8)}
                 fill={theme.colors.neutralGray.extraDark900}
-              />)}
+              />
+            )}
             data-testid="testPlus"
           />
         </div>
@@ -120,7 +123,7 @@ const NumberInput: React.FC<INumberInput> = (props) => {
         prefix={prefix}
         prefixClassName={classNames(classes.prefix, prefixClassName)}
         postfix={postfix}
-        autoComplete='off'
+        autoComplete="off"
         type="number"
         rightIcon={renderRightIcon}
       />

@@ -15,13 +15,16 @@ const TableTooltipButton: React.FC<ITableTooltipButton> = (props) => {
       className={classNames(classes.tooltipTarget)}
       {...rest}
     >
-      <QuestionIcon className={classNames(classes.tooltipTargetIcon, className)} data-testid="questionIcon" />
+      <QuestionIcon
+        className={classNames(classes.tooltipTargetIcon, className)}
+        data-testid="questionIcon"
+      />
     </Tooltip>
   );
 };
 
 TableTooltipButton.defaultProps = {
   color: 'primary',
-}
+};
 
 export default TableTooltipButton;

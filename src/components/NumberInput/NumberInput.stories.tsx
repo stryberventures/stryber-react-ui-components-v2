@@ -25,11 +25,26 @@ export default {
     fullWidth: false,
     clearButton: false,
   },
-  argTypes: buildArgTypes(['name', 'onChange', 'onBlur', 'controlled', 'prefixClassName', 'postfixClassName',
-    'errorClassName', 'hintClassName', 'leftIcon', 'rightIcon', 'mask', 'value', 'clearButton']),
+  argTypes: buildArgTypes([
+    'name',
+    'onChange',
+    'onBlur',
+    'controlled',
+    'prefixClassName',
+    'postfixClassName',
+    'errorClassName',
+    'hintClassName',
+    'leftIcon',
+    'rightIcon',
+    'mask',
+    'value',
+    'clearButton',
+  ]),
 } as ComponentMeta<typeof NumberInput>;
 
-const Template: ComponentStory<typeof NumberInput> = (args) => <NumberInput {...args} />;
+const Template: ComponentStory<typeof NumberInput> = (args) => (
+  <NumberInput {...args} />
+);
 
 export const Default = Template.bind({});
 Default.args = {
@@ -43,8 +58,18 @@ QuantityCounter.args = {
   placeholder: 'Number',
   quantityCounter: true,
   controlled: true,
-  leftIcon: (props) => <Text variant="components1" style={{ [props.dir === 'rtl' ? 'marginLeft' : 'marginRight']: toRem(10), color: defaultTheme.colors.text.secondary }}>₴</Text>,
-  postfix: 'UAH'
+  leftIcon: (props) => (
+    <Text
+      variant="components1"
+      style={{
+        [props.dir === 'rtl' ? 'marginLeft' : 'marginRight']: toRem(10),
+        color: defaultTheme.colors.text.secondary,
+      }}
+    >
+      ₴
+    </Text>
+  ),
+  postfix: 'UAH',
 };
 
 export const Prefix = Template.bind({});

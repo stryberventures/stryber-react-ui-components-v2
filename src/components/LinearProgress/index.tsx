@@ -12,10 +12,16 @@ export interface ILinearProgress extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const LinearProgress: React.FC<ILinearProgress> = (props) => {
-  const { variant = 'indeterminate', className, value = 0, dir = useDir(props.dir), ...rest } = props;
+  const {
+    variant = 'indeterminate',
+    className,
+    value = 0,
+    dir = useDir(props.dir),
+    ...rest
+  } = props;
   const classes = useStyles()({
     ...props,
-    dir
+    dir,
   });
 
   const transform = (value - 100) * (dir === 'rtl' ? -1 : 1);
@@ -24,21 +30,37 @@ const LinearProgress: React.FC<ILinearProgress> = (props) => {
       <span className={classes.progressContainer}>
         {variant === 'indeterminate' ? (
           <>
-            <span className={classNames(classes.progressLine, classes.spinningLine, classes.firstSpinningLine)}/>
-            <span className={classNames(classes.progressLine, classes.spinningLine, classes.secondSpinningLine)} />
+            <span
+              className={classNames(
+                classes.progressLine,
+                classes.spinningLine,
+                classes.firstSpinningLine
+              )}
+            />
+            <span
+              className={classNames(
+                classes.progressLine,
+                classes.spinningLine,
+                classes.secondSpinningLine
+              )}
+            />
           </>
-        )
-          :
-          <span className={classNames(classes.progressLine, classes.determinateLine)} style={{ transform: `translateX(${transform}%)` }} />
-        }
+        ) : (
+          <span
+            className={classNames(
+              classes.progressLine,
+              classes.determinateLine
+            )}
+            style={{ transform: `translateX(${transform}%)` }}
+          />
+        )}
       </span>
     </div>
   );
 };
 
-
 LinearProgress.defaultProps = {
   color: 'primary',
-}
+};
 
 export default LinearProgress;

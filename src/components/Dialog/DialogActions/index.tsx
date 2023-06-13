@@ -1,7 +1,6 @@
-import React  from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import useStyles from './styles';
-
 
 export interface IDialogActions extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
@@ -15,7 +14,7 @@ const DialogActions: React.FC<IDialogActions> = (props) => {
     <div className={classNames(classes.dialogActions, className)}>
       {children}
     </div>
-  )
+  );
 };
 
 export default DialogActions;

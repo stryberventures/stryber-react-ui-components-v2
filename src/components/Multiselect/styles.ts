@@ -1,5 +1,4 @@
 import { createStyles, toRem } from '../Theme';
-import { IMultiselect } from './index';
 
 export default () =>
   createStyles(

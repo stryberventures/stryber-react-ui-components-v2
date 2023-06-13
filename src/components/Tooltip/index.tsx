@@ -7,14 +7,24 @@ import { useDir } from '../Theme';
 import useStyles from './styles';
 import { useOutsideClick } from '../../hooks/useOnOutsideClick';
 
-export interface ITooltip extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
+export interface ITooltip
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   version?: 'light' | 'dark';
   color?: 'primary' | 'secondary';
   noArrow?: boolean;
-  position?: 'top' | 'topStart' | 'topEnd' |
-  'bottom' | 'bottomStart' | 'bottomEnd' |
-  'left' | 'leftStart' | 'leftEnd' |
-  'right' | 'rightStart' | 'rightEnd';
+  position?:
+    | 'top'
+    | 'topStart'
+    | 'topEnd'
+    | 'bottom'
+    | 'bottomStart'
+    | 'bottomEnd'
+    | 'left'
+    | 'leftStart'
+    | 'leftEnd'
+    | 'right'
+    | 'rightStart'
+    | 'rightEnd';
   title?: string | React.ReactElement;
   text?: string | React.ReactElement;
   visible?: boolean;
@@ -35,7 +45,7 @@ const Tooltip: React.FC<ITooltip> = (props) => {
   } = props;
   const classes = useStyles()({
     ...props,
-    dir
+    dir,
   });
   const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -53,11 +63,7 @@ const Tooltip: React.FC<ITooltip> = (props) => {
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
     >
-      <div
-        role="button"
-        tabIndex={0}
-        className={classes.tooltipTarget}
-      >
+      <div role="button" tabIndex={0} className={classes.tooltipTarget}>
         {children}
       </div>
       <CSSTransition
@@ -76,7 +82,7 @@ const Tooltip: React.FC<ITooltip> = (props) => {
           ref={tooltipRef}
           role="tooltip"
           className={classNames(classes.tooltipContainer, classes[position], {
-            [classes.visible]: visible
+            [classes.visible]: visible,
           })}
           {...rest}
         >
@@ -87,31 +93,30 @@ const Tooltip: React.FC<ITooltip> = (props) => {
               className={classNames(classes.elevation, classes[version])}
             >
               <div className={classes.tooltipBox}>
-                {title && typeof title == 'string'
-                  ? (
-                    <Text
-                      variant="components2"
-                      weight="medium"
-                      className={classes.title}
-                      dir={dir}
-                    >
-                      {title}
-                    </Text>
-                  )
-                  : title}
-                {text && typeof text == 'string'
-                  ? (
-                    <Text
-                      variant="components2"
-                      weight="regular"
-                      className={classes.text}
-                      dir={dir}
-                    >
-                      {text}
-                    </Text>
-                  )
-                  : text
-                }
+                {title && typeof title == 'string' ? (
+                  <Text
+                    variant="components2"
+                    weight="medium"
+                    className={classes.title}
+                    dir={dir}
+                  >
+                    {title}
+                  </Text>
+                ) : (
+                  title
+                )}
+                {text && typeof text == 'string' ? (
+                  <Text
+                    variant="components2"
+                    weight="regular"
+                    className={classes.text}
+                    dir={dir}
+                  >
+                    {text}
+                  </Text>
+                ) : (
+                  text
+                )}
               </div>
             </Elevation>
           </div>
@@ -119,7 +124,7 @@ const Tooltip: React.FC<ITooltip> = (props) => {
       </CSSTransition>
     </div>
   );
-}
+};
 
 export default Tooltip;
 
@@ -129,4 +134,4 @@ Tooltip.defaultProps = {
   position: 'top',
   noArrow: false,
   visible: false,
-}
+};

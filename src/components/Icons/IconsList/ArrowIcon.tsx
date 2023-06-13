@@ -1,7 +1,6 @@
 import React from 'react';
 import { IArrowIconVariant } from '../types';
 
-
 const iconVariants = {
   down: ({ fill, ...rest }: React.SVGProps<SVGSVGElement>) => (
     <svg
@@ -57,12 +56,11 @@ const iconVariants = {
   ),
 };
 
-
 interface IArrowIcon extends React.SVGProps<SVGSVGElement> {
-  variant: IArrowIconVariant,
+  variant: IArrowIconVariant;
 }
 
-export default function ArrowIcon ({
+export default function ArrowIcon({
   variant = 'down',
   fill = '#101828',
   width = 24,
@@ -71,4 +69,3 @@ export default function ArrowIcon ({
 }: IArrowIcon) {
   return iconVariants[variant]({ fill, width, height, ...rest });
 }
-

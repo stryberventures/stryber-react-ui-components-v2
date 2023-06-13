@@ -9,8 +9,8 @@ export const buildArgTypes = (keys: string[] = []) => {
     argTypes[key] = {
       table: {
         disable: true,
-      }
-    }
+      },
+    };
   });
 
   argTypes = merge(argTypes, {
@@ -18,16 +18,19 @@ export const buildArgTypes = (keys: string[] = []) => {
       control: {
         type: 'select',
         options: ['inherit', 'ltr', 'rtl'],
-      }
-    }
-  })
+      },
+    },
+  });
 
   return argTypes;
-}
+};
 
 export const replacePaths = (sources: string) => {
   return componentsList.reduce((acc, key) => {
     const regExp = new RegExp(`(\\.{2}\\/)+components/${key}(?![\\w\\d])`, 'g');
-    return acc.replace(regExp, `${name}.${components[key as keyof typeof components]}`)
+    return acc.replace(
+      regExp,
+      `${name}.${components[key as keyof typeof components]}`
+    );
   }, sources);
-}
+};

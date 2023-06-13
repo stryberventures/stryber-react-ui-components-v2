@@ -57,10 +57,10 @@ const iconVariants = {
 };
 
 interface IPointArrowIcon extends React.SVGProps<SVGSVGElement> {
-  variant: IArrowIconVariant,
+  variant: IArrowIconVariant;
 }
 
-export default function PointArrowIcon ({
+export default function PointArrowIcon({
   variant = 'down',
   fill = '#101828',
   width = 16,

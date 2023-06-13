@@ -4,7 +4,6 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import DataTable from './index';
 import Text from '../Text';
 
-
 export const testMetadata = [
   {
     id: 'id',
@@ -18,15 +17,19 @@ export const testMetadata = [
     formatter: (value: string | number) => <Text>{String(value)}</Text>,
     info: {
       title: 'Info Title',
-      text: 'Info text'
-    }
+      text: 'Info text',
+    },
   },
   {
     id: 'status',
     label: 'Status',
     formatter: (value: string | number) => (
       <Text>
-        {value == 'active' ? <span style={{ backgroundColor: 'green' }} /> : <span style={{ backgroundColor: 'red' }} /> }
+        {value == 'active' ? (
+          <span style={{ backgroundColor: 'green' }} />
+        ) : (
+          <span style={{ backgroundColor: 'red' }} />
+        )}
         {value}
       </Text>
     ),
@@ -77,4 +80,3 @@ it('should show info', () => {
   expect(screen.queryByText('Info Title')).toBeInTheDocument();
   expect(screen.queryByText('Info text')).toBeInTheDocument();
 });
-

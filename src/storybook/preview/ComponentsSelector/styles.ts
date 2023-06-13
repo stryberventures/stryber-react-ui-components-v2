@@ -16,7 +16,7 @@ export default createStyles((theme) => ({
     marginBottom: 10,
     fontFamily: theme.font,
     fontWeight: 400,
-    color: theme.colors.text.secondary
+    color: theme.colors.text.secondary,
   },
   codeBoxContainer: {
     width: '100%',
@@ -25,6 +25,6 @@ export default createStyles((theme) => ({
       padding: '11px 1rem',
       lineHeight: '18px',
       fontSize: 16,
-    }
-  }
-}))
+    },
+  },
+}));

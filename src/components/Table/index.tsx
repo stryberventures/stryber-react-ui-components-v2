@@ -26,7 +26,7 @@ const Table: FC<ITable> = (props) => {
   } = props;
   const classes = useStyles()({
     ...props,
-    dir
+    dir,
   });
   return (
     <Component className={classNames(classes.table, className)} {...rest}>

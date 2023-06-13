@@ -2,7 +2,6 @@ import React from 'react';
 import classNames from 'classnames';
 import useStyles from './styles';
 
-
 interface ISelectedItems {
   children: string | React.ReactNode;
   className?: string;

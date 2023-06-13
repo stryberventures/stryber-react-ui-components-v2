@@ -19,7 +19,13 @@ export default {
     disabled: false,
     fullWidth: false,
   },
-  argTypes: buildArgTypes(['icon', 'iconLeft', 'iconRight', 'className', 'children']),
+  argTypes: buildArgTypes([
+    'icon',
+    'iconLeft',
+    'iconRight',
+    'className',
+    'children',
+  ]),
 } as ComponentMeta<typeof Button>;
 
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
@@ -149,4 +155,3 @@ FullWidth.args = {
   children: 'Full Width',
   fullWidth: true,
 };
-

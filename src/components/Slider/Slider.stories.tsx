@@ -35,16 +35,13 @@ const TemplateOutsideInput: ComponentStory<typeof Slider> = (args) => {
     setValue(Number(e.target.value));
   };
   const max = args?.max || 100;
-  useEffect(
-    () => {
-      if (value <= max) {
-        setErrorMessage('');
-      } else {
-        setErrorMessage('max value exceeded');
-      }
-    },
-    [value]
-  );
+  useEffect(() => {
+    if (value <= max) {
+      setErrorMessage('');
+    } else {
+      setErrorMessage('max value exceeded');
+    }
+  }, [value]);
   return (
     <Form>
       <Input
@@ -61,18 +58,17 @@ const TemplateOutsideInput: ComponentStory<typeof Slider> = (args) => {
           {...args}
           value={value}
           controlled
-          onChange={(val) => { setValue(Number(val)); }}
+          onChange={(val) => {
+            setValue(Number(val));
+          }}
         />
       </div>
-      <Button
-        disabled={value > max}
-        type="submit"
-      >
+      <Button disabled={value > max} type="submit">
         Submit
       </Button>
     </Form>
   );
-}
+};
 
 const TemplateRangeOutsideInput: ComponentStory<typeof Slider> = (args) => {
   const minValue = args?.minValue || 0;
@@ -86,14 +82,23 @@ const TemplateRangeOutsideInput: ComponentStory<typeof Slider> = (args) => {
   };
   return (
     <Form>
-      <div style={{ display: 'flex', marginBottom: 20, gap: 10, alignItems: 'flex-start' }}>
+      <div
+        style={{
+          display: 'flex',
+          marginBottom: 20,
+          gap: 10,
+          alignItems: 'flex-start',
+        }}
+      >
         <Input
           name="test"
           label="min"
           controlled
           type="text"
           value={minVal.toString()}
-          errorMessage={minVal > max ? 'min value cannot be higher than max' : undefined}
+          errorMessage={
+            minVal > max ? 'min value cannot be higher than max' : undefined
+          }
           onChange={(e) => setMinVal(Number(e.target.value))}
         />
         <Input
@@ -102,14 +107,19 @@ const TemplateRangeOutsideInput: ComponentStory<typeof Slider> = (args) => {
           controlled
           type="text"
           value={maxVal.toString()}
-          errorMessage={(maxVal > max ? 'max value exceeded' : undefined) || (maxVal < minVal ? 'max value cannot be lower than min' : undefined)}
-          onChange={(e: BaseSyntheticEvent) => setMaxVal(Number(e.target.value))}
+          errorMessage={
+            (maxVal > max ? 'max value exceeded' : undefined) ||
+            (maxVal < minVal ? 'max value cannot be lower than min' : undefined)
+          }
+          onChange={(e: BaseSyntheticEvent) =>
+            setMaxVal(Number(e.target.value))
+          }
         />
         <Button
           type="button"
           size="small"
           style={{ height: 48, marginTop: 25 }}
-          disabled={(minVal > maxVal) || (maxVal > max)}
+          disabled={minVal > maxVal || maxVal > max}
           onClick={applyChanges}
         >
           Apply
@@ -132,20 +142,16 @@ const TemplateRangeOutsideInput: ComponentStory<typeof Slider> = (args) => {
           }}
         />
       </div>
-      <Button
-        type="submit"
-      >
-        Submit
-      </Button>
+      <Button type="submit">Submit</Button>
     </Form>
   );
-}
+};
 
 export const Default = TemplateDefault.bind({});
 Default.args = {
   min: 0,
   max: 10,
-  thumbLabels: 'tooltip'
+  thumbLabels: 'tooltip',
 };
 Default.decorators = [
   (Story) => (
@@ -159,7 +165,7 @@ export const DefaultInputs = Template.bind({});
 DefaultInputs.args = {
   min: 0,
   max: 10,
-  thumbLabels: 'input'
+  thumbLabels: 'input',
 };
 
 DefaultInputs.decorators = [
@@ -188,7 +194,7 @@ RangeOutsideInput.args = {
 export const Range = Template.bind({});
 Range.args = {
   rangeSlider: true,
-  thumbLabels: 'tooltip'
+  thumbLabels: 'tooltip',
 };
 Range.decorators = [
   (Story) => (
@@ -202,7 +208,7 @@ export const CustomStep = Template.bind({});
 CustomStep.args = {
   step: 2,
   showStepMarks: true,
-  thumbLabels: 'tooltip'
+  thumbLabels: 'tooltip',
 };
 CustomStep.decorators = [
   (Story) => (
@@ -216,7 +222,7 @@ export const RangeInputs = Template.bind({});
 RangeInputs.args = {
   rangeSlider: true,
   step: 2,
-  thumbLabels: 'input'
+  thumbLabels: 'input',
 };
 RangeInputs.decorators = [
   (Story) => (
@@ -231,7 +237,7 @@ RangeMinDistance.args = {
   maxValue: 10,
   rangeSlider: true,
   minDistance: 2,
-  thumbLabels: 'tooltip'
+  thumbLabels: 'tooltip',
 };
 RangeMinDistance.decorators = [
   (Story) => (
@@ -246,7 +252,7 @@ StepDotsIndicator.args = {
   min: 0,
   max: 10,
   showStepMarks: true,
-  thumbLabels: 'tooltip'
+  thumbLabels: 'tooltip',
 };
 StepDotsIndicator.decorators = [
   (Story) => (
@@ -276,8 +282,16 @@ WithIcons.args = {
   min: 0,
   max: 10,
   thumbLabels: 'tooltip',
-  leftLabel: <div style={{ height: 16, display: 'flex', alignItems: 'center' }}><CountIcon variant="minus" /></div>,
-  rightLabel: <div style={{ height: 15 }}><CountIcon variant="plus" /></div>
+  leftLabel: (
+    <div style={{ height: 16, display: 'flex', alignItems: 'center' }}>
+      <CountIcon variant="minus" />
+    </div>
+  ),
+  rightLabel: (
+    <div style={{ height: 15 }}>
+      <CountIcon variant="plus" />
+    </div>
+  ),
 };
 WithIcons.decorators = [
   (Story) => (
