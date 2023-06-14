@@ -17,10 +17,34 @@ export default {
     disabled: false,
     fullWidth: false,
   },
-  argTypes: buildArgTypes(['name', 'value', 'className', 'onFocus', 'onChange', 'controlled', 'errorMessage', 'onBlur', 'prefix', 'prefixClassName', 'errorMessage', 'hintClassName', 'leftIcon', 'rightIcon', 'errorClassName', 'mask', 'label', 'variant', 'postfix', 'postfixClassName', 'clearButton']),
+  argTypes: buildArgTypes([
+    'name',
+    'value',
+    'className',
+    'onFocus',
+    'onChange',
+    'controlled',
+    'errorMessage',
+    'onBlur',
+    'prefix',
+    'prefixClassName',
+    'errorMessage',
+    'hintClassName',
+    'leftIcon',
+    'rightIcon',
+    'errorClassName',
+    'mask',
+    'label',
+    'variant',
+    'postfix',
+    'postfixClassName',
+    'clearButton',
+  ]),
 } as ComponentMeta<typeof SearchInput>;
 
-const Template: ComponentStory<typeof SearchInput> = (args) => <SearchInput {...args} />;
+const Template: ComponentStory<typeof SearchInput> = (args) => (
+  <SearchInput {...args} />
+);
 
 export const Primary = Template.bind({});
 
@@ -49,4 +73,3 @@ export const FullWidth = Template.bind({});
 FullWidth.args = {
   fullWidth: true,
 };
-

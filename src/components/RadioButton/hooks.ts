@@ -4,9 +4,16 @@ import { IInputToggleBase } from '../InputToggleLayout/types';
 
 export const useRadioButtonState = (props: IInputToggleBase) => {
   const {
-    name = '', checked, disabled, errorMessage, onChange, onFocus, value,
+    name = '',
+    checked,
+    disabled,
+    errorMessage,
+    onChange,
+    onFocus,
+    value,
   } = props;
-  const { fieldValue, fieldError, updateFormTouched, updateFormValue } = useFormContext(name);
+  const { fieldValue, fieldError, updateFormTouched, updateFormValue } =
+    useFormContext(name);
   const checkedValue = fieldValue === value;
 
   const onChangeWrapper = (e: React.BaseSyntheticEvent) => {
@@ -17,24 +24,24 @@ export const useRadioButtonState = (props: IInputToggleBase) => {
     checked && updateFormValue(name, value);
     onChange && onChange(e);
   };
-  
+
   const onFocusWrapper = (e: React.BaseSyntheticEvent) => {
     const { name } = e.target;
     updateFormTouched(name, true);
     onFocus && onFocus(e);
   };
-  
+
   React.useEffect(() => {
     checked && updateFormValue(name, value, true);
     return () => {
       updateFormValue(name, undefined, true);
     };
   }, []);
-  
+
   return {
     checked: checkedValue || checked,
     errorMessage: fieldError || errorMessage,
     onChange: onChangeWrapper,
     onFocus: onFocusWrapper,
-  }
-}
+  };
+};

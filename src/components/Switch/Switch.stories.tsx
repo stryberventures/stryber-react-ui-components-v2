@@ -18,7 +18,16 @@ export default {
     fullWidth: false,
     alignControl: 'top',
   },
-  argTypes: buildArgTypes(['name', 'value', 'className', 'onFocus', 'onChange', 'controlled', 'size', 'errorMessage']),
+  argTypes: buildArgTypes([
+    'name',
+    'value',
+    'className',
+    'onFocus',
+    'onChange',
+    'controlled',
+    'size',
+    'errorMessage',
+  ]),
 } as ComponentMeta<typeof Switch>;
 
 const Template: ComponentStory<typeof Switch> = (args) => <Switch {...args} />;
@@ -65,7 +74,10 @@ Disabled.args = {
 export const CustomContent = Template.bind({});
 CustomContent.args = {
   label: (
-    <div>Check <a href="https://google.com">terms</a> and <a href="https://google.com">conditions</a></div>
+    <div>
+      Check <a href="https://google.com">terms</a> and{' '}
+      <a href="https://google.com">conditions</a>
+    </div>
   ),
 };
 
@@ -90,4 +102,3 @@ FullWidth.args = {
   label: 'Full Width',
   fullWidth: true,
 };
-

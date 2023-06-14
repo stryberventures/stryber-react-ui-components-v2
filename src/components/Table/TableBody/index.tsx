@@ -11,7 +11,7 @@ const TableBody: React.FC<ITableBody> = ({
   className,
   ...rest
 }) => (
-  <TableContext.Provider value={{ variant:VARIANT_BODY }}>
+  <TableContext.Provider value={{ variant: VARIANT_BODY }}>
     <Component className={className} {...rest}>
       {children}
     </Component>

@@ -1,10 +1,9 @@
-import '@testing-library/jest-dom'
-import * as React from 'react'
-import { fireEvent, render, screen } from '@testing-library/react'
-import Tag from './index'
+import '@testing-library/jest-dom';
+import * as React from 'react';
+import { fireEvent, render, screen } from '@testing-library/react';
+import Tag from './index';
 import LeftArrow from '../../storybook/icons/leftArrow';
 import RightArrow from '../../storybook/icons/rightArrow';
-
 
 it('should be rendered', () => {
   const text = 'Tag';
@@ -30,7 +29,11 @@ it('should have right icon', () => {
 it('should call onSelect', () => {
   const testId = 'tag';
   const onSelect = jest.fn();
-  render(<Tag testId={testId} onSelect={onSelect}>Tag</Tag>);
+  render(
+    <Tag testId={testId} onSelect={onSelect}>
+      Tag
+    </Tag>
+  );
   const tag = screen.getByTestId(testId);
   fireEvent.click(tag);
   expect(onSelect).toHaveBeenCalled();
@@ -49,7 +52,11 @@ it('should not call onSelect when onRemove is called', () => {
   const testId = 'closeIconRound';
   const onSelect = jest.fn();
   const onRemove = jest.fn();
-  render(<Tag onSelect={onSelect} onRemove={onRemove}>Tag</Tag>);
+  render(
+    <Tag onSelect={onSelect} onRemove={onRemove}>
+      Tag
+    </Tag>
+  );
   const removeIcon = screen.getByTestId(testId);
   fireEvent.click(removeIcon);
   expect(onRemove).toHaveBeenCalled();

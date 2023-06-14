@@ -18,26 +18,28 @@ export default {
     (Story, ctx) => {
       // decorator only for Canvas tab
       if (ctx.viewMode === 'story') {
-        return  (
+        return (
           <FullViewportDecorator>
             <Story />
           </FullViewportDecorator>
-        )
+        );
       }
-      return <Story/>
+      return <Story />;
     },
   ],
   argTypes: buildArgTypes(['className', 'requestCode']),
 } as ComponentMeta<typeof PhoneVerificationComponent>;
 
-const Template: ComponentStory<typeof PhoneVerificationComponent> = (...args) => {
+const Template: ComponentStory<typeof PhoneVerificationComponent> = (
+  ...args
+) => {
   return <PhoneVerificationComponent {...args[0]} />;
-}
+};
 
 export const PhoneVerification = Template.bind({});
 PhoneVerification.args = {
   email: 'alina@stryber.com',
-}
+};
 PhoneVerification.parameters = {
   docs: {
     source: {

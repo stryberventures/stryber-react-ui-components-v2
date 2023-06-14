@@ -1,7 +1,6 @@
 import React from 'react';
 import { TCommonIconVariants } from '../types';
 
-
 const iconVariants = {
   default: ({ fill, ...rest }: React.SVGProps<SVGSVGElement>) => (
     <svg
@@ -15,7 +14,6 @@ const iconVariants = {
         fill={fill}
       />
     </svg>
-
   ),
   filled: ({ fill, ...rest }: React.SVGProps<SVGSVGElement>) => (
     <svg
@@ -29,15 +27,14 @@ const iconVariants = {
         fill={fill}
       />
     </svg>
-
   ),
 };
 
 interface IDeleteIcon extends React.SVGProps<SVGSVGElement> {
-  variant?: TCommonIconVariants,
+  variant?: TCommonIconVariants;
 }
 
-export default function DeleteIcon ({
+export default function DeleteIcon({
   variant = 'default',
   fill = '#101828',
   width = 16,

@@ -1,8 +1,11 @@
 import React from 'react';
 import classNames from 'classnames';
 import useStyles from './styles';
-import { useTableContextVariant, VARIANT_BODY, VARIANT_HEAD } from '../TableContext';
-
+import {
+  useTableContextVariant,
+  VARIANT_BODY,
+  VARIANT_HEAD,
+} from '../TableContext';
 
 export interface ITableCell extends React.HTMLAttributes<HTMLTableCellElement> {
   component?: React.ElementType;
@@ -20,14 +23,10 @@ const TableCell: React.FC<ITableCell> = (props) => {
 
   const renderChildren = () => {
     if (variant === VARIANT_HEAD) {
-      return (
-        <div className={classes.headContentWrapper}>
-          {children}
-        </div>
-      )
+      return <div className={classes.headContentWrapper}>{children}</div>;
     }
     return children;
-  }
+  };
 
   return (
     <Component
@@ -35,7 +34,7 @@ const TableCell: React.FC<ITableCell> = (props) => {
         classes.tableCell,
         {
           [classes.tableHeadCell]: variant === VARIANT_HEAD,
-          [classes.tableBodyCell]: variant === VARIANT_BODY
+          [classes.tableBodyCell]: variant === VARIANT_BODY,
         },
         className
       )}
@@ -43,7 +42,7 @@ const TableCell: React.FC<ITableCell> = (props) => {
     >
       {renderChildren()}
     </Component>
-  )
+  );
 };
 
 export default TableCell;

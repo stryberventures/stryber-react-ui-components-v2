@@ -2,7 +2,7 @@ import { DependencyList, EffectCallback, useEffect, useRef } from 'react';
 
 export const useEffectAfterMount = (
   effect: EffectCallback,
-  dependencies: DependencyList | undefined,
+  dependencies: DependencyList | undefined
 ) => {
   const mounted = useRef(true);
 

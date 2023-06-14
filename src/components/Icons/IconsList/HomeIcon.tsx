@@ -1,7 +1,6 @@
 import React from 'react';
 import { TCommonIconVariants } from '../types';
 
-
 const iconVariants = {
   default: ({ fill, ...rest }: React.SVGProps<SVGSVGElement>) => (
     <svg
@@ -32,10 +31,10 @@ const iconVariants = {
 };
 
 interface IHomeIcon extends React.SVGProps<SVGSVGElement> {
-  variant?: TCommonIconVariants,
+  variant?: TCommonIconVariants;
 }
 
-export default function HomeIcon ({
+export default function HomeIcon({
   variant = 'default',
   fill = '#101828',
   width = 16,

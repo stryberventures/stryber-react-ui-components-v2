@@ -25,16 +25,30 @@ export default {
     alignControl: 'top',
     name: 'checkbox',
   },
-  argTypes: { ...buildArgTypes(['onFocus', 'controlled', 'className', 'onChange', 'value', 'title', 'heading', 'name']), label: { type: 'string' } },
+  argTypes: {
+    ...buildArgTypes([
+      'onFocus',
+      'controlled',
+      'className',
+      'onChange',
+      'value',
+      'title',
+      'heading',
+      'name',
+    ]),
+    label: { type: 'string' },
+  },
 } as ComponentMeta<typeof CheckBox>;
 
-const Template: ComponentStory<typeof CheckBox> = (args) => <CheckBox {...args} />;
+const Template: ComponentStory<typeof CheckBox> = (args) => (
+  <CheckBox {...args} />
+);
 
 export const Primary = Template.bind({});
 Primary.args = {
   label: 'Primary',
   hint: 'Advocates for every stakeholder',
-  color: 'primary'
+  color: 'primary',
 };
 
 export const Secondary = Template.bind({});
@@ -77,7 +91,10 @@ Circle.args = {
 export const CustomContent = Template.bind({});
 CustomContent.args = {
   label: (
-    <div style={{ lineHeight: toRem(20) }}>Check <a href="https://google.com">terms</a> and <a href="https://google.com">conditions</a></div>
+    <div style={{ lineHeight: toRem(20) }}>
+      Check <a href="https://google.com">terms</a> and{' '}
+      <a href="https://google.com">conditions</a>
+    </div>
   ),
 };
 
@@ -105,7 +122,7 @@ Multiline.decorators = [
 const validationSchema = yup.object({
   checkbox1: yup.bool().oneOf([true], 'Error message').required(),
   checkbox2: yup.bool().oneOf([true], 'Error message').required(),
-})
+});
 const TemplateWithValidation: ComponentStory<typeof CheckBox> = (args) => {
   const [errorMessage, setErrorMessage] = useState('');
   return (
@@ -124,20 +141,29 @@ const TemplateWithValidation: ComponentStory<typeof CheckBox> = (args) => {
       />
       <CheckBox
         name="checkbox2"
-        label={args.label || (
-          <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-            <Text style={{ marginRight: toRem(4) }} variant="components2">Custom label with </Text>
-            <TextLink target="_blank" href={'#'} variant="body3">text link </TextLink>
-          </div>
-        )}
+        label={
+          args.label || (
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+              }}
+            >
+              <Text style={{ marginRight: toRem(4) }} variant="components2">
+                Custom label with
+              </Text>
+              <TextLink target="_blank" href={'#'} variant="body3">
+                text link
+              </TextLink>
+            </div>
+          )
+        }
         color={errorMessage ? 'error' : 'primary'}
         hint={args.hint}
         errorMessage={args.errorMessage}
       />
-      <Button
-        style={{ marginTop: toRem(32) }}
-        type="submit"
-      >
+      <Button style={{ marginTop: toRem(32) }} type="submit">
         Submit
       </Button>
     </Form>

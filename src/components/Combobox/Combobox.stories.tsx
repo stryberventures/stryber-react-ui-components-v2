@@ -25,18 +25,29 @@ export default {
     disabled: false,
     fullWidth: false,
   },
-  argTypes: buildArgTypes(['name', 'onChange', 'onToggle', 'className', 'value',
-    'rightIcon', 'onOutsideClick', 'inputReadOnly', 'onInputChange', 'contentClassName']),
+  argTypes: buildArgTypes([
+    'name',
+    'onChange',
+    'onToggle',
+    'className',
+    'value',
+    'rightIcon',
+    'onOutsideClick',
+    'inputReadOnly',
+    'onInputChange',
+    'contentClassName',
+  ]),
   parameters: {
     pkg,
   },
 } as ComponentMeta<typeof Combobox>;
 
-const Template: ComponentStory<typeof Combobox> = (args) => <Combobox {...args} />;
+const Template: ComponentStory<typeof Combobox> = (args) => (
+  <Combobox {...args} />
+);
 
 export const Default = Template.bind({});
-Default.args = {
-};
+Default.args = {};
 
 export const Disabled = Template.bind({});
 Disabled.args = {

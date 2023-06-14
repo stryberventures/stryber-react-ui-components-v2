@@ -8,17 +8,26 @@ import { createStyles, toRem, useDir } from '../../components/Theme';
 import DemoLogo from '../../storybook/preview/DemoLogo';
 import * as yup from 'yup';
 
-
 const emailRegEx = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gm;
 const emailErrorMessage = 'Email incorrect';
-const passwordRegEx = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=(?:.*[!@#$%^&*()\-_=+{};:,<.>])+).{8,}$/;
-const passwordErrorMessage = 'The password should have 8 characters, lower and upper case, numbers and special characters.';
-const repeatPasswordErrorMessage = 'Passwords don\'t match';
+const passwordRegEx =
+  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=(?:.*[!@#$%^&*()\-_=+{};:,<.>])+).{8,}$/;
+const passwordErrorMessage =
+  'The password should have 8 characters, lower and upper case, numbers and special characters.';
+const repeatPasswordErrorMessage = "Passwords don't match";
 
 const validationSchema = yup.object().shape({
-  email: yup.string().matches(emailRegEx, emailErrorMessage).required('Email is required'),
-  password: yup.string().matches(passwordRegEx, passwordErrorMessage).required('Password is required'),
-  repeatPassword: yup.string().oneOf([yup.ref('password')], repeatPasswordErrorMessage),
+  email: yup
+    .string()
+    .matches(emailRegEx, emailErrorMessage)
+    .required('Email is required'),
+  password: yup
+    .string()
+    .matches(passwordRegEx, passwordErrorMessage)
+    .required('Password is required'),
+  repeatPassword: yup
+    .string()
+    .oneOf([yup.ref('password')], repeatPasswordErrorMessage),
 });
 
 const SignUpEmail = () => {
@@ -41,18 +50,14 @@ const SignUpEmail = () => {
           >
             Signup
           </Text>
-          <Text
-            variant="body2"
-            align="center"
-            className={classes.description}
-          >
+          <Text variant="body2" align="center" className={classes.description}>
             Add your email and create a secure password, following the criteria:
           </Text>
           <Form
             className={classes.form}
             validationSchema={validationSchema}
             onChange={(formData, { isValid }) => {
-              setDisabled(!isValid)
+              setDisabled(!isValid);
             }}
           >
             <Input
@@ -89,14 +94,9 @@ const SignUpEmail = () => {
               disabled={disabled}
               className={classes.submitButton}
             >
-              Create  Account
+              Create Account
             </Button>
-            <Button
-              fullWidth
-              type="button"
-              shape="circle"
-              variant="ghost"
-            >
+            <Button fullWidth type="button" shape="circle" variant="ghost">
               Login
             </Button>
           </Form>
@@ -104,7 +104,7 @@ const SignUpEmail = () => {
       </div>
     </div>
   );
-}
+};
 
 export default SignUpEmail;
 
@@ -112,109 +112,110 @@ interface IUseStyles {
   dir: string;
 }
 
-const useStyles = () => createStyles<any, IUseStyles>((theme) => ({
-  signUpEmail: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: '100%',
-    padding: `${theme.spacing[48]} 0 ${theme.spacing[80]}`,
-    boxSizing: 'border-box',
-    '*, *:after, *:before': {
-      boxSizing: 'inherit',
-    }
-  },
-  logoWrapper: ({ dir }) => ({
-    display: 'flex',
-    justifyContent: 'flex-end',
-    width: '100%',
-    marginBottom: theme.spacing[64],
-    [dir === 'rtl' ? 'paddingLeft' : 'paddingRight']: theme.spacing[80],
-    boxSizing: 'border-box',
-  }),
-  screen: {
-    display: 'flex',
-    flexGrow: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-  },
-  formContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    maxWidth: toRem(560),
-    width: '100%',
-    height: '100%',
-  },
-  title: {
-    width: '100%',
-    marginBottom: theme.spacing[24],
-    color: theme.colors.text.headline,
-  },
-  description: {
-    width: '100%',
-    marginBottom: theme.spacing[48],
-    color: theme.colors.neutralGray.main500,
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    flexGrow: 1,
-  },
-  emailInput: {
-    position: 'relative',
-    marginBottom: theme.spacing[48],
-    ...hintAndErrorStyles,
-  },
-  passwordInput: {
-    position: 'relative',
-    marginBottom: theme.spacing[80],
-    ...hintAndErrorStyles,
-  },
-  repeatPasswordInput: {
-    position: 'relative',
-    marginBottom: theme.spacing[48],
-    ...hintAndErrorStyles,
-  },
-  submitButton: {
-    marginBottom: theme.spacing[24],
-  },
-  [`@media (max-width: ${theme.breakpoints.md}px)`]: {
+const useStyles = () =>
+  createStyles<any, IUseStyles>((theme) => ({
     signUpEmail: {
-      height: '100vh',
-      padding: [theme.spacing[48], theme.spacing[24], theme.spacing[64]],
+      display: 'flex',
+      flexDirection: 'column',
+      width: '100%',
+      padding: `${theme.spacing[48]} 0 ${theme.spacing[80]}`,
+      boxSizing: 'border-box',
+      '*, *:after, *:before': {
+        boxSizing: 'inherit',
+      },
     },
-    logoWrapper: {
+    logoWrapper: ({ dir }) => ({
+      display: 'flex',
+      justifyContent: 'flex-end',
+      width: '100%',
+      marginBottom: theme.spacing[64],
+      [dir === 'rtl' ? 'paddingLeft' : 'paddingRight']: theme.spacing[80],
+      boxSizing: 'border-box',
+    }),
+    screen: {
+      display: 'flex',
+      flexGrow: 1,
+      alignItems: 'center',
       justifyContent: 'center',
-      paddingRight: 0,
-      marginBottom: theme.spacing[48],
-    },
-    title: {
-      marginBottom: theme.spacing[12],
-      fontSize: toRem(22),
-      lineHeight: toRem(28),
-      textAlign: 'left !important',
-    },
-    description: {
-      marginBottom: theme.spacing[32],
-      textAlign: 'left !important',
+      width: '100%',
     },
     formContainer: {
-      maxWidth: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      maxWidth: toRem(560),
+      width: '100%',
+      height: '100%',
+    },
+    title: {
+      width: '100%',
+      marginBottom: theme.spacing[24],
+      color: theme.colors.text.headline,
+    },
+    description: {
+      width: '100%',
+      marginBottom: theme.spacing[48],
+      color: theme.colors.neutralGray.main500,
+    },
+    form: {
+      display: 'flex',
+      flexDirection: 'column',
+      flexGrow: 1,
     },
     emailInput: {
+      position: 'relative',
       marginBottom: theme.spacing[48],
+      ...hintAndErrorStyles,
     },
     passwordInput: {
-      marginBottom: theme.spacing[96],
+      position: 'relative',
+      marginBottom: theme.spacing[80],
+      ...hintAndErrorStyles,
     },
     repeatPasswordInput: {
-      marginBottom: theme.spacing[12],
+      position: 'relative',
+      marginBottom: theme.spacing[48],
+      ...hintAndErrorStyles,
     },
     submitButton: {
-      marginTop: 'auto',
+      marginBottom: theme.spacing[24],
     },
-  },
-}));
+    [`@media (max-width: ${theme.breakpoints.md}px)`]: {
+      signUpEmail: {
+        height: '100vh',
+        padding: [theme.spacing[48], theme.spacing[24], theme.spacing[64]],
+      },
+      logoWrapper: {
+        justifyContent: 'center',
+        paddingRight: 0,
+        marginBottom: theme.spacing[48],
+      },
+      title: {
+        marginBottom: theme.spacing[12],
+        fontSize: toRem(22),
+        lineHeight: toRem(28),
+        textAlign: 'left !important',
+      },
+      description: {
+        marginBottom: theme.spacing[32],
+        textAlign: 'left !important',
+      },
+      formContainer: {
+        maxWidth: '100%',
+      },
+      emailInput: {
+        marginBottom: theme.spacing[48],
+      },
+      passwordInput: {
+        marginBottom: theme.spacing[96],
+      },
+      repeatPasswordInput: {
+        marginBottom: theme.spacing[12],
+      },
+      submitButton: {
+        marginTop: 'auto',
+      },
+    },
+  }));
 
 const hintAndErrorStyles = {
   '& [class*=hint], & [class*=errorMessage]': {
@@ -222,5 +223,5 @@ const hintAndErrorStyles = {
     left: 0,
     top: '100%',
     width: '100%',
-  }
-}
+  },
+};

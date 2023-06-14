@@ -6,9 +6,9 @@ import { useTheme, useDir } from '../Theme';
 import useStyles from './styles';
 
 interface IErrorMessage {
-  text: string,
-  className?: string,
-  dir?: string,
+  text: string;
+  className?: string;
+  dir?: string;
 }
 
 export const ErrorMessage = (props: IErrorMessage) => {
@@ -31,4 +31,4 @@ export const ErrorMessage = (props: IErrorMessage) => {
       {text}
     </Text>
   );
-}
+};

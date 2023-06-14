@@ -18,18 +18,20 @@ export default {
     (Story, ctx) => {
       // decorator only for Canvas tab
       if (ctx.viewMode === 'story') {
-        return  (
+        return (
           <FullViewportDecorator>
             <Story />
           </FullViewportDecorator>
-        )
+        );
       }
-      return <Story/>
+      return <Story />;
     },
   ],
 } as ComponentMeta<typeof CreatePasswordComponent>;
 
-const Template: ComponentStory<typeof CreatePasswordComponent> = () => <CreatePasswordComponent />;
+const Template: ComponentStory<typeof CreatePasswordComponent> = () => (
+  <CreatePasswordComponent />
+);
 
 export const CreatePassword = Template.bind({});
 CreatePassword.parameters = {

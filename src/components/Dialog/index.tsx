@@ -8,8 +8,7 @@ import DialogActions from './DialogActions';
 import { useDir } from '../Theme';
 import useStyles from './styles';
 
-
-export interface IDialog extends React.HTMLAttributes<HTMLDivElement>{
+export interface IDialog extends React.HTMLAttributes<HTMLDivElement> {
   open: boolean;
   children: React.ReactNode;
   overlayClassName?: string;
@@ -35,16 +34,18 @@ const Dialog = (props: IDialog) => {
   } = props;
   const classes = useStyles()({
     ...props,
-    dir
+    dir,
   });
   const [dialogOpen, setDialogOpen] = useState<boolean>(false);
-  useEffect(() => { setDialogOpen(open) }, [open]);
+  useEffect(() => {
+    setDialogOpen(open);
+  }, [open]);
   const handleClose = () => {
     setDialogOpen(false);
     onClose?.();
   };
   !disableEscPress && useKeyPress(KEYS.esc, handleClose);
-  if(!dialogOpen) return null;
+  if (!dialogOpen) return null;
   return dialogOpen ? (
     <Portal container={modalContainer}>
       <div
@@ -63,7 +64,7 @@ const Dialog = (props: IDialog) => {
       </div>
     </Portal>
   ) : null;
-}
+};
 
 Dialog.Title = DialogTitle;
 Dialog.Content = DialogContent;

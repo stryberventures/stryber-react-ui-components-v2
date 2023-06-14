@@ -7,14 +7,13 @@ import Text from '../Text';
 import pkg from './package.json';
 import { IThemeProvider } from './types';
 
-
 export default {
   title: 'Core/Theme',
   component: ThemeProvider,
   parameters: {
     pkg,
     componentSubtitle: `Component which enables support of custom themes. To use a custom theme wrap your root
-     component with ThemeProvider and pass the theme as a property.`
+     component with ThemeProvider and pass the theme as a property.`,
   },
 } as ComponentMeta<typeof ThemeProvider>;
 
@@ -116,26 +115,34 @@ const blocks: IBlock[] = [
   },
 ];
 
-
-const Template: ComponentStory<typeof ThemeProvider> = ({ theme = defaultTheme, ...args }: IThemeProvider) => {
+const Template: ComponentStory<typeof ThemeProvider> = ({
+  theme = defaultTheme,
+  ...args
+}: IThemeProvider) => {
   const classes = useStyles();
   return (
     <ThemeProvider theme={theme} {...args}>
       {blocks.map(({ label, colors, withSubTitle }) => {
         return (
           <div key={label} className={classes.block}>
-            <Text variant="h4" className={classes.title}>{label}</Text>
+            <Text variant="h4" className={classes.title}>
+              {label}
+            </Text>
             {colors.map((color: ThemeColor) => {
               const themeColors = theme.colors;
-              {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-              {/* @ts-ignore */}
+              {
+                /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
+              }
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              /* @ts-ignore */
               const themeColorsNames = Object.keys(themeColors[color]);
               return (
-                <div
-                  key={color}
-                  className={classes.row}
-                >
-                  {withSubTitle && <Text className={classes.subTitle} variant="body1">{color}</Text>}
+                <div key={color} className={classes.row}>
+                  {withSubTitle && (
+                    <Text className={classes.subTitle} variant="body1">
+                      {color}
+                    </Text>
+                  )}
                   {themeColorsNames.map((colorName) => {
                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     // @ts-ignore
@@ -147,19 +154,30 @@ const Template: ComponentStory<typeof ThemeProvider> = ({ theme = defaultTheme, 
                         style={{ backgroundColor: bgColor }}
                       >
                         <div
-                          className={classNames(
-                            classes.textWrapper,
-                            {
-                              [classes.withBorder]: (color == 'contrast') || (color == 'background' && colorName == 'white')
-                            })}
+                          className={classNames(classes.textWrapper, {
+                            [classes.withBorder]:
+                              color == 'contrast' ||
+                              (color == 'background' && colorName == 'white'),
+                          })}
                         >
                           {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
                           {/* @ts-ignore */}
                           {contrastMapping?.[color]?.[colorName] == 'both' ? (
                             <>
-                              {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-                              {/* @ts-ignore */}
-                              <Text style={{ color: theme.colors.contrast.white }}>AAA/</Text><Text style={{ color: theme.colors.contrast.black }}>AAA</Text>
+                              <Text
+                                /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
+                                /* @ts-ignore */
+                                style={{ color: theme.colors.contrast.white }}
+                              >
+                                AAA/
+                              </Text>
+                              <Text
+                                /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
+                                /* @ts-ignore */
+                                style={{ color: theme.colors.contrast.black }}
+                              >
+                                AAA
+                              </Text>
                             </>
                           ) : (
                             <Text
@@ -167,23 +185,26 @@ const Template: ComponentStory<typeof ThemeProvider> = ({ theme = defaultTheme, 
                               className={classes.cardText}
                               // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                               // @ts-ignore
-                              style={{ color: contrastMapping?.[color]?.[colorName] ? theme?.colors?.contrast?.black : theme?.colors?.contrast?.white }}
+                              style={{
+                                /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
+                                /* @ts-ignore */
+                                color: contrastMapping?.[color]?.[colorName]
+                                  ? theme?.colors?.contrast?.black
+                                  : theme?.colors?.contrast?.white,
+                              }}
                             >
                               AAA
                             </Text>
                           )}
                         </div>
-                        <div className={classes.description}
-                        >
+                        <div className={classes.description}>
                           <Text weight="semiBold" variant="caption2">
                             {colorName}
                           </Text>
-                          <Text variant="caption2">
-                            {bgColor}
-                          </Text>
+                          <Text variant="caption2">{bgColor}</Text>
                         </div>
                       </div>
-                    )
+                    );
                   })}
                 </div>
               );
@@ -193,14 +214,14 @@ const Template: ComponentStory<typeof ThemeProvider> = ({ theme = defaultTheme, 
       })}
     </ThemeProvider>
   );
-}
+};
 
 export const DefaultTheme = Template.bind({});
 DefaultTheme.args = {
-  theme: defaultTheme
+  theme: defaultTheme,
 };
 
-function useStyles () {
+function useStyles() {
   return createStyles((theme) => ({
     block: {
       marginBottom: 48,
@@ -216,7 +237,7 @@ function useStyles () {
       boxSizing: 'border-box',
       '& *': {
         boxSizing: 'inherit',
-      }
+      },
     },
     subTitle: {
       gridColumn: 'span 10',
@@ -227,7 +248,8 @@ function useStyles () {
       flexDirection: 'column',
       justifyContent: 'space-between',
       borderRadius: 8,
-      boxShadow: '0px 8px 12px 6px rgba(102, 112, 133, 0.15), 0px 4px 4px rgba(102, 112, 133, 0.3)',
+      boxShadow:
+        '0px 8px 12px 6px rgba(102, 112, 133, 0.15), 0px 4px 4px rgba(102, 112, 133, 0.3)',
       gridColumn: 'span 1',
       height: 80,
       minWidth: 120,
@@ -242,7 +264,7 @@ function useStyles () {
       flexGrow: 2,
     },
     withBorder: {
-      border: [.5, 'solid', theme.colors.contrast.black]
+      border: [0.5, 'solid', theme.colors.contrast.black],
     },
     cardText: {
       display: 'flex',

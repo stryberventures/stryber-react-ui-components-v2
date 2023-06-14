@@ -1,8 +1,7 @@
-import '@testing-library/jest-dom'
-import * as React from 'react'
-import { render, screen } from '@testing-library/react'
-import Text from './'
-
+import '@testing-library/jest-dom';
+import * as React from 'react';
+import { render, screen } from '@testing-library/react';
+import Text from './';
 
 it('should be rendered', () => {
   const variant = 'h1';
@@ -17,6 +16,3 @@ it('should contain text', () => {
   const textElement = screen.getByText(text);
   expect(textElement).toBeVisible();
 });
-
-
-

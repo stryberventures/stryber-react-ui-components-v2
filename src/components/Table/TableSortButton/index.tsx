@@ -11,7 +11,7 @@ export interface ITableSortButton extends React.HTMLAttributes<HTMLDivElement> {
   active?: boolean;
   direction?: DirectionType;
   color?: 'primary' | 'secondary';
-  onClick?: (event?: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
+  onClick?: (event?: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
 const TableSortButton: React.FC<ITableSortButton> = (props) => {
@@ -26,12 +26,12 @@ const TableSortButton: React.FC<ITableSortButton> = (props) => {
       default:
         return 'up';
     }
-  }
+  };
   return (
     <div
-      className={classNames(classes.sortingIconWrapper,
-        { [classes.sortingIconActive]: active }
-      )}
+      className={classNames(classes.sortingIconWrapper, {
+        [classes.sortingIconActive]: active,
+      })}
       role="button"
       tabIndex={0}
       onKeyDown={(e) => e.key == KEYS.enter && onClick && onClick()}
@@ -49,6 +49,6 @@ const TableSortButton: React.FC<ITableSortButton> = (props) => {
 
 TableSortButton.defaultProps = {
   color: 'primary',
-}
+};
 
 export default TableSortButton;

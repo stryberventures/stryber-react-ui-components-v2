@@ -20,14 +20,16 @@ export default {
   argTypes: buildArgTypes(['iconLeft', 'iconRight', 'className']),
 } as ComponentMeta<typeof TextLink>;
 
-const Template: ComponentStory<typeof TextLink> = (args) => <TextLink {...args} />;
+const Template: ComponentStory<typeof TextLink> = (args) => (
+  <TextLink {...args} />
+);
 
 export const Primary = Template.bind({});
 Primary.args = {
   children: 'Text link',
   href: 'https://www.google.com',
   target: '_blank',
-  iconLeft: <HomeIcon />
+  iconLeft: <HomeIcon />,
 };
 
 export const Secondary = Template.bind({});
@@ -51,7 +53,7 @@ IconLeft.args = {
   children: 'Text link',
   href: 'https://www.bbc.com',
   target: '_blank',
-  iconLeft: <LoadIcon />
+  iconLeft: <LoadIcon />,
 };
 
 export const IconRight = Template.bind({});
@@ -59,5 +61,5 @@ IconRight.args = {
   children: 'Text link',
   href: 'https://www.cnn.com/d',
   target: '_blank',
-  iconRight: <CalendarIcon variant={'filled'} />
+  iconRight: <CalendarIcon variant={'filled'} />,
 };

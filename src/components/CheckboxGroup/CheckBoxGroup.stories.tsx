@@ -12,7 +12,14 @@ export default {
   parameters: {
     pkg,
   },
-  argTypes: buildArgTypes(['onFocus', 'controlled', 'className', 'onChange', 'name', 'heading']),
+  argTypes: buildArgTypes([
+    'onFocus',
+    'controlled',
+    'className',
+    'onChange',
+    'name',
+    'heading',
+  ]),
 } as ComponentMeta<typeof CheckboxGroup>;
 
 const Template: ComponentStory<typeof CheckboxGroup> = (args) => {
@@ -22,30 +29,27 @@ const Template: ComponentStory<typeof CheckboxGroup> = (args) => {
   };
   return (
     <>
-      <Form
-        initialValues={{ firstName: '', colors: [] }}
-        onSubmit={onSubmit}
-      >
+      <Form initialValues={{ firstName: '', colors: [] }} onSubmit={onSubmit}>
         <CheckboxGroup {...args} />
       </Form>
       <div style={{ height: toRem(48) }} />
     </>
   );
-}
+};
 
 const checkboxes = [
   { label: 'Orange', name: 'orange', checked: true },
   { label: 'Red', name: 'red' },
   { label: 'Yellow', name: 'yellow' },
   { label: 'Green', name: 'green', checked: true },
-]
+];
 
 export const ColorPrimary = Template.bind({});
 ColorPrimary.args = {
   label: 'Colors',
   name: 'colors',
   checkboxes: checkboxes.map((item, i) =>
-    (i == 0 || i == 1) ? { ...item, disabled: true } : item
+    i == 0 || i == 1 ? { ...item, disabled: true } : item
   ),
   color: 'primary',
 };
@@ -55,7 +59,10 @@ ColorSecondary.args = {
   label: 'Colors',
   name: 'colors',
   checkboxes: checkboxes.map((item, i: number) =>
-    (i == 0) ? { ...item, disabled: false, hint: 'Hint text' } : { ...item, hint: 'Hint text', }),
+    i == 0
+      ? { ...item, disabled: false, hint: 'Hint text' }
+      : { ...item, hint: 'Hint text' }
+  ),
   color: 'secondary',
 };
 
@@ -65,10 +72,10 @@ Error.args = {
   name: 'colors',
   errorMessage: 'Error message',
   checkboxes: checkboxes.map((item: TChildCheckbox, i: number) => ({
-    ...(i == 0) ? { ...item, disabled: false, checked: true } : item,
+    ...(i == 0 ? { ...item, disabled: false, checked: true } : item),
     errorMessage: 'Error message',
   })),
-  color: 'error'
+  color: 'error',
 };
 
 export const Disabled = Template.bind({});

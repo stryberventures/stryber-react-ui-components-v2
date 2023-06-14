@@ -12,41 +12,43 @@ export interface IEmailVerificationProps {
 }
 
 const validationSchema = yup.object().shape({
-  code: yup.string().length(6, 'Code must have 6 digits').required('Code is required'),
+  code: yup
+    .string()
+    .length(6, 'Code must have 6 digits')
+    .required('Code is required'),
 });
 
 const HOURS_VALID = 24;
 const RESEND_CODE_IN_SECONDS = 30;
 
-const EmailVerification = ({ email = '', }: IEmailVerificationProps) => {
+const EmailVerification = ({ email = '' }: IEmailVerificationProps) => {
   const dir = useDir();
   const classes = useStyles()({ dir });
   const [disabledSubmit, setDisabledSubmit] = useState(true);
   const [disabledResendCode, setDisabledResendCode] = useState(false);
   const [resendCodeIn, setResendCodeIn] = useState<number>(0);
-  function requestCode () {
+  function requestCode() {
     setDisabledResendCode(true);
     setResendCodeIn(RESEND_CODE_IN_SECONDS);
   }
-  function updateResendCodeIn () {
+  function updateResendCodeIn() {
     setResendCodeIn((prevState) => prevState - 1);
   }
-  useEffect(
-    () => {
-      let interval: NodeJS.Timer | undefined = undefined;
-      if (disabledResendCode) {
-        interval = setInterval(updateResendCodeIn, 1000)
-      }
-      if (!!interval && !disabledResendCode) {
-        clearInterval(interval);
-      }
-      return () => {
-        !!interval && clearInterval(interval);
-      }
-    },
-    [disabledResendCode]
-  );
-  useEffect(() => { if (resendCodeIn == 0) setDisabledResendCode(false); }, [resendCodeIn]);
+  useEffect(() => {
+    let interval: NodeJS.Timer | undefined = undefined;
+    if (disabledResendCode) {
+      interval = setInterval(updateResendCodeIn, 1000);
+    }
+    if (!!interval && !disabledResendCode) {
+      clearInterval(interval);
+    }
+    return () => {
+      !!interval && clearInterval(interval);
+    };
+  }, [disabledResendCode]);
+  useEffect(() => {
+    if (resendCodeIn == 0) setDisabledResendCode(false);
+  }, [resendCodeIn]);
   return (
     <div className={classes.emailVerification}>
       <div className={classes.logoWrapper}>
@@ -62,18 +64,14 @@ const EmailVerification = ({ email = '', }: IEmailVerificationProps) => {
         >
           Email Verification
         </Text>
-        <Text
-          variant="body2"
-          align="center"
-          className={classes.description}
-        >
+        <Text variant="body2" align="center" className={classes.description}>
           {`Please enter the 6-digit verification code that was sent to ${email}. The code is valid for ${HOURS_VALID} hours.`}
         </Text>
         <Form
           className={classes.form}
           validationSchema={validationSchema}
           onChange={(formData, { isValid }) => {
-            setDisabledSubmit(!isValid)
+            setDisabledSubmit(!isValid);
           }}
         >
           <Input
@@ -94,7 +92,9 @@ const EmailVerification = ({ email = '', }: IEmailVerificationProps) => {
             disabled={disabledResendCode}
             onClick={requestCode}
           >
-            {`Send code again ${resendCodeIn ? `in ${resendCodeIn} seconds` : ''}`}
+            {`Send code again ${
+              resendCodeIn ? `in ${resendCodeIn} seconds` : ''
+            }`}
           </Button>
           <Button
             fullWidth
@@ -109,7 +109,7 @@ const EmailVerification = ({ email = '', }: IEmailVerificationProps) => {
       </div>
     </div>
   );
-}
+};
 
 export default EmailVerification;
 
@@ -117,95 +117,96 @@ interface IUseStyles {
   dir: string;
 }
 
-const useStyles = () => createStyles<any, IUseStyles>((theme) => ({
-  emailVerification: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    width: '100%',
-    padding: `${theme.spacing[48]} 0 ${theme.spacing[80]}`,
-    boxSizing: 'border-box',
-    '*, *:after, *:before': {
-      boxSizing: 'inherit',
-    }
-  },
-  logoWrapper: ({ dir }) => ({
-    display: 'flex',
-    justifyContent: 'flex-end',
-    width: '100%',
-    marginBottom: theme.spacing[48],
-    [dir === 'rtl' ? 'paddingLeft' : 'paddingRight']: theme.spacing[80],
-    boxSizing: 'border-box',
-  }),
-  formWrapper: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    maxWidth: toRem(560),
-  },
-  title: {
-    width: '100%',
-    marginBottom: theme.spacing[24],
-    color: theme.colors.text.headline,
-  },
-  description: {
-    width: '100%',
-    marginBottom: theme.spacing[48],
-    color: theme.colors.neutralGray.main500,
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: '100%',
-  },
-  codeInput: {
-    marginBottom: toRem(120),
-    position: 'relative',
-    ...hintAndErrorStyles,
-  },
-  requestCodeButton: {
-    alignSelf: 'flex-start',
-    marginBottom: theme.spacing[24],
-  },
-  submitButton: {},
-  [`@media (max-width: ${theme.breakpoints.md}px)`]: {
+const useStyles = () =>
+  createStyles<any, IUseStyles>((theme) => ({
     emailVerification: {
-      height: '100vh',
-      padding: [theme.spacing[48], theme.spacing[24], theme.spacing[96]],
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      width: '100%',
+      padding: `${theme.spacing[48]} 0 ${theme.spacing[80]}`,
+      boxSizing: 'border-box',
+      '*, *:after, *:before': {
+        boxSizing: 'inherit',
+      },
     },
-    logoWrapper: {
-      justifyContent: 'center',
-      paddingRight: 0,
-      marginBottom: theme.spacing[80],
-    },
+    logoWrapper: ({ dir }) => ({
+      display: 'flex',
+      justifyContent: 'flex-end',
+      width: '100%',
+      marginBottom: theme.spacing[48],
+      [dir === 'rtl' ? 'paddingLeft' : 'paddingRight']: theme.spacing[80],
+      boxSizing: 'border-box',
+    }),
     formWrapper: {
-      height: '100%',
-      alignItems: 'flex-start',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      maxWidth: toRem(560),
     },
     title: {
-      marginBottom: theme.spacing[16],
-      textAlign: 'left !important',
+      width: '100%',
+      marginBottom: theme.spacing[24],
+      color: theme.colors.text.headline,
     },
     description: {
-      textAlign: 'left !important',
-      marginBottom: theme.spacing[32],
+      width: '100%',
+      marginBottom: theme.spacing[48],
+      color: theme.colors.neutralGray.main500,
     },
     form: {
-      height: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      width: '100%',
     },
     codeInput: {
-      marginBottom: theme.spacing[12],
+      marginBottom: toRem(120),
+      position: 'relative',
+      ...hintAndErrorStyles,
     },
     requestCodeButton: {
-      alignSelf: 'center',
-      marginTop: 'auto',
-      marginBottom: theme.spacing[12],
+      alignSelf: 'flex-start',
+      marginBottom: theme.spacing[24],
     },
-    submitButton: {
-      marginBottom: 0
+    submitButton: {},
+    [`@media (max-width: ${theme.breakpoints.md}px)`]: {
+      emailVerification: {
+        height: '100vh',
+        padding: [theme.spacing[48], theme.spacing[24], theme.spacing[96]],
+      },
+      logoWrapper: {
+        justifyContent: 'center',
+        paddingRight: 0,
+        marginBottom: theme.spacing[80],
+      },
+      formWrapper: {
+        height: '100%',
+        alignItems: 'flex-start',
+      },
+      title: {
+        marginBottom: theme.spacing[16],
+        textAlign: 'left !important',
+      },
+      description: {
+        textAlign: 'left !important',
+        marginBottom: theme.spacing[32],
+      },
+      form: {
+        height: '100%',
+      },
+      codeInput: {
+        marginBottom: theme.spacing[12],
+      },
+      requestCodeButton: {
+        alignSelf: 'center',
+        marginTop: 'auto',
+        marginBottom: theme.spacing[12],
+      },
+      submitButton: {
+        marginBottom: 0,
+      },
     },
-  },
-}));
+  }));
 
 const hintAndErrorStyles = {
   '& [class*=hint], & [class*=errorMessage]': {
@@ -213,5 +214,5 @@ const hintAndErrorStyles = {
     left: 0,
     top: '100%',
     width: '100%',
-  }
-}
+  },
+};

@@ -4,13 +4,13 @@ import Text from '../Text';
 import { useDir } from '../Theme';
 import useStyles from './styles';
 
-export interface IChip extends React.HTMLAttributes<HTMLDivElement>{
-  children?: string,
-  iconLeft?: React.ReactNode | ((p: IChip) => React.ReactNode),
-  iconRight?: React.ReactNode | ((p: IChip) => React.ReactNode),
-  variant?: 'contained' | 'outlined',
-  color?: 'primary' | 'secondary' | 'success' | 'default',
-  disabled?: boolean,
+export interface IChip extends React.HTMLAttributes<HTMLDivElement> {
+  children?: string;
+  iconLeft?: React.ReactNode | ((p: IChip) => React.ReactNode);
+  iconRight?: React.ReactNode | ((p: IChip) => React.ReactNode);
+  variant?: 'contained' | 'outlined';
+  color?: 'primary' | 'secondary' | 'success' | 'default';
+  disabled?: boolean;
 }
 
 const Chip: React.FC<IChip> = (props) => {
@@ -29,21 +29,24 @@ const Chip: React.FC<IChip> = (props) => {
     ...props,
     dir,
   });
-  const iconLeft = typeof pIconLeft === 'function'
-    ? pIconLeft({ ...props, dir })
-    : pIconLeft;
-  const iconRight = typeof pIconRight === 'function'
-    ? pIconRight({ ...props, dir })
-    : pIconRight;
+  const iconLeft =
+    typeof pIconLeft === 'function' ? pIconLeft({ ...props, dir }) : pIconLeft;
+  const iconRight =
+    typeof pIconRight === 'function'
+      ? pIconRight({ ...props, dir })
+      : pIconRight;
 
   return (
-    <div className={classNames(classes.chip, classes[variant], className, {
-      [classes.disabled]: disabled,
-      [classes.iconLeft]: !!iconLeft && children,
-      [classes.iconRight]: !!iconRight && children,
-      [classes.iconOnly]: !children,
-      [classes.default]: color === 'default',
-    })} {...rest}>
+    <div
+      className={classNames(classes.chip, classes[variant], className, {
+        [classes.disabled]: disabled,
+        [classes.iconLeft]: !!iconLeft && children,
+        [classes.iconRight]: !!iconRight && children,
+        [classes.iconOnly]: !children,
+        [classes.default]: color === 'default',
+      })}
+      {...rest}
+    >
       {iconLeft}
       {children && (
         <Text
@@ -57,11 +60,11 @@ const Chip: React.FC<IChip> = (props) => {
       {iconRight}
     </div>
   );
-}
+};
 
 export default Chip;
 
 Chip.defaultProps = {
   color: 'primary',
   variant: 'contained',
-}
+};

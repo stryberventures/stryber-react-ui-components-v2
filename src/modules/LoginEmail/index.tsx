@@ -10,12 +10,14 @@ import { createStyles, toRem, useDir } from '../../components/Theme';
 import DemoLogo from '../../storybook/preview/DemoLogo';
 import * as yup from 'yup';
 
-
 const emailRegEx = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gm;
 const emailErrorMessage = 'Email incorrect';
 
 const validationSchema = yup.object().shape({
-  email: yup.string().matches(emailRegEx, emailErrorMessage).required('Email is required'),
+  email: yup
+    .string()
+    .matches(emailRegEx, emailErrorMessage)
+    .required('Email is required'),
   password: yup.string().required('Password is required'),
 });
 
@@ -43,7 +45,7 @@ const LoginEmail = () => {
             className={classes.form}
             validationSchema={validationSchema}
             onChange={(formData, { isValid }) => {
-              setDisabled(!isValid)
+              setDisabled(!isValid);
             }}
           >
             <Input
@@ -77,21 +79,16 @@ const LoginEmail = () => {
             >
               Login
             </Button>
-            <TextLink
-              href={'#'}
-              className={classes.textLink}
-            >
+            <TextLink href={'#'} className={classes.textLink}>
               Forgot Password?
             </TextLink>
-            <TextLink href={'#'}>
-              New user? Register here
-            </TextLink>
+            <TextLink href={'#'}>New user? Register here</TextLink>
           </Form>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default LoginEmail;
 
@@ -99,108 +96,109 @@ interface IUseStyles {
   dir: string;
 }
 
-const useStyles = () => createStyles<any, IUseStyles>((theme) => ({
-  loginEmail: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: '100%',
-    padding: `${theme.spacing[48]} 0 ${theme.spacing[80]}`,
-    boxSizing: 'border-box',
-    '*, *:after, *:before': {
-      boxSizing: 'inherit',
-    }
-  },
-  logoWrapper: ({ dir }) => ({
-    display: 'flex',
-    justifyContent: 'flex-end',
-    width: '100%',
-    marginBottom: theme.spacing[64],
-    [dir === 'rtl' ? 'paddingLeft' : 'paddingRight']: theme.spacing[80],
-    boxSizing: 'border-box',
-  }),
-  screen: {
-    display: 'flex',
-    flexGrow: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-  },
-  formContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    maxWidth: toRem(560),
-    width: '100%',
-    height: '100%',
-  },
-  title: {
-    width: '100%',
-    marginBottom: theme.spacing[48],
-    color: theme.colors.text.headline,
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    flexGrow: 1,
-  },
-  emailInput: {
-    position: 'relative',
-    marginBottom: theme.spacing[48],
-    ...hintAndErrorStyles,
-  },
-  passwordInput: {
-    position: 'relative',
-    marginBottom: theme.spacing[48],
-    ...hintAndErrorStyles,
-  },
-  checkboxInput: {
-    alignSelf: 'flex-start',
-    marginBottom: theme.spacing[48],
-    position: 'relative',
-    ...hintAndErrorStyles,
-  },
-  submitButton: {
-    marginBottom: theme.spacing[40],
-  },
-  textLink: {
-    marginBottom: theme.spacing[40],
-  },
-  [`@media (max-width: ${theme.breakpoints.md}px)`]: {
+const useStyles = () =>
+  createStyles<any, IUseStyles>((theme) => ({
     loginEmail: {
-      height: '100vh',
-      padding: [theme.spacing[48], theme.spacing[24], theme.spacing[64]],
+      display: 'flex',
+      flexDirection: 'column',
+      width: '100%',
+      padding: `${theme.spacing[48]} 0 ${theme.spacing[80]}`,
+      boxSizing: 'border-box',
+      '*, *:after, *:before': {
+        boxSizing: 'inherit',
+      },
     },
-    logoWrapper: {
+    logoWrapper: ({ dir }) => ({
+      display: 'flex',
+      justifyContent: 'flex-end',
+      width: '100%',
+      marginBottom: theme.spacing[64],
+      [dir === 'rtl' ? 'paddingLeft' : 'paddingRight']: theme.spacing[80],
+      boxSizing: 'border-box',
+    }),
+    screen: {
+      display: 'flex',
+      flexGrow: 1,
+      alignItems: 'center',
       justifyContent: 'center',
-      paddingRight: 0,
-      marginBottom: theme.spacing[48],
-    },
-    title: {
-      fontSize: toRem(22),
-      lineHeight: toRem(28),
-      textAlign: 'left !important',
+      width: '100%',
     },
     formContainer: {
-      maxWidth: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      maxWidth: toRem(560),
+      width: '100%',
+      height: '100%',
+    },
+    title: {
+      width: '100%',
+      marginBottom: theme.spacing[48],
+      color: theme.colors.text.headline,
+    },
+    form: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      flexGrow: 1,
     },
     emailInput: {
+      position: 'relative',
       marginBottom: theme.spacing[48],
+      ...hintAndErrorStyles,
     },
     passwordInput: {
-      marginBottom: theme.spacing[64],
+      position: 'relative',
+      marginBottom: theme.spacing[48],
+      ...hintAndErrorStyles,
     },
     checkboxInput: {
-      marginBottom: theme.spacing[12],
+      alignSelf: 'flex-start',
+      marginBottom: theme.spacing[48],
+      position: 'relative',
+      ...hintAndErrorStyles,
     },
     submitButton: {
-      marginTop: 'auto',
-      marginBottom: theme.spacing[16],
+      marginBottom: theme.spacing[40],
     },
     textLink: {
-      marginBottom: theme.spacing[48],
+      marginBottom: theme.spacing[40],
     },
-  },
-}));
+    [`@media (max-width: ${theme.breakpoints.md}px)`]: {
+      loginEmail: {
+        height: '100vh',
+        padding: [theme.spacing[48], theme.spacing[24], theme.spacing[64]],
+      },
+      logoWrapper: {
+        justifyContent: 'center',
+        paddingRight: 0,
+        marginBottom: theme.spacing[48],
+      },
+      title: {
+        fontSize: toRem(22),
+        lineHeight: toRem(28),
+        textAlign: 'left !important',
+      },
+      formContainer: {
+        maxWidth: '100%',
+      },
+      emailInput: {
+        marginBottom: theme.spacing[48],
+      },
+      passwordInput: {
+        marginBottom: theme.spacing[64],
+      },
+      checkboxInput: {
+        marginBottom: theme.spacing[12],
+      },
+      submitButton: {
+        marginTop: 'auto',
+        marginBottom: theme.spacing[16],
+      },
+      textLink: {
+        marginBottom: theme.spacing[48],
+      },
+    },
+  }));
 
 const hintAndErrorStyles = {
   '& [class*=hint], & [class*=errorMessage]': {
@@ -208,5 +206,5 @@ const hintAndErrorStyles = {
     left: 0,
     top: '100%',
     width: '100%',
-  }
-}
+  },
+};

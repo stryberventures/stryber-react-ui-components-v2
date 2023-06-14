@@ -31,9 +31,9 @@ const SearchInput: React.FC<ISearchInput> = (props) => {
       label=""
     />
   );
-}
+};
 SearchInput.defaultProps = {
   color: 'primary',
-}
+};
 
 export default SearchInput;

@@ -5,18 +5,19 @@ import useStyles from './styles';
 import { useDir } from '../Theme';
 import { KEYS } from '../../hooks/useKeyPress';
 
-export interface IButton extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'size'>{
-  children?: string,
-  size?: 'mini' | 'small' | 'medium' | 'large',
-  shape?: 'square' | 'round' | 'circle',
-  variant?: 'contained' | 'outlined' | 'ghost',
-  color?: 'primary' | 'secondary' | 'error',
-  disabled?: boolean,
-  className?: string,
-  fullWidth?: boolean,
-  icon?: React.ReactNode | ((p: IIconButton) => React.ReactNode),
-  iconLeft?: React.ReactNode | ((p: IIconButton) => React.ReactNode),
-  iconRight?: React.ReactNode | ((p: IIconButton) => React.ReactNode),
+export interface IButton
+  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'size'> {
+  children?: string;
+  size?: 'mini' | 'small' | 'medium' | 'large';
+  shape?: 'square' | 'round' | 'circle';
+  variant?: 'contained' | 'outlined' | 'ghost';
+  color?: 'primary' | 'secondary' | 'error';
+  disabled?: boolean;
+  className?: string;
+  fullWidth?: boolean;
+  icon?: React.ReactNode | ((p: IIconButton) => React.ReactNode);
+  iconLeft?: React.ReactNode | ((p: IIconButton) => React.ReactNode);
+  iconRight?: React.ReactNode | ((p: IIconButton) => React.ReactNode);
 }
 interface IIconButton extends IButton {
   classIcon: string;
@@ -40,28 +41,35 @@ const Button: React.FC<IButton> = (props) => {
   } = props;
   const classes = useStyles()({
     ...props,
-    dir
+    dir,
   });
-  const icon = typeof pIcon === 'function'
-    ? pIcon({ ...props, dir, classIcon: classes.icon })
-    : pIcon;
-  const iconLeft = typeof pIconLeft === 'function'
-    ? pIconLeft({ ...props, dir, classIcon: classes.icon })
-    : pIconLeft;
-  const iconRight = typeof pIconRight === 'function'
-    ? pIconRight({ ...props, dir, classIcon: classes.icon })
-    : pIconRight;
+  const icon =
+    typeof pIcon === 'function'
+      ? pIcon({ ...props, dir, classIcon: classes.icon })
+      : pIcon;
+  const iconLeft =
+    typeof pIconLeft === 'function'
+      ? pIconLeft({ ...props, dir, classIcon: classes.icon })
+      : pIconLeft;
+  const iconRight =
+    typeof pIconRight === 'function'
+      ? pIconRight({ ...props, dir, classIcon: classes.icon })
+      : pIconRight;
   const textClasses = useTextStyles();
   const btnRef: React.Ref<HTMLButtonElement> = useRef(null);
-  const handleOnClick = (e: React.MouseEvent<HTMLButtonElement> | KeyboardEvent<HTMLButtonElement>) => {
+  const handleOnClick = (
+    e: React.MouseEvent<HTMLButtonElement> | KeyboardEvent<HTMLButtonElement>
+  ) => {
     !disabled && onClick?.(e as React.MouseEvent<HTMLButtonElement>);
-  }
+  };
   return (
     <button
       ref={btnRef}
       className={classNames(
         classes.button,
-        (size == 'mini') ? textClasses.buttonLabelMini : textClasses.buttonLabelLarge,
+        size == 'mini'
+          ? textClasses.buttonLabelMini
+          : textClasses.buttonLabelLarge,
         textClasses.bold,
         classes[variant],
         classes[size],
@@ -72,7 +80,11 @@ const Button: React.FC<IButton> = (props) => {
         },
         className
       )}
-      onClick={(e: React.MouseEvent<HTMLButtonElement> | KeyboardEvent<HTMLButtonElement>) => {
+      onClick={(
+        e:
+          | React.MouseEvent<HTMLButtonElement>
+          | KeyboardEvent<HTMLButtonElement>
+      ) => {
         btnRef?.current?.blur();
         handleOnClick(e);
       }}
@@ -88,7 +100,7 @@ const Button: React.FC<IButton> = (props) => {
       {iconRight}
     </button>
   );
-}
+};
 
 export default Button;
 
@@ -99,4 +111,4 @@ Button.defaultProps = {
   variant: 'contained',
   disabled: false,
   fullWidth: false,
-}
+};

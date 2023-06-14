@@ -32,23 +32,23 @@ const Template: ComponentStory<typeof LinearProgress> = (args) => {
     };
   }, []);
 
-  return <LinearProgress value={progress} {...args} />
+  return <LinearProgress value={progress} {...args} />;
 };
 
 export const IndeterminateFlat = Template.bind({});
 
 export const IndeterminateRound = Template.bind({});
 IndeterminateRound.args = {
-  shape: 'round'
-}
+  shape: 'round',
+};
 
 export const DeterminateFlat = Template.bind({});
 DeterminateFlat.args = {
   variant: 'determinate',
-}
+};
 
 export const DeterminateRound = Template.bind({});
 DeterminateRound.args = {
   variant: 'determinate',
-  shape: 'round'
-}
+  shape: 'round',
+};

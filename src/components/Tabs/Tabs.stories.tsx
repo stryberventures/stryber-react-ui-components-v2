@@ -30,7 +30,7 @@ const defaultTabs: ITab[] = [
   },
   {
     id: 'documents',
-    icon: <DocumentIcon/>,
+    icon: <DocumentIcon />,
     label: 'Documents',
     active: false,
     disabled: false,
@@ -58,14 +58,8 @@ const Template: ComponentStory<typeof Tabs> = (args) => {
   const onChange = (tabId: ITab['id']) => {
     setTabs(tabs.map((tab) => ({ ...tab, active: tab.id == tabId })));
   };
-  return (
-    <Tabs
-      {...args}
-      tabs={tabs}
-      onChange={onChange}
-    />
-  );
-}
+  return <Tabs {...args} tabs={tabs} onChange={onChange} />;
+};
 
 export const Default = Template.bind({});
 
@@ -76,4 +70,4 @@ Fitted.args = {
     ...tab,
     icon: null,
   })),
-}
+};

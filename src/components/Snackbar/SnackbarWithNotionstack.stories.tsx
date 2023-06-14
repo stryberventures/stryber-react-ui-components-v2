@@ -11,20 +11,20 @@ import { SnackbarWithNotionstackCode } from '../../storybook/preview/Snackbar/Wi
 declare module 'notistack' {
   interface VariantOverrides {
     default: {
-      description?: string
+      description?: string;
     };
     warning: {
-      description?: string
-    }
+      description?: string;
+    };
     info: {
-      description?: string
-    }
+      description?: string;
+    };
     success: {
-      description?: string
-    }
+      description?: string;
+    };
     error: {
-      description?: string
-    }
+      description?: string;
+    };
   }
 }
 
@@ -37,44 +37,53 @@ export default {
   argTypes: buildArgTypes(['dir', 'className', 'style', 'onClose']),
   decorators: [
     (Story) => (
-      <div style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <div
+        style={{
+          width: '100%',
+          height: '100vh',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
         <Story />
       </div>
     ),
     (Story) => {
       const classes = useStyles()();
       return (
-        <SnackbarProvider Components={{
-          default: SnackbarContent,
-          success: SnackbarContent,
-          error: SnackbarContent,
-          info: SnackbarContent,
-          warning: SnackbarContent,
-        }}
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-        classes={{
-          containerRoot: classes.container,
-        }}
+        <SnackbarProvider
+          Components={{
+            default: SnackbarContent,
+            success: SnackbarContent,
+            error: SnackbarContent,
+            info: SnackbarContent,
+            warning: SnackbarContent,
+          }}
+          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+          classes={{
+            containerRoot: classes.container,
+          }}
         >
-          <Story/>
+          <Story />
         </SnackbarProvider>
-      )
-    }
+      );
+    },
   ],
 } as ComponentMeta<typeof SnackbarContent>;
 
-const Template: ComponentStory<typeof SnackbarContent> = ({ message,variant, description }) => {
+const Template: ComponentStory<typeof SnackbarContent> = ({
+  message,
+  variant,
+  description,
+}) => {
   const { enqueueSnackbar } = useSnackbar();
 
-
   return (
-    <Button onClick={() => enqueueSnackbar(
-      message,
-      { variant, description })
-    }>
+    <Button onClick={() => enqueueSnackbar(message, { variant, description })}>
       Show snackbar
     </Button>
-  )
+  );
 };
 
 export const Default = Template.bind({});
@@ -90,12 +99,16 @@ Default.parameters = {
   },
 };
 
-const useStyles = () => createStyles(() => ({
-  container: {
-    width: '90vw',
-    maxWidth: 400,
-    '& > div': {
-      width: '100%',
-    }
-  }
-}),{ internalUsage: true });
+const useStyles = () =>
+  createStyles(
+    () => ({
+      container: {
+        width: '90vw',
+        maxWidth: 400,
+        '& > div': {
+          width: '100%',
+        },
+      },
+    }),
+    { internalUsage: true }
+  );

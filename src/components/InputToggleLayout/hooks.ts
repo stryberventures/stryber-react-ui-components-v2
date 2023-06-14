@@ -5,10 +5,19 @@ import { IInputToggleBaseControlled } from './types';
 
 export const useCheckedState = (props: IInputToggleBaseControlled) => {
   const {
-    name = '', checked, disabled, errorMessage, onChange, onFocus, controlled,
+    name = '',
+    checked,
+    disabled,
+    errorMessage,
+    onChange,
+    onFocus,
+    controlled,
   } = props;
-  const { fieldValue, fieldError, updateFormTouched, updateFormValue } = useFormContext(name);
-  const [internalValue, setInternalValue] = React.useState<boolean>(fieldValue || checked);
+  const { fieldValue, fieldError, updateFormTouched, updateFormValue } =
+    useFormContext(name);
+  const [internalValue, setInternalValue] = React.useState<boolean>(
+    fieldValue || checked
+  );
 
   const onChangeWrapper = (e: React.BaseSyntheticEvent) => {
     if (disabled) {
@@ -19,10 +28,9 @@ export const useCheckedState = (props: IInputToggleBaseControlled) => {
     onChange && onChange(e);
   };
 
-  useEffect(
-    () => { !controlled && updateFormValue(name, internalValue); },
-    [internalValue]
-  );
+  useEffect(() => {
+    !controlled && updateFormValue(name, internalValue);
+  }, [internalValue]);
 
   const onFocusWrapper = (e: React.BaseSyntheticEvent) => {
     const { name } = e.target;
@@ -42,5 +50,5 @@ export const useCheckedState = (props: IInputToggleBaseControlled) => {
     errorMessage: fieldError || errorMessage,
     onChange: onChangeWrapper,
     onFocus: onFocusWrapper,
-  }
-}
+  };
+};

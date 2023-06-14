@@ -3,11 +3,12 @@ import Table, {
   TableBody,
   TableCell,
   TableContainer,
-  TableHead, TablePagination,
+  TableHead,
+  TablePagination,
   TableRow,
   TableSection,
   TableSortButton,
-  TableTooltipButton
+  TableTooltipButton,
 } from '../../../../components/Table';
 import CheckBox from '../../../../components/CheckBox';
 import { IOption } from '../../../../components/Select';
@@ -27,7 +28,7 @@ function createData(
   calories: number,
   fat: number,
   carbs: number,
-  protein: number,
+  protein: number
 ): Data {
   return {
     name,
@@ -68,17 +69,20 @@ type Order = 'asc' | 'desc';
 
 function getComparator<Key extends keyof any>(
   order: Order,
-  orderBy: Key,
+  orderBy: Key
 ): (
-    a: { [key in Key]: number | string },
-    b: { [key in Key]: number | string },
-  ) => number {
+  a: { [key in Key]: number | string },
+  b: { [key in Key]: number | string }
+) => number {
   return order === 'desc'
     ? (a, b) => descendingComparator(a, b, orderBy)
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) {
+function stableSort<T>(
+  array: readonly T[],
+  comparator: (a: T, b: T) => number
+) {
   const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
   stabilizedThis.sort((a, b) => {
     const order = comparator(a[0], b[0]);
@@ -136,7 +140,10 @@ const DEFAULT_ROWS_PER_PAGE = 5;
 
 interface EnhancedTableProps {
   numSelected: number;
-  onRequestSort: (event: React.MouseEvent<unknown>, newOrderBy: keyof Data) => void;
+  onRequestSort: (
+    event: React.MouseEvent<unknown>,
+    newOrderBy: keyof Data
+  ) => void;
   onSelectAllClick: (event: any) => void;
   order: Order;
   orderBy: string;
@@ -144,12 +151,17 @@ interface EnhancedTableProps {
 }
 
 function EnhancedTableHead(props: EnhancedTableProps) {
-  const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
-        props;
-  const createSortHandler =
-        (newOrderBy: keyof Data) => (event: any) => {
-          onRequestSort(event, newOrderBy);
-        };
+  const {
+    onSelectAllClick,
+    order,
+    orderBy,
+    numSelected,
+    rowCount,
+    onRequestSort,
+  } = props;
+  const createSortHandler = (newOrderBy: keyof Data) => (event: any) => {
+    onRequestSort(event, newOrderBy);
+  };
 
   return (
     <TableHead>
@@ -164,12 +176,14 @@ function EnhancedTableHead(props: EnhancedTableProps) {
           />
         </TableCell>
         {headCells.map((headCell) => (
-          <TableCell
-            key={headCell.id}
-          >
+          <TableCell key={headCell.id}>
             {headCell.label}
             <TableTooltipButton title="Tooltip title" text="Tooltip text" />
-            <TableSortButton active={orderBy === headCell.id} direction={orderBy === headCell.id ? order : 'asc'} onClick={createSortHandler(headCell.id)} />
+            <TableSortButton
+              active={orderBy === headCell.id}
+              direction={orderBy === headCell.id ? order : 'asc'}
+              onClick={createSortHandler(headCell.id)}
+            />
           </TableCell>
         ))}
       </TableRow>
@@ -189,12 +203,9 @@ const TableCheckboxSorting = () => {
   React.useEffect(() => {
     let rowsOnMount = stableSort(
       rows,
-      getComparator(DEFAULT_ORDER, DEFAULT_ORDER_BY),
+      getComparator(DEFAULT_ORDER, DEFAULT_ORDER_BY)
     );
-    rowsOnMount = rowsOnMount.slice(
-      0,
-      DEFAULT_ROWS_PER_PAGE,
-    );
+    rowsOnMount = rowsOnMount.slice(0, DEFAULT_ROWS_PER_PAGE);
 
     setVisibleRows(rowsOnMount);
   }, []);
@@ -206,14 +217,17 @@ const TableCheckboxSorting = () => {
       setOrder(toggledOrder);
       setOrderBy(newOrderBy);
 
-      const sortedRows = stableSort(rows, getComparator(toggledOrder, newOrderBy));
+      const sortedRows = stableSort(
+        rows,
+        getComparator(toggledOrder, newOrderBy)
+      );
       const updatedRows = sortedRows.slice(
         page * rowsPerPage,
-        page * rowsPerPage + rowsPerPage,
+        page * rowsPerPage + rowsPerPage
       );
       setVisibleRows(updatedRows);
     },
-    [order, orderBy, page, rowsPerPage],
+    [order, orderBy, page, rowsPerPage]
   );
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -239,7 +253,7 @@ const TableCheckboxSorting = () => {
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
         selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
+        selected.slice(selectedIndex + 1)
       );
     }
 
@@ -253,11 +267,11 @@ const TableCheckboxSorting = () => {
       const sortedRows = stableSort(rows, getComparator(order, orderBy));
       const updatedRows = sortedRows.slice(
         newPage * rowsPerPage,
-        newPage * rowsPerPage + rowsPerPage,
+        newPage * rowsPerPage + rowsPerPage
       );
       setVisibleRows(updatedRows);
     },
-    [order, orderBy, rowsPerPage],
+    [order, orderBy, rowsPerPage]
   );
 
   const handleChangeRowsPerPage = React.useCallback(
@@ -268,83 +282,86 @@ const TableCheckboxSorting = () => {
       setPage(0);
 
       const sortedRows = stableSort(rows, getComparator(order, orderBy));
-      const updatedRows = sortedRows.slice(
-        0,
-        updatedRowsPerPage,
-      );
+      const updatedRows = sortedRows.slice(0, updatedRowsPerPage);
       setVisibleRows(updatedRows);
     },
-    [order, orderBy],
+    [order, orderBy]
   );
 
   const isSelected = (name: string) => selected.indexOf(name) !== -1;
 
-  return (<TableContainer>
-    <TableSection>
-      <Text variant="body1">Table Name</Text>
-    </TableSection>
-    {!!selected.length && <TableSection>
-      <Text className={classes.selectedText} variant="components1">{selected.length} Items Selected</Text>
-    </TableSection>}
-    <Table>
-      <EnhancedTableHead
-        numSelected={selected.length}
-        order={order}
-        orderBy={orderBy}
-        onSelectAllClick={handleSelectAllClick}
-        onRequestSort={handleRequestSort}
-        rowCount={rows.length}
+  return (
+    <TableContainer>
+      <TableSection>
+        <Text variant="body1">Table Name</Text>
+      </TableSection>
+      {!!selected.length && (
+        <TableSection>
+          <Text className={classes.selectedText} variant="components1">
+            {selected.length} Items Selected
+          </Text>
+        </TableSection>
+      )}
+      <Table>
+        <EnhancedTableHead
+          numSelected={selected.length}
+          order={order}
+          orderBy={orderBy}
+          onSelectAllClick={handleSelectAllClick}
+          onRequestSort={handleRequestSort}
+          rowCount={rows.length}
+        />
+        <TableBody>
+          {visibleRows
+            ? visibleRows.map((row) => {
+                const isItemSelected = isSelected(row.name);
+
+                return (
+                  <TableRow
+                    onClick={(event) => handleClick(event, row.name)}
+                    role="checkbox"
+                    aria-checked={isItemSelected}
+                    tabIndex={-1}
+                    key={row.name}
+                    selected={isItemSelected}
+                  >
+                    <TableCell>
+                      <CheckBox
+                        color="primary"
+                        checked={isItemSelected}
+                        controlled
+                        onChange={(event) => handleClick(event, row.name)}
+                      />
+                    </TableCell>
+                    <TableCell>{row.name}</TableCell>
+                    <TableCell>{row.calories}</TableCell>
+                    <TableCell>{row.fat}</TableCell>
+                    <TableCell>{row.carbs}</TableCell>
+                    <TableCell>{row.protein}</TableCell>
+                  </TableRow>
+                );
+              })
+            : null}
+        </TableBody>
+      </Table>
+      <TablePagination
+        rowsPerPageOptions={[5, 10, 25]}
+        count={rows.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
       />
-      <TableBody>
-        {visibleRows
-          ? visibleRows.map((row) => {
-            const isItemSelected = isSelected(row.name);
-
-            return (
-              <TableRow
-                onClick={(event) => handleClick(event, row.name)}
-                role="checkbox"
-                aria-checked={isItemSelected}
-                tabIndex={-1}
-                key={row.name}
-                selected={isItemSelected}
-              >
-                <TableCell>
-                  <CheckBox
-                    color="primary"
-                    checked={isItemSelected}
-                    controlled
-                    onChange={(event) => handleClick(event, row.name)}
-                  />
-                </TableCell>
-                <TableCell>{row.name}</TableCell>
-                <TableCell>{row.calories}</TableCell>
-                <TableCell>{row.fat}</TableCell>
-                <TableCell>{row.carbs}</TableCell>
-                <TableCell>{row.protein}</TableCell>
-              </TableRow>
-            );
-          })
-          : null}
-      </TableBody>
-    </Table>
-    <TablePagination
-      rowsPerPageOptions={[5, 10, 25]}
-      count={rows.length}
-      rowsPerPage={rowsPerPage}
-      page={page}
-      onPageChange={handleChangePage}
-      onRowsPerPageChange={handleChangeRowsPerPage}
-    />
-  </TableContainer>
+    </TableContainer>
   );
-}
+};
 
-const useStyles = () => createStyles((theme) => ({
-  selectedText: {
-    color: theme.colors.text.secondary,
-  }
-}));
+const useStyles = () =>
+  createStyles((theme) => ({
+    selectedText: {
+      color: theme.colors.text.secondary,
+    },
+  }));
 
 export default TableCheckboxSorting;
 
