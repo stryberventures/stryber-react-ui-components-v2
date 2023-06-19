@@ -1,12 +1,12 @@
 {
-  "name": "@stryberventures/gaia-react-native.snackbar",
-  "version": "0.1.0",
+  "name": "@stryberventures/gaia-react.snackbar",
+  "version": "0.1.1",
   "peerDependencies": {
-    "react-native": ">=0.68.0",
     "react": ">=17.0.2",
-    "react-transition-group": "^4.4.5",
-    "@stryberventures/gaia-react-native.theme": ">=0.1.0",
-    "@stryberventures/gaia-react-native.text": ">=0.1.0",
-    "@stryberventures/gaia-react.icons": ">=0.1.0"
+    "classnames": ">=2.0.0",
+    "react-transition-group": ">=4.4.5",
+    "@stryberventures/gaia-react.theme": ">=0.1.1",
+    "@stryberventures/gaia-react.icons": ">=0.1.1",
+    "@stryberventures/gaia-react.text": ">=0.1.1"
   }
 }
