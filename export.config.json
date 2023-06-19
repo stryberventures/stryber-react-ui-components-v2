@@ -35,6 +35,7 @@
     "Table": "table",
     "LinearProgress": "linear-progress",
     "CircularProgress": "circular-progress",
-    "Avatar": "avatar"
+    "Avatar": "avatar",
+    "Snackbar": "snackbar"
   }
 }
