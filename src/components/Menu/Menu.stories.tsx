@@ -3,8 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Menu, { MenuItem, MenuItemText, MenuSearch } from './index';
 import pkg from './package.json';
 import { buildArgTypes } from '../../storybook/utils';
-import { IListItem } from '../List/ListItem';
-import { toRem } from '../Theme/utils';
+import Avatar from '../Avatar';
 
 export default {
   title: 'Components/Menu',
@@ -26,7 +25,8 @@ export default {
   ]),
 } as ComponentMeta<typeof Menu>;
 
-const menuItems: IListItem[] = new Array(6).fill({});
+const menuItems = new Array(6).fill({});
+
 const Template: ComponentStory<typeof Menu & typeof MenuItem> = ({
   leftContent,
   ...rest
@@ -39,21 +39,7 @@ const Template: ComponentStory<typeof Menu & typeof MenuItem> = ({
     ))}
   </Menu>
 );
-const leftContent = (
-  <div
-    style={{
-      width: toRem(18),
-      height: toRem(18),
-      backgroundColor: 'grey',
-      borderRadius: '50%',
-    }}
-  />
-);
-
-export const Default = Template.bind({});
-Default.args = {
-  size: 'large',
-};
+const leftContent = <Avatar />;
 
 export const WithSearch = () => {
   const [search, setSearch] = React.useState('');

@@ -3,17 +3,19 @@ import Text from '../../Text';
 import classNames from 'classnames';
 import useStyles from './styles';
 
-interface IListItemText {
+export interface IListItemText {
   label?: string;
   primary: string;
   secondary?: string;
+  className?: string;
+  disabled?: boolean;
 }
 
 const ListItemText: React.FC<IListItemText> = (props) => {
-  const classes = useStyles()();
-  const { label, primary, secondary } = props;
+  const classes = useStyles()(props);
+  const { label, primary, secondary, className } = props;
   return (
-    <div>
+    <div className={className}>
       {label && (
         <Text
           variant="components2"

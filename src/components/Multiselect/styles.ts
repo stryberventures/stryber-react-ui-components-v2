@@ -45,6 +45,11 @@ export default () =>
         gap: toRem(4),
         flexWrap: 'wrap',
       },
+      multiselectLabel: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: toRem(8),
+      },
     }),
     { internalUsage: true }
   );

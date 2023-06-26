@@ -2,21 +2,12 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import List, { ListItem, ListItemText } from './index';
 import pkg from './package.json';
-import Switch from '../../components/Switch';
+import Switch from '../Switch';
+import Avatar from '../Avatar';
 import { IListItem } from './ListItem';
 import { buildArgTypes } from '../../storybook/utils';
-import { toRem } from '../Theme';
 
-const leftContent = (
-  <div
-    style={{
-      width: toRem(40),
-      height: toRem(40),
-      backgroundColor: 'grey',
-      borderRadius: '50%',
-    }}
-  />
-);
+const leftContent = <Avatar />;
 const rightContent = <Switch />;
 
 const listItems: IListItem[] = new Array(4).fill({});

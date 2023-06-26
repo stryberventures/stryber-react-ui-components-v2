@@ -1,22 +1,29 @@
 import { createStyles } from '../../Theme';
+import { IListItemText } from './index';
 
 export default () =>
   createStyles(
     (theme) => ({
-      label: {
-        color: theme.colors.text.secondary,
+      label: ({ disabled }: IListItemText) => ({
+        color: disabled
+          ? theme.colors.text.disabled
+          : theme.colors.text.secondary,
         fontSize: 12,
         height: 14,
-      },
-      primary: {
-        color: theme.colors.text.headline,
+      }),
+      primary: ({ disabled }: IListItemText) => ({
+        color: disabled
+          ? theme.colors.text.disabled
+          : theme.colors.text.headline,
         height: 24,
         fontWeight: 400,
-      },
-      secondary: {
-        color: theme.colors.text.secondary,
+      }),
+      secondary: ({ disabled }: IListItemText) => ({
+        color: disabled
+          ? theme.colors.text.disabled
+          : theme.colors.text.secondary,
         height: 20,
-      },
+      }),
       listItemText: {
         display: 'flex',
         alignItems: 'center',

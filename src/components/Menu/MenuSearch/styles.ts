@@ -27,12 +27,9 @@ export default () =>
           },
         },
       },
-      searchIcon: {
-        minWidth: toRem(14.75),
-        width: toRem(14.75),
-        minHeight: toRem(14),
-        height: toRem(14.75),
-      },
+      searchIcon: ({ dir }: IMenuSearch) => ({
+        [dir === 'rtl' ? 'marginLeft' : 'marginRight']: toRem(8),
+      }),
       inputContainer: {
         borderBottom: `${toRem(1)} solid ${theme.colors.neutralGray.light200}`,
       },
