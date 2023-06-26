@@ -35,12 +35,6 @@ const ListItem: React.FC<IListItem> = (props) => {
     dir,
   });
 
-  const handleClick = (e: React.BaseSyntheticEvent) => {
-    if (!disabled && onClick) {
-      onClick(e);
-    }
-  };
-
   return (
     <div
       className={classNames(
@@ -53,7 +47,7 @@ const ListItem: React.FC<IListItem> = (props) => {
         classes[size!],
         className
       )}
-      onClick={handleClick}
+      onClick={onClick}
       {...rest}
       data-testid="test-list-item"
     >
