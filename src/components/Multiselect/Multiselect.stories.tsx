@@ -3,6 +3,19 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Multiselect from './index';
 import pkg from './package.json';
 import { buildArgTypes } from '../../storybook/utils';
+import { QuestionIcon } from '../Icons';
+
+const icon = <QuestionIcon />;
+
+const options = [
+  { value: 1, label: 'One' },
+  { value: 2, label: 'Two' },
+  { value: 3, label: 'Three' },
+  { value: 4, label: 'Four' },
+  { value: 5, label: 'Five' },
+  { value: 6, label: 'Six' },
+  { value: 7, label: 'Seven' },
+];
 
 export default {
   title: 'Components/Multiselect',
@@ -13,15 +26,7 @@ export default {
   args: {
     label: 'Multiselect',
     placeholder: 'Select an option',
-    options: [
-      { value: 1, label: 'One' },
-      { value: '2', label: 'Two' },
-      { value: '3', label: 'Three' },
-      { value: '4', label: 'Four' },
-      { value: '5', label: 'Five' },
-      { value: '6', label: 'Six' },
-      { value: '7', label: 'Seven' },
-    ],
+    options,
     color: 'primary',
     inputVariant: 'labelOutside',
     disabled: false,
@@ -33,6 +38,7 @@ export default {
     'className',
     'onToggle',
     'value',
+    'inputVariant',
   ]),
 } as ComponentMeta<typeof Multiselect>;
 
@@ -66,4 +72,10 @@ export const FullWidth = Template.bind({});
 FullWidth.args = {
   placeholder: 'Full Width',
   fullWidth: true,
+};
+
+export const WithIcon = Template.bind({});
+WithIcon.args = {
+  placeholder: 'With Icon',
+  options: options.map((option) => ({ ...option, icon })),
 };

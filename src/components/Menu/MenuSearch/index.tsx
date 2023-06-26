@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { SearchIcon } from '../../Icons';
 import Input from '../../Input';
 import { toRem, useDir } from '../../Theme';
+import { useTheme } from '../../Theme';
 import useStyles from './styles';
 
 export interface IMenuSearch {
@@ -19,6 +20,7 @@ const MenuSearch: React.FC<IMenuSearch> = (props) => {
     placeholder = 'Search',
     value,
   } = props;
+  const { theme } = useTheme();
   const classes = useStyles()(props);
   return (
     <div
@@ -30,10 +32,10 @@ const MenuSearch: React.FC<IMenuSearch> = (props) => {
         variant="labelOutside"
         leftIcon={
           <SearchIcon
+            width={toRem(20)}
+            height={toRem(20)}
+            fill={theme.colors.text.secondary}
             className={classes.searchIcon}
-            style={{
-              [dir === 'rtl' ? 'marginLeft' : 'marginRight']: toRem(8),
-            }}
           />
         }
         clearButton

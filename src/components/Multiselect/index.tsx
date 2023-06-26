@@ -5,11 +5,13 @@ import { MenuItem, MenuSearch } from '../Menu';
 import CheckBox from '../CheckBox';
 import { useDir } from '../Theme';
 import Tag from '../Tag';
+import Text from '../Text';
 import { useMultiselect } from './hooks';
 
 export interface IOption {
   value: string | number;
   label: string;
+  icon?: React.ReactElement;
 }
 export interface IMultiselect extends Omit<IDropdownBase, 'onChange'> {
   options: IOption[];
@@ -103,7 +105,14 @@ const Multiselect: React.FC<IMultiselect> = (props) => {
               selectedOptions.map((option) => option).indexOf(option.label) >= 0
             }
             onChange={onCheckboxChange}
-            label={option.label}
+            label={
+              <div className={classes.multiselectLabel}>
+                {option.icon}
+                <Text variant="components2" weight="regular">
+                  {option.label}
+                </Text>
+              </div>
+            }
             dir={dir}
           />
         </MenuItem>

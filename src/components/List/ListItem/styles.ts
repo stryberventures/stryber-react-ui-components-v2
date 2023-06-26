@@ -18,7 +18,6 @@ export default () =>
       },
       disabled: {
         pointerEvents: 'none',
-        opacity: '0.4',
         background: theme.colors.background.white,
       },
       listItemDivider: {

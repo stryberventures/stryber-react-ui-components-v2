@@ -12,7 +12,6 @@ export interface IListItem extends React.HTMLAttributes<HTMLDivElement> {
   disabled?: boolean;
   selected?: boolean;
   testID?: string;
-  customItem?: React.ReactNode;
   className?: string;
 }
 
@@ -25,7 +24,6 @@ const ListItem: React.FC<IListItem> = (props) => {
     size,
     divider,
     disabled,
-    customItem,
     dir = useDir(props.dir),
     children,
     className,

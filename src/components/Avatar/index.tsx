@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { ProfileIcon } from '../Icons';
 import useStyles from './styles';
-import { useDir } from '../Theme';
+import { toRem, useDir } from '../Theme';
 
 export interface IAvatar {
   size?: 'small' | 'medium' | 'large';
@@ -51,7 +51,10 @@ const Avatar: React.FC<IAvatar> = (props) => {
             alt={alt}
           />
         ) : (
-          <ProfileIcon width={iconSizeMap[size!]} />
+          <ProfileIcon
+            width={toRem(iconSizeMap[size!])}
+            height={toRem(iconSizeMap[size!])}
+          />
         )}
       </div>
       {!!status && (

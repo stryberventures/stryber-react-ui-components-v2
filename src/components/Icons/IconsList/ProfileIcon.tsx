@@ -41,8 +41,8 @@ interface IProfileIcon extends React.SVGProps<SVGSVGElement> {
 export default function ProfileIcon({
   variant = 'default',
   fill = '#101828',
-  width = 16,
-  height = 16,
+  width = 24,
+  height = 24,
   ...rest
 }: IProfileIcon) {
   return iconVariants[variant]({ fill, width, height, ...rest });
