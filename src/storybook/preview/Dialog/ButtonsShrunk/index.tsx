@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Dialog from '../../../../components/Dialog';
 import Button from '../../../../components/Button';
-
 
 const DialogButtonsShrunkExample = () => {
   const [open, setOpen] = useState(false);
@@ -17,11 +16,10 @@ const DialogButtonsShrunkExample = () => {
     <>
       <Button onClick={openModal}>Open modal</Button>
       <Dialog open={open} onClose={closeModal}>
-        <Dialog.Title>
-          Dialog Title
-        </Dialog.Title>
+        <Dialog.Title>Dialog Title</Dialog.Title>
         <Dialog.Text>
-          Hello. This is subtext. It can be pretty long and more then 2 sentences depending on the project.
+          Hello. This is subtext. It can be pretty long and more then 2
+          sentences depending on the project.
         </Dialog.Text>
         <Dialog.Actions layout="shrunk">
           <Button onClick={confirm} variant="ghost" size="small">

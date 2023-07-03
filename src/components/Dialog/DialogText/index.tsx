@@ -1,7 +1,7 @@
 import React from 'react';
 import Text from '../../Text';
-import useStyles from "./styles";
-import classNames from "classnames";
+import useStyles from './styles';
+import classNames from 'classnames';
 
 export interface IDialogText extends React.HTMLAttributes<HTMLElement> {
   children: string;

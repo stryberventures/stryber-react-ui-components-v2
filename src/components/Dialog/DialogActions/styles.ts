@@ -13,13 +13,13 @@ export default createStyles(
       alignItems: 'center',
       '& > button': {
         flex: 1,
-      }
+      },
     },
     layoutShrunk: {
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'flex-end',
-    }
+    },
   }),
   { internalUsage: true }
 );

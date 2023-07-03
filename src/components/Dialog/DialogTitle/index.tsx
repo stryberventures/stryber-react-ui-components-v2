@@ -22,7 +22,9 @@ const DialogTitle: React.FC<IDialogTitle> = (props) => {
       {children}
     </Text>
   ) : (
-    <div className={classNames(classes.dialogTitleBlock, className)}>{children}</div>
+    <div className={classNames(classes.dialogTitleBlock, className)}>
+      {children}
+    </div>
   );
 };
 

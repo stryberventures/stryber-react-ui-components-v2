@@ -26,7 +26,11 @@ export default () =>
         boxSizing: 'border-box',
         padding: `${toRem(20)} ${toRem(16)}`,
         borderRadius: toRem(12),
-        boxShadow: `0px ${toRem(8)} ${toRem(8)} ${toRem(-4)} rgba(16, 24, 40, 0.04), 0px ${toRem(20)} ${toRem(24)} ${toRem(-4)} rgba(16, 24, 40, 0.10)`,
+        boxShadow: `0px ${toRem(8)} ${toRem(8)} ${toRem(
+          -4
+        )} rgba(16, 24, 40, 0.04), 0px ${toRem(20)} ${toRem(24)} ${toRem(
+          -4
+        )} rgba(16, 24, 40, 0.10)`,
         backgroundColor: theme.colors.background.white,
       }),
     }),

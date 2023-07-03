@@ -12,14 +12,16 @@ const DialogActions: React.FC<IDialogActions> = (props) => {
   const { children, className, layout = 'column' } = props;
   const classes = useStyles();
   return (
-    <div className={classNames(
-      classes.dialogActions,
-      {
-        [classes.layoutRow]: layout === 'row',
-        [classes.layoutShrunk]: layout === 'shrunk',
-      },
-      className
-    )}>
+    <div
+      className={classNames(
+        classes.dialogActions,
+        {
+          [classes.layoutRow]: layout === 'row',
+          [classes.layoutShrunk]: layout === 'shrunk',
+        },
+        className
+      )}
+    >
       {children}
     </div>
   );
