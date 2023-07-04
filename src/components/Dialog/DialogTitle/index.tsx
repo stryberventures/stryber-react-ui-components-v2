@@ -1,13 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
-import Text from '../../Text';
+import Text, { IText } from '../../Text';
 import useStyles from './styles';
 
-export interface IDialogTitle extends React.HTMLAttributes<HTMLElement> {
-  children: string | React.ReactNode;
-  align?: 'left' | 'center' | 'right';
-  className?: string;
-}
+export interface IDialogTitle extends IText {}
 
 const DialogTitle: React.FC<IDialogTitle> = (props) => {
   const { children, className, align = 'left' } = props;
