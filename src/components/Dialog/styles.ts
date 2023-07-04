@@ -10,21 +10,28 @@ export default () =>
         justifyContent: 'center',
         width: '100vw',
         height: '100vh',
+        boxSizing: 'border-box',
+        padding: toRem(16),
         position: 'fixed',
         top: 0,
         left: 0,
         zIndex: 100,
+        backgroundColor: 'rgba(102, 112, 133, 0.8)',
       },
       dialog: (props: IDialog) => ({
         direction: props.dir || 'inherit',
         display: 'flex',
         flexDirection: 'column',
-        maxWidth: toRem(500),
-        padding: toRem(24),
+        maxWidth: toRem(350),
+        boxSizing: 'border-box',
+        padding: `${toRem(20)} ${toRem(16)}`,
+        borderRadius: toRem(12),
+        boxShadow: `0px ${toRem(8)} ${toRem(8)} ${toRem(
+          -4
+        )} rgba(16, 24, 40, 0.04), 0px ${toRem(20)} ${toRem(24)} ${toRem(
+          -4
+        )} rgba(16, 24, 40, 0.10)`,
         backgroundColor: theme.colors.background.white,
-        borderRadius: toRem(4),
-        boxShadow: `0px ${toRem(2)} ${toRem(11)} rgba(0, 0, 0, .37)`,
-        fontFamily: theme.font,
       }),
     }),
     { internalUsage: true }

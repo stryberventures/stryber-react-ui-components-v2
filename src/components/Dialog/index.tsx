@@ -3,8 +3,9 @@ import classNames from 'classnames';
 import { useKeyPress, KEYS } from '../../hooks/useKeyPress';
 import Portal, { TPortalContainer } from '../Portal';
 import DialogTitle from './DialogTitle';
-import DialogContent from './DialogContent';
+import DialogText from './DialogText';
 import DialogActions from './DialogActions';
+import DialogImage from './DialogImage';
 import { useDir } from '../Theme';
 import useStyles from './styles';
 
@@ -67,7 +68,8 @@ const Dialog = (props: IDialog) => {
 };
 
 Dialog.Title = DialogTitle;
-Dialog.Content = DialogContent;
+Dialog.Text = DialogText;
 Dialog.Actions = DialogActions;
+Dialog.Image = DialogImage;
 
 export default Dialog;
