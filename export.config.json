@@ -36,6 +36,7 @@
     "LinearProgress": "linear-progress",
     "CircularProgress": "circular-progress",
     "Avatar": "avatar",
-    "Snackbar": "snackbar"
+    "Snackbar": "snackbar",
+    "Pagination": "pagination"
   }
 }
