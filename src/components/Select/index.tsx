@@ -47,7 +47,6 @@ const Select: React.FC<ISelect> = (props) => {
       error={error}
       ref={dropdownRef}
       fullWidth={fullWidth}
-      inputVariant="floatingLabel"
       inputFocused={!!value}
     >
       {options.map((option) => (
