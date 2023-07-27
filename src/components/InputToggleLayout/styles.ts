@@ -79,6 +79,9 @@ export default () =>
         position: 'absolute',
         width: 0,
         height: 0,
+        '-webkit-appearance': 'none',
+        '-moz-appearance': 'none',
+        appearance: 'none',
       }),
       label: (props: IInputToggle) => ({
         textAlign: props.dir === 'rtl' ? 'right' : 'left',
