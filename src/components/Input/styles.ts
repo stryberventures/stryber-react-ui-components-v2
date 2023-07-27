@@ -142,7 +142,7 @@ export default () =>
       },
       floatingLabelInputWrapperInUse: {
         height: toRem(24),
-        paddingTop: toRem(2),
+        marginTop: toRem(2),
         opacity: 1,
       },
       clearButton: (props: IInput) => ({

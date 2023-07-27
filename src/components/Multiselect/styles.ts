@@ -1,14 +1,30 @@
 import { createStyles, toRem } from '../Theme';
+import { IMultiselect } from './index';
 
 export default () =>
   createStyles(
     () => ({
-      dropdown: {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      dropdown: (props: IMultiselect) => ({
         '& > [class*="inputRoot"] > [class*="inputContainer"]': {
           height: 'initial',
-          minHeight: toRem(48),
+          minHeight: toRem(props.inputVariant === 'floatingLabel' ? 64 : 48),
         },
-      },
+        '& > [class*="inputRoot"] > [class*="inputContainer"] > [class*="inputArea"]':
+          {
+            margin: `${
+              props.inputVariant === 'floatingLabel' ? toRem(-1) : 0
+            } 0`,
+          },
+        '& > [class*="inputRoot"] > [class*="inputContainer"] > [class*="inputArea"] > [class*="floatingLabelInputWrapperInUse"]':
+          {
+            height: 'initial',
+            boxSizing: 'border-box',
+            minHeight: toRem(32),
+            alignItems: 'flex-end',
+          },
+      }),
       content: {
         padding: [toRem(8), 0],
         maxHeight: toRem(304),

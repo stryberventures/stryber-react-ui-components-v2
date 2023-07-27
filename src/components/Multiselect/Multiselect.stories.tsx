@@ -38,7 +38,6 @@ export default {
     'className',
     'onToggle',
     'value',
-    'inputVariant',
   ]),
 } as ComponentMeta<typeof Multiselect>;
 
