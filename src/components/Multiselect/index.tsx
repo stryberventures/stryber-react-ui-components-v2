@@ -48,6 +48,7 @@ const Multiselect: React.FC<IMultiselect> = (props) => {
     handleSearchChange,
     filteredOptions,
     searchValue,
+    opened,
   } = useMultiselect(props);
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
@@ -83,7 +84,7 @@ const Multiselect: React.FC<IMultiselect> = (props) => {
       fullWidth={fullWidth}
       inputContent={renderTags()}
       inputVariant={inputVariant}
-      inputFocused={!!selectedOptions.length || inputFocused}
+      inputFocused={opened || !!selectedOptions.length || inputFocused}
       className={classes.dropdown}
     >
       {withSearch && (

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useFormContext } from '../Form';
 
 export const useMultiselect = (props: IMultiselect) => {
-  const { name = '', error, onChange, options, value } = props;
+  const { name = '', error, onChange, options, value, inputFocused } = props;
   const { fieldError, fieldValue, updateFormTouched, updateFormValue } =
     useFormContext(name);
 
@@ -36,7 +36,9 @@ export const useMultiselect = (props: IMultiselect) => {
     onChange && onChange(option);
   };
 
+  const [opened, setOpened] = useState<boolean>(!!inputFocused);
   const onDropdownToggle = (open: boolean) => {
+    setOpened(open);
     !open && updateFormTouched(name, true);
   };
 
@@ -72,5 +74,6 @@ export const useMultiselect = (props: IMultiselect) => {
     handleSearchChange,
     filteredOptions,
     searchValue,
+    opened,
   };
 };

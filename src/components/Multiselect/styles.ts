@@ -13,9 +13,7 @@ export default () =>
         },
         '& > [class*="inputRoot"] > [class*="inputContainer"] > [class*="inputArea"]':
           {
-            margin: `${
-              props.inputVariant === 'floatingLabel' ? toRem(-1) : 0
-            } 0`,
+            margin: `${toRem(-1)} 0`,
           },
         '& > [class*="inputRoot"] > [class*="inputContainer"] > [class*="inputArea"] > [class*="floatingLabelInputWrapperInUse"]':
           {
