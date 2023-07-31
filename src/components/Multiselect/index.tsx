@@ -34,6 +34,8 @@ const Multiselect: React.FC<IMultiselect> = (props) => {
     onToggle,
     withSearch = true,
     searchPlaceholder,
+    inputFocused,
+    inputVariant,
     value: _, // we don't want to pass value to Dropdown
     ...rest
   } = props;
@@ -46,8 +48,11 @@ const Multiselect: React.FC<IMultiselect> = (props) => {
     handleSearchChange,
     filteredOptions,
     searchValue,
+    opened,
   } = useMultiselect(props);
-  const classes = useStyles()();
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const classes = useStyles()(props);
 
   const renderTags = () => {
     if (!selectedOptions.length) return null;
@@ -78,6 +83,8 @@ const Multiselect: React.FC<IMultiselect> = (props) => {
       error={error}
       fullWidth={fullWidth}
       inputContent={renderTags()}
+      inputVariant={inputVariant}
+      inputFocused={opened || !!selectedOptions.length || inputFocused}
       className={classes.dropdown}
     >
       {withSearch && (
