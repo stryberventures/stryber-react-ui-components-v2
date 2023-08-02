@@ -1,4 +1,9 @@
-import React, { ForwardedRef, forwardRef, useContext, useImperativeHandle } from 'react';
+import React, {
+  ForwardedRef,
+  forwardRef,
+  useContext,
+  useImperativeHandle,
+} from 'react';
 import { IFormContext, IFormProps, IFormRef } from './types';
 
 const defaultFormContextValues: IFormContext = {
@@ -18,8 +23,9 @@ const defaultFormContextValues: IFormContext = {
   },
 };
 
-export const FormContext: React.Context<IFormContext> =
-  React.createContext(defaultFormContextValues);
+export const FormContext: React.Context<IFormContext> = React.createContext(
+  defaultFormContextValues
+);
 
 const Form = forwardRef((props: IFormProps, ref: ForwardedRef<IFormRef>) => {
   const {
@@ -53,7 +59,10 @@ const Form = forwardRef((props: IFormProps, ref: ForwardedRef<IFormRef>) => {
       try {
         validationSchema.validateSync(values, { abortEarly: false });
       } catch (errors: any) {
-        validationRes = errors.inner.reduce((a: any, v: any) => ({ ...a, [v.path]: v.message }), {});
+        validationRes = errors.inner.reduce(
+          (a: any, v: any) => ({ ...a, [v.path]: v.message }),
+          {}
+        );
       }
       setFormErrors(validationRes);
 
@@ -77,8 +86,8 @@ const Form = forwardRef((props: IFormProps, ref: ForwardedRef<IFormRef>) => {
     setFormTouched(() =>
       Object.keys(formValues).reduce(
         (acc: any, key: string) => ({ ...acc, [key]: true }),
-        {},
-      ),
+        {}
+      )
     );
 
   const setFormErrorsActionWrapper = (errors: any) => {
@@ -121,9 +130,9 @@ const Form = forwardRef((props: IFormProps, ref: ForwardedRef<IFormRef>) => {
       const validationResult = validate(newFormValues);
       const isValid = JSON.stringify(validationResult) === '{}';
       /** Sending on change callback (if it was provided) */
-      !init && onChange && onChange({ ...newFormValues },
-        { ...formActions, isValid }
-      );
+      !init &&
+        onChange &&
+        onChange({ ...newFormValues }, { ...formActions, isValid });
 
       return newFormValues;
     });
@@ -158,7 +167,7 @@ const Form = forwardRef((props: IFormProps, ref: ForwardedRef<IFormRef>) => {
   }, []);
   return (
     <form
-      { ...rest }
+      {...rest}
       className={className}
       onSubmit={onSubmitFormWrapper}
       onReset={onResetFormWrapper}
@@ -174,10 +183,10 @@ const Form = forwardRef((props: IFormProps, ref: ForwardedRef<IFormRef>) => {
           formErrors,
           formTouched,
           formActions,
-          loading
+          loading,
         }}
       >
-        { children }
+        {children}
       </FormContext.Provider>
     </form>
   );

@@ -7,10 +7,7 @@ it('should be rendered', () => {
   const text = 'Grid item';
   render(
     <Grid container>
-      <Grid
-        item
-        xs={12}
-      >
+      <Grid item xs={12}>
         {text}
       </Grid>
     </Grid>
@@ -22,11 +19,7 @@ it('should render section', async () => {
   const text = 'Grid item';
   const tag = 'section';
   render(
-    <Grid
-      item
-      xs={12}
-      component={tag}
-    >
+    <Grid item xs={12} component={tag}>
       {text}
     </Grid>
   );

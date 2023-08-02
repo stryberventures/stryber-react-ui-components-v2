@@ -4,25 +4,26 @@ import useStyles from './styles';
 import Input from '../Input';
 import { useFormContext } from '../Form';
 
-export interface ISlider extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
-  min?: number,
-  max?: number,
-  minValue?: number,
-  maxValue?: number,
-  minDistance?: number,
-  step?: number,
-  rangeSlider?: boolean,
-  showSideLabels?: boolean,
-  leftLabel?: React.ReactNode,
-  rightLabel?: React.ReactNode,
-  showStepMarks?: boolean,
-  thumbLabels?: 'input' | 'tooltip',
-  color?: 'primary' | 'secondary',
-  name?: string,
-  value?: number | number[],
-  controlled?: boolean,
-  disabled?: boolean,
-  onChange?: (value: number | number[]) => void,
+export interface ISlider
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
+  min?: number;
+  max?: number;
+  minValue?: number;
+  maxValue?: number;
+  minDistance?: number;
+  step?: number;
+  rangeSlider?: boolean;
+  showSideLabels?: boolean;
+  leftLabel?: React.ReactNode;
+  rightLabel?: React.ReactNode;
+  showStepMarks?: boolean;
+  thumbLabels?: 'input' | 'tooltip';
+  color?: 'primary' | 'secondary';
+  name?: string;
+  value?: number | number[];
+  controlled?: boolean;
+  disabled?: boolean;
+  onChange?: (value: number | number[]) => void;
 }
 
 export const Slider = (props: ISlider) => {
@@ -35,7 +36,7 @@ export const Slider = (props: ISlider) => {
     rangeSlider = false,
     value = rangeSlider ? [min, max] : 0,
     controlled = false,
-    minDistance = (rangeSlider && controlled) ? 1 : 0,
+    minDistance = rangeSlider && controlled ? 1 : 0,
     showSideLabels = true,
     rightLabel,
     leftLabel,
@@ -50,7 +51,9 @@ export const Slider = (props: ISlider) => {
   } = props;
   const classes = useStyles(color);
   const { fieldValue, unsetFormValue, updateFormValue } = useFormContext(name);
-  const [minVal, setMinVal] = useState(Array.isArray(fieldValue) ? fieldValue[0] : fieldValue || minValue);
+  const [minVal, setMinVal] = useState(
+    Array.isArray(fieldValue) ? fieldValue[0] : fieldValue || minValue
+  );
   const [maxVal, setMaxVal] = useState(fieldValue ? fieldValue[1] : maxValue);
   const [minSize, setMinSize] = useState(minVal.toString().length * 10);
   const [maxSize, setMaxSize] = useState(maxVal.toString().length * 10);
@@ -61,25 +64,29 @@ export const Slider = (props: ISlider) => {
 
   const thumbPosition = (res: number) => {
     if (range.current && range.current.parentElement) {
-      return (range.current.parentElement.offsetWidth - 30) / (max - min) * (res - min);
+      return (
+        ((range.current.parentElement.offsetWidth - 30) / (max - min)) *
+        (res - min)
+      );
     } else return 0;
-  }
+  };
   const [positionMin, setPositionMin] = useState(thumbPosition(minVal));
   const [positionMax, setPositionMax] = useState(thumbPosition(maxVal));
 
   const handleSetPosition = () => {
     if (range.current && range.current.parentElement) {
-      const stepPX = (range.current.parentElement.offsetWidth - 30) / (max - min);
+      const stepPX =
+        (range.current.parentElement.offsetWidth - 30) / (max - min);
       const minPos = minVal === min ? 0 : stepPX * (minVal - min);
       setPositionMin(minPos);
       if (range) setPositionMax(stepPX * (maxVal - min));
     }
-  }
-  useEffect( () => {
-    window.addEventListener('resize', handleSetPosition)
+  };
+  useEffect(() => {
+    window.addEventListener('resize', handleSetPosition);
     return () => {
-      window.removeEventListener('resize', handleSetPosition)
-    }
+      window.removeEventListener('resize', handleSetPosition);
+    };
   }, [handleSetPosition]);
 
   useEffect(() => {
@@ -98,7 +105,10 @@ export const Slider = (props: ISlider) => {
     if (rangeSlider) {
       if (range.current) {
         const left = positionMin < positionMax ? positionMin : positionMax;
-        const width = positionMin < positionMax ? positionMax - positionMin : positionMin - positionMax;
+        const width =
+          positionMin < positionMax
+            ? positionMax - positionMin
+            : positionMin - positionMax;
         range.current.style.left = `${left}px`;
         range.current.style.width = `${width}px`;
       }
@@ -109,32 +119,29 @@ export const Slider = (props: ISlider) => {
       }
     }
   }, [positionMin, positionMax, rangeSlider]);
-  useEffect(
-    () => {
-      if (controlled) {
-        let data: number | number[] = value;
-        if (rangeSlider && Array.isArray(data)) {
-          if (data[0] > data[1]) {
-            data = [data[1], data[0]];
-            onChange?.(data);
-          }
-          setPositionMax(thumbPosition(data[1]));
-          setMaxVal(data[1]);
+  useEffect(() => {
+    if (controlled) {
+      let data: number | number[] = value;
+      if (rangeSlider && Array.isArray(data)) {
+        if (data[0] > data[1]) {
+          data = [data[1], data[0]];
+          onChange?.(data);
         }
-        if (!rangeSlider && data > maxVal) {
-          data = maxVal;
-        }
-        setMinVal(Array.isArray(data) ? data[0] : data);
-        setPositionMin(thumbPosition(Array.isArray(data) ? data[0] : data));
-        updateFormValue(name, data);
+        setPositionMax(thumbPosition(data[1]));
+        setMaxVal(data[1]);
       }
-    },
-    [disabled ? null : value]
-  );
+      if (!rangeSlider && data > maxVal) {
+        data = maxVal;
+      }
+      setMinVal(Array.isArray(data) ? data[0] : data);
+      setPositionMin(thumbPosition(Array.isArray(data) ? data[0] : data));
+      updateFormValue(name, data);
+    }
+  }, [disabled ? null : value]);
   const dots = [];
   if (showStepMarks) {
-    for(let i = 0; i < ((max - min) / step + 1); i++) {
-      dots.push(<div className={classes.dot} key={i}/>);
+    for (let i = 0; i < (max - min) / step + 1; i++) {
+      dots.push(<div className={classes.dot} key={i} />);
     }
   }
 
@@ -142,8 +149,12 @@ export const Slider = (props: ISlider) => {
     const targetValue = Number(e.target.value);
     setMinVal(targetValue);
     setMinSize(targetValue.toString().length * 10);
-    if(isNaN(targetValue) || targetValue < min || targetValue > max ||
-      (rangeSlider && minDistance > 0 && targetValue > maxVal - minDistance)) {
+    if (
+      isNaN(targetValue) ||
+      targetValue < min ||
+      targetValue > max ||
+      (rangeSlider && minDistance > 0 && targetValue > maxVal - minDistance)
+    ) {
       setError(true);
     } else setError(false);
   };
@@ -151,17 +162,25 @@ export const Slider = (props: ISlider) => {
     const targetValue = Number(e.target.value);
     setMaxVal(targetValue);
     setMaxSize(targetValue.toString().length * 10);
-    if(isNaN(targetValue) || targetValue > max || targetValue < min ||
-      (minDistance > 0 && targetValue < minVal + minDistance)) {
+    if (
+      isNaN(targetValue) ||
+      targetValue > max ||
+      targetValue < min ||
+      (minDistance > 0 && targetValue < minVal + minDistance)
+    ) {
       setError(true);
     } else setError(false);
   };
   const onMinSubmit = (e: React.BaseSyntheticEvent) => {
     const targetValue = e.currentTarget.value;
     let res = null;
-    if(isNaN(targetValue) || targetValue < min || targetValue == '') {
+    if (isNaN(targetValue) || targetValue < min || targetValue == '') {
       res = min;
-    } else if (rangeSlider && minDistance > 0 && targetValue > maxVal - minDistance) {
+    } else if (
+      rangeSlider &&
+      minDistance > 0 &&
+      targetValue > maxVal - minDistance
+    ) {
       res = maxVal - minDistance;
     } else if (targetValue > max) {
       res = max;
@@ -173,14 +192,19 @@ export const Slider = (props: ISlider) => {
     setMinSize(res.toString().length * 10);
     setError(false);
     updateFormValue(name, Array.isArray(value) ? [res, value[1]] : targetValue);
-    controlled && onChange?.(Array.isArray(value) ? [res, value[1]] : targetValue);
+    controlled &&
+      onChange?.(Array.isArray(value) ? [res, value[1]] : targetValue);
   };
   const onMaxSubmit = (e: React.BaseSyntheticEvent) => {
     const targetValue = e.currentTarget.value;
     let res = null;
-    if(isNaN(targetValue) || targetValue > max || targetValue == '') {
+    if (isNaN(targetValue) || targetValue > max || targetValue == '') {
       res = max;
-    } else if (rangeSlider && minDistance > 0 && targetValue < minVal + minDistance) {
+    } else if (
+      rangeSlider &&
+      minDistance > 0 &&
+      targetValue < minVal + minDistance
+    ) {
       res = minVal + minDistance;
     } else {
       res = Number(targetValue);
@@ -190,12 +214,13 @@ export const Slider = (props: ISlider) => {
     setMaxSize(res.toString().length * 10);
     setError(false);
     updateFormValue(name, Array.isArray(value) ? [value[0], res] : targetValue);
-    controlled && onChange?.(Array.isArray(value) ? [value[0], res] : targetValue);
+    controlled &&
+      onChange?.(Array.isArray(value) ? [value[0], res] : targetValue);
   };
 
   const keyPress = (e: React.BaseSyntheticEvent) => {
     e.currentTarget.name === 'maxInput' ? onMaxSubmit(e) : onMinSubmit(e);
-  }
+  };
 
   const handleDrag = (e: React.PointerEvent<HTMLDivElement>) => {
     if (!disabled) {
@@ -203,10 +228,10 @@ export const Slider = (props: ISlider) => {
       if (e.currentTarget.id === 'minThumb') {
         e.currentTarget.onpointermove = (e) => moveMin(e);
       } else {
-        e.currentTarget.onpointermove = (e)=> moveMax(e);
+        e.currentTarget.onpointermove = (e) => moveMax(e);
       }
     }
-  }
+  };
   const moveMin = (_value: React.MouseEvent<HTMLDivElement> | MouseEvent) => {
     const [res, position] = checking(_value);
     setPositionMin(position);
@@ -215,7 +240,7 @@ export const Slider = (props: ISlider) => {
     setShowMin(true);
     updateFormValue(name, rangeSlider ? [res, maxVal] : res);
     if (controlled) onChange?.(Array.isArray(value) ? [res, value[1]] : res);
-  }
+  };
   const moveMax = (_value: React.MouseEvent<HTMLDivElement> | MouseEvent) => {
     const [res, position] = checking(_value);
     setPositionMax(position);
@@ -224,7 +249,7 @@ export const Slider = (props: ISlider) => {
     setShowMax(true);
     updateFormValue(name, rangeSlider ? [minVal, res] : res);
     if (controlled) onChange?.(Array.isArray(value) ? [value[0], res] : res);
-  }
+  };
   const checking = (e: React.MouseEvent<HTMLDivElement> | MouseEvent) => {
     const parent = (e.target as HTMLDivElement).parentElement!;
     const parentWidth = parent.offsetWidth;
@@ -232,14 +257,15 @@ export const Slider = (props: ISlider) => {
     let position = +e.clientX - parent.getBoundingClientRect().left - 15;
 
     if (minDistance > 0) {
-      const minDistancePX = (parentWidth - 30) / (max - min) * minDistance;
+      const minDistancePX = ((parentWidth - 30) / (max - min)) * minDistance;
       if (id === 'minThumb' && position > positionMax - minDistancePX) {
         position = positionMax - minDistancePX;
       } else if (id === 'maxThumb' && position < positionMin + minDistancePX) {
         position = positionMin + minDistancePX;
       }
     }
-    const _value = Math.round(position / ((parentWidth - 30) / (max - min))) + min;
+    const _value =
+      Math.round(position / ((parentWidth - 30) / (max - min))) + min;
     if (position > parentWidth - 30) {
       position = parentWidth - 30;
     } else if (position < 0) {
@@ -260,25 +286,40 @@ export const Slider = (props: ISlider) => {
       position = thumbPosition(res);
     }
     return [res, position];
-  }
+  };
   const handleStopDrag = (e: React.PointerEvent<HTMLDivElement>) => {
     e.currentTarget.onpointermove = null;
     e.currentTarget.releasePointerCapture(e.pointerId);
-  }
+  };
   const trackClick = (e: React.PointerEvent<HTMLDivElement>) => {
     if (!disabled) {
-      const clickX = +e.clientX - (e.target as HTMLDivElement).parentElement!.getBoundingClientRect().left;
+      const clickX =
+        +e.clientX -
+        (e.target as HTMLDivElement).parentElement!.getBoundingClientRect()
+          .left;
       if (rangeSlider) {
-        Math.abs(clickX - positionMin) < Math.abs(clickX - positionMax) ? moveMin(e) : moveMax(e);
+        Math.abs(clickX - positionMin) < Math.abs(clickX - positionMax)
+          ? moveMin(e)
+          : moveMax(e);
       } else moveMin(e);
     }
-  }
+  };
   return (
-    <div className={classnames(classes.sliderRoot, { [classes.disabled]: disabled }, className)}>
-      {showSideLabels && (leftLabel ?
-        <div className={classes.sideIconLabel}>{leftLabel}</div> :
-        <div data-testid="testLabelID" className={classes.sideLabel}>{min}</div>
+    <div
+      className={classnames(
+        classes.sliderRoot,
+        { [classes.disabled]: disabled },
+        className
       )}
+    >
+      {showSideLabels &&
+        (leftLabel ? (
+          <div className={classes.sideIconLabel}>{leftLabel}</div>
+        ) : (
+          <div data-testid="testLabelID" className={classes.sideLabel}>
+            {min}
+          </div>
+        ))}
       <div className={classes.slider}>
         <div
           id="minThumb"
@@ -295,20 +336,34 @@ export const Slider = (props: ISlider) => {
           {...rest}
         >
           {thumbLabels === 'tooltip' && (
-            <div data-testid="testThumbLabelID" className={classnames(classes.thumbLabel, { [classes.show]: showMin })}>{minVal}</div>
+            <div
+              data-testid="testThumbLabelID"
+              className={classnames(classes.thumbLabel, {
+                [classes.show]: showMin,
+              })}
+            >
+              {minVal}
+            </div>
           )}
           {thumbLabels === 'input' && (
-            <div data-testid="testThumbInputID"
-              className={classnames(classes.thumbInput, { [classes.show]: showMin, [classes.error]: error })}>
+            <div
+              data-testid="testThumbInputID"
+              className={classnames(classes.thumbInput, {
+                [classes.show]: showMin,
+                [classes.error]: error,
+              })}
+            >
               <Input
-                label=''
-                name='minInput'
-                autoComplete='off'
+                label=""
+                name="minInput"
+                autoComplete="off"
                 controlled={true}
                 value={minVal.toString()}
                 onChange={onMinChange}
                 onBlur={onMinSubmit}
-                onKeyDown={(e) => {e.key === 'Enter' && keyPress(e)}}
+                onKeyDown={(e) => {
+                  e.key === 'Enter' && keyPress(e);
+                }}
                 style={{ width: minSize }}
               />
             </div>
@@ -331,19 +386,32 @@ export const Slider = (props: ISlider) => {
             {...rest}
           >
             {thumbLabels === 'tooltip' && (
-              <div className={classnames(classes.thumbLabel, { [classes.show]: showMax })}>{maxVal}</div>
+              <div
+                className={classnames(classes.thumbLabel, {
+                  [classes.show]: showMax,
+                })}
+              >
+                {maxVal}
+              </div>
             )}
             {thumbLabels === 'input' && (
-              <div className={classnames(classes.thumbInput, { [classes.show]: showMax, [classes.error]: error })}>
+              <div
+                className={classnames(classes.thumbInput, {
+                  [classes.show]: showMax,
+                  [classes.error]: error,
+                })}
+              >
                 <Input
-                  label=''
-                  name='maxInput'
-                  autoComplete='off'
+                  label=""
+                  name="maxInput"
+                  autoComplete="off"
                   controlled={true}
                   value={maxVal.toString()}
                   onChange={onMaxChange}
                   onBlur={onMaxSubmit}
-                  onKeyDown={(e) => {e.key === 'Enter' && keyPress(e)}}
+                  onKeyDown={(e) => {
+                    e.key === 'Enter' && keyPress(e);
+                  }}
                   style={{ width: maxSize }}
                 />
               </div>
@@ -351,13 +419,23 @@ export const Slider = (props: ISlider) => {
           </div>
         )}
         <div className={classes.sliderTrack} onPointerDown={trackClick} />
-        <div ref={range} className={classes.sliderRange} onPointerDown={trackClick} />
-        {showStepMarks && (<div data-testid="testStepMarksID" className={classes.dotsContainer}>{dots}</div>)}
+        <div
+          ref={range}
+          className={classes.sliderRange}
+          onPointerDown={trackClick}
+        />
+        {showStepMarks && (
+          <div data-testid="testStepMarksID" className={classes.dotsContainer}>
+            {dots}
+          </div>
+        )}
       </div>
-      {showSideLabels && (leftLabel ?
-        <div className={classes.sideIconLabel}>{rightLabel}</div> :
-        <div className={classes.sideLabel}>{max}</div>
-      )}
+      {showSideLabels &&
+        (leftLabel ? (
+          <div className={classes.sideIconLabel}>{rightLabel}</div>
+        ) : (
+          <div className={classes.sideLabel}>{max}</div>
+        ))}
     </div>
   );
 };
@@ -366,5 +444,4 @@ export default Slider;
 
 Slider.defaultProps = {
   color: 'primary',
-}
-
+};

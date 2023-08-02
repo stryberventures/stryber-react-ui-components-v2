@@ -4,11 +4,15 @@ import Text from '../../Text';
 import Tooltip from '../../Tooltip';
 import { QuestionIcon, PointArrowIcon } from '../../Icons';
 import { IArrowIconVariant } from '../../Icons/types';
-import { IMetadata, ITableSorting, SortingDirection, TSortingDirection } from '../types';
+import {
+  IMetadata,
+  ITableSorting,
+  SortingDirection,
+  TSortingDirection,
+} from '../types';
 import useStyles from './styles';
 import { KEYS } from '../../../hooks/useKeyPress';
 import { useDir } from '../../Theme';
-
 
 export interface ITableHeader {
   color?: 'primary' | 'secondary';
@@ -19,21 +23,32 @@ export interface ITableHeader {
   onSort?: (orderBy: string, orderDirection: TSortingDirection) => void;
 }
 
-function getArrowDirection (columnId: string, sorting?: ITableSorting): IArrowIconVariant {
+function getArrowDirection(
+  columnId: string,
+  sorting?: ITableSorting
+): IArrowIconVariant {
   if (!sorting || columnId != sorting.orderBy) return 'down';
   return sorting.orderDirection == SortingDirection.asc ? 'up' : 'down';
 }
 
 const TableHeader: React.FC<ITableHeader> = (props) => {
-  const { metadata, sorting, onSort, className, dir = useDir(props.dir) } = props;
+  const {
+    metadata,
+    sorting,
+    onSort,
+    className,
+    dir = useDir(props.dir),
+  } = props;
   const classes = useStyles()({
     ...props,
     dir,
   });
-  function handleOnSort (columnId: string) {
+  function handleOnSort(columnId: string) {
     const isCurrentColumnSorted = sorting?.orderBy == columnId;
     const newSortingDirection = isCurrentColumnSorted
-      ? ((sorting?.orderDirection == SortingDirection.asc) ? SortingDirection.desc : SortingDirection.asc)
+      ? sorting?.orderDirection == SortingDirection.asc
+        ? SortingDirection.desc
+        : SortingDirection.asc
       : SortingDirection.desc;
     onSort?.(columnId, newSortingDirection);
   }
@@ -44,12 +59,13 @@ const TableHeader: React.FC<ITableHeader> = (props) => {
           <div
             key={column.id}
             className={classNames(classes.thCell, className)}
-            style={{ flexBasis: column.width, minWidth: column.minWidth, maxWidth: column.maxWidth }}
+            style={{
+              flexBasis: column.width,
+              minWidth: column.minWidth,
+              maxWidth: column.maxWidth,
+            }}
           >
-            <Text
-              variant="caption1"
-              className={classes.thLabel}
-            >
+            <Text variant="caption1" className={classes.thLabel}>
               {column.label}
             </Text>
             {column.info && (
@@ -59,18 +75,23 @@ const TableHeader: React.FC<ITableHeader> = (props) => {
                 position="bottom"
                 className={classes.tooltipTarget}
               >
-                <QuestionIcon className={classes.tooltipTargetIcon} data-testid="questionIcon" />
+                <QuestionIcon
+                  className={classes.tooltipTargetIcon}
+                  data-testid="questionIcon"
+                />
               </Tooltip>
             )}
             {column.sortable && (
               <div
-                className={classNames(classes.sortingIconWrapper,
-                  { [classes.sortingIconActive]: column.id == sorting?.orderBy }
-                )}
+                className={classNames(classes.sortingIconWrapper, {
+                  [classes.sortingIconActive]: column.id == sorting?.orderBy,
+                })}
                 role="button"
                 tabIndex={0}
                 onClick={() => handleOnSort(column.id)}
-                onKeyDown={(e) => e.key == KEYS.enter && handleOnSort(column.id)}
+                onKeyDown={(e) =>
+                  e.key == KEYS.enter && handleOnSort(column.id)
+                }
                 data-testid="sortingIcon"
               >
                 <PointArrowIcon
@@ -80,7 +101,7 @@ const TableHeader: React.FC<ITableHeader> = (props) => {
               </div>
             )}
           </div>
-        )
+        );
       })}
     </div>
   );

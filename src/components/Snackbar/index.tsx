@@ -4,7 +4,8 @@ import useStyles from './styles';
 import classNames from 'classnames';
 import SnackbarContent, { ISnackbarContentProps } from './SnackbarContent';
 
-export interface ISnackbarProps extends Omit<ISnackbarContentProps, 'handleClose'> {
+export interface ISnackbarProps
+  extends Omit<ISnackbarContentProps, 'handleClose'> {
   open?: boolean;
   onClose?: () => void;
   autoHideDuration?: number;
@@ -31,8 +32,8 @@ const Snackbar: FC<ISnackbarProps> = (props) => {
 
   const handleClose = () => {
     onClose && onClose();
-    clearTimeout(timerAutoHide.current!)
-  }
+    clearTimeout(timerAutoHide.current!);
+  };
 
   useEffect(() => {
     if (open) {
@@ -42,7 +43,7 @@ const Snackbar: FC<ISnackbarProps> = (props) => {
     }
     return () => {
       clearTimeout(timerAutoHide.current!);
-    }
+    };
   }, [open]);
 
   return (
@@ -63,7 +64,7 @@ const Snackbar: FC<ISnackbarProps> = (props) => {
           classes.snackbar,
           classes[anchorOrigin!.horizontal],
           classes[anchorOrigin!.vertical],
-          className,
+          className
         )}
         ref={snackbarRef}
         data-testid="gaia-snackbar"
@@ -71,7 +72,7 @@ const Snackbar: FC<ISnackbarProps> = (props) => {
         <SnackbarContent onClose={handleClose} {...rest} />
       </div>
     </CSSTransition>
-  )
+  );
 };
 
 Snackbar.defaultProps = {

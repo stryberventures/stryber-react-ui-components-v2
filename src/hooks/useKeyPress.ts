@@ -6,16 +6,17 @@ export enum KEYS {
   tab = 'Tab',
 }
 
-export function useKeyPress (targetKey: string, callback: (e: KeyboardEvent) => void) {
+export function useKeyPress(
+  targetKey: string,
+  callback: (e: KeyboardEvent) => void
+) {
   const keyDownHandler = (e: KeyboardEvent) => {
-    if(e.key == targetKey) callback(e);
+    if (e.key == targetKey) callback(e);
   };
-  useEffect(
-    () => {
-      document.addEventListener('keydown', keyDownHandler);
-      return () => {
-        document.removeEventListener('keydown', keyDownHandler);
-      };
-    },
-  );
+  useEffect(() => {
+    document.addEventListener('keydown', keyDownHandler);
+    return () => {
+      document.removeEventListener('keydown', keyDownHandler);
+    };
+  });
 }

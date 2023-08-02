@@ -1,11 +1,11 @@
-import '@testing-library/jest-dom'
-import * as React from 'react'
-import { fireEvent, render, screen } from '@testing-library/react'
-import SearchInput from './index'
+import '@testing-library/jest-dom';
+import * as React from 'react';
+import { fireEvent, render, screen } from '@testing-library/react';
+import SearchInput from './index';
 
 it('should be rendered without label', () => {
   render(<SearchInput label="label" />);
-  const label = screen.queryByTestId('input-label')
+  const label = screen.queryByTestId('input-label');
   expect(label).not.toBeInTheDocument();
 });
 
@@ -31,5 +31,3 @@ it('should have value', () => {
   fireEvent.change(input, { target: { value } });
   expect(input.value).toBe(value);
 });
-
-

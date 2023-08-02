@@ -1,29 +1,29 @@
-import '@testing-library/jest-dom'
-import * as React from 'react'
-import { fireEvent, render, screen } from '@testing-library/react'
-import CheckBox from './index'
+import '@testing-library/jest-dom';
+import * as React from 'react';
+import { fireEvent, render, screen } from '@testing-library/react';
+import CheckBox from './index';
 import LeftArrow from '../../storybook/icons/leftArrow';
 
 it('should be rendered', () => {
   const { getByRole } = render(<CheckBox />);
-  expect(getByRole('checkbox',{ hidden: true })).toBeInTheDocument();
+  expect(getByRole('checkbox', { hidden: true })).toBeInTheDocument();
 });
 
 it('should not be checked by default', () => {
   const { getByRole } = render(<CheckBox />);
-  const checkBox = getByRole('checkbox',{ hidden: true }) as HTMLInputElement;
+  const checkBox = getByRole('checkbox', { hidden: true }) as HTMLInputElement;
   expect(checkBox.checked).toBe(false);
 });
 
 it('should be checked', () => {
   const { getByRole } = render(<CheckBox checked={true} />);
-  const checkBox = getByRole('checkbox',{ hidden: true }) as HTMLInputElement;
+  const checkBox = getByRole('checkbox', { hidden: true }) as HTMLInputElement;
   expect(checkBox.checked).toBe(true);
 });
 
 it('should change checked state', () => {
   const { getByRole } = render(<CheckBox />);
-  const checkBox = getByRole('checkbox',{ hidden: true }) as HTMLInputElement;
+  const checkBox = getByRole('checkbox', { hidden: true }) as HTMLInputElement;
   fireEvent.change(checkBox, { target: { checked: true } });
   expect(checkBox.checked).toBe(true);
 });
@@ -47,7 +47,15 @@ it('should display the error', () => {
 });
 
 it('should display the custom content', () => {
-  render(<CheckBox label={<>Message <LeftArrow /></>} />);
+  render(
+    <CheckBox
+      label={
+        <>
+          Message <LeftArrow />
+        </>
+      }
+    />
+  );
   expect(screen.getByTestId('leftArrow')).toBeVisible();
   expect(screen.queryByText('Message')).toBeVisible();
 });

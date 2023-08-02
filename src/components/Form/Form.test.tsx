@@ -16,15 +16,13 @@ const FormTemplate = (props: IProps) => {
   const { type, ...rest } = props;
 
   return (
-    <Form
-      {...rest}
-    >
-      <Input label={'Email'} name="email"/>
-      <Input label={'Password'} name="password"/>
+    <Form {...rest}>
+      <Input label={'Email'} name="email" />
+      <Input label={'Password'} name="password" />
       {type === 'submit' && <Button type="submit">Submit</Button>}
       {type === 'reset' && <Button type="reset">Reset</Button>}
     </Form>
-  )
+  );
 };
 
 let container: Element | null = null;
@@ -43,7 +41,7 @@ afterEach(() => {
 });
 
 it('should render children', () => {
-  render(<FormTemplate/>);
+  render(<FormTemplate />);
   expect(screen.queryByText('Email')).toBeInTheDocument();
   expect(screen.queryByText('Password')).toBeInTheDocument();
 });
@@ -53,22 +51,25 @@ it('should render values in inputs', () => {
     email: 'some@mail.com',
     password: 'somePass',
   };
-  render(<FormTemplate initialValues={initialValues}/>);
-  const [email, password] = screen.queryAllByRole('textbox') as [HTMLInputElement, HTMLInputElement];
+  render(<FormTemplate initialValues={initialValues} />);
+  const [email, password] = screen.queryAllByRole('textbox') as [
+    HTMLInputElement,
+    HTMLInputElement
+  ];
   expect(email.value).toBe(initialValues.email);
   expect(password.value).toBe(initialValues.password);
 });
 
 it('should fire onSubmit', () => {
   const onSubmit = jest.fn();
-  render(<FormTemplate onSubmit={onSubmit} type="submit"/>);
+  render(<FormTemplate onSubmit={onSubmit} type="submit" />);
   fireEvent.click(screen.getByRole('button'));
   expect(onSubmit).toHaveBeenCalled();
 });
 
 it('should fire onReset', () => {
   const onReset = jest.fn();
-  render(<FormTemplate onReset={onReset} type="reset"/>);
+  render(<FormTemplate onReset={onReset} type="reset" />);
   fireEvent.click(screen.getByRole('button'));
   expect(onReset).toHaveBeenCalled();
 });
@@ -79,7 +80,7 @@ it('should display error on submit', async () => {
     ReactDomRender(
       <FormTemplate
         type="submit"
-        validationSchema= {yup.object({
+        validationSchema={yup.object({
           email: yup.string().email().required(),
         })}
       />,

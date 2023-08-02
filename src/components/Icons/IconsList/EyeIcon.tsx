@@ -1,8 +1,12 @@
 import React from 'react';
 
-
 const iconVariants = {
-  open: ({ fill, width = 20, height = 14, ...rest }: React.SVGProps<SVGSVGElement>) => (
+  open: ({
+    fill,
+    width = 20,
+    height = 14,
+    ...rest
+  }: React.SVGProps<SVGSVGElement>) => (
     <svg
       width={width}
       height={height}
@@ -21,7 +25,12 @@ const iconVariants = {
       />
     </svg>
   ),
-  closed: ({ fill, width = 20, height = 18, ...rest }: React.SVGProps<SVGSVGElement>) => (
+  closed: ({
+    fill,
+    width = 20,
+    height = 18,
+    ...rest
+  }: React.SVGProps<SVGSVGElement>) => (
     <svg
       width={width}
       height={height}
@@ -44,11 +53,11 @@ const iconVariants = {
 
 export type IEyeIconVariant = 'open' | 'closed';
 
-interface IEyeIcon extends React.SVGProps<SVGSVGElement>{
+interface IEyeIcon extends React.SVGProps<SVGSVGElement> {
   variant: IEyeIconVariant;
 }
 
-export default function EyeIcon ({
+export default function EyeIcon({
   variant = 'open',
   fill = '#101828',
   ...rest

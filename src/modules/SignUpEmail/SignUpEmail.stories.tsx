@@ -18,18 +18,20 @@ export default {
     (Story, ctx) => {
       // decorator only for Canvas tab
       if (ctx.viewMode === 'story') {
-        return  (
+        return (
           <FullViewportDecorator>
             <Story />
           </FullViewportDecorator>
-        )
+        );
       }
-      return <Story/>
+      return <Story />;
     },
   ],
 } as ComponentMeta<typeof EmailComponent>;
 
-const Template: ComponentStory<typeof EmailComponent> = () => <EmailComponent />;
+const Template: ComponentStory<typeof EmailComponent> = () => (
+  <EmailComponent />
+);
 
 export const Email = Template.bind({});
 Email.parameters = {

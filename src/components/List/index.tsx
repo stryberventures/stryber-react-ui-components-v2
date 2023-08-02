@@ -1,51 +1,28 @@
 import React from 'react';
 import classNames from 'classnames';
-import ListItem, { IListItem } from './ListItem';
+import ListItem from './ListItem';
+import ListItemText from './ListItemText';
 import { useDir } from '../Theme';
 import useStyles from './styles';
 
 export interface IList {
-  listItems: IListItem[],
-  listClassName?: string,
-  dir?: string,
+  className?: string;
+  dir?: string;
 }
 
 const List: React.FC<IList> = (props) => {
-  const {
-    listItems,
-    listClassName,
-    dir = useDir(props.dir),
-    ...rest
-  } = props;
+  const { className, dir = useDir(props.dir), children, ...rest } = props;
   const classes = useStyles()({
     ...props,
-    dir
+    dir,
   });
   return (
-    <ul className={classNames(classes.list, listClassName)} {...rest}>
-      {props.children
-        ? props.children
-        : listItems.map((listItem, index) => (
-          listItem.customItem
-            ? listItem.customItem
-            : <ListItem
-              key={index}
-              title={listItem.title}
-              subtitle={listItem.subtitle}
-              leftContent={listItem.leftContent}
-              rightContent={listItem.rightContent}
-              onClick={listItem.onClick}
-              label={listItem.label}
-              hasDivider={listItem.hasDivider}
-              size={listItem.size}
-              customItem={listItem.customItem}
-              disabled={listItem.disabled}
-              dir={dir}
-            />
-        ))}
-    </ul>
-  )
-}
+    <div className={classNames(classes.list, className)} {...rest}>
+      {children}
+    </div>
+  );
+};
+
+export { ListItem, ListItemText };
 
 export default List;
-

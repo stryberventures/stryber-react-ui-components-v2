@@ -20,7 +20,18 @@ export default {
     shape: 'square',
     alignControl: 'top',
   },
-  argTypes: buildArgTypes(['name', 'className', 'value', 'onChange', 'onFocus', 'errorMessage', 'heading', 'label', 'size', 'title',]),
+  argTypes: buildArgTypes([
+    'name',
+    'className',
+    'value',
+    'onChange',
+    'onFocus',
+    'errorMessage',
+    'heading',
+    'label',
+    'size',
+    'title',
+  ]),
 } as ComponentMeta<typeof RadioButton>;
 
 const radioButtons = [
@@ -33,17 +44,14 @@ const radioButtons = [
     value: '2',
     name: 'radio',
     label: 'Option 2',
-  }
+  },
 ];
 const Radio: ComponentStory<typeof RadioButton> = (args) => {
   return (
     <Form>
       {radioButtons.map((radioButton) => {
         return (
-          <RadioButton
-            key={radioButton.value}
-            {...radioButton}
-            {...args} />
+          <RadioButton key={radioButton.value} {...radioButton} {...args} />
         );
       })}
     </Form>
@@ -87,7 +95,10 @@ FullWidth.args = {
 export const CustomContent = Radio.bind({});
 CustomContent.args = {
   label: (
-    <div style={{ lineHeight: toRem(22) }}>Check <a href="https://google.com">terms</a> and <a href="https://google.com">conditions</a></div>
+    <div style={{ lineHeight: toRem(22) }}>
+      Check <a href="https://google.com">terms</a> and{' '}
+      <a href="https://google.com">conditions</a>
+    </div>
   ),
 };
 

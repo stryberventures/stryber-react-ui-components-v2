@@ -1,6 +1,6 @@
 {
   "name": "@stryberventures/gaia-react.multiselect",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "peerDependencies": {
     "react": ">=17.0.0",
     "react-jss": ">=10.0.0",
@@ -10,6 +10,7 @@
     "@stryberventures/gaia-react.checkbox": ">=0.1.0",
     "@stryberventures/gaia-react.theme": ">=0.1.0",
     "@stryberventures/gaia-react.text": ">=0.1.0",
-    "@stryberventures/gaia-react.input-toggle-layout": ">=0.1.0"
+    "@stryberventures/gaia-react.input-toggle-layout": ">=0.1.0",
+    "@stryberventures/gaia-react.tag": ">=0.1.0"
   }
 }

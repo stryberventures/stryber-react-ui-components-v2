@@ -1,9 +1,13 @@
 import React from 'react';
 import { TMoreVariants } from '../types';
 
-
 const iconVariants = {
-  vertical: ({ fill, width = 4, height = 16, ...rest }: React.SVGProps<SVGSVGElement>) => (
+  vertical: ({
+    fill,
+    width = 4,
+    height = 16,
+    ...rest
+  }: React.SVGProps<SVGSVGElement>) => (
     <svg
       width={width}
       height={height}
@@ -18,7 +22,12 @@ const iconVariants = {
       />
     </svg>
   ),
-  horizontal: ({ fill, width = 16, height = 4, ...rest }: React.SVGProps<SVGSVGElement>) => (
+  horizontal: ({
+    fill,
+    width = 16,
+    height = 4,
+    ...rest
+  }: React.SVGProps<SVGSVGElement>) => (
     <svg
       width={width}
       height={height}
@@ -36,10 +45,10 @@ const iconVariants = {
 };
 
 interface IMoreIcon extends React.SVGProps<SVGSVGElement> {
-  variant?: TMoreVariants,
+  variant?: TMoreVariants;
 }
 
-export default function MoreIcon ({
+export default function MoreIcon({
   variant = 'vertical',
   fill = '#101828',
   ...rest

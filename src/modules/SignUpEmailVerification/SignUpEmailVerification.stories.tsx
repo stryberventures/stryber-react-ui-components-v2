@@ -18,26 +18,28 @@ export default {
     (Story, ctx) => {
       // decorator only for Canvas tab
       if (ctx.viewMode === 'story') {
-        return  (
+        return (
           <FullViewportDecorator>
             <Story />
           </FullViewportDecorator>
-        )
+        );
       }
-      return <Story/>
+      return <Story />;
     },
   ],
   argTypes: buildArgTypes(['className', 'requestCode']),
 } as ComponentMeta<typeof EmailVerificationComponent>;
 
-const Template: ComponentStory<typeof EmailVerificationComponent> = (...args) => {
+const Template: ComponentStory<typeof EmailVerificationComponent> = (
+  ...args
+) => {
   return <EmailVerificationComponent {...args[0]} />;
-}
+};
 
 export const EmailVerification = Template.bind({});
 EmailVerification.args = {
   email: 'alina@stryber.com',
-}
+};
 EmailVerification.parameters = {
   docs: {
     source: {

@@ -8,9 +8,9 @@ export default {
   parameters: {
     previewTabs: {
       'storybook/docs/panel': { hidden: true },
-      npm: { hidden: true }
-    }
+      npm: { hidden: true },
+    },
   },
 } as ComponentMeta<typeof Selector>;
 
-export const ComponentsSelector = () => <Selector/>;
+export const ComponentsSelector = () => <Selector />;

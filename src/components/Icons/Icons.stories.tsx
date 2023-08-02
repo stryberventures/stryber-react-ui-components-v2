@@ -7,14 +7,21 @@ import { createStyles, toRem } from '../Theme';
 import Text from '../Text';
 import {
   paymentMethodVariants as paymentMethodVariantsArr,
-  TPaymentMethodVariants
+  TPaymentMethodVariants,
 } from './IconsList/PaymentMethodIcon';
-import { socialVariants as socialVariantsArr, TSocialVariants } from './IconsList/SocialIcon';
-import { IArrowIconVariant, TCursorVariants, TMoreVariants, TSingleVariants } from './types';
+import {
+  socialVariants as socialVariantsArr,
+  TSocialVariants,
+} from './IconsList/SocialIcon';
+import {
+  IArrowIconVariant,
+  TCursorVariants,
+  TMoreVariants,
+  TSingleVariants,
+} from './types';
 import { IEyeIconVariant } from './IconsList/EyeIcon';
 import { TCountIconVariants } from './IconsList/CountIcon';
 import { TLoadIconVariants } from './IconsList/LoadIcon';
-
 
 export default {
   title: 'Components/Icons',
@@ -25,7 +32,7 @@ export default {
     fill: undefined,
     width: 40,
     height: 40,
-  }
+  },
 };
 
 const arrowVariants: IArrowIconVariant[] = ['down', 'up', 'left', 'right'];
@@ -34,7 +41,9 @@ const countVariants: TCountIconVariants[] = ['minus', 'plus'];
 const loadVariants: TLoadIconVariants[] = ['download', 'upload'];
 const moreVariants: TMoreVariants[] = ['vertical', 'horizontal'];
 const singleVariants: TSingleVariants[] = ['default'];
-const paymentMethodVariants = Object.keys(paymentMethodVariantsArr) as TPaymentMethodVariants[];
+const paymentMethodVariants = Object.keys(
+  paymentMethodVariantsArr
+) as TPaymentMethodVariants[];
 const socialVariants = Object.keys(socialVariantsArr) as TSocialVariants[];
 const commonVariants = ['default', 'filled'];
 const cursorVariants: TCursorVariants[] = ['arrow', 'drag', 'hover'];
@@ -51,11 +60,11 @@ const TemplateSocial: ComponentStory<typeof Icons.SocialIcon> = (args) => {
             variant={variant}
             className={classes.pointer}
           />
-        )
+        );
       })}
     </div>
-  )
-}
+  );
+};
 
 export const SocialMediaIcons = TemplateSocial.bind({});
 SocialMediaIcons.args = {
@@ -67,7 +76,10 @@ export const AllIcons = () => {
   const getIconsArr = () => {
     const iconsArr = [];
     for (const name in Icons) {
-      iconsArr.push({ name: [name as keyof typeof Icons], Icon: Icons[name as keyof typeof Icons] });
+      iconsArr.push({
+        name: [name as keyof typeof Icons],
+        Icon: Icons[name as keyof typeof Icons],
+      });
     }
     return iconsArr.filter(({ name }) => !name[0].includes('Deprecated'));
   };
@@ -83,51 +95,59 @@ export const AllIcons = () => {
             <div
               key={index}
               className={classNames(classes.iconWrapper, {
-                [classes.span2Rows]: ((iconName as keyof typeof Icons) == 'PaymentMethodIcon') || (iconName as keyof typeof Icons) == 'SocialIcon'
+                [classes.span2Rows]:
+                  (iconName as keyof typeof Icons) == 'PaymentMethodIcon' ||
+                  (iconName as keyof typeof Icons) == 'SocialIcon',
               })}
             >
               <Text
                 variant="components2"
                 weight="semiBold"
                 className={classes.subtitle}
-              >{`<${name} />`} variants</Text>
+              >
+                {`<${name} />`} variants
+              </Text>
               <div
                 className={classNames(classes.iconVariantsWrapper, {
-                  [classes.paymentVariantsWrapper]: (iconName as keyof typeof Icons) == 'PaymentMethodIcon',
-                  [classes.socialVariantsWrapper]: (iconName as keyof typeof Icons) == 'SocialIcon',
-                })}>
+                  [classes.paymentVariantsWrapper]:
+                    (iconName as keyof typeof Icons) == 'PaymentMethodIcon',
+                  [classes.socialVariantsWrapper]:
+                    (iconName as keyof typeof Icons) == 'SocialIcon',
+                })}
+              >
                 {displayIcon(iconName as keyof typeof Icons, Icon)?.map(
                   ({ variant, Icon: IconVariant }, idx) => {
                     return (
-                      <div
-                        key={variant + idx}
-                        className={classes.iconVariant}
-                      >
+                      <div key={variant + idx} className={classes.iconVariant}>
                         <IconVariant
                           variant={variant}
                           className={classNames({
-                            [classes.icon20]: (iconName as keyof typeof Icons) != 'PaymentMethodIcon',
+                            [classes.icon20]:
+                              (iconName as keyof typeof Icons) !=
+                              'PaymentMethodIcon',
                           })}
                         />
                         <Text variant="body3">{variant}</Text>
                       </div>
                     );
-                  },
+                  }
                 )}
               </div>
             </div>
-          )
+          );
         })}
       </div>
     </>
-  )
-}
+  );
+};
 
 export const PaymentMethodIcons = () => {
   const classes = useStyles();
   return (
     <>
-      <Text variant="h4" className={classes.title}>Payment Methods</Text>
+      <Text variant="h4" className={classes.title}>
+        Payment Methods
+      </Text>
       <div className={classes.container}>
         {paymentMethodVariants.map((variant: TPaymentMethodVariants) => {
           return (
@@ -138,16 +158,18 @@ export const PaymentMethodIcons = () => {
                 width={54}
                 height={44}
               />
-              <Text variant="body3" className={classes.text}>{variant}</Text>
+              <Text variant="body3" className={classes.text}>
+                {variant}
+              </Text>
             </div>
-          )
+          );
         })}
       </div>
     </>
   );
 };
 
-function displayIcon (name: keyof typeof Icons, Icon: React.FC<any>) {
+function displayIcon(name: keyof typeof Icons, Icon: React.FC<any>) {
   if (name.includes('Arrow')) {
     return arrowVariants.map(mapIconVariants(Icon));
   }
@@ -181,14 +203,14 @@ function displayIcon (name: keyof typeof Icons, Icon: React.FC<any>) {
   return commonVariants.map(mapIconVariants(Icon));
 }
 
-function mapIconVariants (Icon: React.FC<any>) {
+function mapIconVariants(Icon: React.FC<any>) {
   return (variant: string) => ({
     variant,
     Icon,
   });
 }
 
-function useStyles () {
+function useStyles() {
   return createStyles((theme) => ({
     allIconsTitle: {
       marginBottom: theme.spacing[24],
@@ -238,7 +260,7 @@ function useStyles () {
       alignItems: 'center',
       '& svg': {
         marginLeft: toRem(12),
-      }
+      },
     },
     iconVariant: {
       display: 'flex',
@@ -261,8 +283,8 @@ function useStyles () {
         transition: 'fill .3s',
       },
       '&:hover path': {
-        fill: theme.colors.primary.dark600
-      }
+        fill: theme.colors.primary.dark600,
+      },
     },
     // social media and payment styles
     title: {
@@ -308,6 +330,6 @@ function useStyles () {
       '&:hover path:first-child': {
         fill: theme.colors.primary.dark600,
       },
-    }
+    },
   }))();
 }

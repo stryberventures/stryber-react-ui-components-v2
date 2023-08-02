@@ -1,8 +1,11 @@
 import React from 'react';
 import classNames from 'classnames';
 import useStyles from './styles';
-import { useTableContextVariant, VARIANT_BODY, VARIANT_HEAD } from '../TableContext';
-
+import {
+  useTableContextVariant,
+  VARIANT_BODY,
+  VARIANT_HEAD,
+} from '../TableContext';
 
 export interface ITableRow extends React.HTMLAttributes<HTMLTableRowElement> {
   color?: 'primary' | 'secondary';
@@ -19,21 +22,23 @@ const TableRow: React.FC<ITableRow> = (props) => {
     className,
     selected,
     disabled,
-    children ,
+    children,
     ...rest
   } = props;
   const classes = useStyles()(props);
   return (
-    <Component className={classNames(
-      classes.tableRow,
-      {
-        [classes.tableHeadRow]: variant === VARIANT_HEAD,
-        [classes.tableBodyRow]: variant === VARIANT_BODY,
-        [classes.tableRowDisabled]: disabled,
-        [classes.tableRowSelected]: selected,
-      },
-      className)}
-    {...rest}
+    <Component
+      className={classNames(
+        classes.tableRow,
+        {
+          [classes.tableHeadRow]: variant === VARIANT_HEAD,
+          [classes.tableBodyRow]: variant === VARIANT_BODY,
+          [classes.tableRowDisabled]: disabled,
+          [classes.tableRowSelected]: selected,
+        },
+        className
+      )}
+      {...rest}
     >
       {children}
     </Component>
@@ -42,6 +47,6 @@ const TableRow: React.FC<ITableRow> = (props) => {
 
 TableRow.defaultProps = {
   color: 'primary',
-}
+};
 
 export default TableRow;

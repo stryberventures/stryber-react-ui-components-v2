@@ -12,7 +12,9 @@ declare global {
 }
 
 export type ThemeType = ITheme & DesignSystem.IProjectTheme;
-export type CustomTheme = RecursivePartial<ThemeType> & RecursivePartial<DesignSystem.IProjectTheme> & Record<string, any>;
+export type CustomTheme = RecursivePartial<ThemeType> &
+  RecursivePartial<DesignSystem.IProjectTheme> &
+  Record<string, any>;
 
 type TSpacing = 2 | 4 | 8 | 12 | 16 | 24 | 32 | 40 | 48 | 64 | 80 | 96 | 160;
 
@@ -34,7 +36,7 @@ export type createStylesOptions = {
   // used to build a proper priority of styles in DOM based on JSS index option between
   // components library styles and external styles
   internalUsage?: boolean;
-}
+};
 
 interface IPalette {
   dark600: string;
@@ -70,7 +72,7 @@ export interface ITheme {
     background: {
       white: string;
       extraLightGrey: string;
-    },
+    };
     text: {
       headline: string;
       secondary: string;
@@ -78,8 +80,8 @@ export interface ITheme {
       tint: string;
     };
     contrast: {
-      white: string,
-      black: string,
+      white: string;
+      black: string;
     };
   };
   font: string;
@@ -93,12 +95,12 @@ export interface ITheme {
     gap: {
       [key in Breakpoints]: string;
     };
-    maxWidth: number,
+    maxWidth: number;
   };
   breakpoints: {
     [key in Breakpoints]: number;
   };
   spacing: {
     [key in TSpacing]: string;
-  }
+  };
 }

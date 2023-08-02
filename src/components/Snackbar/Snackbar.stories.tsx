@@ -13,32 +13,38 @@ export default {
   },
   argTypes: {
     autoHideDuration: { name: 'autoHideDuration (ms)' },
-    ...buildArgTypes(['dir', 'anchorOrigin', 'open', 'className', 'style'])
+    ...buildArgTypes(['dir', 'anchorOrigin', 'open', 'className', 'style']),
   },
   decorators: [
     (Story) => (
-      <div style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <div
+        style={{
+          width: '100%',
+          height: '100vh',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
         <Story />
       </div>
     ),
   ],
 } as ComponentMeta<typeof Snackbar>;
 
-const Template: ComponentStory<typeof Snackbar> = ({
-  ...rest
-}) => {
+const Template: ComponentStory<typeof Snackbar> = ({ ...rest }) => {
   const [open, setOpen] = React.useState(false);
 
   const handleClose = () => {
     setOpen(false);
-  }
+  };
 
   return (
     <>
       <Button onClick={() => setOpen(true)}>Show snackbar</Button>
       <Snackbar open={open} {...rest} onClose={handleClose} />
     </>
-  )
+  );
 };
 
 export const Default = Template.bind({});
@@ -90,7 +96,7 @@ TopLeft.args = {
   anchorOrigin: {
     vertical: 'top',
     horizontal: 'left',
-  }
+  },
 };
 
 export const TopRight = Template.bind({});
@@ -101,7 +107,7 @@ TopRight.args = {
   anchorOrigin: {
     vertical: 'top',
     horizontal: 'right',
-  }
+  },
 };
 
 export const BottomCenter = Template.bind({});
@@ -112,7 +118,7 @@ BottomCenter.args = {
   anchorOrigin: {
     vertical: 'bottom',
     horizontal: 'center',
-  }
+  },
 };
 
 export const BottomRight = Template.bind({});
@@ -123,7 +129,7 @@ BottomRight.args = {
   anchorOrigin: {
     vertical: 'bottom',
     horizontal: 'right',
-  }
+  },
 };
 
 export const BottomLeft = Template.bind({});
@@ -134,5 +140,5 @@ BottomLeft.args = {
   anchorOrigin: {
     vertical: 'bottom',
     horizontal: 'left',
-  }
+  },
 };

@@ -7,16 +7,17 @@ import { useDir } from '../Theme';
 import ClearIcon from './ClearIcon';
 
 export interface IOption {
-  value: string | number,
-  label: string,
+  value: string | number;
+  label: string;
 }
 
-export interface ICombobox extends Omit<IDropdown, 'onChange' | 'children' | 'value'> {
-  options: IOption[],
-  value?: IOption['value'],
-  onChange?: (option: IOption['value'] | null) => void,
-  inputVariant?: 'labelOutside' | 'floatingLabel',
-  noOptionsFoundText?: string,
+export interface ICombobox
+  extends Omit<IDropdown, 'onChange' | 'children' | 'value'> {
+  options: IOption[];
+  value?: IOption['value'];
+  onChange?: (option: IOption['value'] | null) => void;
+  inputVariant?: 'labelOutside' | 'floatingLabel';
+  noOptionsFoundText?: string;
 }
 
 const Combobox: React.FC<ICombobox> = (props) => {
@@ -32,8 +33,19 @@ const Combobox: React.FC<ICombobox> = (props) => {
     ...rest
   } = props;
   const {
-    inputValue, dropdownRef, onInputChange, onSelectOption, onDropdownToggle, filteredOptions, activeIndex, handleKeyDown, setActiveIndex, activeRef,
-    clearSelectedOption, isOpen, handleOutsideClick,
+    inputValue,
+    dropdownRef,
+    onInputChange,
+    onSelectOption,
+    onDropdownToggle,
+    filteredOptions,
+    activeIndex,
+    handleKeyDown,
+    setActiveIndex,
+    activeRef,
+    clearSelectedOption,
+    isOpen,
+    handleOutsideClick,
   } = useCombobox(props);
   const classes = useStyles()({
     ...props,
@@ -55,7 +67,15 @@ const Combobox: React.FC<ICombobox> = (props) => {
       onToggle={onDropdownToggle}
       fullWidth={fullWidth}
       onKeyDown={handleKeyDown}
-      rightIcon={inputValue && isOpen && <ClearIcon onClick={() => clearSelectedOption()} className={classes.clearIcon} />}
+      rightIcon={
+        inputValue &&
+        isOpen && (
+          <ClearIcon
+            onClick={() => clearSelectedOption()}
+            className={classes.clearIcon}
+          />
+        )
+      }
       onOutsideClick={handleOutsideClick}
     >
       {!filteredOptions.length && (
@@ -78,6 +98,6 @@ const Combobox: React.FC<ICombobox> = (props) => {
       ))}
     </Dropdown>
   );
-}
+};
 
 export default Combobox;

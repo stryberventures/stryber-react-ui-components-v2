@@ -4,7 +4,6 @@ import Tab, { ITab, ITabProps } from './Tab';
 import { useDir } from '../Theme';
 import useStyles from './styles';
 
-
 export type TTabsDirection = 'horizontal' | 'vertical';
 
 export interface ITabs {
@@ -34,44 +33,45 @@ const Tabs: React.FC<ITabs> = (props) => {
   } = props;
   const classes = useStyles()({
     ...props,
-    dir
+    dir,
   });
   return (
     <div
-      className={classNames(
-        classes.wrapper,
-        { [classes.vertical]: direction == 'vertical' },
-      )}
+      className={classNames(classes.wrapper, {
+        [classes.vertical]: direction == 'vertical',
+      })}
     >
       <div
         className={classNames(
           classes.tabs,
           { [classes.vertical]: direction == 'vertical' },
-          className)}
+          className
+        )}
         {...rest}
       >
-        {children || tabs.map((tab, index) => {
-          return(
-            <Tab
-              {...tab}
-              dir={dir}
-              key={index}
-              direction={direction}
-              color={color}
-              size={size}
-              variant={variant}
-              onChange={(id: ITab['id']) => onChange(id)}
-            />
-          );
-        })}
+        {children ||
+          tabs.map((tab, index) => {
+            return (
+              <Tab
+                {...tab}
+                dir={dir}
+                key={index}
+                direction={direction}
+                color={color}
+                size={size}
+                variant={variant}
+                onChange={(id: ITab['id']) => onChange(id)}
+              />
+            );
+          })}
       </div>
     </div>
   );
-}
+};
 
 export default Tabs;
 
 Tabs.defaultProps = {
   color: 'primary',
   direction: 'horizontal',
-}
+};

@@ -1,7 +1,6 @@
 import React from 'react';
 import { TCommonIconVariants } from '../types';
 
-
 const iconVariants = {
   default: ({ fill, ...rest }: React.SVGProps<SVGSVGElement>) => (
     <svg
@@ -31,10 +30,10 @@ const iconVariants = {
   ),
 };
 interface ICloseCircleIcon extends React.SVGProps<SVGSVGElement> {
-  variant?: TCommonIconVariants,
+  variant?: TCommonIconVariants;
 }
 
-export default function CloseCircleIcon ({
+export default function CloseCircleIcon({
   variant = 'default',
   fill = '#101828',
   width = 20,

@@ -10,15 +10,14 @@ import TableName from './TableName';
 import SelectedItems from './SelectedItems';
 import useStyles from './styles';
 
-
 export interface ITable {
   metadata: IMetadata[];
   data?: IData[];
   tableName?: string;
-  sorting?: ITableSorting,
-  selectedItems?: (string | number)[],
-  selectedItemsTitle?: string,
-  onSelect?: (itemId: string | number) => void,
+  sorting?: ITableSorting;
+  selectedItems?: (string | number)[];
+  selectedItemsTitle?: string;
+  onSelect?: (itemId: string | number) => void;
   onSort?: (orderBy: string, orderDirection: TSortingDirection) => void;
   color?: 'primary' | 'secondary';
   className?: string;
@@ -45,7 +44,7 @@ const DataTable: React.FC<ITable> = (props) => {
   } = props;
   const classes = useStyles()({
     ...props,
-    dir
+    dir,
   });
   return (
     <Elevation
@@ -72,13 +71,15 @@ const DataTable: React.FC<ITable> = (props) => {
           <TableRow
             key={row.id}
             color={color}
-            className={classNames({ [classes.evenRow]: variant == 'zebra' && index % 2 })}
+            className={classNames({
+              [classes.evenRow]: variant == 'zebra' && index % 2,
+            })}
             metadata={metadata}
             data={row}
             selected={selectedItems?.includes(row.id)}
             onSelect={onSelect}
           />
-        )
+        );
       })}
       {pagination && (
         <div className={classes.paginationPlaceholder}>
@@ -86,14 +87,14 @@ const DataTable: React.FC<ITable> = (props) => {
             variant="components1"
             className={classes.paginationPlaceholderText}
           >
-              Pagination placeholder
+            Pagination placeholder
           </Text>
         </div>
       )}
     </Elevation>
   );
-}
+};
 
 export default DataTable;
 
-DataTable.defaultProps = {}
+DataTable.defaultProps = {};

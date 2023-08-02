@@ -2,7 +2,12 @@ import React from 'react';
 import { TCommonIconVariants } from '../types';
 
 const iconVariants = {
-  default: ({ fill, width, height, ...rest }: React.SVGProps<SVGSVGElement>) => (
+  default: ({
+    fill,
+    width,
+    height,
+    ...rest
+  }: React.SVGProps<SVGSVGElement>) => (
     <svg
       viewBox="0 0 14 19"
       fill="none"
@@ -31,10 +36,10 @@ const iconVariants = {
 };
 
 interface IMicIcon extends React.SVGProps<SVGSVGElement> {
-  variant?: TCommonIconVariants,
+  variant?: TCommonIconVariants;
 }
 
-export default function MicIcon ({
+export default function MicIcon({
   variant = 'default',
   fill = '#101828',
   width = 14,

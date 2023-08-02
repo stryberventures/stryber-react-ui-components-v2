@@ -14,16 +14,13 @@ export default {
 } as ComponentMeta<typeof Text>;
 
 const Template: ComponentStory<typeof Text> = (args) => (
-  <Text
-    variant="h1"
-    {...args}
-  >
+  <Text variant="h1" {...args}>
     {args.children}
   </Text>
 );
 
 export const TextElement = Template.bind({});
 TextElement.args = {
-  children: 'Text element text element text element text element text element text element text element text element text element text element',
+  children:
+    'Text element text element text element text element text element text element text element text element text element text element',
 };
-

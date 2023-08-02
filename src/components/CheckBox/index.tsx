@@ -7,7 +7,7 @@ import { useDir } from '../Theme';
 
 export interface ICheckBox extends ICheckBoxMark, IInputToggleBaseControlled {}
 
-const CheckBox:React.FC<ICheckBox> = (props) => {
+const CheckBox: React.FC<ICheckBox> = (props) => {
   const { checked, errorMessage, onChange, onFocus } = useCheckedState(props);
   const {
     shape,
@@ -49,10 +49,10 @@ const CheckBox:React.FC<ICheckBox> = (props) => {
       }
     />
   );
-}
+};
 
 CheckBox.defaultProps = {
   color: 'primary',
-}
+};
 
 export default CheckBox;

@@ -144,4 +144,4 @@ export const defaultTheme: ITheme = {
     96: toRem(96),
     160: toRem(160),
   },
-}
+};

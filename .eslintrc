@@ -2,14 +2,16 @@
   "root": true,
   "parser": "@typescript-eslint/parser",
   "plugins": [
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "prettier"
   ],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
   ],
   "settings": {
     "react": {
@@ -17,7 +19,7 @@
     }
   },
   "rules": {
-    "@typescript-eslint/indent": ["warn", 2],
+    "@typescript-eslint/indent": "off",
     "object-curly-spacing": ["warn", "always"],
     "object-curly-newline": ["warn", {"multiline": true, "consistent": true}],
     "quotes": [2, "single", "avoid-escape"],
@@ -28,7 +30,8 @@
     "@typescript-eslint/no-namespace": "off",
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/no-static-element-interactions": "off",
-    "@typescript-eslint/no-unused-vars": ["warn", { "ignoreRestSiblings": true }],
-    "react/prop-types": "off"
+    "@typescript-eslint/no-unused-vars": ["error", { "ignoreRestSiblings": true }],
+    "react/prop-types": "off",
+    "prettier/prettier": ["error"]
   }
 }

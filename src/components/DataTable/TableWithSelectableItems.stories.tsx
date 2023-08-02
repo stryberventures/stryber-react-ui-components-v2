@@ -7,8 +7,6 @@ import { TableCode } from '../../storybook/preview/Table/Selectable';
 import { buildArgTypes } from '../../storybook/utils';
 import { ITableSorting, SortingDirection, TSortingDirection } from './types';
 
-
-
 export default {
   title: 'Components/DataTable/TableWithSelectableItems',
   component: DataTable,
@@ -19,7 +17,13 @@ export default {
     color: 'primary',
     variant: 'default',
   },
-  argTypes: buildArgTypes(['selectedItems', 'onSelect', 'onSort', 'className', 'sorting']),
+  argTypes: buildArgTypes([
+    'selectedItems',
+    'onSelect',
+    'onSort',
+    'className',
+    'sorting',
+  ]),
 } as ComponentMeta<typeof DataTable>;
 
 const metadata = [
@@ -40,15 +44,44 @@ const metadata = [
     id: 'status',
     label: 'Status',
     formatter: (value: string | number, data: any) => (
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8, }}>
-        {data?.disabled && <span style={{ display: 'flex', width: 10, height: 10, backgroundColor: '#D0D5DD', borderRadius: 10 }} />}
-        {!data?.disabled && value == 'active' && <span style={{ display: 'flex', width: 10, height: 10, backgroundColor: 'green', borderRadius: 10 }} />}
-        {!data?.disabled && value != 'active' && <span style={{ display: 'flex', width: 10, height: 10, backgroundColor: 'red', borderRadius: 10 }} /> }
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        {data?.disabled && (
+          <span
+            style={{
+              display: 'flex',
+              width: 10,
+              height: 10,
+              backgroundColor: '#D0D5DD',
+              borderRadius: 10,
+            }}
+          />
+        )}
+        {!data?.disabled && value == 'active' && (
+          <span
+            style={{
+              display: 'flex',
+              width: 10,
+              height: 10,
+              backgroundColor: 'green',
+              borderRadius: 10,
+            }}
+          />
+        )}
+        {!data?.disabled && value != 'active' && (
+          <span
+            style={{
+              display: 'flex',
+              width: 10,
+              height: 10,
+              backgroundColor: 'red',
+              borderRadius: 10,
+            }}
+          />
+        )}
         <Text variant="components2" weight="regular">
           {value}
         </Text>
       </div>
-
     ),
     width: '30%',
     minWidth: 140,
@@ -61,7 +94,11 @@ const metadata = [
   {
     id: 'employees',
     label: 'Employees',
-    formatter: (value: string | number) => <Text variant="components2" weight="regular">{value}</Text>,
+    formatter: (value: string | number) => (
+      <Text variant="components2" weight="regular">
+        {value}
+      </Text>
+    ),
     width: '28%',
     minWidth: 100,
     sortable: true,
@@ -72,24 +109,32 @@ const data = [
   { id: 1, company: 'YouTube', status: 'active', employees: 10 },
   { id: 2, company: 'Apple', status: 'active', employees: 20 },
   { id: 3, company: 'Patreon', status: 'disabled', employees: 30 },
-  { id: 4, company: 'Stryber', status: 'disabled', employees: 40, disabled: true },
+  {
+    id: 4,
+    company: 'Stryber',
+    status: 'disabled',
+    employees: 40,
+    disabled: true,
+  },
 ];
 
 const sorting = {
   orderBy: 'company',
   orderDirection: SortingDirection.asc,
-}
+};
 
 const Template: ComponentStory<typeof DataTable> = (args) => {
   const [sorting, setSorting] = useState<ITableSorting>({
     orderBy: 'company',
     orderDirection: 'desc',
   });
-  function onSort (orderBy: string, orderDirection: TSortingDirection) {
+  function onSort(orderBy: string, orderDirection: TSortingDirection) {
     setSorting({ orderBy, orderDirection });
   }
-  const [selectedItems, setSelectedItems] = useState<(string | number)[]>([1, 2]);
-  function handleOnSelect (itemId: string | number) {
+  const [selectedItems, setSelectedItems] = useState<(string | number)[]>([
+    1, 2,
+  ]);
+  function handleOnSelect(itemId: string | number) {
     const newSelectedItems = selectedItems.includes(itemId)
       ? selectedItems.filter((id) => id != itemId)
       : [...selectedItems, itemId];
@@ -104,14 +149,14 @@ const Template: ComponentStory<typeof DataTable> = (args) => {
       onSort={onSort}
     />
   );
-}
+};
 
 export const TableWithSelectableItems = Template.bind({});
 TableWithSelectableItems.args = {
   metadata,
   data,
   sorting,
-  tableName: 'Table Name'
+  tableName: 'Table Name',
 };
 
 TableWithSelectableItems.parameters = {
@@ -119,5 +164,5 @@ TableWithSelectableItems.parameters = {
     source: {
       code: TableCode,
     },
-  }
-}
+  },
+};

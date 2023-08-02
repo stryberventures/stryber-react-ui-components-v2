@@ -5,9 +5,9 @@ import { useDir } from '../Theme';
 import useStyles from './styles';
 
 interface IHintMessage extends React.HTMLAttributes<HTMLDivElement> {
-  text: string,
-  className?: string,
-  disabled?: boolean,
+  text: string;
+  className?: string;
+  disabled?: boolean;
 }
 
 export const HintMessage = (props: IHintMessage) => {
@@ -26,4 +26,4 @@ export const HintMessage = (props: IHintMessage) => {
       {text}
     </Text>
   );
-}
+};

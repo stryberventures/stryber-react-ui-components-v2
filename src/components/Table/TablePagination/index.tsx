@@ -4,7 +4,7 @@ import Text from '../../Text';
 import Select from '../../Select';
 import { useDir } from '../../Theme';
 import useStyles from './styles';
-import { PointArrowIcon } from '../../Icons'
+import { PointArrowIcon } from '../../Icons';
 import { ISelect } from '../../Select';
 import classNames from 'classnames';
 import { KEYS } from '../../../hooks/useKeyPress';
@@ -15,7 +15,10 @@ export interface ITablePagination extends React.HTMLAttributes<HTMLDivElement> {
   onRowsPerPageChange?: ISelect['onChange'];
   count: number;
   page: number;
-  onPageChange: (event:  React.MouseEvent<any, MouseEvent>, page: number) => void;
+  onPageChange: (
+    event: React.MouseEvent<any, MouseEvent>,
+    page: number
+  ) => void;
   rowsPerPageLabel?: string;
   countLabel?: string;
 }
@@ -37,7 +40,7 @@ const TablePagination: React.FC<ITablePagination> = (props) => {
   } = props;
   const classes = useStyles()({
     ...props,
-    dir
+    dir,
   });
 
   const firstPage = page === 0;
@@ -56,31 +59,35 @@ const TablePagination: React.FC<ITablePagination> = (props) => {
   };
 
   return (
-    <div className={classNames(classes.paginationContainer, className)} {...rest}>
+    <div
+      className={classNames(classes.paginationContainer, className)}
+      {...rest}
+    >
       <div>
-        <Text variant="components1">
-          {rowsPerPageLabel}
-        </Text>
+        <Text variant="components1">{rowsPerPageLabel}</Text>
         <Select
           className={classes.paginationSelect}
           value={rowsPerPage}
-          options={
-            rowsPerPageOptions
-              .map((option) =>
-                ({ value: option, label: option.toString() }))
-          }
+          options={rowsPerPageOptions.map((option) => ({
+            value: option,
+            label: option.toString(),
+          }))}
           onChange={onRowsPerPageChange}
         />
       </div>
       <div className={classes.pagesContainer}>
         <Text variant="components1">
-          {page * rowsPerPage || 1} – {Math.min(count, page * rowsPerPage + rowsPerPage)} {countLabel} {count}
+          {page * rowsPerPage || 1} –{' '}
+          {Math.min(count, page * rowsPerPage + rowsPerPage)} {countLabel}{' '}
+          {count}
         </Text>
         <PointArrowIcon
           variant={dir === 'rtl' ? 'right' : 'left'}
           onClick={handleBackButtonClick}
           fill={firstPage ? theme.colors.text.disabled : undefined}
-          className={classNames(classes.arrow, { [classes.disabledArrow]: firstPage })}
+          className={classNames(classes.arrow, {
+            [classes.disabledArrow]: firstPage,
+          })}
           role="button"
           tabIndex={0}
           onKeyDown={(e) => e.key == KEYS.enter && handleBackButtonClick(e)}
@@ -88,7 +95,8 @@ const TablePagination: React.FC<ITablePagination> = (props) => {
         <PointArrowIcon
           variant={dir === 'rtl' ? 'left' : 'right'}
           onClick={handleNextButtonClick}
-          fill={lastPage ? theme.colors.text.disabled : undefined} className={classes.arrow}
+          fill={lastPage ? theme.colors.text.disabled : undefined}
+          className={classes.arrow}
           role="button"
           tabIndex={0}
           onKeyDown={(e) => e.key == KEYS.enter && handleBackButtonClick(e)}

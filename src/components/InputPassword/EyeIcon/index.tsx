@@ -14,11 +14,15 @@ export const EyeIcon = (props: IEyeIcon) => {
   return (
     <div
       {...rest}
-      className={classNames(classes.eyeIcon, {
-        [classes.disabled]: disabled,
-      }, className)}
+      className={classNames(
+        classes.eyeIcon,
+        {
+          [classes.disabled]: disabled,
+        },
+        className
+      )}
     >
-      <Eye variant={visible ? 'open' : 'closed'}/>
+      <Eye variant={visible ? 'open' : 'closed'} />
     </div>
   );
-}
+};

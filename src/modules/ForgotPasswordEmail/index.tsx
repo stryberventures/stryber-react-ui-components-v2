@@ -8,12 +8,14 @@ import { createStyles, toRem, useDir } from '../../components/Theme';
 import DemoLogo from '../../storybook/preview/DemoLogo';
 import * as yup from 'yup';
 
-
 const emailRegEx = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gm;
 const emailErrorMessage = 'Email incorrect';
 
 const validationSchema = yup.object().shape({
-  email: yup.string().matches(emailRegEx, emailErrorMessage).required('Email is required'),
+  email: yup
+    .string()
+    .matches(emailRegEx, emailErrorMessage)
+    .required('Email is required'),
 });
 
 const ForgotPasswordEmail = () => {
@@ -36,20 +38,15 @@ const ForgotPasswordEmail = () => {
           >
             Reset Password
           </Text>
-          <Text
-            variant="body2"
-            align="center"
-            className={classes.description}
-          >
-            Enter the email address associated with your
-            account and we’ll send an email with instructions
-            to reset your password in no time!
+          <Text variant="body2" align="center" className={classes.description}>
+            Enter the email address associated with your account and we’ll send
+            an email with instructions to reset your password in no time!
           </Text>
           <Form
             className={classes.form}
             validationSchema={validationSchema}
             onChange={(formData, { isValid }) => {
-              setDisabled(!isValid)
+              setDisabled(!isValid);
             }}
           >
             <Input
@@ -78,10 +75,7 @@ const ForgotPasswordEmail = () => {
             >
               Login
             </Button>
-            <TextLink
-              href={'#'}
-              className={classes.textLink}
-            >
+            <TextLink href={'#'} className={classes.textLink}>
               New user? Register here
             </TextLink>
           </Form>
@@ -89,7 +83,7 @@ const ForgotPasswordEmail = () => {
       </div>
     </div>
   );
-}
+};
 
 export default ForgotPasswordEmail;
 
@@ -97,102 +91,103 @@ interface IUseStyles {
   dir: string;
 }
 
-const useStyles = () => createStyles<any, IUseStyles>((theme) => ({
-  forgotPasswordEmail: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: '100%',
-    padding: `${theme.spacing[48]} 0 ${theme.spacing[80]}`,
-    boxSizing: 'border-box',
-    '*, *:after, *:before': {
-      boxSizing: 'inherit',
-    }
-  },
-  logoWrapper: ({ dir }) => ({
-    display: 'flex',
-    justifyContent: 'flex-end',
-    width: '100%',
-    marginBottom: theme.spacing[64],
-    [dir === 'rtl' ? 'paddingLeft' :  'paddingRight']: theme.spacing[80],
-    boxSizing: 'border-box',
-  }),
-  screen: {
-    display: 'flex',
-    flexGrow: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-  },
-  formContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    maxWidth: toRem(560),
-    width: '100%',
-    height: '100%',
-  },
-  title: {
-    width: '100%',
-    marginBottom: theme.spacing[24],
-    color: theme.colors.text.headline,
-  },
-  description: {
-    width: '100%',
-    marginBottom: theme.spacing[24],
-    color: theme.colors.neutralGray.main500,
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    flexGrow: 1,
-  },
-  emailInput: {
-    position: 'relative',
-    marginBottom: theme.spacing[96],
-    ...hintAndErrorStyles,
-  },
-  submitButton: {
-    marginBottom: theme.spacing[24],
-  },
-  loginButton: {
-    marginBottom: theme.spacing[80],
-  },
-  textLink: {},
-  [`@media (max-width: ${theme.breakpoints.md}px)`]: {
+const useStyles = () =>
+  createStyles<any, IUseStyles>((theme) => ({
     forgotPasswordEmail: {
-      height: '100vh',
-      padding: [theme.spacing[48], theme.spacing[24], theme.spacing[64]],
+      display: 'flex',
+      flexDirection: 'column',
+      width: '100%',
+      padding: `${theme.spacing[48]} 0 ${theme.spacing[80]}`,
+      boxSizing: 'border-box',
+      '*, *:after, *:before': {
+        boxSizing: 'inherit',
+      },
     },
-    logoWrapper: {
+    logoWrapper: ({ dir }) => ({
+      display: 'flex',
+      justifyContent: 'flex-end',
+      width: '100%',
+      marginBottom: theme.spacing[64],
+      [dir === 'rtl' ? 'paddingLeft' : 'paddingRight']: theme.spacing[80],
+      boxSizing: 'border-box',
+    }),
+    screen: {
+      display: 'flex',
+      flexGrow: 1,
+      alignItems: 'center',
       justifyContent: 'center',
-      paddingRight: 0,
-      marginBottom: theme.spacing[48],
-    },
-    title: {
-      marginBottom: theme.spacing[12],
-      fontSize: toRem(22),
-      lineHeight: toRem(28),
-      textAlign: 'left !important',
-    },
-    description: {
-      marginBottom: theme.spacing[32],
-      textAlign: 'left !important',
+      width: '100%',
     },
     formContainer: {
-      maxWidth: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      maxWidth: toRem(560),
+      width: '100%',
+      height: '100%',
+    },
+    title: {
+      width: '100%',
+      marginBottom: theme.spacing[24],
+      color: theme.colors.text.headline,
+    },
+    description: {
+      width: '100%',
+      marginBottom: theme.spacing[24],
+      color: theme.colors.neutralGray.main500,
+    },
+    form: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      flexGrow: 1,
     },
     emailInput: {
-      marginBottom: theme.spacing[32],
+      position: 'relative',
+      marginBottom: theme.spacing[96],
+      ...hintAndErrorStyles,
     },
     submitButton: {
-      marginTop: 'auto',
       marginBottom: theme.spacing[24],
     },
     loginButton: {
-      marginBottom: theme.spacing[40],
+      marginBottom: theme.spacing[80],
     },
-  },
-}));
+    textLink: {},
+    [`@media (max-width: ${theme.breakpoints.md}px)`]: {
+      forgotPasswordEmail: {
+        height: '100vh',
+        padding: [theme.spacing[48], theme.spacing[24], theme.spacing[64]],
+      },
+      logoWrapper: {
+        justifyContent: 'center',
+        paddingRight: 0,
+        marginBottom: theme.spacing[48],
+      },
+      title: {
+        marginBottom: theme.spacing[12],
+        fontSize: toRem(22),
+        lineHeight: toRem(28),
+        textAlign: 'left !important',
+      },
+      description: {
+        marginBottom: theme.spacing[32],
+        textAlign: 'left !important',
+      },
+      formContainer: {
+        maxWidth: '100%',
+      },
+      emailInput: {
+        marginBottom: theme.spacing[32],
+      },
+      submitButton: {
+        marginTop: 'auto',
+        marginBottom: theme.spacing[24],
+      },
+      loginButton: {
+        marginBottom: theme.spacing[40],
+      },
+    },
+  }));
 
 const hintAndErrorStyles = {
   '& [class*=hint], & [class*=errorMessage]': {
@@ -200,5 +195,5 @@ const hintAndErrorStyles = {
     left: 0,
     top: '100%',
     width: '100%',
-  }
-}
+  },
+};

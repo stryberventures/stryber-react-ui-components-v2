@@ -1,7 +1,7 @@
-import '@testing-library/jest-dom'
-import * as React from 'react'
-import { fireEvent, render, screen } from '@testing-library/react'
-import RadioButton from './index'
+import '@testing-library/jest-dom';
+import * as React from 'react';
+import { fireEvent, render, screen } from '@testing-library/react';
+import RadioButton from './index';
 import LeftArrow from '../../storybook/icons/leftArrow';
 
 it('should be rendered', () => {
@@ -11,19 +11,19 @@ it('should be rendered', () => {
 
 it('should not be checked by default', () => {
   const { getByRole } = render(<RadioButton />);
-  const radioButton = getByRole('radio',{ hidden: true }) as HTMLInputElement;
+  const radioButton = getByRole('radio', { hidden: true }) as HTMLInputElement;
   expect(radioButton.checked).toBe(false);
 });
 
 it('should be checked', () => {
   const { getByRole } = render(<RadioButton checked={true} />);
-  const radioButton = getByRole('radio',{ hidden: true }) as HTMLInputElement;
+  const radioButton = getByRole('radio', { hidden: true }) as HTMLInputElement;
   expect(radioButton.checked).toBe(true);
 });
 
 it('should change checked state', () => {
   const { getByRole } = render(<RadioButton />);
-  const checkBox = getByRole('radio',{ hidden: true }) as HTMLInputElement;
+  const checkBox = getByRole('radio', { hidden: true }) as HTMLInputElement;
   fireEvent.change(checkBox, { target: { checked: true } });
   expect(checkBox.checked).toBe(true);
 });
@@ -47,7 +47,15 @@ it('should display the error', () => {
 });
 
 it('should display the custom content', () => {
-  render(<RadioButton label={<>Message <LeftArrow /></>} />);
+  render(
+    <RadioButton
+      label={
+        <>
+          Message <LeftArrow />
+        </>
+      }
+    />
+  );
   expect(screen.getByTestId('leftArrow')).toBeVisible();
   expect(screen.queryByText('Message')).toBeVisible();
 });

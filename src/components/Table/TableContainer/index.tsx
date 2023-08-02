@@ -12,7 +12,7 @@ const TableContainer: FC<ITableContainer> = (props) => {
   const { className, children, dir = useDir(props.dir), ...rest } = props;
   const classes = useStyles()({
     ...props,
-    dir
+    dir,
   });
   return (
     <Elevation

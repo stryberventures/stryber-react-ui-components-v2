@@ -18,18 +18,20 @@ export default {
     (Story, ctx) => {
       // decorator only for Canvas tab
       if (ctx.viewMode === 'story') {
-        return  (
+        return (
           <FullViewportDecorator>
             <Story />
           </FullViewportDecorator>
-        )
+        );
       }
-      return <Story/>
+      return <Story />;
     },
   ],
 } as ComponentMeta<typeof PhoneNumberComponent>;
 
-const Template: ComponentStory<typeof PhoneNumberComponent> = () => <PhoneNumberComponent />;
+const Template: ComponentStory<typeof PhoneNumberComponent> = () => (
+  <PhoneNumberComponent />
+);
 
 export const PhoneNumber = Template.bind({});
 PhoneNumber.parameters = {

@@ -62,24 +62,23 @@ DisabledOutlined.args = {
 export const IconLeft = Template.bind({});
 IconLeft.args = {
   children: 'Icon left',
-  iconLeft: <CarIcon/>
+  iconLeft: <CarIcon />,
 };
 
 export const IconRight = Template.bind({});
 IconRight.args = {
   children: 'Icon right',
-  iconRight: <CarIcon/>
+  iconRight: <CarIcon />,
 };
 
 export const IconLeftAndRight = Template.bind({});
 IconLeftAndRight.args = {
   children: 'Icons',
-  iconLeft: <CarIcon/>,
-  iconRight: <CarIcon/>
+  iconLeft: <CarIcon />,
+  iconRight: <CarIcon />,
 };
 
 export const IconOnly = Template.bind({});
 IconOnly.args = {
-  iconRight: <CarIcon/>,
+  iconRight: <CarIcon />,
 };
-

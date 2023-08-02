@@ -34,9 +34,7 @@ const TableBasicExample = () => {
         <TableHead>
           <TableRow>
             {headCells.map((headCell) => (
-              <TableCell key={headCell.id}>
-                {headCell.label}
-              </TableCell>
+              <TableCell key={headCell.id}>{headCell.label}</TableCell>
             ))}
           </TableRow>
         </TableHead>
@@ -44,17 +42,19 @@ const TableBasicExample = () => {
           {data.map((row) => {
             const selected = row.id === 4;
             const disabled = row.id === 1 || row.id === 2;
-            return (<TableRow disabled={disabled} selected={selected} key={row.id}>
-              <TableCell>{row.id}</TableCell>
-              <TableCell>{row.company}</TableCell>
-              <TableCell>{row.status}</TableCell>
-              <TableCell>{row.employees}</TableCell>
-            </TableRow>)
+            return (
+              <TableRow disabled={disabled} selected={selected} key={row.id}>
+                <TableCell>{row.id}</TableCell>
+                <TableCell>{row.company}</TableCell>
+                <TableCell>{row.status}</TableCell>
+                <TableCell>{row.employees}</TableCell>
+              </TableRow>
+            );
           })}
         </TableBody>
       </Table>
     </TableContainer>
-  )
+  );
 };
 
 export default TableBasicExample;
@@ -106,4 +106,4 @@ const TableBasicExample = () => {
     </TableContainer>
   )
 };
-`
+`;

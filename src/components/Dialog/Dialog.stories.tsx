@@ -1,14 +1,26 @@
-import React, { useState } from 'react';
-import { createStyles } from '../Theme/index';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import React from 'react';
+import { ComponentMeta } from '@storybook/react';
 import pkg from './package.json';
 import { buildArgTypes } from '../../storybook/utils';
-import Button from '../Button';
 import Dialog from './';
-import Text from '../Text';
-import { CloseIcon } from '../Icons';
-import { ITheme } from '../Theme/types';
-
+import DialogBasicExample, {
+  DialogBasicExampleCode,
+} from '../../storybook/preview/Dialog/Basic';
+import DialogButtonsInRowExample, {
+  DialogButtonsInRowExampleCode,
+} from '../../storybook/preview/Dialog/ButtonsInRow';
+import DialogButtonsShrunkExample, {
+  DialogButtonsShrunkExampleCode,
+} from '../../storybook/preview/Dialog/ButtonsShrunk';
+import DialogTextCenterExample, {
+  DialogTextCenterExampleCode,
+} from '../../storybook/preview/Dialog/TextCenter';
+import DialogImageExample, {
+  DialogImageExampleCode,
+} from '../../storybook/preview/Dialog/Image';
+import DialogCheckboxesExample, {
+  DialogCheckboxesExampleCode,
+} from '../../storybook/preview/Dialog/Checkboxes';
 
 export default {
   title: 'Components/Dialog',
@@ -16,85 +28,66 @@ export default {
   parameters: {
     pkg,
   },
-  argTypes: buildArgTypes(['disableEscPress', 'onClose', 'dir', 'className', 'modalContainer', 'overlayClassName']),
+  argTypes: buildArgTypes([
+    'disableEscPress',
+    'onClose',
+    'dir',
+    'className',
+    'modalContainer',
+    'overlayClassName',
+  ]),
 } as ComponentMeta<typeof Dialog>;
 
-const Template: ComponentStory<typeof Dialog> = (args) => {
-  const classes = useStyles();
-  const [open, setOpen] = useState(false);
-  const openModal = () => setOpen(true);
-  const closeModal = () => {
-    args.onClose?.();
-    setOpen(false);
-  };
-  const confirm = () => {
-    setOpen(false);
-  };
-  return (
-    <div style={{ width: '100vw', height: '100vh' }}>
-      <Button onClick={openModal}>Open modal</Button>
-      <Dialog
-        {...args}
-        open={open}
-        onClose={closeModal}
-      >
-        <Dialog.Title className={classes.dialogTitle}>
-          <Text
-            variant="h4"
-            weight="semiBold"
-            className={classes.dialogText}
-          >
-            Dialog Title
-          </Text>
-          <CloseIcon
-            className={classes.closeIcon}
-            onClick={closeModal}
-          />
-        </Dialog.Title>
-        <Dialog.Content>
-          <Text variant="body1">
-            Dialog content
-          </Text>
-        </Dialog.Content>
-        <Dialog.Actions>
-          <Button
-            onClick={confirm}
-            variant="outlined"
-            size="small"
-          >
-            Cancel
-          </Button>
-          <Button
-            onClick={closeModal}
-            variant="contained"
-            size="small"
-          >
-            Confirm
-          </Button>
-        </Dialog.Actions>
-      </Dialog>
-    </div>
-  );
-}
-
-const useStyles = createStyles((theme: ITheme) => ({
-  dialogTitle: {
-    display: 'flex',
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+export const DialogBasic = () => <DialogBasicExample />;
+DialogBasic.parameters = {
+  docs: {
+    source: {
+      code: DialogBasicExampleCode,
+    },
   },
-  dialogText: {
-    color: theme.colors.text.headline,
-  },
-  closeIcon: {
-    width: 16,
-    height: 16,
-    cursor: 'pointer',
-  },
-}))
-
-export const DialogueWindow = Template.bind({});
-DialogueWindow.args = {
 };
 
+export const DialogButtonsInRow = () => <DialogButtonsInRowExample />;
+DialogButtonsInRow.parameters = {
+  docs: {
+    source: {
+      code: DialogButtonsInRowExampleCode,
+    },
+  },
+};
+
+export const DialogButtonsShrunk = () => <DialogButtonsShrunkExample />;
+DialogButtonsShrunk.parameters = {
+  docs: {
+    source: {
+      code: DialogButtonsShrunkExampleCode,
+    },
+  },
+};
+
+export const DialogTextCenter = () => <DialogTextCenterExample />;
+DialogTextCenter.parameters = {
+  docs: {
+    source: {
+      code: DialogTextCenterExampleCode,
+    },
+  },
+};
+
+export const DialogImage = () => <DialogImageExample />;
+DialogImage.parameters = {
+  docs: {
+    source: {
+      code: DialogImageExampleCode,
+    },
+  },
+};
+
+export const DialogCheckboxes = () => <DialogCheckboxesExample />;
+DialogCheckboxes.parameters = {
+  docs: {
+    source: {
+      code: DialogCheckboxesExampleCode,
+    },
+  },
+};
