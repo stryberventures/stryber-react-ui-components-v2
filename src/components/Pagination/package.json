@@ -1,5 +1,5 @@
 {
-  "name": "@stryberventures/gaia-react.menu",
+  "name": "@stryberventures/gaia-react.pagination",
   "version": "0.1.2",
   "peerDependencies": {
     "classnames": ">=2.0.0",
