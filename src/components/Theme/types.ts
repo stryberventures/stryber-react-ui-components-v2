@@ -1,5 +1,6 @@
 import React from 'react';
 import { Breakpoints } from '../Grid/types';
+import { TextVariant } from '../Text/types';
 
 type RecursivePartial<T> = {
   [P in keyof T]?: RecursivePartial<T[P]>;
@@ -102,5 +103,8 @@ export interface ITheme {
   };
   spacing: {
     [key in TSpacing]: string;
+  };
+  text: {
+    [key in TextVariant]: React.CSSProperties;
   };
 }

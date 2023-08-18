@@ -6,6 +6,8 @@ import useStyles from './styles';
 
 export type TTextVariant = keyof typeof TextVariant;
 
+export { TextVariant };
+
 export interface IText extends React.HTMLAttributes<HTMLElement> {
   className?: string;
   align?: 'left' | 'center' | 'right';
