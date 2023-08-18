@@ -1,3 +1,5 @@
+import { CSSProperties } from 'react';
+
 export enum TextVariant {
   display1 = 'display1',
   display2 = 'display2',
@@ -16,3 +18,7 @@ export enum TextVariant {
   buttonLabelMini = 'buttonLabelMini',
   buttonLabelLarge = 'buttonLabelLarge',
 }
+
+export type CreateTextVariantStylesReturnType = {
+  [key in TextVariant]: CSSProperties;
+};

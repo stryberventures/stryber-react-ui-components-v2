@@ -1,5 +1,4 @@
-import React from 'react';
-import { TextVariant } from './types';
+import { CreateTextVariantStylesReturnType, TextVariant } from './types';
 
 import { createStyles } from '../Theme';
 import { ThemeType } from '../Theme/types';
@@ -8,7 +7,7 @@ import { ThemeType } from '../Theme/types';
 // Example: { [TextVariant.display1]: theme.text[TextVariant.display1], ... }
 const createTextVariantStyles = (
   theme: ThemeType
-): { [key in TextVariant]: React.CSSProperties } => {
+): CreateTextVariantStylesReturnType => {
   let textVariantStyles = {};
   for (const item in TextVariant) {
     if (isNaN(Number(item))) {
@@ -18,7 +17,7 @@ const createTextVariantStyles = (
       };
     }
   }
-  return textVariantStyles as { [key in TextVariant]: React.CSSProperties };
+  return textVariantStyles as CreateTextVariantStylesReturnType;
 };
 
 export default createStyles(
