@@ -7,7 +7,7 @@ import {
   VARIANT_HEAD,
 } from '../TableContext';
 
-export interface ITableCell extends React.HTMLAttributes<HTMLTableCellElement> {
+export interface ITableCell extends React.ComponentPropsWithoutRef<'td'> {
   component?: React.ElementType;
 }
 
