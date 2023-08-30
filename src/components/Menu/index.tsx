@@ -10,6 +10,7 @@ export interface IMenu {
   size?: 'small' | 'medium' | 'large';
   className?: string;
   dir?: string;
+  children?: React.ReactNode;
 }
 
 const Menu: React.FC<IMenu> = (props) => {
