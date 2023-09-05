@@ -102,3 +102,22 @@ FullWidth.args = {
   placeholder: 'Number',
   fullWidth: true,
 };
+
+export const Controlled = () => {
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (value: number) => {
+    if (value > 100) return setValue(100);
+    setValue(value);
+  };
+
+  return (
+    <NumberInput
+      controlled
+      onChange={handleChange}
+      value={value}
+      label="Controlled"
+      hint="Will not accept values greater than 100"
+    />
+  );
+};

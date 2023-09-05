@@ -44,10 +44,11 @@ const NumberInput: React.FC<INumberInput> = (props) => {
   const error = fieldError || errorMessage;
   const initValue = +fieldValue || value;
   const [initialValue, setInitialValue] = useState(initValue);
+  const numberInputValue = controlled ? value : initialValue;
 
   const valueUpdate = (value: number) => {
     setInitialValue(value);
-    updateFormValue(name, value);
+    !controlled && updateFormValue(name, value);
     onChange && onChange(value);
   };
   const handleChange = (e: React.BaseSyntheticEvent) => {
@@ -117,7 +118,7 @@ const NumberInput: React.FC<INumberInput> = (props) => {
         name={name}
         controlled={controlled}
         className={classes.numberInput}
-        value={`${initialValue}` || undefined}
+        value={`${numberInputValue}` || undefined}
         onChange={handleChange}
         errorMessage={error}
         prefix={prefix}
