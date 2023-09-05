@@ -57,7 +57,6 @@ QuantityCounter.args = {
   label: 'Quantity counter',
   placeholder: 'Number',
   quantityCounter: true,
-  controlled: true,
   leftIcon: (props) => (
     <Text
       variant="components1"
@@ -92,7 +91,6 @@ CustomStep.args = {
   label: 'Custom step',
   placeholder: 'Number',
   quantityCounter: true,
-  controlled: true,
   step: 2,
 };
 
