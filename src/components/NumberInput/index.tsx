@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useStyles from './styles';
 import Input, { IInput } from '../Input';
 import Button from '../Button';
@@ -42,12 +42,11 @@ const NumberInput: React.FC<INumberInput> = (props) => {
 
   const { updateFormValue, fieldValue, fieldError } = useFormContext(name);
   const error = fieldError || errorMessage;
-  const initValue = +fieldValue || value;
-  const [initialValue, setInitialValue] = useState(initValue);
+  const [initialValue, setInitialValue] = useState(+fieldValue || value);
 
   const valueUpdate = (value: number) => {
     setInitialValue(value);
-    updateFormValue(name, value);
+    !controlled && updateFormValue(name, value);
     onChange && onChange(value);
   };
   const handleChange = (e: React.BaseSyntheticEvent) => {
@@ -70,6 +69,13 @@ const NumberInput: React.FC<INumberInput> = (props) => {
   };
   const handleDecrease = () => counterBtnPress('minus');
   const handleIncrease = () => counterBtnPress('plus');
+
+  useEffect(() => {
+    if (controlled) {
+      setInitialValue(value);
+    }
+  }, [value]);
+
   const renderRightIcon = () => (
     <div className={classes.right} data-testid="testContainer">
       {quantityCounter && (

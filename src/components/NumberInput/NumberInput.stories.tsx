@@ -57,7 +57,6 @@ QuantityCounter.args = {
   label: 'Quantity counter',
   placeholder: 'Number',
   quantityCounter: true,
-  controlled: true,
   leftIcon: (props) => (
     <Text
       variant="components1"
@@ -92,7 +91,6 @@ CustomStep.args = {
   label: 'Custom step',
   placeholder: 'Number',
   quantityCounter: true,
-  controlled: true,
   step: 2,
 };
 
@@ -101,4 +99,23 @@ FullWidth.args = {
   label: 'Full parent width',
   placeholder: 'Number',
   fullWidth: true,
+};
+
+export const Controlled = () => {
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (value: number) => {
+    if (value > 100) return setValue(100);
+    setValue(value);
+  };
+
+  return (
+    <NumberInput
+      controlled
+      onChange={handleChange}
+      value={value}
+      label="Controlled"
+      hint="Will not accept values greater than 100"
+    />
+  );
 };
