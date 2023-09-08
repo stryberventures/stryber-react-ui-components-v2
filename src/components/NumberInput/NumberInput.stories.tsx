@@ -17,7 +17,7 @@ export default {
   args: {
     color: 'primary',
     quantityCounter: false,
-    controlled: true,
+    controlled: false,
     min: 0,
     max: 100,
     variant: 'labelOutside',

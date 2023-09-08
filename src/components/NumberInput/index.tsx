@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import useStyles from './styles';
 import Input, { IInput } from '../Input';
 import Button from '../Button';
@@ -43,6 +43,7 @@ const NumberInput: React.FC<INumberInput> = (props) => {
   const { updateFormValue, fieldValue, fieldError } = useFormContext(name);
   const error = fieldError || errorMessage;
   const [initialValue, setInitialValue] = useState(+fieldValue || value);
+  const internalValue = controlled ? value : initialValue;
 
   const valueUpdate = (value: number) => {
     setInitialValue(value);
@@ -53,7 +54,7 @@ const NumberInput: React.FC<INumberInput> = (props) => {
     const value = e.target.value;
     if (isNaN(+value) && value !== '-') {
       e.preventDefault();
-    } else valueUpdate(value);
+    } else valueUpdate(+value);
   };
   const counterBtnPress = (pressed: string) => {
     if (initialValue === '' || initialValue === undefined) {
@@ -70,12 +71,6 @@ const NumberInput: React.FC<INumberInput> = (props) => {
   const handleDecrease = () => counterBtnPress('minus');
   const handleIncrease = () => counterBtnPress('plus');
 
-  useEffect(() => {
-    if (controlled) {
-      setInitialValue(value);
-    }
-  }, [value]);
-
   const renderRightIcon = () => (
     <div className={classes.right} data-testid="testContainer">
       {quantityCounter && (
@@ -83,6 +78,7 @@ const NumberInput: React.FC<INumberInput> = (props) => {
           <Button
             variant="ghost"
             shape="circle"
+            type="button"
             className={classes.counterBtn}
             onClick={handleDecrease}
             iconLeft={() => (
@@ -99,6 +95,7 @@ const NumberInput: React.FC<INumberInput> = (props) => {
           <Button
             variant="ghost"
             shape="circle"
+            type="button"
             className={classes.counterBtn}
             onClick={handleIncrease}
             iconLeft={() => (
@@ -121,9 +118,9 @@ const NumberInput: React.FC<INumberInput> = (props) => {
         {...rest}
         dir={dir}
         name={name}
-        controlled={controlled}
+        controlled
         className={classes.numberInput}
-        value={`${initialValue}` || undefined}
+        value={`${internalValue}` || undefined}
         onChange={handleChange}
         errorMessage={error}
         prefix={prefix}
