@@ -18,10 +18,12 @@ export default () =>
   createStyles(
     (theme) => ({
       textAreaWrapper: (props: ITextArea) => ({
+        display: 'flex',
+        flexDirection: 'column',
         direction: props.dir || 'inherit',
         width: toRem(340),
-        height: toRem(136),
-        minHeight: toRem(136),
+        height: toRem(165),
+        minHeight: toRem(165),
         boxSizing: 'border-box',
         '& *, &:after, &:before': {
           boxSizing: 'inherit',
