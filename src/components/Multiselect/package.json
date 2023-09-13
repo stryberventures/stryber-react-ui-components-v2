@@ -11,6 +11,7 @@
     "@stryberventures/gaia-react.theme": ">=0.1.0",
     "@stryberventures/gaia-react.text": ">=0.1.0",
     "@stryberventures/gaia-react.input-toggle-layout": ">=0.1.0",
-    "@stryberventures/gaia-react.tag": ">=0.1.0"
+    "@stryberventures/gaia-react.tag": ">=0.1.0",
+    "@stryberventures/gaia-react.menu": ">=0.1.0"
   }
 }
