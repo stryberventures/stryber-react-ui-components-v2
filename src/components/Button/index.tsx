@@ -7,7 +7,7 @@ import { KEYS } from '../../hooks/useKeyPress';
 
 export interface IButton
   extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'size'> {
-  children?: string;
+  children?: React.ReactNode;
   size?: 'mini' | 'small' | 'medium' | 'large';
   shape?: 'square' | 'round' | 'circle';
   variant?: 'contained' | 'outlined' | 'ghost';
