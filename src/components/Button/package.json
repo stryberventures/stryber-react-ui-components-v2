@@ -1,6 +1,6 @@
 {
   "name": "@stryberventures/gaia-react.button",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "peerDependencies": {
     "classnames": ">=2.0.0",
     "react": ">=17.0.0",
