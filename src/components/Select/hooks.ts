@@ -29,7 +29,7 @@ export const useSelect = (props: ISelect) => {
   };
 
   React.useEffect(() => {
-    updateFormValue(name, selectedValue, true);
+    updateFormValue(name, fieldValue, true);
     return () => {
       updateFormValue(name, '', true);
     };
